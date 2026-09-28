@@ -1,0 +1,4 @@
+[
+  {"slug":"vortex-surfer","title":"Vortex Surfer","artist":"Motorpsycho","bpm":110,"durationSec":530.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":243,"chunks":9},
+  {"slug":"killing-in-the-name","title":"Killing in the Name","artist":"Rage Against the Machine","bpm":109,"durationSec":313.1,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":12,"bars":120,"chunks":30}
+]

@@ -161,7 +161,7 @@ songs/<slug>/song.yaml        Sidecar: metadata, chunks, media + sync, overrides
         ▼
 public/data/catalog.json       List of songs for the library overlay
 public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
-public/data/scores/<slug>.json Bass-only alphaTab score with re-tabs applied (ADR-0017)
+<base>data/scores/<slug>.gp   score.gp served/emitted by the song-scores Vite plugin, not committed twice (ADR-0017)
 ```
 
 ### 6.1 Normalised song JSON (generated)
@@ -174,19 +174,28 @@ public/data/scores/<slug>.json Bass-only alphaTab score with re-tabs applied (AD
   "tuning": [28, 33, 38, 43],          // MIDI pitch per string, lowest first
   "tuningName": "Standard",
   "ppq": 960,                           // ticks per quarter note
-  "tempoMap": [{ "bar": 1, "bpm": 110 }],
-  "bars": [{ "n": 1, "time": [4, 4], "startTick": 0, "section": null }],
-  "events": [
-    { "id": 0, "bar": 130, "tick": 0, "dur": 480, "kind": "note",
-      "string": 0, "fret": 6, "pitch": 34, "tieFromPrev": false,
-      "finger": 4, "position": 3, "retabFrom": { "string": 1, "fret": 1 } },
-    { "id": 1, "bar": 177, "tick": 0, "dur": 3840, "kind": "rest" }
+  "tempoMap": [{ "bar": 1, "tick": 0, "bpm": 110 }],
+  "bars": [{ "n": 1, "time": [4, 4], "startTick": 0, "durTicks": 3840, "section": null }],
+  "events": [                           // one per beat; `notes` holds double stops
+    { "id": 0, "bar": 130, "tick": 0, "start": 495360, "dur": 480, "kind": "note",
+      "notes": [{ "string": 0, "fret": 6, "pitch": 34, "tieFromPrev": false, "dead": false,
+                  "finger": 4, "position": 3, "retabFrom": { "string": 1, "fret": 1 } }] },
+    { "id": 1, "bar": 177, "tick": 0, "start": 675840, "dur": 3840, "kind": "rest", "notes": [] }
   ],
   "tacet": [[1, 129], [177, 191], [241, 243]],
-  "chunks": [{ "id": 1, "name": "Riff A", "bars": [130, 133], "position": 3, "shifts": 0, "source": "auto" }],
-  "stats": { "durationSec": 530, "noteCount": 692, "maxFret": 7, "strings": [0, 1] }
+  "chunks": [{ "id": 1, "name": "Riff A", "bars": [130, 133], "position": 3, "shifts": 0 }],
+  "stats": { "durationSec": 530.2, "noteCount": 692, "maxFret": 6, "strings": [0, 1], "firstBar": 130 },
+  "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] } },
+  "tempoNote": null
 }
 ```
+
+Types are in `src/core/model.ts`. The fields work as follows:
+
+- `noteCount` counts plucks, so tie continuations are excluded and dead notes are included.
+- `maxFret` is the highest fret after re-tabbing.
+- Dead notes keep their source tab and have `finger: null`.
+- An open-string note has `finger: 0` and `position: null`.
 
 ### 6.2 Sidecar `song.yaml` (ADR-0013)
 

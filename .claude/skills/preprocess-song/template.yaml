@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Vortex Surfer
+artist: Motorpsycho
+source: { file: "Motorpsycho-Vortex Surfer-10-13-2025.gp", date: 2025-10-13 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: null, sync: [] }
+chunks:
+  - { name: Riff A, bars: [130, 133] }
+  - { name: Riff A ×2, bars: [134, 141] }
+fingeringOverrides: []
+notes: >-
+  Bass enters at bar 130; bars 1–129 are tacet.

@@ -39,6 +39,7 @@ design/                      Design reference (read only)
 reference/                   Parser prototype and test fixtures
 docs/                        System description and ADRs
 .claude/skills/              Project skills (preprocess-song)
+spike.html, src/spike/       ADR-0017 alphaTab spike (temporary; remove once the strip is built)
 ```
 
 ## Commands

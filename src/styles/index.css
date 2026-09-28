@@ -1,0 +1,28 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+/* Short aliases (avoid Tailwind size names such as base/sm/lg): bg-page, bg-surface, text-subdued, bg-string-1, … */
+@theme inline {
+  --font-sans: var(--font-ui);
+  --color-page: var(--color-bg-base);
+  --color-surface: var(--color-bg-surface);
+  --color-elevated: var(--color-bg-elevated);
+  --color-card: var(--color-bg-card);
+  --color-subdued: var(--color-text-subdued);
+  --color-bright: var(--color-text-bright);
+  --color-string-1: var(--string-1);
+  --color-string-2: var(--string-2);
+  --color-string-3: var(--string-3);
+  --color-string-4: var(--string-4);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: var(--color-bg-base);
+  color: var(--color-text-base);
+  font-family: var(--font-ui);
+}

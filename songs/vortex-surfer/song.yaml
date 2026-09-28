@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Vortex Surfer
+artist: Motorpsycho
+source: { file: "Motorpsycho-Vortex Surfer-10-13-2025.gp", date: 2025-10-13 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: ENCBJU-xHcA, sync: [] }
+chunks:
+  - { name: Riff A, bars: [130, 133] }
+  - { name: Riff A ×2, bars: [134, 141] }
+  - { name: Climb, bars: [142, 147] }
+  - { name: E pedal, bars: [148, 159] }
+  - { name: Descent, bars: [160, 176] }
+  - { name: Return, bars: [192, 207] }
+  - { name: Rise, bars: [208, 219] }
+  - { name: Half-step, bars: [220, 231] }
+  - { name: Outro, bars: [232, 240] }
+fingeringOverrides: []
+notes: >-
+  Chunks are the design acceptance fixture (reference/vortex-surfer-chunks.json). Bass enters
+  at bar 130; bars 1–129, 177–191 and 241–243 are tacet. Bars 234–240 hold one tied D and
+  belong to the Outro. YouTube: "Motorpsycho - Topic" upload of the studio recording
+  (8:59 vs 8:50 in the score, the difference is the fade/ending); sync anchors still needed.

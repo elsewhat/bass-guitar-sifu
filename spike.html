@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>alphaTab spike (ADR-0017)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700;800&display=swap" rel="stylesheet" />
+    <style>
+      body { margin: 0; padding: 16px; background: #121212; color: #fff; font-family: Figtree, sans-serif; }
+      .controls { display: flex; gap: 12px; align-items: center; margin-bottom: 12px; font-size: 14px; }
+      .controls select, .controls button { background: #1f1f1f; color: #fff; border: 1px solid #4d4d4d; border-radius: 6px; padding: 6px 10px; font: inherit; }
+      .strip { position: relative; width: 1408px; height: 276px; background: #181818; border-radius: 8px; overflow: hidden; }
+      .scroller { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+      .scroller::-webkit-scrollbar { display: none; }
+      .playhead { position: absolute; left: 165px; top: 24px; width: 30px; height: 212px; box-sizing: border-box; background: rgba(255,255,255,0.07); border-left: 1px solid rgba(255,255,255,0.35); border-right: 1px solid rgba(255,255,255,0.35); pointer-events: none; }
+      .at-cursor-bar { background: transparent; }
+      .at-cursor-beat { background: rgba(30, 215, 96, 0.8); width: 2px; }
+      .at-highlight * { fill: #1ed760; stroke: #1ed760; }
+      #status { font: 12px ui-monospace, monospace; color: #b3b3b3; margin-top: 12px; white-space: pre; }
+    </style>
+  </head>
+  <body>
+    <div class="controls">
+      <select id="song"><option value="vortex-surfer">Vortex Surfer</option><option value="killing-in-the-name">Killing in the Name</option></select>
+      <select id="chunk"></select>
+      <select id="speed"><option>0.5</option><option selected>0.75</option><option>1</option></select>
+      <button id="play">Play / pause</button>
+      <label><input type="checkbox" id="debug" checked /> bounds debug</label>
+      <label><input type="checkbox" id="circles" checked /> circles</label>
+    </div>
+    <div class="strip">
+      <div class="scroller" id="scroller"><div id="at"></div></div>
+      <div class="playhead"></div>
+    </div>
+    <div id="status"></div>
+    <script type="module" src="/src/spike/spike.ts"></script>
+  </body>
+</html>

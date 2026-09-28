@@ -13,7 +13,7 @@ Chunks and fingering are produced by code and by the `preprocess-song` skill. Wh
 - `npm run build:songs` writes these files to `public/data/`, and they are committed:
   - `catalog.json`: the library list
   - `songs/<slug>.json`: the normalised song (system description §6.1)
-  - `scores/<slug>.json`: the bass-only alphaTab score with re-tabs applied (ADR-0017)
+  - (`score.gp` is not copied: the app loads it from `songs/<slug>/` through the `song-scores` Vite plugin, ADR-0017)
 - Output is deterministic: stable key order, no timestamps, 2-space indentation.
 - `npm run build:songs -- --check` regenerates everything in memory and fails if it differs from the committed files. CI runs it before tests and deploy.
 

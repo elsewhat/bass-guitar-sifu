@@ -1,0 +1,62 @@
+/* Live copy of design/tokens/tokens.css as a Tailwind theme (Nocturne + ADR-0009 string colours).
+   `static` emits every variable on :root; --color-*, --radius-*, --shadow-*, --font-* also become utilities. */
+@theme static {
+  --color-bg-base: #121212;
+  --color-bg-surface: #181818;
+  --color-bg-elevated: #1f1f1f;
+  --color-bg-card: #252525;
+  --color-bg-card-alt: #272727;
+  --color-bg-light: #eeeeee;
+  --color-text-base: #ffffff;
+  --color-text-subdued: #b3b3b3;
+  --color-text-bright: #cbcbcb;
+  --color-text-max: #fdfdfd;
+  --color-on-light: #181818;
+  --color-accent: #1ed760;
+  --color-accent-border: #1db954;
+  --color-on-accent: #000000;
+  --color-text-negative: #f3727f;
+  --color-text-warning: #ffa42b;
+  --color-text-announcement: #539df5;
+  --color-border-strong: #4d4d4d;
+  --color-border-muted: #7c7c7c;
+  --color-separator: #b3b3b3;
+  --color-ink-inset: #121212;
+  --color-focus-ring: #ffffff;
+  --space-1: 1px;
+  --space-2: 2px;
+  --space-3: 3px;
+  --space-4: 4px;
+  --space-5: 5px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-10: 10px;
+  --space-12: 12px;
+  --space-14: 14px;
+  --space-15: 15px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --radius-minimal: 2px;
+  --radius-subtle: 4px;
+  --radius-standard: 6px;
+  --radius-comfortable: 8px;
+  --radius-medium: 10px;
+  --radius-panel: 20px;
+  --radius-large: 100px;
+  --radius-pill: 500px;
+  --radius-full: 9999px;
+  --radius-circle: 50%;
+  --shadow-medium: rgba(0,0,0,0.3) 0px 8px 8px;
+  --shadow-heavy: rgba(0,0,0,0.5) 0px 8px 24px;
+  --shadow-inset: #121212 0px 1px 0px, #7c7c7c 0px 0px 0px 1px inset;
+  --font-ui: Figtree, "Helvetica Neue", helvetica, arial, "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  /* String colours, ADR-0009 (lowest string first) */
+  --string-1: #7c3aed;
+  --string-1-text: #ffffff;
+  --string-2: #0ea5e9;
+  --string-2-text: #000000;
+  --string-3: #f59e0b;
+  --string-3-text: #000000;
+  --string-4: #fde047;
+  --string-4-text: #000000;
+}
