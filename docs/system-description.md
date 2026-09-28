@@ -95,6 +95,8 @@ Bottom: two equal squares, "Now" and "Next".
 - The current loop is marked by a green bracket above the bars with a label: `Loop · chunk 1 · Riff A · bars 130–133 · pass 2 of 3`. Bars outside the loop are dimmed. The first bars of the next chunk are shown dimmed with a label.
 - Where the fingering engine re-tabs a note (same pitch, different string), a small blue label above the bar says `Retab · source A1`.
 - No finger numbers in the tab.
+- The notation is not highlighted. The current note is marked only in the tab, by the ring.
+- Rendering (ADR-0017): alphaTab engraves the notation and tab. Our overlays draw the circles, ring, bracket, dimming and labels, and our code draws the gutter and playhead. The strip scrolls with the "smoothed over 2 beats" mapping, so notes are within about 18 px of the playhead centre and the speed has no jumps.
 
 ### 3.7 String colours
 
@@ -299,7 +301,7 @@ Work proceeds in vertical slices. The first slice uses two songs: Vortex Surfer,
    - Tests against `reference/vortex-surfer-chunks.json` and the catalogue values above.
 3. `preprocess-song` skill. First runs: Vortex Surfer and one RATM song.
 4. Slice 1 practice view:
-   - alphaTab spike (ADR-0017) and the strip.
+   - The strip, built from the accepted alphaTab spike (ADR-0017, `src/spike/spike.ts`). The spike was done on 2026-09-28.
    - Fretboard, Now/Next squares and practice plan.
    - `CountClock`, loop, passes, auto-advance, tempo control and the visual metronome fade.
 5. Broaden:

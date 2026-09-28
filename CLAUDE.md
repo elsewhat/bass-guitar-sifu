@@ -12,6 +12,7 @@ Deployed to GitHub Pages at `https://elsewhat.github.io/bass-guitar-sifu/`.
 Read these before starting any task:
 
 - `docs/system-description.md`: screens, behaviour, data model, algorithms and milestones.
+- `docs/status.md`: what is done, what is next, and what waits on the owner. Start here when resuming work.
 - `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones.
 - `design/README.md` and `design/artboards/*.dc.html`: the visual and behavioural reference. Match sizes, colours and timing from these files.
 
@@ -21,7 +22,7 @@ Read these before starting any task:
 - Tailwind CSS v4 with the tokens in `src/styles/tokens.css`, copied from `design/tokens/tokens.css`
 - Zustand for session state
 - Vitest and Playwright for tests
-- `@coderline/alphatab`: the Guitar Pro importer in the build scripts, and possibly the strip renderer and player at runtime (ADR-0017, pending a spike)
+- `@coderline/alphatab` (+ `@coderline/alphatab-vite`): the Guitar Pro importer in the build scripts, and at runtime the strip engraving and Synth player under our own overlays, clock and scroll (ADR-0017; implementation guide in the ADR)
 
 ## Repository layout
 
@@ -39,7 +40,7 @@ design/                      Design reference (read only)
 reference/                   Parser prototype and test fixtures
 docs/                        System description and ADRs
 .claude/skills/              Project skills (preprocess-song)
-spike.html, src/spike/       ADR-0017 alphaTab spike (temporary; remove once the strip is built)
+spike.html, src/spike/       Accepted ADR-0017 spike: reference for the strip; remove once the strip is built
 ```
 
 ## Commands

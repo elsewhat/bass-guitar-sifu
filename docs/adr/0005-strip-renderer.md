@@ -1,6 +1,6 @@
 # ADR-0005: Custom SVG renderer for the notation and tab strip
 
-Status: Accepted, may be amended by ADR-0017 (alphaTab spike)
+Status: Superseded by ADR-0017 (alphaTab engraves; our overlays)
 Date: 2026-09-28
 
 ## Context
