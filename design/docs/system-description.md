@@ -1,0 +1,284 @@
+# Bass Trainer: system description
+
+Version 0.1 · 2026-09-28 · Status: design complete, implementation not started
+
+## 1. Purpose
+
+A web application for practising bass guitar parts of real songs. It is inspired by the BassBuzz "Beginner to Badass" course (structured practice, small steps) and by Songsterr (scrolling tab synced to a recording). It differs from Songsterr in four ways:
+
+1. Songs are practised in chunks of a few bars. A chunk loops a set number of times (default 3) and then advances automatically, or the player moves on manually.
+2. Tempo is adjustable per session, and playback can come from a video, a streaming track, a synthesised rendition, or a spoken count.
+3. A silent visual metronome shows when to pluck, which fret to play, and how long the note lasts.
+4. Every note has a recommended fretting finger. Recommendations are planned across the whole chunk and the next chunk, so the hand stays in one position where possible.
+
+The application is for one player (the owner) and a small circle of people with access. It is not a public product.
+
+## 2. Scope
+
+In scope for version 1:
+
+- A curated catalogue of 20–30 songs stored as Guitar Pro files in the repository.
+- Bass track only. Other tracks are ignored.
+- 4-string bass in any tuning present in the files (standard, drop D, C♯ standard have occurred).
+- Desktop and laptop screens from 1280 px width, shown in the browser's full-screen mode.
+- Progress stored in the browser.
+
+Out of scope for version 1: user accounts, a backend, uploading songs from the UI, 5- and 6-string basses, mobile layouts, audio input and pitch detection, editing tab in the app.
+
+## 3. Screen: practice view
+
+The application is a single page that always fits the screen without scrolling. Reference size is 1440 × 900 CSS px (16:10). The design source is in `design/artboards/Main.dc.html`.
+
+Layout grid, top to bottom:
+
+| Row | Height | Content |
+|---|---|---|
+| Header | 88 px | Song info (left), lyrics line and next line (middle), "Songs" button that opens the library (right) |
+| Middle | 400 px + 12 px + 64 px | Practice plan column (left, full middle height), video cell with transport bar under it (centre), fingering and metronome column (right, full middle height) |
+| Tab | 276 px | Scrolling notation and tab strip, full width |
+
+Gaps are 12 px, page padding 16 px.
+
+### 3.1 Header
+
+- Artwork placeholder, song title, artist, and a metadata line: `110 BPM · 4/4 · Standard E A D G · 243 bars`.
+- Lyrics: current line and next line, synced per bar. Lyrics are shown only when a licensed source is configured; otherwise the block shows nothing.
+- "Songs" button with a `Ctrl K` hint, which opens the song library overlay (section 4).
+
+### 3.2 Practice plan (left column)
+
+- Vertical list of the song's chunks. Each row: number circle, chunk name, bar range. The current chunk is expanded and shows `Bars 130–133 · pass 2 of 3` and the current tempo percentage.
+- Completed chunks show a check mark and the tempo at which they were completed.
+- Ranges where the bass rests are shown as thin separator rows (`Bars 1–129 · bass rests`) and are skipped during playback.
+- The column can be collapsed to a 56 px rail of numbered circles. When collapsed, the video cell widens (619 → 711 px) and the fretboard scales up.
+
+### 3.3 Video cell (centre, top)
+
+- Source switch overlaid top-left: `YouTube · Spotify · Synth · Count`.
+- YouTube: embedded player. Spotify: track playback without video. Synth: notes rendered from the score. Count: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
+- Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
+- Full-screen button top-right.
+
+### 3.4 Transport bar (under the video only)
+
+Left to right:
+
+1. Play/pause (primary, accent green circle).
+2. Restart chunk.
+3. Pass counter: dots for each pass (done = white, current = green, remaining = grey), text `2/3`, and a repeat toggle. Repeat toggle on (crossed arrows, green) = advance to the next chunk after N passes. Off (repeat-one icon) = loop this chunk indefinitely.
+4. Tempo control: `−`, `75%` with `83 BPM` under it, `+`. Steps of 5 %, range 40–120 %. Locked at 100 % when the source is Spotify.
+5. "Next chunk" button.
+
+There is no automatic tempo ramp.
+
+### 3.5 Fingering and metronome column (right)
+
+Top: fretboard diagram with a hand.
+
+- Horizontal neck, frets 0–9 (scaled to fit), strings drawn in their string colours with coloured letter badges (E A D G).
+- A shaded band marks the current hand position (four frets). Fret numbers inside the band are bold.
+- Four finger capsules rise from a palm shape under the neck. The active finger is filled with the target string's colour, reaches the target string and shows its number. Inactive fingers are translucent.
+- The next different note is marked with a dashed ring labelled "Next".
+- Open strings: a filled circle at the nut in the string colour, labelled 0.
+
+Bottom: two equal squares, "Now" and "Next".
+
+- "Now" shows only the fret number (128 px, weight 800) on a background in the current string's colour. On each pluck it shows at full colour and fades to 28 % opacity over 90 % of the note's duration, so an eighth note fades quickly and a whole note stays lit for most of the bar. The number changes from the string's text colour to white as it fades.
+- "Next" shows the next *different* note (not the next pluck) at full string colour, with `in 6` (plucks until the change), `next chunk` or `loop` in the top-right corner. It does not fade.
+
+### 3.6 Notation and tab strip (bottom)
+
+- Fixed left gutter (72 px): bass clef, time signature, `TAB` label, string badges G D A E in string colours.
+- Scrolling content: bar numbers, standard notation (bass clef, written one octave above sounding pitch, which is the convention for bass), and a 4-line tab.
+- Tab notes are filled circles in the string colour with the fret number inside (20 px; 26 px with a white ring for the current note).
+- A fixed playhead band (white, 7 % opacity) sits about 180 px from the left edge of the scrolling area. The content scrolls under it.
+- The current loop is marked by a green bracket above the bars with a label: `Loop · chunk 1 · Riff A · bars 130–133 · pass 2 of 3`. Bars outside the loop are dimmed. The first bars of the next chunk are shown dimmed with a label.
+- Where the fingering engine re-tabs a note (same pitch, different string), a small blue label above the bar says `Retab · source A1`.
+- No finger numbers in the tab.
+
+### 3.7 String colours
+
+Palette "dark to light" (ADR-0009). Colours get lighter from the lowest to the highest string.
+
+| String | Fill | Text on fill |
+|---|---|---|
+| E (lowest) | `#7c3aed` violet | white |
+| A | `#0ea5e9` sky blue | black |
+| D | `#f59e0b` amber | black |
+| G | `#fde047` light yellow | black |
+
+For tunings other than standard, colours follow string position (lowest string is violet), not note names.
+
+## 4. Song library overlay
+
+Opened from the header button. Full-screen dim backdrop, centred panel 960 × 640 px (`design/artboards/SelectorOverlay.dc.html`).
+
+- Large search field (title or artist) and a close button.
+- Filter chips: `All`, then the three artists with the most songs, with the count in parentheses, e.g. `Motorpsycho (4)`. Recomputed from the catalogue. One artist filter at a time; clicking an active chip clears it.
+- Result count at the right.
+- Three-column grid of song cards (148 px high): title, artist, `BPM · length · frets 0–N`, tuning badge (`Standard` grey, other tunings orange such as `Drop D` or `C♯ standard`) followed by the string names, and a progress bar with text (`Chunk 3 of 9`, `Not started`). The current song has a green ring and `Playing · …`.
+- Selecting a card loads the song and closes the overlay.
+- `Ctrl K` / `Cmd K` opens the overlay and `Esc` closes it.
+
+## 5. Practice behaviour
+
+### 5.1 Loop and advance
+
+- The player selects a chunk (or starts at the first chunk).
+- Playback loops the chunk's bars. Each full loop increments the pass counter.
+- When the pass counter exceeds the target passes (default 3) and auto-advance is on, the chunk is marked done with the tempo used, the next chunk starts, and the pass counter resets to 1.
+- "Next chunk" advances immediately without marking the chunk done.
+- Bars in tacet ranges are never part of a chunk and are skipped.
+
+### 5.2 Visual metronome
+
+- Fires on every note onset (pluck), not on every beat.
+- Fade duration = 0.9 × note duration at the current tempo. Tied continuations do not trigger a new pluck.
+- Rests: the "Now" square shows a neutral dark state with no number.
+
+### 5.3 Tempo
+
+- Effective BPM = score BPM × tempo %. Score tempo comes from the Guitar Pro tempo map (automation events).
+- YouTube: the IFrame API only supports discrete playback rates and rounds requested values. The app requests the nearest rate from `getAvailablePlaybackRates()` and shows the actual rate.
+- Spotify: no playback rate control is available in the Web Playback SDK, so tempo is fixed at 100 %.
+- Synth and Count: any tempo.
+
+### 5.4 Count mode
+
+- Plays one sample per eighth-note position: `one`, `and`, `two`, `and`, `three`, `and`, `four`, `and`, using the bar's time signature (other meters count the corresponding beats).
+- Samples are WAV files in `public/audio/count/`, scheduled with the Web Audio API using a look-ahead scheduler so timing does not depend on `setTimeout` accuracy.
+- The eight count cells in the video area highlight the current position, including during sustained notes.
+
+## 6. Song pipeline
+
+Guitar Pro files are the source of truth for notes. A build step turns each song folder into a JSON file the app loads at runtime (ADR-0003, ADR-0004).
+
+```
+songs/<slug>/score.gp         Guitar Pro file (GP3–GP8)
+songs/<slug>/song.json        Hand-edited sidecar: media ids, sync map, overrides
+        │  npm run build:songs  (Node, runs in CI before vite build)
+        ▼
+public/data/catalog.json      List of songs for the library overlay
+public/data/songs/<slug>.json Normalised bass track + chunks + fingering
+```
+
+### 6.1 Normalised song JSON (generated)
+
+```jsonc
+{
+  "slug": "vortex-surfer",
+  "title": "Vortex Surfer",
+  "artist": "Motorpsycho",
+  "tuning": [28, 33, 38, 43],          // MIDI pitch per string, lowest first
+  "tuningName": "Standard",
+  "ppq": 960,                           // ticks per quarter note
+  "tempoMap": [{ "bar": 1, "bpm": 110 }],
+  "bars": [{ "n": 1, "time": [4, 4], "startTick": 0, "section": null }],
+  "events": [
+    { "id": 0, "bar": 130, "tick": 0, "dur": 480, "kind": "note",
+      "string": 0, "fret": 6, "pitch": 34, "tieFromPrev": false,
+      "finger": 4, "position": 3, "retabFrom": { "string": 1, "fret": 1 } },
+    { "id": 1, "bar": 177, "tick": 0, "dur": 3840, "kind": "rest" }
+  ],
+  "tacet": [[1, 129], [177, 191], [241, 243]],
+  "chunks": [{ "id": 1, "name": "Riff A", "bars": [130, 133], "position": 3, "shifts": 0, "source": "auto" }],
+  "stats": { "durationSec": 530, "noteCount": 692, "maxFret": 7, "strings": [0, 1] }
+}
+```
+
+### 6.2 Sidecar `song.json` (hand-edited)
+
+```jsonc
+{
+  "bassTrack": "Electric Bass (finger)",   // track name or index; default: first track with 4 strings and "bass" in the name
+  "media": {
+    "youtube": { "videoId": null, "sync": [{ "bar": 1, "ms": 0 }] },
+    "spotify": { "trackUri": null, "sync": [] }
+  },
+  "chunks": null,                 // null = automatic; or [{ "name": "Riff A", "bars": [130, 133] }]
+  "fingeringOverrides": [],       // [{ "bar": 130, "tick": 0, "string": 0, "fret": 6, "finger": 4 }]
+  "lyrics": null                  // reference to a licensed source; not stored in the repo
+}
+```
+
+`sync` is a list of anchor points from score bar to recording time. The app interpolates linearly between anchors using the tempo map. A single anchor is enough if the recording follows the score tempo.
+
+## 7. Algorithms
+
+### 7.1 Chunking (ADR-0006)
+
+1. Mark tacet bars (bars that contain only rests in the bass track). A bar that only sustains a note tied from the previous bar is not tacet; Vortex Surfer bars 234–240 hold one tied D and belong to the Outro chunk. Consecutive tacet bars form a tacet range.
+2. If the file has section markers, use them as the top level. Otherwise the whole playable range is one section.
+3. Inside each section, compute a signature per bar (sequence of string, fret, duration, tie flags). Split into phrases of 2–8 bars (target 4), preferring boundaries where the signature pattern repeats or changes.
+4. Merge an immediate repeat of the previous phrase into one chunk named `<name> ×2`.
+5. Name chunks from section names where present (`Verse 1`, `Verse 1 b`), otherwise sequentially (`Riff A`, `Riff B`) with the same letter for identical phrases.
+6. Sidecar `chunks` overrides the result completely.
+
+### 7.2 Fingering (ADR-0007)
+
+Dynamic programming over the note sequence of the playable range (not per chunk, so the next chunk is planned for):
+
+- State per note: (string, fret, finger). Candidates include every string and fret that produces the same pitch within frets 0–(maxFret + 2), so re-tabbing is possible.
+- Hand position p = fret − finger + 1 for fretted notes. Open strings keep the current position.
+- Default rule: one finger per fret within a 4-fret position.
+- Costs: position shift (proportional to distance), string change, re-tab away from the source string/fret (small, so the source tab wins ties), stretch beyond the 4-fret span (high), open string (small bonus below fret 5).
+- Repeated identical notes keep the same fingering.
+- Output: finger, position, `retabFrom` when the chosen string/fret differs from the file.
+- Sidecar `fingeringOverrides` pins individual notes and the solver plans around them.
+
+The hand-made fingering for Vortex Surfer bars 130–176 in `reference/vortex-surfer-chunks.json` is the expected result for tests.
+
+## 8. Playback and timing (ADR-0008)
+
+One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SpotifyClock`, `SynthClock`, `CountClock`.
+
+- The clock reports the current score position (bar + tick) at animation-frame rate.
+- Recording-based clocks map recording time to score position through the sync map.
+- Loop: when the position passes the chunk end, the clock seeks to the chunk start and emits `passCompleted`.
+- YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
+- Synth and Count schedule audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
+
+## 9. Persistence (ADR-0010)
+
+- `localStorage` key `bass-trainer:v1:<slug>`: current chunk, passes, tempo, source, completed chunks with tempo, last practised timestamp.
+- `bass-trainer:v1:settings`: passes per chunk, practice plan collapsed, last song.
+- Settings dialog offers export and import of all progress as a JSON file.
+
+## 10. Hosting and repository (ADR-0001)
+
+- Static site built with Vite and deployed by a GitHub Actions workflow to GitHub Pages.
+- All songs, sidecars and count samples are committed to the repository.
+- Visibility of the published site must be decided before the first deploy; see ADR-0001.
+
+## 11. Catalogue at design time
+
+Extracted from the six Guitar Pro files provided during design.
+
+| Song | Artist | BPM (file) | Tuning | Length | Bars | Bass notes | Max fret | Sections in file |
+|---|---|---|---|---|---|---|---|---|
+| Vortex Surfer | Motorpsycho | 110 | E A D G | 8:50 | 243 | 692 | 7 | none |
+| The Wheel | Motorpsycho | 122 | C♯ F♯ B E | 18:55 | 577 | 3263 | 16 | none |
+| Un Chien d'Espace | Motorpsycho | 98 | E A D G | 14:26 | 357 | 763 | 8 | Prelude, Intro |
+| wearing yr smell | Motorpsycho | 137 | E A D G | 3:30 | 120 | 747 | 17 | none |
+| Creep | Radiohead | 92 | E A D G | 3:57 | 91 | 429 | 12 | 8 (Intro … Chorus) |
+| Black Hole Sun | Soundgarden | 53 | D A D G | 5:23 | 79 | 434 | 8 | 11 (Intro … Ending) |
+
+Notes:
+
+- Bass enters at bar 130 in Vortex Surfer, bar 32 in Un Chien d'Espace, bar 5 in Black Hole Sun.
+- Black Hole Sun and Un Chien d'Espace change time signature (2/4, 3/4, 4/4, 5/4, 9/8 occur).
+- Rhythms in the bass tracks range from whole notes to 32nd notes, with dotted notes and ties. No tuplets occur in these six files, but the renderer must support them.
+- Black Hole Sun is notated at 53 BPM. Check this against the recording when creating its sync map; the file may be notated in half time.
+
+## 12. Implementation milestones
+
+1. Scaffold: Vite + React + TypeScript + Tailwind, tokens as CSS variables, GitHub Actions deploy to Pages, empty practice layout at 1440 × 900 with full-screen button.
+2. Song pipeline: Node script from `.gp` to normalised JSON for all six songs; unit tests against the design-time catalogue values above.
+3. Static practice view: tab and notation strip, fretboard, Now/Next squares, practice plan, rendered from JSON at a fixed position.
+4. Clock and Count mode: `CountClock`, loop, passes, auto-advance, tempo control, visual metronome fade.
+5. Chunking algorithm with overrides; tests with Vortex Surfer and Creep.
+6. Fingering algorithm; tests against `reference/vortex-surfer-chunks.json`.
+7. Song library overlay and progress persistence.
+8. YouTube source with sync map; sync editor (tap to set bar anchors while the video plays).
+9. Synth source.
+10. Spotify source, if still useful after ADR-0008's constraints.

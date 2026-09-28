@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tab and notation strip</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&amp;family=Noto+Music&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: {{w}}px; height: 276px; background: #181818; border-radius: 8px; overflow: hidden; font-family: Figtree, 'Helvetica Neue', helvetica, arial, sans-serif; color: #ffffff">
+  <div style="position: absolute; left: 72px; top: 0px; width: {{clipW}}px; height: 276px; overflow: hidden">
+    <div style="position: absolute; left: 0px; top: 0px; width: {{totalW}}px; height: 276px; transform: translateX({{tx}}px); transition: transform 160ms linear">
+      <div style="position: absolute; left: 0px; top: 56px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 65px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 74px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 83px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 92px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 160px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 180px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 200px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <div style="position: absolute; left: 0px; top: 220px; width: {{totalW}}px; height: 1px; background: #7c7c7c"></div>
+      <sc-for list="{{bars}}" as="b" hint-placeholder-count="6">
+        <div style="position: absolute; left: {{b.x}}px; top: 56px; width: 1px; height: 37px; background: #cbcbcb"></div>
+        <div style="position: absolute; left: {{b.x}}px; top: 160px; width: 1px; height: 61px; background: #cbcbcb"></div>
+        <div style="position: absolute; left: {{b.lx}}px; top: 30px; font-size: 12px; line-height: 16px; font-weight: 700; color: #b3b3b3">{{b.bar}}</div>
+        <sc-if value="{{b.rest}}" hint-placeholder-val="{{false}}">
+          <div style="position: absolute; left: {{b.rx}}px; top: 65px; width: 14px; height: 5px; background: #ffffff"></div>
+        </sc-if>
+      </sc-for>
+      <sc-for list="{{beams}}" as="m" hint-placeholder-count="8">
+        <div style="position: absolute; left: {{m.left}}px; top: {{m.top}}px; width: {{m.width}}px; height: 4px; background: #ffffff"></div>
+      </sc-for>
+      <sc-for list="{{notes}}" as="n" hint-placeholder-count="24">
+        <sc-if value="{{n.acc}}" hint-placeholder-val="{{false}}">
+          <div style="position: absolute; left: {{n.accX}}px; top: {{n.accY}}px; font-family: 'Noto Music', serif; font-size: 20px; line-height: 20px; color: {{n.col}}">♭</div>
+        </sc-if>
+        <sc-if value="{{n.ledger}}" hint-placeholder-val="{{false}}">
+          <div style="position: absolute; left: {{n.ledX}}px; top: 101px; width: 20px; height: 1px; background: #cbcbcb"></div>
+        </sc-if>
+        <div style="position: absolute; left: {{n.hx}}px; top: {{n.hy}}px; width: 12px; height: 9px; box-sizing: border-box; border-radius: 50%; background: {{n.hbg}}; border: {{n.hbd}}; transform: rotate(-20deg)"></div>
+        <sc-if value="{{n.stem}}" hint-placeholder-val="{{true}}">
+          <div style="position: absolute; left: {{n.sx}}px; top: {{n.sy}}px; width: 1.5px; height: 26px; background: {{n.col}}"></div>
+        </sc-if>
+        <div style="position: absolute; left: {{n.cx}}px; top: {{n.cy}}px; width: {{n.cs}}px; height: {{n.cs}}px; border-radius: 50%; background: {{n.cbg}}; color: {{n.cfg}}; box-shadow: {{n.cring}}; display: flex; align-items: center; justify-content: center; font-size: {{n.cfs}}px; line-height: 1; font-weight: 800">{{n.f}}</div>
+      </sc-for>
+      <sc-for list="{{retabs}}" as="r" hint-placeholder-count="1">
+        <div style="position: absolute; left: {{r.x}}px; top: 134px; font-size: 11px; line-height: 14px; font-weight: 700; color: #539df5; white-space: nowrap">{{r.label}}</div>
+      </sc-for>
+      <div style="position: absolute; left: 0px; top: 22px; width: {{preW}}px; height: 254px; background: rgba(24, 24, 24, 0.74)"></div>
+      <div style="position: absolute; left: {{postX}}px; top: 22px; width: {{postW}}px; height: 254px; background: rgba(24, 24, 24, 0.74)"></div>
+      <div style="position: absolute; left: {{postX}}px; top: 250px; padding-left: 12px; font-size: 12px; line-height: 16px; font-weight: 700; color: #b3b3b3; white-space: nowrap">{{nextLabel}}</div>
+      <div style="position: absolute; left: {{loopStart}}px; top: 12px; width: {{loopW}}px; height: 8px; box-sizing: border-box; border: 2px solid #1ed760; border-bottom: 0px solid transparent; border-radius: 2px 2px 0px 0px"></div>
+      <div style="position: absolute; left: {{loopLabelX}}px; top: 5px; padding: 0px 8px; background: #181818; font-size: 12px; line-height: 16px; font-weight: 700; color: #ffffff; white-space: nowrap">{{loopLabel}}</div>
+    </div>
+    <div style="position: absolute; left: 165px; top: 24px; width: 30px; height: 212px; box-sizing: border-box; background: rgba(255, 255, 255, 0.07); border-left: 1px solid rgba(255, 255, 255, 0.35); border-right: 1px solid rgba(255, 255, 255, 0.35)"></div>
+  </div>
+  <div style="position: absolute; left: 0px; top: 0px; width: 72px; height: 276px; background: #181818; box-shadow: rgba(0, 0, 0, 0.5) 8px 0px 12px">
+    <div style="position: absolute; left: 8px; top: 56px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 65px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 74px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 83px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 92px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 56px; width: 1px; height: 37px; background: #cbcbcb"></div>
+    <div style="position: absolute; left: 12px; top: 49px; font-family: 'Noto Music', serif; font-size: 34px; line-height: 40px; color: #ffffff">𝄢</div>
+    <div style="position: absolute; left: 46px; top: 55px; width: 16px; text-align: center; font-size: 19px; line-height: 19px; font-weight: 800; color: #ffffff">4</div>
+    <div style="position: absolute; left: 46px; top: 74px; width: 16px; text-align: center; font-size: 19px; line-height: 19px; font-weight: 800; color: #ffffff">4</div>
+    <div style="position: absolute; left: 8px; top: 160px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 180px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 200px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 220px; width: 64px; height: 1px; background: #7c7c7c"></div>
+    <div style="position: absolute; left: 8px; top: 160px; width: 1px; height: 61px; background: #cbcbcb"></div>
+    <div style="position: absolute; left: 14px; top: 162px; width: 14px; display: flex; flex-direction: column; align-items: center; font-size: 15px; line-height: 19px; font-weight: 800; color: #ffffff"><span>T</span><span>A</span><span>B</span></div>
+    <div style="position: absolute; left: 45px; top: 151px; width: 18px; height: 18px; border-radius: 50%; background: {{sG.bg}}; text-align: center; font-size: 11px; line-height: 18px; font-weight: 800; color: {{sG.fg}}">G</div>
+    <div style="position: absolute; left: 45px; top: 171px; width: 18px; height: 18px; border-radius: 50%; background: {{sD.bg}}; text-align: center; font-size: 11px; line-height: 18px; font-weight: 800; color: {{sD.fg}}">D</div>
+    <div style="position: absolute; left: 45px; top: 191px; width: 18px; height: 18px; border-radius: 50%; background: {{sA.bg}}; text-align: center; font-size: 11px; line-height: 18px; font-weight: 800; color: {{sA.fg}}">A</div>
+    <div style="position: absolute; left: 45px; top: 211px; width: 18px; height: 18px; border-radius: 50%; background: {{sE.bg}}; text-align: center; font-size: 11px; line-height: 18px; font-weight: 800; color: {{sE.fg}}">E</div>
+    <div style="position: absolute; left: 10px; top: 30px; font-size: 11px; line-height: 16px; font-weight: 700; color: #b3b3b3">Bar</div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"chunk":{"editor":"int","default":0,"min":0,"max":4},"idx":{"editor":"int","default":10,"min":0,"max":120},"width":{"editor":"int","default":1408,"min":600,"max":2400},"pass":{"editor":"int","default":2,"min":1,"max":9},"passes":{"editor":"int","default":3,"min":1,"max":9},"palette":{"editor":"enum","default":"ladder","options":["ladder","rocksmith","greenE"]},"$preview":{"width":1408,"height":276}}'>
+class Component extends DCLogic {
+  chunks() {
+    const b = (bar, n, s, f, fi, src, whole) => ({ bar: bar, n: n, s: s, f: f, fi: fi, src: src || '', whole: !!whole });
+    return [
+      { id: 1, name: 'Riff A', bars: [b(130, 'B♭', 0, 6, 4, 'A1'), b(131, 'G', 0, 3, 1), b(132, 'D', 1, 5, 3), b(133, 'D', 1, 5, 3)] },
+      { id: 2, name: 'Riff A ×2', bars: [b(134, 'B♭', 0, 6, 4), b(135, 'G', 0, 3, 1), b(136, 'D', 1, 5, 3), b(137, 'D', 1, 5, 3), b(138, 'B♭', 0, 6, 4), b(139, 'G', 0, 3, 1), b(140, 'D', 1, 5, 3), b(141, 'D', 1, 5, 3)] },
+      { id: 3, name: 'Climb', bars: [b(142, 'B♭', 1, 1, 1), b(143, 'C', 1, 3, 3), b(144, 'B', 1, 2, 2), b(145, 'B', 1, 2, 2), b(146, 'A', 1, 0, 0), b(147, 'A', 1, 0, 0)] },
+      { id: 4, name: 'E pedal', bars: [b(148, 'E', 0, 0, 0), b(149, 'E', 0, 0, 0), b(150, 'E', 0, 0, 0), b(151, 'E', 0, 0, 0), b(152, 'B', 1, 2, 1), b(153, 'B', 1, 2, 1), b(154, 'A', 1, 0, 0), b(155, 'A', 1, 0, 0), b(156, 'E', 0, 0, 0), b(157, 'E', 0, 0, 0), b(158, 'E', 0, 0, 0), b(159, 'E', 0, 0, 0)] },
+      { id: 5, name: 'Descent', bars: [b(160, 'B', 1, 2, 1), b(161, 'B', 1, 2, 1), b(162, 'A', 0, 5, 4), b(163, 'A', 0, 5, 4), b(164, 'G', 0, 3, 2), b(165, 'G', 0, 3, 2), b(166, 'E', 0, 0, 0), b(167, 'E', 0, 0, 0), b(168, 'B', 1, 2, 1), b(169, 'B', 1, 2, 1, 'E7'), b(170, 'A', 0, 5, 4), b(171, 'A', 0, 5, 4), b(172, 'G', 0, 3, 2), b(173, 'G', 0, 3, 2), b(174, 'E', 0, 0, 0), b(175, 'E', 0, 0, 0), b(176, 'B', 1, 2, 1, '', true)] }
+    ];
+  }
+  palette() {
+    const PAL = {
+      rocksmith: { c: ['#ff5a5f', '#f5c518', '#2563eb', '#ff8a3d'], t: ['#000000', '#000000', '#ffffff', '#000000'] },
+      greenE: { c: ['#22c55e', '#f5c518', '#2563eb', '#f472b6'], t: ['#000000', '#000000', '#ffffff', '#000000'] },
+      ladder: { c: ['#7c3aed', '#0ea5e9', '#f59e0b', '#fde047'], t: ['#ffffff', '#000000', '#000000', '#000000'] }
+    };
+    return PAL[this.props.palette] || PAL.ladder;
+  }
+  renderVals() {
+    const CH = this.chunks();
+    const P = this.palette();
+    const NAMES = ['Riff A', 'Riff A ×2', 'Climb', 'E pedal', 'Descent', 'Return', 'Rise', 'Half-step', 'Outro'];
+    const FIRST = [130, 134, 142, 148, 160, 192, 208, 220, 232];
+    const ci = Math.max(0, Math.min(CH.length - 1, Number(this.props.chunk ?? 0)));
+    const w = Number(this.props.width ?? 1408);
+    const pass = Number(this.props.pass ?? 2);
+    const passes = Number(this.props.passes ?? 3);
+    const ch = CH[ci];
+    const pb = ci > 0 ? CH[ci - 1].bars[CH[ci - 1].bars.length - 1] : { bar: 129, rest: true };
+    const nb = ci + 1 < CH.length ? CH[ci + 1].bars.slice(0, 3) : [];
+    const list = [Object.assign({ zone: 'pre' }, pb)]
+      .concat(ch.bars.map((x) => Object.assign({ zone: 'loop' }, x)))
+      .concat(nb.map((x) => Object.assign({ zone: 'post' }, x)));
+    const loopCount = ch.bars.reduce((a, x) => a + (x.whole ? 1 : 8), 0);
+    const idx = Math.max(0, Math.min(loopCount - 1, Number(this.props.idx ?? 10)));
+    const BW = 208, OFF = 8, PLAY = 180, ACC = '#1ed760';
+    const PIT = { 'B♭': 2, 'B': 2, 'C': 3, 'D': 4, 'G': 0, 'A': 1, 'E': -2 };
+    const bars = [], notes = [], beams = [], retabs = [];
+    let li = 0, curX = 0;
+    list.forEach((bb, i) => {
+      const bx = OFF + i * BW;
+      bars.push({ x: bx, lx: bx + 6, bar: bb.bar, rest: !!bb.rest, rx: bx + BW / 2 - 8 });
+      if (bb.rest) return;
+      const st = PIT[bb.n];
+      const y = 92 - st * 4.5;
+      const cnt = bb.whole ? 1 : 8;
+      const xs = [];
+      for (let k = 0; k < cnt; k++) {
+        const x = bx + 22 + k * 24;
+        xs.push(x);
+        let cur = false;
+        if (bb.zone === 'loop') {
+          if (li === idx) { cur = true; curX = x; }
+          li++;
+        }
+        const SC = P.c;
+        const SF = P.t;
+        const col = cur ? SC[bb.s] : '#ffffff';
+        const ty = 220 - bb.s * 20;
+        const cs = cur ? 26 : 20;
+        notes.push({
+          acc: bb.n === 'B♭' && k === 0, accX: x - 19, accY: y - 15,
+          ledger: st <= -2, ledX: x - 10,
+          hx: x - 6, hy: y - 4.5,
+          hbg: bb.whole ? 'transparent' : col,
+          hbd: bb.whole ? ('2px solid ' + col) : '0px solid transparent',
+          stem: !bb.whole, sx: x + 4.5, sy: y - 27,
+          f: String(bb.f), col: col,
+          cx: x - cs / 2, cy: ty - cs / 2, cs: cs, cfs: cur ? 15 : 12,
+          cbg: SC[bb.s], cfg: SF[bb.s],
+          cring: cur ? 'rgb(255, 255, 255) 0px 0px 0px 2px' : 'none'
+        });
+      }
+      if (!bb.whole) {
+        [0, 4].forEach((g) => beams.push({ left: xs[g] + 4.5, top: y - 27, width: xs[g + 3] - xs[g] + 1.5 }));
+      }
+      if (bb.src) retabs.push({ x: bx + 10, label: 'Retab · source ' + bb.src });
+    });
+    const totalW = OFF + list.length * BW + 24;
+    const loopStart = OFF + BW;
+    const loopEnd = loopStart + ch.bars.length * BW;
+    const first = ch.bars[0].bar, last = ch.bars[ch.bars.length - 1].bar;
+    return {
+      sE: { bg: P.c[0], fg: P.t[0] }, sA: { bg: P.c[1], fg: P.t[1] }, sD: { bg: P.c[2], fg: P.t[2] }, sG: { bg: P.c[3], fg: P.t[3] },
+      w: w,
+      clipW: w - 72,
+      totalW: totalW,
+      tx: PLAY - curX,
+      bars: bars, notes: notes, beams: beams, retabs: retabs,
+      preW: loopStart, postX: loopEnd, postW: Math.max(0, totalW - loopEnd),
+      loopStart: loopStart, loopW: loopEnd - loopStart, loopLabelX: loopStart + 10,
+      loopLabel: 'Loop · chunk ' + ch.id + ' · ' + ch.name + ' · bars ' + first + '–' + last + ' · pass ' + pass + ' of ' + passes,
+      nextLabel: ci + 1 < NAMES.length ? ('Next · chunk ' + (ci + 2) + ' · ' + NAMES[ci + 1] + ' · bar ' + FIRST[ci + 1]) : 'End of song'
+    };
+  }
+}
+</script>
+</body>
+</html>

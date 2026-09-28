@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "song.schema.json",
+  "title": "Song sidecar",
+  "description": "Hand-edited metadata next to songs/<slug>/score.gp. See docs/system-description.md §6.2 and ADR-0003.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "bassTrack": {
+      "description": "Track name or zero-based index of the bass track in score.gp.",
+      "oneOf": [{ "type": "string" }, { "type": "integer", "minimum": 0 }]
+    },
+    "title": { "type": "string", "description": "Overrides the title in score.gp." },
+    "artist": { "type": "string", "description": "Overrides the artist in score.gp." },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "youtube": { "$ref": "#/$defs/source", "properties": { "videoId": { "type": ["string", "null"] } } },
+        "spotify": { "$ref": "#/$defs/source", "properties": { "trackUri": { "type": ["string", "null"] } } }
+      }
+    },
+    "chunks": {
+      "description": "null = automatic chunking (ADR-0006). A list replaces the automatic result.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "bars"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string" },
+              "bars": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 2, "maxItems": 2 }
+            }
+          }
+        }
+      ]
+    },
+    "fingeringOverrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bar", "tick"],
+        "additionalProperties": false,
+        "properties": {
+          "bar": { "type": "integer", "minimum": 1 },
+          "tick": { "type": "integer", "minimum": 0, "description": "Offset from bar start at 960 PPQ." },
+          "string": { "type": "integer", "minimum": 0, "maximum": 3, "description": "0 = lowest string." },
+          "fret": { "type": "integer", "minimum": 0, "maximum": 24 },
+          "finger": { "type": "integer", "minimum": 0, "maximum": 4 }
+        }
+      }
+    },
+    "lyrics": {
+      "description": "Reference to a licensed lyrics source. Lyrics text is never stored in the repository (ADR-0011).",
+      "type": ["object", "null"]
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "sync": {
+          "description": "Anchors from score bar to recording time. Linear interpolation with the tempo map between anchors.",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["bar", "ms"],
+            "additionalProperties": false,
+            "properties": {
+              "bar": { "type": "integer", "minimum": 1 },
+              "tick": { "type": "integer", "minimum": 0 },
+              "ms": { "type": "number", "minimum": 0 }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "../../schemas/song.schema.json",
+  "bassTrack": "Electric Bass (finger)",
+  "media": {
+    "youtube": {
+      "videoId": null,
+      "sync": [
+        {
+          "bar": 1,
+          "ms": 0
+        }
+      ]
+    },
+    "spotify": {
+      "trackUri": null,
+      "sync": []
+    }
+  },
+  "chunks": null,
+  "fingeringOverrides": [],
+  "lyrics": null
+}

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Fretboard and hand</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&amp;family=Noto+Music&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: {{ow}}px; height: {{oh}}px; font-family: Figtree, 'Helvetica Neue', helvetica, arial, sans-serif; color: #ffffff">
+  <div style="position: absolute; left: 0px; top: 0px; width: 673px; height: 208px; transform: scale({{scale}}); transform-origin: 0px 0px">
+    <div style="position: absolute; left: 44px; top: 18px; width: {{neckW}}px; height: 112px; background: #252525; border-radius: 4px"></div>
+    <div style="position: absolute; left: {{band.left}}px; top: 18px; width: {{band.width}}px; height: 112px; background: rgba(255, 255, 255, 0.06)"></div>
+    <div style="position: absolute; left: 41px; top: 16px; width: 5px; height: 116px; background: #cbcbcb; border-radius: 2px"></div>
+    <sc-for list="{{wires}}" as="wv" hint-placeholder-count="9">
+      <div style="position: absolute; left: {{wv.x}}px; top: 18px; width: 2px; height: 112px; background: #4d4d4d"></div>
+    </sc-for>
+    <sc-for list="{{inlays}}" as="dot" hint-placeholder-count="4">
+      <div style="position: absolute; left: {{dot.x}}px; top: 68px; width: 12px; height: 12px; border-radius: 50%; background: #3a3a3a"></div>
+    </sc-for>
+    <sc-for list="{{fretNums}}" as="fn" hint-placeholder-count="9">
+      <div style="position: absolute; left: {{fn.x}}px; top: 0px; width: 20px; text-align: center; font-size: 11px; line-height: 14px; font-weight: {{fn.fw}}; color: {{fn.col}}">{{fn.n}}</div>
+    </sc-for>
+    <sc-for list="{{strings}}" as="sg" hint-placeholder-count="4">
+      <div style="position: absolute; left: 24px; top: {{sg.y}}px; width: {{sg.len}}px; height: {{sg.h}}px; background: {{sg.col}}"></div>
+      <div style="position: absolute; left: 0px; top: {{sg.ly}}px; width: 18px; height: 18px; border-radius: 50%; background: {{sg.col}}; text-align: center; font-size: 11px; line-height: 18px; font-weight: 800; color: {{sg.fg}}">{{sg.letter}}</div>
+    </sc-for>
+    <sc-for list="{{marks}}" as="mk" hint-placeholder-count="3">
+      <div style="position: absolute; left: {{mk.x}}px; top: {{mk.y}}px; width: 22px; height: 22px; box-sizing: border-box; border-radius: 50%; border: 2px solid #7c7c7c; background: #181818; text-align: center; font-size: 11px; line-height: 18px; font-weight: 700; color: #cbcbcb">{{mk.label}}</div>
+    </sc-for>
+    <sc-if value="{{next.show}}" hint-placeholder-val="{{true}}">
+      <div style="position: absolute; left: {{next.x}}px; top: {{next.y}}px; width: 30px; height: 30px; box-sizing: border-box; border-radius: 50%; border: 2px dashed #ffffff"></div>
+      <div style="position: absolute; left: {{next.lx}}px; top: {{next.ly}}px; width: 40px; text-align: center; font-size: 10px; line-height: 12px; font-weight: 700; color: #ffffff; background: #252525">Next</div>
+    </sc-if>
+    <div style="position: absolute; left: {{palm.left}}px; top: 178px; width: {{palm.width}}px; height: 30px; background: rgba(255, 255, 255, 0.1); border-radius: 16px 16px 0px 0px"></div>
+    <sc-for list="{{fingers}}" as="fg" hint-placeholder-count="4">
+      <div style="position: absolute; left: {{fg.left}}px; top: {{fg.top}}px; width: 24px; height: {{fg.h}}px; box-sizing: border-box; border-radius: 12px 12px 8px 8px; background: {{fg.bg}}; border: {{fg.bd}}; text-align: center; font-size: 12px; line-height: 22px; font-weight: 800; color: {{fg.col}}">{{fg.n}}</div>
+    </sc-for>
+    <sc-if value="{{open.show}}" hint-placeholder-val="{{false}}">
+      <div style="position: absolute; left: 19px; top: {{open.y}}px; width: 22px; height: 22px; border-radius: 50%; background: {{open.bg}}; box-shadow: rgb(255, 255, 255) 0px 0px 0px 2px; text-align: center; font-size: 12px; line-height: 22px; font-weight: 800; color: {{open.fg}}">0</div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"s":{"editor":"int","default":0,"min":0,"max":3},"f":{"editor":"int","default":3,"min":0,"max":12},"fi":{"editor":"int","default":1,"min":0,"max":4},"pos":{"editor":"int","default":3,"min":1,"max":9},"ns":{"editor":"int","default":1,"min":0,"max":3},"nf":{"editor":"int","default":5,"min":0,"max":12},"showNext":{"editor":"boolean","default":true},"frets":{"editor":"int","default":9,"min":5,"max":12},"scale":{"editor":"float","default":1,"min":0.5,"max":2,"step":0.05},"marks":{"editor":null},"palette":{"editor":"enum","default":"ladder","options":["ladder","rocksmith","greenE"]},"$preview":{"width":673,"height":208}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const P = this.props;
+    const W = 673, x0 = 44, ACC = '#1ed760';
+    const s = Number(P.s ?? 0), f = Number(P.f ?? 3), fi = Number(P.fi ?? 1);
+    const frets = Number(P.frets ?? 9);
+    const pos = Math.max(1, Math.min(frets - 3, Number(P.pos ?? 3)));
+    const ns = Number(P.ns ?? 1), nf = Number(P.nf ?? 5);
+    const showNext = (P.showNext ?? true) && !(ns === s && nf === f);
+    const scale = Number(P.scale ?? 1);
+    const d = (W - 16 - x0) / frets;
+    const slot = (n) => (n === 0 ? x0 - 16 : x0 + (n - 0.5) * d);
+    const sy = (st) => 116 - st * 28;
+    const wires = [], fretNums = [], inlays = [], strings = [], fingers = [];
+    for (let n = 1; n <= frets; n++) {
+      wires.push({ x: x0 + n * d - 1 });
+      const inPos = n >= pos && n <= pos + 3;
+      fretNums.push({ x: slot(n) - 10, n: n, col: inPos ? '#ffffff' : '#7c7c7c', fw: inPos ? 700 : 400 });
+      if ([3, 5, 7, 9, 12].indexOf(n) >= 0) inlays.push({ x: slot(n) - 6 });
+    }
+    const TH = [3.5, 3, 2.5, 2], LET = ['E', 'A', 'D', 'G'];
+    const PAL = {
+      rocksmith: { c: ['#ff5a5f', '#f5c518', '#2563eb', '#ff8a3d'], t: ['#000000', '#000000', '#ffffff', '#000000'] },
+      greenE: { c: ['#22c55e', '#f5c518', '#2563eb', '#f472b6'], t: ['#000000', '#000000', '#ffffff', '#000000'] },
+      ladder: { c: ['#7c3aed', '#0ea5e9', '#f59e0b', '#fde047'], t: ['#ffffff', '#000000', '#000000', '#000000'] }
+    };
+    const PP = PAL[P.palette] || PAL.ladder;
+    const SC = PP.c;
+    const SF = PP.t;
+    for (let st = 0; st < 4; st++) {
+      strings.push({ y: sy(st) - TH[st] / 2, h: TH[st], len: W - 16 - 24, col: SC[st], fg: SF[st], letter: LET[st], ly: sy(st) - 9 });
+    }
+    for (let k = 1; k <= 4; k++) {
+      const fret = pos + k - 1;
+      if (fret > frets) continue;
+      const active = k === fi;
+      const tipY = active ? sy(s) : 142;
+      const top = tipY - 12;
+      fingers.push({
+        left: slot(fret) - 12, top: top, h: 198 - top, n: k,
+        bg: active ? SC[s] : 'rgba(255, 255, 255, 0.14)',
+        bd: active ? '2px solid #ffffff' : '1px solid rgba(255, 255, 255, 0.3)',
+        col: active ? SF[s] : '#cbcbcb'
+      });
+    }
+    const rawMarks = Array.isArray(P.marks) ? P.marks : [];
+    const marks = rawMarks
+      .filter((m) => !(m.s === s && m.f === f))
+      .map((m) => ({ x: slot(m.f) - 11, y: sy(m.s) - 11, label: m.fi === 0 ? 'O' : String(m.fi) }));
+    return {
+      ow: Math.round(673 * scale), oh: Math.round(208 * scale), scale: scale,
+      neckW: W - 16 - x0,
+      band: { left: x0 + (pos - 1) * d, width: 4 * d },
+      wires: wires, fretNums: fretNums, inlays: inlays, strings: strings, fingers: fingers, marks: marks,
+      palm: { left: slot(pos) - 26, width: slot(pos + 3) - slot(pos) + 52 },
+      next: { show: showNext, x: slot(nf) - 15, y: sy(ns) - 15, lx: slot(nf) - 20, ly: sy(ns) - 30 },
+      open: { show: fi === 0, y: sy(s) - 11, bg: SC[s], fg: SF[s] }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,679 @@
+{
+  "song": "vortex-surfer",
+  "description": "Expected chunking for the whole song and expected fingering for bars 130-176, agreed during design. String 'E' is the lowest string. Every bar in 130-175 holds 8 eighth-note plucks of the same pitch; bar 176 is one whole note. Open-string notes (finger 0) keep the hand position of the nearest fretted note in the same chunk, looking forward first.",
+  "tuning": {
+    "names": [
+      "E",
+      "A",
+      "D",
+      "G"
+    ],
+    "midi": [
+      28,
+      33,
+      38,
+      43
+    ]
+  },
+  "tempoBpm": 110,
+  "tacet": [
+    [
+      1,
+      129
+    ],
+    [
+      177,
+      191
+    ],
+    [
+      241,
+      243
+    ]
+  ],
+  "chunks": [
+    {
+      "id": 1,
+      "name": "Riff A",
+      "bars": [
+        130,
+        133
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Riff A ×2",
+      "bars": [
+        134,
+        141
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Climb",
+      "bars": [
+        142,
+        147
+      ]
+    },
+    {
+      "id": 4,
+      "name": "E pedal",
+      "bars": [
+        148,
+        159
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Descent",
+      "bars": [
+        160,
+        176
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Return",
+      "bars": [
+        192,
+        207
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Rise",
+      "bars": [
+        208,
+        219
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Half-step",
+      "bars": [
+        220,
+        231
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Outro",
+      "bars": [
+        232,
+        240
+      ]
+    }
+  ],
+  "fingering": [
+    {
+      "bar": 130,
+      "pitch": 34,
+      "noteName": "A♯1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 6,
+      "finger": 4,
+      "position": 3,
+      "retabFrom": {
+        "string": "A",
+        "fret": 1
+      }
+    },
+    {
+      "bar": 131,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 1,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 132,
+      "pitch": 38,
+      "noteName": "D2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 5,
+      "finger": 3,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 133,
+      "pitch": 38,
+      "noteName": "D2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 5,
+      "finger": 3,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 134,
+      "pitch": 34,
+      "noteName": "A♯1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 6,
+      "finger": 4,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 135,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 1,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 136,
+      "pitch": 38,
+      "noteName": "D2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 5,
+      "finger": 3,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 137,
+      "pitch": 38,
+      "noteName": "D2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 5,
+      "finger": 3,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 138,
+      "pitch": 34,
+      "noteName": "A♯1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 6,
+      "finger": 4,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 139,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 1,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 140,
+      "pitch": 38,
+      "noteName": "D2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 5,
+      "finger": 3,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 141,
+      "pitch": 38,
+      "noteName": "D2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 5,
+      "finger": 3,
+      "position": 3,
+      "retabFrom": null
+    },
+    {
+      "bar": 142,
+      "pitch": 34,
+      "noteName": "A♯1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 1,
+      "finger": 1,
+      "position": 1,
+      "retabFrom": null
+    },
+    {
+      "bar": 143,
+      "pitch": 36,
+      "noteName": "C2",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 3,
+      "finger": 3,
+      "position": 1,
+      "retabFrom": null
+    },
+    {
+      "bar": 144,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 2,
+      "position": 1,
+      "retabFrom": null
+    },
+    {
+      "bar": 145,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 2,
+      "position": 1,
+      "retabFrom": null
+    },
+    {
+      "bar": 146,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 147,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 148,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 149,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 150,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 151,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 152,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 153,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 154,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 155,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 156,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 157,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 158,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 159,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 160,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 161,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 162,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 5,
+      "finger": 4,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 163,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 5,
+      "finger": 4,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 164,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 2,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 165,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 2,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 166,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 167,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 168,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 169,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": {
+        "string": "E",
+        "fret": 7
+      }
+    },
+    {
+      "bar": 170,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 5,
+      "finger": 4,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 171,
+      "pitch": 33,
+      "noteName": "A1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 5,
+      "finger": 4,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 172,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 2,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 173,
+      "pitch": 31,
+      "noteName": "G1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 3,
+      "finger": 2,
+      "position": 2,
+      "retabFrom": null
+    },
+    {
+      "bar": 174,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 175,
+      "pitch": 28,
+      "noteName": "E1",
+      "plucks": 8,
+      "durationQuarters": 0.5,
+      "string": "E",
+      "fret": 0,
+      "finger": 0,
+      "position": null,
+      "retabFrom": null
+    },
+    {
+      "bar": 176,
+      "pitch": 35,
+      "noteName": "B1",
+      "plucks": 1,
+      "durationQuarters": 4.0,
+      "string": "A",
+      "fret": 2,
+      "finger": 1,
+      "position": 2,
+      "retabFrom": null
+    }
+  ]
+}
