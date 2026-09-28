@@ -1,6 +1,6 @@
 # ADR-0004: Build-time preprocessing of Guitar Pro files
 
-Status: Accepted
+Status: Accepted, amended by ADR-0014 (generated data committed)
 Date: 2026-09-28
 
 ## Context

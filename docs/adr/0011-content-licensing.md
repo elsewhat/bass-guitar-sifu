@@ -1,6 +1,6 @@
 # ADR-0011: Third-party content
 
-Status: Accepted
+Status: Accepted, amended by ADR-0012 (.gp files are public)
 Date: 2026-09-28
 
 ## Context

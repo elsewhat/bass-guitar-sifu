@@ -1,6 +1,6 @@
 # ADR-0001: Hosting and access control
 
-Status: Proposed, needs a decision before the first deploy
+Status: Superseded by ADR-0012
 Date: 2026-09-28
 
 ## Context

@@ -1,6 +1,6 @@
 # Bass Trainer: system description
 
-Version 0.1 · 2026-09-28 · Status: design complete, implementation not started
+Version 0.2 · 2026-09-28 · Status: architecture settled (ADR-0012–0017), implementation starting
 
 ## 1. Purpose
 
@@ -54,8 +54,8 @@ Gaps are 12 px, page padding 16 px.
 
 ### 3.3 Video cell (centre, top)
 
-- Source switch overlaid top-left: `YouTube · Spotify · Synth · Count`.
-- YouTube: embedded player. Spotify: track playback without video. Synth: notes rendered from the score. Count: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
+- Source switch overlaid top-left: `YouTube · Synth · Count` (Spotify deferred, ADR-0016).
+- YouTube: embedded player. Synth: notes rendered from the score. Count: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
 - Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
 - Full-screen button top-right.
 
@@ -66,7 +66,7 @@ Left to right:
 1. Play/pause (primary, accent green circle).
 2. Restart chunk.
 3. Pass counter: dots for each pass (done = white, current = green, remaining = grey), text `2/3`, and a repeat toggle. Repeat toggle on (crossed arrows, green) = advance to the next chunk after N passes. Off (repeat-one icon) = loop this chunk indefinitely.
-4. Tempo control: `−`, `75%` with `83 BPM` under it, `+`. Steps of 5 %, range 40–120 %. Locked at 100 % when the source is Spotify.
+4. Tempo control: `−`, `75%` with `83 BPM` under it, `+`. Steps of 5 %, range 40–120 %.
 5. "Next chunk" button.
 
 There is no automatic tempo ramp.
@@ -140,7 +140,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 
 - Effective BPM = score BPM × tempo %. Score tempo comes from the Guitar Pro tempo map (automation events).
 - YouTube: the IFrame API only supports discrete playback rates and rounds requested values. The app requests the nearest rate from `getAvailablePlaybackRates()` and shows the actual rate.
-- Spotify: no playback rate control is available in the Web Playback SDK, so tempo is fixed at 100 %.
+- Spotify (deferred, ADR-0016): the Web Playback SDK has no playback-rate control.
 - Synth and Count: any tempo.
 
 ### 5.4 Count mode
@@ -154,12 +154,14 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 Guitar Pro files are the source of truth for notes. A build step turns each song folder into a JSON file the app loads at runtime (ADR-0003, ADR-0004).
 
 ```
+music/<Artist-Title-date>.gp  Inbox; /preprocess-song moves it into songs/<slug>/ (ADR-0015)
 songs/<slug>/score.gp         Guitar Pro file (GP3–GP8)
-songs/<slug>/song.json        Hand-edited sidecar: media ids, sync map, overrides
-        │  npm run build:songs  (Node, runs in CI before vite build)
+songs/<slug>/song.yaml        Sidecar: metadata, chunks, media + sync, overrides (ADR-0013)
+        │  npm run build:songs  (Node; run locally and committed, CI runs --check; ADR-0014)
         ▼
-public/data/catalog.json      List of songs for the library overlay
-public/data/songs/<slug>.json Normalised bass track + chunks + fingering
+public/data/catalog.json       List of songs for the library overlay
+public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
+public/data/scores/<slug>.json Bass-only alphaTab score with re-tabs applied (ADR-0017)
 ```
 
 ### 6.1 Normalised song JSON (generated)
@@ -186,33 +188,38 @@ public/data/songs/<slug>.json Normalised bass track + chunks + fingering
 }
 ```
 
-### 6.2 Sidecar `song.json` (hand-edited)
+### 6.2 Sidecar `song.yaml` (ADR-0013)
 
-```jsonc
-{
-  "bassTrack": "Electric Bass (finger)",   // track name or index; default: first track with 4 strings and "bass" in the name
-  "media": {
-    "youtube": { "videoId": null, "sync": [{ "bar": 1, "ms": 0 }] },
-    "spotify": { "trackUri": null, "sync": [] }
-  },
-  "chunks": null,                 // null = automatic; or [{ "name": "Riff A", "bars": [130, 133] }]
-  "fingeringOverrides": [],       // [{ "bar": 130, "tick": 0, "string": 0, "fret": 6, "finger": 4 }]
-  "lyrics": null                  // reference to a licensed source; not stored in the repo
-}
+Written by the `preprocess-song` skill and edited by hand. It is validated against `schemas/song.schema.json`.
+
+```yaml
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Vortex Surfer
+artist: Motorpsycho
+source: { file: "Motorpsycho-Vortex Surfer-10-13-2025.gp", date: 2025-10-13 }
+bassTrack: "Electric Bass (finger)"   # track name or zero-based index
+tempo: { note: null }                 # e.g. "notated half-time"
+media:
+  youtube: { videoId: null, sync: [{ bar: 1, ms: 0 }] }
+chunks:                               # required; the build does not invent chunks
+  - { name: Riff A, bars: [130, 133] }
+fingeringOverrides: []                # { bar, tick, string?, fret?, finger? }
+notes: ""                             # review notes from the skill
 ```
 
 `sync` is a list of anchor points from score bar to recording time. The app interpolates linearly between anchors using the tempo map. A single anchor is enough if the recording follows the score tempo.
 
 ## 7. Algorithms
 
-### 7.1 Chunking (ADR-0006)
+### 7.1 Chunking (ADR-0006, amended by ADR-0015)
+
+The final chunks are written by the `preprocess-song` skill into `song.yaml`. Code computes steps 1–4 as a draft in `npm run inspect-song`. The skill decides the boundaries and names (step 5), and the build uses only the sidecar chunks.
 
 1. Mark tacet bars (bars that contain only rests in the bass track). A bar that only sustains a note tied from the previous bar is not tacet; Vortex Surfer bars 234–240 hold one tied D and belong to the Outro chunk. Consecutive tacet bars form a tacet range.
 2. If the file has section markers, use them as the top level. Otherwise the whole playable range is one section.
 3. Inside each section, compute a signature per bar (sequence of string, fret, duration, tie flags). Split into phrases of 2–8 bars (target 4), preferring boundaries where the signature pattern repeats or changes.
 4. Merge an immediate repeat of the previous phrase into one chunk named `<name> ×2`.
-5. Name chunks from section names where present (`Verse 1`, `Verse 1 b`), otherwise sequentially (`Riff A`, `Riff B`) with the same letter for identical phrases.
-6. Sidecar `chunks` overrides the result completely.
+5. The agent names the chunks musically. It uses section names where present (`Verse 1`, `Verse 1 b`), otherwise descriptive names (`Riff A`, `Climb`, `E pedal`), and reuses a name for identical phrases.
 
 ### 7.2 Fingering (ADR-0007)
 
@@ -230,7 +237,7 @@ The hand-made fingering for Vortex Surfer bars 130–176 in `reference/vortex-su
 
 ## 8. Playback and timing (ADR-0008)
 
-One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SpotifyClock`, `SynthClock`, `CountClock`.
+One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `CountClock`. With ADR-0017, YouTube and Synth are adapters over the alphaTab player (external-media mode and synth).
 
 - The clock reports the current score position (bar + tick) at animation-frame rate.
 - Recording-based clocks map recording time to score position through the sync map.
@@ -244,11 +251,11 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - `bass-trainer:v1:settings`: passes per chunk, practice plan collapsed, last song.
 - Settings dialog offers export and import of all progress as a JSON file.
 
-## 10. Hosting and repository (ADR-0001)
+## 10. Hosting and repository (ADR-0012)
 
-- Static site built with Vite and deployed by a GitHub Actions workflow to GitHub Pages.
-- All songs, sidecars and count samples are committed to the repository.
-- Visibility of the published site must be decided before the first deploy; see ADR-0001.
+- Static site built with Vite and deployed by a GitHub Actions workflow to GitHub Pages at `https://elsewhat.github.io/bass-guitar-sifu/`.
+- Public repository and public site. There is no access control.
+- All songs, sidecars, generated data (ADR-0014) and count samples are committed to the repository.
 
 ## 11. Catalogue at design time
 
@@ -272,13 +279,23 @@ Notes:
 
 ## 12. Implementation milestones
 
-1. Scaffold: Vite + React + TypeScript + Tailwind, tokens as CSS variables, GitHub Actions deploy to Pages, empty practice layout at 1440 × 900 with full-screen button.
-2. Song pipeline: Node script from `.gp` to normalised JSON for all six songs; unit tests against the design-time catalogue values above.
-3. Static practice view: tab and notation strip, fretboard, Now/Next squares, practice plan, rendered from JSON at a fixed position.
-4. Clock and Count mode: `CountClock`, loop, passes, auto-advance, tempo control, visual metronome fade.
-5. Chunking algorithm with overrides; tests with Vortex Surfer and Creep.
-6. Fingering algorithm; tests against `reference/vortex-surfer-chunks.json`.
-7. Song library overlay and progress persistence.
-8. YouTube source with sync map; sync editor (tap to set bar anchors while the video plays).
-9. Synth source.
-10. Spotify source, if still useful after ADR-0008's constraints.
+Work proceeds in vertical slices. The first slice uses two songs: Vortex Surfer, the acceptance fixture, and one Rage Against the Machine song added through the skill.
+
+1. Scaffold: Vite, React, TypeScript and Tailwind, with tokens as CSS variables. A GitHub Actions workflow runs the build and tests and deploys to Pages. An empty practice layout at 1440 × 900 with a full-screen button.
+2. Pipeline core:
+   - `gp-import` (alphaTab in Node) produces the normalised model.
+   - Tacet detection and draft chunks.
+   - The fingering solver.
+   - The `inspect-song` and `build-songs` scripts.
+   - Tests against `reference/vortex-surfer-chunks.json` and the catalogue values above.
+3. `preprocess-song` skill. First runs: Vortex Surfer and one RATM song.
+4. Slice 1 practice view:
+   - alphaTab spike (ADR-0017) and the strip.
+   - Fretboard, Now/Next squares and practice plan.
+   - `CountClock`, loop, passes, auto-advance, tempo control and the visual metronome fade.
+5. Broaden:
+   - Remaining songs through the skill.
+   - Song library overlay and progress persistence.
+6. YouTube source with sync map, and the tap sync editor (ADR-0016).
+7. Synth source.
+8. Spotify source: deferred (ADR-0016).

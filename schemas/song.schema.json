@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "song.schema.json",
+  "title": "Song sidecar (song.yaml)",
+  "description": "Sidecar next to songs/<slug>/score.gp, written by the preprocess-song skill and by hand. See ADR-0013 and ADR-0015.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["title", "artist", "source", "bassTrack", "chunks"],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "artist": { "type": "string", "minLength": 1 },
+    "source": {
+      "description": "Where score.gp came from (the music/ inbox file).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["file"],
+      "properties": {
+        "file": { "type": "string", "description": "Original file name, e.g. 'Motorpsycho-Vortex Surfer-10-13-2025.gp'." },
+        "date": { "type": "string", "format": "date", "description": "Transcription date from the file name (YYYY-MM-DD)." }
+      }
+    },
+    "bassTrack": {
+      "description": "Track name or zero-based index of the bass track in score.gp.",
+      "oneOf": [{ "type": "string" }, { "type": "integer", "minimum": 0 }]
+    },
+    "tempo": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "note": { "type": ["string", "null"], "description": "Free-text remark, e.g. notated half-time." }
+      }
+    },
+    "media": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "youtube": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "videoId": { "type": ["string", "null"], "pattern": "^[A-Za-z0-9_-]{11}$" },
+            "sync": { "$ref": "#/$defs/sync" }
+          }
+        }
+      }
+    },
+    "chunks": {
+      "description": "Ordered practice chunks. Required; the build does not invent chunks (ADR-0015).",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["name", "bars"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string", "minLength": 1 },
+          "bars": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 2, "maxItems": 2 }
+        }
+      }
+    },
+    "fingeringOverrides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bar", "tick"],
+        "additionalProperties": false,
+        "properties": {
+          "bar": { "type": "integer", "minimum": 1 },
+          "tick": { "type": "integer", "minimum": 0, "description": "Offset from bar start at 960 PPQ." },
+          "string": { "type": "integer", "minimum": 0, "maximum": 3, "description": "0 = lowest string." },
+          "fret": { "type": "integer", "minimum": 0, "maximum": 24 },
+          "finger": { "type": "integer", "minimum": 0, "maximum": 4 }
+        }
+      }
+    },
+    "notes": { "type": "string", "description": "Review notes from the skill or the owner." }
+  },
+  "$defs": {
+    "sync": {
+      "description": "Anchors from score bar to recording time. Linear interpolation with the tempo map between anchors.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["bar", "ms"],
+        "additionalProperties": false,
+        "properties": {
+          "bar": { "type": "integer", "minimum": 1 },
+          "tick": { "type": "integer", "minimum": 0 },
+          "ms": { "type": "number", "minimum": 0 }
+        }
+      }
+    }
+  }
+}

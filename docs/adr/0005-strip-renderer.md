@@ -1,6 +1,6 @@
 # ADR-0005: Custom SVG renderer for the notation and tab strip
 
-Status: Accepted
+Status: Accepted, may be amended by ADR-0017 (alphaTab spike)
 Date: 2026-09-28
 
 ## Context

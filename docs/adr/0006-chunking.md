@@ -1,6 +1,6 @@
 # ADR-0006: Chunking strategy
 
-Status: Accepted
+Status: Accepted, amended by ADR-0015 (agent-authored chunks)
 Date: 2026-09-28
 
 ## Context
