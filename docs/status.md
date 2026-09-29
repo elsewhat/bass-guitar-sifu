@@ -29,8 +29,14 @@ Updated 2026-09-29. This is the hand-off point between working sessions: what is
    - Clock and loop: `PlaybackClock` (`src/playback/clock.ts`), `CountClock` (Web Audio look-ahead, WAVs when present, else tones), `CountTimeline` (pure scheduler math), loop rules in `src/playback/loop.ts`, one rAF loop in `src/playback/frame.ts`. The design choices are in **ADR-0018 (proposed)**.
    - Practice engine `src/practice/engine.ts` wires clock, loop and the Zustand store. Per-frame views (strip, Now fade, fretboard, count cells) write to the DOM directly.
    - Panels: header with meta line, practice plan (rest separators, done ticks, rail), video cell with count cells and chips, transport (passes, repeat toggle, tempo 40–120 %), fretboard with hand, Now/Next squares.
-   - Song choice: temporary "Songs" list (also Ctrl K) and `?song=<slug>`. YouTube and Synth buttons are shown but disabled.
+   - Song choice: temporary "Songs" list (also Ctrl K) and `?song=<slug>`. The YouTube button is shown but disabled.
    - Tests: unit tests for plucks, count labels, `CountTimeline`, loop rules, scroll mapping and view text; Playwright smoke tests for layout, song load, playback scrolling, tempo, chunk selection and song switching.
+7. **Synth source** (step 6, first part; **ADR-0019, proposed**).
+   - `SynthClock` (`src/playback/synth-clock.ts`) over a `SynthPlayer` port; the alphaTab side is `src/strip/synth-player.ts`, played through the strip's own alphaTab instance (`src/strip/strip-host.ts`). The player and the soundfont load only when Synth is first chosen (`Strip.enableSynth`).
+   - Track mix `bass` (default) / `band` / `backing` in `src/playback/synth-mix.ts`, `synthMix` in the store and `setSynthMix` in the engine. No switch in the UI yet.
+   - Video cell: "Synth playback", "Loading sounds… NN %" while loading; Play is disabled until ready. Switching between Count and Synth keeps the position.
+   - Checked in the preview: loading, passes, auto-advance into the next chunk, pause and resume, tempo, chunk selection, source switch and song switch. Tests: `synth-clock.test.ts` and a Playwright smoke test.
+   - alphaTab 1.8.4 bug worked around: subscribing to `api.midiLoaded` after the player exists overflows the stack, so the strip subscribes before switching the player on.
 
 7. **Fingering for beginners** (ADR-0007 revised 2026-09-29, owner's rules). The solver now has:
    - a 1-2-4 box in positions 1–5 and one finger per fret above that;
@@ -42,7 +48,6 @@ Updated 2026-09-29. This is the hand-off point between working sessions: what is
 
 ## Next: step 6
 
-- Synth source: an alphaTab-player adapter of `PlaybackClock` (ADR-0017 clock guide: extrapolate position events; ADR-0018: call `onRangeEnd` on the wrap). Enable `playerMode` and load the soundfont lazily.
 - YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016).
 - Song library overlay (Ctrl K, replaces the temporary list in `src/components/Header.tsx`) and localStorage progress with export and import (ADR-0010). Done chunks and tempo are in the store already but not persisted.
 - Run `/preprocess-song` on the 8 remaining files in `music/`. Six of them are the design songs.
@@ -57,6 +62,7 @@ Open points from slice 1 (not blocking):
 
 - Approve the revised Vortex Surfer fingering in `reference/vortex-surfer-chunks.json` (bars 130–141, 143, 162–165 and 170–173 changed with the beginner rules). Also check the new small shifts in the Killing in the Name verses; they fall on the open D.
 - Review ADR-0018 (clock interface and loop decisions) and accept or change it.
+- Review ADR-0019 (Synth source). Listen to the Synth in a normal browser: the bass-only sound, the wrap and auto-advance gaps, a tempo change while playing, and whether the ring and scroll lag the sound (if they do, add an output-latency offset in `src/strip/synth-player.ts`). Decide where the mix switch (bass / band / backing) goes in the UI.
 - Try slice 1 in a normal browser: Count playback, loop and auto-advance, tempo, the fade, and 60 fps while scrolling.
 - Make `elsewhat/bass-guitar-sifu` public, and set Pages → Source to "GitHub Actions" (ADR-0012). The workflow already exists.
 - Record the count samples: `one` … `four`, `and`, as WAV files in `public/audio/count/`.

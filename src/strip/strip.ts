@@ -71,7 +71,7 @@ function createSettings(): alphaTab.Settings {
   ]) {
     settings.notation.elements.set(el, false);
   }
-  // Count is the only source so far; the Synth and YouTube sources switch the player on (ADR-0017).
+  // The player stays off (no worker, no soundfont) until the Synth source is chosen (enableSynth).
   settings.player.playerMode = alphaTab.PlayerMode.Disabled;
   settings.player.scrollMode = alphaTab.ScrollMode.Off; // we scroll
   settings.player.enableCursor = false; // we draw the playhead
@@ -87,7 +87,12 @@ function svgEl<K extends keyof SVGElementTagNameMap>(tag: K, attrs: Record<strin
 }
 
 export class Strip {
-  private readonly api: alphaTab.AlphaTabApi;
+  /** Also plays the Synth source once `enableSynth` has been called (src/strip/synth-player.ts). */
+  readonly api: alphaTab.AlphaTabApi;
+  /** The song whose score was last handed to alphaTab (its MIDI follows when the player is on). */
+  private renderedSong: SongData | null = null;
+  private midiInFlight = 0;
+  private readonly synthListeners = new Set<() => void>();
   private song: SongData | null = null;
   private layout: Layout | null = null;
   private scale = 1;
@@ -120,7 +125,45 @@ export class Strip {
     const score = await fetchScore(song, this.api.settings);
     if (this.song !== song) return;
     colourNotes(score.tracks[song.track.index]!, (s) => this.palette.text[s]!);
+    this.renderedSong = song;
     this.api.renderScore(score, [song.track.index]);
+  }
+
+  /**
+   * Switches alphaTab's synthesizer on (first call only): alphaTab starts its worker, loads the
+   * soundfont and then the MIDI of the current score (ADR-0019). `onProgress` gets the soundfont
+   * download progress, 0–1.
+   */
+  enableSynth(onProgress: (loaded: number) => void) {
+    const player = this.api.settings.player;
+    if (player.playerMode !== alphaTab.PlayerMode.Disabled) return;
+    this.api.soundFontLoad.on((e) => onProgress(e.total ? e.loaded / e.total : 0));
+    // alphaTab sends the MIDI of every rendered score to its worker; count the ones in flight so a
+    // "ready" for the previous song is not taken for the current one. These listeners must be
+    // added before the player exists: in alphaTab 1.8.4, subscribing to `midiLoaded` afterwards
+    // reads the worker player's `loadedMidiInfo`, whose getter calls itself (stack overflow).
+    this.api.midiLoad.on(() => this.midiInFlight++);
+    this.api.midiLoaded.on(() => {
+      this.midiInFlight = Math.max(0, this.midiInFlight - 1);
+      for (const l of this.synthListeners) l();
+    });
+    this.api.playerReady.on(() => {
+      for (const l of this.synthListeners) l();
+    });
+    player.playerMode = alphaTab.PlayerMode.EnabledSynthesizer;
+    player.soundFont = `${import.meta.env.BASE_URL}soundfont/sonivox.sf2`;
+    this.api.updateSettings();
+  }
+
+  /** The player has the soundfont and the MIDI of `song`. */
+  synthReadyFor(song: SongData) {
+    return this.renderedSong === song && this.midiInFlight === 0 && this.api.isReadyForPlayback;
+  }
+
+  /** Called when a MIDI finished loading or the player became ready (see `synthReadyFor`). */
+  onSynthUpdate(listener: () => void): () => void {
+    this.synthListeners.add(listener);
+    return () => void this.synthListeners.delete(listener);
   }
 
   setLoop(loop: StripLoop) {

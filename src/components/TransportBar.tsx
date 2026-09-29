@@ -10,7 +10,7 @@ import { Icon } from './icons';
 const round = 'flex shrink-0 cursor-pointer items-center justify-center rounded-full border-0 p-0 text-white';
 
 export function TransportBar() {
-  const { song, playing, pass, passes, autoAdvance, tempoPct, chunkIndex } = useSession();
+  const { song, playing, pass, passes, autoAdvance, tempoPct, chunkIndex, sourceStatus } = useSession();
   const bpm = song ? effectiveBpm(song, chunkIndex, songModel(song).tempo, tempoPct) : 0;
   const autoLabel = autoAdvance
     ? `Moves to the next chunk after ${passes} passes. Click to repeat this chunk.`
@@ -23,9 +23,9 @@ export function TransportBar() {
         type="button"
         aria-label={playing ? 'Pause' : 'Play'}
         title={playing ? 'Pause' : 'Play'}
-        disabled={!song}
+        disabled={!song || sourceStatus.state !== 'ready'}
         onClick={togglePlay}
-        className={`${round} bg-accent text-on-accent size-11`}
+        className={`${round} bg-accent text-on-accent size-11 disabled:opacity-40`}
       >
         <Icon name={playing ? 'pause' : 'play'} size={22} />
       </button>
