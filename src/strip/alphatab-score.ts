@@ -4,8 +4,15 @@
 import * as alphaTab from '@coderline/alphatab';
 import type { SongData } from '../core/model';
 
-export const STRING_FILL = ['#7c3aed', '#0ea5e9', '#f59e0b', '#fde047'];
-export const STRING_TEXT = ['#ffffff', '#000000', '#000000', '#000000'];
+/** String colours from the `--string-1..4` variables (ADR-0009), lowest string first. */
+export function stringPalette(): { fill: string[]; text: string[] } {
+  const css = getComputedStyle(document.documentElement);
+  const read = (name: string) => css.getPropertyValue(name).trim();
+  return {
+    fill: [1, 2, 3, 4].map((i) => read(`--string-${i}`)),
+    text: [1, 2, 3, 4].map((i) => read(`--string-${i}-text`)),
+  };
+}
 
 export async function fetchScore(song: SongData, settings: alphaTab.Settings): Promise<alphaTab.model.Score> {
   const res = await fetch(`${import.meta.env.BASE_URL}data/scores/${song.slug}.gp`);

@@ -91,12 +91,12 @@ Bottom: two equal squares, "Now" and "Next".
 - Fixed left gutter (72 px): bass clef, time signature, `TAB` label, string badges G D A E in string colours.
 - Scrolling content: bar numbers, standard notation (bass clef, written one octave above sounding pitch, which is the convention for bass), and a 4-line tab.
 - Tab notes are filled circles in the string colour with the fret number inside (20 px; 26 px with a white ring for the current note).
-- A fixed playhead band (white, 7 % opacity) sits about 180 px from the left edge of the scrolling area. The content scrolls under it.
+- A fixed playhead band (white, 7 % opacity) sits 150 px from the left edge of the scrolling area (centre), so four eighth notes fit to its left. The content scrolls under it. A note is inside the band when it is plucked: that is when its count sounds and it gets the ring.
 - The current loop is marked by a green bracket above the bars with a label: `Loop · chunk 1 · Riff A · bars 130–133 · pass 2 of 3`. Bars outside the loop are dimmed. The first bars of the next chunk are shown dimmed with a label.
 - Where the fingering engine re-tabs a note (same pitch, different string), a small blue label above the bar says `Retab · source A1`.
 - No finger numbers in the tab.
 - The notation is not highlighted. The current note is marked only in the tab, by the ring.
-- Rendering (ADR-0017): alphaTab engraves the notation and tab. Our overlays draw the circles, ring, bracket, dimming and labels, and our code draws the gutter and playhead. The strip scrolls with the "smoothed over 2 beats" mapping, so notes are within about 18 px of the playhead centre and the speed has no jumps.
+- Rendering (ADR-0017): alphaTab engraves the notation and tab. Our overlays draw the circles, ring, bracket, dimming and labels, and our code draws the gutter and playhead. The strip scrolls with the "smoothed over 2 beats" mapping, bounded so that notes are within 10 px of the playhead centre when plucked. The speed has no jumps.
 
 ### 3.7 String colours
 
@@ -130,6 +130,9 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - Playback loops the chunk's bars. Each full loop increments the pass counter.
 - When the pass counter exceeds the target passes (default 3) and auto-advance is on, the chunk is marked done with the tempo used, the next chunk starts, and the pass counter resets to 1.
 - "Next chunk" advances immediately without marking the chunk done.
+- "Restart chunk" returns to the chunk start and keeps the pass count.
+- On the last chunk, auto-advance marks the chunk done after its passes and keeps looping it. With auto-advance off, the pass counter keeps counting past the target.
+- The loop decides where to continue when the wrap is scheduled, ahead of the audio, so the next pass or chunk starts without a gap (ADR-0018).
 - Bars in tacet ranges are never part of a chunk and are skipped.
 
 ### 5.2 Visual metronome
@@ -250,9 +253,9 @@ The hand-made fingering for Vortex Surfer bars 130–176 in `reference/vortex-su
 
 One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `CountClock`. With ADR-0017, YouTube and Synth are adapters over the alphaTab player (external-media mode and synth).
 
-- The clock reports the current score position (bar + tick) at animation-frame rate.
+- The clock reports the current score position as an absolute tick, read once per animation frame (ADR-0018).
 - Recording-based clocks map recording time to score position through the sync map.
-- Loop: when the position passes the chunk end, the clock seeks to the chunk start and emits `passCompleted`.
+- Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
 - YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
 - Synth and Count schedule audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
 
@@ -301,7 +304,7 @@ Work proceeds in vertical slices. The first slice uses two songs: Vortex Surfer,
    - Tests against `reference/vortex-surfer-chunks.json` and the catalogue values above.
 3. `preprocess-song` skill. First runs: Vortex Surfer and one RATM song.
 4. Slice 1 practice view:
-   - The strip, built from the accepted alphaTab spike (ADR-0017, `src/spike/spike.ts`). The spike was done on 2026-09-28.
+   - The strip, built from the accepted alphaTab spike (ADR-0017). Done 2026-09-28 (`src/strip/`).
    - Fretboard, Now/Next squares and practice plan.
    - `CountClock`, loop, passes, auto-advance, tempo control and the visual metronome fade.
 5. Broaden:

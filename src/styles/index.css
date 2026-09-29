@@ -16,6 +16,24 @@
   --color-string-4: var(--string-4);
 }
 
+/* Fixed gutter of the notation and tab strip (design/artboards/TabStrip.dc.html). Positions of
+   the staff lines, clef and badges come from alphaTab's staff bounds (src/strip/strip.ts). */
+.strip-gutter {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 72px;
+  height: 276px;
+  background: var(--color-bg-surface);
+  box-shadow: rgba(0, 0, 0, 0.5) 8px 0 12px;
+}
+.strip-gutter .line { position: absolute; left: 8px; width: 64px; height: 1px; background: var(--color-border-muted); }
+.strip-gutter .clef { position: absolute; left: 12px; font-family: 'Noto Music', serif; font-size: 34px; line-height: 40px; color: #fff; }
+.strip-gutter .time { position: absolute; left: 46px; width: 16px; text-align: center; font-size: 19px; line-height: 19px; font-weight: 800; }
+.strip-gutter .tab { position: absolute; left: 14px; width: 14px; display: flex; flex-direction: column; align-items: center; font-size: 15px; line-height: 19px; font-weight: 800; }
+.strip-gutter .badge { position: absolute; left: 44px; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; }
+.strip-gutter .label { position: absolute; left: 12px; top: 30px; font-size: 12px; line-height: 16px; font-weight: 700; color: var(--color-text-subdued); }
+
 html,
 body,
 #root {

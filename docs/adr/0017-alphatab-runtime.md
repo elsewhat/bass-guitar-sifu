@@ -13,7 +13,7 @@ ADR-0005 chose a custom SVG renderer, which means building beams, ties, accident
 - a player with a soundfont, `playbackSpeed`, and `playbackRange` with looping,
 - `PlayerMode.EnabledExternalMedia` with an `IExternalMediaHandler` and sync points (1.6).
 
-It cannot draw tab notes as filled circles, and its own cursor and scroll do not match the design. A spike (`spike.html`, `src/spike/spike.ts`) tested a hybrid on Vortex Surfer and Killing in the Name.
+It cannot draw tab notes as filled circles, and its own cursor and scroll do not match the design. A spike (`spike.html`, `src/spike/spike.ts`, removed after slice 1; see git history) tested a hybrid on Vortex Surfer and Killing in the Name.
 
 ## Decision
 
@@ -24,7 +24,7 @@ alphaTab **engraves** the notation and tab and **plays** the Synth source. Every
   - The fingering re-tabs are applied in the browser from the song JSON (`applyRetabs` in `src/strip/alphatab-score.ts`).
   - An exported alphaTab JSON score was tried first and dropped. It was 1.6–1.9 MB per song even with only the bass track, against 50–100 KB for the `.gp`.
 - **Engraving.** Horizontal layout with the ScoreTab stave profile, dark resources, 20 px tab lines, and a limited set of elements (below).
-- **Scrolling and playhead are ours.** alphaTab's `ScrollMode.Off`, `enableCursor = false`, `enableElementHighlighting = false`. The strip is moved with `translate3d` from our clock. The mapping from tick to x is **"smoothed over 2 beats"**, chosen by the owner from the spike's comparison (below). The playhead band is fixed at 180 px in the clip area.
+- **Scrolling and playhead are ours.** alphaTab's `ScrollMode.Off`, `enableCursor = false`, `enableElementHighlighting = false`. The strip is moved with `translate3d` from our clock. The mapping from tick to x is **"smoothed over 2 beats"**, chosen by the owner from the spike's comparison (below), and bounded so a note is inside the playhead band when it is plucked (owner, 2026-09-29; see Scroll mapping). The playhead band is fixed at 150 px in the clip area, so four eighth notes fit to its left (owner, 2026-09-29; it was 180 px).
 - **Overlays are ours**, placed from `boundsLookup`:
   - 20 px string-coloured circles under every tab fret number,
   - the current tab note as a 26 px circle with a white ring and its fret number,
@@ -63,7 +63,7 @@ Why no mapping is perfect: alphaTab spaces notes by content, not time, and each 
 
 ## Implementation guide (everything the spike learned)
 
-The reference code is `src/spike/spike.ts` and `spike.html`. Reuse these parts: `src/strip/alphatab-score.ts` (`fetchScore`, `applyRetabs`, `colourNotes`, `STRING_FILL`, `STRING_TEXT`) and `src/core/timing.ts` (`bpmAt`).
+The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, loaded lazily with alphaTab), `src/strip/scroll.ts` (scroll mapping), `src/strip/alphatab-score.ts` (`fetchScore`, `applyRetabs`, `colourNotes`, `stringPalette`) and `src/components/TabStrip.tsx`. Until the Synth source exists, `playerMode` is `Disabled`, so the soundfont is not loaded.
 
 **Settings**
 
@@ -77,7 +77,7 @@ The reference code is `src/spike/spike.ts` and `spike.html`. Reuse these parts: 
   - effect bands: EffectTempo, EffectMarker, EffectText, EffectHammerOnPullOffText, EffectSlideText, EffectPalmMute, EffectLetRing, EffectDynamics, EffectTripletFeel, EffectCapo, EffectChordNames.
 
   Otherwise the effect bands push the tab staff out of the strip.
-- Fret numbers are coloured in the string's *text* colour with `colourNotes(track, s => STRING_TEXT[s])`, so they read on the circles.
+- Fret numbers are coloured in the string's *text* colour with `colourNotes(track, s => stringPalette().text[s])`, so they read on the circles. `stringPalette()` reads the `--string-N` variables (ADR-0009).
 - Player settings: `playerMode = EnabledSynthesizer`, `scrollMode = Off`, `enableCursor = false`, `enableElementHighlighting = false`.
 
 **DOM and layering**
@@ -86,10 +86,13 @@ The reference code is `src/spike/spike.ts` and `spike.html`. Reuse these parts: 
 - Structure:
   - `.strip` (1408 × 276)
     - `.clip` (left 72, 1336 wide, overflow hidden)
-      - host (absolute, `transform-origin: 0 0`, moved with `translate3d(180 − x·scale, offsetY) scale(scale)`)
-      - playhead band (left 165, width 30, top 24, height 212)
+      - host (absolute, `transform-origin: 0 0`, moved with `translate3d(150 − x·scale, offsetY) scale(scale)`)
+      - playhead band (left 135, width 30, top 24, height 212); `PLAYHEAD_X` and `PLAYHEAD_HALF_WIDTH` in `src/strip/scroll.ts`
     - gutter (72 px, above the clip, with a shadow)
-- Two overlay SVGs sit in the host at 0,0, sized like `.at-surface`, which gets `position: relative`. The **back** layer is inserted before `.at-surface` and holds the string circles, so the numbers draw on top. The **front** layer is appended after `.at-surface` (z-index 2) and holds the dimming, labels, bracket and the current-note ring. The ring re-draws its number.
+- Two overlay SVGs sit in the host at 0,0, sized like `.at-surface`, which gets `position: relative`. The **back** layer is inserted before `.at-surface` and holds the string circles and the current-note ring, so alphaTab's fret numbers draw on top. The **front** layer is appended after `.at-surface` (z-index 2) and holds the dimming, labels and bracket.
+- The ring must not redraw the fret number: a redrawn number never matches alphaTab's glyph position exactly and visibly shifts (owner feedback, slice 1).
+- The loop label slides right while the loop start is scrolled out of view, so it stays readable. The next-chunk label sits 26 px below the lowest tab line; staff heights differ per song, so fixed y values overlap the circles.
+- alphaTab 1.8 always draws a "rendered by alphaTab" line below the first bar. There is no setting for it, and we leave it.
 - Scale: `min(1, 272 / surfaceHeight)`, and centre what is left vertically.
 
 **Bounds lookup quirks**
@@ -115,6 +118,7 @@ The reference code is `src/spike/spike.ts` and `spike.html`. Reuse these parts: 
 
 - `beatAnchors` holds `(bar.startTick + beat.playbackStart, beat.onNotesX)` for every notation-staff beat, plus the end of the last bar.
 - `x(t)` is the mean of 17 samples of the piecewise-linear interpolation of `beatAnchors` over `[t − 960, t + 960]`.
+- **Bound (2026-09-29, owner):** the strip uses `playheadX`, which is `exact + 10·tanh((smoothed − exact) / 10)` in screen px, where `exact` is the plain interpolation of `beatAnchors`. The lead or lag of the smoothed mapping is limited softly to 10 px, and the speed stays continuous. Measured at 120 % on Vortex Surfer: every note is within 12 px of the band centre when its ring appears (one frame of movement included). Four notes fit to the left of the band, or three right after a barline, whose extra gap takes the room.
 
 **Current note** is the last note event with `start ≤ tick < start + dur`, found by binary search over the note events.
 
@@ -128,4 +132,4 @@ The reference code is `src/spike/spike.ts` and `spike.html`. Reuse these parts: 
 - There is much less engraving and audio code than ADR-0005 required.
 - The bundle is larger. The spike page is about 1.15 MB (277 KB gzip), and alphaTab's worker and worklet are about 2.3 MB each before compression; the soundfont is 1.35 MB. Load alphaTab and the soundfont lazily when the practice view opens a song.
 - The notation font and spacing follow alphaTab, not the artboard's exact geometry.
-- Notes can be up to about 18 px off the playhead centre at bar starts. This is accepted.
+- The smoothed mapping alone puts notes up to about 18 px off the playhead centre at bar starts, outside the ±15 px band. The bound (below) keeps them within 10 px, so a note is in the band when its count sounds and it gets the ring.

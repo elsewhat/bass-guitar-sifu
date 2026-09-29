@@ -8,12 +8,6 @@ import { songScores } from './scripts/vite-song-scores';
 export default defineConfig({
   base: process.env.BASE_PATH ?? '/',
   plugins: [react(), tailwindcss(), alphaTab(), songScores()],
-  build: {
-    rollupOptions: {
-      // spike.html is the ADR-0017 alphaTab spike (dev and preview only until decided).
-      input: { main: 'index.html', spike: 'spike.html' },
-    },
-  },
   test: {
     include: ['src/**/*.test.ts', 'scripts/**/*.test.ts'],
     environment: 'node',
