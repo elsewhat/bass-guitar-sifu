@@ -1,7 +1,8 @@
-// Count source (ADR-0008, system description §5.4): the spoken "1 & 2 & …" on the Web Audio
-// clock with a look-ahead scheduler (about 100 ms ahead, every 25 ms), so timing does not depend
-// on timer accuracy. Plays the WAVs in public/audio/count/ when they exist and short synthesised
-// tones otherwise (public/audio/count/README.md).
+// Count source, shown as "Metronome" (ADR-0008, system description §5.4): "1 & 2 & …" on the Web
+// Audio clock with a look-ahead scheduler (about 100 ms ahead, every 25 ms), so timing does not
+// depend on timer accuracy. Two mixer channels (ADR-0020): Click, a short tone on every count,
+// and Voice, the recorded WAVs in public/audio/count/ when they exist (public/audio/count/README.md).
+// Graph: click gain → master gain → destination, voice gain → master gain.
 import { countLabel, sampleName } from '../core/count';
 import type { Bar, TempoPoint } from '../core/model';
 import type { TickRange } from '../core/plucks';
@@ -12,12 +13,32 @@ import { CountTimeline } from './count-timeline';
 const LOOKAHEAD = 0.1; // seconds scheduled ahead
 const INTERVAL = 25; // ms between scheduler runs
 const START_DELAY = 0.03; // seconds between a (re)start and the first sound
+const GAIN_SMOOTHING = 0.015; // seconds (time constant) for mixer changes
+
+/** Gains 0–1 from the mixer; `click` and `voice` exclude the master. */
+export interface CountGains {
+  master: number;
+  click: number;
+  voice: number;
+}
+
+/** Whether the recorded count samples exist (checks `one.wav`); the mixer disables Voice without them. */
+export async function countSamplesAvailable(): Promise<boolean> {
+  try {
+    const res = await fetch(`${import.meta.env.BASE_URL}audio/count/one.wav`, { method: 'HEAD' });
+    return res.ok && !res.headers.get('content-type')?.includes('text/html');
+  } catch {
+    return false;
+  }
+}
 
 export class CountClock implements PlaybackClock {
   readonly capabilities = { rates: 'continuous', video: false } as const;
   onRangeEnd = (range: TickRange) => range;
 
   private ctx: AudioContext | null = null;
+  private bus: { master: GainNode; click: GainNode; voice: GainNode } | null = null;
+  private gains: CountGains = { master: 1, click: 1, voice: 1 };
   private samples = new Map<string, AudioBuffer>();
   private samplesRequested = false;
   private readonly timeline: CountTimeline;
@@ -88,17 +109,37 @@ export class CountClock implements PlaybackClock {
     return () => void this.listeners.delete(listener);
   }
 
+  /** Mixer levels; they apply to sounds already scheduled too. */
+  setMix(gains: CountGains) {
+    this.gains = gains;
+    const { bus, ctx } = this;
+    if (!bus || !ctx) return;
+    for (const k of ['master', 'click', 'voice'] as const) bus[k].gain.setTargetAtTime(gains[k], ctx.currentTime, GAIN_SMOOTHING);
+  }
+
   dispose() {
     this.pause();
     this.listeners.clear();
     void this.ctx?.close();
     this.ctx = null;
+    this.bus = null;
   }
 
   // ------------------------------------------------------------------ scheduling
 
   private context() {
-    this.ctx ??= new AudioContext({ latencyHint: 'interactive' });
+    if (!this.ctx) {
+      const ctx = new AudioContext({ latencyHint: 'interactive' });
+      const gain = (value: number) => new GainNode(ctx, { gain: value });
+      const master = gain(this.gains.master);
+      master.connect(ctx.destination);
+      const click = gain(this.gains.click);
+      const voice = gain(this.gains.voice);
+      click.connect(master);
+      voice.connect(master);
+      this.ctx = ctx;
+      this.bus = { master, click, voice };
+    }
     return this.ctx;
   }
 
@@ -144,18 +185,24 @@ export class CountClock implements PlaybackClock {
     this.pendingWraps = [];
   }
 
+  /** One count: the sample on the voice channel and the tone on the click channel, each skipped when silent. */
   private sound(ctx: AudioContext, label: string, time: number) {
+    const bus = this.bus!;
+    const { master, click, voice } = this.gains;
+    if (master <= 0) return;
     const buffer = this.samples.get(sampleName(label));
-    if (buffer) {
+    if (buffer && voice > 0) {
       const src = ctx.createBufferSource();
       src.buffer = buffer;
-      src.connect(ctx.destination);
+      src.connect(bus.voice);
       src.start(time);
       this.nodes.push({ node: src, time });
-      return;
     }
-    // Stand-in for the recorded samples, as in the design prototype: beat 1 high, other beats
-    // middle, "and" low.
+    if (click > 0) this.tone(ctx, bus.click, label, time);
+  }
+
+  /** The click, as in the design prototype: beat 1 high, other beats middle, "and" low. */
+  private tone(ctx: AudioContext, out: AudioNode, label: string, time: number) {
     const onBeat = label !== '&';
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -165,7 +212,7 @@ export class CountClock implements PlaybackClock {
     gain.gain.setValueAtTime(0.0001, time);
     gain.gain.exponentialRampToValueAtTime(onBeat ? 0.5 : 0.25, time + 0.005);
     gain.gain.exponentialRampToValueAtTime(0.0001, time + len);
-    osc.connect(gain).connect(ctx.destination);
+    osc.connect(gain).connect(out);
     osc.start(time);
     osc.stop(time + len + 0.02);
     this.nodes.push({ node: osc, time });

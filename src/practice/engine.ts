@@ -3,18 +3,19 @@
 // components call these functions; per-frame consumers read the clock through src/playback/frame.
 import type { CatalogEntry, SongData } from '../core/model';
 import type { PlaybackClock } from '../playback/clock';
-import { CountClock } from '../playback/count-clock';
+import { CountClock, countSamplesAvailable, type CountGains } from '../playback/count-clock';
 import { setTickSource } from '../playback/frame';
-import { chunkRange, completePass, initialLoop, nextChunk, rangeAfterPass, selectChunk, willAdvance } from '../playback/loop';
+import { chunkRange, completePass, initialLoop, nextChunk, nextRepeatMode, rangeAfterPass, selectChunk, setRepeatMode, willAdvance } from '../playback/loop';
+import { applyQuickMix, channelGain, clampVolume, type Channel, type GlobalChannelId, type QuickMix, type TrackChannel } from '../playback/mixer';
 import { SynthClock } from '../playback/synth-clock';
-import type { SynthMix } from '../playback/synth-mix';
 import { TEMPO, useSession, type SourceId, type SourceStatus } from '../state/session';
+import { loadSynthTracks, saveSettings, saveSynthTracks } from '../state/storage';
 import { whenStrip } from '../strip/strip-host';
-import type { SynthPlayerHandle } from '../strip/synth-player';
+import type { SynthLevels, SynthPlayerHandle } from '../strip/synth-player';
 
 const base = import.meta.env.BASE_URL;
 let clock: PlaybackClock | null = null;
-let synthPlayer: SynthPlayerHandle | null = null; // the Synth clock's player, for the mix
+let synthPlayer: SynthPlayerHandle | null = null; // the Synth clock's player, for the mixer
 let loadToken = 0;
 
 setTickSource(() => clock?.getTick() ?? 0);
@@ -46,7 +47,7 @@ function createSynthClock(song: SongData): SynthClock {
   setStatus({ state: 'loading', progress: 0 });
   const player = Promise.all([import('../strip/synth-player'), whenStrip()]).then(([{ createSynthPlayer }, strip]) => {
     strip.enableSynth(onSoundFontProgress);
-    const p = createSynthPlayer(strip, song, state().synthMix);
+    const p = createSynthPlayer(strip, song, synthLevels());
     if (clock === c) synthPlayer = p;
     return p;
   });
@@ -67,7 +68,9 @@ function attachClock(song: SongData, tick?: number) {
   let c: PlaybackClock;
   if (state().source === 'synth') c = createSynthClock(song);
   else {
-    c = new CountClock(song);
+    const count = new CountClock(song);
+    count.setMix(countGains());
+    c = count;
     setStatus({ state: 'ready' });
   }
   clock = c;
@@ -101,7 +104,13 @@ export async function loadSong(slug: string) {
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const song = (await res.json()) as SongData;
     if (token !== loadToken) return;
-    useSession.setState({ song, loadError: null, ...initialLoop(state().passes), playing: false });
+    useSession.setState({
+      song,
+      loadError: null,
+      ...initialLoop(state().passes, state().repeatMode),
+      synthTracks: loadSynthTracks(song),
+      playing: false,
+    });
     attachClock(song);
     const url = new URL(location.href);
     url.searchParams.set('song', slug);
@@ -154,8 +163,11 @@ export function stepTempo(direction: 1 | -1) {
   clock?.setRate(pct / 100);
 }
 
-export function toggleAutoAdvance() {
-  useSession.setState((s) => ({ autoAdvance: !s.autoAdvance }));
+/** Repeat button: advance → play through → loop (ADR-0021). Playback continues; the pass count restarts. */
+export function cycleRepeatMode() {
+  const repeatMode = nextRepeatMode(state().repeatMode);
+  useSession.setState((s) => setRepeatMode(s, repeatMode));
+  saveSettings({ repeatMode });
 }
 
 /** Switches the playback source at the current position (paused). */
@@ -168,8 +180,57 @@ export function setSource(source: SourceId) {
   if (song) attachClock(song, tick);
 }
 
-/** Which tracks the Synth plays (ADR-0019). Not in the UI yet. */
-export function setSynthMix(mix: SynthMix) {
-  useSession.setState({ synthMix: mix });
-  synthPlayer?.setMix(mix);
+// ------------------------------------------------------------------ mixer (ADR-0020)
+
+function countGains(): CountGains {
+  const { master, click, voice } = state().mixer;
+  return { master: channelGain(master), click: channelGain(click), voice: channelGain(voice) };
+}
+
+function synthLevels(): SynthLevels {
+  return { master: channelGain(state().mixer.master), tracks: state().synthTracks };
+}
+
+/** Hands the current levels to the active source; timing and the loop are never touched. */
+function applyMix() {
+  if (clock instanceof CountClock) clock.setMix(countGains());
+  synthPlayer?.setMix(synthLevels());
+  // YouTube: setVolume(master × video) once the YouTube source exists (step 6).
+}
+
+export function openMixer(open: boolean) {
+  useSession.setState({ mixerOpen: open });
+}
+
+/** Master, Video, Click or Voice. */
+export function setChannel(id: GlobalChannelId, patch: Partial<Channel>) {
+  const current = state().mixer[id];
+  const channel = { ...current, ...patch, volume: clampVolume(patch.volume ?? current.volume) };
+  const mixer = { ...state().mixer, [id]: channel };
+  useSession.setState({ mixer });
+  saveSettings({ mixer });
+  applyMix();
+}
+
+function setTracks(synthTracks: TrackChannel[]) {
+  const song = state().song;
+  useSession.setState({ synthTracks });
+  if (song) saveSynthTracks(song, synthTracks);
+  applyMix();
+}
+
+/** One Synth track's volume, mute or solo. */
+export function setTrack(index: number, patch: Partial<TrackChannel>) {
+  setTracks(state().synthTracks.map((t, i) => (i === index ? { ...t, ...patch, volume: clampVolume(patch.volume ?? t.volume) } : t)));
+}
+
+/** Quick mix: Bass only, Full band or Backing. */
+export function setQuickMix(mix: QuickMix) {
+  const song = state().song;
+  if (song) setTracks(applyQuickMix(state().synthTracks, mix, song.track.index));
+}
+
+/** Checks once whether the recorded count samples exist (the mixer's Voice row). */
+export function probeCountSamples() {
+  if (state().voiceSamples === null) void countSamplesAvailable().then((voiceSamples) => useSession.setState({ voiceSamples }));
 }

@@ -3,7 +3,20 @@ import { countCells, countLabel, sampleName } from '../core/count';
 import type { Bar, Chunk, TempoPoint } from '../core/model';
 import { tempoLookup } from '../core/timing';
 import { CountTimeline, type TimelineStep } from './count-timeline';
-import { chunkRange, completePass, initialLoop, nextChunk, passLabel, rangeAfterPass, selectChunk, willAdvance } from './loop';
+import {
+  chunkRange,
+  completePass,
+  initialLoop,
+  nextChunk,
+  nextRepeatMode,
+  passCounterText,
+  passLabel,
+  rangeAfterPass,
+  selectChunk,
+  setRepeatMode,
+  willAdvance,
+  type LoopState,
+} from './loop';
 
 function makeBars(times: [number, number][]): Bar[] {
   let start = 0;
@@ -119,30 +132,86 @@ describe('loop controller', () => {
     expect(B).toEqual({ start: 11520, end: 15360 });
   });
 
-  it('loops the chunk until the last pass, then advances and marks it done', () => {
-    let s = initialLoop(3);
+  /** Plays `n` passes, each continuing where the loop decides (as the clocks do at the wrap). */
+  function play(s: LoopState, n: number, tempo = 80): LoopState {
+    for (let i = 0; i < n; i++) s = completePass(s, rangeAfterPass(s, chunks, bars), chunks, bars, tempo);
+    return s;
+  }
+
+  describe('advance: each chunk `passes` times, then the next', () => {
+    it('loops the chunk until the last pass, then advances and marks it done', () => {
+      let s = initialLoop(3, 'advance');
+      expect(rangeAfterPass(s, chunks, bars)).toEqual(A);
+      s = completePass(s, A, chunks, bars, 75);
+      s = completePass(s, A, chunks, bars, 75);
+      expect(s.pass).toBe(3);
+      expect(passLabel(s)).toBe('pass 3 of 3');
+      expect(passCounterText(s)).toBe('3/3');
+      expect(willAdvance(s, chunks.length)).toBe(true);
+      expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
+      s = completePass(s, B, chunks, bars, 75);
+      expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: { 0: 75 } });
+    });
+
+    it('keeps looping the last chunk, marks it done and counts on past the target', () => {
+      let s = selectChunk(initialLoop(1, 'advance'), 1, chunks.length);
+      expect(willAdvance(s, chunks.length)).toBe(false);
+      s = play(s, 1, 90);
+      expect(s).toMatchObject({ chunkIndex: 1, pass: 2, done: { 1: 90 } });
+      expect(passLabel(s)).toBe('pass 2');
+      expect(passCounterText(s)).toBe('2');
+    });
+  });
+
+  describe('once (play through): every chunk once', () => {
+    it('moves on after a single pass and marks the chunk done at the tempo used', () => {
+      let s = initialLoop(3, 'once');
+      expect(willAdvance(s, chunks.length)).toBe(true);
+      expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
+      s = play(s, 1, 85);
+      expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: { 0: 85 } });
+      expect(passLabel(s)).toBe('play through');
+      expect(passCounterText(s)).toBe('Play through');
+    });
+
+    it('marks the last chunk done and then loops it', () => {
+      let s = selectChunk(initialLoop(3, 'once'), 1, chunks.length);
+      expect(willAdvance(s, chunks.length)).toBe(false);
+      expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
+      s = play(s, 2, 70);
+      expect(s).toMatchObject({ chunkIndex: 1, pass: 3, done: { 1: 70 } });
+      expect(passLabel(s)).toBe('play through');
+    });
+  });
+
+  describe('loop: the chunk until the player moves on', () => {
+    it('repeats indefinitely without marking anything done', () => {
+      const s = play(initialLoop(2, 'loop'), 4);
+      expect(s).toMatchObject({ chunkIndex: 0, pass: 5, done: {} });
+      expect(willAdvance(s, chunks.length)).toBe(false);
+      expect(passLabel(s)).toBe('pass 5 · looping');
+      expect(passCounterText(s)).toBe('Pass 5');
+    });
+
+    it('repeats the last chunk without marking it done', () => {
+      const s = play(selectChunk(initialLoop(2, 'loop'), 1, chunks.length), 3);
+      expect(s).toMatchObject({ chunkIndex: 1, pass: 4, done: {} });
+    });
+  });
+
+  it('plays through by default', () => {
+    expect(initialLoop(3).repeatMode).toBe('once');
+  });
+
+  it('cycles advance → once → loop and resets the pass count on a change', () => {
+    expect(nextRepeatMode('advance')).toBe('once');
+    expect(nextRepeatMode('once')).toBe('loop');
+    expect(nextRepeatMode('loop')).toBe('advance');
+    const looping = play(initialLoop(3, 'loop'), 4);
+    const s = setRepeatMode(looping, 'advance');
+    expect(s).toMatchObject({ chunkIndex: 0, pass: 1, repeatMode: 'advance' });
+    // The pass count starts over, so the chunk is not left straight away.
     expect(rangeAfterPass(s, chunks, bars)).toEqual(A);
-    s = completePass(s, A, chunks, bars, 75);
-    s = completePass(s, A, chunks, bars, 75);
-    expect(s.pass).toBe(3);
-    expect(willAdvance(s, chunks.length)).toBe(true);
-    expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
-    s = completePass(s, B, chunks, bars, 75);
-    expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: { 0: 75 } });
-  });
-
-  it('repeats indefinitely with auto-advance off', () => {
-    let s = { ...initialLoop(2), autoAdvance: false };
-    for (let i = 0; i < 4; i++) s = completePass(s, rangeAfterPass(s, chunks, bars), chunks, bars, 80);
-    expect(s).toMatchObject({ chunkIndex: 0, pass: 5, done: {} });
-    expect(passLabel(s)).toBe('pass 5');
-  });
-
-  it('keeps looping the last chunk and marks it done', () => {
-    let s = selectChunk(initialLoop(1), 1, chunks.length);
-    expect(willAdvance(s, chunks.length)).toBe(false);
-    s = completePass(s, rangeAfterPass(s, chunks, bars), chunks, bars, 90);
-    expect(s).toMatchObject({ chunkIndex: 1, pass: 2, done: { 1: 90 } });
   });
 
   it('"Next chunk" and selection restart at pass 1 without marking done', () => {
@@ -150,6 +219,5 @@ describe('loop controller', () => {
     s = nextChunk(s, chunks.length);
     expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: {} });
     expect(nextChunk(s, chunks.length).chunkIndex).toBe(1);
-    expect(passLabel({ pass: 2, passes: 3 })).toBe('pass 2 of 3');
   });
 });

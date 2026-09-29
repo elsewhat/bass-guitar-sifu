@@ -146,7 +146,7 @@ export function importBassTrack(score: Score, track: Track): ImportResult {
   events.forEach((e, i) => (e.id = i));
 
   return {
-    song: { title: score.title.trim(), artist: score.artist.trim(), track: { index: track.index, name: track.name }, tuning, ppq: PPQ, tempoMap, bars, events },
+    song: { title: score.title.trim(), artist: score.artist.trim(), track: { index: track.index, name: track.name }, tracks: score.tracks.map((t) => t.name), tuning, ppq: PPQ, tempoMap, bars, events },
     warnings,
   };
 }

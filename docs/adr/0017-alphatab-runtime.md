@@ -87,7 +87,7 @@ The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, 
   - `.strip` (1408 × 276)
     - `.clip` (left 72, 1336 wide, overflow hidden)
       - host (absolute, `transform-origin: 0 0`, moved with `translate3d(150 − x·scale, offsetY) scale(scale)`)
-      - playhead band (left 135, width 30, top 24, height 212); `PLAYHEAD_X` and `PLAYHEAD_HALF_WIDTH` in `src/strip/scroll.ts`
+      - playhead line (left 149, width 2, top 24, height 212, green accent; it replaced the ±15 px white band on 2026-09-29, owner); `PLAYHEAD_X` in `src/strip/scroll.ts`
     - gutter (72 px, above the clip, with a shadow)
 - Two overlay SVGs sit in the host at 0,0, sized like `.at-surface`, which gets `position: relative`. The **back** layer is inserted before `.at-surface` and holds the string circles and the current-note ring, so alphaTab's fret numbers draw on top. The **front** layer is appended after `.at-surface` (z-index 2) and holds the dimming, labels and bracket.
 - The ring must not redraw the fret number: a redrawn number never matches alphaTab's glyph position exactly and visibly shifts (owner feedback, slice 1).

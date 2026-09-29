@@ -1,18 +1,24 @@
 // The SynthClock's player port over the strip's alphaTab instance (ADR-0019). alphaTab plays the
-// whole score's MIDI; the mix (src/playback/synth-mix.ts) picks the tracks with solo and mute.
-// Loading a new MIDI into alphaTab's player forgets the playback range, so the range and the mix are
-// set again whenever the player reports ready.
+// whole score's MIDI; the mixer (ADR-0020, src/playback/mixer.ts) sets each track's volume, mute
+// and solo, and the master through `masterVolume`. Loading a new MIDI into alphaTab's player
+// forgets the playback range, so the range and the mix are set again whenever the player reports ready.
 import type { SongData } from '../core/model';
 import type { TickRange } from '../core/plucks';
 import type { SynthPlayer } from '../playback/synth-clock';
-import { trackPlayback, type SynthMix } from '../playback/synth-mix';
+import type { TrackChannel } from '../playback/mixer';
 import type { Strip } from './strip';
 
-export interface SynthPlayerHandle extends SynthPlayer {
-  setMix(mix: SynthMix): void;
+/** Master gain 0–1 (0 when muted) and the song's track channels, by track index. */
+export interface SynthLevels {
+  master: number;
+  tracks: TrackChannel[];
 }
 
-export function createSynthPlayer(strip: Strip, song: SongData, initialMix: SynthMix): SynthPlayerHandle {
+export interface SynthPlayerHandle extends SynthPlayer {
+  setMix(mix: SynthLevels): void;
+}
+
+export function createSynthPlayer(strip: Strip, song: SongData, initialMix: SynthLevels): SynthPlayerHandle {
   const api = strip.api;
   let mix = initialMix;
   let range: TickRange | null = null;
@@ -22,11 +28,14 @@ export function createSynthPlayer(strip: Strip, song: SongData, initialMix: Synt
   const applyMix = () => {
     const tracks = api.score?.tracks;
     if (!tracks) return;
-    const { solo, mute } = trackPlayback(mix, tracks.length, song.track.index);
-    api.changeTrackSolo(tracks, false);
-    api.changeTrackMute(tracks, false);
-    if (solo.length) api.changeTrackSolo(solo.map((i) => tracks[i]!), true);
-    if (mute.length) api.changeTrackMute(mute.map((i) => tracks[i]!), true);
+    api.masterVolume = mix.master;
+    tracks.forEach((track, i) => {
+      const ch = mix.tracks[i];
+      if (!ch) return;
+      api.changeTrackVolume([track], ch.volume / 100); // 1 = the volume in the file
+      api.changeTrackSolo([track], ch.solo);
+      api.changeTrackMute([track], ch.muted);
+    });
   };
   const applyRange = () => {
     api.isLooping = true;

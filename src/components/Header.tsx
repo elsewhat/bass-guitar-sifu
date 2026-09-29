@@ -6,6 +6,11 @@ import { Icon } from './icons';
 
 const panel = 'bg-surface rounded-comfortable min-h-0 min-w-0';
 
+function toggleFullscreen() {
+  if (document.fullscreenElement) void document.exitFullscreen();
+  else void document.documentElement.requestFullscreen();
+}
+
 export function Header() {
   const song = useSession((s) => s.song);
   const loadError = useSession((s) => s.loadError);
@@ -26,7 +31,18 @@ export function Header() {
       </div>
       {/* Lyrics block stays empty without a licensed provider (ADR-0011). */}
       <div aria-hidden="true" />
-      <SongSwitch />
+      <div className="flex items-center gap-2.5">
+        <SongSwitch />
+        <button
+          type="button"
+          aria-label="Full screen"
+          title="Full screen"
+          onClick={toggleFullscreen}
+          className="bg-elevated flex size-10 cursor-pointer items-center justify-center rounded-full border-0 p-0 text-white shadow-[inset_0_0_0_1px_#7c7c7c]"
+        >
+          <Icon name="fullscreen" />
+        </button>
+      </div>
     </header>
   );
 }

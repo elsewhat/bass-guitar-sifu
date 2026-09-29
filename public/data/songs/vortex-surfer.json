@@ -6,6 +6,7 @@
     "index": 1,
     "name": "Electric Bass (finger)"
   },
+  "tracks": ["Distortion Guitar","Electric Bass (finger)","Drums"],
   "tuning": [28,33,38,43],
   "tuningName": "Standard",
   "ppq": 960,

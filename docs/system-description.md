@@ -44,6 +44,7 @@ Gaps are 12 px, page padding 16 px.
 - Artwork placeholder, song title, artist, and a metadata line: `110 BPM · 4/4 · Standard E A D G · 243 bars`.
 - Lyrics: current line and next line, synced per bar. Lyrics are shown only when a licensed source is configured; otherwise the block shows nothing.
 - "Songs" button with a `Ctrl K` hint, which opens the song library overlay (section 4).
+- Full-screen button at the far right, after the Songs button.
 
 ### 3.2 Practice plan (left column)
 
@@ -54,10 +55,10 @@ Gaps are 12 px, page padding 16 px.
 
 ### 3.3 Video cell (centre, top)
 
-- Source switch overlaid top-left: `YouTube · Synth · Count` (Spotify deferred, ADR-0016).
-- YouTube: embedded player. Synth: notes rendered from the score. Count: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
+- Source switch overlaid top-left: `YouTube · Synth · Metronome` (Spotify deferred, ADR-0016). The Metronome is the count source (called Count before 2026-09-29; the code keeps the id `count`).
+- YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
 - Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
-- Full-screen button top-right.
+- Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
 
 ### 3.4 Transport bar (under the video only)
 
@@ -65,8 +66,8 @@ Left to right:
 
 1. Play/pause (primary, accent green circle).
 2. Restart chunk.
-3. Pass counter: dots for each pass (done = white, current = green, remaining = grey), text `2/3`, and a repeat toggle. Repeat toggle on (crossed arrows, green) = advance to the next chunk after N passes. Off (repeat-one icon) = loop this chunk indefinitely.
-4. Tempo control: `−`, `75%` with `83 BPM` under it, `+`. Steps of 5 %, range 40–120 %.
+3. Pass counter and repeat button. The button cycles three modes (ADR-0021): repeat each chunk N times, then advance (repeat arrows, green, with pass dots and `2/3`); play through, each chunk once (arrow to a bar, green, `Play through`); loop this chunk (repeat-one icon, white, `Pass 5`). Play through is the default (owner, 2026-09-29).
+4. Tempo control: `−`, `95%` with `105 BPM` under it, `+`. Steps of 5 %, range 40–100 %, starting at 100 % (owner, 2026-09-29).
 5. "Next chunk" button.
 
 There is no automatic tempo ramp.
@@ -91,7 +92,7 @@ Bottom: two equal squares, "Now" and "Next".
 - Fixed left gutter (72 px): bass clef, time signature, `TAB` label, string badges G D A E in string colours.
 - Scrolling content: bar numbers, standard notation (bass clef, written one octave above sounding pitch, which is the convention for bass), and a 4-line tab.
 - Tab notes are filled circles in the string colour with the fret number inside (20 px; 26 px with a white ring for the current note).
-- A fixed playhead band (white, 7 % opacity) sits 150 px from the left edge of the scrolling area (centre), so four eighth notes fit to its left. The content scrolls under it. A note is inside the band when it is plucked: that is when its count sounds and it gets the ring.
+- A fixed playhead, a single 2 px line in the green accent (owner, 2026-09-29; it replaced a white band), sits 150 px from the left edge of the scrolling area, so four eighth notes fit to its left. The content scrolls under it. A note is within 10 px of the line when it is plucked: that is when its count sounds and it gets the ring.
 - The current loop is marked by a green bracket above the bars with a label: `Loop · chunk 1 · Riff A · bars 130–133 · pass 2 of 3`. Bars outside the loop are dimmed. The first bars of the next chunk are shown dimmed with a label.
 - Where the fingering engine re-tabs a note (same pitch, different string), a small blue label above the bar says `Retab · source A1`.
 - No finger numbers in the tab.
@@ -133,6 +134,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - "Restart chunk" returns to the chunk start and keeps the pass count.
 - On the last chunk, auto-advance marks the chunk done after its passes and keeps looping it. With auto-advance off, the pass counter keeps counting past the target.
 - The loop decides where to continue when the wrap is scheduled, ahead of the audio, so the next pass or chunk starts without a gap (ADR-0018).
+- In play-through mode (ADR-0021) each chunk is played once and the next chunk starts directly.
 - Bars in tacet ranges are never part of a chunk and are skipped.
 
 ### 5.2 Visual metronome
@@ -146,13 +148,21 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - Effective BPM = score BPM × tempo %. Score tempo comes from the Guitar Pro tempo map (automation events).
 - YouTube: the IFrame API only supports discrete playback rates and rounds requested values. The app requests the nearest rate from `getAvailablePlaybackRates()` and shows the actual rate.
 - Spotify (deferred, ADR-0016): the Web Playback SDK has no playback-rate control.
-- Synth and Count: any tempo.
+- Synth and Metronome: any tempo.
 
-### 5.4 Count mode
+### 5.4 Metronome (count source)
 
-- Plays one sample per eighth-note position: `one`, `and`, `two`, `and`, `three`, `and`, `four`, `and`, using the bar's time signature (other meters count the corresponding beats).
+- Two mixer channels that can sound together (ADR-0020): **Click**, a short tone on every count with an accent on beat 1, and **Voice**, the recorded samples below. While the samples are missing, only the click plays and the mixer shows Voice as "No samples".
+- Voice plays one sample per eighth-note position: `one`, `and`, `two`, `and`, `three`, `and`, `four`, `and`, using the bar's time signature (other meters count the corresponding beats).
 - Samples are WAV files in `public/audio/count/`, scheduled with the Web Audio API using a look-ahead scheduler so timing does not depend on `setTimeout` accuracy.
 - The eight count cells in the video area highlight the current position, including during sustained notes.
+
+### 5.5 Mixer (ADR-0020)
+
+- Opened from the equalizer icon in the video cell. Modal with the song library's shell: dim backdrop, centred 680 px panel, closes on backdrop click, the close button and `Esc`.
+- Master row (mute, 0–100 % slider) for all sources, then tabs `YouTube · Synth · Metronome`. The active source's tab is selected on open and marked with a green dot.
+- Channels: YouTube `Video`; Synth one row per `.gp` track with mute and solo, the bass marked "Your part", and Quick mix buttons `Bass only`, `Full band`, `Backing`; Metronome `Click` and `Voice`, which can sound together.
+- A muted channel keeps its slider value. Values are stored in the browser (§9).
 
 ## 6. Song pipeline
 
@@ -176,6 +186,8 @@ public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
   "slug": "vortex-surfer",
   "title": "Vortex Surfer",
   "artist": "Motorpsycho",
+  "track": { "index": 1, "name": "Electric Bass (finger)" },   // the bass track in the .gp file
+  "tracks": ["Distortion Guitar", "Electric Bass (finger)", "Drums"],   // every track, for the Synth mixer
   "tuning": [28, 33, 38, 43],          // MIDI pitch per string, lowest first
   "tuningName": "Standard",
   "ppq": 960,                           // ticks per quarter note
@@ -259,13 +271,13 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - Recording-based clocks map recording time to score position through the sync map.
 - Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
 - YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
-- Count schedules audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
+- The Metronome schedules audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
 - Synth is alphaTab's player on the strip's alphaTab instance, loaded when the Synth is first chosen. It plays the bass track alone by default; full band and band without bass are prepared (ADR-0019).
 
 ## 9. Persistence (ADR-0010)
 
-- `localStorage` key `bass-trainer:v1:<slug>`: current chunk, passes, tempo, source, completed chunks with tempo, last practised timestamp.
-- `bass-trainer:v1:settings`: passes per chunk, practice plan collapsed, last song.
+- `localStorage` key `bass-trainer:v1:<slug>`: current chunk, passes, tempo, source, completed chunks with tempo, last practised timestamp, Synth track mix (`synthTracks`).
+- `bass-trainer:v1:settings`: passes per chunk, repeat mode, practice plan collapsed, last song, mixer (master, YouTube and Metronome channels).
 - Settings dialog offers export and import of all progress as a JSON file.
 
 ## 10. Hosting and repository (ADR-0012)

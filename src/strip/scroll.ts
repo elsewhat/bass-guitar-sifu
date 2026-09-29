@@ -22,10 +22,9 @@ export function interpolate(anchors: Anchor[], tick: number): number {
   return q.tick === p.tick ? p.x : p.x + ((tick - p.tick) / (q.tick - p.tick)) * (q.x - p.x);
 }
 
-/** Centre of the playhead band in the clip area: four eighth notes fit to its left (owner, slice 1). */
+/** The playhead line in the clip area (a 2 px green line): four eighth notes fit to its left (owner, slice 1). */
 export const PLAYHEAD_X = 150;
-export const PLAYHEAD_HALF_WIDTH = 15;
-/** Largest distance (screen px) between a note and the band centre at its onset. */
+/** Largest distance (screen px) between a note and the playhead at its onset. */
 export const MAX_ONSET_OFFSET = 10;
 
 export const SMOOTH_WINDOW = 1920; // ticks: two quarter-note beats
@@ -41,7 +40,7 @@ export function smoothedX(anchors: Anchor[], tick: number, window = SMOOTH_WINDO
 /**
  * The strip's x for a tick: the smoothed mapping, with its lead or lag behind the exact
  * note-to-note mapping softly limited to `maxOffset` (tanh, so the speed has no kinks). A note
- * is therefore inside the playhead band when it is plucked, its count sounds and it gets the ring.
+ * is therefore on the playhead when it is plucked, its count sounds and it gets the ring.
  */
 export function playheadX(anchors: Anchor[], tick: number, maxOffset: number): number {
   const exact = interpolate(anchors, tick);

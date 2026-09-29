@@ -2,26 +2,22 @@ import { useRef } from 'react';
 import { countCells, EIGHTH } from '../core/count';
 import { barIndexAt } from '../core/timing';
 import { useFrame } from '../playback/frame';
-import { setSource } from '../practice/engine';
+import { openMixer, setSource } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { introChip, loopTimeLabel } from '../practice/view-model';
 import { SOURCES, useSession, type SourceStatus } from '../state/session';
 import { Icon } from './icons';
 
-// Video cell (system description §3.3): source switch, the source's view, chips and full screen.
+// Video cell (system description §3.3): source switch, the source's view, chips and the mixer button.
 
 const overlayChip = 'bg-[rgba(18,18,18,0.85)] text-white';
-
-function toggleFullscreen() {
-  if (document.fullscreenElement) void document.exitFullscreen();
-  else void document.documentElement.requestFullscreen();
-}
 
 export function VideoCell() {
   const source = useSession((s) => s.source);
   const status = useSession((s) => s.sourceStatus);
   const song = useSession((s) => s.song);
   const chunkIndex = useSession((s) => s.chunkIndex);
+  const mixerOpen = useSession((s) => s.mixerOpen);
   const intro = song && introChip(song);
 
   return (
@@ -32,18 +28,16 @@ export function VideoCell() {
             <CountCells />
             <div className="text-base font-bold text-white">Audio count</div>
           </>
-        ) : (
+        ) : source === 'synth' ? (
+          // No play button of its own: Play is in the transport bar (§3.3).
           <>
-            <div className="flex size-18 items-center justify-center rounded-full bg-white/8 text-white">
-              <Icon name="play" size={32} />
-            </div>
-            {source === 'synth' && (
-              <>
-                <div className="text-base font-bold text-white">Synth playback</div>
-                <div className="text-sm">{synthDetail(status)}</div>
-              </>
-            )}
+            <div className="text-base font-bold text-white">Synth playback</div>
+            <div className="text-sm">{synthDetail(status)}</div>
           </>
+        ) : (
+          <div className="flex size-18 items-center justify-center rounded-full bg-white/8 text-white">
+            <Icon name="play" size={32} />
+          </div>
         )}
       </div>
       <div className={`${overlayChip} absolute top-3 left-3 flex gap-1 rounded-full p-1`}>
@@ -65,11 +59,14 @@ export function VideoCell() {
       </div>
       <button
         type="button"
-        aria-label="Full screen"
-        onClick={toggleFullscreen}
-        className={`${overlayChip} absolute top-3 right-3 flex size-10 cursor-pointer items-center justify-center rounded-full border-0`}
+        aria-label="Mixer"
+        title="Mixer"
+        aria-haspopup="dialog"
+        aria-expanded={mixerOpen}
+        onClick={() => openMixer(!mixerOpen)}
+        className={`${overlayChip} absolute top-3 right-3 flex size-10 cursor-pointer items-center justify-center rounded-full border-0 p-0`}
       >
-        <Icon name="fullscreen" />
+        <Icon name="equalizer" />
       </button>
       {intro && <div className={`${overlayChip} absolute bottom-3 left-3 rounded-full px-3 py-1.5 text-xs font-bold`}>{intro}</div>}
       {song && song.chunks[chunkIndex] && (

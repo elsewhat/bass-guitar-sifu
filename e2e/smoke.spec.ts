@@ -20,7 +20,7 @@ test('practice layout fills 1440×900 without scrolling', async ({ page }) => {
   await openSong(page);
   await expect(page.getByRole('navigation', { name: 'Practice plan' })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Video' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Full screen' })).toBeVisible();
+  await expect(page.locator('header').getByRole('button', { name: 'Full screen' })).toBeVisible();
 
   const scroll = await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.scrollHeight]);
   expect(scroll).toEqual([1440, 900]);
@@ -52,26 +52,28 @@ test('loads Vortex Surfer with its practice plan, strip and fingering', async ({
   // Riff A starts on B♭ at A1 as tabbed, with the index finger (ADR-0007 beginner rules).
   await expect(page.getByTestId('now-fret')).toHaveText('1');
   await expect(page.getByLabel('Next', { exact: true })).toContainText('in 8');
-  await expect(page.getByText('Loop · chunk 1 · Riff A · bars 130–133 · pass 1 of 3')).toBeVisible();
+  await expect(page.getByText('Loop · chunk 1 · Riff A · bars 130–133 · play through')).toBeVisible();
   await expect(page.getByText('Retab · source E7').first()).toBeAttached(); // bar 169
   await expect(currentRings(page)).toHaveCount(1);
 });
 
-test('Count playback scrolls the strip and the tempo control steps by 5 %', async ({ page }) => {
+test('Count playback scrolls the strip and the tempo control steps by 5 % up to 100 %', async ({ page }) => {
   await openSong(page);
   const before = await stripX(page);
-  await page.getByRole('button', { name: 'Play' }).click();
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
   await page.waitForTimeout(1500);
   expect(await stripX(page)).toBeLessThan(before - 50);
   await page.getByRole('button', { name: 'Pause' }).click();
 
-  await page.getByRole('button', { name: 'Faster' }).click();
-  await expect(page.getByTestId('tempo')).toHaveText('80%');
-  await expect(page.getByText('88 BPM')).toBeVisible();
+  await expect(page.getByTestId('tempo')).toHaveText('100%');
+  await expect(page.getByRole('button', { name: 'Faster' })).toBeDisabled();
+  await page.getByRole('button', { name: 'Slower' }).click();
+  await expect(page.getByTestId('tempo')).toHaveText('95%');
+  await expect(page.getByText('105 BPM')).toBeVisible();
 });
 
-test('Synth loads on demand, scrolls the strip and hands its position to Count', async ({ page }) => {
+test('Synth loads on demand, scrolls the strip and hands its position to the Metronome', async ({ page }) => {
   const soundfont: string[] = [];
   page.on('request', (r) => r.url().includes('soundfont/') && soundfont.push(r.url()));
   await openSong(page);
@@ -84,15 +86,72 @@ test('Synth loads on demand, scrolls the strip and hands its position to Count',
   expect(soundfont).toHaveLength(1);
 
   const before = await stripX(page);
-  await page.getByRole('button', { name: 'Play' }).click();
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
   await page.waitForTimeout(1500);
   expect(await stripX(page)).toBeLessThan(before - 50);
   await page.getByRole('button', { name: 'Pause' }).click();
   const paused = await stripX(page);
 
-  await page.getByRole('button', { name: 'Count' }).click();
+  await page.getByRole('button', { name: 'Metronome' }).click();
   await expect(video.getByText('Audio count')).toBeVisible();
   expect(Math.abs((await stripX(page)) - paused)).toBeLessThan(2);
+});
+
+test('the repeat button cycles play through, loop and advance', async ({ page }) => {
+  await openSong(page);
+  const counter = page.getByTestId('pass-counter');
+  const current = page.getByRole('button', { name: 'Chunk 1, Riff A, bars 130–133' });
+  await expect(counter).toHaveText('Play through'); // the default
+  await expect(current).toContainText('Bars 130–133 · play through');
+  await page.getByRole('button', { name: /^Play through: each chunk once/ }).click();
+  await expect(counter).toHaveText('Pass 1');
+  await expect(current).toContainText('pass 1 · looping');
+  await page.getByRole('button', { name: /^Loop this chunk until you move on/ }).click();
+  await expect(counter).toHaveText('1/3');
+  await expect(page.getByText('Loop · chunk 1 · Riff A · bars 130–133 · pass 1 of 3')).toBeVisible();
+
+  await page.reload(); // the mode is kept in the browser
+  await expect(page.getByTestId('pass-counter')).toHaveText('1/3');
+  await page.getByRole('button', { name: /^Repeat each chunk 3 times/ }).click();
+  await expect(page.getByTestId('pass-counter')).toHaveText('Play through');
+});
+
+test('the mixer sets master, Metronome and Synth track channels and keeps them', async ({ page }) => {
+  await openSong(page);
+  await page.getByRole('button', { name: 'Mixer' }).click();
+  const mixer = page.getByRole('dialog', { name: 'Mixer' });
+  await expect(mixer).toBeVisible();
+  await expect(mixer.getByRole('tab', { name: 'Metronome' })).toHaveAttribute('aria-selected', 'true'); // the active source
+  await expect(mixer.getByTestId('channel-click')).toContainText('70%');
+  await expect(mixer.getByTestId('channel-voice')).toContainText('No samples');
+  await expect(mixer.getByLabel('voice volume')).toBeDisabled();
+  await mixer.getByLabel('master volume').fill('50');
+  await expect(mixer.getByTestId('channel-master')).toContainText('50%');
+  await mixer.getByRole('button', { name: 'Mute click' }).click();
+  await expect(mixer.getByTestId('channel-click')).toContainText('Muted');
+
+  await mixer.getByRole('tab', { name: 'Synth' }).click();
+  await expect(mixer.getByTestId('channel-Electric Bass (finger)')).toContainText('Your part');
+  await expect(mixer.getByRole('button', { name: 'Bass only' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(mixer.getByTestId('channel-Drums')).toContainText('Off');
+  await mixer.getByRole('button', { name: 'Full band' }).click();
+  await expect(mixer.getByTestId('channel-Drums')).toContainText('80%');
+  await mixer.getByRole('button', { name: 'Mute Electric Bass (finger)' }).click();
+  await expect(mixer.getByRole('button', { name: 'Backing' })).toHaveAttribute('aria-pressed', 'true');
+  await mixer.getByRole('button', { name: 'Solo Drums' }).click();
+  await expect(mixer.getByTestId('channel-Distortion Guitar')).toContainText('Off');
+  await expect(mixer.getByRole('button', { name: 'Backing' })).toHaveAttribute('aria-pressed', 'false');
+
+  await page.keyboard.press('Escape');
+  await expect(mixer).toBeHidden();
+  await page.reload();
+  await page.getByRole('button', { name: 'Mixer' }).click();
+  await expect(mixer.getByTestId('channel-master')).toContainText('50%');
+  await expect(mixer.getByTestId('channel-click')).toContainText('Muted');
+  await mixer.getByRole('tab', { name: 'Synth' }).click();
+  await expect(mixer.getByRole('button', { name: 'Unsolo Drums' })).toBeVisible();
+  await page.getByRole('button', { name: 'Close mixer' }).click({ position: { x: 20, y: 20 } }); // the backdrop
+  await expect(mixer).toBeHidden();
 });
 
 test('"Next chunk" and the practice plan select chunks', async ({ page }) => {
@@ -100,7 +159,7 @@ test('"Next chunk" and the practice plan select chunks', async ({ page }) => {
   await page.getByRole('button', { name: 'Next chunk', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Chunk 2, Riff A ×2, bars 134–141' })).toHaveAttribute('aria-current', 'step');
   await page.getByRole('button', { name: 'Chunk 5, Descent, bars 160–176' }).click();
-  await expect(page.getByText('Bars 160–176 · pass 1 of 3', { exact: true })).toBeVisible();
+  await expect(page.getByText('Bars 160–176 · play through', { exact: true })).toBeVisible();
   await expect(page.getByText('Loop 5:46–6:24 · score time')).toBeVisible();
 });
 
@@ -118,13 +177,13 @@ test('switches to Killing in the Name through the song list and ?song=', async (
   await expect(currentRings(page)).toHaveCount(4); // bar 1: D5 chord with the open D
 });
 
-test('notes are inside the playhead band when plucked, with four notes to its left', async ({ page }) => {
-  await openSong(page);
-  for (let i = 0; i < 9; i++) await page.getByRole('button', { name: 'Faster' }).click(); // 120 %: crosses barlines sooner
-  await page.getByRole('button', { name: 'Play' }).click();
+test('notes are within 15 px of the playhead when plucked, with four notes to its left', async ({ page }) => {
+  await openSong(page); // 100 %, the fastest tempo: crosses barlines sooner
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
   const { offsets, leftCounts } = await page.evaluate(async () => {
-    const band = document.querySelector('[data-testid=playhead]')!.getBoundingClientRect();
-    const centre = band.left + band.width / 2;
+    const line = document.querySelector('[data-testid=playhead]')!.getBoundingClientRect();
+    const centre = line.left + line.width / 2;
+    const bandLeft = centre - 15; // notes to the left of a ±15 px band round the line
     const host = document.querySelector('[data-testid=strip-host]')!;
     const clipLeft = host.parentElement!.getBoundingClientRect().left;
     const offsets: number[] = [];
@@ -142,11 +201,11 @@ test('notes are inside the playhead band when plucked, with four notes to its le
           leftCounts.push(
             [...host.querySelectorAll('circle[r="10"]')].filter((c) => {
               const b = c.getBoundingClientRect();
-              return b.left + b.width / 2 > clipLeft && b.right < band.left;
+              return b.left + b.width / 2 > clipLeft && b.right < bandLeft;
             }).length,
           );
         }
-        if (performance.now() - t0 < 5000) requestAnimationFrame(frame);
+        if (performance.now() - t0 < 6500) requestAnimationFrame(frame);
         else done();
       })();
     });

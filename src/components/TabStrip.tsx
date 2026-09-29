@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useFrame } from '../playback/frame';
 import { useSession } from '../state/session';
-import { PLAYHEAD_HALF_WIDTH, PLAYHEAD_X } from '../strip/scroll';
+import { PLAYHEAD_X } from '../strip/scroll';
 import type { Strip } from '../strip/strip';
 import { setActiveStrip } from '../strip/strip-host';
 
@@ -23,14 +23,14 @@ export function TabStrip() {
       instance = new Strip(host.current!, gutter.current!, (ready, error) => setStatus({ ready, error }));
       strip.current = instance;
       setActiveStrip(instance);
-      const { song: current, chunkIndex, pass, passes } = useSession.getState();
-      instance.setLoop({ chunkIndex, pass, passes });
+      const { song: current, chunkIndex, pass, passes, repeatMode } = useSession.getState();
+      instance.setLoop({ chunkIndex, pass, passes, repeatMode });
       if (current) void instance.load(current).catch((e: unknown) => setStatus({ ready: false, error: String(e) }));
     });
-    // Loop bracket and label follow the chunk and pass.
+    // Loop bracket and label follow the chunk, pass and repeat mode.
     const unsubscribe = useSession.subscribe((s, prev) => {
-      if (s.chunkIndex !== prev.chunkIndex || s.pass !== prev.pass || s.passes !== prev.passes) {
-        strip.current?.setLoop({ chunkIndex: s.chunkIndex, pass: s.pass, passes: s.passes });
+      if (s.chunkIndex !== prev.chunkIndex || s.pass !== prev.pass || s.passes !== prev.passes || s.repeatMode !== prev.repeatMode) {
+        strip.current?.setLoop({ chunkIndex: s.chunkIndex, pass: s.pass, passes: s.passes, repeatMode: s.repeatMode });
       }
     });
     return () => {
@@ -55,8 +55,8 @@ export function TabStrip() {
         <div ref={host} data-testid="strip-host" className="absolute top-0 left-0 w-[1336px] origin-top-left will-change-transform" />
         <div
           data-testid="playhead"
-          className="pointer-events-none absolute top-6 box-border h-[212px] border-x border-white/35 bg-white/7"
-          style={{ left: PLAYHEAD_X - PLAYHEAD_HALF_WIDTH, width: 2 * PLAYHEAD_HALF_WIDTH }}
+          className="bg-accent pointer-events-none absolute top-6 h-[212px] w-0.5"
+          style={{ left: PLAYHEAD_X - 1 }}
         />
       </div>
       <div ref={gutter} className="strip-gutter" />

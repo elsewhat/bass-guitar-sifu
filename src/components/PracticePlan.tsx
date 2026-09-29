@@ -15,7 +15,7 @@ function circleStyle(current: boolean, done: boolean) {
 }
 
 export function PracticePlan() {
-  const { planOpen, togglePlan, song, chunkIndex, pass, passes, done, tempoPct } = useSession();
+  const { planOpen, togglePlan, song, chunkIndex, pass, passes, repeatMode, done, tempoPct } = useSession();
   const list = useRef<HTMLDivElement>(null);
 
   // Keep the current chunk in view (scrollTop only: scrollIntoView would also move the stage).
@@ -90,7 +90,7 @@ export function PracticePlan() {
               <span className="min-w-0 grow">
                 <span className="block truncate text-sm font-bold">{chunk.name}</span>
                 <span className="text-subdued block text-xs">
-                  {barsLabel(chunk.bars)} · {passLabel({ pass, passes })}
+                  {barsLabel(chunk.bars)} · {passLabel({ pass, passes, repeatMode })}
                 </span>
               </span>
               <span className="text-xs font-bold">{tempoPct}%</span>

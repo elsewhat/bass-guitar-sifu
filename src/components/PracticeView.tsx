@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { GAP, PAGE_PAD, RAIL_W, ROWS, VIDEO_W } from '../layout';
-import { initialSlug, loadCatalog, loadSong } from '../practice/engine';
+import { initialSlug, loadCatalog, loadSong, probeCountSamples } from '../practice/engine';
 import { useSession } from '../state/session';
 import { FingeringColumn } from './FingeringColumn';
 import { Header } from './Header';
+import { Mixer } from './Mixer';
 import { PracticePlan } from './PracticePlan';
 import { TabStrip } from './TabStrip';
 import { TransportBar } from './TransportBar';
@@ -17,6 +18,7 @@ export function PracticeView() {
   const videoW = planOpen ? VIDEO_W.open : VIDEO_W.collapsed;
 
   useEffect(() => {
+    probeCountSamples();
     void loadCatalog().then(() => {
       const slug = initialSlug(useSession.getState().catalog);
       if (slug && useSession.getState().song?.slug !== slug) void loadSong(slug);
@@ -25,7 +27,7 @@ export function PracticeView() {
 
   return (
     <main
-      className="bg-page box-border grid size-full text-white"
+      className="bg-page relative box-border grid size-full text-white"
       style={{
         padding: PAGE_PAD,
         gap: GAP,
@@ -48,6 +50,7 @@ export function PracticeView() {
         <TransportBar />
       </div>
       <TabStrip />
+      <Mixer />
     </main>
   );
 }

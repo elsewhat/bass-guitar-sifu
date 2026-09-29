@@ -48,6 +48,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
     title: sidecar.title,
     artist: sidecar.artist,
     track: imported.track,
+    tracks: imported.tracks,
     tuning,
     tuningName: tuningName(tuning),
     ppq: imported.ppq,

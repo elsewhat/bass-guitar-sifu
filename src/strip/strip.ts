@@ -1,7 +1,7 @@
 // Notation and tab strip (ADR-0017, system description §3.6), built from the accepted spike.
 // alphaTab engraves the notation and tab; everything that moves or highlights is ours:
-// - the scroll ("smoothed over 2 beats", bounded so notes are in the band when plucked;
-//   src/strip/scroll.ts) with the playhead band at 150 px,
+// - the scroll ("smoothed over 2 beats", bounded so notes are on the playhead when plucked;
+//   src/strip/scroll.ts) with the playhead line at 150 px,
 // - overlays placed from alphaTab's bounds lookup: string circles under the tab fret numbers, the
 //   current-note ring, the loop bracket and label, dimming outside the loop, the next-chunk label
 //   and the re-tab labels (the notation is not highlighted),
@@ -11,7 +11,7 @@ import * as alphaTab from '@coderline/alphatab';
 import type { BeatEvent, SongData } from '../core/model';
 import { barIndexAt } from '../core/timing';
 import { stringNames } from '../core/tuning';
-import { passLabel } from '../playback/loop';
+import { passLabel, type RepeatMode } from '../playback/loop';
 import { songModel } from '../practice/song-model';
 import { colourNotes, fetchScore, stringPalette } from './alphatab-score';
 import { MAX_ONSET_OFFSET, PLAYHEAD_X, playheadX, type Anchor } from './scroll';
@@ -25,6 +25,7 @@ export interface StripLoop {
   chunkIndex: number;
   pass: number;
   passes: number;
+  repeatMode: RepeatMode;
 }
 
 interface NoteBox {
@@ -104,7 +105,7 @@ export class Strip {
   private loopLabel: { el: SVGGElement; min: number; max: number; offset: number } | null = null;
   private currentGroup: SVGGElement | null = null;
   private currentEventId = -1;
-  private loop: StripLoop = { chunkIndex: 0, pass: 1, passes: 3 };
+  private loop: StripLoop = { chunkIndex: 0, pass: 1, passes: 3, repeatMode: 'advance' };
   private barIndex = -1;
   private palette = stringPalette();
 

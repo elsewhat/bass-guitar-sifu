@@ -6,6 +6,7 @@
     "index": 5,
     "name": "Tim Commerford | Music Man Stingray | Bass"
   },
+  "tracks": ["Zack de la Rocha | Lead Vocals","Tim Commerford | Backing Vocals","Tom Morello | Fender Telecaster | Lead Guitar","Tim Commerford | Music Man Stingray | Bass Fuzz Effect","Tom Morello | Fender Telecaster | Rhythm Guitar","Tim Commerford | Music Man Stingray | Bass","Brad Wilk | Grestch Kit | Drums"],
   "tuning": [26,33,38,43],
   "tuningName": "Drop D",
   "ppq": 960,

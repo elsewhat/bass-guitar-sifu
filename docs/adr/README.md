@@ -9,7 +9,7 @@
 | [0005](0005-strip-renderer.md) | Custom SVG renderer for the notation and tab strip | Superseded by 0017 |
 | [0006](0006-chunking.md) | Chunking strategy | Accepted, amended by 0015 |
 | [0007](0007-fingering.md) | Fingering recommendation | Accepted |
-| [0008](0008-playback-sources.md) | Playback sources behind one clock | Accepted, amended by 0016, 0017 and 0018 |
+| [0008](0008-playback-sources.md) | Playback sources behind one clock | Accepted, amended by 0016, 0017, 0018 and 0020 |
 | [0009](0009-string-colours.md) | String colour palette | Accepted |
 | [0010](0010-progress-storage.md) | Practice progress in the browser | Accepted |
 | [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012 |
@@ -19,7 +19,9 @@
 | [0015](0015-song-intake-skill.md) | Song intake through the `preprocess-song` agent skill | Accepted |
 | [0016](0016-playback-scope-v1.md) | Playback sources for version 1 and sync authoring | Accepted |
 | [0017](0017-alphatab-runtime.md) | alphaTab at runtime for the strip, Synth and YouTube sync | Accepted, amended by 0019 |
-| [0018](0018-clock-and-loop-interface.md) | Clock interface and loop decisions ahead of the audio | Proposed, amended by 0019 |
-| [0019](0019-synth-source-adapter.md) | Synth source on the strip's alphaTab player | Proposed |
+| [0018](0018-clock-and-loop-interface.md) | Clock interface and loop decisions ahead of the audio | Proposed, amended by 0019 and 0021 |
+| [0019](0019-synth-source-adapter.md) | Synth source on the strip's alphaTab player | Proposed, amended by 0020 |
+| [0020](0020-mixer.md) | Mixer per source | Proposed |
+| [0021](0021-repeat-modes.md) | Repeat modes, including play-through | Proposed |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".

@@ -64,6 +64,9 @@ a{color:#ffffff}a:hover{color:#cbcbcb}
           <span style="padding: 4px 6px; border-radius: 4px; background: #252525; color: #b3b3b3; font-size: 11px; line-height: 1; font-weight: 700">Ctrl K</span>
         </button>
       </sc-if>
+      <button type="button" aria-label="Full screen" title="Full screen" style="width: 40px; height: 40px; margin-left: 4px; border: 0px solid transparent; border-radius: 50%; background: #1f1f1f; color: #ffffff; box-shadow: rgb(124, 124, 124) 0px 0px 0px 1px inset; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5h5v2H7v3H5zm9 0h5v5h-2V7h-3zM5 14h2v3h3v2H5zm12 0h2v5h-5v-2h3z"></path></svg>
+      </button>
     </div>
   </header>
 
@@ -164,6 +167,87 @@ a{color:#ffffff}a:hover{color:#cbcbcb}
     </div>
   </sc-if>
 
+  <sc-if value="{{mixOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position: absolute; left: 0px; top: 0px; width: 1440px; height: 900px; z-index: 30; background: rgba(0, 0, 0, 0.7)">
+      <button type="button" aria-label="Close mixer" onClick="{{closeMixer}}" style="position: absolute; left: 0px; top: 0px; width: 1440px; height: 900px; border: 0px solid transparent; background: transparent; padding: 0px; cursor: default"></button>
+      <div role="dialog" aria-label="Mixer" style="position: absolute; left: 380px; top: 96px; width: 680px; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; padding: 20px; background: #1f1f1f; border-radius: 20px; box-shadow: rgba(0, 0, 0, 0.5) 0px 8px 24px">
+        <div style="display: flex; align-items: center; gap: 10px">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"></path></svg>
+          <span style="font-size: 18px; line-height: 1.3; font-weight: 600">Mixer</span>
+          <span style="flex-grow: 1"></span>
+          <button type="button" aria-label="Close" onClick="{{closeMixer}}" style="width: 40px; height: 40px; border: 0px solid transparent; border-radius: 50%; background: #252525; color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 6.4 17.6 5 12 10.6 6.4 5 5 6.4 10.6 12 5 17.6 6.4 19 12 13.4 17.6 19 19 17.6 13.4 12z"></path></svg>
+          </button>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 1fr) 36px 36px 220px 52px; align-items: center; column-gap: 10px; padding: 10px 14px; background: #181818; border-radius: 8px">
+          <span style="min-width: 0">
+            <span style="display: block; font-size: 16px; line-height: 1.4; font-weight: 700">Master</span>
+            <span style="display: block; font-size: 12px; line-height: 1.4; color: #b3b3b3">All sources</span>
+          </span>
+          <button type="button" aria-label="{{mst.muteLabel}}" title="{{mst.muteLabel}}" aria-pressed="{{mst.mutedAttr}}" onClick="{{mst.toggleMute}}" style="width: 36px; height: 36px; border: 0px solid transparent; border-radius: 50%; background: {{mst.muteBg}}; color: {{mst.muteFg}}; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
+            <sc-if value="{{mst.muted}}" hint-placeholder-val="{{false}}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.5 2.5V12zm2.5 0c0 .9-.2 1.8-.5 2.6l1.5 1.5A8.8 8.8 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1a7 7 0 0 1 5 6.7zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3a7 7 0 0 1-2.3 1.2v2.1a9 9 0 0 0 3.7-1.8l2 2 1.3-1.3L4.3 3zM12 4 9.9 6.1 12 8.2V4z"></path></svg>
+            </sc-if>
+            <sc-if value="{{mst.audible}}" hint-placeholder-val="{{true}}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"></path></svg>
+            </sc-if>
+          </button>
+          <span></span>
+          <input type="range" min="0" max="100" step="1" aria-label="Master volume" value="{{mst.vol}}" onChange="{{mst.onVol}}" style="width: 220px; margin: 0px; accent-color: #ffffff; opacity: {{mst.sliderOp}}">
+          <span style="font-size: 14px; line-height: 1; font-weight: 700; text-align: right; color: {{mst.valCol}}">{{mst.volText}}</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 6px">
+          <sc-for list="{{mixTabs}}" as="mt" hint-placeholder-count="3">
+            <button type="button" aria-pressed="{{mt.pressed}}" onClick="{{mt.pick}}" style="height: 32px; display: flex; align-items: center; gap: 8px; padding: 0px 14px; border: 0px solid transparent; border-radius: 9999px; background: {{mt.bg}}; color: {{mt.col}}; font-size: 14px; line-height: 1; font-weight: 700; cursor: pointer">
+              <sc-if value="{{mt.live}}" hint-placeholder-val="{{false}}">
+                <span title="Current source" style="width: 8px; height: 8px; border-radius: 50%; background: #1ed760"></span>
+              </sc-if>
+              {{mt.label}}
+            </button>
+          </sc-for>
+          <span style="flex-grow: 1"></span>
+          <sc-if value="{{mixIsSynth}}" hint-placeholder-val="{{true}}">
+            <span style="font-size: 12px; line-height: 1.4; color: #b3b3b3; margin-right: 2px">Quick mix</span>
+            <sc-for list="{{presets}}" as="pr" hint-placeholder-count="3">
+              <button type="button" aria-pressed="{{pr.pressed}}" onClick="{{pr.pick}}" style="height: 28px; padding: 0px 12px; border: 0px solid transparent; border-radius: 9999px; background: {{pr.bg}}; color: {{pr.col}}; box-shadow: {{pr.ring}}; font-size: 12px; line-height: 1; font-weight: 700; cursor: pointer">{{pr.label}}</button>
+            </sc-for>
+          </sc-if>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px; max-height: 480px; overflow-y: auto">
+          <sc-for list="{{mixRows}}" as="ch" hint-placeholder-count="3">
+            <div style="display: grid; grid-template-columns: minmax(0, 1fr) 36px 36px 220px 52px; align-items: center; column-gap: 10px; padding: 8px 14px; background: #181818; border-radius: 8px">
+              <span style="min-width: 0; display: flex; align-items: center; gap: 8px">
+                <span style="min-width: 0">
+                  <span style="display: block; font-size: 14px; line-height: 1.4; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ch.name}}</span>
+                  <span style="display: block; font-size: 12px; line-height: 1.4; color: #b3b3b3; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{ch.sub}}</span>
+                </span>
+                <sc-if value="{{ch.yours}}" hint-placeholder-val="{{false}}">
+                  <span style="flex-shrink: 0; padding: 2px 6px; border-radius: 2px; background: #121212; color: #ffffff; font-size: 10.5px; line-height: 1.33; font-weight: 600">Your part</span>
+                </sc-if>
+              </span>
+              <button type="button" aria-label="{{ch.muteLabel}}" title="{{ch.muteLabel}}" aria-pressed="{{ch.mutedAttr}}" onClick="{{ch.toggleMute}}" style="width: 36px; height: 36px; border: 0px solid transparent; border-radius: 50%; background: {{ch.muteBg}}; color: {{ch.muteFg}}; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
+                <sc-if value="{{ch.muted}}" hint-placeholder-val="{{false}}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.5 2.5V12zm2.5 0c0 .9-.2 1.8-.5 2.6l1.5 1.5A8.8 8.8 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1a7 7 0 0 1 5 6.7zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3a7 7 0 0 1-2.3 1.2v2.1a9 9 0 0 0 3.7-1.8l2 2 1.3-1.3L4.3 3zM12 4 9.9 6.1 12 8.2V4z"></path></svg>
+                </sc-if>
+                <sc-if value="{{ch.audible}}" hint-placeholder-val="{{true}}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"></path></svg>
+                </sc-if>
+              </button>
+              <sc-if value="{{ch.canSolo}}" hint-placeholder-val="{{false}}">
+                <button type="button" aria-label="{{ch.soloLabel}}" title="{{ch.soloLabel}}" aria-pressed="{{ch.soloAttr}}" onClick="{{ch.toggleSolo}}" style="width: 36px; height: 36px; border: 0px solid transparent; border-radius: 50%; background: {{ch.soloBg}}; color: {{ch.soloFg}}; font-size: 13px; line-height: 1; font-weight: 800; cursor: pointer; padding: 0px">S</button>
+              </sc-if>
+              <sc-if value="{{ch.noSolo}}" hint-placeholder-val="{{true}}">
+                <span></span>
+              </sc-if>
+              <input type="range" min="0" max="100" step="1" aria-label="{{ch.volLabel}}" value="{{ch.vol}}" onChange="{{ch.onVol}}" style="width: 220px; margin: 0px; accent-color: #ffffff; opacity: {{ch.sliderOp}}">
+              <span style="font-size: 14px; line-height: 1; font-weight: 700; text-align: right; color: {{ch.valCol}}">{{ch.volText}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
   <nav aria-label="Practice plan" style="grid-column: 1; grid-row: 2 / 4; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; padding: 12px; background: #181818; border-radius: 8px; overflow: hidden; min-height: 0">
     <sc-if value="{{expanded}}" hint-placeholder-val="{{true}}">
       <div style="height: 32px; display: flex; align-items: center; justify-content: space-between; padding-left: 4px">
@@ -243,8 +327,8 @@ a{color:#ffffff}a:hover{color:#cbcbcb}
           <button type="button" aria-pressed="{{src.pressed}}" onClick="{{src.pick}}" style="height: 32px; padding: 0px 14px; border: 0px solid transparent; border-radius: 9999px; background: {{src.bg}}; color: {{src.col}}; font-size: 14px; line-height: 1; font-weight: 700; cursor: pointer">{{src.label}}</button>
         </sc-for>
       </div>
-      <button type="button" aria-label="Full screen" style="position: absolute; right: 12px; top: 12px; width: 40px; height: 40px; border: 0px solid transparent; border-radius: 50%; background: rgba(18, 18, 18, 0.85); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5 5h5v2H7v3H5zm9 0h5v5h-2V7h-3zM5 14h2v3h3v2H5zm12 0h2v5h-5v-2h3z"></path></svg>
+      <button type="button" aria-label="Mixer" title="Mixer" aria-haspopup="dialog" aria-expanded="{{mixOpenAttr}}" onClick="{{toggleMixer}}" style="position: absolute; right: 12px; top: 12px; width: 40px; height: 40px; border: 0px solid transparent; border-radius: 50%; background: rgba(18, 18, 18, 0.85); color: #ffffff; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 20h4V4h-4v16zm-6 0h4v-8H4v8zM16 9v11h4V9h-4z"></path></svg>
       </button>
       <div style="position: absolute; left: 12px; bottom: 12px; padding: 6px 12px; background: rgba(18, 18, 18, 0.85); border-radius: 9999px; font-size: 12px; line-height: 1.4; font-weight: 700; color: #ffffff">Intro skipped · bass rests bars 1–129</div>
       <div style="position: absolute; right: 12px; bottom: 12px; padding: 6px 12px; background: rgba(18, 18, 18, 0.85); border-radius: 9999px; font-size: 12px; line-height: 1.4; font-weight: 700; color: #ffffff">{{loopTime}}</div>
@@ -263,16 +347,21 @@ a{color:#ffffff}a:hover{color:#cbcbcb}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"></path></svg>
       </button>
       <div style="display: flex; align-items: center; gap: 4px; flex-shrink: 0; height: 36px; padding: 0px 4px 0px 12px; border-radius: 9999px; background: #1f1f1f">
-        <sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
-          <span style="width: 10px; height: 10px; border-radius: 50%; background: {{d.bg}}"></span>
-        </sc-for>
-        <span style="font-size: 14px; line-height: 1; font-weight: 700; margin-left: 4px; margin-right: 2px">{{passText}}</span>
-        <button type="button" aria-label="{{autoLabel}}" title="{{autoLabel}}" aria-pressed="{{autoPressed}}" onClick="{{toggleAuto}}" style="width: 30px; height: 30px; border: 0px solid transparent; border-radius: 50%; background: #252525; color: {{autoCol}}; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
-          <sc-if value="{{autoOn}}" hint-placeholder-val="{{true}}">
+        <sc-if value="{{modeAdvance}}" hint-placeholder-val="{{true}}">
+          <sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
+            <span style="width: 10px; height: 10px; border-radius: 50%; background: {{d.bg}}"></span>
+          </sc-for>
+        </sc-if>
+        <span style="font-size: 14px; line-height: 1; font-weight: 700; margin-left: 4px; margin-right: 2px; white-space: nowrap">{{passText}}</span>
+        <button type="button" aria-label="{{repeatLabel}}" title="{{repeatLabel}}" onClick="{{cycleRepeat}}" style="width: 30px; height: 30px; border: 0px solid transparent; border-radius: 50%; background: #252525; color: {{repeatCol}}; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px">
+          <sc-if value="{{modeAdvance}}" hint-placeholder-val="{{true}}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2z"></path></svg>
           </sc-if>
-          <sc-if value="{{autoOff}}" hint-placeholder-val="{{false}}">
+          <sc-if value="{{modeLoop}}" hint-placeholder-val="{{false}}">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h10v3l4-4-4-4v3H5v6h2zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2zm-4-2V9h-1l-2 1v1h1.5v4z"></path></svg>
+          </sc-if>
+          <sc-if value="{{modeOnce}}" hint-placeholder-val="{{false}}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 11h11.2l-4.6-4.6L11 5l7 7-7 7-1.4-1.4 4.6-4.6H3zM19 5h2v14h-2z"></path></svg>
           </sc-if>
         </button>
       </div>
@@ -318,7 +407,7 @@ a{color:#ffffff}a:hover{color:#cbcbcb}
   </div>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"passes":{"editor":"int","default":3,"min":1,"max":9,"section":"Practice"},"startTempo":{"editor":"range","default":75,"min":40,"max":120,"step":5,"unit":"%","section":"Practice"},"railOpen":{"editor":"boolean","default":true,"section":"Layout"},"palette":{"editor":"enum","default":"ladder","options":["ladder","rocksmith","greenE"],"section":"Layout"},"selector":{"editor":"enum","default":"overlay","options":["overlay","dropdown","setlist"],"section":"Song selector"},"pickerOpen":{"editor":"boolean","default":false,"section":"Song selector"},"$preview":{"width":1440,"height":900}}'>
+<script type="text/x-dc" data-dc-script data-props='{"passes":{"editor":"int","default":3,"min":1,"max":9,"section":"Practice"},"startTempo":{"editor":"range","default":75,"min":40,"max":120,"step":5,"unit":"%","section":"Practice"},"railOpen":{"editor":"boolean","default":true,"section":"Layout"},"palette":{"editor":"enum","default":"ladder","options":["ladder","rocksmith","greenE"],"section":"Layout"},"selector":{"editor":"enum","default":"overlay","options":["overlay","dropdown","setlist"],"section":"Song selector"},"pickerOpen":{"editor":"boolean","default":false,"section":"Song selector"},"mixerOpen":{"editor":"boolean","default":false,"section":"Mixer"},"startSource":{"editor":"enum","default":"yt","options":["yt","syn","count"],"section":"Mixer"},"$preview":{"width":1440,"height":900}}'>
 class Component extends DCLogic {
   chunks() {
     const b = (bar, n, s, f, fi, whole) => ({ bar: bar, n: n, s: s, f: f, fi: fi, whole: !!whole });
@@ -349,7 +438,11 @@ class Component extends DCLogic {
     const passes = Number(this.props.passes ?? 3);
     const tempo = Number(this.props.startTempo ?? 75);
     const po = this.props.pickerOpen;
-    return Object.assign({ playing: false, chunk: 0, idx: 10, pass: Math.min(2, passes), passes: passes, tempo: tempo, source: 'yt', auto: true, flash: true, sub: 0, rail: (this.props.railOpen ?? true), done: {}, songId: 'vortex', open: po === true || po === 'true', query: '', tf: 'all', af: '' }, this.state || {});
+    const mo = this.props.mixerOpen;
+    const ss = ['yt', 'syn', 'count'].indexOf(this.props.startSource) >= 0 ? this.props.startSource : 'yt';
+    return Object.assign({ playing: false, chunk: 0, idx: 10, pass: Math.min(2, passes), passes: passes, tempo: tempo, source: ss, mode: 'advance', flash: true,
+      mixOpen: mo === true || mo === 'true', mixTab: null,
+      mix: { master: 80, masterMute: false, yt: 100, ytMute: false, click: 70, clickMute: false, voice: 100, voiceMute: false, tr: {} }, sub: 0, rail: (this.props.railOpen ?? true), done: {}, songId: 'vortex', open: po === true || po === 'true', query: '', tf: 'all', af: '' }, this.state || {});
   }
   songs() {
     return [
@@ -360,6 +453,35 @@ class Component extends DCLogic {
       { id: 'creep', title: 'Creep', artist: 'Radiohead', bpm: 92, meter: '4/4', tuning: 'E A D G', tuneName: 'Standard', alt: false, len: '3:57', bars: 91, frets: '0–12' },
       { id: 'bhs', title: 'Black Hole Sun', artist: 'Soundgarden', bpm: 53, meter: 'mixed meter', tuning: 'D A D G', tuneName: 'Drop D', alt: true, len: '5:23', bars: 79, frets: '0–8' }
     ];
+  }
+  tracks(id) {
+    const T = {
+      chien: ['Electric Guitar (clean)', 'Electric Bass (finger)', 'Drums'],
+      wheel: ['Lead Guitar', 'Rhythm Guitar', 'Electric Bass (finger)', 'Drums', 'Vocals'],
+      vortex: ['Distortion Guitar', 'Electric Bass (finger)', 'Drums'],
+      smell: ['Overdriven Guitar', 'Electric Guitar (clean)', 'Electric Bass (finger)', 'Drums'],
+      creep: ['Thom Yorke | Vocals', 'Jonny Greenwood | Fender Telecaster Plus | Lead Guitar', "Ed O'Brien | Rickenbacker 360 | Rhythm Guitar", 'Thom Yorke | Fender Telecaster | Rhythm Guitar', 'Colin Greenwood | Ernie Ball Music Man Stingray | Bass', 'Jonny Greenwood | Piano (LH)', 'Jonny Greenwood | Piano (RH)', "Philip Selway | DW Collector's Series | Drums"],
+      bhs: ['Chris Cornell | Lead Vocals', 'Chris Cornell | Backing Vocals', 'Kim Thayil | Guild S-100 Polara | Lead Guitar', 'Chris Cornell | Gretsch Duo Jet | Rhythm Guitar', 'Chris Cornell | Gretsch Duo Jet | Rhythm Guitar Effects', 'Kim Thayil | Guild S-100 Polara | Guitar Overdubs', 'Ben Shepard | Fender Jazz | Bass', 'Matt Cameron | Yamaha Absolute Hybrid Maple | Drums']
+    };
+    return (T[id] || []).map((full, i) => {
+      const parts = full.split(' | ');
+      const name = parts[parts.length - 1];
+      const low = full.toLowerCase();
+      const kind = low.indexOf('bass') >= 0 ? 'Bass' : (low.indexOf('drum') >= 0 ? 'Drums' : (low.indexOf('vocal') >= 0 ? 'Vocals' : (low.indexOf('piano') >= 0 ? 'Keys' : (low.indexOf('guitar') >= 0 ? 'Guitar' : 'Other'))));
+      const who = parts.slice(0, -1).join(' · ');
+      return { i: i, name: name, sub: who ? (kind + ' · ' + who) : kind, bass: kind === 'Bass' };
+    });
+  }
+  trackMix(s, songId) {
+    return this.tracks(songId).map((t) => {
+      const saved = s.mix.tr[songId + ':' + t.i];
+      return Object.assign({}, t, saved || { vol: 80, mute: false, solo: t.bass });
+    });
+  }
+  clickGain(s) {
+    const m = s.mix;
+    if (m.masterMute || m.clickMute) return 0;
+    return (m.master / 100) * (m.click / 100);
   }
   notes(ci) {
     const ch = this.chunks()[ci];
@@ -400,7 +522,9 @@ class Component extends DCLogic {
     return this.ac;
   }
   say(pos, when) {
-    // Stand-in for the recorded "1 & 2 & 3 & 4 &" samples: one short tone per syllable.
+    // The "click" channel: one short tone per count. The "voice" channel (recorded samples) is not in the prototype.
+    const level = this.clickGain(this.st());
+    if (level <= 0) return;
     const ac = this.audio();
     if (!ac) return;
     const onBeat = pos % 2 === 0;
@@ -409,7 +533,7 @@ class Component extends DCLogic {
     o.frequency.value = pos === 0 ? 1320 : (onBeat ? 990 : 660);
     const t = ac.currentTime + when, len = onBeat ? 0.07 : 0.04;
     g.gain.setValueAtTime(0.0001, t);
-    g.gain.exponentialRampToValueAtTime(onBeat ? 0.5 : 0.25, t + 0.005);
+    g.gain.exponentialRampToValueAtTime(Math.max(0.0002, (onBeat ? 0.5 : 0.25) * level), t + 0.005);
     g.gain.exponentialRampToValueAtTime(0.0001, t + len);
     o.connect(g);
     g.connect(ac.destination);
@@ -443,7 +567,8 @@ class Component extends DCLogic {
     if (idx >= ns.length) {
       idx = 0;
       pass += 1;
-      if (pass > s.passes && s.auto) {
+      const target = s.mode === 'once' ? 1 : s.passes;
+      if (s.mode !== 'loop' && pass > target) {
         done[chunk] = this.eff(s);
         chunk = (chunk + 1) % 5;
         pass = 1;
@@ -477,7 +602,7 @@ class Component extends DCLogic {
       nx = ns[j];
       nextWhen = 'in ' + (j - idx);
     } else {
-      const leaving = s.auto && s.pass >= s.passes;
+      const leaving = s.mode !== 'loop' && s.pass >= (s.mode === 'once' ? 1 : s.passes);
       nx = leaving ? this.notes((ci + 1) % 5)[0] : ns[0];
       nextWhen = leaving ? 'next chunk' : 'loop';
     }
@@ -526,7 +651,7 @@ class Component extends DCLogic {
         isRest: false, isCur: isCur, isRow: !isCur,
         num: cc.num, cBg: cc.cBg, cCol: cc.cCol,
         name: p.name,
-        sub: 'Bars ' + p.bars + ' · pass ' + s.pass + ' of ' + s.passes,
+        sub: 'Bars ' + p.bars + ' · ' + (s.mode === 'once' ? 'play through' : (s.mode === 'loop' ? 'pass ' + s.pass + ' · looping' : 'pass ' + s.pass + ' of ' + s.passes)),
         right: isCur ? (this.eff(s) + '%') : (cc.isDone ? (s.done[p.c] + '%') : p.bars),
         aria: 'Chunk ' + (p.c + 1) + ', ' + p.name + ', bars ' + p.bars,
         dis: !has,
@@ -539,7 +664,7 @@ class Component extends DCLogic {
       return { num: cc.num, cBg: cc.cBg, cCol: cc.cCol, aria: 'Chunk ' + (p.c + 1) + ', ' + p.name, dis: !has, pick: () => { if (has) this.goChunk(p.c); } };
     });
 
-    const srcDefs = [{ id: 'yt', label: 'YouTube' }, { id: 'sp', label: 'Spotify' }, { id: 'syn', label: 'Synth' }, { id: 'count', label: 'Count' }];
+    const srcDefs = [{ id: 'yt', label: 'YouTube' }, { id: 'syn', label: 'Synth' }, { id: 'count', label: 'Count' }];
     const sources = srcDefs.map((d) => ({
       label: d.label, pressed: s.source === d.id ? 'true' : 'false',
       bg: s.source === d.id ? '#1ed760' : 'transparent', col: s.source === d.id ? '#000000' : '#ffffff',
@@ -622,6 +747,105 @@ class Component extends DCLogic {
     }];
     const stepSong = (d) => this.setState({ songId: SONGS[(si + d + SONGS.length) % SONGS.length].id, open: false });
 
+    const mix = s.mix;
+    const setMix = (patch) => this.setState({ mix: Object.assign({}, this.st().mix, patch) });
+    const channel = (o) => {
+      const muted = !!o.muted;
+      return Object.assign({
+        muted: muted, audible: !muted, mutedAttr: muted ? 'true' : 'false',
+        muteLabel: (muted ? 'Unmute ' : 'Mute ') + o.label,
+        muteBg: muted ? '#ffffff' : '#252525', muteFg: muted ? '#000000' : '#ffffff',
+        volLabel: o.label + ' volume', vol: o.vol,
+        sliderOp: muted ? 0.35 : 1,
+        volText: muted ? 'Muted' : (o.vol + '%'), valCol: muted ? '#7c7c7c' : '#ffffff',
+        canSolo: false, noSolo: true, yours: false
+      }, o);
+    };
+    const num = (e) => Number(e && e.target ? e.target.value : 0);
+    const mst = channel({
+      label: 'master', vol: mix.master, muted: mix.masterMute,
+      toggleMute: () => setMix({ masterMute: !this.st().mix.masterMute }),
+      onVol: (e) => setMix({ master: num(e) })
+    });
+    const mixTab = s.mixTab || (s.source === 'sp' ? 'yt' : s.source);
+    const mixTabs = [{ id: 'yt', label: 'YouTube' }, { id: 'syn', label: 'Synth' }, { id: 'count', label: 'Count' }].map((t) => ({
+      label: t.label, live: t.id === s.source,
+      pressed: t.id === mixTab ? 'true' : 'false',
+      bg: t.id === mixTab ? '#ffffff' : '#252525', col: t.id === mixTab ? '#000000' : '#ffffff',
+      pick: () => this.setState({ mixTab: t.id })
+    }));
+    const trs = this.trackMix(s, sg.id);
+    const setTrack = (i, patch) => {
+      const cur = this.st();
+      const list = this.trackMix(cur, sg.id);
+      const tr = Object.assign({}, cur.mix.tr);
+      tr[sg.id + ':' + i] = Object.assign({ vol: list[i].vol, mute: list[i].mute, solo: list[i].solo }, patch);
+      setMix({ tr: tr });
+    };
+    const applyPreset = (kind) => {
+      const tr = Object.assign({}, this.st().mix.tr);
+      this.trackMix(this.st(), sg.id).forEach((t) => {
+        tr[sg.id + ':' + t.i] = {
+          vol: t.vol,
+          solo: kind === 'bass' && t.bass,
+          mute: kind === 'backing' && t.bass
+        };
+      });
+      setMix({ tr: tr });
+    };
+    const anySolo = trs.some((t) => t.solo);
+    let mixRows;
+    if (mixTab === 'yt') {
+      mixRows = [channel({
+        label: 'video', name: 'Video', sub: 'YouTube player', vol: mix.yt, muted: mix.ytMute,
+        toggleMute: () => setMix({ ytMute: !this.st().mix.ytMute }),
+        onVol: (e) => setMix({ yt: num(e) })
+      })];
+    } else if (mixTab === 'count') {
+      mixRows = [
+        channel({
+          label: 'click', name: 'Click', sub: 'Tone on every count, accent on beat 1', vol: mix.click, muted: mix.clickMute,
+          toggleMute: () => setMix({ clickMute: !this.st().mix.clickMute }),
+          onVol: (e) => setMix({ click: num(e) })
+        }),
+        channel({
+          label: 'voice', name: 'Voice', sub: 'Spoken one, and, two, and …', vol: mix.voice, muted: mix.voiceMute,
+          toggleMute: () => setMix({ voiceMute: !this.st().mix.voiceMute }),
+          onVol: (e) => setMix({ voice: num(e) })
+        })
+      ];
+    } else {
+      mixRows = trs.map((t) => {
+        const silenced = t.mute || (anySolo && !t.solo);
+        const row = channel({
+          label: t.name, name: t.name, sub: t.sub, vol: t.vol, muted: t.mute, yours: t.bass,
+          toggleMute: () => setTrack(t.i, { mute: !t.mute }),
+          onVol: (e) => setTrack(t.i, { vol: num(e) })
+        });
+        return Object.assign(row, {
+          canSolo: true, noSolo: false,
+          soloAttr: t.solo ? 'true' : 'false',
+          soloLabel: (t.solo ? 'Unsolo ' : 'Solo ') + t.name,
+          soloBg: t.solo ? '#1ed760' : '#252525', soloFg: t.solo ? '#000000' : '#ffffff',
+          toggleSolo: () => setTrack(t.i, { solo: !t.solo }),
+          sliderOp: silenced ? 0.35 : 1,
+          volText: t.mute ? 'Muted' : (silenced ? 'Off' : (t.vol + '%')),
+          valCol: silenced ? '#7c7c7c' : '#ffffff'
+        });
+      });
+    }
+    const presetOn = {
+      bass: trs.every((t) => t.solo === t.bass && !t.mute),
+      band: trs.every((t) => !t.solo && !t.mute),
+      backing: trs.every((t) => !t.solo && t.mute === t.bass)
+    };
+    const presets = [{ id: 'bass', label: 'Bass only' }, { id: 'band', label: 'Full band' }, { id: 'backing', label: 'Backing' }].map((p) => ({
+      label: p.label, pressed: presetOn[p.id] ? 'true' : 'false',
+      bg: presetOn[p.id] ? '#ffffff' : '#252525', col: presetOn[p.id] ? '#000000' : '#ffffff',
+      ring: 'none',
+      pick: () => applyPreset(p.id)
+    }));
+
     return {
       song: {
         title: sg.title, artist: sg.artist, pos: (si + 1) + ' / ' + SONGS.length,
@@ -672,12 +896,16 @@ class Component extends DCLogic {
       },
       restart: () => { this.halt(); this.setState({ idx: 0, flash: true }, () => { if (this.st().playing) this.tick(); }); },
       dots: dots,
-      passText: s.pass + '/' + s.passes,
-      autoOn: s.auto, autoOff: !s.auto,
-      autoPressed: s.auto ? 'true' : 'false',
-      autoCol: s.auto ? '#1ed760' : '#ffffff',
-      autoLabel: s.auto ? ('Moves to the next chunk after ' + s.passes + ' passes. Click to repeat this chunk.') : 'Repeats this chunk. Click to move on after ' + s.passes + ' passes.',
-      toggleAuto: () => this.setState({ auto: !this.st().auto }),
+      passText: s.mode === 'once' ? 'Play through' : (s.mode === 'loop' ? 'Pass ' + s.pass : s.pass + '/' + s.passes),
+      modeAdvance: s.mode === 'advance', modeLoop: s.mode === 'loop', modeOnce: s.mode === 'once',
+      repeatCol: s.mode === 'loop' ? '#ffffff' : '#1ed760',
+      repeatLabel: s.mode === 'advance'
+        ? ('Repeat each chunk ' + s.passes + ' times, then move on. Click for play through.')
+        : (s.mode === 'once' ? 'Play through: each chunk once, no repeats. Click to loop this chunk.' : 'Loop this chunk until you move on. Click to repeat ' + s.passes + ' times.'),
+      cycleRepeat: () => {
+        const m = this.st().mode;
+        this.setState({ mode: m === 'advance' ? 'once' : (m === 'once' ? 'loop' : 'advance'), pass: 1 });
+      },
       tempoPct: e + '%',
       tempoSub: Math.round(110 * e / 100) + ' BPM',
       tempoLocked: s.source === 'sp',
@@ -685,7 +913,12 @@ class Component extends DCLogic {
       tempoDown: () => { const t = this.st(); if (t.source !== 'sp') this.setState({ tempo: Math.max(40, t.tempo - 5) }); },
       tempoUp: () => { const t = this.st(); if (t.source !== 'sp') this.setState({ tempo: Math.min(120, t.tempo + 5) }); },
       nextChunk: () => this.goChunk((ci + 1) % 5),
-      chunk: ci, idx: idx, pass: s.pass, passes: s.passes
+      chunk: ci, idx: idx, pass: s.pass, passes: s.mode === 'once' ? 1 : s.passes,
+      mixOpen: s.mixOpen,
+      mixOpenAttr: s.mixOpen ? 'true' : 'false',
+      toggleMixer: () => this.setState({ mixOpen: !this.st().mixOpen, mixTab: null }),
+      closeMixer: () => this.setState({ mixOpen: false }),
+      mst: mst, mixTabs: mixTabs, mixRows: mixRows, presets: presets, mixIsSynth: mixTab === 'syn'
     };
   }
 }

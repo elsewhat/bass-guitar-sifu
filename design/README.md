@@ -8,6 +8,7 @@ Exported from the Claude Design canvas "Bass trainer" on 2026-09-28. These files
 |---|---|
 | `artboards/Main.dc.html` | Practice view, 1440 × 900. Interactive prototype: play, loop, passes, auto-advance, tempo, sources incl. Count mode, song library overlay, collapsible practice plan. |
 | `artboards/SelectorOverlay.dc.html` | Wrapper that shows `Main` with the song library open. |
+| `artboards/MixerOverlay.dc.html` | Wrapper that shows `Main` with the mixer open on the Synth tab (ADR-0020). |
 | `artboards/TabStrip.dc.html` | Notation and tab strip component (1408 × 276). |
 | `artboards/Fretboard.dc.html` | Fretboard with hand component (673 × 208, scalable). |
 | `tokens/nocturne-tokens.json` | Nocturne design system tokens (colour, type, spacing, radius, shadow). |

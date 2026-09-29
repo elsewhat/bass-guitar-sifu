@@ -3,7 +3,6 @@ import type { Bar, TempoPoint } from '../core/model';
 import type { TickRange } from '../core/plucks';
 import type { PassCompleted } from './clock';
 import { SynthClock, type SynthPlayer } from './synth-clock';
-import { trackPlayback } from './synth-mix';
 
 // 4/4 bars of 3840 ticks at 120 bpm: 1920 ticks per second at 100 %.
 const bars: Bar[] = Array.from({ length: 12 }, (_, i) => ({ n: i + 1, time: [4, 4], startTick: i * 3840, durTicks: 3840, section: null }));
@@ -200,13 +199,5 @@ describe('SynthClock loop', () => {
     clock.setRange(chunkC);
     expect(player.calls).toEqual([`range ${chunkC.start}-${chunkC.end}`]); // the player moves to its start
     expect(clock.getTick()).toBe(chunkC.start);
-  });
-});
-
-describe('trackPlayback', () => {
-  it('solos the bass, plays everything, or mutes the bass', () => {
-    expect(trackPlayback('bass', 4, 2)).toEqual({ solo: [2], mute: [] });
-    expect(trackPlayback('band', 4, 2)).toEqual({ solo: [], mute: [] });
-    expect(trackPlayback('backing', 4, 2)).toEqual({ solo: [], mute: [2] });
   });
 });

@@ -67,6 +67,7 @@ export interface SongData {
   title: string;
   artist: string;
   track: { index: number; name: string }; // bass track in the Guitar Pro file (data/scores/<slug>.gp)
+  tracks: string[]; // names of every track in the file, by index (the Synth mixer, ADR-0020)
   tuning: number[]; // MIDI pitch per string, lowest first
   tuningName: string;
   ppq: number;
@@ -94,4 +95,4 @@ export interface CatalogEntry {
 }
 
 /** A song before chunking and fingering: what the importer produces. */
-export type ImportedSong = Pick<SongData, 'title' | 'artist' | 'track' | 'tuning' | 'ppq' | 'tempoMap' | 'bars' | 'events'>;
+export type ImportedSong = Pick<SongData, 'title' | 'artist' | 'track' | 'tracks' | 'tuning' | 'ppq' | 'tempoMap' | 'bars' | 'events'>;
