@@ -1,4 +1,5 @@
 // songs/<slug>/{score.gp,song.yaml} → SongData + CatalogEntry (system description §6).
+import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { findTacet } from '../../src/core/chunks';
 import { chunkPositions, solveFingering } from '../../src/core/fingering';
@@ -18,6 +19,9 @@ export function buildSongFromDir(dir: string, slug: string): BuiltSong {
   const sidecar = loadSidecar(join(dir, 'song.yaml'));
   const score = loadScore(join(dir, 'score.gp'));
   const { song: imported, warnings } = importBassTrack(score, pickBassTrack(score, sidecar.bassTrack));
+  const hasAudio = existsSync(join(dir, 'audio.mp3'));
+  if (sidecar.media?.music && !hasAudio) throw new Error('media.music is set but audio.mp3 is missing');
+  if (hasAudio && !sidecar.media?.music) warnings.push('audio.mp3 exists but media.music is not set; the Music source stays off');
   return buildSong(slug, imported, sidecar, warnings);
 }
 
@@ -62,6 +66,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
       youtube: sidecar.media?.youtube
         ? { videoId: sidecar.media.youtube.videoId ?? null, sync: sidecar.media.youtube.sync ?? [] }
         : null,
+      music: sidecar.media?.music ? { url: `data/audio/${slug}.mp3`, offsetMs: sidecar.media.music.offsetMs } : null,
     },
     tempoNote: sidecar.tempo?.note ?? null,
   };
@@ -76,6 +81,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
     maxFret: stats.maxFret,
     bars: bars.length,
     chunks: chunks.length,
+    music: song.media.music !== null,
   };
   return { song, catalog, warnings };
 }

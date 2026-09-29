@@ -2,7 +2,7 @@ import { passCounterText, type RepeatMode } from '../playback/loop';
 import { cycleRepeatMode, goNextChunk, restartChunk, stepTempo, togglePlay } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { effectiveBpm } from '../practice/view-model';
-import { TEMPO, useSession } from '../state/session';
+import { effectiveTempo, TEMPO, tempoLocked, useSession } from '../state/session';
 import { Icon, type IconName } from './icons';
 
 // Transport bar under the video (system description §3.4): play/pause, restart chunk, pass
@@ -17,7 +17,9 @@ const REPEAT: Record<RepeatMode, { icon: IconName; accent: boolean; label: (pass
 };
 
 export function TransportBar() {
-  const { song, playing, pass, passes, repeatMode, tempoPct, chunkIndex, sourceStatus } = useSession();
+  const { song, playing, pass, passes, repeatMode, chunkIndex, sourceStatus, source } = useSession();
+  const tempoPct = useSession(effectiveTempo);
+  const locked = tempoLocked(source);
   const bpm = song ? effectiveBpm(song, chunkIndex, songModel(song).tempo, tempoPct) : 0;
   const repeat = REPEAT[repeatMode];
   const repeatLabel = repeat.label(passes);
@@ -59,8 +61,8 @@ export function TransportBar() {
           <Icon name={repeat.icon} size={18} />
         </button>
       </div>
-      <div className="bg-elevated flex h-9 shrink-0 items-center gap-1 rounded-full px-1">
-        <button type="button" aria-label="Slower" title="Slower" disabled={tempoPct <= TEMPO.min} onClick={() => stepTempo(-1)} className={`${round} bg-card size-[30px] disabled:opacity-40`}>
+      <div className="bg-elevated flex h-9 shrink-0 items-center gap-1 rounded-full px-1" title={locked ? 'Music plays at full speed only' : undefined}>
+        <button type="button" aria-label="Slower" title="Slower" disabled={locked || tempoPct <= TEMPO.min} onClick={() => stepTempo(-1)} className={`${round} bg-card size-[30px] disabled:opacity-40`}>
           <Icon name="minus" size={16} />
         </button>
         <div className="w-16 text-center">
@@ -69,7 +71,7 @@ export function TransportBar() {
           </div>
           <div className="text-subdued text-[10px] leading-[1.3] whitespace-nowrap">{bpm} BPM</div>
         </div>
-        <button type="button" aria-label="Faster" title="Faster" disabled={tempoPct >= TEMPO.max} onClick={() => stepTempo(1)} className={`${round} bg-card size-[30px] disabled:opacity-40`}>
+        <button type="button" aria-label="Faster" title="Faster" disabled={locked || tempoPct >= TEMPO.max} onClick={() => stepTempo(1)} className={`${round} bg-card size-[30px] disabled:opacity-40`}>
           <Icon name="plus" size={16} />
         </button>
       </div>

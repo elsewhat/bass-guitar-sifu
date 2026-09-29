@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Bullet in the Head
+artist: Rage Against the Machine
+source: { file: "Rage Against the Machine-Bullet In The Head-09-23-2026.gp", date: 2026-09-23 }
+bassTrack: "Tim Commerford I Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: kmZAsLMUuPw, sync: [] }
+  music: { source: "Rage Against the Machine-Bullet In The Head-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro, bars: [1, 4] }
+  - { name: Intro repeat, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 a ×3, bars: [13, 24] }
+  - { name: Verse 1 b, bars: [25, 28] }
+  - { name: Verse 1 c, bars: [29, 32] }
+  - { name: Verse 1 d, bars: [33, 36] }
+  - { name: Verse 1 e, bars: [37, 40] }
+  - { name: Chorus 1 a, bars: [41, 47] }
+  - { name: Chorus 1 b, bars: [48, 55] }
+  - { name: Guitar Solo a, bars: [56, 59] }
+  - { name: Guitar Solo b, bars: [60, 63] }
+  - { name: Guitar Solo c, bars: [64, 67] }
+  - { name: Guitar Solo c repeat, bars: [68, 71] }
+  - { name: Chorus 2 a, bars: [72, 78] }
+  - { name: Chorus 2 b, bars: [79, 86] }
+  - { name: Verse 2 a, bars: [87, 90] }
+  - { name: Verse 2 b, bars: [91, 94] }
+  - { name: Verse 2 c, bars: [95, 98] }
+  - { name: Verse 2 c ×3, bars: [99, 110] }
+  - { name: Chorus 3 a, bars: [111, 117] }
+  - { name: Chorus 3 b, bars: [118, 121] }
+  - { name: Interlude a, bars: [122, 127] }
+  - { name: Interlude b, bars: [128, 131] }
+  - { name: Interlude c, bars: [132, 139] }
+  - { name: Interlude c ×2, bars: [140, 155] }
+  - { name: Bridge, bars: [156, 163] }
+  - { name: Bridge repeat, bars: [164, 171] }
+  - { name: Outro a, bars: [172, 179] }
+  - { name: Outro a ×2, bars: [180, 195] }
+  - { name: Outro a repeat, bars: [196, 203] }
+  - { name: Outro b, bars: [204, 207] }
+  - { name: Outro c, bars: [208, 211] }
+  - { name: Outro d, bars: [212, 214] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 163 BPM throughout, no tacet bars. Title casing follows the album ("in").
+  Chunks follow the 10 section markers; the three "Chorus" markers are numbered 1–3 here.
+  Intro, verses and solo share one 2-bar riff (E on A7, open E, G#+D double stop); its
+  4-bar variants (ABAC, ABAD) get their own chunks and runs of the plain riff are merged
+  (Verse 1 a ×3, Verse 2 c ×3). Each chorus is a sparse E–G–A figure with long held notes, so
+  its chunks follow the two phrases (7 and 8 bars, the last chorus 7 + 4) instead of 4-bar
+  splits that would be only held notes. Interlude a (122–127) is one held open E; Interlude b
+  is the A7 eighth-note pulse. From bar 132 to 203 the bass plays one 2-bar riff for 72 bars
+  across Interlude, Bridge and Outro: chunked in 8-bar phrases, with repeats merged up to the
+  16-bar limit, so "Outro a repeat" (196–203) continues the same riff. Outro b–d are the ending
+  (A7 + open-E eighths, then the A5–A7 grace figure and the final E). Fingering: the solver
+  alternates positions 5 and 6 on the repeated riff (A7 with the little or the middle finger)
+  so the finger that played G7 never rolls across to A7 at the same fret (ADR-0007 rule 6);
+  accepted, no overrides, no re-tabs. YouTube: official HD video on RATMVEVO (5:11 vs 5:15
+  in the score); sync anchors still needed.

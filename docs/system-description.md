@@ -18,7 +18,7 @@ The application is for one player (the owner) and a small circle of people with 
 In scope for version 1:
 
 - A curated catalogue of 20–30 songs stored as Guitar Pro files in the repository.
-- Bass track only. Other tracks are ignored.
+- Bass track only. Other tracks are ignored, except as sound: the Synth plays every track, and the Music source plays an MP3 rendered from the whole transcription (ADR-0022).
 - 4-string bass in any tuning present in the files (standard, drop D, C♯ standard have occurred).
 - Desktop and laptop screens from 1280 px width, shown in the browser's full-screen mode.
 - Progress stored in the browser.
@@ -55,8 +55,8 @@ Gaps are 12 px, page padding 16 px.
 
 ### 3.3 Video cell (centre, top)
 
-- Source switch overlaid top-left: `YouTube · Synth · Metronome` (Spotify deferred, ADR-0016). The Metronome is the count source (called Count before 2026-09-29; the code keeps the id `count`).
-- YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
+- Source switch overlaid top-left: `YouTube · Synth · Music · Metronome` (Spotify deferred, ADR-0016; Music added by ADR-0022, disabled for songs without an MP3). The Metronome is the count source (called Count before 2026-09-29; the code keeps the id `count`).
+- YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
 - Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
 - Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
 
@@ -67,7 +67,7 @@ Left to right:
 1. Play/pause (primary, accent green circle).
 2. Restart chunk.
 3. Pass counter and repeat button. The button cycles three modes (ADR-0021): repeat each chunk N times, then advance (repeat arrows, green, with pass dots and `2/3`); play through, each chunk once (arrow to a bar, green, `Play through`); loop this chunk (repeat-one icon, white, `Pass 5`). Play through is the default (owner, 2026-09-29).
-4. Tempo control: `−`, `95%` with `105 BPM` under it, `+`. Steps of 5 %, range 40–100 %, starting at 100 % (owner, 2026-09-29).
+4. Tempo control: `−`, `95%` with `105 BPM` under it, `+`. Steps of 5 %, range 40–100 %, starting at 100 % (owner, 2026-09-29). Locked at 100 % while the source is Music; the chosen tempo returns on the other sources (ADR-0022).
 5. "Next chunk" button.
 
 There is no automatic tempo ramp.
@@ -149,6 +149,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - YouTube: the IFrame API only supports discrete playback rates and rounds requested values. The app requests the nearest rate from `getAvailablePlaybackRates()` and shows the actual rate.
 - Spotify (deferred, ADR-0016): the Web Playback SDK has no playback-rate control.
 - Synth and Metronome: any tempo.
+- Music (ADR-0022): full speed only. The tempo control shows 100 % and the score BPM and is disabled; passes count as done at 100 %.
 
 ### 5.4 Metronome (count source)
 
@@ -160,8 +161,8 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 ### 5.5 Mixer (ADR-0020)
 
 - Opened from the equalizer icon in the video cell. Modal with the song library's shell: dim backdrop, centred 680 px panel, closes on backdrop click, the close button and `Esc`.
-- Master row (mute, 0–100 % slider) for all sources, then tabs `YouTube · Synth · Metronome`. The active source's tab is selected on open and marked with a green dot.
-- Channels: YouTube `Video`; Synth one row per `.gp` track with mute and solo, the bass marked "Your part", and Quick mix buttons `Bass only`, `Full band`, `Backing`; Metronome `Click` and `Voice`, which can sound together.
+- Master row (mute, 0–100 % slider) for all sources, then tabs `YouTube · Synth · Music · Metronome`. The active source's tab is selected on open and marked with a green dot.
+- Channels: YouTube `Video`; Synth one row per `.gp` track with mute and solo, the bass marked "Your part", and Quick mix buttons `Bass only`, `Full band`, `Backing`; Music one `Music` row (the render is one stereo mix); Metronome `Click` and `Voice`, which can sound together.
 - A muted channel keeps its slider value. Values are stored in the browser (§9).
 
 ## 6. Song pipeline
@@ -169,14 +170,16 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 Guitar Pro files are the source of truth for notes. A build step turns each song folder into a JSON file the app loads at runtime (ADR-0003, ADR-0004).
 
 ```
-music/<Artist-Title-date>.gp  Inbox; /preprocess-song moves it into songs/<slug>/ (ADR-0015)
+music/<Artist-Title-date>.gp  Inbox (+ .mp3 rendered from it); /preprocess-song moves both into songs/<slug>/ (ADR-0015)
 songs/<slug>/score.gp         Guitar Pro file (GP3–GP8)
+songs/<slug>/audio.mp3        Optional audio rendered from the transcription, the Music source (ADR-0022)
 songs/<slug>/song.yaml        Sidecar: metadata, chunks, media + sync, overrides (ADR-0013)
         │  npm run build:songs  (Node; run locally and committed, CI runs --check; ADR-0014)
         ▼
 public/data/catalog.json       List of songs for the library overlay
 public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
-<base>data/scores/<slug>.gp   score.gp served/emitted by the song-scores Vite plugin, not committed twice (ADR-0017)
+<base>data/scores/<slug>.gp   score.gp served/copied by the song-scores Vite plugin, not committed twice (ADR-0017)
+<base>data/audio/<slug>.mp3   audio.mp3, the same way, with byte ranges in dev (ADR-0022)
 ```
 
 ### 6.1 Normalised song JSON (generated)
@@ -202,7 +205,8 @@ public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
   "tacet": [[1, 129], [177, 191], [241, 243]],
   "chunks": [{ "id": 1, "name": "Riff A", "bars": [130, 133], "position": 3, "shifts": 0 }],
   "stats": { "durationSec": 530.2, "noteCount": 692, "maxFret": 6, "strings": [0, 1], "firstBar": 130 },
-  "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] } },
+  "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] },
+             "music": { "url": "data/audio/vortex-surfer.mp3", "offsetMs": 0 } },   // null without an MP3
   "tempoNote": null
 }
 ```
@@ -227,6 +231,7 @@ bassTrack: "Electric Bass (finger)"   # track name or zero-based index
 tempo: { note: null }                 # e.g. "notated half-time"
 media:
   youtube: { videoId: null, sync: [{ bar: 1, ms: 0 }] }
+  music: { source: "Motorpsycho-Vortex Surfer-09-29-2026.mp3", offsetMs: 0 }   # ADR-0022
 chunks:                               # required; the build does not invent chunks
   - { name: Riff A, bars: [130, 133] }
 fingeringOverrides: []                # { bar, tick, string?, fret?, finger? }
@@ -234,6 +239,8 @@ notes: ""                             # review notes from the skill
 ```
 
 `sync` is a list of anchor points from score bar to recording time. The app interpolates linearly between anchors using the tempo map. A single anchor is enough if the recording follows the score tempo.
+
+`music` needs `songs/<slug>/audio.mp3`. `offsetMs` is the audio time of the score's first tick, measured once with `npm run inspect-song -- <slug> --audio songs/<slug>/audio.mp3`, which also reports drift between the first and last minute.
 
 ## 7. Algorithms
 
@@ -265,19 +272,20 @@ The pseudo code and cost values are in ADR-0007. The fingering for Vortex Surfer
 
 ## 8. Playback and timing (ADR-0008)
 
-One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `CountClock`. With ADR-0017, YouTube and Synth are adapters over the alphaTab player (external-media mode and synth).
+One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `MusicClock`, `CountClock`. With ADR-0017, YouTube and Synth are adapters over the alphaTab player (external-media mode and synth).
 
 - The clock reports the current score position as an absolute tick, read once per animation frame (ADR-0018).
 - Recording-based clocks map recording time to score position through the sync map.
 - Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
 - YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
 - The Metronome schedules audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
+- Music streams `data/audio/<slug>.mp3` through `<audio>` and Web Audio. Audio time = score time + `offsetMs`; the clock seeks at chunk wraps, accurate to tens of milliseconds (ADR-0022).
 - Synth is alphaTab's player on the strip's alphaTab instance, loaded when the Synth is first chosen. It plays the bass track alone by default; full band and band without bass are prepared (ADR-0019).
 
 ## 9. Persistence (ADR-0010)
 
 - `localStorage` key `bass-trainer:v1:<slug>`: current chunk, passes, tempo, source, completed chunks with tempo, last practised timestamp, Synth track mix (`synthTracks`).
-- `bass-trainer:v1:settings`: passes per chunk, repeat mode, practice plan collapsed, last song, mixer (master, YouTube and Metronome channels).
+- `bass-trainer:v1:settings`: passes per chunk, repeat mode, practice plan collapsed, last song, mixer (master, YouTube, Music and Metronome channels).
 - Settings dialog offers export and import of all progress as a JSON file.
 
 ## 10. Hosting and repository (ADR-0012)
@@ -327,4 +335,5 @@ Work proceeds in vertical slices. The first slice uses two songs: Vortex Surfer,
    - Song library overlay and progress persistence.
 6. YouTube source with sync map, and the tap sync editor (ADR-0016).
 7. Synth source.
+7b. Music source: MP3 rendered from the transcription, full speed only (ADR-0022).
 8. Spotify source: deferred (ADR-0016).

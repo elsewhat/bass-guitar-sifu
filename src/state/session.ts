@@ -7,18 +7,31 @@ import { loadSettings } from './storage';
 // Session state (ADR-0002). Playback position is deliberately not stored here; it flows
 // through the clock subscription at animation-frame rate (ADR-0008). Pass and chunk changes
 // are discrete and live here; the practice engine (src/practice/engine.ts) writes them.
-export type SourceId = 'youtube' | 'synth' | 'count';
+export type SourceId = 'youtube' | 'synth' | 'music' | 'count';
 
 export const SOURCES: { id: SourceId; label: string; ready: boolean }[] = [
   { id: 'youtube', label: 'YouTube', ready: false },
   { id: 'synth', label: 'Synth', ready: true },
+  { id: 'music', label: 'Music', ready: true },
   { id: 'count', label: 'Metronome', ready: true },
 ];
+
+/** Whether a source can be chosen for a song: Music needs the song's rendered MP3 (ADR-0022). */
+export function sourceAvailable(id: SourceId, song: SongData | null): boolean {
+  const ready = SOURCES.find((s) => s.id === id)?.ready ?? false;
+  return ready && (id !== 'music' || !!song?.media.music);
+}
+
+/** Music plays at full speed only (ADR-0022); the chosen tempo is kept for the other sources. */
+export const tempoLocked = (source: SourceId) => source === 'music';
+
+/** The tempo in effect: 100 % while the tempo is locked, else the chosen one. */
+export const effectiveTempo = (s: { source: SourceId; tempoPct: number }) => (tempoLocked(s.source) ? 100 : s.tempoPct);
 
 /** Loading state of the active source (the Synth loads alphaTab's player and a soundfont). */
 export interface SourceStatus {
   state: 'ready' | 'loading' | 'error';
-  progress?: number; // 0–1, soundfont download
+  progress?: number; // 0–1, soundfont or MP3 download
   error?: string;
 }
 
@@ -28,7 +41,7 @@ export interface SessionState extends LoopState {
   planOpen: boolean;
   source: SourceId;
   sourceStatus: SourceStatus;
-  /** Master, YouTube and Metronome channels (ADR-0020), kept in the browser. */
+  /** Master, YouTube, Music and Metronome channels (ADR-0020), kept in the browser. */
   mixer: GlobalMix;
   /** The current song's Synth track channels, by track index (ADR-0020). */
   synthTracks: TrackChannel[];

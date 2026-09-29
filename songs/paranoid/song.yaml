@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Paranoid
+artist: Black Sabbath
+source: { file: "Black Sabbath-Paranoid-09-25-2026.gp", date: 2026-09-25 }
+bassTrack: "Geezer Butler | Fender Precision Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: 0qanF-91aJo, sync: [] }
+  music: { source: "Black Sabbath-Paranoid-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro, bars: [4, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Interlude, bars: [17, 20] }
+  - { name: Interlude repeat, bars: [21, 24] }
+  - { name: Verse 2 a, bars: [25, 28] }
+  - { name: Verse 2 b, bars: [29, 32] }
+  - { name: Verse 2 c, bars: [33, 36] }
+  - { name: Verse 2 d, bars: [37, 40] }
+  - { name: Verse 2 e, bars: [41, 44] }
+  - { name: Verse 2 f, bars: [45, 48] }
+  - { name: Verse 3 a, bars: [49, 52] }
+  - { name: Verse 3 b, bars: [53, 56] }
+  - { name: Guitar Solo a, bars: [57, 60] }
+  - { name: Guitar Solo b, bars: [61, 64] }
+  - { name: Guitar Solo c, bars: [65, 68] }
+  - { name: Guitar Solo d, bars: [69, 72] }
+  - { name: Guitar Solo e, bars: [73, 76] }
+  - { name: Guitar Solo f, bars: [77, 80] }
+  - { name: Verse 4 a, bars: [81, 84] }
+  - { name: Verse 4 b, bars: [85, 88] }
+  - { name: Verse 4 c, bars: [89, 92] }
+  - { name: Verse 4 c repeat, bars: [93, 96] }
+  - { name: Verse 5 a, bars: [97, 100] }
+  - { name: Verse 5 b, bars: [101, 104] }
+  - { name: Outro a, bars: [105, 108] }
+  - { name: Outro b, bars: [109, 112] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 163 BPM throughout, matching the recording (no half/double-time issue). Bass
+  enters with a pickup B in bar 4 (bars 1–3 tacet), so the Intro chunk is 4–8. Chunks follow the
+  9 section markers in 4-bar phrases (E-chug, D, turnaround). Verse 2 c/d (33–40) are the
+  quarter-note E and D/E octave bars. Verse 4 c (89–96) is the same C–D–E figure as the
+  Interlude (17–24) but sits under the "Verse 4" marker. Fingering: the E chug moves between
+  positions 5, 6 and 7 depending on the next figure (little finger when a D follows without a
+  break, index after the pos-7 D7/D9/G7/G9 fill); this follows the ADR-0007 rules and was kept.
+  The 48 re-tabs are all the D bar after that fill (bars 31, 55, 79, 99, 103, 111): A5 → open D,
+  so the hand can come down from position 7 without a two-fret shift on continuous eighths;
+  accepted as a beginner simplification (the other D bars stay on A5). Large shifts at bar 5
+  (B on A2 → E on A7, the pickup) and bars 22/94 (E → C on A3) are inherent to the line.
+  YouTube: "BLACK SABBATH - "Paranoid" (Official Video)" on the Black Sabbath channel, the 1970
+  Belgian TV clip (2:51 vs 2:45 in the score); if it turns out not to use the studio take, the
+  Rhino "Official Audio" upload BOTIIw76qiE (2:48) is the fallback. Sync anchors still needed.

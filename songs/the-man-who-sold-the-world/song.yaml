@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: The Man Who Sold The World
+artist: Nirvana
+source: { file: "Nirvana-The Man Who Sold The World-09-22-2026.gp", date: 2026-09-22 }
+bassTrack: "Krist Novoselic | Guild B30E Semi-Acoustic | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: fregObNcHC8, sync: [] }
+  music: { source: "Nirvana-The Man Who Sold The World-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro, bars: [3, 4] }
+  - { name: Band Entrance, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Verse 1 c, bars: [17, 21] }
+  - { name: Chorus 1 a, bars: [22, 25] }
+  - { name: Chorus 1 b, bars: [26, 30] }
+  - { name: Interlude 1 a, bars: [31, 34] }
+  - { name: Interlude 1 b, bars: [35, 38] }
+  - { name: Verse 2 a, bars: [39, 42] }
+  - { name: Verse 2 b, bars: [43, 46] }
+  - { name: Verse 2 c, bars: [47, 51] }
+  - { name: Chorus 2 a, bars: [52, 55] }
+  - { name: Chorus 2 b, bars: [56, 60] }
+  - { name: Interlude 2, bars: [61, 64] }
+  - { name: Chorus 3 a, bars: [65, 68] }
+  - { name: Chorus 3 b, bars: [69, 71] }
+  - { name: Solo/Outro a, bars: [72, 75] }
+  - { name: Solo/Outro b, bars: [76, 83] }
+  - { name: Solo/Outro b ×2, bars: [84, 99] }
+  - { name: Ending, bars: [100, 102] }
+fingeringOverrides: []
+notes: >-
+  MTV Unplugged version (Pat Smear, cello), E♭ standard. Bars 1–2 are tacet. Bars 19 and 49
+  are 6/4 and sit inside Verse 1 c / Verse 2 c, which are 5 bars so the verse phrase stays
+  whole; Chorus 1 b / 2 b are 5 bars for the same reason. Interlude 1 b (35–38) is the Band
+  Entrance riff again. The two "Interlude" markers are numbered. "Guitar Solo/Outro" is an
+  8-bar riff variant (76–83) played three times; its two repeats are merged into one 16-bar
+  chunk. Fingering: all 14 re-tabs accepted, each is a same-pitch move that the beginner rules
+  favour. Bars 12 and 20 take an open string for a passing note inside position 5. Bars 31, 61
+  and 72 take the held A♭ on F♯2 instead of C♯7, so the hand stays at the chorus position.
+  It moves to fret 7 in the rest before the next held note. Bars 79–99 (every 4th bar of the
+  solo riff) take the tied A♭ as an open string instead of E♭5, which gives the hand a free
+  shift in the descending figure. No shifts of 3+ frets and no overrides. The chorus
+  (A♭3-5, C♯2-3-5, F♯2-3-5) spans four frets in a low position, so the solver shifts a fret
+  within each string (rule 5). A teacher might prefer one finger per fret there. YouTube:
+  official MTV Unplugged video on NirvanaVEVO (3:38 vs 3:37 in the score); the unedited
+  version (OgeR2oqZGTs, 4:19) includes stage talk. Sync anchors still needed.

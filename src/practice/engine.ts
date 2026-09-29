@@ -6,9 +6,11 @@ import type { PlaybackClock } from '../playback/clock';
 import { CountClock, countSamplesAvailable, type CountGains } from '../playback/count-clock';
 import { setTickSource } from '../playback/frame';
 import { chunkRange, completePass, initialLoop, nextChunk, nextRepeatMode, rangeAfterPass, selectChunk, setRepeatMode, willAdvance } from '../playback/loop';
-import { applyQuickMix, channelGain, clampVolume, type Channel, type GlobalChannelId, type QuickMix, type TrackChannel } from '../playback/mixer';
+import { applyQuickMix, channelGain, clampVolume, effectiveGain, type Channel, type GlobalChannelId, type QuickMix, type TrackChannel } from '../playback/mixer';
+import { MusicClock } from '../playback/music-clock';
+import type { MusicPlayerHandle } from '../playback/music-player';
 import { SynthClock } from '../playback/synth-clock';
-import { TEMPO, useSession, type SourceId, type SourceStatus } from '../state/session';
+import { effectiveTempo, sourceAvailable, TEMPO, tempoLocked, useSession, type SourceId, type SourceStatus } from '../state/session';
 import { loadSynthTracks, saveSettings, saveSynthTracks } from '../state/storage';
 import { whenStrip } from '../strip/strip-host';
 import type { SynthLevels, SynthPlayerHandle } from '../strip/synth-player';
@@ -16,6 +18,7 @@ import type { SynthLevels, SynthPlayerHandle } from '../strip/synth-player';
 const base = import.meta.env.BASE_URL;
 let clock: PlaybackClock | null = null;
 let synthPlayer: SynthPlayerHandle | null = null; // the Synth clock's player, for the mixer
+let musicPlayer: MusicPlayerHandle | null = null; // the Music clock's player, for the mixer
 let loadToken = 0;
 
 setTickSource(() => clock?.getTick() ?? 0);
@@ -35,7 +38,7 @@ export function advanceRange(): { start: number; end: number } | null {
 
 const setStatus = (sourceStatus: SourceStatus) => useSession.setState({ sourceStatus });
 
-function onSoundFontProgress(progress: number) {
+function onLoadProgress(progress: number) {
   if (state().sourceStatus.state === 'loading') setStatus({ state: 'loading', progress });
 }
 
@@ -46,7 +49,7 @@ function onSoundFontProgress(progress: number) {
 function createSynthClock(song: SongData): SynthClock {
   setStatus({ state: 'loading', progress: 0 });
   const player = Promise.all([import('../strip/synth-player'), whenStrip()]).then(([{ createSynthPlayer }, strip]) => {
-    strip.enableSynth(onSoundFontProgress);
+    strip.enableSynth(onLoadProgress);
     const p = createSynthPlayer(strip, song, synthLevels());
     if (clock === c) synthPlayer = p;
     return p;
@@ -61,12 +64,34 @@ function createSynthClock(song: SongData): SynthClock {
   return c;
 }
 
+/** The Music source (ADR-0022): the song's MP3 streamed from data/audio/, loaded when chosen. */
+function createMusicClock(song: SongData, music: NonNullable<SongData['media']['music']>): MusicClock {
+  setStatus({ state: 'loading', progress: 0 });
+  const player = import('../playback/music-player').then(({ createMusicPlayer }) => {
+    const p = createMusicPlayer(`${base}${music.url}`, musicGain(), onLoadProgress);
+    if (clock === c) musicPlayer = p;
+    return p;
+  });
+  const c = new MusicClock(song, music.offsetMs, player);
+  player
+    .then((p) => p.ready)
+    .then(
+      () => clock === c && setStatus({ state: 'ready' }),
+      (e: unknown) => clock === c && setStatus({ state: 'error', error: `Music unavailable: ${String(e)}` }),
+    );
+  return c;
+}
+
 /** Creates the clock for the current source; the position is kept when it is inside the chunk. */
 function attachClock(song: SongData, tick?: number) {
   clock?.dispose();
   synthPlayer = null;
+  musicPlayer = null;
+  if (!sourceAvailable(state().source, song)) useSession.setState({ source: 'count' });
   let c: PlaybackClock;
-  if (state().source === 'synth') c = createSynthClock(song);
+  const source = state().source;
+  if (source === 'synth') c = createSynthClock(song);
+  else if (source === 'music' && song.media.music) c = createMusicClock(song, song.media.music);
   else {
     const count = new CountClock(song);
     count.setMix(countGains());
@@ -77,7 +102,7 @@ function attachClock(song: SongData, tick?: number) {
   c.onRangeEnd = () => rangeAfterPass(state(), song.chunks, song.bars);
   c.onPassCompleted(({ to }) => {
     const s = state();
-    useSession.setState(completePass(s, to, song.chunks, song.bars, s.tempoPct));
+    useSession.setState(completePass(s, to, song.chunks, song.bars, effectiveTempo(s)));
   });
   c.setRate(state().tempoPct / 100);
   const range = currentRange(song);
@@ -158,6 +183,7 @@ export function restartChunk() {
 }
 
 export function stepTempo(direction: 1 | -1) {
+  if (tempoLocked(state().source)) return;
   const pct = Math.max(TEMPO.min, Math.min(TEMPO.max, state().tempoPct + direction * TEMPO.step));
   useSession.setState({ tempoPct: pct });
   clock?.setRate(pct / 100);
@@ -172,7 +198,7 @@ export function cycleRepeatMode() {
 
 /** Switches the playback source at the current position (paused). */
 export function setSource(source: SourceId) {
-  if (source === state().source) return;
+  if (source === state().source || !sourceAvailable(source, state().song)) return;
   pause();
   const tick = clock?.getTick();
   useSession.setState({ source });
@@ -187,6 +213,11 @@ function countGains(): CountGains {
   return { master: channelGain(master), click: channelGain(click), voice: channelGain(voice) };
 }
 
+function musicGain(): number {
+  const { master, music } = state().mixer;
+  return effectiveGain(master, music);
+}
+
 function synthLevels(): SynthLevels {
   return { master: channelGain(state().mixer.master), tracks: state().synthTracks };
 }
@@ -195,6 +226,7 @@ function synthLevels(): SynthLevels {
 function applyMix() {
   if (clock instanceof CountClock) clock.setMix(countGains());
   synthPlayer?.setMix(synthLevels());
+  musicPlayer?.setGain(musicGain());
   // YouTube: setVolume(master × video) once the YouTube source exists (step 6).
 }
 
@@ -202,7 +234,7 @@ export function openMixer(open: boolean) {
   useSession.setState({ mixerOpen: open });
 }
 
-/** Master, Video, Click or Voice. */
+/** Master, Video, Music, Click or Voice. */
 export function setChannel(id: GlobalChannelId, patch: Partial<Channel>) {
   const current = state().mixer[id];
   const channel = { ...current, ...patch, volume: clampVolume(patch.volume ?? current.volume) };

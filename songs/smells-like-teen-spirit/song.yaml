@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Smells Like Teen Spirit
+artist: Nirvana
+source: { file: "Nirvana-Smells Like Teen Spirit-09-26-2026.gp", date: 2026-09-26 }
+bassTrack: "Krist Novoselic | Gibson Ripper | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: 7TDeBi34OtE, sync: [] }
+  music: { source: "Nirvana-Smells Like Teen Spirit-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro a, bars: [4, 8] }
+  - { name: Intro b, bars: [9, 12] }
+  - { name: Verse Riff, bars: [13, 16] }
+  - { name: Verse 1, bars: [17, 20] }
+  - { name: Verse 1 repeat, bars: [21, 24] }
+  - { name: Pre-Chorus 1, bars: [25, 28] }
+  - { name: Pre-Chorus 1 repeat, bars: [29, 32] }
+  - { name: Chorus 1 a, bars: [33, 36] }
+  - { name: Chorus 1 a repeat, bars: [37, 40] }
+  - { name: Chorus 1 b, bars: [41, 44] }
+  - { name: Post-Chorus a, bars: [45, 48] }
+  - { name: Post-Chorus b, bars: [49, 52] }
+  - { name: Verse 2, bars: [53, 56] }
+  - { name: Verse 2 repeat, bars: [57, 60] }
+  - { name: Pre-Chorus 2, bars: [61, 64] }
+  - { name: Pre-Chorus 2 repeat, bars: [65, 68] }
+  - { name: Chorus 2 a, bars: [69, 72] }
+  - { name: Chorus 2 a ×2, bars: [73, 80] }
+  - { name: Chorus 2 b, bars: [81, 84] }
+  - { name: Guitar Solo a, bars: [85, 88] }
+  - { name: Guitar Solo a ×2, bars: [89, 96] }
+  - { name: Guitar Solo b, bars: [97, 100] }
+  - { name: Break, bars: [101, 104] }
+  - { name: Verse 3, bars: [105, 108] }
+  - { name: Verse 3 repeat, bars: [109, 112] }
+  - { name: Pre-Chorus 3, bars: [113, 116] }
+  - { name: Pre-Chorus 3 repeat, bars: [117, 120] }
+  - { name: Chorus 3, bars: [121, 124] }
+  - { name: Chorus 3 ×2, bars: [125, 132] }
+  - { name: Outro, bars: [133, 136] }
+  - { name: Outro repeat, bars: [137, 140] }
+  - { name: Ending, bars: [141, 144] }
+fingeringOverrides: []
+notes: >-
+  Bass enters with a one-bar pickup in bar 4 (end of the guitar intro), merged with the
+  band-in into Intro a; bars 1–3 and 145 are tacet. Chunks follow the 17 section markers in
+  4-bar phrases of the 2-bar F–B♭ / A♭–D♭ riff (B C) and the F–B♭ verse figure (E F),
+  merging immediate repeats. "b" chunks hold the bar where the riff ends differently
+  (12, 44, 100); Post-Chorus a / Chorus 2 b are the "hello" figure (H I). From bar 121 the
+  riff has a dead note on A7 and a different fingering (K C), so Chorus 3 and Outro share it.
+  Ending: a low F held for four bars. Tempo 113 BPM for the intro, 117 from bar 5, as on the
+  record. Fingering: no re-tabs and no overrides. The six shifts of 3 frets (bar 4 twice, 47, 49,
+  83, 85) are the F/B♭ at fret 1 against A♭/D♭ at fret 4, and the drop from the E6–E5–E4
+  figure back to F on E1. A four-fret span cannot be held in one low-position 1-2-4 box. YouTube: "Nirvana - Topic"
+  upload of the album track (5:02 vs 4:58 in the score); the NirvanaVEVO music video is a
+  4:38 edit, so it was not used. Sync anchors still needed.

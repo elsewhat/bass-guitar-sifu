@@ -12,7 +12,10 @@ export interface Sidecar {
   source: { file: string; date?: string };
   bassTrack: string | number;
   tempo?: { note?: string | null };
-  media?: { youtube?: { videoId?: string | null; sync?: { bar: number; tick?: number; ms: number }[] } };
+  media?: {
+    youtube?: { videoId?: string | null; sync?: { bar: number; tick?: number; ms: number }[] };
+    music?: { source: string; offsetMs: number };
+  };
   chunks: { name: string; bars: [number, number] }[];
   fingeringOverrides?: FingeringOverride[];
   notes?: string;

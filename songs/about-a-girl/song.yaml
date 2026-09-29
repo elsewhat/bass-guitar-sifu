@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: About A Girl
+artist: Nirvana
+source: { file: "Nirvana-About A Girl-09-05-2026.gp", date: 2026-09-05 }
+bassTrack: "Krist Novoselic | Ibanez Black Eagle 2609B | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: JIx2H-plXdU, sync: [] }
+  music: { source: "Nirvana-About A Girl-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Chorus 1 a, bars: [17, 20] }
+  - { name: Chorus 1 b, bars: [21, 22] }
+  - { name: Post-Chorus 1, bars: [23, 26] }
+  - { name: Verse 2, bars: [27, 30] }
+  - { name: Verse 2 repeat, bars: [31, 34] }
+  - { name: Chorus 2 a, bars: [35, 38] }
+  - { name: Chorus 2 b, bars: [39, 40] }
+  - { name: Post-Chorus 2, bars: [41, 44] }
+  - { name: Guitar Solo, bars: [45, 48] }
+  - { name: Guitar Solo repeat, bars: [49, 52] }
+  - { name: Post-Solo a, bars: [53, 56] }
+  - { name: Post-Solo b, bars: [57, 58] }
+  - { name: Post-Solo c, bars: [59, 62] }
+  - { name: Verse 3 a, bars: [63, 66] }
+  - { name: Verse 3 b, bars: [67, 70] }
+  - { name: Chorus 3 a, bars: [71, 74] }
+  - { name: Chorus 3 b, bars: [75, 78] }
+  - { name: Chorus 3 c, bars: [79, 80] }
+  - { name: Outro a, bars: [81, 84] }
+  - { name: Outro a repeat, bars: [85, 88] }
+  - { name: Outro b, bars: [89, 92] }
+fingeringOverrides: []
+notes: >-
+  Studio (Bleach) version: Chad Channing on drums, 2:50 in the score. Bass enters at bar 5 with
+  the band ("Intro B (Band-In)"); bars 1–4 (guitar riff alone) and 93 are tacet. Chunks follow
+  the 13 section markers split at the 2-bar riff: the E–G intro/post-chorus riff (A B), the
+  verse riff (C D) and the chorus (F G F H/K, then I J). Chorus 1 b / 2 b are the 2-bar
+  I J turnaround kept apart because the hand moves from position 2 to 3. "Post-Solo/ Pre-Verse"
+  is shortened to Post-Solo: a = chorus figure, b = turnaround, c = intro riff. Verse 3 a
+  holds the one variant bar (64, position 5). Bar 80 is 2/4 and ends Chorus 3 c. Outro b is
+  one open E held for four bars (tempo slows to 115 BPM at bar 90). Tempo map 127–134 BPM
+  follows the recording; no half/double time. Fingering: no re-tabs and no shifts of 3+ frets;
+  no overrides. The chorus alternates A4 and E4 between fingers 2 and 4 because rule 6
+  (no rolling) forbids the same finger on both strings at fret 4. YouTube: "Nirvana - Topic"
+  upload of the Bleach deluxe remaster (Sub Pop, 2:48); sync anchors still needed.

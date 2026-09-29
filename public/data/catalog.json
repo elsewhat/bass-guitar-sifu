@@ -1,4 +1,18 @@
 [
-  {"slug":"vortex-surfer","title":"Vortex Surfer","artist":"Motorpsycho","bpm":110,"durationSec":530.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":243,"chunks":9},
-  {"slug":"killing-in-the-name","title":"Killing in the Name","artist":"Rage Against the Machine","bpm":109,"durationSec":313.1,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":12,"bars":120,"chunks":30}
+  {"slug":"paranoid","title":"Paranoid","artist":"Black Sabbath","bpm":163,"durationSec":164.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":9,"bars":112,"chunks":27,"music":true},
+  {"slug":"the-wheel","title":"The Wheel","artist":"Motorpsycho","bpm":122,"durationSec":1135.1,"tuning":[25,30,35,40],"tuningName":"C♯ standard","maxFret":16,"bars":577,"chunks":76,"music":true},
+  {"slug":"un-chien-d-espace","title":"Un Chien d'Espace","artist":"Motorpsycho","bpm":98,"durationSec":866.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":8,"bars":357,"chunks":36,"music":true},
+  {"slug":"vortex-surfer","title":"Vortex Surfer","artist":"Motorpsycho","bpm":110,"durationSec":530.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":243,"chunks":9,"music":false},
+  {"slug":"wearing-yr-smell","title":"wearing yr smell","artist":"Motorpsycho","bpm":137,"durationSec":210.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":17,"bars":120,"chunks":28,"music":true},
+  {"slug":"about-a-girl","title":"About A Girl","artist":"Nirvana","bpm":129,"durationSec":169.6,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":7,"bars":93,"chunks":24,"music":true},
+  {"slug":"come-as-you-are","title":"Come As You Are","artist":"Nirvana","bpm":120,"durationSec":223,"tuning":[26,31,36,41],"tuningName":"D standard","maxFret":9,"bars":112,"chunks":24,"music":true},
+  {"slug":"smells-like-teen-spirit","title":"Smells Like Teen Spirit","artist":"Nirvana","bpm":113,"durationSec":297.7,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":145,"chunks":32,"music":true},
+  {"slug":"the-man-who-sold-the-world","title":"The Man Who Sold The World","artist":"Nirvana","bpm":114,"durationSec":216.8,"tuning":[27,32,37,42],"tuningName":"E♭ standard","maxFret":8,"bars":102,"chunks":21,"music":true},
+  {"slug":"creep","title":"Creep","artist":"Radiohead","bpm":92,"durationSec":237.4,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":12,"bars":91,"chunks":23,"music":true},
+  {"slug":"bombtrack","title":"Bombtrack","artist":"Rage Against the Machine","bpm":85,"durationSec":245.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":7,"bars":78,"chunks":19,"music":true},
+  {"slug":"bullet-in-the-head","title":"Bullet in the Head","artist":"Rage Against the Machine","bpm":163,"durationSec":315.1,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":9,"bars":214,"chunks":34,"music":true},
+  {"slug":"bulls-on-parade","title":"Bulls on Parade","artist":"Rage Against the Machine","bpm":85,"durationSec":231.5,"tuning":[27,32,37,42],"tuningName":"E♭ standard","maxFret":16,"bars":82,"chunks":18,"music":true},
+  {"slug":"killing-in-the-name","title":"Killing in the Name","artist":"Rage Against the Machine","bpm":109,"durationSec":313.1,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":12,"bars":120,"chunks":30,"music":true},
+  {"slug":"black-hole-sun","title":"Black Hole Sun","artist":"Soundgarden","bpm":53,"durationSec":323.2,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":7,"bars":79,"chunks":18,"music":true},
+  {"slug":"zombie","title":"Zombie","artist":"The Cranberries","bpm":72,"durationSec":306.8,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":12,"bars":108,"chunks":26,"music":true}
 ]

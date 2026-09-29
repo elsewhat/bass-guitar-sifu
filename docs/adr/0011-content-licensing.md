@@ -1,6 +1,6 @@
 # ADR-0011: Third-party content
 
-Status: Accepted, amended by ADR-0012 (.gp files are public)
+Status: Accepted, amended by ADR-0012 (.gp files are public) and ADR-0022 (audio rendered from the transcription is stored and published with it)
 Date: 2026-09-28
 
 ## Context

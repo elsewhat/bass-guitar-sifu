@@ -1518,6 +1518,10 @@
     "youtube": {
       "videoId": "bWXazVhlyxQ",
       "sync": []
+    },
+    "music": {
+      "url": "data/audio/killing-in-the-name.mp3",
+      "offsetMs": 0
     }
   },
   "tempoNote": "Tempo map follows the recording: 37 changes between 77 and 124 BPM."

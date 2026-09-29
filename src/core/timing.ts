@@ -49,6 +49,8 @@ export function scoreDurationSeconds(tempoMap: TempoPoint[], bars: Bar[]): numbe
 export interface TempoLookup {
   bpmAt(tick: number): number;
   secondsAt(tick: number): number;
+  /** Inverse of `secondsAt`: the absolute tick heard at a score time (100 % speed). */
+  tickAt(seconds: number): number;
 }
 
 export function tempoLookup(tempoMap: TempoPoint[], bars: Bar[]): TempoLookup {
@@ -75,6 +77,17 @@ export function tempoLookup(tempoMap: TempoPoint[], bars: Bar[]): TempoLookup {
       const i = indexAt(tick);
       const p = points[i]!;
       return seconds[i]! + ((tick - p.tick) / PPQ) * (60 / p.bpm);
+    },
+    tickAt: (sec) => {
+      let lo = 0;
+      let hi = seconds.length - 1;
+      while (lo < hi) {
+        const mid = (lo + hi + 1) >> 1;
+        if (seconds[mid]! <= sec) lo = mid;
+        else hi = mid - 1;
+      }
+      const p = points[lo]!;
+      return p.tick + ((sec - seconds[lo]!) * p.bpm * PPQ) / 60;
     },
   };
 }

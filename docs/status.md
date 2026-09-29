@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-09-29. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-09-29 (evening). This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -55,11 +55,31 @@ Updated 2026-09-29. This is the hand-off point between working sessions: what is
    - **Storage**: `src/state/storage.ts` (ADR-0010, try/catch everywhere) keeps `repeatMode` and `mixer` in `bass-trainer:v1:settings` and `synthTracks` in `bass-trainer:v1:<slug>`. Tests in `storage.test.ts`.
    - Tests: 90 unit tests; 11 Playwright tests including the repeat cycle and the mixer (values, presets, Esc, backdrop, kept after reload).
 
+10. **Music source and song intake** (2026-09-29; **ADR-0022, proposed**).
+   - **Music source.** `MusicClock` (`src/playback/music-clock.ts`) and the `<audio>` + Web Audio player (`src/playback/music-player.ts`) play `songs/<slug>/audio.mp3`, an MP3 rendered from the transcription.
+     - It runs at full speed only. The tempo control is locked at 100 %, and the chosen tempo comes back on the other sources.
+     - Chunk loops seek at the wrap; play-through into the next chunk needs no seek.
+     - `TempoLookup.tickAt` is the inverse of `secondsAt`.
+     - There is a Music mixer channel.
+     - The Vite plugin serves `data/audio/<slug>.mp3` with byte ranges and copies the files into the build.
+   - **Offsets.** `inspect-song -- <slug> --audio <mp3>` (`scripts/lib/audio-align.ts`, `mpg123-decoder`) measures the lead-in. Every render starts at 0–20 ms and ends with a 2–7 s tail; there is no drift. Zombie's onset match is weak, so its offset is the first-sound estimate.
+   - **Songs.** 14 songs were added with `/preprocess-song`:
+     - Paranoid, The Wheel, Un Chien d'Espace, wearing yr smell;
+     - About A Girl, Come As You Are, Smells Like Teen Spirit, The Man Who Sold The World, Creep;
+     - Bombtrack, Bullet in the Head, Bulls on Parade, Black Hole Sun, Zombie.
+     Each has chunks, a verified YouTube id and a Music offset. The reasoning, overrides and doubts are in each `song.yaml` `notes`.
+     - Overrides: Bombtrack bar 60, Come As You Are bars 27 and 29, Un Chien d'Espace bars 32 and 291.
+     - Killing in the Name now uses the re-exported `(1)` file (identical bass part) and has Music.
+   - **Tests.** 109 unit tests, including `music-clock.test.ts`, `audio-align.test.ts`, `tickAt` and `media.music` validation. 13 Playwright tests, including Music playback with the tempo lock and position hand-off, and Music disabled without an MP3.
+   - Checked in the preview: Creep chunk loop (audio 62.6 → 73.0 s, then back to 62.6 s, pass 2) and a late The Wheel chunk (seek to 1048.5 s in the 18 MB file).
+
 ## Next: step 6
 
 - YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016). Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020).
 - Song library overlay (Ctrl K, replaces the temporary list in `src/components/Header.tsx`) and localStorage progress with export and import (ADR-0010). Done chunks and tempo are in the store already but not persisted; `src/state/storage.ts` is the place for it.
-- Run `/preprocess-song` on the 8 remaining files in `music/`. Six of them are the design songs.
+- Still in `music/`:
+  - `Freedom`: its score uses repeat signs, which the importer rejects. Repeat unrolling needs its own ADR, because bar numbers, chunks and the strip change.
+  - The `Vortex Surfer` retranscription: 236 bars against the fixture's 243, and it comes with an MP3. On hold by the owner.
 
 Open points from slice 1 (not blocking):
 
@@ -76,7 +96,16 @@ Open points from slice 1 (not blocking):
 - Try slice 1 in a normal browser: Count playback, loop and auto-advance, tempo, the fade, and 60 fps while scrolling.
 - Make `elsewhat/bass-guitar-sifu` public, and set Pages → Source to "GitHub Actions" (ADR-0012). The workflow already exists.
 - Record the count samples: `one` … `four`, `and`, as WAV files in `public/audio/count/`. Until then the mixer shows the Voice channel as "No samples".
-- Tap the sync anchors for both YouTube videos once the editor exists.
+- Tap the sync anchors for the YouTube videos once the editor exists (16 songs).
+- Review ADR-0022 (Music source). Listen in a normal browser:
+  - Does the tab ring land on the notes with Music? Check a chunk start after a seek and a loop wrap. The offsets are 0–20 ms, and output latency is removed.
+  - Is the wrap seek smooth enough?
+  - Zombie's offset (weak onset match).
+  - The rendered MP3s add about 82 MB to the repository and are public on Pages (same status as the `.gp` files).
+- Skim the new songs' `notes` for the by-ear doubts, for example:
+  - The Wheel is 18:55 in the score against 16:58 on the record;
+  - Creep's YouTube video may be the radio edit;
+  - the Come As You Are riff is fingered in two different positions.
 
 ## Environment notes
 

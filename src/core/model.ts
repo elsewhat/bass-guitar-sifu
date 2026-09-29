@@ -54,6 +54,12 @@ export interface YouTubeMedia {
   sync: { bar: number; tick?: number; ms: number }[];
 }
 
+/** Audio rendered from the transcription (ADR-0022): file time = score time + offsetMs. */
+export interface MusicMedia {
+  url: string; // relative to the app base, e.g. data/audio/<slug>.mp3
+  offsetMs: number;
+}
+
 export interface SongStats {
   durationSec: number;
   noteCount: number; // plucks (tie continuations excluded)
@@ -77,7 +83,7 @@ export interface SongData {
   tacet: [number, number][];
   chunks: Chunk[];
   stats: SongStats;
-  media: { youtube: YouTubeMedia | null };
+  media: { youtube: YouTubeMedia | null; music: MusicMedia | null };
   tempoNote: string | null;
 }
 
@@ -92,6 +98,7 @@ export interface CatalogEntry {
   maxFret: number;
   bars: number;
   chunks: number;
+  music: boolean; // has the Music source (ADR-0022)
 }
 
 /** A song before chunking and fingering: what the importer produces. */

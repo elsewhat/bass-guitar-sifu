@@ -5,7 +5,7 @@ import { useFrame } from '../playback/frame';
 import { openMixer, setSource } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { introChip, loopTimeLabel } from '../practice/view-model';
-import { SOURCES, useSession, type SourceStatus } from '../state/session';
+import { SOURCES, sourceAvailable, useSession, type SourceStatus } from '../state/session';
 import { Icon } from './icons';
 
 // Video cell (system description §3.3): source switch, the source's view, chips and the mixer button.
@@ -34,6 +34,11 @@ export function VideoCell() {
             <div className="text-base font-bold text-white">Synth playback</div>
             <div className="text-sm">{synthDetail(status)}</div>
           </>
+        ) : source === 'music' ? (
+          <>
+            <div className="text-base font-bold text-white">Music playback</div>
+            <div className="text-sm">{musicDetail(status)}</div>
+          </>
         ) : (
           <div className="flex size-18 items-center justify-center rounded-full bg-white/8 text-white">
             <Icon name="play" size={32} />
@@ -41,21 +46,24 @@ export function VideoCell() {
         )}
       </div>
       <div className={`${overlayChip} absolute top-3 left-3 flex gap-1 rounded-full p-1`}>
-        {SOURCES.map((s) => (
-          <button
-            key={s.id}
-            type="button"
-            aria-pressed={source === s.id}
-            disabled={!s.ready}
-            title={s.ready ? undefined : 'Not available yet'}
-            onClick={() => setSource(s.id)}
-            className={`h-8 rounded-full border-0 px-3.5 text-sm leading-none font-bold ${
-              source === s.id ? 'bg-white text-black' : 'bg-transparent text-white'
-            } ${s.ready ? 'cursor-pointer' : 'opacity-40'}`}
-          >
-            {s.label}
-          </button>
-        ))}
+        {SOURCES.map((s) => {
+          const available = sourceAvailable(s.id, song);
+          return (
+            <button
+              key={s.id}
+              type="button"
+              aria-pressed={source === s.id}
+              disabled={!available}
+              title={available ? undefined : s.ready ? 'No audio for this song' : 'Not available yet'}
+              onClick={() => setSource(s.id)}
+              className={`h-8 rounded-full border-0 px-3.5 text-sm leading-none font-bold ${
+                source === s.id ? 'bg-white text-black' : 'bg-transparent text-white'
+              } ${available ? 'cursor-pointer' : 'opacity-40'}`}
+            >
+              {s.label}
+            </button>
+          );
+        })}
       </div>
       <button
         type="button"
@@ -82,6 +90,12 @@ function synthDetail(status: SourceStatus): string {
   if (status.state === 'loading') return `Loading sounds… ${Math.round((status.progress ?? 0) * 100)} %`;
   if (status.state === 'error') return status.error ?? 'Synth unavailable';
   return 'Rendered from the score · any tempo';
+}
+
+function musicDetail(status: SourceStatus): string {
+  if (status.state === 'loading') return `Loading audio… ${Math.round((status.progress ?? 0) * 100)} %`;
+  if (status.state === 'error') return status.error ?? 'Music unavailable';
+  return 'Rendered from the score · full speed only';
 }
 
 /** One cell per eighth of the current bar ("1 & 2 & 3 & 4 &"), the current one lit, per frame. */

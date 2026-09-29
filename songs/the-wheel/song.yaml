@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: The Wheel
+artist: Motorpsycho
+source: { file: "Motorpsycho-The Wheel-12-05-2025.gp", date: 2025-12-05 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: 1bZPURasQpI, sync: [] }
+  music: { source: "Motorpsycho-The Wheel-09-29-2026.mp3", offsetMs: 20 }
+chunks:
+  - { name: Main riff, bars: [1, 4] }
+  - { name: Main riff repeat, bars: [5, 8] }
+  - { name: Main riff fill, bars: [9, 12] }
+  - { name: Main riff fill b, bars: [13, 16] }
+  - { name: Chromatic lick, bars: [17, 20] }
+  - { name: Walk-up, bars: [21, 26] }
+  - { name: Turnaround, bars: [27, 30] }
+  - { name: Main riff, bars: [56, 60] }
+  - { name: Main riff repeat, bars: [61, 64] }
+  - { name: Verse 1 a, bars: [65, 68] }
+  - { name: Verse 1 b, bars: [69, 72] }
+  - { name: Verse 1 c, bars: [73, 76] }
+  - { name: Verse 1 d, bars: [77, 80] }
+  - { name: Chord walk a, bars: [81, 84] }
+  - { name: Chord walk b, bars: [85, 88] }
+  - { name: Main riff, bars: [89, 90] }
+  - { name: Verse 2 a, bars: [101, 104] }
+  - { name: Verse 2 b, bars: [105, 108] }
+  - { name: Verse 2 c, bars: [109, 112] }
+  - { name: Chord walk a, bars: [113, 116] }
+  - { name: Chord walk b, bars: [117, 120] }
+  - { name: Chord walk a, bars: [121, 124] }
+  - { name: Chord walk b, bars: [125, 128] }
+  - { name: Chord walk a, bars: [129, 132] }
+  - { name: Chord walk b, bars: [133, 136] }
+  - { name: Chord walk a, bars: [137, 140] }
+  - { name: Chord walk end, bars: [141, 146] }
+  - { name: Open C♯ pedal, bars: [147, 150] }
+  - { name: High lick, bars: [151, 155] }
+  - { name: Pedal steps, bars: [156, 160] }
+  - { name: Arpeggio, bars: [161, 164] }
+  - { name: Arpeggio end, bars: [165, 169] }
+  - { name: C♯ groove, bars: [170, 173] }
+  - { name: C♯ groove repeat, bars: [174, 177] }
+  - { name: C♯ groove ×4, bars: [178, 193] }
+  - { name: C♯ groove ×4, bars: [194, 209] }
+  - { name: C♯ groove ×4, bars: [210, 225] }
+  - { name: C♯ groove ×4, bars: [226, 241] }
+  - { name: C♯ groove ×4, bars: [242, 257] }
+  - { name: C♯ groove ×4, bars: [258, 273] }
+  - { name: Groove fill, bars: [274, 277] }
+  - { name: C♯ groove ×3, bars: [278, 289] }
+  - { name: C♯ eighths, bars: [290, 297] }
+  - { name: C♯ groove ×4, bars: [298, 313] }
+  - { name: C♯ groove ×4, bars: [314, 329] }
+  - { name: C♯ groove ×2, bars: [330, 337] }
+  - { name: C♯ eighths, bars: [338, 345] }
+  - { name: C♯ groove ×4, bars: [346, 361] }
+  - { name: C♯ groove ×2, bars: [362, 369] }
+  - { name: C♯ eighths, bars: [370, 377] }
+  - { name: C♯ groove ×4, bars: [378, 393] }
+  - { name: C♯ groove, bars: [394, 399] }
+  - { name: C♯ eighths, bars: [400, 405] }
+  - { name: C♯ groove, bars: [406, 409] }
+  - { name: Groove pushes, bars: [410, 417] }
+  - { name: C♯ groove ×2, bars: [418, 425] }
+  - { name: Groove pushes, bars: [426, 433] }
+  - { name: C♯ groove ×4, bars: [434, 449] }
+  - { name: C♯ groove ×2, bars: [450, 457] }
+  - { name: Stop-time a, bars: [458, 465] }
+  - { name: Stop-time b, bars: [466, 473] }
+  - { name: Stop-time c, bars: [474, 481] }
+  - { name: Stop-time end, bars: [482, 485] }
+  - { name: C♯ hold, bars: [486, 490] }
+  - { name: Main riff, bars: [501, 505] }
+  - { name: Main riff variant, bars: [511, 516] }
+  - { name: C♯ groove ×3, bars: [518, 529] }
+  - { name: Run-up, bars: [530, 533] }
+  - { name: Outro lick a, bars: [534, 537] }
+  - { name: Outro lick b, bars: [538, 541] }
+  - { name: Outro lick c, bars: [542, 545] }
+  - { name: C♯ groove, bars: [546, 549] }
+  - { name: Coda riff, bars: [550, 553] }
+  - { name: Coda riff b, bars: [554, 557] }
+  - { name: Coda riff, bars: [558, 564] }
+  - { name: Final C♯, bars: [565, 570] }
+fingeringOverrides: []
+notes: >-
+  C♯ standard (C♯ F♯ B E), 122 BPM, 4/4, 577 bars (18:55). Tacet: 31–55, 91–100, 491–500,
+  506–510, 517, 571–577. No section markers; names describe the bass. Main riff: the two-bar
+  C♯ riff on F♯7/E9/B7–9 (bars 1–16, 56–64, 89–90, 501–505; 511–516 is a pushed variant).
+  "Verse" chunks are the same riff where the file's Vocals track sings (65–80, 101–112).
+  Chord walk: F♯–C♯–F♯/E♭/B–B–F♯/A♭/E–E–E♭/E/F♯–F♯/B/B♭, 8 bars (a = first 4, b = last 4),
+  instrumental at 81–88 and with vocals from 113. 147–169 is the bridge into the jam (open-C♯
+  pedal, high F♯/B lick, C♯–E–E♭ steps, arpeggios). 170–490 is the long C♯ pedal jam: C♯ on
+  F♯7 with B (F♯5) pickups; "×N" chunks merge N repeats of the 4-bar groove; the variations are
+  called out as Groove fill (277), C♯ eighths (straight-eighth bars), Groove pushes (411–429)
+  and Stop-time (457–485), ending on a held open C♯. 530–570 is the outro: run-up, licks, a
+  descending coda riff and a final held C♯ (565–570; 566–570 are ties only).
+  Fingering: no overrides; 60 re-tabs accepted (open F♯/B/E strings for C♯5/F♯5/B5 pickups so
+  the hand can move, E on F♯10 → B5 at bar 85, E on B5 → F♯10 at 108, E♭ F♯9 → B4 at 556).
+  Two solver limitations to check: (1) the main riff moves between positions 6 and 7 because
+  F♯7→B7 and E7→F♯7 at the same fret count as index-finger rolls (ADR-0007 rule 6);
+  (2) the high B12–B11–F♯12 cell in bars 120, 128, 136 and 168–169 flips between positions 9/10
+  and 10/11 every few notes for the same reason. A teacher would stack ring and little finger on
+  fret 12, which the box model cannot express; no override was added. The jam groove uses index
+  (F♯5) and little finger (F♯7) in position 5 (1-2-4 box, rule 5). Large shifts: bar 19–20 (E12–
+  E16 fill), 141 (C♯7 → C♯3), 156 and 542 (down from the high lick).
+  Duration: the score runs 18:55 at a constant 122 BPM, but the studio recording is 16:58, so
+  either the record is faster (about 136 BPM if the form matches) or the transcription's jam
+  is longer; check by ear before tapping sync anchors. YouTube: "The Wheel" on
+  "Motorpsycho - Topic" (Timothy's Monster, 1994).

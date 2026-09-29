@@ -11,10 +11,11 @@ export interface TrackChannel extends Channel {
   solo: boolean;
 }
 
-/** Global channels (master, YouTube and Metronome); the Synth tracks are per song. */
+/** Global channels (master, YouTube, Music and Metronome); the Synth tracks are per song. */
 export interface GlobalMix {
   master: Channel;
   video: Channel; // YouTube
+  music: Channel; // Music: the rendered MP3 (ADR-0022)
   click: Channel; // Metronome: tone on every count
   voice: Channel; // Metronome: recorded samples
 }
@@ -24,6 +25,7 @@ export type GlobalChannelId = keyof GlobalMix;
 export const DEFAULT_MIX: GlobalMix = {
   master: { volume: 80, muted: false },
   video: { volume: 100, muted: false },
+  music: { volume: 100, muted: false },
   click: { volume: 70, muted: false },
   voice: { volume: 100, muted: false },
 };

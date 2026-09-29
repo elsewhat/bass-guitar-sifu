@@ -175,6 +175,16 @@ function MixerDialog() {
           {tab === 'youtube' && (
             <ChannelRow label="video" name="Video" description="YouTube player" channel={mixer.video} onChange={(p) => setChannel('video', p)} />
           )}
+          {tab === 'music' && (
+            <ChannelRow
+              label="music"
+              name="Music"
+              description={song?.media.music ? 'Rendered from the score · the whole band' : 'No audio for this song'}
+              channel={mixer.music}
+              disabled={!song?.media.music}
+              onChange={(p) => setChannel('music', p)}
+            />
+          )}
           {tab === 'count' && (
             <>
               <ChannelRow label="click" name="Click" description="Tone on every count, accent on beat 1" channel={mixer.click} onChange={(p) => setChannel('click', p)} />

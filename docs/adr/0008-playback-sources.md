@@ -1,6 +1,6 @@
 # ADR-0008: Playback sources behind one clock
 
-Status: Accepted, amended by ADR-0016 (v1 sources), ADR-0017 and ADR-0018 (clock interface and loop)
+Status: Accepted, amended by ADR-0016 (v1 sources), ADR-0017 and ADR-0018 (clock interface and loop), ADR-0020 (mixer) and ADR-0022 (Music source)
 Date: 2026-09-28
 
 ## Context
