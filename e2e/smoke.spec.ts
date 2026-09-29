@@ -62,8 +62,7 @@ test('Count playback scrolls the strip and the tempo control steps by 5 % up to 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
-  await page.waitForTimeout(1500);
-  expect(await stripX(page)).toBeLessThan(before - 50);
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 50); // the scroll speed follows the song's tempo
   await page.getByRole('button', { name: 'Pause' }).click();
 
   await expect(page.getByTestId('tempo')).toHaveText('100%');
@@ -87,8 +86,7 @@ test('Synth loads on demand, scrolls the strip and hands its position to the Met
 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await page.waitForTimeout(1500);
-  expect(await stripX(page)).toBeLessThan(before - 50);
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 50); // the scroll speed follows the song's tempo
   await page.getByRole('button', { name: 'Pause' }).click();
   const paused = await stripX(page);
 
@@ -112,8 +110,7 @@ test('Music plays the rendered MP3 at full speed only and hands its position to 
 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await page.waitForTimeout(1500);
-  expect(await stripX(page)).toBeLessThan(before - 50);
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 50); // the scroll speed follows the song's tempo
   await page.getByRole('button', { name: 'Pause' }).click();
   const paused = await stripX(page);
 
