@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { DEFAULT_MIX } from '../playback/mixer';
-import { loadSettings, loadSynthTracks, saveSettings, saveSynthTracks } from './storage';
+import { loadProgress, loadSettings, loadSynthTracks, saveProgress, saveSettings, saveSynthTracks } from './storage';
 
 function memoryStorage(initial: Record<string, string> = {}) {
   const data = new Map(Object.entries(initial));
@@ -74,5 +74,34 @@ describe('Synth tracks per song (ADR-0020)', () => {
       { volume: 80, muted: false, solo: false },
       tracks[2],
     ]);
+  });
+});
+
+describe('progress storage (ADR-0010)', () => {
+  afterEach(() => vi.unstubAllGlobals());
+
+  it('is null for a song never practised or without storage', () => {
+    vi.stubGlobal('localStorage', memoryStorage());
+    expect(loadProgress('creep', 9)).toBeNull();
+    vi.stubGlobal('localStorage', undefined);
+    expect(loadProgress('creep', 9)).toBeNull();
+    expect(() => saveProgress('creep', { chunkIndex: 1, done: {}, tempoPct: 80, lastPractised: '' })).not.toThrow();
+  });
+
+  it('round-trips next to the Synth tracks', () => {
+    const store = memoryStorage({ 'bass-trainer:v1:creep': '{"synthTracks":[]}' });
+    vi.stubGlobal('localStorage', store);
+    const progress = { chunkIndex: 3, done: { 0: 75, 1: 80, 2: 80 }, tempoPct: 85, lastPractised: '2026-09-29T20:00:00.000Z' };
+    saveProgress('creep', progress);
+    expect(loadProgress('creep', 9)).toEqual(progress);
+    expect(JSON.parse(store.data.get('bass-trainer:v1:creep')!).synthTracks).toEqual([]);
+  });
+
+  it('drops chunks the song no longer has and invalid values', () => {
+    vi.stubGlobal(
+      'localStorage',
+      memoryStorage({ 'bass-trainer:v1:creep': '{"progress":{"chunkIndex":12,"done":{"1":80,"4":"x","12":90},"tempoPct":"fast"}}' }),
+    );
+    expect(loadProgress('creep', 9)).toEqual({ chunkIndex: 0, done: { 1: 80 }, tempoPct: 100, lastPractised: '' });
   });
 });

@@ -6,6 +6,7 @@ import { FingeringColumn } from './FingeringColumn';
 import { Header } from './Header';
 import { Mixer } from './Mixer';
 import { PracticePlan } from './PracticePlan';
+import { SongLibrary } from './SongLibrary';
 import { TabStrip } from './TabStrip';
 import { TransportBar } from './TransportBar';
 import { VideoCell } from './VideoCell';
@@ -51,6 +52,7 @@ export function PracticeView() {
       </div>
       <TabStrip />
       <Mixer />
+      <SongLibrary />
     </main>
   );
 }

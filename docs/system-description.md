@@ -120,7 +120,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - Filter chips: `All`, then the three artists with the most songs, with the count in parentheses, e.g. `Motorpsycho (4)`. Recomputed from the catalogue. One artist filter at a time; clicking an active chip clears it.
 - Result count at the right.
 - Three-column grid of song cards (148 px high): title, artist, `BPM · length · frets 0–N`, tuning badge (`Standard` grey, other tunings orange such as `Drop D` or `C♯ standard`) followed by the string names, and a progress bar with text (`Chunk 3 of 9`, `Not started`). The current song has a green ring and `Playing · …`.
-- Selecting a card loads the song and closes the overlay.
+- Selecting a card loads the song and closes the overlay. The song continues at its stored chunk and tempo (ADR-0010); a song never practised shows `Not started` and starts at chunk 1.
 - `Ctrl K` / `Cmd K` opens the overlay and `Esc` closes it.
 
 ## 5. Practice behaviour

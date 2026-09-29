@@ -117,7 +117,7 @@ function MixerDialog() {
         role="dialog"
         aria-modal="true"
         aria-label="Mixer"
-        className="bg-elevated absolute top-24 left-[380px] box-border flex w-[680px] flex-col gap-3.5 rounded-[20px] p-5 shadow-[rgba(0,0,0,0.5)_0_8px_24px]"
+        className="bg-elevated absolute top-24 left-[380px] box-border flex w-[680px] flex-col gap-3.5 rounded-[20px] p-5 shadow-heavy"
       >
         <div className="flex items-center gap-2.5">
           <Icon name="equalizer" size={22} />

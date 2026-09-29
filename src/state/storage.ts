@@ -90,3 +90,35 @@ export function saveSynthTracks(song: { slug: string; tracks: string[] }, tracks
   const synthTracks: StoredTrack[] = tracks.map((t, index) => ({ index, name: song.tracks[index] ?? '', volume: t.volume, muted: t.muted, solo: t.solo }));
   writeKey(song.slug, { synthTracks });
 }
+
+/** Practice progress of a song (ADR-0010), stored as `<slug>.progress`. */
+export interface Progress {
+  chunkIndex: number;
+  done: Record<number, number>; // chunk index → tempo % it was completed at
+  tempoPct: number;
+  lastPractised: string; // ISO date and time
+}
+
+/** The stored progress, dropping chunks outside `chunkCount`; null when the song was never practised. */
+export function loadProgress(slug: string, chunkCount: number): Progress | null {
+  const raw = readKey(slug).progress;
+  if (!isObject(raw)) return null;
+  const inRange = (i: unknown): i is number => Number.isInteger(i) && (i as number) >= 0 && (i as number) < chunkCount;
+  const done: Record<number, number> = {};
+  if (isObject(raw.done)) {
+    for (const [key, tempo] of Object.entries(raw.done)) {
+      const i = Number(key);
+      if (inRange(i) && typeof tempo === 'number' && Number.isFinite(tempo)) done[i] = tempo;
+    }
+  }
+  return {
+    chunkIndex: inRange(raw.chunkIndex) ? raw.chunkIndex : 0,
+    done,
+    tempoPct: typeof raw.tempoPct === 'number' && Number.isFinite(raw.tempoPct) ? raw.tempoPct : 100,
+    lastPractised: typeof raw.lastPractised === 'string' ? raw.lastPractised : '',
+  };
+}
+
+export function saveProgress(slug: string, progress: Progress) {
+  writeKey(slug, { progress });
+}

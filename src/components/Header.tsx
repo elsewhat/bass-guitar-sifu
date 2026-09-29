@@ -1,5 +1,4 @@
-import { useEffect, useState } from 'react';
-import { loadSong } from '../practice/engine';
+import { openLibrary } from '../practice/engine';
 import { headMeta } from '../practice/view-model';
 import { useSession } from '../state/session';
 import { Icon } from './icons';
@@ -32,7 +31,7 @@ export function Header() {
       {/* Lyrics block stays empty without a licensed provider (ADR-0011). */}
       <div aria-hidden="true" />
       <div className="flex items-center gap-2.5">
-        <SongSwitch />
+        <SongsButton />
         <button
           type="button"
           aria-label="Full screen"
@@ -47,66 +46,21 @@ export function Header() {
   );
 }
 
-/**
- * Temporary song switch (slice 1): a short list of the catalogue. The song library overlay with
- * search and progress (system description §4) replaces it in step 6. `?song=<slug>` also works.
- */
-function SongSwitch() {
-  const catalog = useSession((s) => s.catalog);
-  const current = useSession((s) => s.song?.slug);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setOpen(false);
-      if (e.key.toLowerCase() === 'k' && (e.ctrlKey || e.metaKey)) {
-        e.preventDefault();
-        setOpen((o) => !o);
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return () => window.removeEventListener('keydown', onKey);
-  }, []);
-
+/** Opens the song library overlay (system description §4); Ctrl K / Cmd K does the same. */
+function SongsButton() {
+  const open = useSession((s) => s.libraryOpen);
   return (
-    <div className="relative">
-      <button
-        type="button"
-        aria-haspopup="listbox"
-        aria-expanded={open}
-        onClick={() => setOpen(!open)}
-        className={`${open ? 'bg-card' : 'bg-elevated'} flex h-10 cursor-pointer items-center gap-2 rounded-full border-0 pr-2 pl-3.5 text-sm font-bold text-white shadow-[inset_0_0_0_1px_#7c7c7c]`}
-      >
-        <Icon name="search" size={18} />
-        Songs
-        <span className="bg-card text-subdued rounded-subtle px-1.5 py-1 text-[11px] leading-none font-bold">Ctrl K</span>
-      </button>
-      {open && (
-        <div
-          role="listbox"
-          aria-label="Songs"
-          className="bg-card rounded-medium absolute top-12 right-0 z-20 flex w-[440px] flex-col gap-0.5 p-3 shadow-[rgba(0,0,0,0.5)_0_8px_24px]"
-        >
-          {catalog.map((c) => (
-            <button
-              key={c.slug}
-              type="button"
-              role="option"
-              aria-selected={c.slug === current}
-              onClick={() => {
-                setOpen(false);
-                if (c.slug !== current) void loadSong(c.slug);
-              }}
-              className={`${c.slug === current ? 'bg-elevated' : 'bg-transparent'} rounded-comfortable flex min-h-14 cursor-pointer flex-col justify-center border-0 px-2.5 py-1.5 text-left text-white`}
-            >
-              <span className="text-sm font-bold">{c.title}</span>
-              <span className="text-subdued text-xs">
-                {c.artist} · {c.bpm} BPM · {c.tuningName} · {c.chunks} chunks
-              </span>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
+    <button
+      type="button"
+      aria-haspopup="dialog"
+      aria-expanded={open}
+      aria-keyshortcuts="Control+K Meta+K"
+      onClick={() => openLibrary(true)}
+      className={`${open ? 'bg-card' : 'bg-elevated'} flex h-10 cursor-pointer items-center gap-2 rounded-full border-0 pr-2 pl-3.5 text-sm font-bold text-white shadow-[inset_0_0_0_1px_#7c7c7c]`}
+    >
+      <Icon name="search" size={18} />
+      Songs
+      <span className="bg-card text-subdued rounded-subtle px-1.5 py-1 text-[11px] leading-none font-bold">Ctrl K</span>
+    </button>
   );
 }

@@ -11,7 +11,7 @@ import { MusicClock } from '../playback/music-clock';
 import type { MusicPlayerHandle } from '../playback/music-player';
 import { SynthClock } from '../playback/synth-clock';
 import { effectiveTempo, sourceAvailable, TEMPO, tempoLocked, useSession, type SourceId, type SourceStatus } from '../state/session';
-import { loadSynthTracks, saveSettings, saveSynthTracks } from '../state/storage';
+import { loadProgress, loadSynthTracks, saveProgress, saveSettings, saveSynthTracks } from '../state/storage';
 import { whenStrip } from '../strip/strip-host';
 import type { SynthLevels, SynthPlayerHandle } from '../strip/synth-player';
 
@@ -24,6 +24,16 @@ let loadToken = 0;
 setTickSource(() => clock?.getTick() ?? 0);
 
 const state = () => useSession.getState();
+
+// Progress is saved whenever the chunk, the done chunks or the tempo change within a song
+// (ADR-0010); loading a song restores them without counting as practice.
+useSession.subscribe((s, prev) => {
+  if (!s.song || s.song !== prev.song) return;
+  if (s.chunkIndex === prev.chunkIndex && s.done === prev.done && s.tempoPct === prev.tempoPct) return;
+  saveProgress(s.song.slug, { chunkIndex: s.chunkIndex, done: s.done, tempoPct: s.tempoPct, lastPractised: new Date().toISOString() });
+});
+
+const clampTempo = (pct: number) => Math.max(TEMPO.min, Math.min(TEMPO.max, Math.round(pct / TEMPO.step) * TEMPO.step));
 
 function currentRange(song: SongData) {
   return chunkRange(song.chunks[state().chunkIndex]!, song.bars);
@@ -129,10 +139,14 @@ export async function loadSong(slug: string) {
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const song = (await res.json()) as SongData;
     if (token !== loadToken) return;
+    const progress = loadProgress(slug, song.chunks.length);
     useSession.setState({
       song,
       loadError: null,
       ...initialLoop(state().passes, state().repeatMode),
+      chunkIndex: progress?.chunkIndex ?? 0,
+      done: progress?.done ?? {},
+      tempoPct: clampTempo(progress?.tempoPct ?? TEMPO.start),
       synthTracks: loadSynthTracks(song),
       playing: false,
     });
@@ -232,6 +246,18 @@ function applyMix() {
 
 export function openMixer(open: boolean) {
   useSession.setState({ mixerOpen: open });
+}
+
+// ------------------------------------------------------------------ song library (§4)
+
+export function openLibrary(open: boolean) {
+  useSession.setState(open ? { libraryOpen: true, mixerOpen: false } : { libraryOpen: false });
+}
+
+/** Loads the chosen song (unless it is the current one) and closes the library. */
+export function pickSong(slug: string) {
+  openLibrary(false);
+  if (slug !== state().song?.slug) void loadSong(slug);
 }
 
 /** Master, Video, Music, Click or Voice. */

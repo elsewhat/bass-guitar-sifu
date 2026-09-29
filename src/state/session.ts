@@ -48,6 +48,7 @@ export interface SessionState extends LoopState {
   /** Whether the recorded count samples exist; null until checked. */
   voiceSamples: boolean | null;
   mixerOpen: boolean;
+  libraryOpen: boolean;
   catalog: CatalogEntry[];
   song: SongData | null;
   loadError: string | null;
@@ -67,6 +68,7 @@ export const useSession = create<SessionState>()((set) => ({
   synthTracks: [],
   voiceSamples: null,
   mixerOpen: false,
+  libraryOpen: false,
   catalog: [],
   song: null,
   loadError: null,

@@ -73,10 +73,17 @@ Updated 2026-09-29 (evening). This is the hand-off point between working session
    - **Tests.** 109 unit tests, including `music-clock.test.ts`, `audio-align.test.ts`, `tickAt` and `media.music` validation. 13 Playwright tests, including Music playback with the tempo lock and position hand-off, and Music disabled without an MP3.
    - Checked in the preview: Creep chunk loop (audio 62.6 → 73.0 s, then back to 62.6 s, pass 2) and a late The Wheel chunk (seek to 1048.5 s in the 18 MB file).
 
+11. **Song library overlay** (system description §4, `design/artboards/SelectorOverlay.dc.html`).
+   - `src/components/SongLibrary.tsx` replaces the temporary list in the header: 960 × 640 panel, search (title or artist), `All` and the top three artist chips (clicking the active chip clears it), result count, three-column cards with meta line, tuning badge (orange for other tunings than standard), progress bar and text; the current song has the green ring and `Playing · …`. Ctrl K / Cmd K opens it; the backdrop, the close button and Esc close it. Pure helpers in `src/practice/library.ts` with tests.
+   - **Progress (ADR-0010)**: `<slug>.progress` in `src/state/storage.ts` keeps the chunk, the done chunks with their tempo, the tempo and the last practised time. It is saved when these change and restored when the song is loaded; a new song starts at chunk 1 and 100 %. Loading a song alone does not count as started.
+   - The modal panels' shadow (library and mixer) now uses the `shadow-heavy` token; the colour-first arbitrary value was read by Tailwind as a shadow colour and drew nothing.
+   - Tests: 117 unit tests; Playwright test for search, chips, Esc, Ctrl K, song choice and restored progress.
+
 ## Next: step 6
 
 - YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016). Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020).
-- Song library overlay (Ctrl K, replaces the temporary list in `src/components/Header.tsx`) and localStorage progress with export and import (ADR-0010). Done chunks and tempo are in the store already but not persisted; `src/state/storage.ts` is the place for it.
+- Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
+- The e2e test "Music plays the rendered MP3 …" fails: the strip moves about 49 px in 1.5 s against the 50 px it expects. It fails the same way without the library change.
 - Still in `music/`:
   - `Freedom`: its score uses repeat signs, which the importer rejects. Repeat unrolling needs its own ADR, because bar numbers, chunks and the strip change.
   - The `Vortex Surfer` retranscription: 236 bars against the fixture's 243, and it comes with an MP3. On hold by the owner.

@@ -194,10 +194,48 @@ test('"Next chunk" and the practice plan select chunks', async ({ page }) => {
   await expect(page.getByText('Loop 5:46–6:24 · score time')).toBeVisible();
 });
 
-test('switches to Killing in the Name through the song list and ?song=', async ({ page }) => {
+test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ page }) => {
+  await openSong(page);
+  await page.getByRole('button', { name: 'Next chunk', exact: true }).click(); // progress: chunk 2
+  await page.getByRole('button', { name: 'Songs' }).click();
+  const library = page.getByRole('dialog', { name: 'Song library' });
+  await expect(library).toBeVisible();
+  await expect(library.getByRole('searchbox', { name: 'Search songs' })).toBeFocused();
+  const current = library.locator('button[aria-current=true]');
+  await expect(current).toContainText('Vortex Surfer');
+  await expect(current).toContainText('Playing · Chunk 2 of 9');
+  const total = await library.locator('.grid > button').count();
+  await expect(library.getByText(`${total} songs`)).toBeVisible();
+
+  await library.getByRole('button', { name: /^Motorpsycho \(\d+\)$/ }).click();
+  await expect(library.getByRole('button', { name: /^Creep/ })).toBeHidden();
+  await library.getByRole('button', { name: /^Motorpsycho/ }).click(); // clicking the active chip clears it
+  await expect(library.getByRole('button', { name: 'All' })).toHaveAttribute('aria-pressed', 'true');
+
+  await library.getByRole('searchbox').fill('wheel');
+  await expect(library.getByText(`1 of ${total} songs`)).toBeVisible();
+  await expect(library.getByRole('button', { name: /^The Wheel/ })).toContainText('C♯ standard');
+
+  await page.keyboard.press('Escape');
+  await expect(library).toBeHidden();
+  await page.keyboard.press('Control+k');
+  await expect(library).toBeVisible();
+  await expect(library.getByRole('searchbox')).toHaveValue('');
+  await library.getByRole('button', { name: /^Creep/ }).click();
+  await expect(library).toBeHidden();
+  await expect(page.getByRole('heading', { name: 'Creep' })).toBeVisible();
+
+  // Vortex Surfer's progress is kept and shown on its card, and restored when it is chosen again.
+  await page.keyboard.press('Control+k');
+  await expect(library.getByRole('button', { name: /^Vortex Surfer/ })).toContainText('Chunk 2 of 9');
+  await library.getByRole('button', { name: /^Vortex Surfer/ }).click();
+  await expect(page.getByRole('button', { name: 'Chunk 2, Riff A ×2, bars 134–141' })).toHaveAttribute('aria-current', 'step');
+});
+
+test('switches to Killing in the Name through the song library and ?song=', async ({ page }) => {
   await openSong(page);
   await page.getByRole('button', { name: 'Songs' }).click();
-  await page.getByRole('option', { name: /Killing in the Name/ }).click();
+  await page.getByRole('dialog', { name: 'Song library' }).getByRole('button', { name: /^Killing in the Name/ }).click();
   await expect(page.getByRole('heading', { name: 'Killing in the Name' })).toBeVisible();
   await expect(page).toHaveURL(/song=killing-in-the-name/);
   await expect(page.getByText('109 BPM · mixed meter · Drop D D A D G · 120 bars')).toBeVisible();
