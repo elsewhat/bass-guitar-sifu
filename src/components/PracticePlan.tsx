@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { passLabel } from '../playback/loop';
 import { selectChunkAt } from '../practice/engine';
 import { barRange, barsLabel, planRows } from '../practice/view-model';
-import { useSession } from '../state/session';
+import { effectiveTempo, useSession } from '../state/session';
 import { Icon } from './icons';
 
 // Practice plan column (system description §3.2): chunks with bass-rest separators, the current
@@ -15,7 +15,8 @@ function circleStyle(current: boolean, done: boolean) {
 }
 
 export function PracticePlan() {
-  const { planOpen, togglePlan, song, chunkIndex, pass, passes, repeatMode, done, tempoPct } = useSession();
+  const { planOpen, togglePlan, song, chunkIndex, pass, passes, repeatMode, done } = useSession();
+  const tempoPct = useSession(effectiveTempo);
   const list = useRef<HTMLDivElement>(null);
 
   // Keep the current chunk in view (scrollTop only: scrollIntoView would also move the stage).

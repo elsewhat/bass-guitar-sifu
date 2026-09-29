@@ -1,11 +1,12 @@
 # yaml-language-server: $schema=../../schemas/song.schema.json
 title: Killing in the Name
 artist: Rage Against the Machine
-source: { file: "Rage Against the Machine-Killing in the Name-09-24-2026.gp", date: 2026-09-24 }
+source: { file: "Rage Against the Machine-Killing in the Name-09-24-2026 (1).gp", date: 2026-09-24 }
 bassTrack: "Tim Commerford | Music Man Stingray | Bass"
 tempo: { note: "Tempo map follows the recording: 37 changes between 77 and 124 BPM." }
 media:
   youtube: { videoId: bWXazVhlyxQ, sync: [] }
+  music: { source: "Rage Against the Machine-Killing in the Name-09-29-2026.mp3", offsetMs: 0 }
 chunks:
   - { name: Intro a, bars: [1, 4] }
   - { name: Intro b, bars: [5, 8] }
@@ -42,4 +43,7 @@ notes: >-
   Drop D. The file also has a 6-string "Bass Fuzz Effect" track (42 notes), which is ignored.
   Chunks follow the 15 section markers, split into 4-bar phrases; 20–21 are 2/4 bars inside
   "Intro Verse b". Many triplet (160-tick) figures and 67 dead notes. YouTube: official HD
-  video on RATMVEVO; sync anchors still needed.
+  video on RATMVEVO; sync anchors still needed. 2026-09-29: score.gp replaced by the "(1)"
+  re-export, whose bass part is identical (same bars, tempo map and notes), so the chunks are
+  unchanged. Music: MP3 rendered from it, starts at 0 ms, no drift between the first and last
+  minute.

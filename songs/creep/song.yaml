@@ -1,0 +1,49 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Creep
+artist: Radiohead
+source: { file: "Radiohead-Creep-09-24-2026.gp", date: 2026-09-24 }
+bassTrack: "Colin Greenwood | Ernie Ball Music Man Stingray | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: XFkzRNyygfk, sync: [] }
+  music: { source: "Radiohead-Creep-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Verse 1 c, bars: [17, 20] }
+  - { name: Verse 1 d, bars: [21, 24] }
+  - { name: Chorus 1 a, bars: [25, 28] }
+  - { name: Chorus 1 b, bars: [29, 32] }
+  - { name: Verse 2 a, bars: [33, 36] }
+  - { name: Verse 2 b, bars: [37, 40] }
+  - { name: Verse 2 c, bars: [41, 44] }
+  - { name: Verse 2 d, bars: [45, 48] }
+  - { name: Chorus 2 a, bars: [49, 52] }
+  - { name: Chorus 2 b, bars: [53, 56] }
+  - { name: Bridge a, bars: [57, 60] }
+  - { name: Bridge b, bars: [61, 64] }
+  - { name: Bridge c, bars: [65, 68] }
+  - { name: Bridge d, bars: [69, 72] }
+  - { name: Verse 3 a, bars: [73, 76] }
+  - { name: Verse 3 b, bars: [77, 80] }
+  - { name: Chorus 3 a, bars: [81, 84] }
+  - { name: Chorus 3 b, bars: [85, 88] }
+  - { name: Chorus 3 c, bars: [89, 91] }
+fingeringOverrides: []
+notes: >-
+  No tacet bars. Chunks follow the 8 section markers in 4-bar phrases, one per chord cycle
+  (G–B–C–Cm); the three "Chorus" markers are numbered. Most 4-bar phrases differ slightly
+  (fills in the last bar), so there are few merges. Verse 1 a and c are identical. Verse 3 b
+  (77–80) is a 2-bar figure played twice and kept as one 4-bar chunk. Chorus 3 c is the
+  3-bar ending. Fingering: both re-tabs accepted (bar 60 A1 on the open A string, bar 66 G2 on
+  the open G string; open strings in low positions). No overrides. The 8 shifts of 3+ frets
+  (bars 8, 17, 24, 25, 40, 42, 49, 57) are all chord-change fills in the source tab: the
+  walk-up C–D–D♯ (A3, A5, A6) to F on E1 or A8, or the octave D on G7 (bar 41), then back to G
+  on E3. None has an open-string
+  or same-position alternative. The verse moves the hand between positions 1–3 on
+  G (E3) / B (A2) / C (A3) because G and C sit at the same fret on adjacent strings and rule 6
+  (no rolling) forbids one finger for both. The owner should check whether this is too busy.
+  YouTube: official video on the Radiohead channel (3:57, the same as the score); sync
+  anchors still needed.

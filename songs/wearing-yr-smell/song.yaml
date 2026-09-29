@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: wearing yr smell
+artist: Motorpsycho
+source: { file: "Motorpsycho-wearing yr smell-04-07-2025.gp", date: 2025-04-07 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: pccEF5TsrHU, sync: [] }
+  music: { source: "Motorpsycho-wearing yr smell-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro climb, bars: [2, 7] }
+  - { name: Riff A, bars: [8, 11] }
+  - { name: Riff A repeat, bars: [12, 15] }
+  - { name: B pedal, bars: [16, 19] }
+  - { name: B pedal repeat, bars: [20, 23] }
+  - { name: High line a, bars: [24, 27] }
+  - { name: High line b, bars: [28, 31] }
+  - { name: Riff A, bars: [32, 35] }
+  - { name: Riff A repeat, bars: [36, 39] }
+  - { name: B pedal, bars: [40, 43] }
+  - { name: B pedal repeat, bars: [44, 47] }
+  - { name: High line a, bars: [48, 51] }
+  - { name: High line b, bars: [52, 55] }
+  - { name: Long climb a, bars: [56, 59] }
+  - { name: Long climb b, bars: [60, 63] }
+  - { name: Low bridge a, bars: [64, 67] }
+  - { name: Low bridge b, bars: [68, 71] }
+  - { name: Low bridge a, bars: [72, 75] }
+  - { name: Low G, bars: [76, 79] }
+  - { name: Return, bars: [80, 85] }
+  - { name: High line a, bars: [86, 89] }
+  - { name: High line b, bars: [90, 93] }
+  - { name: High line b repeat, bars: [94, 97] }
+  - { name: Low bridge a, bars: [98, 101] }
+  - { name: Low bridge b, bars: [102, 105] }
+  - { name: Low bridge a, bars: [106, 109] }
+  - { name: Low G, bars: [110, 115] }
+  - { name: Outro climb, bars: [116, 119] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 137 BPM, 4/4 throughout; bars 1 and 120 are tacet. No section markers, so
+  chunks are named by what the bass does, and names repeat for the same material:
+  Intro climb (E–F♯–G–A–B up the A string, then B–C♯–D–E up the D string; the same climb
+  returns as Outro climb 116–119); Riff A (G, D, then the B–D–E–D figure on E7/A5/A7);
+  B pedal (B on D9 for two bars, then D and the riff figure); High line a/b (G pedal, D–C♯–E up
+  high, then G–F♯–G–A down to D); Long climb (E up the A string to D/E, landing on a D pedal);
+  Low bridge (held A, F♯, G, D on the E and A strings); Low G (G pedal, in 110–115 with E–F♯–G
+  pickups). Riff A at 32–35 and B pedal repeat at 44–47 are slight variants of the first
+  occurrences; High line b repeat (94–97) ends on a longer D. Return (80–85, 6 bars) is D,
+  riff figure, B pedal, D, riff figure back into the High line.
+  Fingering review (139 re-tabs, all accepted, no overrides): (1) most are the low D, G or A
+  moved from A5/D5/E5 to the open string, either to avoid rolling the index across strings at
+  the same fret (bars 24, 32, 48, 54, 86: G and D alternating on D5/A5) or to give the hand time
+  to come down from positions 6–12 on a held note (bars 18, 22, 38–46, 62–63, 72–73, 96–97,
+  106–107, 118–119); (2) bar 4–5 B on A14 → D9 keeps the intro climb in position 9 before it
+  continues up the D string; (3) bar 51 C♯/E on D11/D14 → G6/G9 stays in position 6 after the
+  D on G7; (4) bars 56–58 the held G on A10 → open G string in the middle of the long A-string
+  climb (a break to shift to position 12; play A10 if you prefer the fretted tone); (5) bar 91
+  open D → A5 to stay in position 5 for the next bar. Bars 11/15/35 (B on A2, D on A5) use
+  index and little finger with a one-fret pivot (1-2-4 box, ADR-0007 rule 5).
+  YouTube: "Wearing Yr Smell" on "Motorpsycho - Topic" (Timothy's Monster, 1994), 3:36 vs
+  3:30 in the score. Sync anchors still needed.

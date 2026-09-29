@@ -38,7 +38,7 @@ function readChannel(raw: unknown, fallback: Channel): Channel {
 
 export interface Settings {
   repeatMode: RepeatMode;
-  /** Master, YouTube and Metronome channels (ADR-0020). */
+  /** Master, YouTube, Music and Metronome channels (ADR-0020, ADR-0022). */
   mixer: GlobalMix;
 }
 
@@ -51,6 +51,7 @@ export function loadSettings(): Partial<Settings> {
     out.mixer = {
       master: readChannel(m.master, DEFAULT_MIX.master),
       video: readChannel(m.video, DEFAULT_MIX.video),
+      music: readChannel(m.music, DEFAULT_MIX.music),
       click: readChannel(m.click, DEFAULT_MIX.click),
       voice: readChannel(m.voice, DEFAULT_MIX.voice),
     };

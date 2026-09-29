@@ -41,6 +41,16 @@
             "videoId": { "type": ["string", "null"], "pattern": "^[A-Za-z0-9_-]{11}$" },
             "sync": { "$ref": "#/$defs/sync" }
           }
+        },
+        "music": {
+          "description": "Audio rendered from the transcription, stored as audio.mp3 next to score.gp (ADR-0022).",
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "offsetMs"],
+          "properties": {
+            "source": { "type": "string", "description": "Original MP3 file name from the music/ inbox." },
+            "offsetMs": { "type": "number", "description": "Audio time of the score's first tick (lead-in), measured with inspect-song --audio." }
+          }
         }
       }
     },

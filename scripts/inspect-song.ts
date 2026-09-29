@@ -1,21 +1,23 @@
-// npm run inspect-song -- <file.gp | slug> [--track <name|index>]
+// npm run inspect-song -- <file.gp | slug> [--track <name|index>] [--audio <file.mp3>]
 // Analysis report for the preprocess-song skill (ADR-0015): tracks, tuning, tempo, sections,
-// tacet ranges, bar patterns, a draft chunk split and the fingering solver's decisions.
+// tacet ranges, bar patterns, a draft chunk split and the fingering solver's decisions. With
+// --audio, also the lead-in offset of an MP3 rendered from the score (ADR-0022).
 import { existsSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { parseArgs } from 'node:util';
 import { barSignatures, draftChunks, findTacet, playableRanges } from '../src/core/chunks';
 import { chunkPositions, solveFingering } from '../src/core/fingering';
 import type { BeatEvent } from '../src/core/model';
-import { scoreDurationSeconds } from '../src/core/timing';
+import { scoreDurationSeconds, tempoLookup } from '../src/core/timing';
 import { pitchName, stringNames, tuningName } from '../src/core/tuning';
+import { analyseMp3, measureOffset, REFINE_SECONDS, scoreOnsetTicks } from './lib/audio-align';
 import { describeTracks, importBassTrack, loadScore, pickBassTrack } from './lib/gp-import';
 import { loadSidecar } from './lib/sidecar';
 
-const { values, positionals } = parseArgs({ allowPositionals: true, options: { track: { type: 'string' } } });
+const { values, positionals } = parseArgs({ allowPositionals: true, options: { track: { type: 'string' }, audio: { type: 'string' } } });
 const target = positionals[0];
 if (!target) {
-  console.error('Usage: npm run inspect-song -- <file.gp | slug> [--track <name|index>]');
+  console.error('Usage: npm run inspect-song -- <file.gp | slug> [--track <name|index>] [--audio <file.mp3>]');
   process.exit(1);
 }
 
@@ -119,6 +121,28 @@ const shifts = bigShifts(fingered);
 line(`Position shifts of 3+ frets while fretting: ${shifts.length}`);
 for (const s of shifts.slice(0, 40)) line(`  bar ${s.bar} tick ${s.tick}: position ${s.from} → ${s.to}`);
 if (shifts.length > 40) line(`  … ${shifts.length - 40} more`);
+
+if (values.audio) {
+  line();
+  line(`## Audio (${values.audio})`);
+  const audio = await analyseMp3(values.audio);
+  const tempo = tempoLookup(tempoMap, bars);
+  const onsets = scoreOnsetTicks(score).map((t) => tempo.secondsAt(t));
+  const scoreSec = scoreDurationSeconds(tempoMap, bars);
+  const ms = (s: number) => Math.round(s * 1000);
+  line(`Duration: audio ${mmss(audio.durationSec)}, score ${mmss(scoreSec)} (${(audio.durationSec - scoreSec).toFixed(1)} s longer)`);
+  if (audio.durationSec < scoreSec - 1) line('  ⚠ The audio is shorter than the score: it may come from another version of the transcription.');
+  const { estimateSec, head, tail } = measureOffset(audio, onsets);
+  const weak = Math.min(head.confidence, tail.confidence) < 1.5;
+  line(`First sound minus first score onset: ${ms(estimateSec)} ms`);
+  line(`Best match within ±${ms(REFINE_SECONDS)} ms, first minute of notes: ${ms(head.lagSec)} ms (confidence ${head.confidence.toFixed(2)})`);
+  line(`Best match within ±${ms(REFINE_SECONDS)} ms, last minute of notes:  ${ms(tail.lagSec)} ms (confidence ${tail.confidence.toFixed(2)})`);
+  const drift = ms(tail.lagSec - head.lagSec);
+  line(`Drift: ${weak ? 'unknown (weak match)' : `${drift} ms`}`);
+  if (weak) line('  ⚠ Weak onset match (confidence < 1.5): the first-sound estimate is suggested; check it by ear in the app.');
+  else if (Math.abs(drift) > 30) line('  ⚠ The audio drifts from the tempo map; check that it was rendered from this score.');
+  line(`Suggested: media.music.offsetMs: ${Math.max(0, ms(weak ? estimateSec : head.lagSec))}`);
+}
 
 console.log(out.join('\n'));
 

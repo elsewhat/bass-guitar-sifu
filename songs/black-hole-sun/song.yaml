@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Black Hole Sun
+artist: Soundgarden
+source: { file: "Soundgarden-Black Hole Sun-09-14-2026.gp", date: 2026-09-14 }
+bassTrack: "Ben Shepard | Fender Jazz | Bass"
+tempo: { note: "Notated in half time (53 BPM); the recording is about 106 BPM." }
+media:
+  youtube: { videoId: 3mbBbFH9fAg, sync: [] }
+  music: { source: "Soundgarden-Black Hole Sun-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Verse 1 a, bars: [5, 8] }
+  - { name: Verse 1 b, bars: [9, 13] }
+  - { name: Chorus 1, bars: [14, 18] }
+  - { name: Verse 2 a, bars: [19, 22] }
+  - { name: Verse 2 b, bars: [23, 27] }
+  - { name: Chorus 2 a, bars: [28, 31] }
+  - { name: Chorus 2 b, bars: [32, 36] }
+  - { name: Post-Chorus 1, bars: [37, 42] }
+  - { name: Guitar Solo, bars: [43, 45] }
+  - { name: Guitar Solo repeat, bars: [46, 49] }
+  - { name: Half-Verse, bars: [50, 52] }
+  - { name: Chorus 3 a, bars: [53, 56] }
+  - { name: Chorus 3 b, bars: [57, 61] }
+  - { name: Post-Chorus 2 a, bars: [62, 65] }
+  - { name: Post-Chorus 2 b, bars: [66, 69] }
+  - { name: Post-Chorus 2 c, bars: [70, 73] }
+  - { name: Post-Chorus 2 d, bars: [74, 76] }
+  - { name: Ending, bars: [77, 79] }
+fingeringOverrides: []
+notes: >-
+  Drop D. Notated at 53 BPM with 16th notes: the recording is about 105–106 BPM counted in
+  the score's eighths (the score lasts 5:23, the recording 5:20). Bass enters at bar 5; bars
+  1–4 are tacet. Many 2/4 bars (13, 18, 27, 36, 38, 40, 42, 52, 61, 63–75 odd) and 9/8 bars
+  (43–48, 76); a 2/4 bar always stays with the phrase it ends. Chunks follow the 11 section
+  markers; "Post-Chorus 2/Outro" is shortened to "Post-Chorus 2". Post-Chorus 1 (37–42) is one
+  chunk: three short 4/4 + 2/4 pairs. Guitar Solo is the 9/8 riff (43–48) ×6 plus the held G
+  in bar 49, split 3 + 4. Re-tabs accepted: the verse B♭ (bars 5, 9, 19, 23, 50) moves from
+  the low D string fret 8 to A1, which keeps the chromatic descent G–B♭–F–E–E♭–D in first
+  position; bar 17's octave D uses two open strings instead of A5. Accepted shifts: bars 9
+  and 23 take the G with the middle finger in position 4 after the held A♭, then drop to
+  position 1 for B♭ during the long notes; in the solo the F octave (fret 3 on the low D and D strings) alternates
+  index and middle finger (positions 3 and 2) so the index does not roll across strings at the
+  same fret, which inflates the shift count. No overrides. YouTube: "Soundgarden - Black Hole
+  Sun" on SoundgardenVEVO (the music video, 5:20); sync anchors still needed.

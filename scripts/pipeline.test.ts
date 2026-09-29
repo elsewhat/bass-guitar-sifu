@@ -105,7 +105,7 @@ describe('Vortex Surfer acceptance fixture (reference/vortex-surfer-chunks.json)
 
 describe('importer edge cases', () => {
   it('picks the 4-string bass over a 6-string "bass" track (Killing in the Name)', () => {
-    const score = loadScore(locateGp('Rage Against the Machine-Killing in the Name-09-24-2026.gp'));
+    const score = loadScore(locateGp('Rage Against the Machine-Killing in the Name-09-24-2026 (1).gp'));
     const track = pickBassTrack(score);
     expect(track.name).toBe('Tim Commerford | Music Man Stingray | Bass');
     const { song } = importBassTrack(score, track);
@@ -135,6 +135,12 @@ describe('song.yaml validation', () => {
 
   it('rejects a malformed YouTube id', () => {
     expect(() => parseSidecar([...valid, 'media: { youtube: { videoId: nope } }'].join('\n'), 'test')).toThrow(/pattern/);
+  });
+
+  it('accepts media.music with an offset and requires both fields', () => {
+    const music = parseSidecar([...valid, 'media: { music: { source: a.mp3, offsetMs: 12.5 } }'].join('\n'), 'test');
+    expect(music.media?.music).toEqual({ source: 'a.mp3', offsetMs: 12.5 });
+    expect(() => parseSidecar([...valid, 'media: { music: { source: a.mp3 } }'].join('\n'), 'test')).toThrow(/offsetMs/);
   });
 });
 

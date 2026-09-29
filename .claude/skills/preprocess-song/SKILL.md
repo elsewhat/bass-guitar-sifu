@@ -1,11 +1,11 @@
 ---
 name: preprocess-song
-description: Add a Guitar Pro file from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp, writes song.yaml (metadata, named practice chunks, YouTube id, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
+description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, YouTube id, Music offset, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
 ---
 
 # preprocess-song
 
-Turns `music/<Artist-Title-MM-DD-YYYY>.gp` into `songs/<slug>/score.gp` + `songs/<slug>/song.yaml` and regenerates `public/data/` (ADR-0013, ADR-0014, ADR-0015). Deterministic work is done by scripts; your job is the judgment: naming, chunking, finding the recording, and reviewing the fingering.
+Turns `music/<Artist-Title-MM-DD-YYYY>.gp` (and the MP3 rendered from it, if present) into `songs/<slug>/score.gp` + `audio.mp3` + `song.yaml` and regenerates `public/data/` (ADR-0013, ADR-0014, ADR-0015, ADR-0022). Deterministic work is done by scripts; your job is the judgment: naming, chunking, finding the recording, and reviewing the fingering.
 
 **Input:** a path or file name in `music/`. If none is given, list `music/*.gp`; with one file, process it; with several, ask which (or "all", processed one at a time).
 
@@ -38,6 +38,20 @@ git mv "music/<file>.gp" songs/<slug>/score.gp
 
 Use plain `mv` if the file is not tracked yet. The score must never be edited.
 
+If the inbox has an MP3 for the same `Artist-Title` (any date; it is rendered from the same source as the `.gp`), move it too. It is the Music source (ADR-0022):
+
+```bash
+git mv "music/<Artist-Title-MM-DD-YYYY>.mp3" songs/<slug>/audio.mp3
+```
+
+Then measure its lead-in:
+
+```bash
+npm run inspect-song -- <slug> --audio songs/<slug>/audio.mp3
+```
+
+Write `media.music: { source: "<the MP3's inbox file name>", offsetMs: <Suggested value> }`. If the report warns about drift or low confidence, still write the offset but say so in `notes`: the MP3 may come from another version of the transcription. An MP3 whose score differs (other bar count) must not be attached; leave it in the inbox and report it.
+
 ## 4. Find the recording
 
 Search the web for the official recording on YouTube (`<artist> <title> official`), preferring, in order:
@@ -55,6 +69,8 @@ curl -s "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>
 ```
 
 The title and author_name must match. If nothing trustworthy is found, write `videoId: null` and say so in the summary.
+
+With an MP3, use its tempo to confirm the `tempo.note` (it follows the tempo map exactly; the recording may not).
 
 Leave `sync: []`. Sync anchors are tapped in the app's sync editor (ADR-0016), not guessed.
 
@@ -111,5 +127,6 @@ Then report to the owner:
 - slug, title, artist, tuning, tempo (and tempo note), bars, duration,
 - the chunk list (bars and names) in a compact table,
 - the YouTube video found (title, channel, id) or why none,
+- the Music offset, drift and confidence, or why there is no MP3,
 - re-tabs and any overrides, with the reason,
 - what to check by ear: tempo interpretation, chunk boundaries you were unsure about, anything the report warned about.

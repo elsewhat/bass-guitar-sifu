@@ -1,6 +1,6 @@
 # ADR-0012: Public repository and public GitHub Pages
 
-Status: Accepted
+Status: Accepted, amended by ADR-0022 (rendered MP3s are published with the `.gp` files)
 Date: 2026-09-28
 Supersedes: ADR-0001. Amends: ADR-0011.
 

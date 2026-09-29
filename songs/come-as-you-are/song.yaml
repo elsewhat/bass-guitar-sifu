@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Come As You Are
+artist: Nirvana
+source: { file: "Nirvana-Come As You Are-09-11-2026.gp", date: 2026-09-11 }
+bassTrack: "Krist Novoselic | Gibson Ripper | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: vabnZ9-ex7o, sync: [] }
+  music: { source: "Nirvana-Come As You Are-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro, bars: [5, 9] }
+  - { name: Verse 1 a, bars: [10, 13] }
+  - { name: Verse 1 a ×2, bars: [14, 21] }
+  - { name: Verse 1 b, bars: [22, 25] }
+  - { name: Refrain a, bars: [26, 29] }
+  - { name: Refrain b, bars: [30, 33] }
+  - { name: Verse 2 a, bars: [34, 37] }
+  - { name: Verse 2 b, bars: [38, 41] }
+  - { name: Pre-Chorus 1, bars: [42, 45] }
+  - { name: Pre-Chorus 1 repeat, bars: [46, 49] }
+  - { name: Chorus 1 a, bars: [50, 53] }
+  - { name: Chorus 1 b, bars: [54, 57] }
+  - { name: Interlude, bars: [58, 61] }
+  - { name: Guitar Solo a, bars: [62, 65] }
+  - { name: Guitar Solo a ×2, bars: [66, 73] }
+  - { name: Guitar Solo b, bars: [74, 77] }
+  - { name: Pre-Chorus 2, bars: [78, 81] }
+  - { name: Pre-Chorus 2 repeat, bars: [82, 85] }
+  - { name: Chorus 2 a, bars: [86, 89] }
+  - { name: Chorus 2 a repeat, bars: [90, 93] }
+  - { name: Chorus 2 b, bars: [94, 97] }
+  - { name: Outro, bars: [98, 101] }
+  - { name: Outro repeat, bars: [102, 105] }
+  - { name: Ending, bars: [106, 111] }
+fingeringOverrides:
+  - { bar: 27, tick: 0, string: 0, fret: 5, finger: 4 }
+  - { bar: 29, tick: 0, string: 0, fret: 5, finger: 4 }
+notes: >-
+  D standard (D G C F). Bass enters at the end of bar 5 with a 3-note pickup into the riff, so
+  bar 5 is merged with the "Band Entrance" (6–9) into Intro; bars 1–4 and 112 are tacet. The
+  2-bar main riff (B C) starts on even bars; chunks are 4 bars of it, merging immediate repeats,
+  with "b" chunks for the bar where the riff ends differently (25, 41, 77). The "Outro
+  (Refrain)" marker plays the main riff, so it is named Outro. Ending: one note, then a G held
+  for five bars. Fingering: the solver re-tabbed the refrain G in bars 27 and 29 from D5 to the
+  open G string, but kept D5 (little finger, position 3) in bar 31 and in the identical E–G
+  figure of both pre-choruses. The overrides pin bars 27 and 29 to the source D5 with the
+  little finger so the refrain and pre-chorus are played the same way throughout. The shift at
+  bar 33 (position 2 → 5) leads into the verse riff and is in the source tab. The main riff is
+  fingered 1-2-3 (position 7) in the intro and verse 1 and 2-3-4 (position 6) from verse 2 on,
+  because the solver slides in from below; both are valid under the rules. YouTube: official
+  HD music video on NirvanaVEVO (3:44 vs 3:43 in the score); sync anchors still needed.

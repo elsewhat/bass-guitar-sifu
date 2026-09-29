@@ -1,6 +1,6 @@
 # ADR-0016: Playback sources for version 1 and sync authoring
 
-Status: Accepted
+Status: Accepted, amended by ADR-0022 (Music, a fourth source)
 Date: 2026-09-28
 Amends: ADR-0008.
 

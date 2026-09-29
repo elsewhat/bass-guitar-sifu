@@ -97,6 +97,37 @@ test('Synth loads on demand, scrolls the strip and hands its position to the Met
   expect(Math.abs((await stripX(page)) - paused)).toBeLessThan(2);
 });
 
+test('Music plays the rendered MP3 at full speed only and hands its position to the Metronome', async ({ page }) => {
+  await openSong(page, 'killing-in-the-name');
+  const video = page.getByRole('region', { name: 'Video' });
+  await page.getByRole('button', { name: 'Slower' }).click();
+  await expect(page.getByTestId('tempo')).toHaveText('95%');
+
+  await page.getByRole('button', { name: 'Music', exact: true }).click();
+  await expect(video).toHaveAttribute('data-source-status', 'ready', { timeout: 20_000 });
+  await expect(video.getByText('Rendered from the score · full speed only')).toBeVisible();
+  await expect(page.getByTestId('tempo')).toHaveText('100%'); // locked while Music plays
+  await expect(page.getByRole('button', { name: 'Slower' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Faster' })).toBeDisabled();
+
+  const before = await stripX(page);
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await page.waitForTimeout(1500);
+  expect(await stripX(page)).toBeLessThan(before - 50);
+  await page.getByRole('button', { name: 'Pause' }).click();
+  const paused = await stripX(page);
+
+  await page.getByRole('button', { name: 'Metronome' }).click();
+  await expect(video.getByText('Audio count')).toBeVisible();
+  expect(Math.abs((await stripX(page)) - paused)).toBeLessThan(2);
+  await expect(page.getByTestId('tempo')).toHaveText('95%'); // the chosen tempo is back
+});
+
+test('Music is disabled for a song without a rendered MP3', async ({ page }) => {
+  await openSong(page);
+  await expect(page.getByRole('button', { name: 'Music', exact: true })).toBeDisabled();
+});
+
 test('the repeat button cycles play through, loop and advance', async ({ page }) => {
   await openSong(page);
   const counter = page.getByTestId('pass-counter');

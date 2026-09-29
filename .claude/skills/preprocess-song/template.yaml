@@ -6,6 +6,7 @@ bassTrack: "Electric Bass (finger)"
 tempo: { note: null }
 media:
   youtube: { videoId: null, sync: [] }
+  music: { source: "Motorpsycho-Vortex Surfer-09-29-2026.mp3", offsetMs: 0 }
 chunks:
   - { name: Riff A, bars: [130, 133] }
   - { name: Riff A ×2, bars: [134, 141] }

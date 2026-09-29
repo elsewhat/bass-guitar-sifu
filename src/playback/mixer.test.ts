@@ -18,7 +18,7 @@ const track = (volume: number, extra: Partial<TrackChannel> = {}): TrackChannel 
 
 describe('mixer (ADR-0020)', () => {
   it('has the ADR defaults', () => {
-    expect(DEFAULT_MIX).toEqual({ master: on(80), video: on(100), click: on(70), voice: on(100) });
+    expect(DEFAULT_MIX).toEqual({ master: on(80), video: on(100), music: on(100), click: on(70), voice: on(100) });
     expect(defaultTracks(3, 1)).toEqual([track(80), track(80, { solo: true }), track(80)]);
   });
 

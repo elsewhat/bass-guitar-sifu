@@ -60,6 +60,19 @@ describe('tempoLookup', () => {
     expect(t.secondsAt(3840)).toBeCloseTo(2);
     expect(t.secondsAt(3840 + 960)).toBeCloseTo(3);
   });
+
+  it('inverts secondsAt across tempo changes', () => {
+    const map: TempoPoint[] = [
+      { bar: 1, tick: 0, bpm: 120 },
+      { bar: 2, tick: 1920, bpm: 77 },
+      { bar: 4, tick: 0, bpm: 124 },
+    ];
+    const t = tempoLookup(map, bars44);
+    for (const tick of [0, 100, 3840, 5759, 5760, 9000, 11520, 20000]) {
+      expect(t.tickAt(t.secondsAt(tick))).toBeCloseTo(tick, 6);
+    }
+    expect(t.tickAt(0.5)).toBeCloseTo(960);
+  });
 });
 
 describe('CountTimeline', () => {

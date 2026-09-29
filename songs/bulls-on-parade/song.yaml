@@ -1,0 +1,43 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Bulls on Parade
+artist: Rage Against the Machine
+source: { file: "Rage Against the Machine-Bulls On Parade-08-15-2026.gp", date: 2026-08-15 }
+bassTrack: "Tim Commerford | MusicMan Stingray | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: 3L4YrGaR8E4, sync: [] }
+  music: { source: "Rage Against the Machine-Bulls On Parade-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro a, bars: [2, 5] }
+  - { name: Intro a repeat, bars: [6, 9] }
+  - { name: Intro b, bars: [14, 17] }
+  - { name: Verse 1, bars: [18, 21] }
+  - { name: Verse 1 repeat, bars: [22, 25] }
+  - { name: Chorus 1, bars: [26, 29] }
+  - { name: Chorus 1 repeat, bars: [30, 33] }
+  - { name: Verse 2, bars: [34, 37] }
+  - { name: Verse 2 repeat, bars: [38, 41] }
+  - { name: Chorus 2, bars: [42, 45] }
+  - { name: Chorus 2 repeat, bars: [46, 49] }
+  - { name: Bridge, bars: [50, 53] }
+  - { name: Solo, bars: [54, 57] }
+  - { name: Solo repeat, bars: [58, 61] }
+  - { name: Outro 1, bars: [66, 69] }
+  - { name: Outro 2 a, bars: [70, 73] }
+  - { name: Outro 2 b, bars: [74, 77] }
+  - { name: Outro 2 b repeat, bars: [78, 81] }
+fingeringOverrides: []
+notes: >-
+  E♭ standard tuning (all four strings a half step down). Title casing follows the album
+  ("on"). Tacet: 1, 10–13, 62–65 and 82. Chunks follow the 9 section markers in 4-bar
+  phrases; the two "Chorus" markers are numbered 1–2 here. Intro a (2–9) is the F octave
+  figure; Intro b, Outro 1 and Outro 2 a are the muted-chord scratch riff (319 dead notes:
+  the four-string mutes are notated as x on every string); Outro 2 b returns to the octave
+  figure. Solo is the verse riff. Bridge (50–53) is the only busy part: triplets up the neck
+  and a jump to frets 12–16 in bar 53. Re-tabs accepted: bar 51 ends on the open A♭ string
+  instead of E♭5 (same pitch, gives a break before bar 52), and bar 53 plays the B♭ figure on
+  E♭7 instead of A♭2 because the hand is already at fret 7 at the end of bar 52, which halves
+  the jump to fret 14. The verse E♭2 is played with the middle finger in position 1 because
+  fret 1 follows each second bar; bar 50 starts with the middle finger so the index does not
+  roll from the E♭ to the A♭ string at fret 2. No overrides. YouTube: official HD video on
+  RATMVEVO (3:54 vs 3:52 in the score); sync anchors still needed.

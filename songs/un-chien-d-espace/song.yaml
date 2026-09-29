@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Un Chien d'Espace
+artist: Motorpsycho
+source: { file: "Motorpsycho-Un Chien d'Espace-09-22-2025.gp", date: 2025-09-22 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: DMFz6CMKC4E, sync: [] }
+  music: { source: "Motorpsycho-Un Chien d'Espace-09-29-2026.mp3", offsetMs: 20 }
+chunks:
+  - { name: C drone, bars: [32, 36] }
+  - { name: C chug, bars: [37, 44] }
+  - { name: Drone F–G, bars: [45, 51] }
+  - { name: Drone C–F–G, bars: [52, 59] }
+  - { name: Drone C–F–G b, bars: [60, 65] }
+  - { name: Descent, bars: [66, 71] }
+  - { name: C chug, bars: [72, 79] }
+  - { name: Drone F–G, bars: [80, 83] }
+  - { name: Drone C–F–G, bars: [84, 91] }
+  - { name: Drone C–F–G b, bars: [92, 97] }
+  - { name: Odd-meter descent, bars: [98, 104] }
+  - { name: Odd-meter C–F a, bars: [105, 108] }
+  - { name: Odd-meter C–F b, bars: [109, 113] }
+  - { name: C chug, bars: [115, 121] }
+  - { name: F–E♭ figure, bars: [122, 125] }
+  - { name: F–E♭ figure b, bars: [126, 129] }
+  - { name: Figure end, bars: [130, 131] }
+  - { name: C hits, bars: [143, 145] }
+  - { name: C hits, bars: [163, 165] }
+  - { name: C hits, bars: [171, 173] }
+  - { name: C chug, bars: [214, 217] }
+  - { name: C chug ×4, bars: [218, 233] }
+  - { name: C chug ×4, bars: [234, 249] }
+  - { name: F–E♭ figure, bars: [250, 253] }
+  - { name: F–E♭ figure b, bars: [254, 257] }
+  - { name: Figure → F–G, bars: [258, 262] }
+  - { name: Drone C–F–G, bars: [263, 270] }
+  - { name: Drone C–F–G b, bars: [271, 276] }
+  - { name: Descent, bars: [277, 282] }
+  - { name: C–F bounce, bars: [284, 289] }
+  - { name: C hold, bars: [290, 293] }
+  - { name: C chug, bars: [294, 301] }
+  - { name: Whole-note C a, bars: [302, 309] }
+  - { name: Whole-note C b, bars: [310, 315] }
+  - { name: Whole-note C c, bars: [316, 321] }
+  - { name: Final C, bars: [322, 329] }
+fingeringOverrides:
+  - { bar: 32, tick: 0, string: 1, fret: 3, finger: 1 }
+  - { bar: 291, tick: 0, string: 1, fret: 3, finger: 1 }
+notes: >-
+  Standard tuning, 98 BPM. Meter changes: 5/4 and 2/4 in the tacet prelude (27–31), 3/4 and 4/4
+  alternating in 98–113, 2/4 at 114 (tacet). The only section markers are "Prelude" (bar 1, all
+  tacet) and "Intro" (bar 32, spanning the whole bass part), so chunks have musical names instead,
+  reused for the same material: C drone/C chug (C on A3, held or in eighths), Drone C–F–G (C held,
+  then F on E1/D3 rising to G; "b" is the 6-bar version), Drone F–G (the same without the C),
+  Descent (F→E♭, D, C♯ chug, 6 bars), Odd-meter descent / C–F (the 3/4–4/4 passage),
+  F–E♭ figure (F–E♭ on D3/D1 answered by a held C), C hits (two C eighths in otherwise silent
+  stretches), C–F bounce, Whole-note C and Final C (one C every two bars to the end). Tacet:
+  1–31, 114, 132–142, 144, 146–162, 164, 166–170, 172, 174–213, 283, 330–357. The C hits chunks
+  (143–145, 163–165, 171–173) each contain one isolated tacet bar (144, 164, 172) so they are
+  not one-bar chunks. The 37-bar chug 214–250 is split 4 + 16 + 16 and its last bar (250) leads
+  into the first F–E♭ figure. 298–306 is one tied C, so it is split across "C chug" and
+  "Whole-note C a" to keep a pluck in each chunk. Fingering overrides: bar 32 and bar 291 put the C (A3) under the index
+  finger in position 3. Without them the solver plays the long C passages (32–47 with eight bars
+  of eighths, and 291–329 to the end) with the little finger in position 1, because it plans for
+  the next F on E1 and treats held notes as no break; for a beginner a teacher would chug with the
+  index and move during the held C. Re-tabs (7, accepted): G on D5 → open G (bars 82, 90, 97,
+  after F on D3 with the little finger), F on A8 → D3 (bars 106–107, stays in position 2).
+  YouTube: "Un Chien D'espace" on "Motorpsycho - Topic" (Angels and Daemons at Play, 1997),
+  13:40 vs 14:27 in the score, including a 31-bar tacet prelude; sync anchors still needed.
