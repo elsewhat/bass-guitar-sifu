@@ -71,6 +71,30 @@ test('Count playback scrolls the strip and the tempo control steps by 5 %', asyn
   await expect(page.getByText('88 BPM')).toBeVisible();
 });
 
+test('Synth loads on demand, scrolls the strip and hands its position to Count', async ({ page }) => {
+  const soundfont: string[] = [];
+  page.on('request', (r) => r.url().includes('soundfont/') && soundfont.push(r.url()));
+  await openSong(page);
+  expect(soundfont).toEqual([]); // nothing loads until the Synth is chosen
+
+  const video = page.getByRole('region', { name: 'Video' });
+  await page.getByRole('button', { name: 'Synth' }).click();
+  await expect(video).toHaveAttribute('data-source-status', 'ready', { timeout: 20_000 });
+  await expect(video.getByText('Rendered from the score · any tempo')).toBeVisible();
+  expect(soundfont).toHaveLength(1);
+
+  const before = await stripX(page);
+  await page.getByRole('button', { name: 'Play' }).click();
+  await page.waitForTimeout(1500);
+  expect(await stripX(page)).toBeLessThan(before - 50);
+  await page.getByRole('button', { name: 'Pause' }).click();
+  const paused = await stripX(page);
+
+  await page.getByRole('button', { name: 'Count' }).click();
+  await expect(video.getByText('Audio count')).toBeVisible();
+  expect(Math.abs((await stripX(page)) - paused)).toBeLessThan(2);
+});
+
 test('"Next chunk" and the practice plan select chunks', async ({ page }) => {
   await openSong(page);
   await page.getByRole('button', { name: 'Next chunk', exact: true }).click();

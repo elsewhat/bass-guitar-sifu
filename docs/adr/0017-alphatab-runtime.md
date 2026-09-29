@@ -63,7 +63,7 @@ Why no mapping is perfect: alphaTab spaces notes by content, not time, and each 
 
 ## Implementation guide (everything the spike learned)
 
-The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, loaded lazily with alphaTab), `src/strip/scroll.ts` (scroll mapping), `src/strip/alphatab-score.ts` (`fetchScore`, `applyRetabs`, `colourNotes`, `stringPalette`) and `src/components/TabStrip.tsx`. Until the Synth source exists, `playerMode` is `Disabled`, so the soundfont is not loaded.
+The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, loaded lazily with alphaTab), `src/strip/scroll.ts` (scroll mapping), `src/strip/alphatab-score.ts` (`fetchScore`, `applyRetabs`, `colourNotes`, `stringPalette`) and `src/components/TabStrip.tsx`. `playerMode` starts as `Disabled` and is switched on the first time the Synth source is chosen, so the soundfont is only loaded then (ADR-0019).
 
 **Settings**
 
@@ -78,7 +78,7 @@ The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, 
 
   Otherwise the effect bands push the tab staff out of the strip.
 - Fret numbers are coloured in the string's *text* colour with `colourNotes(track, s => stringPalette().text[s])`, so they read on the circles. `stringPalette()` reads the `--string-N` variables (ADR-0009).
-- Player settings: `playerMode = EnabledSynthesizer`, `scrollMode = Off`, `enableCursor = false`, `enableElementHighlighting = false`.
+- Player settings: `playerMode = EnabledSynthesizer` (set at runtime with `api.updateSettings()`, ADR-0019), `scrollMode = Off`, `enableCursor = false`, `enableElementHighlighting = false`.
 
 **DOM and layering**
 

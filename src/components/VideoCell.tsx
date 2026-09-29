@@ -5,7 +5,7 @@ import { useFrame } from '../playback/frame';
 import { setSource } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { introChip, loopTimeLabel } from '../practice/view-model';
-import { SOURCES, useSession } from '../state/session';
+import { SOURCES, useSession, type SourceStatus } from '../state/session';
 import { Icon } from './icons';
 
 // Video cell (system description §3.3): source switch, the source's view, chips and full screen.
@@ -19,12 +19,13 @@ function toggleFullscreen() {
 
 export function VideoCell() {
   const source = useSession((s) => s.source);
+  const status = useSession((s) => s.sourceStatus);
   const song = useSession((s) => s.song);
   const chunkIndex = useSession((s) => s.chunkIndex);
   const intro = song && introChip(song);
 
   return (
-    <section aria-label="Video" className="rounded-comfortable relative overflow-hidden bg-black">
+    <section aria-label="Video" data-source-status={status.state} className="rounded-comfortable relative overflow-hidden bg-black">
       <div className="text-subdued absolute inset-0 flex flex-col items-center justify-center gap-2.5">
         {source === 'count' ? (
           <>
@@ -32,9 +33,17 @@ export function VideoCell() {
             <div className="text-base font-bold text-white">Audio count</div>
           </>
         ) : (
-          <div className="flex size-18 items-center justify-center rounded-full bg-white/8 text-white">
-            <Icon name="play" size={32} />
-          </div>
+          <>
+            <div className="flex size-18 items-center justify-center rounded-full bg-white/8 text-white">
+              <Icon name="play" size={32} />
+            </div>
+            {source === 'synth' && (
+              <>
+                <div className="text-base font-bold text-white">Synth playback</div>
+                <div className="text-sm">{synthDetail(status)}</div>
+              </>
+            )}
+          </>
         )}
       </div>
       <div className={`${overlayChip} absolute top-3 left-3 flex gap-1 rounded-full p-1`}>
@@ -70,6 +79,12 @@ export function VideoCell() {
       )}
     </section>
   );
+}
+
+function synthDetail(status: SourceStatus): string {
+  if (status.state === 'loading') return `Loading sounds… ${Math.round((status.progress ?? 0) * 100)} %`;
+  if (status.state === 'error') return status.error ?? 'Synth unavailable';
+  return 'Rendered from the score · any tempo';
 }
 
 /** One cell per eighth of the current bar ("1 & 2 & 3 & 4 &"), the current one lit, per frame. */

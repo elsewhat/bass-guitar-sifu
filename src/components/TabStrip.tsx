@@ -3,6 +3,7 @@ import { useFrame } from '../playback/frame';
 import { useSession } from '../state/session';
 import { PLAYHEAD_HALF_WIDTH, PLAYHEAD_X } from '../strip/scroll';
 import type { Strip } from '../strip/strip';
+import { setActiveStrip } from '../strip/strip-host';
 
 // Notation and tab strip panel (1408 × 276, design/artboards/TabStrip.dc.html). The Strip class
 // and alphaTab are loaded lazily when the practice view opens (ADR-0017).
@@ -21,6 +22,7 @@ export function TabStrip() {
       if (cancelled) return;
       instance = new Strip(host.current!, gutter.current!, (ready, error) => setStatus({ ready, error }));
       strip.current = instance;
+      setActiveStrip(instance);
       const { song: current, chunkIndex, pass, passes } = useSession.getState();
       instance.setLoop({ chunkIndex, pass, passes });
       if (current) void instance.load(current).catch((e: unknown) => setStatus({ ready: false, error: String(e) }));
@@ -34,6 +36,7 @@ export function TabStrip() {
     return () => {
       cancelled = true;
       unsubscribe();
+      setActiveStrip(null);
       instance?.destroy();
       strip.current = null;
     };

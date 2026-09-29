@@ -6,10 +6,15 @@ import type { PlaybackClock } from '../playback/clock';
 import { CountClock } from '../playback/count-clock';
 import { setTickSource } from '../playback/frame';
 import { chunkRange, completePass, initialLoop, nextChunk, rangeAfterPass, selectChunk, willAdvance } from '../playback/loop';
-import { TEMPO, useSession, type SourceId } from '../state/session';
+import { SynthClock } from '../playback/synth-clock';
+import type { SynthMix } from '../playback/synth-mix';
+import { TEMPO, useSession, type SourceId, type SourceStatus } from '../state/session';
+import { whenStrip } from '../strip/strip-host';
+import type { SynthPlayerHandle } from '../strip/synth-player';
 
 const base = import.meta.env.BASE_URL;
 let clock: PlaybackClock | null = null;
+let synthPlayer: SynthPlayerHandle | null = null; // the Synth clock's player, for the mix
 let loadToken = 0;
 
 setTickSource(() => clock?.getTick() ?? 0);
@@ -27,18 +32,54 @@ export function advanceRange(): { start: number; end: number } | null {
   return chunkRange(song.chunks[loop.chunkIndex + 1]!, song.bars);
 }
 
-function attachClock(song: SongData) {
+const setStatus = (sourceStatus: SourceStatus) => useSession.setState({ sourceStatus });
+
+function onSoundFontProgress(progress: number) {
+  if (state().sourceStatus.state === 'loading') setStatus({ state: 'loading', progress });
+}
+
+/**
+ * The Synth plays through the strip's alphaTab instance (ADR-0019): alphaTab and the strip load
+ * lazily, the player and soundfont only when the Synth is first chosen.
+ */
+function createSynthClock(song: SongData): SynthClock {
+  setStatus({ state: 'loading', progress: 0 });
+  const player = Promise.all([import('../strip/synth-player'), whenStrip()]).then(([{ createSynthPlayer }, strip]) => {
+    strip.enableSynth(onSoundFontProgress);
+    const p = createSynthPlayer(strip, song, state().synthMix);
+    if (clock === c) synthPlayer = p;
+    return p;
+  });
+  const c = new SynthClock(song, player);
+  player
+    .then((p) => p.ready)
+    .then(
+      () => clock === c && setStatus({ state: 'ready' }),
+      (e: unknown) => clock === c && setStatus({ state: 'error', error: `Synth unavailable: ${String(e)}` }),
+    );
+  return c;
+}
+
+/** Creates the clock for the current source; the position is kept when it is inside the chunk. */
+function attachClock(song: SongData, tick?: number) {
   clock?.dispose();
-  const c = new CountClock(song);
+  synthPlayer = null;
+  let c: PlaybackClock;
+  if (state().source === 'synth') c = createSynthClock(song);
+  else {
+    c = new CountClock(song);
+    setStatus({ state: 'ready' });
+  }
+  clock = c;
   c.onRangeEnd = () => rangeAfterPass(state(), song.chunks, song.bars);
   c.onPassCompleted(({ to }) => {
     const s = state();
     useSession.setState(completePass(s, to, song.chunks, song.bars, s.tempoPct));
   });
   c.setRate(state().tempoPct / 100);
-  c.setRange(currentRange(song));
-  c.seek(currentRange(song).start);
-  clock = c;
+  const range = currentRange(song);
+  c.setRange(range);
+  c.seek(tick !== undefined && tick >= range.start && tick < range.end ? tick : range.start);
 }
 
 export async function loadCatalog() {
@@ -71,7 +112,7 @@ export async function loadSong(slug: string) {
 }
 
 export function togglePlay() {
-  if (!clock) return;
+  if (!clock || state().sourceStatus.state !== 'ready') return;
   if (clock.isPlaying()) pause();
   else {
     void clock.play();
@@ -117,8 +158,18 @@ export function toggleAutoAdvance() {
   useSession.setState((s) => ({ autoAdvance: !s.autoAdvance }));
 }
 
+/** Switches the playback source at the current position (paused). */
 export function setSource(source: SourceId) {
   if (source === state().source) return;
   pause();
+  const tick = clock?.getTick();
   useSession.setState({ source });
+  const song = state().song;
+  if (song) attachClock(song, tick);
+}
+
+/** Which tracks the Synth plays (ADR-0019). Not in the UI yet. */
+export function setSynthMix(mix: SynthMix) {
+  useSession.setState({ synthMix: mix });
+  synthPlayer?.setMix(mix);
 }

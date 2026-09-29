@@ -257,7 +257,8 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - Recording-based clocks map recording time to score position through the sync map.
 - Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
 - YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
-- Synth and Count schedule audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
+- Count schedules audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
+- Synth is alphaTab's player on the strip's alphaTab instance, loaded when the Synth is first chosen. It plays the bass track alone by default; full band and band without bass are prepared (ADR-0019).
 
 ## 9. Persistence (ADR-0010)
 

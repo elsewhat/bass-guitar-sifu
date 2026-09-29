@@ -21,7 +21,7 @@ ADR-0008 sketches `PlaybackClock` with `getPosition()` (bar + tick) and a `passC
   - "Restart chunk" goes back to the chunk start and keeps the pass count.
   - On the last chunk, auto-advance has nowhere to go: the chunk is marked done after its passes and keeps looping.
   - With auto-advance off, passes keep counting past the target ("pass 5").
-- The alphaTab-based sources (Synth, YouTube, step 6) implement the same interface. alphaTab loops `playbackRange` itself, so their adapters call `onRangeEnd` when they detect the wrap and set the next `playbackRange` then.
+- The alphaTab-based sources (Synth, YouTube, step 6) implement the same interface. alphaTab loops `playbackRange` itself, so their adapters call `onRangeEnd` when they detect the wrap and set the next `playbackRange` then. The Synth adapter calls `onRangeEnd` about 250 ms before the range end and changes the range on alphaTab's `playerFinished` event (ADR-0019).
 
 ## Consequences
 
