@@ -96,7 +96,8 @@ describe('Vortex Surfer acceptance fixture (reference/vortex-surfer-chunks.json)
     const { song: built, warnings } = buildSong('vortex-surfer', song, sidecar);
     expect(warnings).toEqual([]);
     expect(built.chunks.map((c) => c.name)).toEqual(fixture.chunks.map((c) => c.name));
-    expect(built.chunks[0]).toMatchObject({ bars: [130, 133], position: 3, shifts: 0 });
+    // Riff A: A1 (position 1), E3 (3), then A5 for two bars (4); the 1-2-4 box cannot hold E3–A5–E6 (ADR-0007).
+    expect(built.chunks[0]).toMatchObject({ bars: [130, 133], position: 4, shifts: 2 });
     // maxFret is what the player plays after re-tabbing: the tab's E7 at bar 169 becomes A2.
     expect(built.stats).toMatchObject({ noteCount: 692, maxFret: 6, firstBar: 130 });
   });

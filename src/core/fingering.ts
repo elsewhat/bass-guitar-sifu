@@ -2,19 +2,35 @@ import type { BeatEvent, Chunk, NoteEvent } from './model';
 
 // Fingering recommendation (ADR-0007): Viterbi over the plucked notes of the whole song.
 //
-// Model: one finger per fret inside a 4-fret hand position p (fret under the index finger),
-// so a fretted note at fret f with finger k means p = f − k + 1. Open strings (finger 0) and
-// rests leave the fretting hand free, which makes position shifts there cheap.
+// Model: a hand position p is the fret under the index finger. In low positions (p ≤
+// lowZoneMaxPosition) the frets are wide and the hand covers three frets 1-2-4 (the ring finger
+// supports the little finger); higher up it covers four frets, one finger per fret. Open
+// strings (finger 0) and rests leave the fretting hand free, which makes position shifts there
+// cheap. In sparse passages the index finger leads; in dense passages the whole box is used.
 
 export const COSTS = {
   shiftBase: 2, // any position change
   shiftPerFret: 2, // per fret of distance
   freeShiftFactor: 0.25, // shift while the hand is free (open string, rest, dead note)
-  retab: 6, // choosing a string/fret other than the source tab (per distinct source)
+  guideFactor: 0.75, // shift that slides the same finger along the same string
+  retab: 8, // choosing a string/fret other than the source tab (per distinct source)
   stringCross: 0.3, // per string between consecutive notes
   openBonus: 0.5, // open string while the hand is below fret 5
-  fingerTieBreak: 0.01, // per finger above the index: prefer leading with the index finger
+  indexPreference: 1, // sparse passage: per finger rank above the index
+  fingerTieBreak: 0.01, // dense passage: finger rank only breaks ties
+  roll: 10, // same finger rolled to another string at the same fret; above a shift there and back and a retab (pinky D–G is free)
+  denseMinDistinct: 3, // distinct fretted pitches in the current and next bar that make a passage dense
+  lowZoneMaxPosition: 5, // highest position that uses the 1-2-4 box
 } as const;
+
+const RANK = [0, 0, 1, 2, 3]; // effort per finger 0–4 (index 0 … little 3)
+
+/** Finger that plays `fret` with the index at position p, or null when the fret is outside the box. */
+export function boxFinger(fret: number, p: number): number | null {
+  const offset = fret - p;
+  if (p <= COSTS.lowZoneMaxPosition) return [1, 2, 4][offset] ?? null;
+  return offset >= 0 && offset <= 3 ? offset + 1 : null;
+}
 
 export interface FingeringOverride {
   bar: number;
@@ -47,6 +63,7 @@ interface Node {
   pitches: number[];
   events: BeatEvent[];
   free: boolean; // the hand was free just before this node
+  dense: boolean; // many different fretted notes in this and the next bar
   overrides: FingeringOverride[];
 }
 
@@ -68,7 +85,7 @@ export function solveFingering(events: BeatEvent[], opts: FingeringOptions): Bea
       let best = Infinity;
       let arg = -1;
       for (let j = 0; j < prev.length; j++) {
-        const c = cost[i - 1]![j]! + transition(prev[j]!, s, nodes[i]!.free);
+        const c = cost[i - 1]![j]! + transition(prev[j]!, s, nodes[i]!.free, opts.tuning.length);
         if (c < best) {
           best = c;
           arg = j;
@@ -108,6 +125,17 @@ export function solveFingering(events: BeatEvent[], opts: FingeringOptions): Bea
 }
 
 function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[] {
+  // Fretted pitches per bar, as tabbed in the source.
+  const fretted = new Map<number, Set<number>>();
+  for (const e of events) {
+    for (const n of e.notes) {
+      if (n.tieFromPrev || n.dead || n.fret === 0) continue;
+      if (!fretted.has(e.bar)) fretted.set(e.bar, new Set());
+      fretted.get(e.bar)!.add(n.pitch);
+    }
+  }
+  const dense = (bar: number) => new Set([...(fretted.get(bar) ?? []), ...(fretted.get(bar + 1) ?? [])]).size >= COSTS.denseMinDistinct;
+
   const nodes: Node[] = [];
   let free = true;
   for (const e of events) {
@@ -120,12 +148,13 @@ function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[]
     const pitches = [...new Set(plucked.map((n) => n.pitch))].sort((a, b) => a - b);
     const ov = overrides.filter((o) => o.bar === e.bar && o.tick === e.tick);
     const prev = nodes[nodes.length - 1];
-    // Repeated identical notes keep the same fingering: collapse them into one node.
+    // Repeated identical notes keep the same fingering: collapse them into one node. A rest in
+    // between keeps them apart, so a sparse passage can settle on the index finger (micro-shift).
     if (prev && !free && prev.pitches.join() === pitches.join()) {
       prev.events.push(e);
       prev.overrides.push(...ov);
     } else {
-      nodes.push({ pitches, events: [e], free, overrides: ov });
+      nodes.push({ pitches, events: [e], free, dense: dense(e.bar), overrides: ov });
     }
     free = false;
   }
@@ -156,14 +185,17 @@ function candidates(node: Node, opts: FingeringOptions): State[] {
     const allOpen = fretted.length === 0;
     const pMin = allOpen ? 1 : Math.max(1, Math.max(...fretted) - 3);
     const pMax = allOpen ? Math.max(1, maxFret) : Math.min(...fretted);
+    const fingerWeight = node.dense ? COSTS.fingerTieBreak : COSTS.indexPreference;
     for (let p = pMin; p <= pMax; p++) {
-      const assign = combo.map((c) => ({ ...c, finger: c.fret === 0 ? 0 : c.fret - p + 1 }));
+      const fingers = combo.map((c) => (c.fret === 0 ? 0 : boxFinger(c.fret, p)));
+      if (fingers.some((f) => f === null)) continue;
+      const assign = combo.map((c, i) => ({ ...c, finger: fingers[i]! }));
       if (!node.overrides.every((o) => assign.some((a) => matches(a, o)))) continue;
       let local = 0;
       assign.forEach((a, i) => {
         const src = sources[i]!;
         local += COSTS.retab * [...src].filter((s) => s !== `${a.string}/${a.fret}`).length;
-        if (a.finger > 0) local += COSTS.fingerTieBreak * (a.finger - 1);
+        if (a.finger > 0) local += fingerWeight * RANK[a.finger]!;
         else if (p < 5) local -= COSTS.openBonus;
       });
       states.push({ p, assign, allOpen, local });
@@ -176,13 +208,24 @@ function candidates(node: Node, opts: FingeringOptions): State[] {
   return states;
 }
 
-function transition(a: State, b: State, free: boolean): number {
+function transition(a: State, b: State, free: boolean, strings: number): number {
   let c = 0;
+  const pairs = a.assign.flatMap((x) => b.assign.filter((y) => x.finger > 0 && y.finger === x.finger).map((y) => [x, y] as const));
   if (a.p !== b.p) {
-    const shift = COSTS.shiftBase + COSTS.shiftPerFret * Math.abs(a.p - b.p);
-    c += free || a.allOpen || b.allOpen ? shift * COSTS.freeShiftFactor : shift;
+    let shift = COSTS.shiftBase + COSTS.shiftPerFret * Math.abs(a.p - b.p);
+    if (free || a.allOpen || b.allOpen) shift *= COSTS.freeShiftFactor;
+    if (pairs.some(([x, y]) => x.string === y.string)) shift *= COSTS.guideFactor; // guide finger
+    c += shift;
   }
   c += COSTS.stringCross * Math.abs(a.assign[0]!.string - b.assign[0]!.string);
+  if (!free) {
+    // Rolling one finger to another string at the same fret; only the little finger between the top two strings.
+    for (const [x, y] of pairs) {
+      if (x.fret !== y.fret || x.string === y.string) continue;
+      const topPair = x.finger === 4 && Math.abs(x.string - y.string) === 1 && Math.min(x.string, y.string) >= strings - 2;
+      if (!topPair) c += COSTS.roll;
+    }
+  }
   return c;
 }
 

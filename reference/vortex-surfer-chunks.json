@@ -1,6 +1,6 @@
 {
   "song": "vortex-surfer",
-  "description": "Expected chunking for the whole song and expected fingering for bars 130-176, agreed during design. String 'E' is the lowest string. Every bar in 130-175 holds 8 eighth-note plucks of the same pitch; bar 176 is one whole note. Open-string notes (finger 0) keep the hand position of the nearest fretted note in the same chunk, looking forward first.",
+  "description": "Expected chunking for the whole song and expected fingering for bars 130-176. The chunks were agreed during design; the fingering was revised with the beginner rules of ADR-0007 (2026-09-29: 1-2-4 box up to position 5, index-led sparse passages, little finger for the far note without a break). String 'E' is the lowest string. Every bar in 130-175 holds 8 eighth-note plucks of the same pitch; bar 176 is one whole note. Open-string notes (finger 0) keep the hand position of the nearest fretted note in the same chunk, looking forward first.",
   "tuning": {
     "names": [
       "E",
@@ -111,14 +111,11 @@
       "noteName": "A♯1",
       "plucks": 8,
       "durationQuarters": 0.5,
-      "string": "E",
-      "fret": 6,
-      "finger": 4,
-      "position": 3,
-      "retabFrom": {
-        "string": "A",
-        "fret": 1
-      }
+      "string": "A",
+      "fret": 1,
+      "finger": 1,
+      "position": 1,
+      "retabFrom": null
     },
     {
       "bar": 131,
@@ -140,8 +137,8 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 5,
-      "finger": 3,
-      "position": 3,
+      "finger": 2,
+      "position": 4,
       "retabFrom": null
     },
     {
@@ -152,8 +149,8 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 5,
-      "finger": 3,
-      "position": 3,
+      "finger": 2,
+      "position": 4,
       "retabFrom": null
     },
     {
@@ -165,7 +162,7 @@
       "string": "E",
       "fret": 6,
       "finger": 4,
-      "position": 3,
+      "position": 4,
       "retabFrom": null
     },
     {
@@ -188,8 +185,8 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 5,
-      "finger": 3,
-      "position": 3,
+      "finger": 2,
+      "position": 4,
       "retabFrom": null
     },
     {
@@ -200,8 +197,8 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 5,
-      "finger": 3,
-      "position": 3,
+      "finger": 2,
+      "position": 4,
       "retabFrom": null
     },
     {
@@ -213,7 +210,7 @@
       "string": "E",
       "fret": 6,
       "finger": 4,
-      "position": 3,
+      "position": 4,
       "retabFrom": null
     },
     {
@@ -236,7 +233,7 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 5,
-      "finger": 3,
+      "finger": 4,
       "position": 3,
       "retabFrom": null
     },
@@ -248,7 +245,7 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 5,
-      "finger": 3,
+      "finger": 4,
       "position": 3,
       "retabFrom": null
     },
@@ -272,7 +269,7 @@
       "durationQuarters": 0.5,
       "string": "A",
       "fret": 3,
-      "finger": 3,
+      "finger": 4,
       "position": 1,
       "retabFrom": null
     },
@@ -501,7 +498,7 @@
       "string": "E",
       "fret": 5,
       "finger": 4,
-      "position": 2,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -513,7 +510,7 @@
       "string": "E",
       "fret": 5,
       "finger": 4,
-      "position": 2,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -524,8 +521,8 @@
       "durationQuarters": 0.5,
       "string": "E",
       "fret": 3,
-      "finger": 2,
-      "position": 2,
+      "finger": 1,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -536,8 +533,8 @@
       "durationQuarters": 0.5,
       "string": "E",
       "fret": 3,
-      "finger": 2,
-      "position": 2,
+      "finger": 1,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -600,7 +597,7 @@
       "string": "E",
       "fret": 5,
       "finger": 4,
-      "position": 2,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -612,7 +609,7 @@
       "string": "E",
       "fret": 5,
       "finger": 4,
-      "position": 2,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -623,8 +620,8 @@
       "durationQuarters": 0.5,
       "string": "E",
       "fret": 3,
-      "finger": 2,
-      "position": 2,
+      "finger": 1,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -635,8 +632,8 @@
       "durationQuarters": 0.5,
       "string": "E",
       "fret": 3,
-      "finger": 2,
-      "position": 2,
+      "finger": 1,
+      "position": 3,
       "retabFrom": null
     },
     {
@@ -668,7 +665,7 @@
       "pitch": 35,
       "noteName": "B1",
       "plucks": 1,
-      "durationQuarters": 4.0,
+      "durationQuarters": 4,
       "string": "A",
       "fret": 2,
       "finger": 1,

@@ -49,11 +49,11 @@ test('loads Vortex Surfer with its practice plan, strip and fingering', async ({
   await expect(page.getByText('Bars 1–129 · bass rests')).toBeVisible();
   await expect(page.getByText('Intro skipped · bass rests bars 1–129')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Chunk 1, Riff A, bars 130–133' })).toHaveAttribute('aria-current', 'step');
-  // Riff A starts on B♭ re-tabbed to E6 with the little finger.
-  await expect(page.getByTestId('now-fret')).toHaveText('6');
+  // Riff A starts on B♭ at A1 as tabbed, with the index finger (ADR-0007 beginner rules).
+  await expect(page.getByTestId('now-fret')).toHaveText('1');
   await expect(page.getByLabel('Next', { exact: true })).toContainText('in 8');
   await expect(page.getByText('Loop · chunk 1 · Riff A · bars 130–133 · pass 1 of 3')).toBeVisible();
-  await expect(page.getByText('Retab · source A1').first()).toBeAttached();
+  await expect(page.getByText('Retab · source E7').first()).toBeAttached(); // bar 169
   await expect(currentRings(page)).toHaveCount(1);
 });
 

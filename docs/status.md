@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-09-28. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-09-29. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -32,6 +32,14 @@ Updated 2026-09-28. This is the hand-off point between working sessions: what is
    - Song choice: temporary "Songs" list (also Ctrl K) and `?song=<slug>`. YouTube and Synth buttons are shown but disabled.
    - Tests: unit tests for plucks, count labels, `CountTimeline`, loop rules, scroll mapping and view text; Playwright smoke tests for layout, song load, playback scrolling, tempo, chunk selection and song switching.
 
+7. **Fingering for beginners** (ADR-0007 revised 2026-09-29, owner's rules). The solver now has:
+   - a 1-2-4 box in positions 1–5 and one finger per fret above that;
+   - index-led sparse passages (fewer than 3 different fretted notes in the current and next bar) and whole-box dense ones;
+   - the little finger for the far note when there is no break, and micro-shifts in rests and on open strings;
+   - guide-finger shifts, and no finger rolling except the little finger between D and G.
+
+   Pseudo code and constants are in the ADR. `src/core/fingering.test.ts` has one test per rule. The retab cost went from 6 to 8, so the solver does not jump to open strings just to shift for free. The Vortex Surfer fixture fingering was regenerated (18 of 47 bars changed), and the e2e smoke test now expects bar 130 on A1.
+
 ## Next: step 6
 
 - Synth source: an alphaTab-player adapter of `PlaybackClock` (ADR-0017 clock guide: extrapolate position events; ADR-0018: call `onRangeEnd` on the wrap). Enable `playerMode` and load the soundfont lazily.
@@ -47,6 +55,7 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- Approve the revised Vortex Surfer fingering in `reference/vortex-surfer-chunks.json` (bars 130–141, 143, 162–165 and 170–173 changed with the beginner rules). Also check the new small shifts in the Killing in the Name verses; they fall on the open D.
 - Review ADR-0018 (clock interface and loop decisions) and accept or change it.
 - Try slice 1 in a normal browser: Count playback, loop and auto-advance, tempo, the fade, and 60 fps while scrolling.
 - Make `elsewhat/bass-guitar-sifu` public, and set Pages → Source to "GitHub Actions" (ADR-0012). The workflow already exists.

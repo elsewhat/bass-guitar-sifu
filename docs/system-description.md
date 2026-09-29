@@ -239,15 +239,17 @@ The final chunks are written by the `preprocess-song` skill into `song.yaml`. Co
 
 Dynamic programming over the note sequence of the playable range (not per chunk, so the next chunk is planned for):
 
-- State per note: (string, fret, finger). Candidates include every string and fret that produces the same pitch within frets 0–(maxFret + 2), so re-tabbing is possible.
-- Hand position p = fret − finger + 1 for fretted notes. Open strings keep the current position.
-- Default rule: one finger per fret within a 4-fret position.
-- Costs: position shift (proportional to distance), string change, re-tab away from the source string/fret (small, so the source tab wins ties), stretch beyond the 4-fret span (high), open string (small bonus below fret 5).
+- State per note: (string, fret, finger, hand position p). Candidates include every string and fret that produces the same pitch within frets 0–(maxFret + 2), so re-tabbing is possible.
+- Hand position p is the fret under the index finger. In positions 1–5 the hand covers three frets 1-2-4 (the ring finger supports the little finger). Higher up it covers four frets, one finger per fret. Open strings keep the current position.
+- Sparse passages (fewer than 3 different fretted notes in the current and next bar) lead with the index finger. Dense passages use the whole box.
+- Without a break, the little finger takes the far note (up or down) instead of shifting. After a rest, dead note or open string, small shifts are cheap, so the index moves to the note.
+- No finger rolling to another string at the same fret, except the little finger between the two top strings. A same-fret double stop is a barre and is allowed.
+- Costs: position shift (proportional to distance, cheaper in a break or when the same finger slides along the string), string change, re-tab away from the source string/fret, finger effort (strong in sparse passages, a tie-break in dense ones), rolling, open string (small bonus below fret 5).
 - Repeated identical notes keep the same fingering.
 - Output: finger, position, `retabFrom` when the chosen string/fret differs from the file.
 - Sidecar `fingeringOverrides` pins individual notes and the solver plans around them.
 
-The hand-made fingering for Vortex Surfer bars 130–176 in `reference/vortex-surfer-chunks.json` is the expected result for tests.
+The pseudo code and cost values are in ADR-0007. The fingering for Vortex Surfer bars 130–176 in `reference/vortex-surfer-chunks.json` (revised 2026-09-29 for the beginner rules) is the expected result for tests.
 
 ## 8. Playback and timing (ADR-0008)
 
