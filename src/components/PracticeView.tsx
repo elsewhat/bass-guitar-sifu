@@ -9,6 +9,7 @@ import { PracticePlan } from './PracticePlan';
 import { SongLibrary } from './SongLibrary';
 import { TabStrip } from './TabStrip';
 import { TransportBar } from './TransportBar';
+import { useTransportKeys } from './useTransportKeys';
 import { VideoCell } from './VideoCell';
 
 // Practice view (system description §3), sizes from design/artboards/Main.dc.html.
@@ -17,6 +18,7 @@ export function PracticeView() {
   const planOpen = useSession((s) => s.planOpen);
   const railW = planOpen ? RAIL_W.open : RAIL_W.collapsed;
   const videoW = planOpen ? VIDEO_W.open : VIDEO_W.collapsed;
+  useTransportKeys();
 
   useEffect(() => {
     probeCountSamples();

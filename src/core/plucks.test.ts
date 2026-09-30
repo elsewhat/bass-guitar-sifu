@@ -53,6 +53,70 @@ describe('buildPlucks', () => {
   });
 });
 
+/** A chord: [string, fret, finger, pitch] per note, lowest string first as the importer sorts them. */
+function chord(id: number, start: number, dur: number, notes: [number, number, number | null, number][], position: number | null, dead = false): BeatEvent {
+  return {
+    id,
+    bar: 1,
+    tick: start,
+    start,
+    dur,
+    kind: 'note',
+    notes: notes.map(([string, fret, finger, pitch]) => ({
+      string,
+      fret,
+      pitch,
+      tieFromPrev: false,
+      dead,
+      finger: dead ? null : finger,
+      position: dead || fret === 0 ? null : position,
+    })),
+  };
+}
+
+// Killing in the Name bar 1 in drop D: D5 with the open D, fingers 1, 4, 4 in position 5.
+const d5 = (id: number, start: number) =>
+  chord(id, start, 3840, [
+    [0, 0, 0, 26],
+    [1, 5, 1, 38],
+    [2, 7, 4, 45],
+    [3, 7, 4, 50],
+  ], 5);
+
+describe('buildPlucks with chords', () => {
+  it('keeps every note, highest string first, and names power chords', () => {
+    const [p] = buildPlucks([d5(0, 0)]);
+    expect(p!.notes.map((n) => [n.string, n.fret, n.finger])).toEqual([
+      [3, 7, 4],
+      [2, 7, 4],
+      [1, 5, 1],
+      [0, 0, 0],
+    ]);
+    expect(p!.chord).toBe('D5');
+    expect([p!.string, p!.fret]).toEqual([0, 0]); // the primary note is still the lowest string
+  });
+
+  it('puts the hand where the chord is fretted, even when its lowest note is open', () => {
+    const plucks = buildPlucks([d5(0, 0), note(1, 3840, 960, 1, 6, { position: 6 })]);
+    expect(plucks.map((p) => p.position)).toEqual([5, 6]);
+  });
+
+  it('borrows the hand position for an all-dead chord and gives it no name', () => {
+    const muted = chord(0, 0, 480, [[0, 2, null, 30], [1, 7, null, 40]], null, true);
+    const plucks = buildPlucks([muted, note(1, 480, 480, 1, 3)]);
+    expect(plucks[0]).toMatchObject({ position: 3, chord: null });
+    expect(plucks[0]!.notes.every((n) => n.dead)).toBe(true);
+  });
+
+  it('sees a change on an upper string as the next different note', () => {
+    const upper = chord(1, 3840, 3840, [[0, 0, 0, 26], [1, 5, 1, 38], [2, 7, 4, 45], [3, 6, 2, 49]], 5);
+    const plucks = buildPlucks([d5(0, 0), upper, d5(2, 7680)]);
+    const next = nextDifferentNote(plucks, 0, { start: 0, end: 11520 }, null)!;
+    expect(next.when).toBe('in 1'); // the chord at 3840 differs only on the G string
+    expect(next.pluck.notes[0]).toMatchObject({ string: 3, fret: 6 });
+  });
+});
+
 describe('nextDifferentNote', () => {
   const plucks = buildPlucks(vortex.events);
   const riffA = { start: vortex.bars[129]!.startTick, end: vortex.bars[133]!.startTick }; // bars 130–133

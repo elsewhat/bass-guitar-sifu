@@ -5,7 +5,7 @@ import type { CatalogEntry, SongData } from '../core/model';
 import type { PlaybackClock } from '../playback/clock';
 import { CountClock, countSamplesAvailable, type CountGains } from '../playback/count-clock';
 import { setTickSource } from '../playback/frame';
-import { chunkRange, completePass, initialLoop, nextChunk, nextRepeatMode, rangeAfterPass, selectChunk, setRepeatMode, willAdvance } from '../playback/loop';
+import { chunkRange, completePass, initialLoop, nextChunk, nextRepeatMode, prevChunk, rangeAfterPass, selectChunk, setRepeatMode, willAdvance } from '../playback/loop';
 import { applyQuickMix, channelGain, clampVolume, effectiveGain, type Channel, type GlobalChannelId, type QuickMix, type TrackChannel } from '../playback/mixer';
 import { MusicClock } from '../playback/music-clock';
 import type { MusicPlayerHandle } from '../playback/music-player';
@@ -120,8 +120,10 @@ function attachClock(song: SongData, tick?: number) {
   c.seek(tick !== undefined && tick >= range.start && tick < range.end ? tick : range.start);
 }
 
+// Song data is revalidated on every load (`cache: 'no-cache'`, a 304 when unchanged): Pages sends
+// max-age=600, so a plain fetch could show a stale catalogue for ten minutes after a deploy.
 export async function loadCatalog() {
-  const res = await fetch(`${base}data/catalog.json`);
+  const res = await fetch(`${base}data/catalog.json`, { cache: 'no-cache' });
   useSession.setState({ catalog: (await res.json()) as CatalogEntry[] });
 }
 
@@ -135,7 +137,7 @@ export async function loadSong(slug: string) {
   const token = ++loadToken;
   pause();
   try {
-    const res = await fetch(`${base}data/songs/${slug}.json`);
+    const res = await fetch(`${base}data/songs/${slug}.json`, { cache: 'no-cache' });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
     const song = (await res.json()) as SongData;
     if (token !== loadToken) return;
@@ -188,6 +190,10 @@ export function selectChunkAt(index: number) {
 
 export function goNextChunk() {
   goTo((s, n) => nextChunk(s, n));
+}
+
+export function goPrevChunk() {
+  goTo((s, n) => prevChunk(s, n));
 }
 
 /** Back to the chunk start; the pass count stays. */

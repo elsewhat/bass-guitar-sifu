@@ -3,13 +3,32 @@ import { readFileSync } from 'node:fs';
 import * as alphaTab from '@coderline/alphatab';
 import type { Bar, BeatEvent, ImportedSong, NoteEvent, TempoPoint } from '../../src/core/model';
 import { PPQ } from '../../src/core/model';
+import { isWrittenOrder, playedOrder, unrollScore } from '../../src/core/unroll-score';
 
 export type Score = alphaTab.model.Score;
 export type Track = alphaTab.model.Track;
 
+/** Written bar index per played bar, for scores that were unrolled by `loadScore` / `unrollRepeats`. */
+const playOrders = new WeakMap<Score, number[]>();
+
+/** The Guitar Pro file with its repeats unrolled (ADR-0023): every later step sees played bars. */
 export function loadScore(file: string): Score {
   const bytes = new Uint8Array(readFileSync(file));
-  return alphaTab.importer.ScoreLoader.loadScoreFromBytes(bytes, new alphaTab.Settings());
+  return unrollRepeats(alphaTab.importer.ScoreLoader.loadScoreFromBytes(bytes, new alphaTab.Settings()));
+}
+
+export function unrollRepeats(written: Score): Score {
+  const settings = new alphaTab.Settings();
+  const order = playedOrder(alphaTab, written, settings);
+  if (isWrittenOrder(order, written.masterBars.length)) return written;
+  const score = unrollScore(alphaTab, written, order, settings);
+  playOrders.set(score, order);
+  return score;
+}
+
+/** Written bar index (0-based) of each played bar, or null when the score has no repeats. */
+export function playOrderOf(score: Score): number[] | null {
+  return playOrders.get(score) ?? null;
 }
 
 /** Tuning of a track, lowest string first (alphaTab stores highest first). */
@@ -77,8 +96,8 @@ export function importBassTrack(score: Score, track: Track): ImportResult {
   const tuning = trackTuning(track).map((p) => p + staff.capo);
 
   const masterBars = score.masterBars;
-  if (masterBars.some((mb) => mb.isRepeatStart || mb.repeatCount > 0 || mb.alternateEndings)) {
-    throw new Error('Score has repeat signs; bar numbers would not match playback order (not supported yet)');
+  if (masterBars.some((mb) => mb.isRepeatStart || mb.repeatCount > 0 || mb.alternateEndings || mb.directions?.size)) {
+    throw new Error('Score has repeat signs or jumps; load it with loadScore or unrollRepeats first (ADR-0023)');
   }
 
   const bars: Bar[] = masterBars.map((mb) => ({
@@ -145,8 +164,20 @@ export function importBassTrack(score: Score, track: Track): ImportResult {
   events.sort((a, b) => a.start - b.start);
   events.forEach((e, i) => (e.id = i));
 
+  const playOrder = playOrderOf(score);
   return {
-    song: { title: score.title.trim(), artist: score.artist.trim(), track: { index: track.index, name: track.name }, tracks: score.tracks.map((t) => t.name), tuning, ppq: PPQ, tempoMap, bars, events },
+    song: {
+      title: score.title.trim(),
+      artist: score.artist.trim(),
+      track: { index: track.index, name: track.name },
+      tracks: score.tracks.map((t) => t.name),
+      tuning,
+      ppq: PPQ,
+      tempoMap,
+      bars,
+      events,
+      ...(playOrder ? { playOrder } : {}),
+    },
     warnings,
   };
 }

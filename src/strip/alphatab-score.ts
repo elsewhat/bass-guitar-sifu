@@ -3,6 +3,7 @@
 // fret numbers and note heads by string (ADR-0009).
 import * as alphaTab from '@coderline/alphatab';
 import type { SongData } from '../core/model';
+import { unrollScore } from '../core/unroll-score';
 
 /** String colours from the `--string-1..4` variables (ADR-0009), lowest string first. */
 export function stringPalette(): { fill: string[]; text: string[] } {
@@ -15,9 +16,11 @@ export function stringPalette(): { fill: string[]; text: string[] } {
 }
 
 export async function fetchScore(song: SongData, settings: alphaTab.Settings): Promise<alphaTab.model.Score> {
-  const res = await fetch(`${import.meta.env.BASE_URL}data/scores/${song.slug}.gp`);
+  const res = await fetch(`${import.meta.env.BASE_URL}data/scores/${song.slug}.gp`, { cache: 'no-cache' });
   if (!res.ok) throw new Error(`Could not load score for ${song.slug}: ${res.status}`);
-  const score = alphaTab.importer.ScoreLoader.loadScoreFromBytes(new Uint8Array(await res.arrayBuffer()), settings);
+  const written = alphaTab.importer.ScoreLoader.loadScoreFromBytes(new Uint8Array(await res.arrayBuffer()), settings);
+  // Scores with repeats are drawn and played in played order, like the song data (ADR-0023).
+  const score = song.playOrder ? unrollScore(alphaTab, written, song.playOrder, settings) : written;
   const track = score.tracks[song.track.index];
   if (!track || track.name !== song.track.name) throw new Error(`Track ${song.track.index} is not "${song.track.name}"`);
   applyRetabs(track, song);

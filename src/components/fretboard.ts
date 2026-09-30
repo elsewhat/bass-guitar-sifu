@@ -10,15 +10,14 @@ export interface FretboardNote {
   string: number;
   fret: number;
   finger: number | null; // 0 = open string, null = dead note
-  position: number;
 }
 
 export interface FretboardModel {
   frets: number; // frets drawn, at least 9
   letters: string[]; // string names, lowest first
-  current: FretboardNote | null; // null during rests: the hand stays, no finger is active
+  current: FretboardNote[]; // sounding notes (several for a chord); empty during rests: the hand stays
   position: number; // hand position to draw
-  next: { string: number; fret: number } | null;
+  next: { string: number; fret: number }[]; // the next different note or chord
 }
 
 const sv = (s: number) => `var(--string-${s + 1})`;
@@ -53,11 +52,16 @@ export function fretboardHtml(m: FretboardModel): string {
       letter,
     );
   });
-  const { current: cur, next } = m;
-  if (next && !(cur && next.string === cur.string && next.fret === cur.fret)) {
-    box(`left:${slot(next.fret) - 15}px;top:${sy(next.string) - 15}px;width:30px;height:30px;box-sizing:border-box;border-radius:50%;border:2px dashed #ffffff`);
+  const cur = m.current;
+  // Dashed rings on the next notes that are not already held; one "Next" label, over the highest.
+  const rings = m.next.filter((n) => !cur.some((c) => c.string === n.string && c.fret === n.fret));
+  for (const n of rings) {
+    box(`left:${slot(n.fret) - 15}px;top:${sy(n.string) - 15}px;width:30px;height:30px;box-sizing:border-box;border-radius:50%;border:2px dashed #ffffff`);
+  }
+  const top = rings.reduce<(typeof rings)[number] | null>((a, n) => (!a || n.string > a.string ? n : a), null);
+  if (top) {
     box(
-      `left:${slot(next.fret) - 20}px;top:${sy(next.string) - 30}px;width:40px;text-align:center;font-size:10px;line-height:12px;font-weight:700;color:#ffffff;background:#252525`,
+      `left:${slot(top.fret) - 20}px;top:${sy(top.string) - 30}px;width:40px;text-align:center;font-size:10px;line-height:12px;font-weight:700;color:#ffffff;background:#252525`,
       'Next',
     );
   }
@@ -65,18 +69,23 @@ export function fretboardHtml(m: FretboardModel): string {
   for (let k = 1; k <= 4; k++) {
     const fret = pos + k - 1;
     if (fret > m.frets) continue;
-    const active = !!cur && cur.finger === k;
-    const top = (active ? sy(cur.string) : 142) - 12;
+    // The finger reaches its highest string; a barre also holds the strings below it.
+    const held = cur.filter((c) => c.finger === k).sort((a, b) => b.string - a.string);
+    const tip = held[0];
+    const top = (tip ? sy(tip.string) : 142) - 12;
     box(
       `left:${slot(fret) - 12}px;top:${top}px;width:24px;height:${198 - top}px;box-sizing:border-box;border-radius:12px 12px 8px 8px;` +
-        `background:${active ? sv(cur.string) : 'rgba(255,255,255,0.14)'};border:${active ? '2px solid #ffffff' : '1px solid rgba(255,255,255,0.3)'};` +
-        `text-align:center;font-size:12px;line-height:22px;font-weight:800;color:${active ? sf(cur.string) : '#cbcbcb'}`,
+        `background:${tip ? sv(tip.string) : 'rgba(255,255,255,0.14)'};border:${tip ? '2px solid #ffffff' : '1px solid rgba(255,255,255,0.3)'};` +
+        `text-align:center;font-size:12px;line-height:22px;font-weight:800;color:${tip ? sf(tip.string) : '#cbcbcb'}`,
       String(k),
     );
+    for (const b of held.slice(1)) {
+      box(`left:${slot(fret) - 8}px;top:${sy(b.string) - 8}px;width:16px;height:16px;box-sizing:border-box;border-radius:50%;background:${sv(b.string)};border:2px solid #ffffff`);
+    }
   }
-  if (cur?.finger === 0) {
+  for (const o of cur.filter((c) => c.finger === 0)) {
     box(
-      `left:19px;top:${sy(cur.string) - 11}px;width:22px;height:22px;border-radius:50%;background:${sv(cur.string)};box-shadow:#ffffff 0 0 0 2px;text-align:center;font-size:12px;line-height:22px;font-weight:800;color:${sf(cur.string)}`,
+      `left:19px;top:${sy(o.string) - 11}px;width:22px;height:22px;border-radius:50%;background:${sv(o.string)};box-shadow:#ffffff 0 0 0 2px;text-align:center;font-size:12px;line-height:22px;font-weight:800;color:${sf(o.string)}`,
       '0',
     );
   }

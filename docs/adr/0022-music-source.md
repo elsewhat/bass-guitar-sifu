@@ -43,7 +43,7 @@ Amends: ADR-0008 and ADR-0016 (a fourth source), ADR-0011 and ADR-0012 (rendered
 - The repository grows by about 100 MB with the current songs, and each MP3 is publicly readable on Pages. As with the `.gp` files, the owner accepts that a file may have to be removed after a takedown request. `.gitattributes` marks `*.mp3` as binary.
 - Loop wraps are accurate to tens of milliseconds (an `<audio>` seek), not to the sample as with Count. That is enough for looping a chunk. Count stays the reference for exact timing.
 - The bass is part of the render and cannot be muted separately. For play-along without the recorded bass, the Synth's Backing quick mix remains.
-- Songs whose score has repeat signs (Freedom) are still blocked by the importer; their audio would follow the repeats.
+- Songs whose score has repeat signs (Freedom) were blocked by the importer, since their audio follows the repeats. ADR-0023 (2026-09-30) unrolls them into played bars, and Freedom's MP3 now aligns with no drift.
 
 ## Alternatives considered
 

@@ -14,4 +14,3 @@ Processed files leave this folder, so anything here is still waiting to be added
 Waiting:
 
 - `Motorpsycho-Vortex Surfer-09-29-2026.gp` / `.mp3`: a retranscription (236 bars) that differs from `songs/vortex-surfer` (243 bars, the acceptance fixture). On hold by the owner.
-- `Rage Against the Machine-Freedom-09-23-2026.gp` / `.mp3`: the score uses repeat signs, which the importer does not support yet.

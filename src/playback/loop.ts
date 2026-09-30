@@ -87,6 +87,10 @@ export function nextChunk(state: LoopState, chunkCount: number): LoopState {
   return selectChunk(state, state.chunkIndex + 1, chunkCount);
 }
 
+export function prevChunk(state: LoopState, chunkCount: number): LoopState {
+  return selectChunk(state, state.chunkIndex - 1, chunkCount);
+}
+
 /** Practice plan and loop label: "pass 2 of 3" ("pass 5" past it on the last chunk), "play through", "pass 5 · looping". */
 export function passLabel(state: Pick<LoopState, 'pass' | 'passes' | 'repeatMode'>): string {
   if (state.repeatMode === 'once') return 'play through';

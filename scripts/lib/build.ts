@@ -69,6 +69,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
       music: sidecar.media?.music ? { url: `data/audio/${slug}.mp3`, offsetMs: sidecar.media.music.offsetMs } : null,
     },
     tempoNote: sidecar.tempo?.note ?? null,
+    ...(imported.playOrder ? { playOrder: imported.playOrder } : {}),
   };
   const catalog: CatalogEntry = {
     slug,

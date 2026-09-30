@@ -85,6 +85,11 @@ export interface SongData {
   stats: SongStats;
   media: { youtube: YouTubeMedia | null; music: MusicMedia | null };
   tempoNote: string | null;
+  /**
+   * Only for scores with repeats (ADR-0023): the written bar index (0-based) of each played bar.
+   * Bars, events and chunks count played bars; the strip unrolls the .gp with this order.
+   */
+  playOrder?: number[];
 }
 
 export interface CatalogEntry {
@@ -102,4 +107,4 @@ export interface CatalogEntry {
 }
 
 /** A song before chunking and fingering: what the importer produces. */
-export type ImportedSong = Pick<SongData, 'title' | 'artist' | 'track' | 'tracks' | 'tuning' | 'ppq' | 'tempoMap' | 'bars' | 'events'>;
+export type ImportedSong = Pick<SongData, 'title' | 'artist' | 'track' | 'tracks' | 'tuning' | 'ppq' | 'tempoMap' | 'bars' | 'events' | 'playOrder'>;

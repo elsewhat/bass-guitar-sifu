@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-09-29 (evening). This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-09-30. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -79,18 +79,35 @@ Updated 2026-09-29 (evening). This is the hand-off point between working session
    - The modal panels' shadow (library and mixer) now uses the `shadow-heavy` token; the colour-first arbitrary value was read by Tailwind as a shadow colour and drew nothing.
    - Tests: 117 unit tests; Playwright test for search, chips, Esc, Ctrl K, song choice and restored progress.
 
-## Next: step 6
+12. **Keyboard, chords and repeats** (2026-09-30; the owner put the YouTube source on hold).
+   - **Keyboard shortcuts** (system description §3.4):
+     - `Space` play/pause, `←` / `→` previous / next chunk, `+` / `−` tempo.
+     - Pure mapping in `src/practice/keys.ts`, one window listener in `src/components/useTransportKeys.ts`. It is off while the library or the mixer is open and while a form field has focus.
+     - New `prevChunk` / `goPrevChunk`. The transport tooltips show the keys.
+   - **Chords and double stops** (§3.5, owner's choice: stacked tab rows):
+     - `Pluck.notes` holds every note of the beat, highest string first. `Pluck.chord` is the name from `src/core/chord-name.ts` (`D5`, or `null`).
+     - The hand position comes from the chord's fretted notes, so the Killing in the Name D5 is at position 5.
+     - `sameNote` compares every note.
+     - The Now/Next squares show one band per note in its string's colour. The fretboard lights every finger, draws a dot on each string of a barre, and puts a Next ring on every note of the next chord.
+   - **Repeat unrolling (ADR-0023, proposed)**:
+     - `src/core/unroll-score.ts` rebuilds the alphaTab score in played order, taken from alphaTab's MIDI generator; the tests cover repeats, alternate endings and D.C. al Fine.
+     - `loadScore` unrolls it. The song JSON gets `playOrder` only for scores with repeats; the other 16 songs are byte-identical.
+     - The strip unrolls the `.gp` with that order before rendering, so the Synth plays the same timeline.
+     - `inspect-song` prints the mapping from played to written bars.
+   - **Freedom** added with `/preprocess-song`:
+     - 110 played bars from 105 written; written bar 98 is played ×6.
+     - 23 chunks, YouTube `H_vQt_v8Jmw` (RATMVEVO), Music offset 0 ms with no drift.
+   - The e2e test for Music now expects 20 px of scroll: Killing in the Name bars 1–4 are whole-note chords, engraved narrow.
+   - Tests: 140 unit tests, 16 Playwright tests (keyboard, the D5 bands, Freedom with the Synth after the repeat).
 
-- YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016). Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020).
+## Next
+
+- YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016), step 6: **on hold (owner, 2026-09-30)**. Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020).
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
-- The e2e test "Music plays the rendered MP3 …" fails: the strip moves about 49 px in 1.5 s against the 50 px it expects. It fails the same way without the library change.
-- Still in `music/`:
-  - `Freedom`: its score uses repeat signs, which the importer rejects. Repeat unrolling needs its own ADR, because bar numbers, chunks and the strip change.
-  - The `Vortex Surfer` retranscription: 236 bars against the fixture's 243, and it comes with an MP3. On hold by the owner.
+- Still in `music/`: the `Vortex Surfer` retranscription (236 bars against the fixture's 243, with an MP3), on hold by the owner.
 
 Open points from slice 1 (not blocking):
 
-- Chords and double stops: the Now/Next squares and the fretboard show only the lowest note (Killing in the Name bars 1–4 show "0" for a D5 chord). The design has no chord view yet.
 - alphaTab 1.8 always draws "rendered by alphaTab" below the first bar. It shows only when bar 1 is on screen. There is no setting; it is left in place.
 - The in-app preview pane throttles `requestAnimationFrame`, so frame rates must be checked in a normal browser.
 
@@ -109,6 +126,10 @@ Open points from slice 1 (not blocking):
   - Is the wrap seek smooth enough?
   - Zombie's offset (weak onset match).
   - The rendered MP3s add about 82 MB to the repository and are public on Pages (same status as the `.gp` files).
+- Review ADR-0023 (repeat unrolling, played bar numbers). Look at Freedom's chunks and `notes`:
+  - the Outro riff is 14 bars, split 7 + 7;
+  - the official video may have extra footage (the Topic upload is `7pAr6B7fqyM`).
+- Look at the chord view (stacked tab rows) in a normal browser: Killing in the Name bars 1–4, the Bombtrack power chords, and the Bulls on Parade dead-note chords. The design artboards have no chord view yet, so the owner may want to add one.
 - Skim the new songs' `notes` for the by-ear doubts, for example:
   - The Wheel is 18:55 in the score against 16:58 on the record;
   - Creep's YouTube video may be the radio edit;

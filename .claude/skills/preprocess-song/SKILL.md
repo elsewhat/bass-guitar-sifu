@@ -21,6 +21,8 @@ Read the whole report: tracks, tuning, tempo map, time signatures, sections, tac
 
 If the automatic bass track is wrong (the report marks candidates), rerun with `--track <index>`. Only 4-string bass tracks are supported; stop and report if there is none.
 
+Scores with repeat signs, alternate endings or D.S./D.C./coda are unrolled into the order they are played (ADR-0023). The report then says `Repeats unrolled` and maps played bars to written bars. **Every bar number in the report and in `song.yaml` (chunks, overrides, sync) is a played bar**; the written bar numbers in Guitar Pro no longer apply after the first repeat. A repeated bar or range shows up as identical letters in the bar-pattern grid, so chunk it like any other immediate repeat (`Riff ×5`).
+
 ## 2. Decide metadata
 
 - **Title and artist**: from the report's `.gp` metadata, cleaned up (trim, fix obvious casing typos, keep the artist's own styling such as "wearing yr smell"). Fall back to the file name `Artist-Title-MM-DD-YYYY.gp`.

@@ -64,7 +64,7 @@
         "additionalProperties": false,
         "properties": {
           "name": { "type": "string", "minLength": 1 },
-          "bars": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 2, "maxItems": 2 }
+          "bars": { "type": "array", "items": { "type": "integer", "minimum": 1 }, "minItems": 2, "maxItems": 2, "description": "First and last bar, inclusive. Played bars: repeats are unrolled (ADR-0023)." }
         }
       }
     },
@@ -75,7 +75,7 @@
         "required": ["bar", "tick"],
         "additionalProperties": false,
         "properties": {
-          "bar": { "type": "integer", "minimum": 1 },
+          "bar": { "type": "integer", "minimum": 1, "description": "Played bar: repeats are unrolled (ADR-0023)." },
           "tick": { "type": "integer", "minimum": 0, "description": "Offset from bar start at 960 PPQ." },
           "string": { "type": "integer", "minimum": 0, "maximum": 3, "description": "0 = lowest string." },
           "fret": { "type": "integer", "minimum": 0, "maximum": 24 },
@@ -87,7 +87,7 @@
   },
   "$defs": {
     "sync": {
-      "description": "Anchors from score bar to recording time. Linear interpolation with the tempo map between anchors.",
+      "description": "Anchors from score bar (a played bar, ADR-0023) to recording time. Linear interpolation with the tempo map between anchors.",
       "type": "array",
       "items": {
         "type": "object",

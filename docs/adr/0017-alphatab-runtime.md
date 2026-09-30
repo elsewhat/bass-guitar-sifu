@@ -63,7 +63,7 @@ Why no mapping is perfect: alphaTab spaces notes by content, not time, and each 
 
 ## Implementation guide (everything the spike learned)
 
-The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, loaded lazily with alphaTab), `src/strip/scroll.ts` (scroll mapping), `src/strip/alphatab-score.ts` (`fetchScore`, `applyRetabs`, `colourNotes`, `stringPalette`) and `src/components/TabStrip.tsx`. `playerMode` starts as `Disabled` and is switched on the first time the Synth source is chosen, so the soundfont is only loaded then (ADR-0019).
+The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, loaded lazily with alphaTab), `src/strip/scroll.ts` (scroll mapping), `src/strip/alphatab-score.ts` (`fetchScore`, `applyRetabs`, `colourNotes`, `stringPalette`) and `src/components/TabStrip.tsx`. For a score with repeats, `fetchScore` first unrolls the `.gp` with the song's `playOrder` (ADR-0023). Every `bar` below is then a played bar, and `mb.index + 1` equals the song data's bar number. `playerMode` starts as `Disabled` and is switched on the first time the Synth source is chosen, so the soundfont is only loaded then (ADR-0019).
 
 **Settings**
 

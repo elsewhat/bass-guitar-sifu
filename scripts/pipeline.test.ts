@@ -1,11 +1,12 @@
 import { readFileSync } from 'node:fs';
+import * as alphaTab from '@coderline/alphatab';
 import { describe, expect, it } from 'vitest';
 import { draftChunks, findTacet } from '../src/core/chunks';
 import { solveFingering } from '../src/core/fingering';
 import { scoreDurationSeconds } from '../src/core/timing';
 import { stringNames, tuningName } from '../src/core/tuning';
 import { buildSong } from './lib/build';
-import { importBassTrack, loadScore, pickBassTrack } from './lib/gp-import';
+import { importBassTrack, loadScore, pickBassTrack, unrollRepeats } from './lib/gp-import';
 import { locateGp } from './lib/locate';
 import { parseSidecar } from './lib/sidecar';
 import { stableJson } from './lib/stable-json';
@@ -111,6 +112,36 @@ describe('importer edge cases', () => {
     const { song } = importBassTrack(score, track);
     expect(tuningName(song.tuning)).toBe('Drop D');
     expect(song.tempoMap.length).toBeGreaterThan(30);
+  });
+
+  it('unrolls repeat signs into played bars (Freedom: written bar 98 ×6, ADR-0023)', () => {
+    const file = locateGp('Rage Against the Machine-Freedom-09-23-2026.gp');
+    const settings = new alphaTab.Settings();
+    const written = alphaTab.importer.ScoreLoader.loadScoreFromBytes(new Uint8Array(readFileSync(file)), settings);
+    const generator = new alphaTab.midi.MidiFileGenerator(written, settings, new alphaTab.midi.AlphaSynthMidiFileHandler(new alphaTab.midi.MidiFile()));
+    generator.generate();
+    const midiStarts = generator.tickLookup.masterBars.map((m) => m.start);
+
+    const { song, warnings } = importFile('Rage Against the Machine-Freedom-09-23-2026.gp');
+    expect(warnings).toEqual([]);
+    expect(written.masterBars).toHaveLength(105);
+    expect(song.bars).toHaveLength(110);
+    expect(song.bars.map((b) => b.startTick)).toEqual(midiStarts); // the Synth's and the MP3's timeline
+    expect(song.playOrder!.slice(96, 105)).toEqual([96, 97, 97, 97, 97, 97, 97, 98, 99]);
+    expect(song.tempoMap.at(-1)).toEqual({ bar: 106, tick: 0, bpm: 40 }); // written bar 101
+    const content = (bar: number) => song.events.filter((e) => e.bar === bar).map((e) => [e.tick, e.notes.map((n) => n.fret)]);
+    for (let bar = 99; bar <= 103; bar++) expect(content(bar)).toEqual(content(98));
+    expect(song.bars.filter((b) => b.section).map((b) => b.n)).toEqual([1, 9, 13, 21, 32, 45, 54, 58, 71, 89]);
+  });
+
+  it('refuses a score with repeats that was not unrolled', () => {
+    const written = alphaTab.importer.ScoreLoader.loadScoreFromBytes(
+      new Uint8Array(readFileSync(locateGp('Rage Against the Machine-Freedom-09-23-2026.gp'))),
+      new alphaTab.Settings(),
+    );
+    expect(() => importBassTrack(written, pickBassTrack(written))).toThrow(/unrollRepeats/);
+    const played = unrollRepeats(written);
+    expect(importBassTrack(played, pickBassTrack(played)).song.bars).toHaveLength(110);
   });
 
   it('names common tunings', () => {

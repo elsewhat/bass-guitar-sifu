@@ -72,6 +72,8 @@ Left to right:
 
 There is no automatic tempo ramp.
 
+Keyboard (owner, 2026-09-30): `Space` play/pause, `←` / `→` previous / next chunk, `+` / `−` tempo (`=` and `_` also work). The keys are ignored while the song library or the mixer is open and while a form field has focus. Space always means play/pause, even when a button has focus. The button tooltips show the keys.
+
 ### 3.5 Fingering and metronome column (right)
 
 Top: fretboard diagram with a hand.
@@ -86,6 +88,8 @@ Bottom: two equal squares, "Now" and "Next".
 
 - "Now" shows only the fret number (128 px, weight 800) on a background in the current string's colour. On each pluck it shows at full colour and fades to 28 % opacity over 90 % of the note's duration, so an eighth note fades quickly and a whole note stays lit for most of the bar. The number changes from the string's text colour to white as it fades.
 - "Next" shows the next *different* note (not the next pluck) at full string colour, with `in 6` (plucks until the change), `next chunk` or `loop` in the top-right corner. It does not fade.
+- Chords and double stops (owner, 2026-09-30) are shown as stacked tab rows. The square is split into one band per note, highest string on top. Each band is in its string's colour and shows the fret number (or `x`); the font is 88 px for two notes, 64 px for three and 48 px for four. The Now square fades as a whole. A power chord or an octave is named in the label, `Now · D5`. "Next" compares every note of the chord, so a change on any string is the next different note.
+- On the fretboard every fretted note of a chord lights its finger. A finger that holds several strings on one fret (a barre) reaches the highest of them and shows a dot on the others. Open notes get the circle at the nut, and every note of the next chord gets a dashed ring, with one "Next" label. The hand position comes from the chord's fretted notes, even when its lowest note is an open string.
 
 ### 3.6 Notation and tab strip (bottom)
 
@@ -207,11 +211,14 @@ public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
   "stats": { "durationSec": 530.2, "noteCount": 692, "maxFret": 6, "strings": [0, 1], "firstBar": 130 },
   "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] },
              "music": { "url": "data/audio/vortex-surfer.mp3", "offsetMs": 0 } },   // null without an MP3
-  "tempoNote": null
+  "tempoNote": null,
+  "playOrder": [0, 1, 2, 2, 3]          // only for scores with repeats (ADR-0023)
 }
 ```
 
 Types are in `src/core/model.ts`. The fields work as follows:
+
+- Bar numbers are played bars. A score with repeat signs, alternate endings or D.S./D.C./coda is unrolled into the order it is played (ADR-0023). `playOrder` then gives the written bar index (0-based) of each played bar, and the strip unrolls the `.gp` with it. Songs without repeats have no `playOrder`.
 
 - `noteCount` counts plucks, so tie continuations are excluded and dead notes are included.
 - `maxFret` is the highest fret after re-tabbing.

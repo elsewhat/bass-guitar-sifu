@@ -11,6 +11,7 @@ import {
   nextRepeatMode,
   passCounterText,
   passLabel,
+  prevChunk,
   rangeAfterPass,
   selectChunk,
   setRepeatMode,
@@ -232,5 +233,11 @@ describe('loop controller', () => {
     s = nextChunk(s, chunks.length);
     expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: {} });
     expect(nextChunk(s, chunks.length).chunkIndex).toBe(1);
+  });
+
+  it('previous chunk restarts at pass 1 and stays on the first chunk', () => {
+    const s = prevChunk({ ...initialLoop(3), chunkIndex: 1, pass: 3 }, chunks.length);
+    expect(s).toMatchObject({ chunkIndex: 0, pass: 1, done: {} });
+    expect(prevChunk(s, chunks.length).chunkIndex).toBe(0);
   });
 });

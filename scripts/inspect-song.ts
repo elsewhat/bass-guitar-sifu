@@ -10,8 +10,9 @@ import { chunkPositions, solveFingering } from '../src/core/fingering';
 import type { BeatEvent } from '../src/core/model';
 import { scoreDurationSeconds, tempoLookup } from '../src/core/timing';
 import { pitchName, stringNames, tuningName } from '../src/core/tuning';
+import { orderSegments } from '../src/core/unroll-score';
 import { analyseMp3, measureOffset, REFINE_SECONDS, scoreOnsetTicks } from './lib/audio-align';
-import { describeTracks, importBassTrack, loadScore, pickBassTrack } from './lib/gp-import';
+import { describeTracks, importBassTrack, loadScore, pickBassTrack, playOrderOf } from './lib/gp-import';
 import { loadSidecar } from './lib/sidecar';
 
 const { values, positionals } = parseArgs({ allowPositionals: true, options: { track: { type: 'string' }, audio: { type: 'string' } } });
@@ -57,6 +58,13 @@ if (tempos[0]! > 200) line('  ⚠ Fast tempo: the file may be notated in double 
 const sigs = [...new Set(bars.map((b) => b.time.join('/')))];
 line(`Time signatures: ${sigs.join(', ')}${sigs.length > 1 ? `  (changes at bars ${bars.filter((b, i) => i > 0 && b.time.join('/') !== bars[i - 1]!.time.join('/')).map((b) => `${b.n}:${b.time.join('/')}`).join(' ')})` : ''}`);
 line(`Bars: ${bars.length}    Duration: ${mmss(scoreDurationSeconds(tempoMap, bars))}`);
+const playOrder = playOrderOf(score);
+if (playOrder) {
+  // ADR-0023: every bar number in this report and in song.yaml is a played bar.
+  line(`Repeats unrolled: ${playOrder.length} played bars from ${new Set(playOrder).size} written. All bar numbers below are played bars.`);
+  const range = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
+  for (const s of orderSegments(playOrder)) line(`  played ${range(s.played).padEnd(9)} = written ${range(s.written)}${s.times > 1 ? ` ×${s.times}` : ''}`);
+}
 const sections = bars.filter((b) => b.section);
 line(`Sections: ${sections.length ? sections.map((b) => `${b.n} ${b.section}`).join(' · ') : 'none'}`);
 line();

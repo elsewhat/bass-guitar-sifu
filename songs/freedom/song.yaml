@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Freedom
+artist: Rage Against the Machine
+source: { file: "Rage Against the Machine-Freedom-09-23-2026.gp", date: 2026-09-23 }
+bassTrack: "Tim Commerford | Music Man Stingray | Bass"
+tempo: { note: "Tempo map follows the recording: 72 BPM in the verses, 120 in the refrains, slowing to 55 and 40 at the end." }
+media:
+  youtube: { videoId: H_vQt_v8Jmw, sync: [] }
+  music: { source: "Rage Against the Machine-Freedom-09-29-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 8] }
+  - { name: Verse 1, bars: [9, 12] }
+  - { name: Interlude a, bars: [13, 16] }
+  - { name: Interlude b, bars: [17, 20] }
+  - { name: Verse 2, bars: [21, 24] }
+  - { name: Verse 2 repeat, bars: [25, 31] }
+  - { name: Refrain a, bars: [33, 36] }
+  - { name: Refrain a repeat, bars: [37, 40] }
+  - { name: Refrain b, bars: [41, 44] }
+  - { name: Solo a, bars: [45, 48] }
+  - { name: Solo b, bars: [49, 53] }
+  - { name: Interlude 2, bars: [54, 55] }
+  - { name: Interlude 2 repeat, bars: [56, 57] }
+  - { name: Verse 3, bars: [59, 62] }
+  - { name: Verse 3 ×2, bars: [63, 70] }
+  - { name: Refrain 2 a, bars: [72, 75] }
+  - { name: Refrain 2 b, bars: [76, 79] }
+  - { name: Refrain 2 c, bars: [80, 83] }
+  - { name: Refrain 2 d, bars: [84, 90] }
+  - { name: Outro riff, bars: [91, 97] }
+  - { name: Outro riff repeat, bars: [98, 104] }
+  - { name: Outro end, bars: [105, 110] }
+fingeringOverrides: []
+notes: >-
+  The score repeats written bar 98 six times (|: :| x6), so it is unrolled (ADR-0023): 105 written
+  bars become 110 played bars, and every bar number here is a played bar. Played 1–97 = written
+  1–97, played 98–103 = written 98 ×6, played 104–110 = written 99–105.
+  Bars 32, 58 and 71 are 2/4 rest bars before the refrains and the third verse.
+  The verse riff (Verse 2, Verse 3) is one bar played over and over, so those chunks are split in
+  4-bar phrases; Verse 2 has 11 bars, so its repeat chunk has 7.
+  Refrain b climbs to position 14 for the 3/8 fill in bars 43–44.
+  Bars 89–90 (Outro marker) only hold the open D of bar 88, so they end Refrain 2 d.
+  The Outro riff (D0 D3 D5 D6 A0 A3 A4 A5) is 14 bars, split 7 + 7. Its G♯ on D6 takes a small
+  shift up from the 1-2-4 box at position 3, and the open A that follows gives time to shift back.
+  Outro end: the last riff bar into the D5 chords (40 BPM) and the held D.
+  YouTube: the official video on RATMVEVO; it may have extra footage around the song. The album
+  track is on the Topic channel as 7pAr6B7fqyM if the video's timing turns out not to fit.

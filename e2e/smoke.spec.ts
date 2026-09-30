@@ -110,7 +110,8 @@ test('Music plays the rendered MP3 at full speed only and hands its position to 
 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await expect.poll(() => stripX(page)).toBeLessThan(before - 50); // the scroll speed follows the song's tempo
+  // Bars 1–4 are whole-note chords, engraved narrow: the strip moves about 50 px in 5 s.
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 20);
   await page.getByRole('button', { name: 'Pause' }).click();
   const paused = await stripX(page);
 
@@ -191,6 +192,40 @@ test('"Next chunk" and the practice plan select chunks', async ({ page }) => {
   await expect(page.getByText('Loop 5:46–6:24 · score time')).toBeVisible();
 });
 
+test('keyboard: Space plays and pauses, arrows change chunk, + and − change tempo', async ({ page }) => {
+  await openSong(page);
+  const chunk = (name: string) => page.getByRole('button', { name });
+  await page.keyboard.press('Space');
+  await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
+  await page.keyboard.press('Space');
+  await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeVisible();
+
+  await page.keyboard.press('ArrowRight');
+  await expect(chunk('Chunk 2, Riff A ×2, bars 134–141')).toHaveAttribute('aria-current', 'step');
+  await page.keyboard.press('ArrowLeft');
+  await expect(chunk('Chunk 1, Riff A, bars 130–133')).toHaveAttribute('aria-current', 'step');
+  await page.keyboard.press('-');
+  await expect(page.getByTestId('tempo')).toHaveText('95%');
+  await page.keyboard.press('+');
+  await expect(page.getByTestId('tempo')).toHaveText('100%');
+
+  // Space on a focused button still means play/pause, not a click on that button.
+  await page.getByRole('button', { name: 'Next chunk', exact: true }).focus();
+  await page.keyboard.press('Space');
+  await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
+  await expect(chunk('Chunk 1, Riff A, bars 130–133')).toHaveAttribute('aria-current', 'step');
+  await page.keyboard.press('Space');
+
+  // Off while the song library is open: typing in the search does not drive the transport.
+  await page.keyboard.press('Control+k');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.type(' -');
+  await page.keyboard.press('Escape');
+  await expect(chunk('Chunk 1, Riff A, bars 130–133')).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByTestId('tempo')).toHaveText('100%');
+  await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeVisible();
+});
+
 test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ page }) => {
   await openSong(page);
   await page.getByRole('button', { name: 'Next chunk', exact: true }).click(); // progress: chunk 2
@@ -241,6 +276,24 @@ test('switches to Killing in the Name through the song library and ?song=', asyn
   await openSong(page, 'killing-in-the-name');
   await expect(page.getByRole('heading', { name: 'Killing in the Name' })).toBeVisible();
   await expect(currentRings(page)).toHaveCount(4); // bar 1: D5 chord with the open D
+  // The Now square shows the chord as tab rows, highest string on top.
+  await expect(page.getByTestId('now-notes').locator('div')).toHaveText(['7', '7', '5', '0']);
+  await expect(page.getByLabel('Now', { exact: true })).toContainText('Now · D5');
+});
+
+test('a score with repeats plays in played bars (Freedom, ADR-0023)', async ({ page }) => {
+  await openSong(page, 'freedom');
+  await expect(page.getByText('72 BPM · mixed meter · Drop D D A D G · 110 bars')).toBeVisible();
+  // Chunk after the repeated bar: the strip and the Synth both count played bars.
+  await page.getByRole('button', { name: 'Chunk 23, Outro end, bars 105–110' }).click();
+  await expect(page.getByText('Loop · chunk 23 · Outro end · bars 105–110 · play through')).toBeVisible();
+  const video = page.getByRole('region', { name: 'Video' });
+  await page.getByRole('button', { name: 'Synth' }).click();
+  await expect(video).toHaveAttribute('data-source-status', 'ready', { timeout: 20_000 });
+  const before = await stripX(page);
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 20);
+  await page.getByRole('button', { name: 'Pause' }).click();
 });
 
 test('notes are within 15 px of the playhead when plucked, with four notes to its left', async ({ page }) => {

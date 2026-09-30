@@ -1,11 +1,20 @@
 // Pluck timeline for the visual metronome, fretboard and Now/Next squares (system description
 // §3.5, §5.2). A pluck is a note onset: tie continuations extend the previous pluck instead of
-// starting a new one, so a tied note fades over its whole length.
+// starting a new one, so a tied note fades over its whole length. A double stop or chord is one
+// pluck with several notes.
+import { chordName } from './chord-name';
 import type { BeatEvent, NoteEvent } from './model';
 
 export interface TickRange {
   start: number; // absolute tick, inclusive
   end: number; // absolute tick, exclusive
+}
+
+export interface PluckNote {
+  string: number;
+  fret: number;
+  dead: boolean;
+  finger: number | null; // 0 = open string, null = dead note
 }
 
 export interface Pluck {
@@ -19,6 +28,8 @@ export interface Pluck {
   dead: boolean;
   finger: number | null; // 0 = open string, null = dead note
   position: number; // hand position; open and dead notes borrow it from their neighbours
+  notes: PluckNote[]; // every plucked note, highest string first (one for a single note)
+  chord: string | null; // "D5" for a power chord, else null (chord-name.ts)
 }
 
 /** Plucks in time order. */
@@ -34,6 +45,7 @@ export function buildPlucks(events: BeatEvent[]): Pluck[] {
       continue;
     }
     const n = onsets.reduce((a: NoteEvent, b) => (b.string < a.string ? b : a));
+    const notes = [...onsets].sort((a, b) => b.string - a.string);
     plucks.push({
       index: plucks.length,
       eventId: e.id,
@@ -44,7 +56,10 @@ export function buildPlucks(events: BeatEvent[]): Pluck[] {
       fret: n.fret,
       dead: n.dead,
       finger: n.finger,
-      position: n.position ?? 0,
+      // A chord's hand is where its fretted notes are, even when its lowest note is open.
+      position: notes.find((o) => o.position)?.position ?? 0,
+      notes: notes.map((o) => ({ string: o.string, fret: o.fret, dead: o.dead, finger: o.finger })),
+      chord: chordName(notes.filter((o) => !o.dead).map((o) => o.pitch)),
     });
   }
   // Open and dead notes keep the hand where the next fretted note needs it (else the previous one).
@@ -83,8 +98,12 @@ export function pluckAt(plucks: Pluck[], tick: number): Pluck | null {
   return p && tick < p.start + p.dur ? p : null;
 }
 
+/** Same notes on the same strings; for a chord every note counts. */
 export function sameNote(a: Pluck, b: Pluck): boolean {
-  return a.string === b.string && a.fret === b.fret && a.dead === b.dead;
+  return a.notes.length === b.notes.length && a.notes.every((n, i) => {
+    const o = b.notes[i]!;
+    return n.string === o.string && n.fret === o.fret && n.dead === o.dead;
+  });
 }
 
 /** First pluck inside a range. */
