@@ -100,9 +100,23 @@ Updated 2026-09-30. This is the hand-off point between working sessions: what is
    - The e2e test for Music now expects 20 px of scroll: Killing in the Name bars 1–4 are whole-note chords, engraved narrow.
    - Tests: 140 unit tests, 16 Playwright tests (keyboard, the D5 bands, Freedom with the Synth after the repeat).
 
+13. **Lyrics** (2026-09-30; **ADR-0024, proposed**). The owner allows lyrics to be shared; ADR-0011 and ADR-0012 are amended.
+   - **Synced lyrics from the score.** `scripts/lib/gp-lyrics.ts` reads the vocal track's syllables in played order (the track with the most syllables, or `lyrics.track`). It reads the track's lyrics text from `Content/score.gpif` with a small zip reader, because alphaTab drops that text.
+     - `src/core/lyrics.ts`: `lyricChunks` (alphaTab's syllable rules plus line numbers), `syncedLyrics` (words and lines), `parseLyricsText`, `lineSwitchTicks` and `lyricsCursor`.
+     - Lines come from the text's line breaks, `[Section]` comments and blank lines. Where the text has none (Killing in the Name, Bulls on Parade) or a line is over 12 words (About A Girl), lines are cut by `LINE_SPLIT`: rests, sentence ends and capitals.
+     - 10 songs have synced lyrics: About A Girl, Black Hole Sun, Bulls on Parade, Come As You Are, Creep, Killing in the Name, Paranoid, Smells Like Teen Spirit, The Man Who Sold The World and Zombie. The other 7 have no vocal track with lyrics; their JSON did not change.
+   - **Unsynced lyrics** from `lyrics.text` in `song.yaml` (a `text: |` block scalar; blank lines between stanzas; `[Chorus]` labels; owner's choice to keep them in the sidecar). The owner supplied them for the 7 songs without a vocal track (The Wheel, Vortex Surfer, Un Chien d'Espace, wearing yr smell, Bombtrack, Bullet in the Head, Freedom); Claude does not look up lyrics itself. Every song now has lyrics. `lyrics: { source: score | text | none, track }` overrides the choice.
+   - **View** (`src/components/Lyrics.tsx`, `.lyrics-line` in `index.css`), after `design/artboards/LyricsView.dc.html`:
+     - With lyrics on, the video cell keeps only the key info in one row (small count cells, or the Synth or Music status) and shows the lyrics below it.
+     - Synced: the current line is 30 px with the sung word lit, and the list glides to each new line, at most two beats early. Updates go through the frame loop, not React.
+     - Unsynced: plain lines, `↑` / `↓` and the mouse wheel scroll one line.
+     - Lyrics toggle next to the mixer button, on by default and kept in settings (`lyricsOn`); disabled for songs without lyrics. The header no longer reserves a lyrics block.
+   - `inspect-song` has a `## Lyrics` section (counts only) and the `preprocess-song` skill reports the lyrics source.
+   - Tests: 162 unit tests (`lyrics.test.ts`, pipeline lyrics tests on Creep, Killing in the Name and Bombtrack, keys); 17 Playwright tests, including the lyrics view following playback, the toggle kept after reload, and a song without lyrics. Checked in the preview for Creep, Killing in the Name, and temporary placeholder unsynced lyrics on Vortex Surfer (removed).
+
 ## Next
 
-- YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016), step 6: **on hold (owner, 2026-09-30)**. Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020).
+- YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016), step 6: **on hold (owner, 2026-09-30)**. Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020). Show the lyrics as the design's subtitle band over the video (ADR-0024).
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
 - Still in `music/`: the `Vortex Surfer` retranscription (236 bars against the fixture's 243, with an MP3), on hold by the owner.
 
@@ -129,6 +143,12 @@ Open points from slice 1 (not blocking):
 - Review ADR-0023 (repeat unrolling, played bar numbers). Look at Freedom's chunks and `notes`:
   - the Outro riff is 14 bars, split 7 + 7;
   - the official video may have extra footage (the Topic upload is `7pAr6B7fqyM`).
+- Review ADR-0024 (lyrics) and try the lyrics view in a normal browser:
+  - Does the lit word land on the singing with Music? It uses the same clock as the tab ring.
+  - Line breaks in Killing in the Name and Bulls on Parade are cut by timing. They can be fixed by adding line breaks to the lyrics text in the `.gp` file, or with `lyrics.text` and `lyrics.source: text`.
+  - Is a two-beat read-ahead right, and is the 300 ms glide pleasant?
+  - Skim the pasted `lyrics.text` of the 7 unsynced songs. They are kept as supplied, only the titles and web-page leftovers were dropped (e.g. The Wheel's "and" line lost its leading space).
+  - The lyrics toggle is now never disabled, since every song has lyrics; the e2e test covers the unsynced view on Bombtrack instead.
 - Look at the chord view (stacked tab rows) in a normal browser: Killing in the Name bars 1–4, the Bombtrack power chords, and the Bulls on Parade dead-note chords. The design artboards have no chord view yet, so the owner may want to add one.
 - Skim the new songs' `notes` for the by-ear doubts, for example:
   - The Wheel is 18:55 in the score against 16:58 on the record;

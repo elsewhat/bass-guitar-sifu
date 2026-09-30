@@ -4162,5 +4162,42 @@
       "offsetMs": 20
     }
   },
-  "tempoNote": null
+  "tempoNote": null,
+  "lyrics": {
+    "synced": false,
+    "source": "song.yaml",
+    "lines": [
+      {"text":"There she goes- away out of the garden","section":null,"gap":false,"words":[]},
+      {"text":"it’ll never be the same-she’s never going back again","section":null,"gap":false,"words":[]},
+      {"text":"kissed by worm- touched beyond emotions","section":null,"gap":false,"words":[]},
+      {"text":"she’ll never feel the same-she’ll never feel like that again","section":null,"gap":false,"words":[]},
+      {"text":"lock the gate -close that off forever","section":null,"gap":false,"words":[]},
+      {"text":"it’ll never be the same again","section":null,"gap":false,"words":[]},
+      {"text":"I know -I felt - I lived in that hell","section":null,"gap":false,"words":[]},
+      {"text":"and it hurts -just a little bit more","section":null,"gap":false,"words":[]},
+      {"text":"every time you peek through that door","section":null,"gap":false,"words":[]},
+      {"text":"dug a hole saw your long hated face in it","section":null,"gap":true,"words":[]},
+      {"text":"she’s never coming back you might as well face it","section":null,"gap":false,"words":[]},
+      {"text":"now.....now.....now.....now","section":null,"gap":false,"words":[]},
+      {"text":"bird has flown it’s eggs are cold and rotting","section":null,"gap":false,"words":[]},
+      {"text":"feeling like your soul’s dying ,dead & cold","section":null,"gap":false,"words":[]},
+      {"text":"put on your travelling boots & start walking","section":null,"gap":false,"words":[]},
+      {"text":"that dirtroad- its mud and its tiretracks","section":null,"gap":false,"words":[]},
+      {"text":"is as long as a lifetime in these parts","section":null,"gap":false,"words":[]},
+      {"text":"as the rain pours down,as the rain pours down","section":null,"gap":false,"words":[]},
+      {"text":"your hair is so wet you could scrub floors with it","section":null,"gap":false,"words":[]},
+      {"text":".....well,he did--he did---","section":null,"gap":false,"words":[]},
+      {"text":"that’s all you’re gonna get all yre gonna get all get yre gonna get","section":null,"gap":true,"words":[]},
+      {"text":"get all........... this is all you’re gonna get all yre gonna get all","section":null,"gap":false,"words":[]},
+      {"text":"youre getalllllllllll..................... I’ve taken more than","section":null,"gap":false,"words":[]},
+      {"text":"enough already,thank you--------more than enough enough","section":null,"gap":false,"words":[]},
+      {"text":"and","section":null,"gap":false,"words":[]},
+      {"text":"I’d really like to touch you ,but not in that way not in that way way","section":null,"gap":true,"words":[]},
+      {"text":"that not at all...... there’s no way out theres no way out no way out","section":null,"gap":false,"words":[]},
+      {"text":"way out out no way no way out no way","section":null,"gap":false,"words":[]},
+      {"text":"out......................................................","section":null,"gap":true,"words":[]},
+      {"text":"....................................but","section":null,"gap":false,"words":[]},
+      {"text":"I still love you","section":null,"gap":false,"words":[]}
+    ]
+  }
 }

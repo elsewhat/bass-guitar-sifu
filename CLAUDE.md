@@ -28,7 +28,7 @@ Read these before starting any task:
 
 ```
 songs/<slug>/score.gp        Guitar Pro source (do not modify)
-songs/<slug>/song.yaml       Sidecar: metadata, chunks, media + sync, overrides (ADR-0013)
+songs/<slug>/song.yaml       Sidecar: metadata, chunks, media + sync, overrides, unsynced lyrics (ADR-0013, ADR-0024)
 songs/<slug>/audio.mp3       Optional MP3 rendered from the transcription: the Music source (ADR-0022)
 music/                       Inbox for new .gp files (+ rendered .mp3); processed by /preprocess-song (ADR-0015)
 schemas/song.schema.json     Sidecar schema (validates the parsed YAML)
@@ -63,10 +63,10 @@ Drop `Artist-Title-MM-DD-YYYY.gp` into `music/` and run `/preprocess-song`. See 
 
 - No backend and no runtime secrets. Everything is static files.
 - Data URLs are relative to `import.meta.env.BASE_URL`. The Pages base path is `/bass-guitar-sifu/`.
-- Never store lyrics text or downloaded audio or video in the repository (ADR-0011). Audio rendered from the transcription is the exception (ADR-0022).
+- Never store downloaded audio or video in the repository (ADR-0011). Audio rendered from the transcription is the exception (ADR-0022). Lyrics may be stored: from the `.gp` vocal track or `lyrics.text` in `song.yaml` (ADR-0024).
 - After changing `song.yaml` or any algorithm in `src/core/`, run `npm run build:songs` and commit `public/data/`.
 - Playback position is not React state. Per-frame updates go through the clock subscription and `requestAnimationFrame` (ADR-0002, ADR-0008).
 - String colours come only from the `--string-1..4` variables (ADR-0009). The green accent is for play, loop and current-chunk markers only.
 - The UI targets 1440 × 900 in full-screen mode and must work from 1280 px wide. No page scrolling.
-- Algorithms (tacet, draft chunks, fingering, sync interpolation) are pure functions in `src/core/` with unit tests. `reference/vortex-surfer-chunks.json` is the acceptance fixture.
+- Algorithms (tacet, draft chunks, fingering, sync interpolation, lyric lines) are pure functions in `src/core/` with unit tests. `reference/vortex-surfer-chunks.json` is the acceptance fixture.
 - Keep ADRs current. Add a new numbered ADR for each significant decision.

@@ -60,6 +60,30 @@ export interface MusicMedia {
   offsetMs: number;
 }
 
+/** A sung word: its syllables joined, from the first syllable's start to the last one's end (absolute ticks). */
+export interface LyricWord {
+  text: string;
+  start: number;
+  end: number;
+}
+
+export interface LyricLine {
+  text: string;
+  section: string | null; // "[Chorus]" comment above the line, without the brackets
+  gap: boolean; // blank line (stanza break) before the line
+  words: LyricWord[]; // empty when the lyrics are not synced
+}
+
+/**
+ * Lyrics (ADR-0024). Synced lyrics come from the vocal track of the Guitar Pro file, one tick per
+ * syllable; unsynced lyrics come from `lyrics.text` in song.yaml and have no timing.
+ */
+export interface SongLyrics {
+  synced: boolean;
+  source: string; // vocal track name, or "song.yaml"
+  lines: LyricLine[];
+}
+
 export interface SongStats {
   durationSec: number;
   noteCount: number; // plucks (tie continuations excluded)
@@ -85,6 +109,8 @@ export interface SongData {
   stats: SongStats;
   media: { youtube: YouTubeMedia | null; music: MusicMedia | null };
   tempoNote: string | null;
+  /** Absent when the song has no lyrics (ADR-0024). */
+  lyrics?: SongLyrics;
   /**
    * Only for scores with repeats (ADR-0023): the written bar index (0-based) of each played bar.
    * Bars, events and chunks count played bars; the strip unrolls the .gp with this order.

@@ -940,5 +940,49 @@
       "offsetMs": 0
     }
   },
-  "tempoNote": null
+  "tempoNote": null,
+  "lyrics": {
+    "synced": true,
+    "source": "Kurt Cobain | Neumann U67 | Lead Vocals",
+    "lines": [
+      {"text":"Come, as you are,","section":null,"gap":false,"words":[{"text":"Come,","start":32640,"end":33600},{"text":"as","start":34560,"end":35520},{"text":"you","start":35520,"end":36000},{"text":"are,","start":36000,"end":36480}]},
+      {"text":"As you were,","section":null,"gap":false,"words":[{"text":"As","start":36480,"end":36960},{"text":"you","start":38400,"end":39360},{"text":"were,","start":39360,"end":39840}]},
+      {"text":"As I wa(a)nt you to be","section":null,"gap":false,"words":[{"text":"As","start":39840,"end":40320},{"text":"I","start":40320,"end":41280},{"text":"wa(a)nt","start":42240,"end":44160},{"text":"you","start":43680,"end":45120},{"text":"to","start":45120,"end":45600},{"text":"be","start":45600,"end":46080}]},
+      {"text":"As a friend,","section":null,"gap":false,"words":[{"text":"As","start":46080,"end":47040},{"text":"a","start":47040,"end":47520},{"text":"friend,","start":47520,"end":48000}]},
+      {"text":"As a friend,","section":null,"gap":false,"words":[{"text":"As","start":48000,"end":48480},{"text":"a","start":49920,"end":50880},{"text":"friend,","start":50880,"end":51360}]},
+      {"text":"As an o(o)ld e(e)nemy","section":null,"gap":false,"words":[{"text":"As","start":51360,"end":51840},{"text":"an","start":51840,"end":52320},{"text":"o(o)ld","start":53760,"end":55680},{"text":"e(e)nemy","start":55200,"end":59040}]},
+      {"text":"Take your time,","section":null,"gap":false,"words":[{"text":"Take","start":59040,"end":59520},{"text":"your","start":59520,"end":60480},{"text":"time,","start":60480,"end":60960}]},
+      {"text":"Hurry up,","section":null,"gap":false,"words":[{"text":"Hurry","start":60960,"end":62400},{"text":"up,","start":62400,"end":62880}]},
+      {"text":"Choice is yours, don't be late","section":null,"gap":false,"words":[{"text":"Choice","start":62880,"end":63360},{"text":"is","start":63360,"end":63840},{"text":"yours,","start":65280,"end":66720},{"text":"don't","start":66720,"end":67680},{"text":"be","start":69120,"end":70080},{"text":"late","start":70080,"end":70560}]},
+      {"text":"Take a rest,","section":null,"gap":false,"words":[{"text":"Take","start":70560,"end":71040},{"text":"a","start":71040,"end":71520},{"text":"rest,","start":72960,"end":73440}]},
+      {"text":"As a friend,","section":null,"gap":false,"words":[{"text":"As","start":73440,"end":74400},{"text":"a","start":74400,"end":74880},{"text":"friend,","start":74880,"end":75840}]},
+      {"text":"As an o(o)ld me(e)mori(i)(i)a","section":null,"gap":false,"words":[{"text":"As","start":75840,"end":76320},{"text":"an","start":76320,"end":76800},{"text":"o(o)ld","start":76800,"end":78720},{"text":"me(e)mori(i)(i)a","start":78240,"end":85440}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":true,"words":[{"text":"Memori(i)(i)a","start":85440,"end":90240}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":90240,"end":94080}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":94080,"end":98880}]},
+      {"text":"Come, doused in mud,","section":null,"gap":true,"words":[{"text":"Come,","start":99840,"end":100800},{"text":"doused","start":100800,"end":101280},{"text":"in","start":101280,"end":101760},{"text":"mud,","start":101760,"end":103680}]},
+      {"text":"Soaked in bleach,","section":null,"gap":false,"words":[{"text":"Soaked","start":103680,"end":104160},{"text":"in","start":104160,"end":104640},{"text":"bleach,","start":104640,"end":105120}]},
+      {"text":"As I wa(a)nt you to be","section":null,"gap":false,"words":[{"text":"As","start":105120,"end":105600},{"text":"I","start":105600,"end":106560},{"text":"wa(a)nt","start":107520,"end":109440},{"text":"you","start":108960,"end":111360},{"text":"to","start":111360,"end":111840},{"text":"be","start":111840,"end":112320}]},
+      {"text":"As a trend,","section":null,"gap":false,"words":[{"text":"As","start":112320,"end":112800},{"text":"a","start":112800,"end":113280},{"text":"trend,","start":113280,"end":114240}]},
+      {"text":"As a friend,","section":null,"gap":false,"words":[{"text":"As","start":115200,"end":116160},{"text":"a","start":116160,"end":116640},{"text":"friend,","start":116640,"end":117120}]},
+      {"text":"As an o(o)ld me(e)mori(i)(i)a","section":null,"gap":false,"words":[{"text":"As","start":117120,"end":119040},{"text":"an","start":119040,"end":119520},{"text":"o(o)ld","start":119520,"end":120960},{"text":"me(e)mori(i)(i)a","start":120480,"end":129120}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":true,"words":[{"text":"Memori(i)(i)a","start":130560,"end":135840}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":135840,"end":139680}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":139680,"end":144480}]},
+      {"text":"Well, I swear that I don't have a gu(u)n","section":null,"gap":true,"words":[{"text":"Well,","start":145920,"end":146880},{"text":"I","start":146880,"end":147360},{"text":"swear","start":147360,"end":147840},{"text":"that","start":147840,"end":148320},{"text":"I","start":149760,"end":150240},{"text":"don't","start":150240,"end":151680},{"text":"have","start":151680,"end":152640},{"text":"a","start":152640,"end":153120},{"text":"gu(u)n","start":153120,"end":154560}]},
+      {"text":"No, I don't have a gu(u)n","section":null,"gap":false,"words":[{"text":"No,","start":154560,"end":155040},{"text":"I","start":155040,"end":155520},{"text":"don't","start":155520,"end":157920},{"text":"have","start":157920,"end":158400},{"text":"a","start":158400,"end":158880},{"text":"gu(u)n","start":158880,"end":160320}]},
+      {"text":"No, I don't have a gu(u)n","section":null,"gap":false,"words":[{"text":"No,","start":161280,"end":162240},{"text":"I","start":162240,"end":162720},{"text":"don't","start":162720,"end":165120},{"text":"have","start":165120,"end":165600},{"text":"a","start":165600,"end":166080},{"text":"gu(u)n","start":166080,"end":167040}]},
+      {"text":"Ri(i)(i)a","section":null,"gap":true,"words":[{"text":"Ri(i)(i)a","start":167040,"end":170880}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":170880,"end":175680}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":176640,"end":181440}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":181440,"end":190080}]},
+      {"text":"Well, I swear that I don't have a gu(u)n","section":null,"gap":true,"words":[{"text":"Well,","start":190080,"end":191040},{"text":"I","start":191040,"end":191520},{"text":"swear","start":191520,"end":192000},{"text":"that","start":192000,"end":192480},{"text":"I","start":192480,"end":192960},{"text":"don't","start":192960,"end":194400},{"text":"have","start":194400,"end":195360},{"text":"a","start":195360,"end":195840},{"text":"gu(u)n","start":195840,"end":196800}]},
+      {"text":"No, I don't have a gu(u)n","section":null,"gap":false,"words":[{"text":"No,","start":196800,"end":197760},{"text":"I","start":199680,"end":200160},{"text":"don't","start":200160,"end":201600},{"text":"have","start":201600,"end":202560},{"text":"a","start":202560,"end":203040},{"text":"gu(u)n","start":203040,"end":204000}]},
+      {"text":"No, I don't have a gu(u)n","section":null,"gap":false,"words":[{"text":"No,","start":204000,"end":204480},{"text":"I","start":204480,"end":205440},{"text":"don't","start":207360,"end":208800},{"text":"have","start":208800,"end":209280},{"text":"a","start":209280,"end":210240},{"text":"gu(u)n","start":210240,"end":211200}]},
+      {"text":"No, I don't have a gu(u)n","section":null,"gap":false,"words":[{"text":"No,","start":211200,"end":211680},{"text":"I","start":211680,"end":212160},{"text":"don't","start":212160,"end":295680},{"text":"have","start":295680,"end":296160},{"text":"a","start":296160,"end":296640},{"text":"gu(u)n","start":296640,"end":297600}]},
+      {"text":"No, I don't have a gu(u)n","section":null,"gap":false,"words":[{"text":"No,","start":297600,"end":298560},{"text":"I","start":299520,"end":300480},{"text":"don't","start":300480,"end":301440},{"text":"have","start":301440,"end":303360},{"text":"a","start":303360,"end":303840},{"text":"gu(u)n","start":303840,"end":304800}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":true,"words":[{"text":"Memori(i)(i)a","start":304800,"end":311040}]},
+      {"text":"Memori(i)(i)a","section":null,"gap":false,"words":[{"text":"Memori(i)(i)a","start":311040,"end":323520}]}
+    ]
+  }
 }

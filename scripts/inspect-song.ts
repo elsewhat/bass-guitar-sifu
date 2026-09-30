@@ -12,7 +12,9 @@ import { scoreDurationSeconds, tempoLookup } from '../src/core/timing';
 import { pitchName, stringNames, tuningName } from '../src/core/tuning';
 import { orderSegments } from '../src/core/unroll-score';
 import { analyseMp3, measureOffset, REFINE_SECONDS, scoreOnsetTicks } from './lib/audio-align';
+import { syncedLyrics } from '../src/core/lyrics';
 import { describeTracks, importBassTrack, loadScore, pickBassTrack, playOrderOf } from './lib/gp-import';
+import { gpLyricsTexts, lyricSyllables, pickLyricsTrack } from './lib/gp-lyrics';
 import { loadSidecar } from './lib/sidecar';
 
 const { values, positionals } = parseArgs({ allowPositionals: true, options: { track: { type: 'string' }, audio: { type: 'string' } } });
@@ -78,6 +80,18 @@ for (const e of events) if (e.kind === 'note') durations.set(e.dur, (durations.g
 line(`Note lengths (ticks at 960/quarter → count): ${[...durations.entries()].sort((a, b) => b[1] - a[1]).slice(0, 8).map(([d, c]) => `${d}→${c}`).join(' ')}`);
 line(`Tacet ranges: ${tacet.map(([a, b]) => (a === b ? `${a}` : `${a}–${b}`)).join(', ') || 'none'}`);
 line(`Playable ranges: ${playableRanges(bars.length, tacet).map(([a, b]) => `${a}–${b}`).join(', ')}`);
+line();
+
+// ADR-0024: counts only; the lyrics themselves are not printed.
+line('## Lyrics');
+const vocal = pickLyricsTrack(score, sidecar?.lyrics?.track);
+const syllables = vocal ? lyricSyllables(score, vocal.index) : [];
+if (vocal && syllables.length) {
+  const { lines, fromText } = syncedLyrics(syllables, gpLyricsTexts(file)[vocal.index] || null);
+  const firstBar = bars.findLast((b) => b.startTick <= syllables[0]!.start)!.n;
+  line(`Synced from [${vocal.index}] ${JSON.stringify(vocal.name)}: ${syllables.length} syllables, ${lines.length} lines from bar ${firstBar}`);
+  line(`  Lines: ${fromText ? 'from the lyrics text in the file' : 'cut at rests, sentence ends and capitals (the text has no line breaks or does not match)'}`);
+} else line(`No vocal track with lyrics. lyrics.text in song.yaml: ${sidecar?.lyrics?.text?.trim() ? 'present (unsynced)' : 'none'}`);
 line();
 
 line('## Bar patterns (same letter = identical bass content by pitch and rhythm, "." = tacet)');

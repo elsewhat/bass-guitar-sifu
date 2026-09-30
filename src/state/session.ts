@@ -48,6 +48,8 @@ export interface SessionState extends LoopState {
   /** Whether the recorded count samples exist; null until checked. */
   voiceSamples: boolean | null;
   mixerOpen: boolean;
+  /** Lyrics view in the video cell, for songs with lyrics (ADR-0024). */
+  lyricsOn: boolean;
   libraryOpen: boolean;
   catalog: CatalogEntry[];
   song: SongData | null;
@@ -68,6 +70,7 @@ export const useSession = create<SessionState>()((set) => ({
   synthTracks: [],
   voiceSamples: null,
   mixerOpen: false,
+  lyricsOn: settings.lyricsOn ?? true,
   libraryOpen: false,
   catalog: [],
   song: null,

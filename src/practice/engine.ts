@@ -254,6 +254,29 @@ export function openMixer(open: boolean) {
   useSession.setState({ mixerOpen: open });
 }
 
+// ------------------------------------------------------------------ lyrics (ADR-0024)
+
+export function toggleLyrics() {
+  const lyricsOn = !state().lyricsOn;
+  useSession.setState({ lyricsOn });
+  saveSettings({ lyricsOn });
+}
+
+let lyricsScroller: ((direction: 1 | -1) => void) | null = null;
+
+/** The unsynced lyrics view registers its scroll here while it is shown; returns the unregister. */
+export function onLyricsScroll(scroll: (direction: 1 | -1) => void): () => void {
+  lyricsScroller = scroll;
+  return () => {
+    if (lyricsScroller === scroll) lyricsScroller = null;
+  };
+}
+
+/** ↑ / ↓: one line up or down in unsynced lyrics; synced lyrics scroll by themselves. */
+export function scrollLyrics(direction: 1 | -1) {
+  lyricsScroller?.(direction);
+}
+
 // ------------------------------------------------------------------ song library (§4)
 
 export function openLibrary(open: boolean) {

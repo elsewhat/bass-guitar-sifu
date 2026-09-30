@@ -40,12 +40,15 @@ export interface Settings {
   repeatMode: RepeatMode;
   /** Master, YouTube, Music and Metronome channels (ADR-0020, ADR-0022). */
   mixer: GlobalMix;
+  /** Lyrics shown in the video cell when the song has them (ADR-0024). */
+  lyricsOn: boolean;
 }
 
 export function loadSettings(): Partial<Settings> {
   const raw = readKey('settings');
   const out: Partial<Settings> = {};
   if (REPEAT_MODES.includes(raw.repeatMode as RepeatMode)) out.repeatMode = raw.repeatMode as RepeatMode;
+  if (typeof raw.lyricsOn === 'boolean') out.lyricsOn = raw.lyricsOn;
   if (isObject(raw.mixer)) {
     const m = raw.mixer;
     out.mixer = {

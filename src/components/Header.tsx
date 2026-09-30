@@ -28,7 +28,7 @@ export function Header() {
           {song && <div className="text-subdued text-xs leading-snug whitespace-nowrap">{headMeta(song)}</div>}
         </div>
       </div>
-      {/* Lyrics block stays empty without a licensed provider (ADR-0011). */}
+      {/* Lyrics are shown in the video cell, not here (ADR-0024). */}
       <div aria-hidden="true" />
       <div className="flex items-center gap-2.5">
         <SongsButton />

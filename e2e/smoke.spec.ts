@@ -296,6 +296,54 @@ test('a score with repeats plays in played bars (Freedom, ADR-0023)', async ({ p
   await page.getByRole('button', { name: 'Pause' }).click();
 });
 
+test('synced lyrics fill the video cell, follow the playhead and can be hidden (ADR-0024)', async ({ page }) => {
+  await openSong(page, 'creep');
+  const video = page.getByRole('region', { name: 'Video' });
+  const lyrics = page.getByTestId('lyrics');
+  const toggle = video.getByRole('button', { name: 'Lyrics' });
+  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
+  await expect(lyrics).toHaveAttribute('data-synced', 'true');
+  await expect(lyrics.getByText('Lyrics · synced to the vocal track')).toBeVisible();
+  // Only the key info of the source stays: one row with small count cells.
+  await expect(video.getByText('Audio count')).toBeVisible();
+  expect((await page.getByTestId('count-cells').locator('div').first().boundingBox())?.height).toBe(26);
+
+  // Bars 9–12: the current line is the one being sung, and it has sung words.
+  const current = lyrics.locator('.lyrics-line[data-pos=current]');
+  const sung = current.locator('[data-w=sung], [data-w=now]');
+  await page.getByRole('button', { name: 'Chunk 3, Verse 1 a, bars 9–12' }).click();
+  await expect(current).toHaveCount(1);
+  await expect.poll(() => sung.count()).toBeGreaterThan(0);
+  const lineAt = () => lyrics.locator('.lyrics-line').evaluateAll((rows) => rows.findIndex((r) => (r as HTMLElement).dataset.pos === 'current'));
+  const first = await lineAt();
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await expect.poll(lineAt, { timeout: 10_000 }).toBeGreaterThan(first); // scrolls on by itself
+  await page.getByRole('button', { name: 'Pause' }).click();
+
+  // Hidden: the large count cells come back, and the choice is kept.
+  await toggle.click();
+  await expect(lyrics).toBeHidden();
+  expect((await page.getByTestId('count-cells').locator('div').first().boundingBox())?.height).toBe(76);
+  await page.reload();
+  await expect(video.getByRole('button', { name: 'Lyrics' })).toHaveAttribute('aria-pressed', 'false');
+  await expect(lyrics).toBeHidden();
+  await video.getByRole('button', { name: 'Lyrics' }).click();
+  await expect(lyrics).toBeVisible();
+
+  // Unsynced lyrics (lyrics.text in song.yaml): no highlight, ↑ ↓ move one line.
+  await openSong(page, 'bombtrack');
+  await expect(lyrics).toHaveAttribute('data-synced', 'false');
+  await expect(lyrics.getByText('Lyrics · not synced · ↑ ↓ to scroll')).toBeVisible();
+  const top = lyrics.locator('[data-top]');
+  await expect(top).toHaveAttribute('data-top', '0');
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('ArrowDown');
+  await expect(top).toHaveAttribute('data-top', '2');
+  await page.keyboard.press('ArrowUp');
+  await expect(top).toHaveAttribute('data-top', '1');
+  await expect(lyrics.locator('[data-w]')).toHaveCount(0);
+});
+
 test('notes are within 15 px of the playhead when plucked, with four notes to its left', async ({ page }) => {
   await openSong(page); // 100 %, the fastest tempo: crosses barlines sooner
   await page.getByRole('button', { name: 'Play', exact: true }).click();

@@ -1463,5 +1463,25 @@
       "offsetMs": 20
     }
   },
-  "tempoNote": null
+  "tempoNote": null,
+  "lyrics": {
+    "synced": false,
+    "source": "song.yaml",
+    "lines": [
+      {"text":"Don't break the illusion","section":null,"gap":false,"words":[]},
+      {"text":"I love you the way I dream of you","section":null,"gap":false,"words":[]},
+      {"text":"I don't want to know","section":null,"gap":false,"words":[]},
+      {"text":"I'm happily guessing like dreamers do","section":null,"gap":false,"words":[]},
+      {"text":"By keeping me blind, funny valentine","section":null,"gap":true,"words":[]},
+      {"text":"You show me who I am","section":null,"gap":false,"words":[]},
+      {"text":"And make me like what you see","section":null,"gap":false,"words":[]},
+      {"text":"When you look at me","section":null,"gap":false,"words":[]},
+      {"text":"If knowledge is secret","section":null,"gap":true,"words":[]},
+      {"text":"I won't say you shared it and break my oath","section":null,"gap":false,"words":[]},
+      {"text":"But bridging the gap","section":null,"gap":false,"words":[]},
+      {"text":"And drawing some stupid map may hurt us both","section":null,"gap":false,"words":[]},
+      {"text":"I won't leave no message, I'll just shut my mouth","section":null,"gap":true,"words":[]},
+      {"text":"And keep dreaming golden dreams...","section":null,"gap":false,"words":[]}
+    ]
+  }
 }

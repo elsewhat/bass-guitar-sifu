@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import { goNextChunk, goPrevChunk, stepTempo, togglePlay } from '../practice/engine';
+import { goNextChunk, goPrevChunk, scrollLyrics, stepTempo, togglePlay } from '../practice/engine';
 import { keyAction, type KeyAction } from '../practice/keys';
 import { useSession } from '../state/session';
 
-// Global transport shortcuts: Space play/pause, ← → chunks, + − tempo (system description §3.4).
+// Global transport shortcuts: Space play/pause, ← → chunks, + − tempo, ↑ ↓ unsynced lyrics
+// (system description §3.4).
 // Off while a dialog is open or a form field has focus (library search, mixer sliders).
 
 const RUN: Record<KeyAction, () => void> = {
@@ -12,6 +13,8 @@ const RUN: Record<KeyAction, () => void> = {
   next: goNextChunk,
   faster: () => stepTempo(1),
   slower: () => stepTempo(-1),
+  lyricsUp: () => scrollLyrics(-1),
+  lyricsDown: () => scrollLyrics(1),
 };
 
 function isField(target: EventTarget | null): boolean {

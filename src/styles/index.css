@@ -44,3 +44,19 @@ body,
   color: var(--color-text-base);
   font-family: var(--font-ui);
 }
+
+/* Lyrics view (ADR-0024; design/artboards/Main.dc.html, lyricsFull). Synced: the current line is
+   large with the sung word lit, the next line medium, the others small and dim; src/components/
+   Lyrics.tsx sets data-pos per line and data-w per word. Unsynced: every line alike (data-pos=plain). */
+.lyrics-line { margin-bottom: 10px; font-size: 16px; line-height: 1.4; color: var(--color-border-muted); }
+.lyrics-line[data-gap='true'] { margin-top: 16px; }
+.lyrics-line .section { font-size: 12px; line-height: 1.4; font-weight: 700; color: var(--color-border-muted); }
+.lyrics-line .text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.lyrics-line [data-w] { margin: 0 -3px; padding: 0 5px; border-radius: 6px; }
+.lyrics-line[data-pos='next'] { font-size: 20px; font-weight: 700; color: var(--color-text-subdued); }
+.lyrics-line[data-pos='current'] { font-size: 30px; line-height: 1.25; font-weight: 800; }
+.lyrics-line[data-pos='current'] .text { white-space: normal; }
+.lyrics-line[data-pos='current'] [data-w='sung'] { color: #ffffff; }
+.lyrics-line[data-pos='current'] [data-w='now'] { background: #ffffff; color: #000000; }
+.lyrics-line[data-pos='plain'] { font-size: 20px; font-weight: 700; color: #ffffff; }
+.lyrics-line[data-pos='plain'] .text { white-space: normal; }

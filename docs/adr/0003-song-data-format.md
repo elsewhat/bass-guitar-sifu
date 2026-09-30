@@ -1,6 +1,6 @@
 # ADR-0003: Song data format
 
-Status: Accepted, sidecar part superseded by ADR-0013
+Status: Accepted, sidecar part superseded by ADR-0013, amended by ADR-0023 and ADR-0024 (`lyrics`)
 Date: 2026-09-28
 
 ## Context

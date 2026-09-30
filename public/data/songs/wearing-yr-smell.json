@@ -967,5 +967,33 @@
       "offsetMs": 0
     }
   },
-  "tempoNote": null
+  "tempoNote": null,
+  "lyrics": {
+    "synced": false,
+    "source": "song.yaml",
+    "lines": [
+      {"text":"you took my hand in yours","section":null,"gap":false,"words":[]},
+      {"text":"fed me lies and locked the doors","section":null,"gap":false,"words":[]},
+      {"text":"showed me truths I never saw","section":null,"gap":false,"words":[]},
+      {"text":"I can’t belive them anymore","section":null,"gap":false,"words":[]},
+      {"text":"now I’m looking through you","section":null,"gap":false,"words":[]},
+      {"text":"oh,yeah..","section":null,"gap":false,"words":[]},
+      {"text":"you suck the will from my soul","section":null,"gap":true,"words":[]},
+      {"text":"leave me naked in the cold","section":null,"gap":false,"words":[]},
+      {"text":"tie the noose around my neck","section":null,"gap":false,"words":[]},
+      {"text":"can’t yousee I’m not dead yet","section":null,"gap":false,"words":[]},
+      {"text":"but I’m working on it","section":null,"gap":false,"words":[]},
+      {"text":"wearing yr smell","section":null,"gap":false,"words":[]},
+      {"text":"fading from myself","section":null,"gap":true,"words":[]},
+      {"text":"feeling sorry for myself","section":null,"gap":false,"words":[]},
+      {"text":"feeding the pity inside","section":null,"gap":false,"words":[]},
+      {"text":"the pathetic feelings I should hide","section":null,"gap":false,"words":[]},
+      {"text":"but I’m thriving on it","section":null,"gap":false,"words":[]},
+      {"text":"yes,I’m thriving on it","section":null,"gap":false,"words":[]},
+      {"text":"wearing yr smell","section":null,"gap":false,"words":[]},
+      {"text":"fadeing","section":null,"gap":true,"words":[]},
+      {"text":"feeling","section":null,"gap":false,"words":[]},
+      {"text":"feeding","section":null,"gap":false,"words":[]}
+    ]
+  }
 }

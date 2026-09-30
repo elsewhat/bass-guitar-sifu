@@ -1135,5 +1135,36 @@
     },
     "music": null
   },
-  "tempoNote": null
+  "tempoNote": null,
+  "lyrics": {
+    "synced": false,
+    "source": "song.yaml",
+    "lines": [
+      {"text":"And if she said so","section":null,"gap":false,"words":[]},
+      {"text":"That would change it all","section":null,"gap":false,"words":[]},
+      {"text":"If she said so","section":null,"gap":false,"words":[]},
+      {"text":"I would cushion her fall","section":null,"gap":false,"words":[]},
+      {"text":"And if it felt right,","section":null,"gap":false,"words":[]},
+      {"text":"She'd let me know the plan","section":null,"gap":false,"words":[]},
+      {"text":"Take my hand","section":null,"gap":false,"words":[]},
+      {"text":"And explain to me so i could understand","section":null,"gap":false,"words":[]},
+      {"text":"Why she said so","section":null,"gap":false,"words":[]},
+      {"text":"If she said so","section":null,"gap":true,"words":[]},
+      {"text":"It would be too much like death","section":null,"gap":false,"words":[]},
+      {"text":"If she said so","section":null,"gap":false,"words":[]},
+      {"text":"I would eat her breath","section":null,"gap":false,"words":[]},
+      {"text":"If she said so","section":null,"gap":false,"words":[]},
+      {"text":"I'd know all the lies","section":null,"gap":false,"words":[]},
+      {"text":"But i'd wipe out white","section":null,"gap":false,"words":[]},
+      {"text":"And never even ask the reason why","section":null,"gap":false,"words":[]},
+      {"text":"She said so","section":null,"gap":false,"words":[]},
+      {"text":"And never end","section":null,"gap":true,"words":[]},
+      {"text":"Go back to start","section":null,"gap":false,"words":[]},
+      {"text":"And never say","section":null,"gap":false,"words":[]},
+      {"text":"When i fall apart","section":null,"gap":false,"words":[]},
+      {"text":"And never stoop","section":null,"gap":false,"words":[]},
+      {"text":"To complain","section":null,"gap":false,"words":[]},
+      {"text":"About the pain","section":null,"gap":false,"words":[]}
+    ]
+  }
 }

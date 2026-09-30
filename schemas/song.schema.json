@@ -83,6 +83,19 @@
         }
       }
     },
+    "lyrics": {
+      "description": "Lyrics (ADR-0024). By default the vocal track of score.gp gives synced lyrics, else `text` gives unsynced ones.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": { "enum": ["score", "text", "none"], "description": "score: only the Guitar Pro vocal track; text: only `text`; none: no lyrics." },
+        "text": { "type": "string", "description": "Unsynced lyrics as a YAML block scalar (`text: |`): one line per lyric line, blank lines between stanzas, `[Chorus]` lines as section labels." },
+        "track": {
+          "description": "Track name or zero-based index of the vocal track. Default: the track with the most sung syllables.",
+          "oneOf": [{ "type": "string" }, { "type": "integer", "minimum": 0 }]
+        }
+      }
+    },
     "notes": { "type": "string", "description": "Review notes from the skill or the owner." }
   },
   "$defs": {

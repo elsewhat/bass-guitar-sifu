@@ -3,10 +3,12 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { findTacet } from '../../src/core/chunks';
 import { chunkPositions, solveFingering } from '../../src/core/fingering';
-import type { BeatEvent, CatalogEntry, Chunk, ImportedSong, SongData, SongStats } from '../../src/core/model';
+import { parseLyricsText, syncedLyrics } from '../../src/core/lyrics';
+import type { BeatEvent, CatalogEntry, Chunk, ImportedSong, SongData, SongLyrics, SongStats } from '../../src/core/model';
 import { scoreDurationSeconds } from '../../src/core/timing';
 import { tuningName } from '../../src/core/tuning';
-import { importBassTrack, loadScore, pickBassTrack } from './gp-import';
+import { importBassTrack, loadScore, pickBassTrack, type Score } from './gp-import';
+import { gpLyricsTexts, lyricSyllables, pickLyricsTrack } from './gp-lyrics';
 import { loadSidecar, type Sidecar } from './sidecar';
 
 export interface BuiltSong {
@@ -22,10 +24,36 @@ export function buildSongFromDir(dir: string, slug: string): BuiltSong {
   const hasAudio = existsSync(join(dir, 'audio.mp3'));
   if (sidecar.media?.music && !hasAudio) throw new Error('media.music is set but audio.mp3 is missing');
   if (hasAudio && !sidecar.media?.music) warnings.push('audio.mp3 exists but media.music is not set; the Music source stays off');
-  return buildSong(slug, imported, sidecar, warnings);
+  const lyrics = loadLyrics(join(dir, 'score.gp'), score, sidecar, warnings);
+  return buildSong(slug, imported, sidecar, warnings, lyrics);
 }
 
-export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar, warnings: string[] = []): BuiltSong {
+/**
+ * Lyrics (ADR-0024): synced from the vocal track of score.gp, else unsynced from `lyrics.text` in
+ * song.yaml. `lyrics.source` limits this to one of them, or turns lyrics off.
+ */
+export function loadLyrics(scoreFile: string, score: Score, sidecar: Sidecar, warnings: string[]): SongLyrics | null {
+  const source = sidecar.lyrics?.source;
+  if (source === 'none') return null;
+  const text = sidecar.lyrics?.text ?? '';
+  const hasText = text.trim() !== '';
+  const track = source === 'text' ? null : pickLyricsTrack(score, sidecar.lyrics?.track);
+  if (track) {
+    const syllables = lyricSyllables(score, track.index);
+    if (syllables.length > 0) {
+      const { lines, fromText } = syncedLyrics(syllables, gpLyricsTexts(scoreFile)[track.index] || null);
+      if (!fromText) warnings.push(`Lyrics: the lyrics text of "${track.name}" gives no line breaks; lines are cut at rests, sentence ends and capitals`);
+      if (hasText) warnings.push('Lyrics: lyrics.text is ignored, the score has synced lyrics (set lyrics.source: text to use it)');
+      return { synced: true, source: track.name, lines };
+    }
+    if (source === 'score' || sidecar.lyrics?.track !== undefined) warnings.push(`Lyrics: track "${track.name}" has no lyrics`);
+  } else if (source === 'score') warnings.push('Lyrics: the score has no lyrics');
+  if (source === 'score' || !hasText) return null;
+  const lines = parseLyricsText(text);
+  return lines.length ? { synced: false, source: 'song.yaml', lines } : null;
+}
+
+export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar, warnings: string[] = [], lyrics: SongLyrics | null = null): BuiltSong {
   const { bars, tuning } = imported;
   const tacet = findTacet(bars, imported.events);
   validateChunks(sidecar.chunks, bars.length, tacet, warnings);
@@ -69,6 +97,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
       music: sidecar.media?.music ? { url: `data/audio/${slug}.mp3`, offsetMs: sidecar.media.music.offsetMs } : null,
     },
     tempoNote: sidecar.tempo?.note ?? null,
+    ...(lyrics ? { lyrics } : {}),
     ...(imported.playOrder ? { playOrder: imported.playOrder } : {}),
   };
   const catalog: CatalogEntry = {

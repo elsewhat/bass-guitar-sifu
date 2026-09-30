@@ -18,6 +18,7 @@ export interface Sidecar {
   };
   chunks: { name: string; bars: [number, number] }[];
   fingeringOverrides?: FingeringOverride[];
+  lyrics?: { source?: 'score' | 'text' | 'none'; track?: string | number; text?: string };
   notes?: string;
 }
 

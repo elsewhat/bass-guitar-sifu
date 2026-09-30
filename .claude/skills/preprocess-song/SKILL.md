@@ -76,6 +76,13 @@ With an MP3, use its tempo to confirm the `tempo.note` (it follows the tempo map
 
 Leave `sync: []`. Sync anchors are tapped in the app's sync editor (ADR-0016), not guessed.
 
+## 4b. Lyrics
+
+Lyrics come from the score (ADR-0024); do not look them up or type them. The report's `## Lyrics` section tells you what the build will use:
+
+- `Synced from [i] "<track>"`: the vocal track with the most sung syllables. If that is a backing-vocals track while the lead also has lyrics, write `lyrics: { track: <lead track name> }`. The build warns when lines are cut by timing because the file's lyrics text has no line breaks; that is fine, mention it in the summary.
+- `No vocal track with lyrics`: the song has no lyrics until the owner pastes them into `song.yaml` as `lyrics.text` (a `text: |` block scalar: one line per lyric line, blank lines between stanzas, `[Chorus]` lines as labels). Do not fetch or write lyrics yourself; they are copyrighted text. Say so in the summary.
+
 ## 5. Chunks
 
 Chunks are what the player loops. The build requires them; the draft in the report is only a starting point.
@@ -130,5 +137,6 @@ Then report to the owner:
 - the chunk list (bars and names) in a compact table,
 - the YouTube video found (title, channel, id) or why none,
 - the Music offset, drift and confidence, or why there is no MP3,
+- lyrics: synced from which track, or none (the owner can paste `lyrics.text` into `song.yaml`),
 - re-tabs and any overrides, with the reason,
 - what to check by ear: tempo interpretation, chunk boundaries you were unsure about, anything the report warned about.

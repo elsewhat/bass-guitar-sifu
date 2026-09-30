@@ -13,9 +13,14 @@ describe('keyAction', () => {
     expect(['-', '_'].map((k) => key(k))).toEqual(['slower', 'slower']);
   });
 
+  it('scrolls the lyrics with the up and down arrows, also when held', () => {
+    expect(key('ArrowUp')).toBe('lyricsUp');
+    expect(key('ArrowDown', { repeat: true })).toBe('lyricsDown');
+  });
+
   it('ignores other keys and modifier combinations', () => {
     expect(key('k')).toBeNull();
-    expect(key('ArrowUp')).toBeNull();
+    expect(key('ArrowUp', { ctrlKey: true })).toBeNull();
     expect(key(' ', { ctrlKey: true })).toBeNull();
     expect(key('+', { metaKey: true })).toBeNull();
     expect(key('ArrowRight', { altKey: true })).toBeNull();

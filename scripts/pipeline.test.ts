@@ -1,11 +1,12 @@
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import * as alphaTab from '@coderline/alphatab';
 import { describe, expect, it } from 'vitest';
 import { draftChunks, findTacet } from '../src/core/chunks';
 import { solveFingering } from '../src/core/fingering';
 import { scoreDurationSeconds } from '../src/core/timing';
 import { stringNames, tuningName } from '../src/core/tuning';
-import { buildSong } from './lib/build';
+import { buildSong, loadLyrics } from './lib/build';
 import { importBassTrack, loadScore, pickBassTrack, unrollRepeats } from './lib/gp-import';
 import { locateGp } from './lib/locate';
 import { parseSidecar } from './lib/sidecar';
@@ -152,6 +153,66 @@ describe('importer edge cases', () => {
   });
 });
 
+describe('lyrics (ADR-0024)', () => {
+  // Counts and positions only: the lyrics text stays in the song files.
+  const sidecarOf = (extra: string[] = []) =>
+    parseSidecar(['title: T', 'artist: A', 'source: { file: a.gp }', 'bassTrack: 1', 'chunks:', '  - { name: X, bars: [1, 4] }', ...extra].join('\n'), 'test');
+  const lyricsOf = (slug: string, extra: string[] = []) => {
+    const warnings: string[] = [];
+    const file = join('songs', slug, 'score.gp');
+    const lyrics = loadLyrics(file, loadScore(file), sidecarOf(extra), warnings);
+    return { lyrics, warnings };
+  };
+  const words = (lines: { words: { start: number; end: number; text: string }[] }[]) => lines.flatMap((l) => l.words);
+
+  it('reads synced lyrics from the lead vocal track, with the lines and sections of its text (Creep)', () => {
+    const { lyrics, warnings } = lyricsOf('creep');
+    expect(warnings).toEqual([]);
+    expect(lyrics).toMatchObject({ synced: true, source: 'Thom Yorke | Vocals' });
+    expect(lyrics!.lines).toHaveLength(44);
+    expect(lyrics!.lines.filter((l) => l.section).length).toBe(7);
+    const all = words(lyrics!.lines);
+    expect(all).toHaveLength(167);
+    expect(all.every((w, i) => w.end > w.start && (i === 0 || w.start >= all[i - 1]!.start))).toBe(true);
+    expect(all.some((w) => /[-+_]$/.test(w.text))).toBe(false); // syllables are joined into words
+    expect(all[0]!.start).toBe(7 * 4 * 960 + 1920); // bar 8, beat 3
+  });
+
+  it('cuts lines at rests and sentence ends when the text has no line breaks (Killing in the Name)', () => {
+    const { lyrics, warnings } = lyricsOf('killing-in-the-name');
+    expect(warnings).toEqual([expect.stringMatching(/no line breaks/)]);
+    expect(lyrics!.source).toBe('Zack de la Rocha | Lead Vocals'); // not the backing vocals
+    expect(Math.max(...lyrics!.lines.map((l) => l.words.length))).toBeLessThanOrEqual(12);
+  });
+
+  it('reads lyrics.text from song.yaml when the score has none, and follows lyrics.source', () => {
+    // Placeholder words; a YAML block scalar as the owner writes it.
+    const text = ['lyrics:', '  text: |', '    [Intro]', '    first line', '', '    second line'];
+    expect(lyricsOf('bombtrack').lyrics).toBeNull();
+    expect(lyricsOf('bombtrack', text).lyrics).toEqual({
+      synced: false,
+      source: 'song.yaml',
+      lines: [
+        { text: 'first line', section: 'Intro', gap: false, words: [] },
+        { text: 'second line', section: null, gap: true, words: [] },
+      ],
+    });
+    expect(lyricsOf('bombtrack', [...text, '  source: none']).lyrics).toBeNull();
+    expect(lyricsOf('bombtrack', [...text, '  source: score'])).toEqual({ lyrics: null, warnings: ['Lyrics: the score has no lyrics'] });
+    // A score with synced lyrics wins over lyrics.text unless the sidecar says otherwise.
+    const creep = lyricsOf('creep', text);
+    expect(creep.lyrics!.synced).toBe(true);
+    expect(creep.warnings).toEqual([expect.stringMatching(/lyrics.text is ignored/)]);
+    expect(lyricsOf('creep', [...text, '  source: text']).lyrics!.synced).toBe(false);
+  });
+
+  it('takes the vocal track from the sidecar', () => {
+    const { lyrics } = lyricsOf('killing-in-the-name', ['lyrics: { track: 1 }']);
+    expect(lyrics!.source).toBe('Tim Commerford | Backing Vocals');
+    expect(() => lyricsOf('creep', ['lyrics: { track: Nobody }'])).toThrow(/not found/);
+  });
+});
+
 describe('song.yaml validation', () => {
   const valid = ['title: T', 'artist: A', 'source: { file: a.gp }', 'bassTrack: 1', 'chunks:', '  - { name: X, bars: [1, 4] }'];
 
@@ -166,6 +227,11 @@ describe('song.yaml validation', () => {
 
   it('rejects a malformed YouTube id', () => {
     expect(() => parseSidecar([...valid, 'media: { youtube: { videoId: nope } }'].join('\n'), 'test')).toThrow(/pattern/);
+  });
+
+  it('accepts lyrics.source and lyrics.track, and rejects other sources', () => {
+    expect(parseSidecar([...valid, 'lyrics: { source: text, track: Vocals }'].join('\n'), 'test').lyrics).toEqual({ source: 'text', track: 'Vocals' });
+    expect(() => parseSidecar([...valid, 'lyrics: { source: web }'].join('\n'), 'test')).toThrow(/allowed values/);
   });
 
   it('accepts media.music with an offset and requires both fields', () => {

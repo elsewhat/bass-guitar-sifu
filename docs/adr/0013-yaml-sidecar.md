@@ -1,6 +1,6 @@
 # ADR-0013: YAML sidecar per song
 
-Status: Accepted, amended by ADR-0022 (`media.music`)
+Status: Accepted, amended by ADR-0022 (`media.music`) and ADR-0024 (`lyrics`)
 Date: 2026-09-28
 Supersedes: the sidecar part of ADR-0003 (`song.json`).
 
@@ -24,6 +24,7 @@ The sidecar is edited by hand and by the `preprocess-song` agent skill (ADR-0015
   | `media.youtube` | no | skill / owner | `videoId` and `sync` anchors (`bar`, optional `tick`, `ms`). |
   | `chunks` | yes | skill | Ordered list of `{ name, bars: [first, last] }`. |
   | `fingeringOverrides` | no | skill / owner | `{ bar, tick, string?, fret?, finger? }` pins for the solver. |
+  | `lyrics` | no | owner | `{ source: score \| text \| none, track, text }`: where the lyrics come from, and unsynced lyrics as a block scalar (ADR-0024). |
   | `notes` | no | skill | Review notes: re-tabs, awkward passages, doubts. |
 
 - Spotify fields are removed for v1 (ADR-0016).

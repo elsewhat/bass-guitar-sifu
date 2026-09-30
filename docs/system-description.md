@@ -33,7 +33,7 @@ Layout grid, top to bottom:
 
 | Row | Height | Content |
 |---|---|---|
-| Header | 88 px | Song info (left), lyrics line and next line (middle), "Songs" button that opens the library (right) |
+| Header | 88 px | Song info (left), empty middle, "Songs" button that opens the library (right) |
 | Middle | 400 px + 12 px + 64 px | Practice plan column (left, full middle height), video cell with transport bar under it (centre), fingering and metronome column (right, full middle height) |
 | Tab | 276 px | Scrolling notation and tab strip, full width |
 
@@ -42,7 +42,7 @@ Gaps are 12 px, page padding 16 px.
 ### 3.1 Header
 
 - Artwork placeholder, song title, artist, and a metadata line: `110 BPM · 4/4 · Standard E A D G · 243 bars`.
-- Lyrics: current line and next line, synced per bar. Lyrics are shown only when a licensed source is configured; otherwise the block shows nothing.
+- No lyrics in the header: they are shown in the video cell (§3.3, ADR-0024; owner, 2026-09-30).
 - "Songs" button with a `Ctrl K` hint, which opens the song library overlay (section 4).
 - Full-screen button at the far right, after the Songs button.
 
@@ -59,6 +59,12 @@ Gaps are 12 px, page padding 16 px.
 - YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
 - Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
 - Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
+- Lyrics button (subtitles icon) left of the mixer button (ADR-0024, `design/artboards/LyricsView.dc.html`). On by default and kept in the settings; disabled for songs without lyrics. With lyrics on:
+  - the source's view shrinks to one row under the source switch, with only the key info: `Audio count` and eight small count cells, or `Synth playback` / `Music playback` with the loading or status text;
+  - the lyrics fill the cell between that row and the chips, under the label `Lyrics · synced to the vocal track` or `Lyrics · not synced · ↑ ↓ to scroll`;
+  - **synced lyrics** (from the `.gp` vocal track): the line before (16 px, grey), the current line (30 px, weight 800, wraps), the next line (20 px, light grey) and further lines (16 px, grey). In the current line, sung words are white, the word being sung is black on a white box, and words to come are grey. The list glides up as lines change; a line becomes current when the previous line has ended, at most two beats before its first word. Section labels (`Verse 1`) and stanza breaks come from the lyrics text in the file;
+  - **unsynced lyrics** (from `lyrics.text` in `song.yaml`): every line white at 20 px, no word highlight and no automatic scroll. `↑` / `↓` and the mouse wheel move one line.
+  - With YouTube (on hold), the lyrics are to be a subtitle band over the video: the current line and the next line.
 
 ### 3.4 Transport bar (under the video only)
 
@@ -72,7 +78,7 @@ Left to right:
 
 There is no automatic tempo ramp.
 
-Keyboard (owner, 2026-09-30): `Space` play/pause, `←` / `→` previous / next chunk, `+` / `−` tempo (`=` and `_` also work). The keys are ignored while the song library or the mixer is open and while a form field has focus. Space always means play/pause, even when a button has focus. The button tooltips show the keys.
+Keyboard (owner, 2026-09-30): `Space` play/pause, `←` / `→` previous / next chunk, `+` / `−` tempo (`=` and `_` also work), `↑` / `↓` scroll unsynced lyrics. The keys are ignored while the song library or the mixer is open and while a form field has focus. Space always means play/pause, even when a button has focus. The button tooltips show the keys.
 
 ### 3.5 Fingering and metronome column (right)
 
@@ -212,6 +218,9 @@ public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
   "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] },
              "music": { "url": "data/audio/vortex-surfer.mp3", "offsetMs": 0 } },   // null without an MP3
   "tempoNote": null,
+  "lyrics": { "synced": true, "source": "Lead Vocals",   // only for songs with lyrics (ADR-0024)
+              "lines": [{ "text": "word word", "section": "Verse 1", "gap": false,
+                          "words": [{ "text": "word", "start": 26880, "end": 27360 }] }] },
   "playOrder": [0, 1, 2, 2, 3]          // only for scores with repeats (ADR-0023)
 }
 ```
@@ -224,6 +233,7 @@ Types are in `src/core/model.ts`. The fields work as follows:
 - `maxFret` is the highest fret after re-tabbing.
 - Dead notes keep their source tab and have `finger: null`.
 - An open-string note has `finger: 0` and `position: null`.
+- `lyrics` (ADR-0024): synced lyrics come from the vocal track (the track with the most sung syllables, or `lyrics.track`); each word has absolute start and end ticks in played order. Unsynced lyrics come from `lyrics.text` in `song.yaml` and have `words: []`. `section` is a `[…]` comment line above the line and `gap` a blank line before it.
 
 ### 6.2 Sidecar `song.yaml` (ADR-0013)
 
@@ -242,6 +252,16 @@ media:
 chunks:                               # required; the build does not invent chunks
   - { name: Riff A, bars: [130, 133] }
 fingeringOverrides: []                # { bar, tick, string?, fret?, finger? }
+lyrics:                               # optional (ADR-0024)
+  source: score                       # score | text | none (default: score if it has lyrics, else text)
+  track: 0                            # vocal track name or index (default: most sung syllables)
+  text: |                             # unsynced lyrics, for scores without a vocal track with lyrics
+    [Verse 1]
+    first line of the verse
+    second line
+
+    [Chorus]
+    …
 notes: ""                             # review notes from the skill
 ```
 
@@ -292,7 +312,7 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 ## 9. Persistence (ADR-0010)
 
 - `localStorage` key `bass-trainer:v1:<slug>`: current chunk, passes, tempo, source, completed chunks with tempo, last practised timestamp, Synth track mix (`synthTracks`).
-- `bass-trainer:v1:settings`: passes per chunk, repeat mode, practice plan collapsed, last song, mixer (master, YouTube, Music and Metronome channels).
+- `bass-trainer:v1:settings`: passes per chunk, repeat mode, practice plan collapsed, last song, mixer (master, YouTube, Music and Metronome channels), lyrics on or off (`lyricsOn`).
 - Settings dialog offers export and import of all progress as a JSON file.
 
 ## 10. Hosting and repository (ADR-0012)

@@ -2,7 +2,7 @@
 // event to a transport action; the listener in components/useTransportKeys.ts decides when to
 // listen at all. Matched on `key`, not `code`, so "+" works on layouts where it is unshifted.
 
-export type KeyAction = 'toggle' | 'prev' | 'next' | 'faster' | 'slower';
+export type KeyAction = 'toggle' | 'prev' | 'next' | 'faster' | 'slower' | 'lyricsUp' | 'lyricsDown';
 
 export interface KeyLike {
   key: string;
@@ -16,6 +16,8 @@ const KEYS: Record<string, KeyAction> = {
   ' ': 'toggle',
   ArrowLeft: 'prev',
   ArrowRight: 'next',
+  ArrowUp: 'lyricsUp', // unsynced lyrics only (ADR-0024)
+  ArrowDown: 'lyricsDown',
   '+': 'faster',
   '=': 'faster',
   '-': 'slower',
