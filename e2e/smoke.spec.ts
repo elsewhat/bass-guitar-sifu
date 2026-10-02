@@ -62,7 +62,7 @@ test('Count playback scrolls the strip and the tempo control steps by 5 % up to 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
-  await expect.poll(() => stripX(page)).toBeLessThan(before - 50); // the scroll speed follows the song's tempo
+  await expect.poll(() => stripX(page), { timeout: 10_000 }).toBeLessThan(before - 50); // after the count-in (ADR-0025)
   await page.getByRole('button', { name: 'Pause' }).click();
 
   await expect(page.getByTestId('tempo')).toHaveText('100%');
@@ -70,6 +70,24 @@ test('Count playback scrolls the strip and the tempo control steps by 5 % up to 
   await page.getByRole('button', { name: 'Slower' }).click();
   await expect(page.getByTestId('tempo')).toHaveText('95%');
   await expect(page.getByText('105 BPM')).toBeVisible();
+});
+
+test('Play and a chunk change while playing count in one bar first (ADR-0025)', async ({ page }) => {
+  await openSong(page);
+  const cells = page.getByTestId('count-cells');
+  const before = await stripX(page);
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
+  await expect(cells).toHaveAttribute('data-count-in', 'true');
+  expect(Math.abs((await stripX(page)) - before)).toBeLessThan(2); // the strip waits for the count-in
+  await expect(cells).toHaveAttribute('data-count-in', 'false'); // one bar at 110 bpm: 2.2 s
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 20);
+
+  await page.getByRole('button', { name: 'Next chunk', exact: true }).click();
+  await expect(cells).toHaveAttribute('data-count-in', 'true');
+  await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
+  await page.getByRole('button', { name: 'Pause' }).click();
+  await expect(cells).toHaveAttribute('data-count-in', 'false'); // pausing cancels the count-in
 });
 
 test('Synth loads on demand, scrolls the strip and hands its position to the Metronome', async ({ page }) => {
@@ -86,7 +104,7 @@ test('Synth loads on demand, scrolls the strip and hands its position to the Met
 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await expect.poll(() => stripX(page)).toBeLessThan(before - 50); // the scroll speed follows the song's tempo
+  await expect.poll(() => stripX(page), { timeout: 10_000 }).toBeLessThan(before - 50); // after the count-in (ADR-0025)
   await page.getByRole('button', { name: 'Pause' }).click();
   const paused = await stripX(page);
 
@@ -110,8 +128,8 @@ test('Music plays the rendered MP3 at full speed only and hands its position to 
 
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  // Bars 1–4 are whole-note chords, engraved narrow: the strip moves about 50 px in 5 s.
-  await expect.poll(() => stripX(page)).toBeLessThan(before - 20);
+  // Bars 1–4 are whole-note chords, engraved narrow: the strip moves about 50 px in 5 s after the count-in.
+  await expect.poll(() => stripX(page), { timeout: 10_000 }).toBeLessThan(before - 20);
   await page.getByRole('button', { name: 'Pause' }).click();
   const paused = await stripX(page);
 
@@ -292,7 +310,7 @@ test('a score with repeats plays in played bars (Freedom, ADR-0023)', async ({ p
   await expect(video).toHaveAttribute('data-source-status', 'ready', { timeout: 20_000 });
   const before = await stripX(page);
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await expect.poll(() => stripX(page)).toBeLessThan(before - 20);
+  await expect.poll(() => stripX(page), { timeout: 10_000 }).toBeLessThan(before - 20);
   await page.getByRole('button', { name: 'Pause' }).click();
 });
 
@@ -317,7 +335,7 @@ test('synced lyrics fill the video cell, follow the playhead and can be hidden (
   const lineAt = () => lyrics.locator('.lyrics-line').evaluateAll((rows) => rows.findIndex((r) => (r as HTMLElement).dataset.pos === 'current'));
   const first = await lineAt();
   await page.getByRole('button', { name: 'Play', exact: true }).click();
-  await expect.poll(lineAt, { timeout: 10_000 }).toBeGreaterThan(first); // scrolls on by itself
+  await expect.poll(lineAt, { timeout: 15_000 }).toBeGreaterThan(first); // scrolls on by itself after the count-in
   await page.getByRole('button', { name: 'Pause' }).click();
 
   // Hidden: the large count cells come back, and the choice is kept.
@@ -347,6 +365,8 @@ test('synced lyrics fill the video cell, follow the playhead and can be hidden (
 test('notes are within 15 px of the playhead when plucked, with four notes to its left', async ({ page }) => {
   await openSong(page); // 100 %, the fastest tempo: crosses barlines sooner
   await page.getByRole('button', { name: 'Play', exact: true }).click();
+  // Sampling starts during the count-in (ADR-0025), while the first note waits at the playhead.
+  await expect(page.getByTestId('count-cells')).toHaveAttribute('data-count-in', 'true');
   const { offsets, leftCounts } = await page.evaluate(async () => {
     const line = document.querySelector('[data-testid=playhead]')!.getBoundingClientRect();
     const centre = line.left + line.width / 2;
@@ -372,7 +392,7 @@ test('notes are within 15 px of the playhead when plucked, with four notes to it
             }).length,
           );
         }
-        if (performance.now() - t0 < 6500) requestAnimationFrame(frame);
+        if (performance.now() - t0 < 8500) requestAnimationFrame(frame); // 2.2 s count-in + 6.3 s
         else done();
       })();
     });

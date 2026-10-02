@@ -3,6 +3,7 @@
 // to `passCompleted`. Positions are absolute score ticks (PPQ 960); the bar follows from the
 // song's bar list, so the ADR's "bar + tick" is one number here.
 import type { TickRange } from '../core/plucks';
+import type { CountInState } from './count-in';
 
 export interface ClockCapabilities {
   rates: number[] | 'continuous';
@@ -15,10 +16,15 @@ export interface PassCompleted {
   to: TickRange;
 }
 
+export interface PlayOptions {
+  /** One bar of metronome counts before playback starts (ADR-0025). */
+  countIn?: boolean;
+}
+
 export interface PlaybackClock {
   readonly capabilities: ClockCapabilities;
   /** Starts playback; must be called from a user gesture the first time (audio unlock). */
-  play(): Promise<void>;
+  play(options?: PlayOptions): Promise<void>;
   pause(): void;
   isPlaying(): boolean;
   seek(tick: number): void;
@@ -28,8 +34,10 @@ export interface PlaybackClock {
   setRange(range: TickRange): void;
   /** Chooses the range after a pass; set by the loop controller. Called slightly ahead of time. */
   onRangeEnd: (range: TickRange) => TickRange;
-  /** The audible position, extrapolated for the current animation frame. */
+  /** The audible position, extrapolated for the current animation frame. It stays at the start during a count-in. */
   getTick(): number;
+  /** The count heard now while counting in, else null; read per animation frame. */
+  countInState(): CountInState | null;
   /** Fires when the audible position wraps (not when the wrap is scheduled). */
   onPassCompleted(listener: (e: PassCompleted) => void): () => void;
   dispose(): void;

@@ -12,7 +12,8 @@ import type { Bar, TempoPoint } from '../core/model';
 import { PPQ } from '../core/model';
 import type { TickRange } from '../core/plucks';
 import { tempoLookup, type TempoLookup } from '../core/timing';
-import type { PassCompleted, PlaybackClock } from './clock';
+import type { PassCompleted, PlaybackClock, PlayOptions } from './clock';
+import { countInPlan, NO_COUNT_IN, type CountInPort, type CountInState } from './count-in';
 
 export interface SynthPlayer {
   play(): void;
@@ -39,6 +40,7 @@ export class SynthClock implements PlaybackClock {
   onRangeEnd = (range: TickRange) => range;
 
   private readonly tempo: TempoLookup;
+  private readonly bars: Bar[];
   private readonly listeners = new Set<(e: PassCompleted) => void>();
   private readonly unsubscribe: (() => void)[] = [];
   private readonly player: Promise<SynthPlayer>;
@@ -60,8 +62,10 @@ export class SynthClock implements PlaybackClock {
     song: { bars: Bar[]; tempoMap: TempoPoint[] },
     player: Promise<SynthPlayer>,
     private readonly now: () => number = () => performance.now(),
+    private readonly countIn: CountInPort = NO_COUNT_IN,
   ) {
     this.tempo = tempoLookup(song.tempoMap, song.bars);
+    this.bars = song.bars;
     this.player = player.then(async (p) => {
       await p.ready;
       if (this.disposed) {
@@ -81,10 +85,11 @@ export class SynthClock implements PlaybackClock {
     this.player.catch(() => undefined); // failures surface through play() and the engine
   }
 
-  async play() {
+  async play(options?: PlayOptions) {
     if (this.playing) return;
     this.playing = true;
     const token = ++this.token;
+    if (options?.countIn) this.countIn.prepare();
     let player: SynthPlayer;
     try {
       player = await this.player;
@@ -93,6 +98,10 @@ export class SynthClock implements PlaybackClock {
       return;
     }
     if (token !== this.token || !this.playing || this.disposed) return;
+    if (options?.countIn) {
+      const heard = await this.countIn.run(countInPlan(this.bars, this.tempo, this.pausedTick, this.rate));
+      if (!heard || token !== this.token || !this.playing || this.disposed) return;
+    }
     this.next = null;
     player.seek(this.pausedTick);
     this.snap(this.pausedTick);
@@ -103,6 +112,7 @@ export class SynthClock implements PlaybackClock {
   pause() {
     if (!this.playing) return;
     this.token++;
+    this.countIn.cancel();
     if (this.running) {
       this.pausedTick = Math.max(this.range.start, Math.min(this.range.end - 1, this.getTick()));
       this.ready!.pause();
@@ -154,6 +164,10 @@ export class SynthClock implements PlaybackClock {
     return Math.min(predicted, this.range.end - 1);
   }
 
+  countInState(): CountInState | null {
+    return this.playing && !this.running ? this.countIn.state() : null;
+  }
+
   onPassCompleted(listener: (e: PassCompleted) => void) {
     this.listeners.add(listener);
     return () => void this.listeners.delete(listener);
@@ -162,6 +176,7 @@ export class SynthClock implements PlaybackClock {
   dispose() {
     this.pause();
     this.disposed = true;
+    this.countIn.dispose();
     this.listeners.clear();
     for (const u of this.unsubscribe) u();
     this.ready?.dispose();

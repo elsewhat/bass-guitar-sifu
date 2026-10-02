@@ -11,7 +11,8 @@ import type { Bar, TempoPoint } from '../core/model';
 import { PPQ } from '../core/model';
 import type { TickRange } from '../core/plucks';
 import { tempoLookup, type TempoLookup } from '../core/timing';
-import type { PassCompleted, PlaybackClock } from './clock';
+import type { PassCompleted, PlaybackClock, PlayOptions } from './clock';
+import { countInPlan, NO_COUNT_IN, type CountInPort, type CountInState } from './count-in';
 
 export interface MusicPlayer {
   play(): Promise<void>;
@@ -43,6 +44,7 @@ export class MusicClock implements PlaybackClock {
   onRangeEnd = (range: TickRange) => range;
 
   private readonly tempo: TempoLookup;
+  private readonly bars: Bar[];
   private readonly offset: number; // seconds of audio before the score's first tick
   private readonly listeners = new Set<(e: PassCompleted) => void>();
   private readonly player: Promise<MusicPlayer>;
@@ -67,8 +69,10 @@ export class MusicClock implements PlaybackClock {
     player: Promise<MusicPlayer>,
     private readonly now: () => number = () => performance.now(),
     private readonly repeat: Repeat = every,
+    private readonly countIn: CountInPort = NO_COUNT_IN,
   ) {
     this.tempo = tempoLookup(song.tempoMap, song.bars);
+    this.bars = song.bars;
     this.offset = offsetMs / 1000;
     this.player = player.then(async (p) => {
       await p.ready;
@@ -82,10 +86,11 @@ export class MusicClock implements PlaybackClock {
     this.player.catch(() => undefined); // failures surface through play() and the engine
   }
 
-  async play() {
+  async play(options?: PlayOptions) {
     if (this.playing) return;
     this.playing = true;
     const token = ++this.token;
+    if (options?.countIn) this.countIn.prepare();
     let player: MusicPlayer;
     try {
       player = await this.player;
@@ -94,6 +99,10 @@ export class MusicClock implements PlaybackClock {
       return;
     }
     if (token !== this.token || !this.playing || this.disposed) return;
+    if (options?.countIn) {
+      const heard = await this.countIn.run(countInPlan(this.bars, this.tempo, this.pausedTick, 1));
+      if (!heard || token !== this.token || !this.playing || this.disposed) return;
+    }
     this.next = null;
     this.moveTo(this.pausedTick);
     this.running = true;
@@ -104,6 +113,7 @@ export class MusicClock implements PlaybackClock {
   pause() {
     if (!this.playing) return;
     this.token++;
+    this.countIn.cancel();
     if (this.running) {
       this.pausedTick = Math.max(this.range.start, Math.min(this.range.end - 1, this.getTick()));
       this.ready!.pause();
@@ -144,6 +154,10 @@ export class MusicClock implements PlaybackClock {
     return Math.min(this.predicted(), this.range.end - 1);
   }
 
+  countInState(): CountInState | null {
+    return this.playing && !this.running ? this.countIn.state() : null;
+  }
+
   onPassCompleted(listener: (e: PassCompleted) => void) {
     this.listeners.add(listener);
     return () => void this.listeners.delete(listener);
@@ -152,6 +166,7 @@ export class MusicClock implements PlaybackClock {
   dispose() {
     this.pause();
     this.disposed = true;
+    this.countIn.dispose();
     this.listeners.clear();
     this.ready?.dispose();
     this.ready = null;

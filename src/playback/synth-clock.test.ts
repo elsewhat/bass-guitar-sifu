@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Bar, TempoPoint } from '../core/model';
 import type { TickRange } from '../core/plucks';
 import type { PassCompleted } from './clock';
+import { FakeCountIn } from './count-in.fake';
 import { SynthClock, type SynthPlayer } from './synth-clock';
 
 // 4/4 bars of 3840 ticks at 120 bpm: 1920 ticks per second at 100 %.
@@ -199,5 +200,53 @@ describe('SynthClock loop', () => {
     clock.setRange(chunkC);
     expect(player.calls).toEqual([`range ${chunkC.start}-${chunkC.end}`]); // the player moves to its start
     expect(clock.getTick()).toBe(chunkC.start);
+  });
+
+  describe('count-in (ADR-0025)', () => {
+    it('plays one bar of counts at the tempo setting before the player starts', async () => {
+      const player = new FakePlayer();
+      const countIn = new FakeCountIn();
+      const clock = new SynthClock(song, Promise.resolve(player), () => 0, countIn);
+      clock.setRange(chunkB);
+      clock.setRate(0.5);
+      player.load();
+      const started = clock.play({ countIn: true });
+      await countIn.running;
+      expect(countIn.calls).toEqual(['prepare', 'run 4s']);
+      expect(player.calls).not.toContain('play');
+      expect(clock.isPlaying()).toBe(true);
+      expect(clock.getTick()).toBe(chunkB.start);
+      expect(clock.countInState()).toEqual({ time: [4, 4], cell: 0 });
+      countIn.finish();
+      await started;
+      expect(player.calls.slice(-2)).toEqual([`seek ${chunkB.start}`, 'play']);
+      expect(clock.countInState()).toBeNull();
+    });
+
+    it('pausing during the count-in cancels it and the player never starts', async () => {
+      const player = new FakePlayer();
+      const countIn = new FakeCountIn();
+      const clock = new SynthClock(song, Promise.resolve(player), () => 0, countIn);
+      clock.setRange(chunkA);
+      player.load();
+      const started = clock.play({ countIn: true });
+      await countIn.running;
+      clock.pause();
+      await started;
+      expect(countIn.calls).toContain('cancel');
+      expect(player.calls).not.toContain('play');
+      expect(clock.isPlaying()).toBe(false);
+      expect(clock.getTick()).toBe(chunkA.start);
+    });
+
+    it('starts at once without the option', async () => {
+      const player = new FakePlayer();
+      const countIn = new FakeCountIn();
+      const clock = new SynthClock(song, Promise.resolve(player), () => 0, countIn);
+      player.load();
+      await clock.play();
+      expect(countIn.calls).toEqual([]);
+      expect(player.calls).toContain('play');
+    });
   });
 });
