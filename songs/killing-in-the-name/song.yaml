@@ -7,6 +7,7 @@ tempo: { note: "Tempo map follows the recording: 37 changes between 77 and 124 B
 media:
   youtube: { videoId: bWXazVhlyxQ, sync: [] }
   music: { source: "Rage Against the Machine-Killing in the Name-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Rage Against the Machine", itunesId: 191450810 }
 chunks:
   - { name: Intro a, bars: [1, 4] }
   - { name: Intro b, bars: [5, 8] }

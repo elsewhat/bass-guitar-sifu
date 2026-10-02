@@ -109,6 +109,8 @@ export interface SongData {
   stats: SongStats;
   media: { youtube: YouTubeMedia | null; music: MusicMedia | null };
   tempoNote: string | null;
+  /** Album cover for the header (ADR-0026); absent without songs/<slug>/cover.jpg. */
+  cover?: { url: string; album: string };
   /** Absent when the song has no lyrics (ADR-0024). */
   lyrics?: SongLyrics;
   /**

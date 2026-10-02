@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: c5kM3iwYVi0, sync: [] }
   music: { source: "LCD Soundsystem-New York, I Love You But You're Bringing Me Down-10-02-2026.mp3", offsetMs: 0 }
+cover: { album: "Sound of Silver", itunesId: 742432549 }
 chunks:
   - { name: Riff A, bars: [9, 10] }
   - { name: Riff A repeat, bars: [11, 12] }

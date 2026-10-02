@@ -1097,6 +1097,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/i-can-change.jpg",
+    "album": "This Is Happening"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

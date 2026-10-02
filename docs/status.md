@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-09-30. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-10-03. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -123,6 +123,12 @@ Updated 2026-09-30. This is the hand-off point between working sessions: what is
    - Tests: 172 unit tests (`count-in.test.ts`, count-in cases in the Synth and Music clock tests with `count-in.fake.ts`); 18 Playwright tests, including Play and a chunk change counting in. The playback e2e tests wait longer for the scroll, and the playhead test samples from the count-in on.
    - Checked in the preview with Paranoid (163 bpm): Metronome, Synth and Music count one 4/4 bar (about 1.5 s) before playing, and `Next chunk` while playing counts in again.
 
+15. **Album covers** (2026-10-03; **ADR-0026, proposed**). The header's artwork square shows the album cover of every song.
+   - `songs/<slug>/cover.jpg` (300 px) from the iTunes Search API, chosen by hand per song with `npm run fetch-cover` (`scripts/fetch-cover.ts`) and recorded as `cover: { album, itunesId }` in `song.yaml`. Served at `data/covers/<slug>.jpg` by the `song-scores` Vite plugin.
+   - The song JSON has `cover: { url, album }`; `build:songs` fails when `cover` is set without `cover.jpg`, and warns about songs without a cover.
+   - The `preprocess-song` skill has a new step 4c.
+   - Tests: sidecar validation; the e2e tests check the Vortex Surfer and Creep covers load.
+
 ## Next
 
 - YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016), step 6: **on hold (owner, 2026-09-30)**. Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020). Show the lyrics as the design's subtitle band over the video (ADR-0024).
@@ -159,6 +165,7 @@ Open points from slice 1 (not blocking):
   - Is a two-beat read-ahead right, and is the 300 ms glide pleasant?
   - Skim the pasted `lyrics.text` of the 7 unsynced songs. They are kept as supplied, only the titles and web-page leftovers were dropped (e.g. The Wheel's "and" line lost its leading space).
   - The lyrics toggle is now never disabled, since every song has lyrics; the e2e test covers the unsynced view on Bombtrack instead.
+- Review ADR-0026 (album covers). The covers are public on Pages like the other song files. Choices worth a glance: About A Girl uses the Bleach Deluxe Edition artwork (it has a "Deluxe Edition" sticker; iTunes has no plain Bleach), Zombie the 2025 remaster of No Need to Argue, and The Man Who Sold The World the MTV Unplugged album.
 - Look at the chord view (stacked tab rows) in a normal browser: Killing in the Name bars 1–4, the Bombtrack power chords, and the Bulls on Parade dead-note chords. The design artboards have no chord view yet, so the owner may want to add one.
 - Skim the new songs' `notes` for the by-ear doubts, for example:
   - The Wheel is 18:55 in the score against 16:58 on the record;

@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: DMFz6CMKC4E, sync: [] }
   music: { source: "Motorpsycho-Un Chien d'Espace-09-29-2026.mp3", offsetMs: 20 }
+cover: { album: "Angels and Daemons at Play", itunesId: 505571341 }
 chunks:
   - { name: C drone, bars: [32, 36] }
   - { name: C chug, bars: [37, 44] }

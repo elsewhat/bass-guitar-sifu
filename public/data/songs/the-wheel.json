@@ -4163,6 +4163,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/the-wheel.jpg",
+    "album": "Timothy's Monster"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

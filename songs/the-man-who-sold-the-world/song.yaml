@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: fregObNcHC8, sync: [] }
   music: { source: "Nirvana-The Man Who Sold The World-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "MTV Unplugged in New York", itunesId: 1440892370 }
 chunks:
   - { name: Intro, bars: [3, 4] }
   - { name: Band Entrance, bars: [5, 8] }

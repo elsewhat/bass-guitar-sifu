@@ -6,6 +6,7 @@ bassTrack: "Electric Bass (finger)"
 tempo: { note: null }
 media:
   youtube: { videoId: ENCBJU-xHcA, sync: [] }
+cover: { album: "Trust Us", itunesId: 506369467 }
 chunks:
   - { name: Riff A, bars: [130, 133] }
   - { name: Riff A ×2, bars: [134, 141] }

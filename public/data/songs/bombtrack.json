@@ -897,6 +897,10 @@
     }
   },
   "tempoNote": "Tempo map follows the recording: 85 and 79 BPM in bars 1–2, 76 BPM from bar 3.",
+  "cover": {
+    "url": "data/covers/bombtrack.jpg",
+    "album": "Rage Against the Machine"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

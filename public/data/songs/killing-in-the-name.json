@@ -1525,6 +1525,10 @@
     }
   },
   "tempoNote": "Tempo map follows the recording: 37 changes between 77 and 124 BPM.",
+  "cover": {
+    "url": "data/covers/killing-in-the-name.jpg",
+    "album": "Rage Against the Machine"
+  },
   "lyrics": {
     "synced": true,
     "source": "Zack de la Rocha | Lead Vocals",

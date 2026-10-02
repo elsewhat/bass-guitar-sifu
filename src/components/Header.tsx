@@ -4,6 +4,7 @@ import { useSession } from '../state/session';
 import { Icon } from './icons';
 
 const panel = 'bg-surface rounded-comfortable min-h-0 min-w-0';
+const base = import.meta.env.BASE_URL;
 
 function toggleFullscreen() {
   if (document.fullscreenElement) void document.exitFullscreen();
@@ -19,8 +20,13 @@ export function Header() {
       style={{ gridTemplateColumns: '380px minmax(0, 1fr) auto' }}
     >
       <div className="flex min-w-0 items-center gap-3">
-        <div className="bg-card text-subdued rounded-standard flex size-16 shrink-0 items-center justify-center">
-          <Icon name="music" size={28} />
+        <div className="bg-card text-subdued rounded-standard flex size-16 shrink-0 items-center justify-center overflow-hidden">
+          {song?.cover ? (
+            // Album cover (ADR-0026); keyed so a song switch never shows the previous cover.
+            <img key={song.slug} src={`${base}${song.cover.url}`} alt={`${song.cover.album} cover`} title={song.cover.album} className="size-full object-cover" />
+          ) : (
+            <Icon name="music" size={28} />
+          )}
         </div>
         <div className="flex min-w-0 flex-col gap-0.5">
           <h1 className="m-0 truncate text-2xl leading-tight font-bold">{song?.title ?? 'No song loaded'}</h1>

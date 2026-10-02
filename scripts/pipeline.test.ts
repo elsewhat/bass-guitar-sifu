@@ -239,6 +239,12 @@ describe('song.yaml validation', () => {
     expect(music.media?.music).toEqual({ source: 'a.mp3', offsetMs: 12.5 });
     expect(() => parseSidecar([...valid, 'media: { music: { source: a.mp3 } }'].join('\n'), 'test')).toThrow(/offsetMs/);
   });
+
+  it('accepts a cover with its album and requires the album (ADR-0026)', () => {
+    const cover = parseSidecar([...valid, 'cover: { album: Trust Us, itunesId: 506369467 }'].join('\n'), 'test');
+    expect(cover.cover).toEqual({ album: 'Trust Us', itunesId: 506369467 });
+    expect(() => parseSidecar([...valid, 'cover: { itunesId: 506369467 }'].join('\n'), 'test')).toThrow(/album/);
+  });
 });
 
 describe('stableJson', () => {

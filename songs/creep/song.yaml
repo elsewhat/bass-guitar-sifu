@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: XFkzRNyygfk, sync: [] }
   music: { source: "Radiohead-Creep-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Pablo Honey", itunesId: 1097862062 }
 chunks:
   - { name: Intro a, bars: [1, 4] }
   - { name: Intro b, bars: [5, 8] }

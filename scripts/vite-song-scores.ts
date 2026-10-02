@@ -1,6 +1,7 @@
-// Serves songs/<slug>/score.gp as <base>data/scores/<slug>.gp and songs/<slug>/audio.mp3 as
-// <base>data/audio/<slug>.mp3 in dev, and copies both into the build, so the app can load the
-// Guitar Pro file with alphaTab (ADR-0017) and the Music source's MP3 (ADR-0022) without a second
+// Serves songs/<slug>/score.gp as <base>data/scores/<slug>.gp, songs/<slug>/audio.mp3 as
+// <base>data/audio/<slug>.mp3 and songs/<slug>/cover.jpg as <base>data/covers/<slug>.jpg in dev,
+// and copies them into the build, so the app can load the Guitar Pro file with alphaTab
+// (ADR-0017), the Music source's MP3 (ADR-0022) and the album cover (ADR-0026) without a second
 // committed copy in public/.
 import { copyFileSync, createReadStream, existsSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { join } from 'node:path';
@@ -10,6 +11,7 @@ const SONGS = 'songs';
 const ASSETS = [
   { route: /\/data\/scores\/([a-z0-9-]+)\.gp$/, file: 'score.gp', out: (slug: string) => `data/scores/${slug}.gp`, type: 'application/octet-stream' },
   { route: /\/data\/audio\/([a-z0-9-]+)\.mp3$/, file: 'audio.mp3', out: (slug: string) => `data/audio/${slug}.mp3`, type: 'audio/mpeg' },
+  { route: /\/data\/covers\/([a-z0-9-]+)\.jpg$/, file: 'cover.jpg', out: (slug: string) => `data/covers/${slug}.jpg`, type: 'image/jpeg' },
 ];
 
 export function songScores(): Plugin {

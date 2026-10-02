@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: kmZAsLMUuPw, sync: [] }
   music: { source: "Rage Against the Machine-Bullet In The Head-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Rage Against the Machine", itunesId: 191450810 }
 chunks:
   - { name: Intro, bars: [1, 4] }
   - { name: Intro repeat, bars: [5, 8] }

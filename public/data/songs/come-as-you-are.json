@@ -941,6 +941,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/come-as-you-are.jpg",
+    "album": "Nevermind"
+  },
   "lyrics": {
     "synced": true,
     "source": "Kurt Cobain | Neumann U67 | Lead Vocals",

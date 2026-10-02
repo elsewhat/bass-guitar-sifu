@@ -7,6 +7,7 @@ tempo: { note: "Tempo map follows the recording: 72–79 BPM in bars 1–4, 83�
 media:
   youtube: { videoId: 6Ejga4kJUts, sync: [] }
   music: { source: "The Cranberries-Zombie-09-29-2026.mp3", offsetMs: 10 }
+cover: { album: "No Need to Argue", itunesId: 1828830621 }
 chunks:
   - { name: Intro a, bars: [4, 8] }
   - { name: Intro a repeat, bars: [9, 12] }

@@ -1136,6 +1136,10 @@
     "music": null
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/vortex-surfer.jpg",
+    "album": "Trust Us"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

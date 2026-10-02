@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: Fq4jVhJdYoM, sync: [] }
   music: { source: "LCD Soundsystem-I Can Change-10-02-2026.mp3", offsetMs: 0 }
+cover: { album: "This Is Happening", itunesId: 693387639 }
 chunks:
   - { name: Intro a, bars: [1, 4] }
   - { name: Intro b, bars: [5, 8] }

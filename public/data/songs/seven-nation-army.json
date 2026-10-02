@@ -722,6 +722,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/seven-nation-army.jpg",
+    "album": "Elephant"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

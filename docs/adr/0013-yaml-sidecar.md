@@ -1,6 +1,6 @@
 # ADR-0013: YAML sidecar per song
 
-Status: Accepted, amended by ADR-0022 (`media.music`) and ADR-0024 (`lyrics`)
+Status: Accepted, amended by ADR-0022 (`media.music`), ADR-0024 (`lyrics`) and ADR-0026 (`cover`)
 Date: 2026-09-28
 Supersedes: the sidecar part of ADR-0003 (`song.json`).
 

@@ -16,6 +16,7 @@ export interface Sidecar {
     youtube?: { videoId?: string | null; sync?: { bar: number; tick?: number; ms: number }[] };
     music?: { source: string; offsetMs: number };
   };
+  cover?: { album: string; itunesId?: number };
   chunks: { name: string; bars: [number, number] }[];
   fingeringOverrides?: FingeringOverride[];
   lyrics?: { source?: 'score' | 'text' | 'none'; track?: string | number; text?: string };

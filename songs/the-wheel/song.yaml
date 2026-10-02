@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: 1bZPURasQpI, sync: [] }
   music: { source: "Motorpsycho-The Wheel-09-29-2026.mp3", offsetMs: 20 }
+cover: { album: "Timothy's Monster", itunesId: 1701791348 }
 chunks:
   - { name: Main riff, bars: [1, 4] }
   - { name: Main riff repeat, bars: [5, 8] }

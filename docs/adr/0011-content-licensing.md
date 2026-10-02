@@ -1,6 +1,6 @@
 # ADR-0011: Third-party content
 
-Status: Accepted, amended by ADR-0012 (.gp files are public), ADR-0022 (audio rendered from the transcription is stored and published with it) and ADR-0024 (lyrics are stored and published)
+Status: Accepted, amended by ADR-0012 (.gp files are public), ADR-0022 (audio rendered from the transcription is stored and published with it), ADR-0024 (lyrics are stored and published) and ADR-0026 (album covers are stored and published)
 Date: 2026-09-28
 
 ## Context

@@ -12,9 +12,9 @@
 | [0008](0008-playback-sources.md) | Playback sources behind one clock | Accepted, amended by 0016, 0017, 0018, 0020 and 0022 |
 | [0009](0009-string-colours.md) | String colour palette | Accepted |
 | [0010](0010-progress-storage.md) | Practice progress in the browser | Accepted |
-| [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012, 0022 and 0024 |
+| [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012, 0022, 0024 and 0026 |
 | [0012](0012-public-github-pages.md) | Public repository and public GitHub Pages | Accepted, amended by 0022 and 0024 |
-| [0013](0013-yaml-sidecar.md) | YAML sidecar per song | Accepted, amended by 0022, 0023 and 0024 |
+| [0013](0013-yaml-sidecar.md) | YAML sidecar per song | Accepted, amended by 0022, 0023, 0024 and 0026 |
 | [0014](0014-committed-generated-data.md) | Generated song data is committed | Accepted |
 | [0015](0015-song-intake-skill.md) | Song intake through the `preprocess-song` agent skill | Accepted, amended by 0022 |
 | [0016](0016-playback-scope-v1.md) | Playback sources for version 1 and sync authoring | Accepted, amended by 0022 |
@@ -27,5 +27,6 @@
 | [0023](0023-repeat-unrolling.md) | Repeat signs are unrolled into played bars | Proposed |
 | [0024](0024-lyrics.md) | Lyrics from the Guitar Pro vocal track and from song.yaml | Proposed |
 | [0025](0025-count-in.md) | One-bar count-in before playback starts | Proposed |
+| [0026](0026-album-covers.md) | Album covers in the header | Proposed |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".

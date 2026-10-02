@@ -7,6 +7,7 @@ tempo: { note: "Tempo map follows the recording: 72 BPM in the verses, 120 in th
 media:
   youtube: { videoId: H_vQt_v8Jmw, sync: [] }
   music: { source: "Rage Against the Machine-Freedom-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Rage Against the Machine", itunesId: 191450810 }
 chunks:
   - { name: Intro a, bars: [1, 4] }
   - { name: Intro b, bars: [5, 8] }

@@ -1464,6 +1464,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/un-chien-d-espace.jpg",
+    "album": "Angels and Daemons at Play"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

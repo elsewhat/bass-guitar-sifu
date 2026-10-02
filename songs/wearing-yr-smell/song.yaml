@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: pccEF5TsrHU, sync: [] }
   music: { source: "Motorpsycho-wearing yr smell-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Timothy's Monster", itunesId: 1701791348 }
 chunks:
   - { name: Intro climb, bars: [2, 7] }
   - { name: Riff A, bars: [8, 11] }

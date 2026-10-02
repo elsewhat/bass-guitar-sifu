@@ -713,6 +713,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/bad-guy.jpg",
+    "album": "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

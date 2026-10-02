@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: vabnZ9-ex7o, sync: [] }
   music: { source: "Nirvana-Come As You Are-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Nevermind", itunesId: 1440783617 }
 chunks:
   - { name: Intro, bars: [5, 9] }
   - { name: Verse 1 a, bars: [10, 13] }

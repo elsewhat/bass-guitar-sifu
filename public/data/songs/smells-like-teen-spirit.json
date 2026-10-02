@@ -1285,6 +1285,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/smells-like-teen-spirit.jpg",
+    "album": "Nevermind"
+  },
   "lyrics": {
     "synced": true,
     "source": "Kurt Cobain | Neumann U67 & LA-2A Compressor | Lead Vocals",

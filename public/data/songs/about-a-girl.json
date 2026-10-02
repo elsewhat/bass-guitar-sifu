@@ -677,6 +677,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/about-a-girl.jpg",
+    "album": "Bleach"
+  },
   "lyrics": {
     "synced": true,
     "source": "Kurt Cobain | Shure SM58 (foam windscreen) | Lead Vocals",

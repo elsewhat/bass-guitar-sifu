@@ -1371,6 +1371,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/bullet-in-the-head.jpg",
+    "album": "Rage Against the Machine"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

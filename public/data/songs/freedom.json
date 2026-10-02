@@ -1404,6 +1404,10 @@
     }
   },
   "tempoNote": "Tempo map follows the recording: 72 BPM in the verses, 120 in the refrains, slowing to 55 and 40 at the end.",
+  "cover": {
+    "url": "data/covers/freedom.jpg",
+    "album": "Rage Against the Machine"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

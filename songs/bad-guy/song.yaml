@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: ZD6rXLXZOEI, sync: [] }
   music: { source: "Billie Eilish-bad guy-10-02-2026.mp3", offsetMs: 0 }
+cover: { album: "WHEN WE ALL FALL ASLEEP, WHERE DO WE GO?", itunesId: 1450695723 }
 chunks:
   - { name: Intro a, bars: [1, 4] }
   - { name: Intro b, bars: [5, 8] }

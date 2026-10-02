@@ -54,6 +54,16 @@
         }
       }
     },
+    "cover": {
+      "description": "Album cover shown in the header, stored as cover.jpg next to score.gp and fetched with npm run fetch-cover (ADR-0026).",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["album"],
+      "properties": {
+        "album": { "type": "string", "minLength": 1, "description": "Album the cover belongs to: the original release of the recording the tab follows." },
+        "itunesId": { "type": "integer", "minimum": 1, "description": "iTunes collection id the artwork was taken from (npm run fetch-cover -- <slug> --id <itunesId>)." }
+      }
+    },
     "chunks": {
       "description": "Ordered practice chunks. Required; the build does not invent chunks (ADR-0015).",
       "type": "array",

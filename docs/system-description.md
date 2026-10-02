@@ -41,7 +41,7 @@ Gaps are 12 px, page padding 16 px.
 
 ### 3.1 Header
 
-- Artwork placeholder, song title, artist, and a metadata line: `110 BPM · 4/4 · Standard E A D G · 243 bars`.
+- Album cover (64 px, ADR-0026; a music-note placeholder for songs without one), song title, artist, and a metadata line: `110 BPM · 4/4 · Standard E A D G · 243 bars`.
 - No lyrics in the header: they are shown in the video cell (§3.3, ADR-0024; owner, 2026-09-30).
 - "Songs" button with a `Ctrl K` hint, which opens the song library overlay (section 4).
 - Full-screen button at the far right, after the Songs button.
@@ -190,6 +190,7 @@ Guitar Pro files are the source of truth for notes. A build step turns each song
 music/<Artist-Title-date>.gp  Inbox (+ .mp3 rendered from it); /preprocess-song moves both into songs/<slug>/ (ADR-0015)
 songs/<slug>/score.gp         Guitar Pro file (GP3–GP8)
 songs/<slug>/audio.mp3        Optional audio rendered from the transcription, the Music source (ADR-0022)
+songs/<slug>/cover.jpg        Optional 300 px album cover for the header, from npm run fetch-cover (ADR-0026)
 songs/<slug>/song.yaml        Sidecar: metadata, chunks, media + sync, overrides (ADR-0013)
         │  npm run build:songs  (Node; run locally and committed, CI runs --check; ADR-0014)
         ▼
@@ -197,6 +198,7 @@ public/data/catalog.json       List of songs for the library overlay
 public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
 <base>data/scores/<slug>.gp   score.gp served/copied by the song-scores Vite plugin, not committed twice (ADR-0017)
 <base>data/audio/<slug>.mp3   audio.mp3, the same way, with byte ranges in dev (ADR-0022)
+<base>data/covers/<slug>.jpg  cover.jpg, the same way (ADR-0026)
 ```
 
 ### 6.1 Normalised song JSON (generated)
@@ -225,6 +227,7 @@ public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
   "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] },
              "music": { "url": "data/audio/vortex-surfer.mp3", "offsetMs": 0 } },   // null without an MP3
   "tempoNote": null,
+  "cover": { "url": "data/covers/vortex-surfer.jpg", "album": "Trust Us" },   // only with cover.jpg (ADR-0026)
   "lyrics": { "synced": true, "source": "Lead Vocals",   // only for songs with lyrics (ADR-0024)
               "lines": [{ "text": "word word", "section": "Verse 1", "gap": false,
                           "words": [{ "text": "word", "start": 26880, "end": 27360 }] }] },

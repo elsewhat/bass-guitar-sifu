@@ -605,6 +605,10 @@
     }
   },
   "tempoNote": "Notated in half time (53 BPM); the recording is about 106 BPM.",
+  "cover": {
+    "url": "data/covers/black-hole-sun.jpg",
+    "album": "Superunknown"
+  },
   "lyrics": {
     "synced": true,
     "source": "Chris Cornell | Lead Vocals",

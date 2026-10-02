@@ -7,6 +7,7 @@ tempo: { note: "Notated in half time (53 BPM); the recording is about 106 BPM." 
 media:
   youtube: { videoId: 3mbBbFH9fAg, sync: [] }
   music: { source: "Soundgarden-Black Hole Sun-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Superunknown", itunesId: 1440811129 }
 chunks:
   - { name: Verse 1 a, bars: [5, 8] }
   - { name: Verse 1 b, bars: [9, 13] }

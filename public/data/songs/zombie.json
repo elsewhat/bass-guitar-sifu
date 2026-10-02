@@ -1135,6 +1135,10 @@
     }
   },
   "tempoNote": "Tempo map follows the recording: 72–79 BPM in bars 1–4, 83–84 BPM from bar 5, 88 BPM from bar 81.",
+  "cover": {
+    "url": "data/covers/zombie.jpg",
+    "album": "No Need to Argue"
+  },
   "lyrics": {
     "synced": true,
     "source": "Dolores O'Riordan | Lead Vocals",

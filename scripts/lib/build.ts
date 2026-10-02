@@ -24,6 +24,10 @@ export function buildSongFromDir(dir: string, slug: string): BuiltSong {
   const hasAudio = existsSync(join(dir, 'audio.mp3'));
   if (sidecar.media?.music && !hasAudio) throw new Error('media.music is set but audio.mp3 is missing');
   if (hasAudio && !sidecar.media?.music) warnings.push('audio.mp3 exists but media.music is not set; the Music source stays off');
+  const hasCover = existsSync(join(dir, 'cover.jpg'));
+  if (sidecar.cover && !hasCover) throw new Error('cover is set but cover.jpg is missing');
+  if (hasCover && !sidecar.cover) warnings.push('cover.jpg exists but cover is not set; the header shows the placeholder');
+  if (!hasCover) warnings.push('No album cover; run npm run fetch-cover');
   const lyrics = loadLyrics(join(dir, 'score.gp'), score, sidecar, warnings);
   return buildSong(slug, imported, sidecar, warnings, lyrics);
 }
@@ -97,6 +101,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
       music: sidecar.media?.music ? { url: `data/audio/${slug}.mp3`, offsetMs: sidecar.media.music.offsetMs } : null,
     },
     tempoNote: sidecar.tempo?.note ?? null,
+    ...(sidecar.cover ? { cover: { url: `data/covers/${slug}.jpg`, album: sidecar.cover.album } } : {}),
     ...(lyrics ? { lyrics } : {}),
     ...(imported.playOrder ? { playOrder: imported.playOrder } : {}),
   };

@@ -776,6 +776,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/the-man-who-sold-the-world.jpg",
+    "album": "MTV Unplugged in New York"
+  },
   "lyrics": {
     "synced": true,
     "source": "Kurt Cobain | Beyerdynamic M59 | Vocals",

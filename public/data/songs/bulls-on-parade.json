@@ -820,6 +820,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/bulls-on-parade.jpg",
+    "album": "Evil Empire"
+  },
   "lyrics": {
     "synced": true,
     "source": "Zack de la Rocha | Vocals",

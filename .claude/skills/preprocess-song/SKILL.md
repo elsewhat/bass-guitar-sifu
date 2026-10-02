@@ -1,6 +1,6 @@
 ---
 name: preprocess-song
-description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, YouTube id, Music offset, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
+description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, YouTube id, Music offset, album cover, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
 ---
 
 # preprocess-song
@@ -83,6 +83,22 @@ Lyrics come from the score (ADR-0024); do not look them up or type them. The rep
 - `Synced from [i] "<track>"`: the vocal track with the most sung syllables. If that is a backing-vocals track while the lead also has lyrics, write `lyrics: { track: <lead track name> }`. The build warns when lines are cut by timing because the file's lyrics text has no line breaks; that is fine, mention it in the summary.
 - `No vocal track with lyrics`: the song has no lyrics until the owner pastes them into `song.yaml` as `lyrics.text` (a `text: |` block scalar: one line per lyric line, blank lines between stanzas, `[Chorus]` lines as labels). Do not fetch or write lyrics yourself; they are copyrighted text. Say so in the summary.
 
+## 4c. Album cover
+
+The header shows the album cover (ADR-0026). List the albums on iTunes that contain the song:
+
+```bash
+npm run fetch-cover -- <slug>
+```
+
+Pick the original release of the recording the tab follows: the studio album for a studio version, the live album for a live version (check `notes` and the YouTube video). Avoid singles, EPs, compilations, live albums for studio versions and tribute albums. A reissue (Deluxe, Remastered, Anniversary) is fine when the original is not listed. If nothing fits, retry with `--term "<artist> <album>"`. Then download it:
+
+```bash
+npm run fetch-cover -- <slug> --id <collectionId>
+```
+
+Look at `songs/<slug>/cover.jpg`, then write the printed `cover:` line into `song.yaml`, with the original album title (drop "(Deluxe Edition)", "(2025 Remastered)" and the like). If no album fits, leave `cover` out and say so in the summary; the header keeps the placeholder.
+
 ## 5. Chunks
 
 Chunks are what the player loops. The build requires them; the draft in the report is only a starting point.
@@ -137,6 +153,7 @@ Then report to the owner:
 - the chunk list (bars and names) in a compact table,
 - the YouTube video found (title, channel, id) or why none,
 - the Music offset, drift and confidence, or why there is no MP3,
+- the album cover (album, year, iTunes id) or why none,
 - lyrics: synced from which track, or none (the owner can paste `lyrics.text` into `song.yaml`),
 - re-tabs and any overrides, with the reason,
 - what to check by ear: tempo interpretation, chunk boundaries you were unsure about, anything the report warned about.

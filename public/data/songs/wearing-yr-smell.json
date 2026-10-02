@@ -968,6 +968,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/wearing-yr-smell.jpg",
+    "album": "Timothy's Monster"
+  },
   "lyrics": {
     "synced": false,
     "source": "song.yaml",

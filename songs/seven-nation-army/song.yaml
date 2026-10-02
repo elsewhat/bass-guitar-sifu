@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: 0J2QdDbelmY, sync: [] }
   music: { source: "The White Stripes-Seven Nation Army (With Bass Guitar)-10-02-2026.mp3", offsetMs: 0 }
+cover: { album: "Elephant", itunesId: 1533513536 }
 chunks:
   - { name: Intro, bars: [1, 4] }
   - { name: Intro repeat, bars: [5, 8] }

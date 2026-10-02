@@ -13,6 +13,7 @@
     "typecheck": "tsc -b",
     "build:songs": "tsx scripts/build-songs.ts",
     "inspect-song": "tsx scripts/inspect-song.ts",
+    "fetch-cover": "tsx scripts/fetch-cover.ts",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test"

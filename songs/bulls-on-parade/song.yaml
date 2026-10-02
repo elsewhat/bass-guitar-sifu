@@ -7,6 +7,7 @@ tempo: { note: null }
 media:
   youtube: { videoId: 3L4YrGaR8E4, sync: [] }
   music: { source: "Rage Against the Machine-Bulls On Parade-09-29-2026.mp3", offsetMs: 0 }
+cover: { album: "Evil Empire", itunesId: 390538381 }
 chunks:
   - { name: Intro a, bars: [2, 5] }
   - { name: Intro a repeat, bars: [6, 9] }

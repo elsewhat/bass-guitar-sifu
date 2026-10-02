@@ -980,6 +980,10 @@
     }
   },
   "tempoNote": null,
+  "cover": {
+    "url": "data/covers/paranoid.jpg",
+    "album": "Paranoid"
+  },
   "lyrics": {
     "synced": true,
     "source": "Ozzy Osbourne | Vocals",

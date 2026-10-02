@@ -45,6 +45,8 @@ test('fits a 1280 px wide window', async ({ page }) => {
 test('loads Vortex Surfer with its practice plan, strip and fingering', async ({ page }) => {
   await openSong(page);
   await expect(page.getByRole('heading', { name: 'Vortex Surfer' })).toBeVisible();
+  // The album cover replaces the placeholder (ADR-0026).
+  await expect(page.getByRole('img', { name: 'Trust Us cover' })).toHaveJSProperty('naturalWidth', 300);
   await expect(page.getByText('110 BPM · 4/4 · Standard E A D G · 243 bars')).toBeVisible();
   await expect(page.getByText('Bars 1–129 · bass rests')).toBeVisible();
   await expect(page.getByText('Intro skipped · bass rests bars 1–129')).toBeVisible();
@@ -274,6 +276,7 @@ test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ pa
   await library.getByRole('button', { name: /^Creep/ }).click();
   await expect(library).toBeHidden();
   await expect(page.getByRole('heading', { name: 'Creep' })).toBeVisible();
+  await expect(page.getByRole('img', { name: 'Pablo Honey cover' })).toHaveJSProperty('naturalWidth', 300);
 
   // Vortex Surfer's progress is kept and shown on its card, and restored when it is chosen again.
   await page.keyboard.press('Control+k');
