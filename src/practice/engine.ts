@@ -4,6 +4,8 @@
 import type { CatalogEntry, SongData } from '../core/model';
 import type { PlaybackClock } from '../playback/clock';
 import { CountClock, countSamplesAvailable, type CountGains } from '../playback/count-clock';
+import type { CountInState } from '../playback/count-in';
+import { CountInPlayer } from '../playback/count-in-player';
 import { setTickSource } from '../playback/frame';
 import { chunkRange, completePass, initialLoop, nextChunk, nextRepeatMode, prevChunk, rangeAfterPass, selectChunk, setRepeatMode, willAdvance } from '../playback/loop';
 import { applyQuickMix, channelGain, clampVolume, effectiveGain, type Channel, type GlobalChannelId, type QuickMix, type TrackChannel } from '../playback/mixer';
@@ -19,6 +21,7 @@ const base = import.meta.env.BASE_URL;
 let clock: PlaybackClock | null = null;
 let synthPlayer: SynthPlayerHandle | null = null; // the Synth clock's player, for the mixer
 let musicPlayer: MusicPlayerHandle | null = null; // the Music clock's player, for the mixer
+let countIn: CountInPlayer | null = null; // the Synth or Music clock's count-in, for the mixer
 let loadToken = 0;
 
 setTickSource(() => clock?.getTick() ?? 0);
@@ -64,7 +67,8 @@ function createSynthClock(song: SongData): SynthClock {
     if (clock === c) synthPlayer = p;
     return p;
   });
-  const c = new SynthClock(song, player);
+  countIn = new CountInPlayer(countGains());
+  const c = new SynthClock(song, player, undefined, countIn);
   player
     .then((p) => p.ready)
     .then(
@@ -82,7 +86,8 @@ function createMusicClock(song: SongData, music: NonNullable<SongData['media']['
     if (clock === c) musicPlayer = p;
     return p;
   });
-  const c = new MusicClock(song, music.offsetMs, player);
+  countIn = new CountInPlayer(countGains());
+  const c = new MusicClock(song, music.offsetMs, player, undefined, undefined, countIn);
   player
     .then((p) => p.ready)
     .then(
@@ -97,6 +102,7 @@ function attachClock(song: SongData, tick?: number) {
   clock?.dispose();
   synthPlayer = null;
   musicPlayer = null;
+  countIn = null;
   if (!sourceAvailable(state().source, song)) useSession.setState({ source: 'count' });
   let c: PlaybackClock;
   const source = state().source;
@@ -161,11 +167,12 @@ export async function loadSong(slug: string) {
   }
 }
 
+/** Play always starts with a one-bar count-in (ADR-0025). */
 export function togglePlay() {
   if (!clock || state().sourceStatus.state !== 'ready') return;
   if (clock.isPlaying()) pause();
   else {
-    void clock.play();
+    void clock.play({ countIn: true });
     useSession.setState({ playing: true });
   }
 }
@@ -175,13 +182,29 @@ export function pause() {
   useSession.setState({ playing: false });
 }
 
+/** The count heard now while a count-in plays, else null; for the count cells, per frame. */
+export function countInState(): CountInState | null {
+  return clock?.countInState() ?? null;
+}
+
+/** Moves the clock; while playing, playback starts again at the new place with a count-in (ADR-0025). */
+function jump(move: (c: PlaybackClock) => void) {
+  if (!clock) return;
+  const playing = clock.isPlaying();
+  if (playing) clock.pause();
+  move(clock);
+  if (playing) void clock.play({ countIn: true });
+}
+
 function goTo(update: (s: ReturnType<typeof state>, count: number) => ReturnType<typeof selectChunk>) {
   const song = state().song;
   if (!song || !clock) return;
   useSession.setState(update(state(), song.chunks.length));
   const range = currentRange(song);
-  clock.setRange(range);
-  clock.seek(range.start);
+  jump((c) => {
+    c.setRange(range);
+    c.seek(range.start);
+  });
 }
 
 export function selectChunkAt(index: number) {
@@ -199,7 +222,7 @@ export function goPrevChunk() {
 /** Back to the chunk start; the pass count stays. */
 export function restartChunk() {
   const song = state().song;
-  if (song && clock) clock.seek(currentRange(song).start);
+  if (song) jump((c) => c.seek(currentRange(song).start));
 }
 
 export function stepTempo(direction: 1 | -1) {
@@ -247,6 +270,7 @@ function applyMix() {
   if (clock instanceof CountClock) clock.setMix(countGains());
   synthPlayer?.setMix(synthLevels());
   musicPlayer?.setGain(musicGain());
+  countIn?.setMix(countGains());
   // YouTube: setVolume(master × video) once the YouTube source exists (step 6).
 }
 

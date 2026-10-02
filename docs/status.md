@@ -114,6 +114,15 @@ Updated 2026-09-30. This is the hand-off point between working sessions: what is
    - `inspect-song` has a `## Lyrics` section (counts only) and the `preprocess-song` skill reports the lyrics source.
    - Tests: 162 unit tests (`lyrics.test.ts`, pipeline lyrics tests on Creep, Killing in the Name and Bombtrack, keys); 17 Playwright tests, including the lyrics view following playback, the toggle kept after reload, and a song without lyrics. Checked in the preview for Creep, Killing in the Name, and temporary placeholder unsynced lyrics on Vortex Surfer (removed).
 
+14. **Count-in** (2026-09-30; **ADR-0025, proposed**). The owner's choices: a count-in only when play starts, one bar long.
+   - Play, and a chunk change or restart while playing, start with one bar of metronome counts. Passes, auto-advance and play-through continue without a gap.
+   - The counted bar has the meter and tempo (× the tempo setting) of the start bar and ends where playback starts, so a resume on beat 3 counts `3 4 1 2`. Only beats are sounded. `countInPlan` / `countInState` in `src/playback/count-in.ts`.
+   - Metronome: `CountClock` schedules the count-in on its own audio clock and starts the timeline right after it. The Web Audio sounds moved to `src/playback/count-sounds.ts` (`CountSounds`).
+   - Synth and Music: `CountInPlayer` (`src/playback/count-in-player.ts`) behind a `CountInPort`; the player starts when the count-in's end is due. Pause cancels the count-in.
+   - The count-in follows the mixer's Click, Voice and master. `getTick()` holds at the start; `countInState()` drives the count cells, which the Synth and Music views show only during the count-in.
+   - Tests: 172 unit tests (`count-in.test.ts`, count-in cases in the Synth and Music clock tests with `count-in.fake.ts`); 18 Playwright tests, including Play and a chunk change counting in. The playback e2e tests wait longer for the scroll, and the playhead test samples from the count-in on.
+   - Checked in the preview with Paranoid (163 bpm): Metronome, Synth and Music count one 4/4 bar (about 1.5 s) before playing, and `Next chunk` while playing counts in again.
+
 ## Next
 
 - YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016), step 6: **on hold (owner, 2026-09-30)**. Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020). Show the lyrics as the design's subtitle band over the video (ADR-0024).
@@ -135,6 +144,7 @@ Open points from slice 1 (not blocking):
 - Make `elsewhat/bass-guitar-sifu` public, and set Pages → Source to "GitHub Actions" (ADR-0012). The workflow already exists.
 - Record the count samples: `one` … `four`, `and`, as WAV files in `public/audio/count/`. Until then the mixer shows the Voice channel as "No samples".
 - Tap the sync anchors for the YouTube videos once the editor exists (16 songs).
+- Review ADR-0025 (count-in). Listen in a normal browser: does the Synth or Music start late after the last count (start-up latency)? Is one bar at slow tempo settings too long?
 - Review ADR-0022 (Music source). Listen in a normal browser:
   - Does the tab ring land on the notes with Music? Check a chunk start after a seek and a loop wrap. The offsets are 0–20 ms, and output latency is removed.
   - Is the wrap seek smooth enough?

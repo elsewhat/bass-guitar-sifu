@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Bar, TempoPoint } from '../core/model';
 import type { TickRange } from '../core/plucks';
 import type { PassCompleted } from './clock';
+import { FakeCountIn } from './count-in.fake';
 import { MusicClock, type MusicPlayer } from './music-clock';
 
 // 4/4 bars of 3840 ticks at 120 bpm: 1920 ticks per second, 2 s per bar. The file has a 500 ms lead-in.
@@ -163,5 +164,21 @@ describe('MusicClock loop', () => {
     clock.seek(0);
     at(7_800);
     expect(asks).toBe(2);
+  });
+
+  it('counts in at full speed, then seeks and plays (ADR-0025)', async () => {
+    const player = new FakePlayer();
+    const countIn = new FakeCountIn();
+    const clock = new MusicClock(song, OFFSET_MS, Promise.resolve(player), () => 0, () => () => {}, countIn);
+    clock.setRange(chunkB);
+    clock.setRate(0.5); // ignored: Music plays at 100 %
+    player.load();
+    const started = clock.play({ countIn: true });
+    await countIn.running;
+    expect(countIn.calls).toEqual(['prepare', 'run 2s']);
+    expect(player.calls).toEqual([]);
+    countIn.finish();
+    await started;
+    expect(player.calls).toEqual(['seek 4.5', 'play']);
   });
 });

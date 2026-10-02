@@ -56,7 +56,7 @@ Gaps are 12 px, page padding 16 px.
 ### 3.3 Video cell (centre, top)
 
 - Source switch overlaid top-left: `YouTube · Synth · Music · Metronome` (Spotify deferred, ADR-0016; Music added by ADR-0022, disabled for songs without an MP3). The Metronome is the count source (called Count before 2026-09-29; the code keeps the id `count`).
-- YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position.
+- YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position. The Synth and Music views show the same cells during a count-in only (§5.6).
 - Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
 - Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
 - Lyrics button (subtitles icon) left of the mixer button (ADR-0024, `design/artboards/LyricsView.dc.html`). On by default and kept in the settings; disabled for songs without lyrics. With lyrics on:
@@ -70,7 +70,7 @@ Gaps are 12 px, page padding 16 px.
 
 Left to right:
 
-1. Play/pause (primary, accent green circle).
+1. Play/pause (primary, accent green circle). Play starts with a one-bar count-in (§5.6).
 2. Restart chunk.
 3. Pass counter and repeat button. The button cycles three modes (ADR-0021): repeat each chunk N times, then advance (repeat arrows, green, with pass dots and `2/3`); play through, each chunk once (arrow to a bar, green, `Play through`); loop this chunk (repeat-one icon, white, `Pass 5`). Play through is the default (owner, 2026-09-29).
 4. Tempo control: `−`, `95%` with `105 BPM` under it, `+`. Steps of 5 %, range 40–100 %, starting at 100 % (owner, 2026-09-29). Locked at 100 % while the source is Music; the chosen tempo returns on the other sources (ADR-0022).
@@ -142,6 +142,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - When the pass counter exceeds the target passes (default 3) and auto-advance is on, the chunk is marked done with the tempo used, the next chunk starts, and the pass counter resets to 1.
 - "Next chunk" advances immediately without marking the chunk done.
 - "Restart chunk" returns to the chunk start and keeps the pass count.
+- Selecting a chunk, "Next chunk" or "Restart chunk" while playing starts again with a count-in (§5.6). Passes, auto-advance and play-through continue without one.
 - On the last chunk, auto-advance marks the chunk done after its passes and keeps looping it. With auto-advance off, the pass counter keeps counting past the target.
 - The loop decides where to continue when the wrap is scheduled, ahead of the audio, so the next pass or chunk starts without a gap (ADR-0018).
 - In play-through mode (ADR-0021) each chunk is played once and the next chunk starts directly.
@@ -167,6 +168,12 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - Voice plays one sample per eighth-note position: `one`, `and`, `two`, `and`, `three`, `and`, `four`, `and`, using the bar's time signature (other meters count the corresponding beats).
 - Samples are WAV files in `public/audio/count/`, scheduled with the Web Audio API using a look-ahead scheduler so timing does not depend on `setTimeout` accuracy.
 - The eight count cells in the video area highlight the current position, including during sustained notes.
+
+### 5.6 Count-in (ADR-0025)
+
+- Playback always starts with one bar of metronome counts: on Play, and on a chunk change or restart while playing (owner, 2026-09-30). Passes, auto-advance and play-through do not count in, so a play-through has no gaps.
+- The counted bar has the meter and tempo (× the tempo setting) of the bar playback starts in, and ends where playback starts: `1 2 3 4` into a bar start, `3 4 1 2` into beat 3 after a pause mid-bar. Only the beats are sounded, with the Metronome's click (accent on 1) and voice samples, for every source.
+- The count-in follows the mixer's Metronome channels (Click, Voice) and the master. The strip, the Now square, the fretboard and the lyrics wait at the start position; the count cells light the eighth being counted. Pause cancels the count-in.
 
 ### 5.5 Mixer (ADR-0020)
 
@@ -306,6 +313,7 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
 - YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
 - The Metronome schedules audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
+- `play({ countIn: true })` plays the one-bar count-in first (ADR-0025). The Metronome schedules it on its own audio clock; the Synth and Music start their player when the count-in's end is due. `getTick()` stays at the start during the count-in, and `countInState()` feeds the count cells.
 - Music streams `data/audio/<slug>.mp3` through `<audio>` and Web Audio. Audio time = score time + `offsetMs`; the clock seeks at chunk wraps, accurate to tens of milliseconds (ADR-0022).
 - Synth is alphaTab's player on the strip's alphaTab instance, loaded when the Synth is first chosen. It plays the bass track alone by default; full band and band without bass are prepared (ADR-0019).
 

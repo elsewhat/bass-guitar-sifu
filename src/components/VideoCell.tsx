@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { countCells, EIGHTH } from '../core/count';
 import { barIndexAt } from '../core/timing';
 import { useFrame } from '../playback/frame';
-import { openMixer, setSource, toggleLyrics } from '../practice/engine';
+import { countInState, openMixer, setSource, toggleLyrics } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { introChip, loopTimeLabel } from '../practice/view-model';
 import { SOURCES, sourceAvailable, useSession, type SourceId, type SourceStatus } from '../state/session';
@@ -44,11 +44,13 @@ export function VideoCell() {
           ) : source === 'synth' ? (
             // No play button of its own: Play is in the transport bar (§3.3).
             <>
+              <CountCells countInOnly />
               <div className="text-base font-bold text-white">Synth playback</div>
               <div className="text-sm">{synthDetail(status)}</div>
             </>
           ) : source === 'music' ? (
             <>
+              <CountCells countInOnly />
               <div className="text-base font-bold text-white">Music playback</div>
               <div className="text-sm">{musicDetail(status)}</div>
             </>
@@ -137,7 +139,8 @@ function SourceRow({ source, status }: { source: SourceId; status: SourceStatus 
     return (
       <>
         <span className="font-bold text-white">{source === 'synth' ? 'Synth playback' : 'Music playback'}</span>
-        <span className="text-subdued">{source === 'synth' ? synthDetail(status) : musicDetail(status)}</span>
+        <span className="text-subdued truncate">{source === 'synth' ? synthDetail(status) : musicDetail(status)}</span>
+        <CountCells small countInOnly />
       </>
     );
   }
@@ -158,21 +161,32 @@ function musicDetail(status: SourceStatus): string {
 
 /**
  * One cell per eighth of the current bar ("1 & 2 & 3 & 4 &"), the current one lit, per frame.
- * `small`: 26 px cells for the row above the lyrics.
+ * During a count-in (ADR-0025) the cells count the bar before playback starts.
+ * `small`: 26 px cells for the row above the lyrics. `countInOnly`: shown only during a count-in
+ * (the Synth and Music views).
  */
-function CountCells({ small = false }: { small?: boolean }) {
+function CountCells({ small = false, countInOnly = false }: { small?: boolean; countInOnly?: boolean }) {
   const box = useRef<HTMLDivElement>(null);
-  const shown = useRef({ meter: '', cell: -1 });
+  const shown = useRef({ meter: '', cell: -1, countIn: false });
 
   useFrame((tick) => {
     const song = useSession.getState().song;
     const el = box.current;
     if (!song || !el) return;
+    const countIn = countInState();
+    const counting = countIn !== null;
+    if (counting !== shown.current.countIn) {
+      shown.current.countIn = counting;
+      el.dataset.countIn = String(counting);
+      if (countInOnly) el.style.display = counting ? '' : 'none';
+    }
+    if (countInOnly && !countIn) return;
     const bar = song.bars[barIndexAt(song.bars, tick)]!;
-    const meter = bar.time.join('/');
+    const time = countIn?.time ?? bar.time;
+    const meter = time.join('/');
     if (meter !== shown.current.meter) {
-      shown.current = { meter, cell: -1 };
-      const cells = countCells(bar.time);
+      shown.current = { ...shown.current, meter, cell: -1 };
+      const cells = countCells(time);
       const size = small
         ? { w: Math.min(26, Math.floor((440 - 4 * (cells.length - 1)) / cells.length)), h: 26, r: 4, beat: 13, and: 13 }
         : { w: Math.min(56, Math.floor((560 - 8 * (cells.length - 1)) / cells.length)), h: 76, r: 8, beat: 40, and: 30 };
@@ -184,7 +198,7 @@ function CountCells({ small = false }: { small?: boolean }) {
         .join('');
       for (const c of el.children) paint(c as HTMLElement, false);
     }
-    const cell = Math.floor((tick - bar.startTick) / EIGHTH);
+    const cell = countIn?.cell ?? Math.floor((tick - bar.startTick) / EIGHTH);
     if (cell !== shown.current.cell) {
       const cells = el.children;
       if (cells[shown.current.cell]) paint(cells[shown.current.cell] as HTMLElement, false);
@@ -193,7 +207,16 @@ function CountCells({ small = false }: { small?: boolean }) {
     }
   });
 
-  return <div ref={box} aria-hidden="true" data-testid="count-cells" className={small ? 'flex gap-1' : 'mb-2 flex gap-2'} />;
+  return (
+    <div
+      ref={box}
+      aria-hidden="true"
+      data-testid={countInOnly ? 'count-in-cells' : 'count-cells'}
+      data-count-in="false"
+      style={countInOnly ? { display: 'none' } : undefined}
+      className={small ? 'flex shrink-0 gap-1' : 'mb-2 flex gap-2'}
+    />
+  );
 }
 
 function paint(cell: HTMLElement, on: boolean) {
