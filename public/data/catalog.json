@@ -1,5 +1,8 @@
 [
+  {"slug":"bad-guy","title":"bad guy","artist":"Billie Eilish","bpm":135,"durationSec":191.1,"tuning":[26,31,36,41],"tuningName":"D standard","maxFret":12,"bars":105,"chunks":22,"music":true},
   {"slug":"paranoid","title":"Paranoid","artist":"Black Sabbath","bpm":163,"durationSec":164.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":9,"bars":112,"chunks":27,"music":true},
+  {"slug":"i-can-change","title":"I Can Change","artist":"LCD Soundsystem","bpm":118,"durationSec":313.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":18,"bars":154,"chunks":31,"music":true},
+  {"slug":"new-york-i-love-you-but-you-re-bringing-me-down","title":"New York, I Love You But You're Bringing Me Down","artist":"LCD Soundsystem","bpm":100,"durationSec":294.8,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":14,"bars":79,"chunks":18,"music":true},
   {"slug":"the-wheel","title":"The Wheel","artist":"Motorpsycho","bpm":122,"durationSec":1135.1,"tuning":[25,30,35,40],"tuningName":"C♯ standard","maxFret":16,"bars":577,"chunks":76,"music":true},
   {"slug":"un-chien-d-espace","title":"Un Chien d'Espace","artist":"Motorpsycho","bpm":98,"durationSec":866.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":8,"bars":357,"chunks":36,"music":true},
   {"slug":"vortex-surfer","title":"Vortex Surfer","artist":"Motorpsycho","bpm":110,"durationSec":530.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":243,"chunks":9,"music":false},
@@ -15,5 +18,6 @@
   {"slug":"freedom","title":"Freedom","artist":"Rage Against the Machine","bpm":72,"durationSec":361.3,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":17,"bars":110,"chunks":23,"music":true},
   {"slug":"killing-in-the-name","title":"Killing in the Name","artist":"Rage Against the Machine","bpm":109,"durationSec":313.1,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":12,"bars":120,"chunks":30,"music":true},
   {"slug":"black-hole-sun","title":"Black Hole Sun","artist":"Soundgarden","bpm":53,"durationSec":323.2,"tuning":[26,33,38,43],"tuningName":"Drop D","maxFret":7,"bars":79,"chunks":18,"music":true},
-  {"slug":"zombie","title":"Zombie","artist":"The Cranberries","bpm":72,"durationSec":306.8,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":12,"bars":108,"chunks":26,"music":true}
+  {"slug":"zombie","title":"Zombie","artist":"The Cranberries","bpm":72,"durationSec":306.8,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":12,"bars":108,"chunks":26,"music":true},
+  {"slug":"seven-nation-army","title":"Seven Nation Army","artist":"The White Stripes","bpm":124,"durationSec":226.5,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":7,"bars":117,"chunks":29,"music":true}
 ]

@@ -1,0 +1,88 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "New York, I Love You But You're Bringing Me Down"
+artist: LCD Soundsystem
+source: { file: "LCD Soundsystem-New York, I Love You But You're Bringing Me Down-04-05-2026.gp", date: 2026-04-05 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: c5kM3iwYVi0, sync: [] }
+  music: { source: "LCD Soundsystem-New York, I Love You But You're Bringing Me Down-10-02-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Riff A, bars: [9, 10] }
+  - { name: Riff A repeat, bars: [11, 12] }
+  - { name: Verse 1 a, bars: [13, 16] }
+  - { name: Verse 1 b, bars: [17, 20] }
+  - { name: Verse 1 c, bars: [21, 24] }
+  - { name: Verse 2 a, bars: [25, 28] }
+  - { name: Verse 2 b, bars: [29, 32] }
+  - { name: Verse 2 c, bars: [33, 36] }
+  - { name: Verse 2 d, bars: [37, 40] }
+  - { name: Verse 3 a, bars: [41, 44] }
+  - { name: Verse 3 b, bars: [45, 48] }
+  - { name: Build a, bars: [49, 52] }
+  - { name: Build a repeat, bars: [53, 56] }
+  - { name: Build b, bars: [57, 60] }
+  - { name: Build c, bars: [61, 65] }
+  - { name: Coda a, bars: [68, 71] }
+  - { name: Coda b, bars: [72, 75] }
+  - { name: Coda c, bars: [76, 79] }
+fingeringOverrides: []
+notes: >-
+  No section markers. 12/8 throughout; the tempo is counted in quarter notes (100 BPM = 66.7
+  per dotted quarter), slowing to 58 BPM at bar 67 and back to 100 at bar 71. Bass tacet in
+  bars 1–8 (piano intro) and 66–67. Chunks follow the 4-bar phrases from bar 9; Build c runs
+  to bar 65 (5 bars) so that the last bar before the tacet is not left alone. Verse names are
+  by phrase position, not lyric verses (there is no vocal track to align them). Fingering: the
+  solver re-tabs F2 in bars 57 and 61 to D string fret 3 as an octave shape over F1 (E string
+  fret 1); kept. No overrides. Score 4:55, the album recording 5:35, so the transcription is
+  shorter than the record. YouTube: "LCD Soundsystem - Topic" upload from Sound of Silver.
+lyrics:
+  # Pasted by the owner for private practice; unsynced, ADR-0024.
+  text: |
+    [Verse 1]
+    New York, I love you, but you're bringing me down
+    New York, I love you, but you're bringing me down
+    Like a rat in a cage, pulling minimum wage
+    New York, I love you, but you're bringing me down
+
+    [Verse 2]
+    New York, you're safer and you're wasting my time
+    Our records all show you were filthy but fine
+    But they shuttered your stores when you opened the doors
+    To the cops who were bored once they'd run out of crime
+
+    [Verse 3]
+    New York, you're perfect, oh, please don't change a thing
+    Your mild billionaire mayor's now convinced he's a king
+    And so the boring collect, I mean all disrespect
+    In the neighborhood bars I'd once dreamt I would drink
+
+    [Verse 4]
+    New York, I love you, but you're freaking me out
+    There's a ton of the twist, but we're fresh out of shout
+    Like a death in the hall that you hear through your wall
+    New York, I love you, but you're freaking me out
+
+    [Verse 5]
+    New York, I love you, but you're bringing me down
+    New York, I love you, but you're bringing me down
+    Like a death of the heart, Jesus, where do I start?
+    But you're still the one pool where I'd happily drown
+
+    [Chorus 1]
+    And, oh! Take me off your mailing list
+    For kids who think it still exists
+    Yes, for those who think it still exists
+    Maybe I'm wrong and maybe you're right
+    Maybe I'm wrong and maybe you're right
+    Maybe you're right, maybe I'm wrong
+    And just maybe you're right
+
+    [Chorus 2]
+    And, oh! Maybe mother told you true
+    And there'll always be somebody there for you
+    And you'll never be alone
+    But maybe she's wrong and maybe I'm right
+    And just maybe she's wrong
+    Maybe she's wrong and maybe I'm right
+    And if so, here's this song

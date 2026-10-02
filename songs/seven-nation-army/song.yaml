@@ -1,0 +1,79 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Seven Nation Army
+artist: The White Stripes
+source: { file: "The White Stripes-Seven Nation Army (With Bass Guitar)-09-30-2026.gp", date: 2026-09-30 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube: { videoId: 0J2QdDbelmY, sync: [] }
+  music: { source: "The White Stripes-Seven Nation Army (With Bass Guitar)-10-02-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro, bars: [1, 4] }
+  - { name: Intro repeat, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Verse 1 b ×2, bars: [17, 24] }
+  - { name: Verse 1 c, bars: [25, 26] }
+  - { name: Break 1 a, bars: [27, 30] }
+  - { name: Break 1 b, bars: [31, 34] }
+  - { name: Break 1 c, bars: [35, 36] }
+  - { name: Break 1 d, bars: [37, 40] }
+  - { name: Break 1 e, bars: [41, 44] }
+  - { name: Verse 2 a, bars: [45, 48] }
+  - { name: Verse 2 b, bars: [49, 52] }
+  - { name: Verse 2 c, bars: [53, 56] }
+  - { name: Verse 2 c repeat, bars: [57, 60] }
+  - { name: Verse 2 d, bars: [61, 62] }
+  - { name: Solo a, bars: [63, 66] }
+  - { name: Solo a ×3, bars: [67, 78] }
+  - { name: Solo b, bars: [79, 80] }
+  - { name: Solo c, bars: [81, 84] }
+  - { name: Solo c repeat, bars: [85, 88] }
+  - { name: Verse 3 a, bars: [89, 92] }
+  - { name: Verse 3 b, bars: [93, 96] }
+  - { name: Verse 3 b repeat, bars: [97, 100] }
+  - { name: Verse 3 c, bars: [101, 104] }
+  - { name: Verse 3 d, bars: [105, 106] }
+  - { name: Outro a, bars: [107, 110] }
+  - { name: Outro b, bars: [111, 114] }
+  - { name: Outro c, bars: [115, 117] }
+fingeringOverrides: []
+notes: >-
+  The record has no bass: Jack White plays the riff on guitar through an octave-down pitch
+  shifter. This score ("With Bass Guitar") adds a 4-string bass track playing that part, which
+  is what we practise; the title drops the "(With Bass Guitar)" suffix. The 2-bar riff (A B in
+  the pattern grid) and its variants (C B, G B, A F) are chunked in 4-bar pairs; the 2-bar
+  D E figure before each break is its own chunk. "Break 2 / Guitar solo" is shortened to Solo.
+  Fingering: the riff ends on B (A string fret 2) and restarts on E (fret 7), so every second
+  bar shifts from position 2 to 5; this is the riff itself, no overrides. 124 BPM steady,
+  matching the record. YouTube: official music video on The White Stripes channel (3:58; the
+  album audio is 3:52 on "The White Stripes - Topic", D_QLxj8jCF0).
+lyrics:
+  # Pasted by the owner for private practice; unsynced, ADR-0024.
+  text: |
+    [Verse 1]
+    I'm gonna fight 'em off
+    A seven-nation army couldn't hold me back
+    They're gonna rip it off
+    Takin' their time right behind my back
+    And I'm talkin' to myself at night because I can't forget
+    Back and forth through my mind, behind a cigarette
+    And the message comin' from my eyes says, "Leave it alone"
+
+    [Verse 2]
+    Don't wanna hear about it
+    Every single one's got a story to tell
+    Everyone knows about it
+    From the Queen of England to the Hounds of Hell
+    And if I catch it comin' back my way, I'm gonna serve it to you
+    And that ain't what you want to hear, but that's what I'll do
+    And the feelin' comin' from my bones says, "Find a home"
+
+    [Verse 3]
+    I'm goin' to Wichita
+    Far from this opera forevermore
+    I'm gonna work the straw
+    Make the sweat drip out of every pore
+    And I'm bleedin' and I'm bleedin' and I'm bleedin' right before the Lord
+    All the words are gonna bleed from me and I will think no more
+    And the stains comin' from my blood tell me, "Go back home"

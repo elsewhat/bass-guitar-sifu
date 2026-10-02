@@ -1,0 +1,123 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: I Can Change
+artist: LCD Soundsystem
+source: { file: "LCD Soundsystem-I Can Change-06-21-2025.gp", date: 2025-06-21 }
+bassTrack: "Synth Bass 1"
+tempo: { note: null }
+media:
+  youtube: { videoId: Fq4jVhJdYoM, sync: [] }
+  music: { source: "LCD Soundsystem-I Can Change-10-02-2026.mp3", offsetMs: 0 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 8] }
+  - { name: Intro c, bars: [9, 12] }
+  - { name: Verse 1 a, bars: [13, 16] }
+  - { name: Verse 1 b, bars: [17, 24] }
+  - { name: Verse 1 b repeat, bars: [25, 32] }
+  - { name: Verse 1 c, bars: [33, 36] }
+  - { name: Chorus 1 a, bars: [37, 40] }
+  - { name: Chorus 1 b, bars: [41, 44] }
+  - { name: Chorus 1 c, bars: [45, 48] }
+  - { name: Chorus 1 d, bars: [49, 52] }
+  - { name: Post-Chorus 1, bars: [53, 56] }
+  - { name: Verse 2 a, bars: [57, 60] }
+  - { name: Verse 2 b, bars: [61, 68] }
+  - { name: Verse 2 b repeat, bars: [69, 76] }
+  - { name: Verse 2 c, bars: [77, 80] }
+  - { name: Chorus 2 a, bars: [81, 84] }
+  - { name: Chorus 2 b, bars: [85, 88] }
+  - { name: Chorus 2 c, bars: [89, 92] }
+  - { name: Chorus 2 d, bars: [93, 96] }
+  - { name: Post-Chorus 2, bars: [97, 100] }
+  - { name: Verse 3 a, bars: [101, 108] }
+  - { name: Verse 3 a repeat, bars: [109, 116] }
+  - { name: Verse 3 b, bars: [117, 119] }
+  - { name: Chorus 3 a, bars: [121, 124] }
+  - { name: Chorus 3 b, bars: [125, 128] }
+  - { name: Chorus 3 c, bars: [129, 132] }
+  - { name: Chorus 3 d, bars: [133, 136] }
+  - { name: Chorus 3 e, bars: [137, 144] }
+  - { name: Chorus 3 e repeat, bars: [145, 152] }
+  - { name: Ending, bars: [153, 154] }
+fingeringOverrides: []
+notes: >-
+  Synth bass part. Chunks follow the bass's 4-bar phrases, which start one bar before most of
+  the score's section markers (Verse 14, Chorus 38/82, Post-Chorus 54/98, Verse 58/106) and two
+  bars before the last Chorus marker (123): the first bar of each phrase (I, N, T, V in the
+  pattern grid) is the pickup into the new section. Verse = G H H H / I F F F; chorus = x B C B /
+  P L Q L (J/M variants in chorus 1, U in the last chorus). Bar 120 is tacet; Verse 3 b ends at
+  119. Chorus 3 e (V B C B P L U L) is repeated once and the song ends on bars 153–154.
+  The score is 5:13 at a steady 118 BPM; the album recording is 5:56, so the transcription is
+  shorter than the record (check where by ear before tapping sync anchors). YouTube: "LCD
+  Soundsystem - Topic" upload from This Is Happening (Parlophone).
+lyrics:
+  # Pasted by the owner for private practice; unsynced, ADR-0024.
+  text: |
+    [Verse 1]
+    Tell me a line, make it easy for me
+    Open your arms, dance with me until I feel all right
+    It's good in the dark, good in the dark
+    But into the lover's light, here comes another fight
+    So ring the alarm, ring the alarm
+    Bore me and hold me and cling to my arm
+    Here it comes, here it comes
+    And what you're asking me now, disastrous now
+    Hoping and hoping and hoping
+    The feeling goes away
+
+    [Chorus]
+    Never change, never change, never change, never change
+    Never change, never change, never change
+    This is why I fell in love, oh
+    Never change, never change, never change, never change
+    Never change, never change, never change
+    That's just who I fell in love with
+    (In love)
+
+    [Verse 2]
+    Oh this is the time, the very best time
+    So give me a line and take me home, take me over
+    But dashing the hopes, dashing the hopes
+    And smashing the pride, the morning's got you on the ropes, oh
+    And love is a murderer, love is a murderer
+    But if she calls you tonight, everything is all right
+    Yeah, we know
+    And love is a curse shoved in a hearse
+    Love is an open book to a verse of your, bad poetry
+    And this is coming from me
+
+    [Chorus]
+    But I can change, I can change, I can change, I can change
+    I can change, I can change, I can change
+    If it helps you fall in love
+    (In love)
+    But I can change, I can change, I can change, I can change
+    I can change, I can change, I can change
+    If it helps you fall in love
+    (In love)
+
+    [Verse 3]
+    Turn on the light, make it easy for me
+    Feel the divide, fumble in the kitchen 'til it's right
+    What an awful sight
+    But there's love in your eyes, love in your eyes
+    Love in your eyes, but maybe that's just your love of fights
+    All night!
+
+    [Chorus]
+    And I can change, I can change, I can change, I can change
+    I can change, I can change, I can change
+    If it helps you fall in love
+    (In love)
+    And I can change, I can change, I can change, I can change
+    I can change, I can change, I can change
+    If it helps you fall in love
+    (In love)
+    And I can change, I can change, I can change, I can change
+    I can change, I can change, I can change
+    If it helps you feel real love
+    (In love)
+    And I can change, I can change, I can change, I can change
+    I can change, I can change, I can change
+    If it helps you fall in love
+    (In love)
