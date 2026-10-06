@@ -4,7 +4,8 @@
 // clock guide). alphaTab loops the chunk itself. Shortly before the range end this adapter asks the
 // loop controller where to continue (ADR-0018); another pass needs nothing, and a different chunk
 // is set as alphaTab's range when the wrap is heard. Setting the range makes alphaTab seek to its
-// start, which is why it cannot be changed ahead of the wrap.
+// start, which is why it cannot be changed ahead of the wrap. To stop at the end of the song,
+// looping is switched off ahead of time and alphaTab stops at the range end.
 //
 // The player is a small port (`SynthPlayer`), implemented over alphaTab in
 // src/strip/synth-player.ts, so this module has no alphaTab import and is unit tested with a fake.
@@ -22,9 +23,11 @@ export interface SynthPlayer {
   setSpeed(rate: number): void;
   /** The looped range (alphaTab `playbackRange` with `isLooping`). The player moves to its start. */
   setRange(range: TickRange): void;
+  /** Off: the player stops at the range end instead of looping (and still reports `onWrap`). */
+  setLooping(looping: boolean): void;
   /** Reported (audible) positions. */
   onPosition(listener: (tick: number, isSeek: boolean) => void): () => void;
-  /** The range end was heard and the player went back to the range start. */
+  /** The range end was heard and the player went back to the range start (or stopped). */
   onWrap(listener: () => void): () => void;
   /** Resolves once the soundfont and this song's MIDI are loaded. */
   readonly ready: Promise<void>;
@@ -37,7 +40,7 @@ const LEAD_SECONDS = 0.25; // the next range is chosen this long before the rang
 
 export class SynthClock implements PlaybackClock {
   readonly capabilities = { rates: 'continuous', video: false } as const;
-  onRangeEnd = (range: TickRange) => range;
+  onRangeEnd: (range: TickRange) => TickRange | null = (range) => range;
 
   private readonly tempo: TempoLookup;
   private readonly bars: Bar[];
@@ -55,8 +58,8 @@ export class SynthClock implements PlaybackClock {
   private anchor = { tick: 0, time: 0 };
 
   private range: TickRange = { start: 0, end: 0 };
-  /** Where to continue after this pass; chosen shortly before the range end. */
-  private next: TickRange | null = null;
+  /** Where to continue after this pass, or 'stop'; chosen shortly before the range end. */
+  private next: TickRange | 'stop' | null = null;
 
   constructor(
     song: { bars: Bar[]; tempoMap: TempoPoint[] },
@@ -102,7 +105,7 @@ export class SynthClock implements PlaybackClock {
       const heard = await this.countIn.run(countInPlan(this.bars, this.tempo, this.pausedTick, this.rate));
       if (!heard || token !== this.token || !this.playing || this.disposed) return;
     }
-    this.next = null;
+    this.clearNext();
     player.seek(this.pausedTick);
     this.snap(this.pausedTick);
     this.running = true;
@@ -117,7 +120,7 @@ export class SynthClock implements PlaybackClock {
       this.pausedTick = Math.max(this.range.start, Math.min(this.range.end - 1, this.getTick()));
       this.ready!.pause();
     }
-    this.next = null;
+    this.clearNext();
     this.running = false;
     this.playing = false;
   }
@@ -127,7 +130,7 @@ export class SynthClock implements PlaybackClock {
   }
 
   seek(tick: number) {
-    this.next = null;
+    this.clearNext();
     if (this.running) {
       this.ready!.seek(tick);
       this.snap(tick);
@@ -146,7 +149,7 @@ export class SynthClock implements PlaybackClock {
     const tick = this.getTick();
     const target = tick >= range.start && tick < range.end ? tick : range.start;
     this.range = range;
-    this.next = null;
+    this.clearNext();
     if (this.running) {
       this.ready!.setRange(range);
       if (target !== range.start) this.ready!.seek(target);
@@ -205,15 +208,29 @@ export class SynthClock implements PlaybackClock {
 
     // Shortly before the range end, ask the loop controller where to continue.
     if (!this.next && this.getTick() >= this.range.end - LEAD_SECONDS * this.ticksPerSecond(this.range.end)) {
-      this.next = this.onRangeEnd(this.range);
+      this.next = this.onRangeEnd(this.range) ?? 'stop';
+      if (this.next === 'stop') this.ready!.setLooping(false);
     }
   }
 
-  /** The range end was heard and alphaTab went back to the range start. */
+  /** A chosen 'stop' is dropped (seek, new range, pause), so alphaTab loops again. */
+  private clearNext() {
+    if (this.next === 'stop') this.ready?.setLooping(true);
+    this.next = null;
+  }
+
+  /** The range end was heard and alphaTab went back to the range start (or stopped there). */
   private wrapped() {
     if (!this.running) return;
-    const next = this.next ?? this.onRangeEnd(this.range);
     const from = this.range;
+    const next = this.next ?? this.onRangeEnd(this.range) ?? 'stop';
+    if (next === 'stop') {
+      this.pause(); // turns looping back on
+      this.pausedTick = from.start;
+      this.ready!.seek(from.start);
+      for (const l of this.listeners) l({ from, to: null });
+      return;
+    }
     const to = next.start === from.start && next.end === from.end ? from : next;
     this.next = null;
     if (to !== from) {

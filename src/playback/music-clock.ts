@@ -3,7 +3,8 @@
 // 100 % only. The audio element reports its time coarsely, so the position is extrapolated per
 // animation frame and corrected toward each new report, as in the Synth clock (ADR-0019). The
 // element cannot loop a range, so this clock watches the range end on a timer, asks the loop
-// controller where to continue shortly before it (ADR-0018) and seeks there when the end is heard.
+// controller where to continue shortly before it (ADR-0018) and seeks there when the end is heard,
+// or pauses there at the end of the song.
 //
 // The player is a small port (`MusicPlayer`), implemented over <audio> in music-player.ts, so this
 // module is unit tested with a fake.
@@ -41,7 +42,7 @@ const every: Repeat = (fn) => {
 
 export class MusicClock implements PlaybackClock {
   readonly capabilities = { rates: [1], video: false };
-  onRangeEnd = (range: TickRange) => range;
+  onRangeEnd: (range: TickRange) => TickRange | null = (range) => range;
 
   private readonly tempo: TempoLookup;
   private readonly bars: Bar[];
@@ -60,8 +61,8 @@ export class MusicClock implements PlaybackClock {
   private stopWatch: (() => void) | null = null;
 
   private range: TickRange = { start: 0, end: 0 };
-  /** Where to continue after this pass; chosen shortly before the range end. */
-  private next: TickRange | null = null;
+  /** Where to continue after this pass, or 'stop'; chosen shortly before the range end. */
+  private next: TickRange | 'stop' | null = null;
 
   constructor(
     song: { bars: Bar[]; tempoMap: TempoPoint[] },
@@ -211,14 +212,20 @@ export class MusicClock implements PlaybackClock {
     if (!this.running) return;
     const tick = this.predicted();
     if (!this.next && tick >= this.range.end - LEAD_SECONDS * this.ticksPerSecond(this.range.end)) {
-      this.next = this.onRangeEnd(this.range);
+      this.next = this.onRangeEnd(this.range) ?? 'stop';
     }
     if (tick >= this.range.end) this.wrap();
   }
 
   private wrap() {
-    const next = this.next ?? this.onRangeEnd(this.range);
+    const next = this.next ?? this.onRangeEnd(this.range) ?? 'stop';
     const from = this.range;
+    if (next === 'stop') {
+      this.pause();
+      this.pausedTick = from.start;
+      for (const l of this.listeners) l({ from, to: null });
+      return;
+    }
     const to = next.start === from.start && next.end === from.end ? from : next;
     this.next = null;
     this.range = to;

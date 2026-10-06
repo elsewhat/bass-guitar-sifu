@@ -22,6 +22,7 @@ export function createSynthPlayer(strip: Strip, song: SongData, initialMix: Synt
   const api = strip.api;
   let mix = initialMix;
   let range: TickRange | null = null;
+  let looping = true;
   let isReady = false;
   const off: (() => void)[] = [];
 
@@ -38,7 +39,7 @@ export function createSynthPlayer(strip: Strip, song: SongData, initialMix: Synt
     });
   };
   const applyRange = () => {
-    api.isLooping = true;
+    api.isLooping = looping;
     if (range) api.playbackRange = { startTick: range.start, endTick: range.end };
   };
 
@@ -63,6 +64,10 @@ export function createSynthPlayer(strip: Strip, song: SongData, initialMix: Synt
     setRange(r) {
       range = r;
       applyRange();
+    },
+    setLooping(l) {
+      looping = l;
+      api.isLooping = l;
     },
     onPosition: (listener) => api.playerPositionChanged.on((e) => listener(e.currentTick, e.isSeek)),
     onWrap: (listener) => api.playerFinished.on(listener),

@@ -16,6 +16,7 @@ const chunkC: TickRange = { start: 8 * 3840, end: 10 * 3840 }; // bars 9–10, a
 class FakePlayer implements SynthPlayer {
   calls: string[] = [];
   range: TickRange | null = null;
+  looping = true;
   private position = new Set<(tick: number, isSeek: boolean) => void>();
   private wrap = new Set<() => void>();
   private resolve!: () => void;
@@ -39,6 +40,10 @@ class FakePlayer implements SynthPlayer {
   setRange(range: TickRange) {
     this.range = range;
     this.calls.push(`range ${range.start}-${range.end}`);
+  }
+  setLooping(looping: boolean) {
+    this.looping = looping;
+    this.calls.push(`looping ${looping}`);
   }
   onPosition(l: (tick: number, isSeek: boolean) => void) {
     this.position.add(l);
@@ -159,6 +164,27 @@ describe('SynthClock loop', () => {
     expect(passes).toEqual([{ from: chunkA, to: next }]);
     expect(player.calls).toEqual([`range ${next.start}-${next.end}`]);
     expect(clock.getTick()).toBe(next.start);
+  });
+
+  it('stops at the end of the song: alphaTab stops instead of looping, the clock pauses at the range start', async () => {
+    const { clock, player, passes, at } = await setup();
+    clock.onRangeEnd = () => null;
+    at(3800, 7296);
+    expect(player.calls).toEqual(['looping false']);
+    player.wrapped();
+    expect(passes).toEqual([{ from: chunkA, to: null }]);
+    expect(clock.isPlaying()).toBe(false);
+    expect(clock.getTick()).toBe(chunkA.start);
+    expect(player.looping).toBe(true);
+    expect(player.calls).toEqual(['looping false', 'pause', 'looping true', 'seek 0']);
+  });
+
+  it('loops again when the user seeks after the stop was chosen', async () => {
+    const { clock, player, at } = await setup();
+    clock.onRangeEnd = () => null;
+    at(3800, 7296);
+    clock.seek(0);
+    expect(player.looping).toBe(true);
   });
 
   it('asks for the range at the wrap when no report came near the end', async () => {

@@ -6,6 +6,7 @@ import { CountTimeline, type TimelineStep } from './count-timeline';
 import {
   chunkRange,
   completePass,
+  endsSong,
   initialLoop,
   nextChunk,
   nextRepeatMode,
@@ -104,6 +105,17 @@ describe('CountTimeline', () => {
     expect(tl.currentRange).toEqual(next);
   });
 
+  it('ends at the range end when onRangeEnd returns null and schedules nothing after it', () => {
+    let asked = 0;
+    const tl = new CountTimeline(bars44, tempoLookup(tempo120, bars44), () => (asked++, null));
+    tl.start(3840, 0, range, 1);
+    const steps = tl.fill(3);
+    expect(steps.at(-1)).toEqual({ kind: 'end', time: 2, from: range });
+    expect(steps.filter((s) => s.kind === 'count')).toHaveLength(8);
+    expect(tl.fill(5)).toEqual([]);
+    expect(asked).toBe(1);
+  });
+
   it('starts from the next grid point when resumed between eighths', () => {
     const tl = new CountTimeline(bars44, tempoLookup(tempo120, bars44));
     tl.start(3840 + 100, 0, range, 1);
@@ -188,13 +200,22 @@ describe('loop controller', () => {
       expect(passCounterText(s)).toBe('Play through');
     });
 
-    it('marks the last chunk done and then loops it', () => {
+    it('stops after the last chunk and marks it done', () => {
       let s = selectChunk(initialLoop(3, 'once'), 1, chunks.length);
       expect(willAdvance(s, chunks.length)).toBe(false);
-      expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
-      s = play(s, 2, 70);
-      expect(s).toMatchObject({ chunkIndex: 1, pass: 3, done: { 1: 70 } });
+      expect(endsSong(s, chunks.length)).toBe(true);
+      expect(rangeAfterPass(s, chunks, bars)).toBeNull();
+      s = completePass(s, null, chunks, bars, 70);
+      expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: { 1: 70 } });
       expect(passLabel(s)).toBe('play through');
+    });
+
+    it('only play through ends the song', () => {
+      for (const mode of ['advance', 'loop'] as const) {
+        const s = { ...selectChunk(initialLoop(1, mode), 1, chunks.length), pass: 3 };
+        expect(endsSong(s, chunks.length)).toBe(false);
+        expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
+      }
     });
   });
 

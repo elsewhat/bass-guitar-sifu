@@ -1,0 +1,57 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Plush
+artist: Stone Temple Pilots
+source: { file: "Stone Temple Pilots-Plush-09-11-2026.gp", date: 2026-09-11 }
+bassTrack: "Robert DeLeo | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: eb3kAUQxinQ, sync: [] }
+  music: { source: "Stone Temple Pilots-Plush-10-06-2026.mp3", offsetMs: 0 }
+cover: { album: "Core", itunesId: 1285806791 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 9] }
+  - { name: Verse 1, bars: [10, 12] }
+  - { name: Verse 1 repeat, bars: [13, 15] }
+  - { name: Pre-Chorus 1, bars: [16, 19] }
+  - { name: Chorus 1 a, bars: [20, 23] }
+  - { name: Chorus 1 b, bars: [24, 27] }
+  - { name: Interlude 1, bars: [28, 32] }
+  - { name: Verse 2, bars: [33, 35] }
+  - { name: Verse 2 repeat, bars: [36, 38] }
+  - { name: Pre-Chorus 2, bars: [39, 42] }
+  - { name: Chorus 2 a, bars: [43, 46] }
+  - { name: Chorus 2 b, bars: [47, 50] }
+  - { name: Post-Chorus 1 a, bars: [51, 54] }
+  - { name: Post-Chorus 1 b, bars: [55, 59] }
+  - { name: Interlude 2 a, bars: [60, 63] }
+  - { name: Interlude 2 b, bars: [64, 68] }
+  - { name: Chorus 3 a, bars: [69, 72] }
+  - { name: Chorus 3 b, bars: [73, 76] }
+  - { name: Post-Chorus 2 a, bars: [77, 80] }
+  - { name: Post-Chorus 2 b, bars: [81, 85] }
+  - { name: Outro a, bars: [86, 89] }
+  - { name: Outro b, bars: [90, 92] }
+  - { name: Ending, bars: [93, 96] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 72 BPM with short ritardandos to 64 BPM on the 2/4 bars 59 and 85 at the
+  end of each Post-Chorus; no half/double-time issue (score 5:15, album take 5:14). Bars
+  97–98 are tacet. 2/4 bars: 9, 32, 58–59, 68, 84–85. The main riff (G–B♭, C–G, rising
+  B–C–C♯ into D) is a 2-bar figure; chunks group it in 4-bar phrases as in the other songs,
+  with the 2/4 hold bar kept on the end of its phrase (Intro b 5–9, Interlude 2 b 64–68).
+  The two "Interlude" markers are numbered 1–2: Interlude 1 (28–32) is the short riff
+  return, Interlude 2 (60–68) repeats the whole Intro. Verse is a 3-bar phrase (G, F, E♭)
+  played twice. Post-Chorus is a 2-bar 16th-note figure (G, F, open E, D–E♭) ending in two
+  2/4 bars, split 4 + 5 bars (the second part is 4 bars long in time). Outro 86–92 is the
+  intro riff again; Ending (93–96) is the last riff bar and the held low G. Fingering: the
+  Chorus lies in frets 5–8 (B♭ on E6 / E♭ on A6, C on E8 / F on A8) with a reach to G on
+  A10 in bars 23, 46 and 72; the solver moves the hand a fret between the root and its
+  fifth below on the next string (about 12 shifts per 4 bars) so that one finger does not
+  roll across the same fret (ADR-0007 rule 6). That is consistent with the owner's rules
+  and was kept; the Pre-Chorus D–C–B line spans frets 2–5, wider than the low-position box,
+  hence its shifts. No re-tabs; the three large shifts (bar 28 into the riff, bars 51/77
+  into the Post-Chorus) are section changes on the downbeat. No overrides. YouTube: "Plush (2017 Remaster)" on
+  the Stone Temple Pilots - Topic channel (Rhino Atlantic), 5:14, matching the score. The
+  official music video V5UOC0C0x8Q on the band's channel is a 4:21 edit, so it was not
+  used. Sync anchors still needed.

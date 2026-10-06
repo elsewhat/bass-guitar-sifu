@@ -145,7 +145,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - Selecting a chunk, "Next chunk" or "Restart chunk" while playing starts again with a count-in (§5.6). Passes, auto-advance and play-through continue without one.
 - On the last chunk, auto-advance marks the chunk done after its passes and keeps looping it. With auto-advance off, the pass counter keeps counting past the target.
 - The loop decides where to continue when the wrap is scheduled, ahead of the audio, so the next pass or chunk starts without a gap (ADR-0018).
-- In play-through mode (ADR-0021) each chunk is played once and the next chunk starts directly.
+- In play-through mode (ADR-0021) each chunk is played once and the next chunk starts directly. After the last chunk playback stops: the chunk is marked done and stays selected, positioned at its start.
 - Bars in tacet ranges are never part of a chunk and are skipped.
 
 ### 5.2 Visual metronome

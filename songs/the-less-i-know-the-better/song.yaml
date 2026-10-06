@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: The Less I Know the Better
+artist: Tame Impala
+source: { file: "Tame Impala-The Less I Know The Better-05-20-2026.gp", date: 2026-05-20 }
+bassTrack: "Kevin Parker | Roland GR-55 | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: 2SUwOgmvzK4, sync: [] }
+  music: { source: "Tame Impala-The Less I Know The Better-10-06-2026.mp3", offsetMs: 0 }
+cover: { album: "Currents", itunesId: 1440838039 }
+chunks:
+  - { name: Intro a, bars: [1, 5] }
+  - { name: Intro b, bars: [6, 9] }
+  - { name: Intro c, bars: [10, 12] }
+  - { name: Verse 1 a, bars: [14, 17] }
+  - { name: Verse 1 a ×3, bars: [18, 29] }
+  - { name: Verse 1 b, bars: [30, 33] }
+  - { name: Chorus 1 a, bars: [34, 37] }
+  - { name: Chorus 1 b, bars: [38, 41] }
+  - { name: Chorus 1 c, bars: [42, 45] }
+  - { name: Chorus 1 d, bars: [46, 49] }
+  - { name: Post-Chorus, bars: [50, 53] }
+  - { name: Verse 2 a, bars: [54, 57] }
+  - { name: Verse 2 a ×2, bars: [58, 65] }
+  - { name: Verse 2 b, bars: [66, 69] }
+  - { name: Chorus 2 a, bars: [70, 73] }
+  - { name: Chorus 2 b, bars: [74, 77] }
+  - { name: Bridge a, bars: [78, 81] }
+  - { name: Bridge b, bars: [82, 85] }
+  - { name: Bridge c, bars: [86, 89] }
+  - { name: Bridge d, bars: [90, 92] }
+  - { name: Outro, bars: [94, 96] }
+  - { name: Outro ×2, bars: [98, 104] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 117 BPM throughout, matching the recording (no half/double-time issue).
+  Title casing follows the album ("the"). Tacet: 13, 93, 97, 101 and 105–106. The main riff is a
+  4-bar phrase starting at the section markers (C♯ C♯ E E, the fourth bar ending in the
+  C♯–E♭–C♯–B–G♯ fill). Bar 1 is a 2¼-beat pickup playing that same fill before the "Intro"
+  marker at bar 2, so it is merged into Intro a (1–5); Intro b (6–9) is the riff alone and Intro c
+  (10–12) stops before the tacet bar 13. The "Verse I"/"Verse II" markers are numbered 1–2 here.
+  Verse 1 b ends (bar 33) with the G♯ (E16) – open E pickup into the chorus. Chorus is an 8-bar
+  phrase (34–41) played twice, split in 4-bar halves; Chorus 1 c = Chorus 1 a, and Chorus 2 is
+  the 8-bar phrase once, its last bar (77) leading into the bridge. In bar 69 the chorus pickup is written in voice 2, which the importer
+  skips, so Verse 2 b ends without it. Bridge (78–92) is the E–B octave/F♯ figure in position
+  7 with the C♯ and A bars. Outro is Bridge d (90–92) three times, each followed
+  by a rest bar; Outro ×2 (98–104) keeps the rest bar 101 inside the loop. Re-tabs accepted: the
+  B in the riff fill moves D9 → A14 and the F♯ D16 → G11 so the whole riff stays in position 11,
+  the A on E5 becomes the open A (chorus bars 40, 48, 76 under the D on A5, and bridge bars 85,
+  89), and in the bar 77 fill the E♭ moves D13 → G8 so the fill stays in position 8. Shifts of
+  3+ frets (bars 38, 46, 74: up to the E–F♯ octave figure; bar 81: C♯ down to A) are inherent
+  to the line. No overrides. YouTube: "(Audio)" on
+  tameimpalaVEVO (3:37, same as the score); the official music video (sBzrzS1Ag_g, 5:43) has a
+  long non-musical intro. Sync anchors still needed.

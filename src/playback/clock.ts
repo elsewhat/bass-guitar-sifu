@@ -12,8 +12,11 @@ export interface ClockCapabilities {
 
 export interface PassCompleted {
   from: TickRange;
-  /** Where playback continued: the same range (another pass) or the next chunk's. */
-  to: TickRange;
+  /**
+   * Where playback continued: the same range (another pass) or the next chunk's. Null when
+   * `onRangeEnd` chose to stop: the clock has paused at the start of `from`.
+   */
+  to: TickRange | null;
 }
 
 export interface PlayOptions {
@@ -32,8 +35,11 @@ export interface PlaybackClock {
   setRate(rate: number): void;
   /** The loop range. Playback wraps at its end to whatever `onRangeEnd` returns. */
   setRange(range: TickRange): void;
-  /** Chooses the range after a pass; set by the loop controller. Called slightly ahead of time. */
-  onRangeEnd: (range: TickRange) => TickRange;
+  /**
+   * Chooses the range after a pass, or null to stop at the end of this one (the song is over);
+   * set by the loop controller. Called slightly ahead of time.
+   */
+  onRangeEnd: (range: TickRange) => TickRange | null;
   /** The audible position, extrapolated for the current animation frame. It stays at the start during a count-in. */
   getTick(): number;
   /** The count heard now while counting in, else null; read per animation frame. */

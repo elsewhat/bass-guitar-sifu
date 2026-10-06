@@ -118,7 +118,8 @@ function attachClock(song: SongData, tick?: number) {
   c.onRangeEnd = () => rangeAfterPass(state(), song.chunks, song.bars);
   c.onPassCompleted(({ to }) => {
     const s = state();
-    useSession.setState(completePass(s, to, song.chunks, song.bars, effectiveTempo(s)));
+    // A null `to`: play through finished the last chunk and the clock paused there.
+    useSession.setState({ ...completePass(s, to, song.chunks, song.bars, effectiveTempo(s)), ...(to ? {} : { playing: false }) });
   });
   c.setRate(state().tempoPct / 100);
   const range = currentRange(song);

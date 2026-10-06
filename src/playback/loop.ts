@@ -59,8 +59,14 @@ export function willAdvance(state: LoopState, chunkCount: number): boolean {
   return lastPass(state) && state.chunkIndex < chunkCount - 1;
 }
 
-/** The range to continue with when the current pass reaches the chunk end. */
-export function rangeAfterPass(state: LoopState, chunks: Chunk[], bars: Bar[]): TickRange {
+/** Play through has reached the last pass of the last chunk: playback stops at its end. */
+export function endsSong(state: LoopState, chunkCount: number): boolean {
+  return state.repeatMode === 'once' && lastPass(state) && state.chunkIndex === chunkCount - 1;
+}
+
+/** The range to continue with when the current pass reaches the chunk end, or null to stop there. */
+export function rangeAfterPass(state: LoopState, chunks: Chunk[], bars: Bar[]): TickRange | null {
+  if (endsSong(state, chunks.length)) return null;
   const i = willAdvance(state, chunks.length) ? state.chunkIndex + 1 : state.chunkIndex;
   return chunkRange(chunks[i]!, bars);
 }
@@ -68,11 +74,13 @@ export function rangeAfterPass(state: LoopState, chunks: Chunk[], bars: Bar[]): 
 /**
  * A pass has been heard to the end and playback continued at `next` (the range the clock chose
  * through `rangeAfterPass` when it scheduled the wrap). Continuing in another chunk means the
- * loop advanced: the finished chunk is marked done at the tempo used.
+ * loop advanced: the finished chunk is marked done at the tempo used. A null `next` means
+ * playback stopped at the end of the song: the chunk is done and stays selected at pass 1.
  */
-export function completePass(state: LoopState, next: TickRange, chunks: Chunk[], bars: Bar[], tempoPct: number): LoopState {
+export function completePass(state: LoopState, next: TickRange | null, chunks: Chunk[], bars: Bar[], tempoPct: number): LoopState {
   const current = chunkRange(chunks[state.chunkIndex]!, bars);
   const done = lastPass(state) ? { ...state.done, [state.chunkIndex]: tempoPct } : state.done;
+  if (!next) return { ...state, pass: 1, done };
   if (next.start === current.start && next.end === current.end) return { ...state, pass: state.pass + 1, done };
   const index = chunks.findIndex((c) => chunkRange(c, bars).start === next.start);
   return { ...state, chunkIndex: index < 0 ? state.chunkIndex : index, pass: 1, done: { ...state.done, [state.chunkIndex]: tempoPct } };

@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: War Pigs
+artist: Black Sabbath
+source: { file: "Black Sabbath-War Pigs-08-30-2026.gp", date: 2026-08-30 }
+bassTrack: "Geezer Butler | Fender Precision | Bass (Center)"
+tempo: { note: null }
+media:
+  youtube: { videoId: 6csiUGMC1fk, sync: [] }
+  music: { source: "Black Sabbath-War Pigs-10-06-2026.mp3", offsetMs: 0 }
+cover: { album: "Paranoid", itunesId: 785232473 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 8] }
+  - { name: Intro c, bars: [9, 12] }
+  - { name: Verse 1 a, bars: [13, 16] }
+  - { name: Verse 1 a ×2, bars: [17, 24] }
+  - { name: Verse 1 b, bars: [25, 28] }
+  - { name: Interlude 1 a, bars: [29, 32] }
+  - { name: Interlude 1 b, bars: [33, 36] }
+  - { name: Interlude 1 c, bars: [37, 40] }
+  - { name: Bridge Part 1, bars: [41, 44] }
+  - { name: Bridge Part 1 repeat, bars: [45, 48] }
+  - { name: Interlude 2, bars: [49, 52] }
+  - { name: Bridge Part 2, bars: [53, 56] }
+  - { name: Bridge Part 2 repeat, bars: [57, 60] }
+  - { name: Interlude 3 a, bars: [61, 64] }
+  - { name: Interlude 3 b, bars: [65, 68] }
+  - { name: Guitar Solo 1 a, bars: [69, 72] }
+  - { name: Guitar Solo 1 b, bars: [73, 76] }
+  - { name: Guitar Solo 1 c, bars: [77, 80] }
+  - { name: Guitar Solo 1 d, bars: [81, 84] }
+  - { name: Guitar Solo 1 e, bars: [85, 86] }
+  - { name: Post-Solo, bars: [87, 90] }
+  - { name: Pre-Verse, bars: [91, 94] }
+  - { name: Verse 2 a, bars: [95, 98] }
+  - { name: Verse 2 a ×2, bars: [99, 106] }
+  - { name: Verse 2 b, bars: [107, 110] }
+  - { name: Verse 2 c, bars: [111, 114] }
+  - { name: Verse 2 d, bars: [115, 118] }
+  - { name: "Luke's Wall a", bars: [119, 122] }
+  - { name: "Luke's Wall b", bars: [123, 127] }
+  - { name: Interlude 4 a, bars: [128, 131] }
+  - { name: Interlude 4 b, bars: [132, 135] }
+  - { name: Interlude 4 c, bars: [136, 137] }
+  - { name: Guitar Solo 2 a, bars: [138, 141] }
+  - { name: Guitar Solo 2 b, bars: [142, 145] }
+  - { name: Guitar Solo 2 c, bars: [146, 149] }
+  - { name: Guitar Solo 2 d, bars: [150, 153] }
+  - { name: Guitar Solo 2 e, bars: [154, 157] }
+  - { name: Guitar Solo 2 f, bars: [158, 161] }
+  - { name: Outro, bars: [162, 164] }
+  - { name: Speed-up, bars: [165, 167] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning. The score includes Luke's Wall (bars 119–127), as on the US album track "War
+  Pigs / Luke's Wall"; 7:57 in the score vs 7:55 for the YouTube upload, so the tempo map
+  follows the recording. The slow-tempo warning comes from the 12/8 intro (bars 1–8, 56 BPM);
+  from bar 9 the song is 4/4 at 90 BPM (94/89 around bars 136–137, 106 at 165 and 152 from 166
+  for the speed-up), so no half/double-time note. Repeats unrolled (written 9–10 and 89–90 are
+  played twice): bar numbers are played bars. Bars 9–28 and 91–110 are the sparse E stabs: one
+  bar played, one bar rest. Those single rest bars stay inside 4-bar chunks so a loop keeps the
+  stab/rest rhythm; bars 12, 28, 94 and 110 are trailing rests of their phrase. Intro c (9–12)
+  and Pre-Verse (91–94) are the same stab figure as the verses but sit under their own section
+  markers. Section markers with the same name are numbered (Interlude 1–4, Guitar Solo 1–2);
+  "SPEED" (165–167) is named Speed-up. Interlude 1 c (37–40) and Interlude 2 (49–52) are the same
+  two-bar figure ×2; Bridge Part 1 and 2 (41–60) are one one-bar riff ×8 each. Luke's Wall is
+  split 119–122 / 123–127 (the 5-bar b ends on the bar before Interlude 4). Interlude 4 c
+  (136–137) is the slower two-bar lead-in to the second solo. Re-tabs accepted: the D on A5 is
+  played as open D in bars 33, 61, 65, 79, 115, 132–133 and 143, and the G on D5 as open G in
+  bar 134, so the hand keeps its position across the riff (same simplification as in Paranoid).
+  The one large shift (bar 137, position 2 → 5) is the move into the second solo and is
+  inherent. No overrides. Lyrics are synced from the Ozzy Osbourne vocal track. YouTube: "War
+  Pigs (2009 Remaster)" from the Paranoid album on Black Sabbath - Topic (Sanctuary); the
+  official Black Sabbath channel only has live versions. Fallback: bc5Nk1DXyEY (Rhino upload,
+  same remaster). Sync anchors still needed.

@@ -156,6 +156,20 @@ describe('MusicClock loop', () => {
     expect(clock.getTick()).toBe(chunkC.start);
   });
 
+  it('pauses at the end of the song when onRangeEnd returns null', async () => {
+    const { clock, player, passes, at } = await setup();
+    clock.onRangeEnd = () => null;
+    at(3_800);
+    expect(clock.isPlaying()).toBe(true);
+    at(4_000);
+    expect(passes).toEqual([{ from: chunkA, to: null }]);
+    expect(clock.isPlaying()).toBe(false);
+    expect(clock.getTick()).toBe(chunkA.start);
+    expect(player.calls).toEqual(['pause']);
+    at(5_000);
+    expect(passes).toHaveLength(1);
+  });
+
   it('forgets the chosen range after a seek', async () => {
     const { clock, at } = await setup();
     let asks = 0;

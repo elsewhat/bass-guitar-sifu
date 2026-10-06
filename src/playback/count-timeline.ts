@@ -9,7 +9,8 @@ import { barIndexAt, type TempoLookup } from '../core/timing';
 
 export type TimelineStep =
   | { kind: 'count'; time: number; tick: number; bar: number; label: CountLabel }
-  | { kind: 'wrap'; time: number; from: TickRange; to: TickRange };
+  | { kind: 'wrap'; time: number; from: TickRange; to: TickRange }
+  | { kind: 'end'; time: number; from: TickRange };
 
 interface Anchor {
   time: number;
@@ -23,18 +24,20 @@ export class CountTimeline {
   private cursorTick = 0; // next grid point to schedule
   private cursorTime = 0; // its audio time
   private anchors: Anchor[] = [];
+  private ended = false; // onRangeEnd chose to stop; nothing more is scheduled
 
   constructor(
     private readonly bars: Bar[],
     private readonly tempo: TempoLookup,
-    /** Called when the schedule reaches the range end; returns the range to continue with. */
-    private readonly onRangeEnd: (range: TickRange) => TickRange = (r) => r,
+    /** Called when the schedule reaches the range end; returns the range to continue with, or null to end. */
+    private readonly onRangeEnd: (range: TickRange) => TickRange | null = (r) => r,
   ) {}
 
   /** Starts (or restarts) the schedule at `tick`, heard at audio time `time`. */
   start(tick: number, time: number, range: TickRange, rate: number) {
     this.range = range;
     this.rate = rate;
+    this.ended = false;
     const clamped = tick >= range.start && tick < range.end ? tick : range.start;
     const grid = this.gridAtOrAfter(clamped);
     this.cursorTick = grid;
@@ -49,10 +52,15 @@ export class CountTimeline {
   /** Emits every step whose time is before `horizon`. */
   fill(horizon: number): TimelineStep[] {
     const steps: TimelineStep[] = [];
-    while (this.cursorTime < horizon) {
+    while (!this.ended && this.cursorTime < horizon) {
       if (this.cursorTick >= this.range.end) {
         const from = this.range;
         const to = this.onRangeEnd(from);
+        if (!to) {
+          this.ended = true;
+          steps.push({ kind: 'end', time: this.cursorTime, from });
+          break;
+        }
         if (to.end <= to.start) break;
         this.range = to;
         this.cursorTick = to.start;

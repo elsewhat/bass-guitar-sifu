@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Peter Gunn
+artist: The Blues Brothers
+source: { file: "The Blues Brothers-Peter Gunn-05-20-2025.gp", date: 2025-05-20 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: "116 BPM, dropping to 100 BPM at bar 53 as notated; check the second half against the recording." }
+media:
+  youtube: { videoId: 9DgFOsEs-kE, sync: [] }
+  music: { source: "The Blues Brothers-Peter Gunn-10-06-2026.mp3", offsetMs: 0 }
+cover: { album: "The Blues Brothers (Original Soundtrack Recording)", itunesId: 452584443 }
+chunks:
+  - { name: Quarter riff, bars: [5, 8] }
+  - { name: Quarter riff ×3, bars: [9, 21] }
+  - { name: Quarter riff G♯, bars: [22, 25] }
+  - { name: Quarter riff G♯ repeat, bars: [26, 29] }
+  - { name: Eighth riff G♯, bars: [30, 34] }
+  - { name: Quarter riff, bars: [35, 39] }
+  - { name: Quarter riff G♯, bars: [40, 42] }
+  - { name: Quarter riff, bars: [43, 47] }
+  - { name: Quarter riff G♯, bars: [48, 54] }
+  - { name: Doubled riff, bars: [55, 58] }
+  - { name: Doubled riff repeat, bars: [59, 64] }
+  - { name: Quarter riff, bars: [65, 69] }
+  - { name: Eighth riff, bars: [70, 74] }
+  - { name: Doubled riff, bars: [75, 79] }
+  - { name: Quarter riff, bars: [80, 84] }
+  - { name: Eighth riff G♯, bars: [85, 89] }
+  - { name: Doubled riff G♯, bars: [90, 94] }
+  - { name: Outro, bars: [95, 100] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning. The whole bass part is the Peter Gunn riff on the open E string in first
+  position (frets 0–5 on the E string only), in six one-bar variants that the chunk names
+  describe: "Quarter riff" = E–F♯–G in quarters, then A–G♯ eighths; "Eighth riff" = the classic
+  eighth-note figure with the open E between the steps (E E F♯ E G E A G♯); "Doubled riff" =
+  each step played twice in eighths (E E F♯ F♯ G G A G♯); "G♯" marks the variants that use G♯
+  instead of G. No section markers, so chunks follow the bass pattern changes. Repeats are
+  unrolled (113 played bars from 100 written; played 15–21 and 43–48 are repeats of written
+  7–13 and 28–33). Tacet: 1–4 and 101–113. Bar 21 is kept with the quarter riff before the
+  G♯ change at 22; bar 49 (one eighth-riff bar) sits inside "Quarter riff G♯" 48–54; from bar
+  65 the variants change every 5 bars, so those chunks are 5 bars long; Outro 95–100 is the
+  G♯ quarter riff with a final doubled-G♯ bar. The guitar, melody and drum tracks stop at bar
+  55, and the tempo drops from 116 to 100 BPM at bar 53, so the second half of the
+  transcription (bass only) may be less reliable. Fingering: the riff spans frets 2–5, one
+  fret more than the low-position 1-2-4 box, so the solver moves between positions 2 and 3
+  inside each bar (index slides F♯ → G, or the little finger slides G♯ → A), always by one
+  fret along the E string or across an open E; kept. No re-tabs, no 3+ fret shifts, no
+  overrides.
+  YouTube: "The Blues Brothers - Peter Gunn Theme (Official Audio)" on The Blues Brothers
+  channel (3:48 vs about 3:43 of played bars in the score), from the 1980 film soundtrack;
+  the Topic upload FzW9YcfXNNU (3:50) is the fallback. Music: the rendered MP3 matches with
+  0 ms offset, 20 ms drift. Sync anchors still needed.

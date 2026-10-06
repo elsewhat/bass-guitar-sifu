@@ -20,7 +20,7 @@ const START_DELAY = 0.03; // seconds between a (re)start and the first sound
 
 export class CountClock implements PlaybackClock {
   readonly capabilities = { rates: 'continuous', video: false } as const;
-  onRangeEnd = (range: TickRange) => range;
+  onRangeEnd: (range: TickRange) => TickRange | null = (range) => range;
 
   private readonly sounds = new CountSounds();
   private samplesRequested = false;
@@ -140,16 +140,28 @@ export class CountClock implements PlaybackClock {
     const ctx = this.sounds.context();
     for (const step of this.timeline.fill(ctx.currentTime + LOOKAHEAD)) {
       if (step.kind === 'wrap') this.pendingWraps.push({ time: step.time, from: step.from, to: step.to });
+      else if (step.kind === 'end') this.pendingWraps.push({ time: step.time, from: step.from, to: null });
       else if (step.label) this.sounds.sound(step.label, step.time);
     }
     const heard = this.sounds.audibleTime();
     while (this.pendingWraps[0] && this.pendingWraps[0].time <= heard) {
       const { from, to } = this.pendingWraps.shift()!;
+      if (!to) {
+        this.stopAt(from);
+        return;
+      }
       this.range = to;
       for (const l of this.listeners) l({ from, to });
     }
     this.timeline.prune(heard);
     this.sounds.prune();
+  }
+
+  /** The end of the song was heard: pause at the start of the last range. */
+  private stopAt(from: TickRange) {
+    this.pause();
+    this.pausedTick = from.start;
+    for (const l of this.listeners) l({ from, to: null });
   }
 
   private cancelScheduled() {

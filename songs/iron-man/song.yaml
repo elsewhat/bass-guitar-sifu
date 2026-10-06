@@ -1,0 +1,87 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Iron Man
+artist: Black Sabbath
+source: { file: "Black Sabbath-Iron Man-09-24-2026.gp", date: 2026-09-24 }
+bassTrack: "Geezer Butler | Fender Precision | Bass"
+tempo: { note: "Tempo map follows the recording: 65–76 BPM in bars 1–60, 168 in bars 61–84, 78–79 in bars 85–102, 158 from bar 103." }
+media:
+  youtube: { videoId: b3-QqGVt-tM, sync: [] }
+  music: { source: "Black Sabbath-Iron Man-10-06-2026.mp3", offsetMs: 0 }
+cover: { album: "Paranoid", itunesId: 785232473 }
+chunks:
+  - { name: Intro, bars: [10, 12] }
+  - { name: Verse 1, bars: [13, 16] }
+  - { name: Pre-Verse 2, bars: [17, 18] }
+  - { name: Verse 2, bars: [19, 22] }
+  - { name: Bridge 1 a, bars: [23, 26] }
+  - { name: Bridge 1 b, bars: [27, 28] }
+  - { name: Pre-Verse 3, bars: [29, 32] }
+  - { name: Verse 3, bars: [33, 36] }
+  - { name: Break 1 a, bars: [37, 40] }
+  - { name: Break 1 b, bars: [41, 44] }
+  - { name: Pre-Verse 4, bars: [45, 48] }
+  - { name: Verse 4, bars: [49, 52] }
+  - { name: Break 2 a, bars: [53, 56] }
+  - { name: Break 2 b, bars: [57, 60] }
+  - { name: Transition 1, bars: [61, 64] }
+  - { name: Solo 1 a, bars: [65, 68] }
+  - { name: Solo 1 b, bars: [69, 72] }
+  - { name: Solo 1 c, bars: [73, 76] }
+  - { name: Solo 1 d, bars: [77, 80] }
+  - { name: Transition 2, bars: [81, 84] }
+  - { name: Post-Solo, bars: [85, 88] }
+  - { name: Pre-Verse 5, bars: [89, 92] }
+  - { name: Verse 5, bars: [93, 96] }
+  - { name: Bridge 2 a, bars: [97, 100] }
+  - { name: Bridge 2 b, bars: [101, 103] }
+  - { name: Segue a, bars: [104, 108] }
+  - { name: Segue b, bars: [109, 116] }
+  - { name: Interlude a, bars: [117, 120] }
+  - { name: Interlude b, bars: [121, 124] }
+  - { name: Solo 2 a, bars: [125, 128] }
+  - { name: Solo 2 b, bars: [129, 132] }
+  - { name: Solo 2 c, bars: [133, 136] }
+  - { name: Outro a, bars: [137, 140] }
+  - { name: Outro b, bars: [141, 144] }
+  - { name: Outro c, bars: [145, 149] }
+fingeringOverrides:
+  - { bar: 12, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 14, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 16, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 18, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 20, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 22, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 30, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 32, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 34, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 36, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 46, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 48, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 50, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 52, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 90, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 92, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 94, tick: 0, string: 2, fret: 5, finger: 2 }
+  - { bar: 96, tick: 0, string: 2, fret: 5, finger: 2 }
+notes: >-
+  Standard tuning. The tempo map follows the recording (the "slow tempo" warning is the 65 BPM
+  intro, not half time): the main riff is quarters, eighths and a 16th-note G–F♯ trill at
+  72–76 BPM; bars 61–84 (Transition, Solo 1) run at 168 BPM and bars 103–149 at 158 BPM. Bars
+  1–9 are tacet (feedback, drums and "I am Iron Man"); the bass enters in bar 10 with a fast
+  chromatic run from E15 down to E8 (64th notes, effectively a slide, hence the 12 → 8 shift)
+  that leads into the riff, so Intro is 10–12 with the first riff (the 2-bar Pre-Verse marker).
+  Chunks follow the 23 section markers; repeated markers are numbered (Pre-Verse 2–5, Bridge
+  1–2, Break 1–2, Transition 1–2). Bars 11–22, 29–36, 45–52 and 89–96 are all the same 2-bar
+  riff; Pre-Verse 2 (17–18) is kept as its own 2-bar chunk so the verse chunks start on the
+  marker. Segue (104–116) is 13 bars of 16th-note E (A7) pedal, split 5 + 8. Interlude, Solo 2
+  and Outro are the E–D–C♯–C descent on the A string in 4-bar phrases; bars 144 and 148 end on
+  the B–G–F♯–G–B turnaround and Outro c (145–149) includes the final hit. Overrides: in each
+  second riff bar (the G–F♯ trill) the solver started the trill with the index on D5 at
+  position 5 and shifted to position 4 on the second 16th; the overrides put the G under the
+  middle finger so the hand moves to position 4 on the long E before the bar line and the whole
+  trill, D and E stay in one position (same number of shifts, none inside the 16ths). The end of
+  each riff then slides the middle finger from A5 to A7 (position 6) and returns to position 5
+  for the B on E7, which keeps rule 5 (1-2-4 box below fret 5) and avoids rolling the little
+  finger from A7 to E7. YouTube: "Iron Man (2012 Remaster)" on Black Sabbath - Topic (5:54, same
+  as the score). The official "Iron Man" music video linked from blacksabbath.com (5s7_WbiR79E)
+  is no longer available. Sync anchors still needed.
