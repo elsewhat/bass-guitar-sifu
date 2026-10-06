@@ -319,6 +319,7 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - `play({ countIn: true })` plays the one-bar count-in first (ADR-0025). The Metronome schedules it on its own audio clock; the Synth and Music start their player when the count-in's end is due. `getTick()` stays at the start during the count-in, and `countInState()` feeds the count cells.
 - Music streams `data/audio/<slug>.mp3` through `<audio>` and Web Audio. Audio time = score time + `offsetMs`; the clock seeks at chunk wraps, accurate to tens of milliseconds (ADR-0022).
 - Synth is alphaTab's player on the strip's alphaTab instance, loaded when the Synth is first chosen. It plays the bass track alone by default; full band and band without bass are prepared (ADR-0019).
+- While playing (count-in included) the page holds a screen wake lock, so the screen does not dim or lock; it is released on pause and requested again when the page becomes visible (ADR-0027).
 
 ## 9. Persistence (ADR-0010)
 

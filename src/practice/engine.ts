@@ -16,6 +16,7 @@ import { effectiveTempo, sourceAvailable, TEMPO, tempoLocked, useSession, type S
 import { loadProgress, loadSynthTracks, saveProgress, saveSettings, saveSynthTracks } from '../state/storage';
 import { whenStrip } from '../strip/strip-host';
 import type { SynthLevels, SynthPlayerHandle } from '../strip/synth-player';
+import { keepAwakeWhilePlaying } from './wake-lock';
 
 const base = import.meta.env.BASE_URL;
 let clock: PlaybackClock | null = null;
@@ -27,6 +28,12 @@ let loadToken = 0;
 setTickSource(() => clock?.getTick() ?? 0);
 
 const state = () => useSession.getState();
+
+// The screen stays on while playing (ADR-0027).
+keepAwakeWhilePlaying(
+  () => state().playing,
+  (sync) => useSession.subscribe((s, prev) => s.playing !== prev.playing && sync()),
+);
 
 // Progress is saved whenever the chunk, the done chunks or the tempo change within a song
 // (ADR-0010); loading a song restores them without counting as practice.

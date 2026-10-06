@@ -28,5 +28,6 @@
 | [0024](0024-lyrics.md) | Lyrics from the Guitar Pro vocal track and from song.yaml | Proposed |
 | [0025](0025-count-in.md) | One-bar count-in before playback starts | Proposed |
 | [0026](0026-album-covers.md) | Album covers in the header | Proposed |
+| [0027](0027-screen-wake-lock.md) | Keep the screen awake while playing | Proposed |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".
