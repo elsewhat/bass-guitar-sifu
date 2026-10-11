@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Go with the Flow
+artist: Queens of the Stone Age
+source: { file: "Queens of the Stone Age-Go With The Flow-10-01-2026.gp", date: 2026-10-01 }
+bassTrack: "Nick Oliveri | Fender Precision Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: DcHKOC64KnE, sync: [] }
+  music: { source: "Queens of the Stone Age-Go With The Flow-10-11-2026.mp3", offsetMs: 0 }
+cover: { album: "Songs for the Deaf", itunesId: 1440759826 }
+chunks:
+  - { name: Intro, bars: [1, 2] }
+  - { name: Solo a, bars: [3, 6] }
+  - { name: Solo b, bars: [7, 10] }
+  - { name: Verse 1 a, bars: [11, 14] }
+  - { name: Verse 1 a repeat, bars: [15, 18] }
+  - { name: Verse 1 b, bars: [19, 26] }
+  - { name: Verse 1 c, bars: [27, 30] }
+  - { name: Verse 1 c repeat, bars: [31, 34] }
+  - { name: Chorus 1, bars: [35, 38] }
+  - { name: Chorus 1 ×3, bars: [39, 50] }
+  - { name: Verse 2 a, bars: [51, 54] }
+  - { name: Verse 2 b, bars: [55, 62] }
+  - { name: Verse 2 c, bars: [63, 66] }
+  - { name: Verse 2 d, bars: [67, 70] }
+  - { name: Verse 2 e, bars: [71, 74] }
+  - { name: Verse 2 f, bars: [75, 78] }
+  - { name: Verse 2 g, bars: [79, 82] }
+  - { name: Chorus 2, bars: [83, 86] }
+  - { name: Chorus 2 ×3, bars: [87, 98] }
+  - { name: Outro, bars: [99, 102] }
+  - { name: Outro ×4, bars: [103, 118] }
+  - { name: Ending, bars: [119, 122] }
+fingeringOverrides: []
+notes: >-
+  C standard tuning (C F B♭ E♭, two tones below standard). 159 BPM, 162 from bar 98; no
+  half/double-time issue (score 3:09, album track 3:07). Straight eighth notes throughout, one
+  pitch per bar for most of the song. Bars 123–126 are tacet. Chunks follow the 7 section markers.
+  The 4-bar phrase is C–A–E–E and starts on the C bar (bar 3), two bars after the E intro, so
+  every chunk starts on a C bar and the grid's "A A B C" rows read "B C A A" here. "Solo" is the
+  marker for bars 3–10 (guitar lead over the riff). Verse 1 b (19–26) and Verse 2 b (55–62) are 8
+  bars: twice the C–A–high E variant, the second time ending in a fill (bar 26; bars 61–62).
+  Chorus is a 4-bar phrase (C–G–C stabs, A/E octave bar, two bars of low E) played four times:
+  first time alone, then ×3. Outro is C–D–E–E five times, then the Ending (119–122) which stops on
+  a held E. Re-tabs accepted (70 notes, all the same two moves): the high E in bars 9–10, 21–22,
+  69–70 and 78 goes from the F string fret 11 to the B♭ string fret 6, so C (F7) and E sit in one
+  hand position instead of a slide up the neck; in bars 24 and 60 the A goes to the low string
+  fret 9 because the hand is already up there for the fill that follows. In the Outro the E stays
+  at fret 11 (C7–D9–E11 climbs one string). The shifts of 3 frets are C (fret 7) to A (fret 4) on
+  the same string at a bar line; the 1-2-4 box of the low positions does not span both (ADR-0007
+  rule 5). No overrides. YouTube: the owner asked for the video Songsterr uses. Its default for
+  this tab (YNq1U-Aox1o, Queens Of The Stone Age - Topic, 3:07) is not available in Norway, so the
+  id here is the official music video on QueensStoneAgeVEVO (3:11), which is on Songsterr's list
+  of alternatives and uses the album take. Sync anchors still needed.

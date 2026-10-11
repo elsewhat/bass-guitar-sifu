@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Fell on Black Days
+artist: Soundgarden
+source: { file: "Soundgarden-Fell On Black Days-08-22-2026.gp", date: 2026-08-22 }
+bassTrack: "Ben Shepherd | Bass | Fender Precision Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: aqW-VF49Sok, sync: [] }
+  music: { source: "Soundgarden-Fell On Black Days-10-11-2026.mp3", offsetMs: 0 }
+cover: { album: "Superunknown", itunesId: 1440811129 }
+chunks:
+  - { name: Verse 1 a, bars: [6, 7] }
+  - { name: Verse 1 a ×3, bars: [8, 13] }
+  - { name: Verse 1 b, bars: [14, 17] }
+  - { name: Chorus 1, bars: [18, 22] }
+  - { name: Verse 2 a, bars: [23, 24] }
+  - { name: Verse 2 a ×3, bars: [25, 30] }
+  - { name: Verse 2 b, bars: [31, 34] }
+  - { name: Chorus 2 a, bars: [35, 38] }
+  - { name: Chorus 2 b, bars: [39, 42] }
+  - { name: Bridge 1 a, bars: [43, 45] }
+  - { name: Bridge 1 a repeat, bars: [46, 48] }
+  - { name: Bridge 1 b, bars: [49, 53] }
+  - { name: Verse 3 a, bars: [54, 55] }
+  - { name: Verse 3 a ×3, bars: [56, 61] }
+  - { name: Bridge 2 a, bars: [62, 64] }
+  - { name: Bridge 2 b, bars: [65, 67] }
+  - { name: Bridge 2 c, bars: [68, 70] }
+  - { name: Bridge 2 d, bars: [71, 74] }
+  - { name: Chorus 3 a, bars: [75, 78] }
+  - { name: Chorus 3 b, bars: [79, 80] }
+  - { name: Chorus 3 b ×3, bars: [81, 86] }
+  - { name: Ending, bars: [87, 91] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning. 101 BPM; no half/double-time issue (score 4:40, album track 4:42). Bass enters
+  at bar 6; bars 1–5 and 92–94 are tacet. The verse riff is 6/4; time signatures change 22 times
+  (4/4 in 15–17, 21–22, 32–34, 43–53, the Bridge 2 bars and 87–91; 2/4 in 64, 67, 70, 73, 89).
+  Chunks follow the 9 section markers; the three "Chorus" and two "Bridge" markers are numbered.
+  The verse riff is a 2-bar 6/4 figure (12 beats): the first time is its own chunk, the three
+  repeats are one chunk (in Verse 3 the last bar ends on E instead of B). Verse 1 b / Verse 2 b
+  are the variation bar plus the 4/4 tag with the held C. Chorus 1 and Chorus 3 a are the
+  octave-jump riff; Chorus 2 a is the verse riff again, Chorus 2 b and Chorus 3 b the same riff in
+  fifths (double stops). Bridge 1 is a 3-bar phrase (B–E–A♭ into D pulses): a, its repeat, then b
+  = the phrase plus two more bars of D. Bridge 2 is four 3-bar phrases of 4/4 + 4/4 + 2/4; a 2/4
+  bar always stays with the phrase it ends, and d also takes the held C in bar 74. The draft split
+  these on the wrong bars. Ending (87–91) is the tag in fifths and the held C5. Re-tabs accepted:
+  the D of the tag (bars 33, 63, 66, 69, 72) is the open D string instead of A5, which avoids
+  rolling the index from E5; the A♭ in bars 43, 46 and 49 moves from A11 to D6, which keeps the
+  whole Bridge 1 phrase in position 5; the fill in bars 67 and 70 moves from D14/D12 to G9/G7,
+  next to the G on A10. Chorus 3 b ×3 shows 14 shifts because the source tab alternates the fifths
+  between frets 7–10 and frets 2–7 every bar; kept as transcribed. The large shifts in bar 78 lead
+  into those fifths. No overrides. YouTube: the owner asked for the video Songsterr uses, which is
+  "Fell On Black Days" on the Soundgarden - Topic channel (4:43, the album take). The official
+  music video (ySzrJ4GRF7s, 5:06) is a different recording and was not used. Sync anchors still
+  needed.

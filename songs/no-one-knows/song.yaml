@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: No One Knows
+artist: Queens of the Stone Age
+source: { file: "Queens of the Stone Age-No One Knows-09-29-2026.gp", date: 2026-09-29 }
+bassTrack: "Nick Oliveri | Fender Precision Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: s88r_q7oufE, sync: [] }
+  music: { source: "Queens of the Stone Age-No One Knows-10-11-2026.mp3", offsetMs: 0 }
+cover: { album: "Songs for the Deaf", itunesId: 1440759826 }
+chunks:
+  - { name: Intro a, bars: [1, 2] }
+  - { name: Intro b, bars: [3, 10] }
+  - { name: Verse 1 a, bars: [11, 18] }
+  - { name: Verse 1 b, bars: [19, 22] }
+  - { name: Verse 1 c, bars: [23, 26] }
+  - { name: Verse 1 d, bars: [27, 34] }
+  - { name: Verse 1 e, bars: [35, 38] }
+  - { name: Verse 1 f, bars: [39, 42] }
+  - { name: Pre-Chorus 1 a, bars: [43, 46] }
+  - { name: Pre-Chorus 1 b, bars: [47, 50] }
+  - { name: Chorus 1 a, bars: [51, 54] }
+  - { name: Chorus 1 b, bars: [55, 58] }
+  - { name: Chorus 1 c, bars: [59, 62] }
+  - { name: Chorus 1 d, bars: [63, 66] }
+  - { name: Pre-Verse, bars: [67, 70] }
+  - { name: Verse 2 a, bars: [71, 78] }
+  - { name: Verse 2 b, bars: [79, 82] }
+  - { name: Verse 2 c, bars: [83, 86] }
+  - { name: Verse 2 d, bars: [87, 94] }
+  - { name: Verse 2 e, bars: [95, 98] }
+  - { name: Verse 2 f, bars: [99, 102] }
+  - { name: Pre-Chorus 2 a, bars: [103, 106] }
+  - { name: Pre-Chorus 2 b, bars: [107, 110] }
+  - { name: Chorus 2 a, bars: [111, 114] }
+  - { name: Chorus 2 b, bars: [115, 118] }
+  - { name: Chorus 2 c, bars: [119, 122] }
+  - { name: Chorus 2 d, bars: [123, 126] }
+  - { name: Bridge 1 a, bars: [127, 130] }
+  - { name: Bridge 1 a repeat, bars: [131, 134] }
+  - { name: Bridge 1 b, bars: [135, 137] }
+  - { name: Bass Solo, bars: [138, 141] }
+  - { name: Guitar Solo a, bars: [142, 145] }
+  - { name: Guitar Solo b, bars: [146, 149] }
+  - { name: Guitar Solo c, bars: [150, 153] }
+  - { name: Break, bars: [154, 157] }
+  - { name: Bridge 2, bars: [158, 161] }
+  - { name: Verse 3 a, bars: [162, 165] }
+  - { name: Verse 3 b, bars: [166, 169] }
+  - { name: Verse 3 c, bars: [170, 173] }
+  - { name: Verse 3 d, bars: [174, 177] }
+  - { name: Outro, bars: [178, 180] }
+fingeringOverrides:
+  - { bar: 10, tick: 1920, string: 2, fret: 0, finger: 0 }
+  - { bar: 26, tick: 1920, string: 2, fret: 0, finger: 0 }
+  - { bar: 70, tick: 1920, string: 2, fret: 0, finger: 0 }
+  - { bar: 86, tick: 1920, string: 2, fret: 0, finger: 0 }
+notes: >-
+  C standard tuning (C F B♭ E♭). 169 BPM throughout, the riff written in quarter notes; no
+  half/double-time issue (score 4:16; the album track runs 4:38 only because of its radio outro).
+  No tacet bars. Chunks follow the 15 section markers; the two "Bridge" markers are numbered 1–2.
+  The riff (open C / C octave) is a 1-bar figure, so verse chunks follow the phrase instead: 6
+  bars of riff + the 2-bar turnaround (F–G–B♭–E♭ run) are one 8-bar chunk (Intro b, Verse 1 a/d,
+  Verse 2 a/d), the 4-bar G/B part and the 4-bar riff + turnaround that answer it are chunks of
+  their own. Intro a is the two bars of stabs. Chorus is four different 4-bar phrases (a–d).
+  Bridge 1 is three bars of C + the G–A♭–B run, twice, then the run three times (135–137). Bass
+  Solo (138–141) and Guitar Solo a–c are the fret-12/14 figure. Break (154–157) and Bridge 2
+  (158–161) are both four bars of the plain riff. Outro is the three bars of stabs. Fingering: the
+  turnaround's B♭ is played on the open B♭ string instead of the F string fret 5, so the index is
+  free for the E♭ that follows at the same fret (no rolling, ADR-0007 rule 6). The solver chose
+  that by itself in bars 18, 102 and 165 but kept fret 5 with a one-fret hand move in bars 10, 26,
+  70 and 86; the four overrides make the run the same every time. Bar 110 (the run with a doubled
+  B♭ into Chorus 2) keeps the fretted B♭. Re-tab accepted: bar 56's G goes from the F string fret
+  14 to the B♭ string fret 9, keeping the triplet figure in position 9. The two large shifts (bar
+  65 back to the G/C figure, bar 138 up to the solo) are at phrase starts. Double stops are the
+  octaves in bars 1–2, 63–64 and 123. YouTube: the owner asked for the video Songsterr uses, which
+  is the official music video on QueensStoneAgeVEVO (4:19); it fits the score length. Sync anchors
+  still needed.
