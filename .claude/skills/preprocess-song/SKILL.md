@@ -1,11 +1,11 @@
 ---
 name: preprocess-song
-description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, YouTube id, Music offset, album cover, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
+description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, the YouTube video and its sync, Music offset, album cover, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
 ---
 
 # preprocess-song
 
-Turns `music/<Artist-Title-MM-DD-YYYY>.gp` (and the MP3 rendered from it, if present) into `songs/<slug>/score.gp` + `audio.mp3` + `song.yaml` and regenerates `public/data/` (ADR-0013, ADR-0014, ADR-0015, ADR-0022). Deterministic work is done by scripts; your job is the judgment: naming, chunking, finding the recording, and reviewing the fingering.
+Turns `music/<Artist-Title-MM-DD-YYYY>.gp` (and the MP3 rendered from it, if present) into `songs/<slug>/score.gp` + `audio.mp3` + `song.yaml` and regenerates `public/data/` (ADR-0013, ADR-0014, ADR-0015, ADR-0022). Deterministic work is done by scripts; your job is the judgment: naming, chunking, checking the recording, and reviewing the fingering.
 
 **Input:** a path or file name in `music/`. If none is given, list `music/*.gp`; with one file, process it; with several, ask which (or "all", processed one at a time).
 
@@ -29,7 +29,7 @@ Scores with repeat signs, alternate endings or D.S./D.C./coda are unrolled into 
 - **Slug**: lower-case ASCII from the title, words joined by hyphens, apostrophes and accents dropped (`Un Chien d'Espace` → `un-chien-d-espace`). If `songs/<slug>` exists, stop and ask.
 - **Source**: `file` = the inbox file name exactly; `date` = the date from the file name as `YYYY-MM-DD` (file names use `MM-DD-YYYY`).
 - **bassTrack**: always write the chosen track's exact name, even when automatic.
-- **Tempo note**: if the report warns about half/double time, or the rhythm is dominated by very short or very long notes for the style, write a one-line `tempo.note` (e.g. `Notated in half time (53 BPM); the recording is about 106 BPM.`). Check against the recording's actual tempo when you find it in step 4.
+- **Tempo note**: if the report warns about half/double time, or the rhythm is dominated by very short or very long notes for the style, write a one-line `tempo.note` (e.g. `Notated in half time (53 BPM); the recording is about 106 BPM.`). Check against the recording's actual tempo when you have it in step 6b.
 
 ## 3. Move the file
 
@@ -54,27 +54,11 @@ npm run inspect-song -- <slug> --audio songs/<slug>/audio.mp3
 
 Write `media.music: { source: "<the MP3's inbox file name>", offsetMs: <Suggested value> }`. If the report warns about drift or low confidence, still write the offset but say so in `notes`: the MP3 may come from another version of the transcription. An MP3 whose score differs (other bar count) must not be attached; leave it in the inbox and report it.
 
-## 4. Find the recording
+## 4. The recording
 
-Search the web for the official recording on YouTube (`<artist> <title> official`), preferring, in order:
-
-1. the artist's official channel or VEVO,
-2. the "<Artist> - Topic" auto-generated channel ("Provided to YouTube by …"),
-3. the label's channel.
-
-Avoid covers, live versions, lyric videos by third parties and bass covers. The recording should be the version the tab follows: compare its length with the report's duration and its tempo with the tempo map.
-
-Verify the id before writing it:
-
-```bash
-curl -s "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>&format=json"
-```
-
-The title and author_name must match. If nothing trustworthy is found, write `videoId: null` and say so in the summary.
+The YouTube video and its sync come from Songsterr, where the `.gp` files come from (ADR-0028, owner 2026-10-11). This is done in step 6b, once `song.yaml` exists. Do not search YouTube for another upload.
 
 With an MP3, use its tempo to confirm the `tempo.note` (it follows the tempo map exactly; the recording may not).
-
-Leave `sync: []`. Sync anchors are tapped in the app's sync editor (ADR-0016), not guessed.
 
 ## 4b. Lyrics
 
@@ -118,13 +102,37 @@ For **Vortex Surfer**, use the chunks from `reference/vortex-surfer-chunks.json`
 
 Start from [template.yaml](template.yaml). Keep the `yaml-language-server` header line. Use flow style for chunk entries (`- { name: Riff A, bars: [130, 133] }`), quote names containing `:` or `#`. Put reasoning worth keeping (half-time, why a chunk boundary is where it is, doubts) in `notes`, not in comments that the owner might miss.
 
+## 6b. YouTube video and sync
+
+```bash
+npm run fetch-video -- <slug>
+```
+
+The script finds the Songsterr tab (same artist, most track names in common with the `.gp`), takes the revision that was current on `source.date`, and reports the tab's default video and its sync: Songsterr's video time for every bar start, as one anchor per bar. Check the report:
+
+- **The tab.** It prints how many track names match the `.gp`. With none, check that it is the right tab; give `--song <songId>` (the number after `-s` in the tab's Songsterr address) if it is not.
+- **The video.** The title and channel should be the recording the tab follows. It is Songsterr's choice and may be a third-party upload; keep it unless it cannot be played.
+- **The sync.** `N anchors for B bars` should cover nearly every bar. The lines below it say which bars got no point, which points were merged, and which bars are far from the score's length. A recording a few seconds off the tempo map is normal. If the counts differ by more than a few bars, the revision is probably not the `.gp`'s: try `--revision <id>`.
+
+Then write it:
+
+```bash
+npm run fetch-video -- <slug> --write
+```
+
+This replaces `media.youtube` in `song.yaml` (`videoId`, `songsterr`, `sync`). Never write anchors by hand from guesses.
+
+The owner is in Norway, and "- Topic" uploads are sometimes blocked there. After the build (step 7), check that the video plays: choose YouTube for the song in the app and press Play. If the video cell says it may not be played, pick another video from the report's "Other videos" list, preferring the artist's official channel, and run `npm run fetch-video -- <slug> --video <id> --write`.
+
+Copy the report's findings into `notes`: the video (title, channel, default or why not), the anchor count, and the lines to check by ear. If Songsterr has no synced video, leave `videoId: null` and say so in the summary.
+
 ## 7. Build
 
 ```bash
 npm run build:songs -- --only <slug>
 ```
 
-Fix every error. Treat warnings (overrides pointing at no note, chunks containing tacet bars) as things to fix or explain in `notes`.
+Fix every error. Treat warnings (overrides pointing at no note, chunks containing tacet bars, a video without sync anchors) as things to fix or explain in `notes`.
 
 ## 8. Review the fingering
 
@@ -151,7 +159,7 @@ Then report to the owner:
 
 - slug, title, artist, tuning, tempo (and tempo note), bars, duration,
 - the chunk list (bars and names) in a compact table,
-- the YouTube video found (title, channel, id) or why none,
+- the YouTube video (title, channel, id; Songsterr's default, or which alternative and why), the number of sync anchors and the bars the alignment flagged, or why there is no video,
 - the Music offset, drift and confidence, or why there is no MP3,
 - the album cover (album, year, iTunes id) or why none,
 - lyrics: synced from which track, or none (the owner can paste `lyrics.text` into `song.yaml`),

@@ -5,6 +5,7 @@ import { findTacet } from '../../src/core/chunks';
 import { chunkPositions, solveFingering } from '../../src/core/fingering';
 import { parseLyricsText, syncedLyrics } from '../../src/core/lyrics';
 import type { BeatEvent, CatalogEntry, Chunk, ImportedSong, SongData, SongLyrics, SongStats } from '../../src/core/model';
+import { syncProblems } from '../../src/core/sync';
 import { scoreDurationSeconds } from '../../src/core/timing';
 import { tuningName } from '../../src/core/tuning';
 import { importBassTrack, loadScore, pickBassTrack, type Score } from './gp-import';
@@ -62,6 +63,11 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
   const tacet = findTacet(bars, imported.events);
   validateChunks(sidecar.chunks, bars.length, tacet, warnings);
 
+  const sync = sidecar.media?.youtube?.sync ?? [];
+  const syncErrors = syncProblems(sync, bars);
+  if (syncErrors.length) throw new Error(`media.youtube.sync is invalid:\n  ${syncErrors.slice(0, 5).join('\n  ')}`);
+  if (sidecar.media?.youtube?.videoId && !sync.length) warnings.push('media.youtube has no sync anchors: the video is taken to start with the score at 0:00 (npm run fetch-video)');
+
   const overrides = sidecar.fingeringOverrides ?? [];
   for (const o of overrides) {
     if (!imported.events.some((e) => e.bar === o.bar && e.tick === o.tick && e.notes.some((n) => !n.tieFromPrev && !n.dead))) {
@@ -95,9 +101,7 @@ export function buildSong(slug: string, imported: ImportedSong, sidecar: Sidecar
     chunks,
     stats,
     media: {
-      youtube: sidecar.media?.youtube
-        ? { videoId: sidecar.media.youtube.videoId ?? null, sync: sidecar.media.youtube.sync ?? [] }
-        : null,
+      youtube: sidecar.media?.youtube ? { videoId: sidecar.media.youtube.videoId ?? null, sync } : null,
       music: sidecar.media?.music ? { url: `data/audio/${slug}.mp3`, offsetMs: sidecar.media.music.offsetMs } : null,
     },
     tempoNote: sidecar.tempo?.note ?? null,

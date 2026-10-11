@@ -83,6 +83,51 @@ function SyncedLines({ lines }: { lines: LyricLine[] }) {
   );
 }
 
+/**
+ * Synced lyrics as a subtitle band over the video (YouTube source, ADR-0028): the current line
+ * with the sung word lit, and the next line. The band takes no clicks from the video.
+ */
+export function Subtitles({ lines }: { lines: LyricLine[] }) {
+  const current = useRef<HTMLDivElement>(null);
+  const next = useRef<HTMLDivElement>(null);
+  const switches = useMemo(() => lineSwitchTicks(lines), [lines]);
+  const shown = useRef<LyricsCursor | null>(null);
+
+  useFrame((tick) => {
+    const row = current.current;
+    if (!row || !next.current || !lines.length) return;
+    const cursor = lyricsCursor(lines, switches, tick);
+    const prev = shown.current;
+    if (prev && cursor.line === prev.line && cursor.sung === prev.sung && cursor.active === prev.active) return;
+    if (cursor.line !== prev?.line) {
+      row.replaceChildren(
+        ...lines[cursor.line]!.words.flatMap((w, i) => {
+          const word = document.createElement('span');
+          word.dataset.w = 'todo';
+          word.textContent = w.text;
+          return i > 0 ? [' ', word] : [word];
+        }),
+      );
+      next.current.textContent = lines[cursor.line + 1]?.text ?? '';
+    }
+    row.querySelectorAll<HTMLElement>('[data-w]').forEach((w, i) => {
+      w.dataset.w = i < cursor.sung - 1 || (i === cursor.sung - 1 && !cursor.active) ? 'sung' : i === cursor.sung - 1 ? 'now' : 'todo';
+    });
+    shown.current = cursor;
+  });
+
+  return (
+    <div data-testid="subtitles" className="subtitles rounded-comfortable pointer-events-none absolute right-3 bottom-12 left-3 bg-black/75 px-4 py-2">
+      <div className="lyrics-line" data-pos="current">
+        <div ref={current} className="text" />
+      </div>
+      <div className="lyrics-line" data-pos="next">
+        <div ref={next} className="text" />
+      </div>
+    </div>
+  );
+}
+
 function PlainLines({ lines }: { lines: LyricLine[] }) {
   const viewport = useRef<HTMLDivElement>(null);
   const list = useRef<HTMLDivElement>(null);

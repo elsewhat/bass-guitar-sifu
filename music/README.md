@@ -6,7 +6,7 @@ Then run `/preprocess-song` in Claude Code (ADR-0015). The skill:
 
 1. inspects the file,
 2. moves it to `songs/<slug>/score.gp` (and the MP3 to `songs/<slug>/audio.mp3`, measuring its lead-in),
-3. writes `songs/<slug>/song.yaml` (metadata, named chunks, YouTube id, Music offset, fingering overrides),
+3. writes `songs/<slug>/song.yaml` (metadata, named chunks, the YouTube video Songsterr uses with its sync, Music offset, fingering overrides),
 4. regenerates `public/data/`.
 
 Processed files leave this folder, so anything here is still waiting to be added.

@@ -5,7 +5,30 @@ source: { file: "Nirvana-About A Girl-09-05-2026.gp", date: 2026-09-05 }
 bassTrack: "Krist Novoselic | Ibanez Black Eagle 2609B | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: JIx2H-plXdU, sync: [] }
+  youtube:
+    videoId: YYfSbR8xs2c
+    songsterr: { songId: 29, revisionId: 8906000 }
+    sync: [
+      { bar: 1, ms: 260 }, { bar: 2, ms: 2140 }, { bar: 3, ms: 3990 }, { bar: 4, ms: 5850 }, { bar: 5, ms: 7730 },
+      { bar: 6, ms: 9590 }, { bar: 7, ms: 11450 }, { bar: 8, ms: 13330 }, { bar: 9, ms: 15140 }, { bar: 10, ms: 17040 },
+      { bar: 11, ms: 18880 }, { bar: 12, ms: 20740 }, { bar: 13, ms: 22570 }, { bar: 14, ms: 24450 }, { bar: 15, ms: 26260 },
+      { bar: 16, ms: 28140 }, { bar: 17, ms: 29950 }, { bar: 18, ms: 31790 }, { bar: 19, ms: 33600 }, { bar: 20, ms: 35430 },
+      { bar: 21, ms: 37220 }, { bar: 22, ms: 39010 }, { bar: 23, ms: 40800 }, { bar: 24, ms: 42630 }, { bar: 25, ms: 44490 },
+      { bar: 26, ms: 46320 }, { bar: 27, ms: 48070 }, { bar: 28, ms: 49900 }, { bar: 29, ms: 51730 }, { bar: 30, ms: 53570 },
+      { bar: 31, ms: 55360 }, { bar: 32, ms: 57210 }, { bar: 33, ms: 59050 }, { bar: 34, ms: 60860 }, { bar: 35, ms: 62600 },
+      { bar: 36, ms: 64410 }, { bar: 37, ms: 66200 }, { bar: 38, ms: 68030 }, { bar: 39, ms: 69780 }, { bar: 40, ms: 71540 },
+      { bar: 41, ms: 73310 }, { bar: 42, ms: 75120 }, { bar: 43, ms: 76950 }, { bar: 44, ms: 78740 }, { bar: 45, ms: 80530 },
+      { bar: 46, ms: 82340 }, { bar: 47, ms: 84130 }, { bar: 48, ms: 85910 }, { bar: 49, ms: 87680 }, { bar: 50, ms: 89510 },
+      { bar: 51, ms: 91280 }, { bar: 52, ms: 93070 }, { bar: 53, ms: 94880 }, { bar: 54, ms: 96660 }, { bar: 55, ms: 98450 },
+      { bar: 56, ms: 100240 }, { bar: 57, ms: 102010 }, { bar: 58, ms: 103790 }, { bar: 59, ms: 105530 }, { bar: 60, ms: 107320 },
+      { bar: 61, ms: 109130 }, { bar: 62, ms: 110920 }, { bar: 63, ms: 112690 }, { bar: 64, ms: 114500 }, { bar: 65, ms: 116330 },
+      { bar: 66, ms: 118140 }, { bar: 67, ms: 119950 }, { bar: 68, ms: 121790 }, { bar: 69, ms: 123600 }, { bar: 70, ms: 125410 },
+      { bar: 71, ms: 127220 }, { bar: 72, ms: 129080 }, { bar: 73, ms: 130840 }, { bar: 74, ms: 132680 }, { bar: 75, ms: 134440 },
+      { bar: 76, ms: 136230 }, { bar: 77, ms: 138000 }, { bar: 78, ms: 139810 }, { bar: 79, ms: 141620 }, { bar: 80, ms: 143520 },
+      { bar: 81, ms: 144380 }, { bar: 82, ms: 146190 }, { bar: 83, ms: 148050 }, { bar: 84, ms: 149820 }, { bar: 85, ms: 151600 },
+      { bar: 86, ms: 153440 }, { bar: 87, ms: 155230 }, { bar: 88, ms: 157040 }, { bar: 89, ms: 158770 }, { bar: 90, ms: 160450 },
+      { bar: 91, ms: 162820 }, { bar: 92, ms: 165110 },
+      ]
   music: { source: "Nirvana-About A Girl-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Bleach", itunesId: 669728060 }
 chunks:
@@ -45,5 +68,8 @@ notes: >-
   one open E held for four bars (tempo slows to 115 BPM at bar 90). Tempo map 127–134 BPM
   follows the recording; no half/double time. Fingering: no re-tabs and no shifts of 3+ frets;
   no overrides. The chorus alternates A4 and E4 between fingers 2 and 4 because rule 6
-  (no rolling) forbids the same finger on both strings at fret 4. YouTube: "Nirvana - Topic"
-  upload of the Bleach deluxe remaster (Sub Pop, 2:48); sync anchors still needed.
+  (no rolling) forbids the same finger on both strings at fret 4. YouTube (2026-10-11): Songsterr's
+  default video for this tab, "About A Girl" by Nirvana - Topic (YYfSbR8xs2c). Sync anchors are
+  Songsterr's point per bar (song 29, revision 8906000; npm run fetch-video): 92 anchors for 93
+  bars, bar 1 at 0:00.26, up to 1.1 s from the score's tempo map (bar 90). To check by ear: bar 93:
+  no point, continued at the score's tempo.

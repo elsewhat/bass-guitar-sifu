@@ -60,3 +60,9 @@ body,
 .lyrics-line[data-pos='current'] [data-w='now'] { background: #ffffff; color: #000000; }
 .lyrics-line[data-pos='plain'] { font-size: 20px; font-weight: 700; color: #ffffff; }
 .lyrics-line[data-pos='plain'] .text { white-space: normal; }
+
+/* Subtitle band over the YouTube video (ADR-0028): the same line and word states, at caption size. */
+.subtitles .lyrics-line { margin: 0; text-align: center; }
+.subtitles .lyrics-line[data-pos='current'] { font-size: 20px; line-height: 1.3; color: var(--color-text-subdued); }
+.subtitles .lyrics-line[data-pos='next'] { font-size: 14px; font-weight: 600; color: var(--color-border-muted); }
+.subtitles .lyrics-line[data-pos='next'] .text:empty { display: none; }

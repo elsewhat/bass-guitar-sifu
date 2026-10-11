@@ -5,7 +5,31 @@ source: { file: "Stone Temple Pilots-Plush-09-11-2026.gp", date: 2026-09-11 }
 bassTrack: "Robert DeLeo | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: eb3kAUQxinQ, sync: [] }
+  youtube:
+    videoId: Dg0apFNHTik
+    songsterr: { songId: 293, revisionId: 9028613 }
+    sync: [
+      { bar: 1, ms: 490 }, { bar: 2, ms: 3620 }, { bar: 3, ms: 6970 }, { bar: 4, ms: 10240 }, { bar: 5, ms: 13520 },
+      { bar: 6, ms: 16770 }, { bar: 7, ms: 20040 }, { bar: 8, ms: 23340 }, { bar: 9, ms: 26730 }, { bar: 10, ms: 28380 },
+      { bar: 11, ms: 31650 }, { bar: 12, ms: 34900 }, { bar: 13, ms: 38200 }, { bar: 14, ms: 41570 }, { bar: 15, ms: 44820 },
+      { bar: 16, ms: 48110 }, { bar: 17, ms: 51460 }, { bar: 18, ms: 54690 }, { bar: 19, ms: 57960 }, { bar: 20, ms: 61230 },
+      { bar: 21, ms: 64580 }, { bar: 22, ms: 67850 }, { bar: 23, ms: 71170 }, { bar: 24, ms: 74490 }, { bar: 25, ms: 77840 },
+      { bar: 26, ms: 81160 }, { bar: 27, ms: 84410 }, { bar: 28, ms: 87820 }, { bar: 29, ms: 91140 }, { bar: 30, ms: 94480 },
+      { bar: 31, ms: 97830 }, { bar: 32, ms: 101400 }, { bar: 33, ms: 103030 }, { bar: 34, ms: 106330 }, { bar: 35, ms: 109650 },
+      { bar: 36, ms: 112970 }, { bar: 37, ms: 116330 }, { bar: 38, ms: 119650 }, { bar: 39, ms: 123040 }, { bar: 40, ms: 126370 },
+      { bar: 41, ms: 129690 }, { bar: 42, ms: 132980 }, { bar: 43, ms: 136300 }, { bar: 44, ms: 139620 }, { bar: 45, ms: 142970 },
+      { bar: 46, ms: 146290 }, { bar: 47, ms: 149540 }, { bar: 48, ms: 152950 }, { bar: 49, ms: 156200 }, { bar: 50, ms: 159570 },
+      { bar: 51, ms: 162890 }, { bar: 52, ms: 166280 }, { bar: 53, ms: 169690 }, { bar: 54, ms: 173010 }, { bar: 55, ms: 176380 },
+      { bar: 56, ms: 179680 }, { bar: 57, ms: 183020 }, { bar: 58, ms: 186410 }, { bar: 59, ms: 188080 }, { bar: 60, ms: 189960 },
+      { bar: 61, ms: 193350 }, { bar: 62, ms: 196650 }, { bar: 63, ms: 199970 }, { bar: 64, ms: 203270 }, { bar: 65, ms: 206570 },
+      { bar: 66, ms: 209910 }, { bar: 67, ms: 213180 }, { bar: 68, ms: 216690 }, { bar: 69, ms: 218360 }, { bar: 70, ms: 221680 },
+      { bar: 71, ms: 224960 }, { bar: 72, ms: 228250 }, { bar: 73, ms: 231570 }, { bar: 74, ms: 234900 }, { bar: 75, ms: 238220 },
+      { bar: 76, ms: 241510 }, { bar: 77, ms: 244830 }, { bar: 78, ms: 248200 }, { bar: 79, ms: 251610 }, { bar: 80, ms: 254930 },
+      { bar: 81, ms: 258350 }, { bar: 82, ms: 261690 }, { bar: 83, ms: 265010 }, { bar: 84, ms: 268400 }, { bar: 85, ms: 270030 },
+      { bar: 86, ms: 271930 }, { bar: 87, ms: 275320 }, { bar: 88, ms: 278640 }, { bar: 89, ms: 281960 }, { bar: 90, ms: 285280 },
+      { bar: 91, ms: 288600 }, { bar: 92, ms: 291900 }, { bar: 93, ms: 295270 }, { bar: 94, ms: 299120 }, { bar: 95, ms: 302470 },
+      { bar: 96, ms: 305810 }, { bar: 97, ms: 309110 }, { bar: 98, ms: 311100 },
+      ]
   music: { source: "Stone Temple Pilots-Plush-10-06-2026.mp3", offsetMs: 0 }
 cover: { album: "Core", itunesId: 1285806791 }
 chunks:
@@ -51,7 +75,9 @@ notes: >-
   roll across the same fret (ADR-0007 rule 6). That is consistent with the owner's rules
   and was kept; the Pre-Chorus D–C–B line spans frets 2–5, wider than the low-position box,
   hence its shifts. No re-tabs; the three large shifts (bar 28 into the riff, bars 51/77
-  into the Post-Chorus) are section changes on the downbeat. No overrides. YouTube: "Plush (2017 Remaster)" on
-  the Stone Temple Pilots - Topic channel (Rhino Atlantic), 5:14, matching the score. The
-  official music video V5UOC0C0x8Q on the band's channel is a 4:21 edit, so it was not
-  used. Sync anchors still needed.
+  into the Post-Chorus) are section changes on the downbeat. No overrides. YouTube (2026-10-11):
+  Songsterr's default video for this tab, "Plush - Stone Temple Pilots [Best Quality on YouTube]" by
+  Hindoobabe Menchenthugae (Dg0apFNHTik). Sync anchors are Songsterr's point per bar (song 293,
+  revision 9028613; npm run fetch-video): 98 anchors for 98 bars, bar 1 at 0:00.49, up to 1.5 s from
+  the score's tempo map (bar 98). To check by ear: bars whose length in the recording is far from
+  the score: 97 (×0.60).

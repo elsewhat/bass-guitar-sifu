@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import type { SongData } from '../core/model';
+import { syncMap } from '../core/sync';
 import { tempoLookup } from '../core/timing';
 import { effectiveBpm, formatTime, headMeta, introChip, loopTimeLabel, planRows } from './view-model';
 
@@ -38,6 +39,9 @@ describe('practice view text', () => {
     const tempo = tempoLookup(vortex.tempoMap, vortex.bars);
     // Bar 130 starts after 129 bars of 4/4 at 110 BPM: 129 × 240 / 110 s = 4:41.
     expect(loopTimeLabel(vortex, 0, tempo)).toBe('Loop 4:41–4:50 · score time');
+    // With the YouTube video the loop is shown where it is in the recording (ADR-0028).
+    const video = syncMap([{ bar: 1, ms: 5000 }, { bar: 130, ms: 300_000 }, { bar: 134, ms: 308_400 }], vortex.bars, tempo);
+    expect(loopTimeLabel(vortex, 0, tempo, video)).toBe('Loop 5:00–5:08 · video time');
     expect(effectiveBpm(vortex, 0, tempo, 75)).toBe(83);
   });
 });

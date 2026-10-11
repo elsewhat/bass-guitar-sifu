@@ -103,6 +103,20 @@ describe('Vortex Surfer acceptance fixture (reference/vortex-surfer-chunks.json)
     // maxFret is what the player plays after re-tabbing: the tab's E7 at bar 169 becomes A2.
     expect(built.stats).toMatchObject({ noteCount: 692, maxFret: 6, firstBar: 130 });
   });
+
+  it('emits the YouTube video with its sync anchors and rejects anchors that go backwards (ADR-0028)', () => {
+    const withYoutube = (sync: string) =>
+      parseSidecar(
+        ['title: T', 'artist: A', 'source: { file: a.gp }', 'bassTrack: 0', `media: { youtube: { videoId: ENZaFo2cEog, songsterr: { songId: 2582753, revisionId: 3403501 }, sync: ${sync} } }`, 'chunks:', '  - { name: Riff A, bars: [130, 133] }'].join('\n'),
+        'test',
+      );
+    const { song: built, warnings } = buildSong('vortex-surfer', song, withYoutube('[{ bar: 1, ms: 0 }, { bar: 2, ms: 2190 }]'));
+    expect(built.media.youtube).toEqual({ videoId: 'ENZaFo2cEog', sync: [{ bar: 1, ms: 0 }, { bar: 2, ms: 2190 }] }); // songsterr stays in song.yaml
+    expect(warnings).toEqual([]);
+    expect(buildSong('vortex-surfer', song, withYoutube('[]')).warnings).toEqual([expect.stringMatching(/no sync anchors/)]);
+    expect(() => buildSong('vortex-surfer', song, withYoutube('[{ bar: 2, ms: 2190 }, { bar: 1, ms: 4000 }]'))).toThrow(/sync is invalid[\s\S]*bar 1 is not after/);
+    expect(() => buildSong('vortex-surfer', song, withYoutube('[{ bar: 244, ms: 0 }]'))).toThrow(/the score has 243 bars/);
+  });
 });
 
 describe('importer edge cases', () => {
@@ -227,6 +241,20 @@ describe('song.yaml validation', () => {
 
   it('rejects a malformed YouTube id', () => {
     expect(() => parseSidecar([...valid, 'media: { youtube: { videoId: nope } }'].join('\n'), 'test')).toThrow(/pattern/);
+  });
+
+  it('accepts the YouTube sync anchors and where they came from (ADR-0028)', () => {
+    const youtube = ['media:', '  youtube:', '    videoId: XFkzRNyygfk', '    songsterr: { songId: 97, revisionId: 9297707 }', '    sync: [', '      { bar: 1, ms: 140 }, { bar: 2, tick: 960, ms: 3300 },', '      ]'];
+    expect(parseSidecar([...valid.slice(0, 4), ...youtube, ...valid.slice(4)].join('\n'), 'test').media?.youtube).toEqual({
+      videoId: 'XFkzRNyygfk',
+      songsterr: { songId: 97, revisionId: 9297707 },
+      sync: [
+        { bar: 1, ms: 140 },
+        { bar: 2, tick: 960, ms: 3300 },
+      ],
+    });
+    expect(() => parseSidecar([...valid, 'media: { youtube: { songsterr: { songId: 97 } } }'].join('\n'), 'test')).toThrow(/revisionId/);
+    expect(() => parseSidecar([...valid, 'media: { youtube: { sync: [{ bar: 1, ms: -5 }] } }'].join('\n'), 'test')).toThrow(/>= 0/);
   });
 
   it('accepts lyrics.source and lyrics.track, and rejects other sources', () => {

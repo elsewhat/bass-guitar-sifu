@@ -5,7 +5,29 @@ source: { file: "Radiohead-Creep-09-24-2026.gp", date: 2026-09-24 }
 bassTrack: "Colin Greenwood | Ernie Ball Music Man Stingray | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: XFkzRNyygfk, sync: [] }
+  youtube:
+    videoId: XFkzRNyygfk
+    songsterr: { songId: 97, revisionId: 9297707 }
+    sync: [
+      { bar: 1, ms: 140 }, { bar: 2, ms: 2690 }, { bar: 3, ms: 5180 }, { bar: 4, ms: 7660 }, { bar: 5, ms: 10150 },
+      { bar: 6, ms: 12630 }, { bar: 7, ms: 15190 }, { bar: 8, ms: 17720 }, { bar: 9, ms: 20290 }, { bar: 10, ms: 22850 },
+      { bar: 11, ms: 25430 }, { bar: 12, ms: 27980 }, { bar: 13, ms: 30560 }, { bar: 14, ms: 33090 }, { bar: 15, ms: 35670 },
+      { bar: 16, ms: 38240 }, { bar: 17, ms: 40840 }, { bar: 18, ms: 43400 }, { bar: 19, ms: 46000 }, { bar: 20, ms: 48600 },
+      { bar: 21, ms: 51200 }, { bar: 22, ms: 53820 }, { bar: 23, ms: 56420 }, { bar: 24, ms: 59030 }, { bar: 25, ms: 61530 },
+      { bar: 26, ms: 64250 }, { bar: 27, ms: 66870 }, { bar: 28, ms: 69470 }, { bar: 29, ms: 71910 }, { bar: 30, ms: 74720 },
+      { bar: 31, ms: 77320 }, { bar: 32, ms: 79970 }, { bar: 33, ms: 82550 }, { bar: 34, ms: 85150 }, { bar: 35, ms: 87750 },
+      { bar: 36, ms: 90370 }, { bar: 37, ms: 93000 }, { bar: 38, ms: 95620 }, { bar: 39, ms: 98240 }, { bar: 40, ms: 100870 },
+      { bar: 41, ms: 103490 }, { bar: 42, ms: 106120 }, { bar: 43, ms: 108790 }, { bar: 44, ms: 111410 }, { bar: 45, ms: 113990 },
+      { bar: 46, ms: 116630 }, { bar: 47, ms: 119260 }, { bar: 48, ms: 121840 }, { bar: 49, ms: 124410 }, { bar: 50, ms: 127110 },
+      { bar: 51, ms: 129780 }, { bar: 52, ms: 132420 }, { bar: 53, ms: 135070 }, { bar: 54, ms: 137720 }, { bar: 55, ms: 140360 },
+      { bar: 56, ms: 142990 }, { bar: 57, ms: 145520 }, { bar: 58, ms: 148120 }, { bar: 59, ms: 150560 }, { bar: 60, ms: 153340 },
+      { bar: 61, ms: 155760 }, { bar: 62, ms: 158550 }, { bar: 63, ms: 161170 }, { bar: 64, ms: 163680 }, { bar: 65, ms: 166070 },
+      { bar: 66, ms: 168650 }, { bar: 67, ms: 171220 }, { bar: 68, ms: 173780 }, { bar: 69, ms: 176170 }, { bar: 70, ms: 178930 },
+      { bar: 71, ms: 181330 }, { bar: 72, ms: 183900 }, { bar: 73, ms: 186690 }, { bar: 74, ms: 189360 }, { bar: 75, ms: 191940 },
+      { bar: 76, ms: 194510 }, { bar: 77, ms: 196810 }, { bar: 78, ms: 199620 }, { bar: 79, ms: 201870 }, { bar: 80, ms: 204750 },
+      { bar: 81, ms: 207350 }, { bar: 82, ms: 209950 }, { bar: 83, ms: 212580 }, { bar: 84, ms: 215160 }, { bar: 85, ms: 217830 },
+      { bar: 86, ms: 220430 }, { bar: 87, ms: 223030 }, { bar: 88, ms: 225650 }, { bar: 89, ms: 228300 }, { bar: 90, ms: 230740 },
+      ]
   music: { source: "Radiohead-Creep-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Pablo Honey", itunesId: 1097862062 }
 chunks:
@@ -46,5 +68,7 @@ notes: >-
   or same-position alternative. The verse moves the hand between positions 1–3 on
   G (E3) / B (A2) / C (A3) because G and C sit at the same fret on adjacent strings and rule 6
   (no rolling) forbids one finger for both. The owner should check whether this is too busy.
-  YouTube: official video on the Radiohead channel (3:57, the same as the score); sync
-  anchors still needed.
+  YouTube (2026-10-11): Songsterr's default video for this tab, "Radiohead - Creep" by Radiohead
+  (XFkzRNyygfk). Sync anchors are Songsterr's point per bar (song 97, revision 9297707; npm run
+  fetch-video): 90 anchors for 91 bars, bar 1 at 0:00.14, up to 1.8 s from the score's tempo map
+  (bar 79). To check by ear: bar 91: no point, continued at the score's tempo.

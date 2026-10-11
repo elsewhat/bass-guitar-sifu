@@ -173,7 +173,14 @@ function MixerDialog() {
 
         <div role="tabpanel" className="flex max-h-[480px] flex-col gap-1.5 overflow-y-auto">
           {tab === 'youtube' && (
-            <ChannelRow label="video" name="Video" description="YouTube player" channel={mixer.video} onChange={(p) => setChannel('video', p)} />
+            <ChannelRow
+              label="video"
+              name="Video"
+              description={song?.media.youtube?.videoId ? 'YouTube player · the recording' : 'No video for this song'}
+              channel={mixer.video}
+              disabled={!song?.media.youtube?.videoId}
+              onChange={(p) => setChannel('video', p)}
+            />
           )}
           {tab === 'music' && (
             <ChannelRow

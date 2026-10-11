@@ -1,6 +1,6 @@
 # ADR-0017: alphaTab at runtime for the strip, Synth and YouTube sync
 
-Status: Accepted (spike passed, owner review 2026-09-28)
+Status: Accepted (spike passed, owner review 2026-09-28), amended by ADR-0019, ADR-0023 and ADR-0028 (YouTube has its own clock, not alphaTab's external-media mode)
 Date: 2026-09-28
 Supersedes: ADR-0005 (custom SVG renderer). Amends: ADR-0008.
 

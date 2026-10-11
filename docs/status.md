@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-03. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-10-11. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -129,9 +129,23 @@ Updated 2026-10-03. This is the hand-off point between working sessions: what is
    - The `preprocess-song` skill has a new step 4c.
    - Tests: sidecar validation; the e2e tests check the Vortex Surfer and Creep covers load.
 
+16. **YouTube source** (2026-10-11; **ADR-0028, proposed**). The owner took it off hold: play the video Songsterr uses, driven by the chunks, the loop and the transport, for every song.
+   - **Sync from Songsterr.** Songsterr lists, for each tab revision, its videos and the video time of every bar start. `npm run fetch-video -- <slug> [--write] [--video <id>]` (`scripts/fetch-video.ts`, `scripts/lib/songsterr.ts`, `scripts/lib/video-sync.ts`) finds the tab and the revision of the `.gp`'s date, and writes `media.youtube` into `song.yaml`: `videoId`, `songsterr: { songId, revisionId }` and one `sync` anchor per bar.
+     - The recordings drift 0.1–45 s from the score's tempo map, so one offset would not do.
+     - 18 videos have a point for every bar. For the other 13 the points are matched to the bars by duration (`alignPoints`): bars at the end without a point, a point at the very end, or two points in one bar. What was done is in each song's `notes` under "YouTube (2026-10-11)".
+     - All 31 songs are configured: 4499 anchors. 14 songs changed video to Songsterr's default. Go With The Flow keeps the official video from Songsterr's alternatives, because the default (a Topic upload) is blocked in Norway.
+   - **Sync map.** `src/core/sync.ts` (`syncMap`, `syncProblems`): linear over score time between anchors, the score's tempo outside them. The build rejects bad anchors.
+   - **Clock.** `YouTubeClock` (`src/playback/youtube-clock.ts`) over a `VideoPlayer` port, modelled on the Music clock. It works in video time, seeks at the chunk end (no seek into an adjacent chunk), runs on for a moment after a start or seek until the player reports, ignores the old position the player reports right after a seek, holds while the video buffers, and follows clicks on the video (`onExternal`). Any tempo from 40 to 100 % (the player takes any rate).
+   - **Player.** `src/playback/youtube-player.ts`: the IFrame API (`youtube-nocookie.com`, `controls=0`), loaded when YouTube is first chosen. A never-started video is run muted and paused at the start during the count-in, and started 50 ms before the count-in ends. Keyboard focus is handed back after a click on the video. `src/playback/video-host.ts` gives the engine the host element.
+   - **UI.** The video fills the video cell. Status text over it while loading or on an error, count cells over the dimmed video during a count-in, the loop chip in video time, synced lyrics as a subtitle band (`Subtitles` in `Lyrics.tsx`). The mixer's Video channel is applied.
+   - **Measured against the real player** (headless Chrome, Creep): the tick is within 2 ms of the video's time while playing (95 %), 5–12 ms right after a loop wrap, the video is heard within about 10 ms of the downbeat after the count-in, and play-through into the next chunk has no seek. All 31 videos load and play from this machine through the app.
+   - Tests: 228 unit tests (`sync.test.ts`, `youtube-clock.test.ts` with a fake player, `video-sync.test.ts`, sidecar and build validation, the video-time loop label); 19 Playwright tests, one of them the YouTube source against a stand-in for the IFrame API (count-in, tempo, loop wrap, chunk change, clicks on the video, back to the Metronome).
+   - The `preprocess-song` skill has a new step 6b (`fetch-video`) instead of the YouTube search.
+
 ## Next
 
-- YouTube source (alphaTab external media + IFrame API) and the tap-sync editor behind `?sync=1` (ADR-0016), step 6: **on hold (owner, 2026-09-30)**. Apply the mixer's Video channel there: `setVolume(round(master × video × 100))`, `mute()` when either is muted (ADR-0020). Show the lyrics as the design's subtitle band over the video (ADR-0024).
+- A tap-sync editor (ADR-0016) is not built. It is only needed if Songsterr's points turn out wrong for a song; anchors can also be corrected by hand in `song.yaml`.
+- Remember the chosen source per song (the system description lists it under persistence; today every load starts on the Metronome).
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
 - Still in `music/`: the `Vortex Surfer` retranscription (236 bars against the fixture's 243, with an MP3), on hold by the owner.
 
@@ -149,7 +163,14 @@ Open points from slice 1 (not blocking):
 - Try slice 1 in a normal browser: Count playback, loop and auto-advance, tempo, the fade, and 60 fps while scrolling.
 - Make `elsewhat/bass-guitar-sifu` public, and set Pages → Source to "GitHub Actions" (ADR-0012). The workflow already exists.
 - Record the count samples: `one` … `four`, `and`, as WAV files in `public/audio/count/`. Until then the mixer shows the Voice channel as "No samples".
-- Tap the sync anchors for the YouTube videos once the editor exists (16 songs).
+- Review ADR-0028 (YouTube source) and try it in a normal browser:
+  - Does the tab ring land on the bass in the video? Try a steady song (Paranoid, wearing yr smell) and one that drifts (Un Chien d'Espace, Peter Gunn, The Wheel).
+  - The bars each song's `notes` list under "To check by ear": the last bars without a point (Creep 91, Fell on Black Days 92–94, The Man Who Sold The World 101–102, The Lost Art 102–103, Killing in the Name 120, About A Girl 93), the merged points (Come As You Are 107, Freedom 89, Zombie 107), and the slow endings.
+  - The loop wrap: is the gap of about 50 ms acceptable? Is the video on the beat after the count-in?
+  - Songsterr's default videos that are not official uploads: bad guy (a lyric video), Bullet in the Head, Iron Man, Plush, The Lost Art of Keeping a Secret (a vinyl rip), War Pigs (a pitch-corrected upload), Seven Nation Army ("in Standard Tuning with 4 Count"), The Wheel (a live recording, which the tab follows), Vortex Surfer and wearing yr smell. Another video of the tab can be chosen with `npm run fetch-video -- <slug> --video <id> --write`.
+  - Go With The Flow: the official video is about two bars shorter than the score, so playback stops just before the end.
+  - **Overlays on the player.** The source switch, the chips, the two buttons and the subtitle band lie over the video, as in the design. YouTube's developer policies do not allow elements in front of the player. Decide whether they stay or move outside the video on the public site.
+  - Songsterr's bar timings are now in the repository and public on Pages (same status as the `.gp` files).
 - Review ADR-0025 (count-in). Listen in a normal browser: does the Synth or Music start late after the last count (start-up latency)? Is one bar at slow tempo settings too long?
 - Review ADR-0022 (Music source). Listen in a normal browser:
   - Does the tab ring land on the notes with Music? Check a chunk start after a seek and a loop wrap. The offsets are 0–20 ms, and output latency is removed.
@@ -176,4 +197,6 @@ Open points from slice 1 (not blocking):
 
 - On the owner's Windows machine, Git Bash may need `export PATH="/c/Program Files/nodejs:$PATH"`. Git Bash also rewrites `BASE_PATH=/bass-guitar-sifu/` into a Windows path, so run Pages-base builds and e2e from PowerShell.
 - `.claude/launch.json` starts Vite through `node.exe` directly (the `dev` configuration), because Node is not on the app's PATH.
+- Playwright's own browsers are not installed on the owner's machine. The e2e suite was run with the installed Chrome through a temporary config (`projects: [{ use: { channel: 'chrome' } }]`); `npx playwright install chromium` makes `npm run test:e2e` work as it is.
+- The in-app preview pane does not run `requestAnimationFrame` while it is hidden and cannot click into the scaled video frame. The YouTube source was checked with headless Chrome instead.
 - The owner makes the git commits. Do not commit.

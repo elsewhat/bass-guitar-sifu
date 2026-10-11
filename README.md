@@ -3,7 +3,7 @@
 A practice tool for the bass parts of real songs. It is inspired by BassBuzz (structured practice in small steps) and Songsterr (scrolling tab synced to a recording).
 
 - Songs are practised in chunks of a few bars that loop and then advance.
-- Tempo is adjustable. Playback comes from a YouTube video, a synthesised rendition or a spoken count.
+- Tempo is adjustable. Playback comes from the recording on YouTube (synced bar by bar), a synthesised rendition, audio rendered from the transcription, or a spoken count.
 - A silent visual metronome shows when to pluck, which fret, and for how long.
 - Every note has a recommended fretting finger, planned so the hand stays in position.
 
@@ -17,7 +17,7 @@ A practice tool for the bass parts of real songs. It is inspired by BassBuzz (st
 
 ## Songs
 
-Each song lives in `songs/<slug>/` as `score.gp` (Guitar Pro, source of truth for notes) plus `song.yaml` (metadata, practice chunks, YouTube id and sync anchors, fingering overrides).
+Each song lives in `songs/<slug>/` as `score.gp` (Guitar Pro, source of truth for notes) plus `song.yaml` (metadata, practice chunks, the YouTube video and its sync anchors, fingering overrides).
 
 To add a song, drop `Artist-Title-MM-DD-YYYY.gp` into [`music/`](music/README.md) and run `/preprocess-song` in Claude Code.
 

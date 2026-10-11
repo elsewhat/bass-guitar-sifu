@@ -5,7 +5,45 @@ source: { file: "Black Sabbath-War Pigs-08-30-2026.gp", date: 2026-08-30 }
 bassTrack: "Geezer Butler | Fender Precision | Bass (Center)"
 tempo: { note: null }
 media:
-  youtube: { videoId: 6csiUGMC1fk, sync: [] }
+  youtube:
+    videoId: Y6jGEXS3I58
+    songsterr: { songId: 10137, revisionId: 8782092 }
+    sync: [
+      { bar: 1, ms: 900 }, { bar: 2, ms: 7270 }, { bar: 3, ms: 13650 }, { bar: 4, ms: 20180 }, { bar: 5, ms: 26680 },
+      { bar: 6, ms: 33250 }, { bar: 7, ms: 39850 }, { bar: 8, ms: 46180 }, { bar: 9, ms: 52620 }, { bar: 10, ms: 55260 },
+      { bar: 11, ms: 57930 }, { bar: 12, ms: 60560 }, { bar: 13, ms: 63230 }, { bar: 14, ms: 65970 }, { bar: 15, ms: 68660 },
+      { bar: 16, ms: 71290 }, { bar: 17, ms: 74190 }, { bar: 18, ms: 76770 }, { bar: 19, ms: 79620 }, { bar: 20, ms: 82340 },
+      { bar: 21, ms: 85120 }, { bar: 22, ms: 87750 }, { bar: 23, ms: 90600 }, { bar: 24, ms: 93160 }, { bar: 25, ms: 95970 },
+      { bar: 26, ms: 98680 }, { bar: 27, ms: 101190 }, { bar: 28, ms: 103840 }, { bar: 29, ms: 106630 }, { bar: 30, ms: 109250 },
+      { bar: 31, ms: 111920 }, { bar: 32, ms: 114470 }, { bar: 33, ms: 117050 }, { bar: 34, ms: 119630 }, { bar: 35, ms: 122300 },
+      { bar: 36, ms: 124920 }, { bar: 37, ms: 127660 }, { bar: 38, ms: 130290 }, { bar: 39, ms: 132910 }, { bar: 40, ms: 135530 },
+      { bar: 41, ms: 138210 }, { bar: 42, ms: 140830 }, { bar: 43, ms: 143410 }, { bar: 44, ms: 145980 }, { bar: 45, ms: 148540 },
+      { bar: 46, ms: 151160 }, { bar: 47, ms: 153760 }, { bar: 48, ms: 156410 }, { bar: 49, ms: 158990 }, { bar: 50, ms: 161520 },
+      { bar: 51, ms: 164120 }, { bar: 52, ms: 166740 }, { bar: 53, ms: 169340 }, { bar: 54, ms: 171970 }, { bar: 55, ms: 174640 },
+      { bar: 56, ms: 177210 }, { bar: 57, ms: 179820 }, { bar: 58, ms: 182440 }, { bar: 59, ms: 185020 }, { bar: 60, ms: 187640 },
+      { bar: 61, ms: 190220 }, { bar: 62, ms: 192860 }, { bar: 63, ms: 195560 }, { bar: 64, ms: 198070 }, { bar: 65, ms: 200690 },
+      { bar: 66, ms: 203240 }, { bar: 67, ms: 205910 }, { bar: 68, ms: 208490 }, { bar: 69, ms: 211120 }, { bar: 70, ms: 213860 },
+      { bar: 71, ms: 216570 }, { bar: 72, ms: 219270 }, { bar: 73, ms: 221940 }, { bar: 74, ms: 224580 }, { bar: 75, ms: 227230 },
+      { bar: 76, ms: 229880 }, { bar: 77, ms: 232520 }, { bar: 78, ms: 235150 }, { bar: 79, ms: 237800 }, { bar: 80, ms: 240420 },
+      { bar: 81, ms: 243110 }, { bar: 82, ms: 245710 }, { bar: 83, ms: 248360 }, { bar: 84, ms: 251030 }, { bar: 85, ms: 253790 },
+      { bar: 86, ms: 256510 }, { bar: 87, ms: 259200 }, { bar: 88, ms: 261900 }, { bar: 89, ms: 264570 }, { bar: 90, ms: 267260 },
+      { bar: 91, ms: 269960 }, { bar: 92, ms: 272530 }, { bar: 93, ms: 275090 }, { bar: 94, ms: 277710 }, { bar: 95, ms: 280330 },
+      { bar: 96, ms: 283120 }, { bar: 97, ms: 285770 }, { bar: 98, ms: 288440 }, { bar: 99, ms: 291250 }, { bar: 100, ms: 294030 },
+      { bar: 101, ms: 296630 }, { bar: 102, ms: 299310 }, { bar: 103, ms: 302050 }, { bar: 104, ms: 304830 }, { bar: 105, ms: 307410 },
+      { bar: 106, ms: 310060 }, { bar: 107, ms: 312840 }, { bar: 108, ms: 315490 }, { bar: 109, ms: 318040 }, { bar: 110, ms: 320620 },
+      { bar: 111, ms: 323410 }, { bar: 112, ms: 325960 }, { bar: 113, ms: 328630 }, { bar: 114, ms: 331120 }, { bar: 115, ms: 333740 },
+      { bar: 116, ms: 336250 }, { bar: 117, ms: 338870 }, { bar: 118, ms: 341430 }, { bar: 119, ms: 344050 }, { bar: 120, ms: 346810 },
+      { bar: 121, ms: 349720 }, { bar: 122, ms: 352360 }, { bar: 123, ms: 355150 }, { bar: 124, ms: 357700 }, { bar: 125, ms: 360490 },
+      { bar: 126, ms: 363090 }, { bar: 127, ms: 365880 }, { bar: 128, ms: 368410 }, { bar: 129, ms: 371100 }, { bar: 130, ms: 373790 },
+      { bar: 131, ms: 376510 }, { bar: 132, ms: 379230 }, { bar: 133, ms: 381880 }, { bar: 134, ms: 384570 }, { bar: 135, ms: 387260 },
+      { bar: 136, ms: 389930 }, { bar: 137, ms: 392490 }, { bar: 138, ms: 395110 }, { bar: 139, ms: 397870 }, { bar: 140, ms: 400590 },
+      { bar: 141, ms: 403280 }, { bar: 142, ms: 405980 }, { bar: 143, ms: 408740 }, { bar: 144, ms: 411460 }, { bar: 145, ms: 414150 },
+      { bar: 146, ms: 416820 }, { bar: 147, ms: 419490 }, { bar: 148, ms: 422140 }, { bar: 149, ms: 424790 }, { bar: 150, ms: 427340 },
+      { bar: 151, ms: 429940 }, { bar: 152, ms: 432590 }, { bar: 153, ms: 435260 }, { bar: 154, ms: 437930 }, { bar: 155, ms: 440600 },
+      { bar: 156, ms: 443270 }, { bar: 157, ms: 446030 }, { bar: 158, ms: 448730 }, { bar: 159, ms: 451400 }, { bar: 160, ms: 454070 },
+      { bar: 161, ms: 456740 }, { bar: 162, ms: 459360 }, { bar: 163, ms: 462170 }, { bar: 164, ms: 465000 }, { bar: 165, ms: 467720 },
+      { bar: 166, ms: 469970 }, { bar: 167, ms: 471550 }, { bar: 168, ms: 472850 }, { bar: 169, ms: 473640 },
+      ]
   music: { source: "Black Sabbath-War Pigs-10-06-2026.mp3", offsetMs: 0 }
 cover: { album: "Paranoid", itunesId: 785232473 }
 chunks:
@@ -69,7 +107,9 @@ notes: >-
   played as open D in bars 33, 61, 65, 79, 115, 132–133 and 143, and the G on D5 as open G in
   bar 134, so the hand keeps its position across the riff (same simplification as in Paranoid).
   The one large shift (bar 137, position 2 → 5) is the move into the second solo and is
-  inherent. No overrides. Lyrics are synced from the Ozzy Osbourne vocal track. YouTube: "War
-  Pigs (2009 Remaster)" from the Paranoid album on Black Sabbath - Topic (Sanctuary); the
-  official Black Sabbath channel only has live versions. Fallback: bc5Nk1DXyEY (Rhino upload,
-  same remaster). Sync anchors still needed.
+  inherent. No overrides. Lyrics are synced from the Ozzy Osbourne vocal track. YouTube
+  (2026-10-11): Songsterr's default video for this tab, "Black Sabbath - War Pigs (440 Hz - Standard
+  tuning)" by Manuel García Miranda (Y6jGEXS3I58). Sync anchors are Songsterr's point per bar (song
+  10137, revision 8782092; npm run fetch-video): 169 anchors for 169 bars, bar 1 at 0:00.90, up to
+  2.3 s from the score's tempo map (bar 169). To check by ear: bars whose length in the recording is
+  far from the score: 167 (×0.83), 168 (×0.50).

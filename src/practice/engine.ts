@@ -12,6 +12,9 @@ import { applyQuickMix, channelGain, clampVolume, effectiveGain, type Channel, t
 import { MusicClock } from '../playback/music-clock';
 import type { MusicPlayerHandle } from '../playback/music-player';
 import { SynthClock } from '../playback/synth-clock';
+import { whenVideoHost } from '../playback/video-host';
+import { YouTubeClock } from '../playback/youtube-clock';
+import type { YouTubePlayerHandle } from '../playback/youtube-player';
 import { effectiveTempo, sourceAvailable, TEMPO, tempoLocked, useSession, type SourceId, type SourceStatus } from '../state/session';
 import { loadProgress, loadSynthTracks, saveProgress, saveSettings, saveSynthTracks } from '../state/storage';
 import { whenStrip } from '../strip/strip-host';
@@ -22,7 +25,8 @@ const base = import.meta.env.BASE_URL;
 let clock: PlaybackClock | null = null;
 let synthPlayer: SynthPlayerHandle | null = null; // the Synth clock's player, for the mixer
 let musicPlayer: MusicPlayerHandle | null = null; // the Music clock's player, for the mixer
-let countIn: CountInPlayer | null = null; // the Synth or Music clock's count-in, for the mixer
+let videoPlayer: YouTubePlayerHandle | null = null; // the YouTube clock's player, for the mixer
+let countIn: CountInPlayer | null = null; // the Synth, Music or YouTube clock's count-in, for the mixer
 let loadToken = 0;
 
 setTickSource(() => clock?.getTick() ?? 0);
@@ -104,17 +108,48 @@ function createMusicClock(song: SongData, music: NonNullable<SongData['media']['
   return c;
 }
 
+/**
+ * The YouTube source (ADR-0028): the recording as an embedded video, loaded when chosen, with the
+ * song's sync anchors. A click on the video plays and pauses it, and the session follows.
+ */
+function createYouTubeClock(song: SongData, videoId: string, sync: NonNullable<SongData['media']['youtube']>['sync']): YouTubeClock {
+  setStatus({ state: 'loading' });
+  const player = Promise.all([import('../playback/youtube-player'), whenVideoHost()]).then(([{ createYouTubePlayer }, host]) => {
+    if (clock !== c) throw new Error('disposed'); // another source or song was chosen meanwhile
+    const p = createYouTubePlayer(host, videoId, videoGain());
+    videoPlayer = p;
+    p.onError((message) => {
+      if (clock !== c) return;
+      pause();
+      setStatus({ state: 'error', error: `YouTube: ${message}` });
+    });
+    return p;
+  });
+  countIn = new CountInPlayer(countGains());
+  const c = new YouTubeClock(song, sync, player, undefined, undefined, countIn);
+  c.onExternal = (playing) => clock === c && useSession.setState({ playing });
+  player
+    .then((p) => p.ready)
+    .then(
+      () => clock === c && setStatus({ state: 'ready' }),
+      (e: unknown) => clock === c && setStatus({ state: 'error', error: `YouTube: ${e instanceof Error ? e.message : String(e)}` }),
+    );
+  return c;
+}
+
 /** Creates the clock for the current source; the position is kept when it is inside the chunk. */
 function attachClock(song: SongData, tick?: number) {
   clock?.dispose();
   synthPlayer = null;
   musicPlayer = null;
+  videoPlayer = null;
   countIn = null;
   if (!sourceAvailable(state().source, song)) useSession.setState({ source: 'count' });
   let c: PlaybackClock;
   const source = state().source;
   if (source === 'synth') c = createSynthClock(song);
   else if (source === 'music' && song.media.music) c = createMusicClock(song, song.media.music);
+  else if (source === 'youtube' && song.media.youtube?.videoId) c = createYouTubeClock(song, song.media.youtube.videoId, song.media.youtube.sync);
   else {
     const count = new CountClock(song);
     count.setMix(countGains());
@@ -269,6 +304,11 @@ function musicGain(): number {
   return effectiveGain(master, music);
 }
 
+function videoGain(): number {
+  const { master, video } = state().mixer;
+  return effectiveGain(master, video);
+}
+
 function synthLevels(): SynthLevels {
   return { master: channelGain(state().mixer.master), tracks: state().synthTracks };
 }
@@ -278,8 +318,8 @@ function applyMix() {
   if (clock instanceof CountClock) clock.setMix(countGains());
   synthPlayer?.setMix(synthLevels());
   musicPlayer?.setGain(musicGain());
+  videoPlayer?.setGain(videoGain());
   countIn?.setMix(countGains());
-  // YouTube: setVolume(master × video) once the YouTube source exists (step 6).
 }
 
 export function openMixer(open: boolean) {

@@ -35,10 +35,21 @@
       "additionalProperties": false,
       "properties": {
         "youtube": {
+          "description": "The recording on YouTube, the YouTube source (ADR-0028). Written by npm run fetch-video.",
           "type": "object",
           "additionalProperties": false,
           "properties": {
-            "videoId": { "type": ["string", "null"], "pattern": "^[A-Za-z0-9_-]{11}$" },
+            "videoId": { "type": ["string", "null"], "pattern": "^[A-Za-z0-9_-]{11}$", "description": "The video Songsterr plays with the tab. null: no YouTube source." },
+            "songsterr": {
+              "description": "The Songsterr tab and revision the video and its sync were taken from.",
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["songId", "revisionId"],
+              "properties": {
+                "songId": { "type": "integer", "minimum": 1 },
+                "revisionId": { "type": "integer", "minimum": 1 }
+              }
+            },
             "sync": { "$ref": "#/$defs/sync" }
           }
         },
@@ -110,7 +121,7 @@
   },
   "$defs": {
     "sync": {
-      "description": "Anchors from score bar (a played bar, ADR-0023) to recording time. Linear interpolation with the tempo map between anchors.",
+      "description": "Anchors from score bar (a played bar, ADR-0023) to recording time, in order. Between anchors the recording time is interpolated over score time; outside them the recording runs at the score's tempo. One anchor is an offset; none means the recording starts with the score at 0:00.",
       "type": "array",
       "items": {
         "type": "object",

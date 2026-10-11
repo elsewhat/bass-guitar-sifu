@@ -5,7 +5,83 @@ source: { file: "Motorpsycho-Un Chien d'Espace-09-22-2025.gp", date: 2025-09-22 
 bassTrack: "Electric Bass (finger)"
 tempo: { note: null }
 media:
-  youtube: { videoId: DMFz6CMKC4E, sync: [] }
+  youtube:
+    videoId: DMFz6CMKC4E
+    songsterr: { songId: 2162260, revisionId: 3153494 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 2520 }, { bar: 3, ms: 5020 }, { bar: 4, ms: 7570 }, { bar: 5, ms: 10040 },
+      { bar: 6, ms: 12540 }, { bar: 7, ms: 15010 }, { bar: 8, ms: 17440 }, { bar: 9, ms: 19890 }, { bar: 10, ms: 22320 },
+      { bar: 11, ms: 24780 }, { bar: 12, ms: 27290 }, { bar: 13, ms: 29710 }, { bar: 14, ms: 32180 }, { bar: 15, ms: 34630 },
+      { bar: 16, ms: 37080 }, { bar: 17, ms: 39480 }, { bar: 18, ms: 41880 }, { bar: 19, ms: 44290 }, { bar: 20, ms: 46720 },
+      { bar: 21, ms: 49080 }, { bar: 22, ms: 51430 }, { bar: 23, ms: 53820 }, { bar: 24, ms: 56200 }, { bar: 25, ms: 58550 },
+      { bar: 26, ms: 60870 }, { bar: 27, ms: 63260 }, { bar: 28, ms: 66250 }, { bar: 29, ms: 68630 }, { bar: 30, ms: 70990 },
+      { bar: 31, ms: 73990 }, { bar: 32, ms: 75180 }, { bar: 33, ms: 77660 }, { bar: 34, ms: 80080 }, { bar: 35, ms: 82540 },
+      { bar: 36, ms: 84980 }, { bar: 37, ms: 87420 }, { bar: 38, ms: 89830 }, { bar: 39, ms: 92280 }, { bar: 40, ms: 94700 },
+      { bar: 41, ms: 97130 }, { bar: 42, ms: 99540 }, { bar: 43, ms: 101970 }, { bar: 44, ms: 104360 }, { bar: 45, ms: 106760 },
+      { bar: 46, ms: 109180 }, { bar: 47, ms: 111560 }, { bar: 48, ms: 113930 }, { bar: 49, ms: 116340 }, { bar: 50, ms: 118710 },
+      { bar: 51, ms: 121100 }, { bar: 52, ms: 123490 }, { bar: 53, ms: 125910 }, { bar: 54, ms: 128290 }, { bar: 55, ms: 130690 },
+      { bar: 56, ms: 133050 }, { bar: 57, ms: 135450 }, { bar: 58, ms: 137820 }, { bar: 59, ms: 140210 }, { bar: 60, ms: 142600 },
+      { bar: 61, ms: 145010 }, { bar: 62, ms: 147400 }, { bar: 63, ms: 149820 }, { bar: 64, ms: 152200 }, { bar: 65, ms: 154600 },
+      { bar: 66, ms: 156970 }, { bar: 67, ms: 159360 }, { bar: 68, ms: 161720 }, { bar: 69, ms: 164090 }, { bar: 70, ms: 166480 },
+      { bar: 71, ms: 168830 }, { bar: 72, ms: 171190 }, { bar: 73, ms: 173600 }, { bar: 74, ms: 176010 }, { bar: 75, ms: 178410 },
+      { bar: 76, ms: 180810 }, { bar: 77, ms: 183200 }, { bar: 78, ms: 185580 }, { bar: 79, ms: 187990 }, { bar: 80, ms: 190400 },
+      { bar: 81, ms: 192840 }, { bar: 82, ms: 195250 }, { bar: 83, ms: 197710 }, { bar: 84, ms: 200110 }, { bar: 85, ms: 202570 },
+      { bar: 86, ms: 204960 }, { bar: 87, ms: 207410 }, { bar: 88, ms: 209820 }, { bar: 89, ms: 212250 }, { bar: 90, ms: 214680 },
+      { bar: 91, ms: 217120 }, { bar: 92, ms: 219530 }, { bar: 93, ms: 221970 }, { bar: 94, ms: 224360 }, { bar: 95, ms: 226790 },
+      { bar: 96, ms: 229190 }, { bar: 97, ms: 231670 }, { bar: 98, ms: 234060 }, { bar: 99, ms: 235910 }, { bar: 100, ms: 238340 },
+      { bar: 101, ms: 240140 }, { bar: 102, ms: 242500 }, { bar: 103, ms: 244290 }, { bar: 104, ms: 246680 }, { bar: 105, ms: 248480 },
+      { bar: 106, ms: 250890 }, { bar: 107, ms: 252680 }, { bar: 108, ms: 255080 }, { bar: 109, ms: 256880 }, { bar: 110, ms: 259280 },
+      { bar: 111, ms: 261060 }, { bar: 112, ms: 262840 }, { bar: 113, ms: 264620 }, { bar: 114, ms: 266380 }, { bar: 115, ms: 267550 },
+      { bar: 116, ms: 269950 }, { bar: 117, ms: 272320 }, { bar: 118, ms: 274710 }, { bar: 119, ms: 277070 }, { bar: 120, ms: 279430 },
+      { bar: 121, ms: 281790 }, { bar: 122, ms: 284150 }, { bar: 123, ms: 286480 }, { bar: 124, ms: 288850 }, { bar: 125, ms: 291200 },
+      { bar: 126, ms: 293560 }, { bar: 127, ms: 295890 }, { bar: 128, ms: 298220 }, { bar: 129, ms: 300510 }, { bar: 130, ms: 302860 },
+      { bar: 131, ms: 305210 }, { bar: 132, ms: 307520 }, { bar: 133, ms: 309750 }, { bar: 134, ms: 312040 }, { bar: 135, ms: 314310 },
+      { bar: 136, ms: 316620 }, { bar: 137, ms: 318890 }, { bar: 138, ms: 321180 }, { bar: 139, ms: 323530 }, { bar: 140, ms: 325870 },
+      { bar: 141, ms: 328200 }, { bar: 142, ms: 330500 }, { bar: 143, ms: 332800 }, { bar: 144, ms: 335100 }, { bar: 145, ms: 337360 },
+      { bar: 146, ms: 339640 }, { bar: 147, ms: 341890 }, { bar: 148, ms: 344180 }, { bar: 149, ms: 346480 }, { bar: 150, ms: 348800 },
+      { bar: 151, ms: 351090 }, { bar: 152, ms: 353410 }, { bar: 153, ms: 355680 }, { bar: 154, ms: 357950 }, { bar: 155, ms: 360240 },
+      { bar: 156, ms: 362510 }, { bar: 157, ms: 364760 }, { bar: 158, ms: 367050 }, { bar: 159, ms: 369310 }, { bar: 160, ms: 371570 },
+      { bar: 161, ms: 373860 }, { bar: 162, ms: 376210 }, { bar: 163, ms: 378510 }, { bar: 164, ms: 380820 }, { bar: 165, ms: 383040 },
+      { bar: 166, ms: 385340 }, { bar: 167, ms: 387590 }, { bar: 168, ms: 389850 }, { bar: 169, ms: 392090 }, { bar: 170, ms: 394360 },
+      { bar: 171, ms: 396590 }, { bar: 172, ms: 398890 }, { bar: 173, ms: 401140 }, { bar: 174, ms: 403410 }, { bar: 175, ms: 405660 },
+      { bar: 176, ms: 407920 }, { bar: 177, ms: 410130 }, { bar: 178, ms: 412440 }, { bar: 179, ms: 414650 }, { bar: 180, ms: 416900 },
+      { bar: 181, ms: 419110 }, { bar: 182, ms: 421350 }, { bar: 183, ms: 423560 }, { bar: 184, ms: 425800 }, { bar: 185, ms: 428020 },
+      { bar: 186, ms: 430250 }, { bar: 187, ms: 432470 }, { bar: 188, ms: 434700 }, { bar: 189, ms: 436920 }, { bar: 190, ms: 439150 },
+      { bar: 191, ms: 441370 }, { bar: 192, ms: 443660 }, { bar: 193, ms: 445880 }, { bar: 194, ms: 448130 }, { bar: 195, ms: 450360 },
+      { bar: 196, ms: 452620 }, { bar: 197, ms: 454860 }, { bar: 198, ms: 457090 }, { bar: 199, ms: 459310 }, { bar: 200, ms: 461540 },
+      { bar: 201, ms: 463760 }, { bar: 202, ms: 465960 }, { bar: 203, ms: 468140 }, { bar: 204, ms: 470350 }, { bar: 205, ms: 472590 },
+      { bar: 206, ms: 474810 }, { bar: 207, ms: 477020 }, { bar: 208, ms: 479250 }, { bar: 209, ms: 481440 }, { bar: 210, ms: 483650 },
+      { bar: 211, ms: 485870 }, { bar: 212, ms: 488080 }, { bar: 213, ms: 490280 }, { bar: 214, ms: 492520 }, { bar: 215, ms: 494720 },
+      { bar: 216, ms: 496920 }, { bar: 217, ms: 499100 }, { bar: 218, ms: 501300 }, { bar: 219, ms: 503510 }, { bar: 220, ms: 505730 },
+      { bar: 221, ms: 507950 }, { bar: 222, ms: 510170 }, { bar: 223, ms: 512400 }, { bar: 224, ms: 514630 }, { bar: 225, ms: 516840 },
+      { bar: 226, ms: 519060 }, { bar: 227, ms: 521290 }, { bar: 228, ms: 523520 }, { bar: 229, ms: 525740 }, { bar: 230, ms: 527950 },
+      { bar: 231, ms: 530160 }, { bar: 232, ms: 532360 }, { bar: 233, ms: 534570 }, { bar: 234, ms: 536810 }, { bar: 235, ms: 539020 },
+      { bar: 236, ms: 541250 }, { bar: 237, ms: 543470 }, { bar: 238, ms: 545700 }, { bar: 239, ms: 547910 }, { bar: 240, ms: 550150 },
+      { bar: 241, ms: 552370 }, { bar: 242, ms: 554580 }, { bar: 243, ms: 556780 }, { bar: 244, ms: 559020 }, { bar: 245, ms: 561250 },
+      { bar: 246, ms: 563460 }, { bar: 247, ms: 565680 }, { bar: 248, ms: 567880 }, { bar: 249, ms: 570090 }, { bar: 250, ms: 572290 },
+      { bar: 251, ms: 574500 }, { bar: 252, ms: 576790 }, { bar: 253, ms: 579060 }, { bar: 254, ms: 581370 }, { bar: 255, ms: 583670 },
+      { bar: 256, ms: 585970 }, { bar: 257, ms: 588260 }, { bar: 258, ms: 590580 }, { bar: 259, ms: 592950 }, { bar: 260, ms: 595340 },
+      { bar: 261, ms: 597680 }, { bar: 262, ms: 600050 }, { bar: 263, ms: 602410 }, { bar: 264, ms: 604810 }, { bar: 265, ms: 607160 },
+      { bar: 266, ms: 609540 }, { bar: 267, ms: 611890 }, { bar: 268, ms: 614300 }, { bar: 269, ms: 616660 }, { bar: 270, ms: 619040 },
+      { bar: 271, ms: 621400 }, { bar: 272, ms: 623780 }, { bar: 273, ms: 626160 }, { bar: 274, ms: 628540 }, { bar: 275, ms: 630890 },
+      { bar: 276, ms: 633260 }, { bar: 277, ms: 635590 }, { bar: 278, ms: 637940 }, { bar: 279, ms: 640260 }, { bar: 280, ms: 642580 },
+      { bar: 281, ms: 644910 }, { bar: 282, ms: 647220 }, { bar: 283, ms: 649540 }, { bar: 284, ms: 651830 }, { bar: 285, ms: 654130 },
+      { bar: 286, ms: 656500 }, { bar: 287, ms: 658850 }, { bar: 288, ms: 661180 }, { bar: 289, ms: 663480 }, { bar: 290, ms: 665780 },
+      { bar: 291, ms: 668090 }, { bar: 292, ms: 670430 }, { bar: 293, ms: 672750 }, { bar: 294, ms: 675070 }, { bar: 295, ms: 677390 },
+      { bar: 296, ms: 679740 }, { bar: 297, ms: 682080 }, { bar: 298, ms: 684400 }, { bar: 299, ms: 686710 }, { bar: 300, ms: 689050 },
+      { bar: 301, ms: 691360 }, { bar: 302, ms: 693680 }, { bar: 303, ms: 695960 }, { bar: 304, ms: 698280 }, { bar: 305, ms: 700580 },
+      { bar: 306, ms: 702850 }, { bar: 307, ms: 705130 }, { bar: 308, ms: 707440 }, { bar: 309, ms: 709690 }, { bar: 310, ms: 711980 },
+      { bar: 311, ms: 714240 }, { bar: 312, ms: 716530 }, { bar: 313, ms: 718760 }, { bar: 314, ms: 721010 }, { bar: 315, ms: 723240 },
+      { bar: 316, ms: 725500 }, { bar: 317, ms: 727720 }, { bar: 318, ms: 730090 }, { bar: 319, ms: 732340 }, { bar: 320, ms: 734650 },
+      { bar: 321, ms: 736840 }, { bar: 322, ms: 739140 }, { bar: 323, ms: 741380 }, { bar: 324, ms: 743710 }, { bar: 325, ms: 746010 },
+      { bar: 326, ms: 748290 }, { bar: 327, ms: 750570 }, { bar: 328, ms: 752860 }, { bar: 329, ms: 755130 }, { bar: 330, ms: 757420 },
+      { bar: 331, ms: 759690 }, { bar: 332, ms: 761980 }, { bar: 333, ms: 764230 }, { bar: 334, ms: 766470 }, { bar: 335, ms: 768700 },
+      { bar: 336, ms: 770960 }, { bar: 337, ms: 773210 }, { bar: 338, ms: 775510 }, { bar: 339, ms: 777750 }, { bar: 340, ms: 780040 },
+      { bar: 341, ms: 782290 }, { bar: 342, ms: 784540 }, { bar: 343, ms: 786790 }, { bar: 344, ms: 789070 }, { bar: 345, ms: 791340 },
+      { bar: 346, ms: 793600 }, { bar: 347, ms: 795820 }, { bar: 348, ms: 798170 }, { bar: 349, ms: 800440 }, { bar: 350, ms: 802770 },
+      { bar: 351, ms: 805060 }, { bar: 352, ms: 807440 }, { bar: 353, ms: 809820 }, { bar: 354, ms: 812220 }, { bar: 355, ms: 814640 },
+      { bar: 356, ms: 817070 }, { bar: 357, ms: 819480 },
+      ]
   music: { source: "Motorpsycho-Un Chien d'Espace-09-29-2026.mp3", offsetMs: 20 }
 cover: { album: "Angels and Daemons at Play", itunesId: 505571341 }
 chunks:
@@ -67,8 +143,10 @@ notes: >-
   the next F on E1 and treats held notes as no break; for a beginner a teacher would chug with the
   index and move during the held C. Re-tabs (7, accepted): G on D5 → open G (bars 82, 90, 97,
   after F on D3 with the little finger), F on A8 → D3 (bars 106–107, stays in position 2).
-  YouTube: "Un Chien D'espace" on "Motorpsycho - Topic" (Angels and Daemons at Play, 1997),
-  13:40 vs 14:27 in the score, including a 31-bar tacet prelude; sync anchors still needed.
+  YouTube (2026-10-11): Songsterr's default video for this tab, "Un Chien D'espace" by Motorpsycho -
+  Topic (DMFz6CMKC4E). Sync anchors are Songsterr's point per bar (song 2162260, revision 3153494;
+  npm run fetch-video): 357 anchors for 357 bars, bar 1 at 0:00.00, up to 45.0 s from the score's
+  tempo map (bar 357). To check by ear: 1 extra point at the end ignored.
 lyrics:
   # Pasted by the owner (Motorpsycho's shared lyrics, motorpsycho.fix.no); unsynced, ADR-0024.
   text: |

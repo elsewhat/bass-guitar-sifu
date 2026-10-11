@@ -10,16 +10,21 @@ import { loadSettings } from './storage';
 export type SourceId = 'youtube' | 'synth' | 'music' | 'count';
 
 export const SOURCES: { id: SourceId; label: string; ready: boolean }[] = [
-  { id: 'youtube', label: 'YouTube', ready: false },
+  { id: 'youtube', label: 'YouTube', ready: true },
   { id: 'synth', label: 'Synth', ready: true },
   { id: 'music', label: 'Music', ready: true },
   { id: 'count', label: 'Metronome', ready: true },
 ];
 
-/** Whether a source can be chosen for a song: Music needs the song's rendered MP3 (ADR-0022). */
+/**
+ * Whether a source can be chosen for a song: Music needs the song's rendered MP3 (ADR-0022) and
+ * YouTube a video id (ADR-0028).
+ */
 export function sourceAvailable(id: SourceId, song: SongData | null): boolean {
   const ready = SOURCES.find((s) => s.id === id)?.ready ?? false;
-  return ready && (id !== 'music' || !!song?.media.music);
+  if (id === 'music') return ready && !!song?.media.music;
+  if (id === 'youtube') return ready && !!song?.media.youtube?.videoId;
+  return ready;
 }
 
 /** Music plays at full speed only (ADR-0022); the chosen tempo is kept for the other sources. */
@@ -31,7 +36,7 @@ export const effectiveTempo = (s: { source: SourceId; tempoPct: number }) => (te
 /** Loading state of the active source (the Synth loads alphaTab's player and a soundfont). */
 export interface SourceStatus {
   state: 'ready' | 'loading' | 'error';
-  progress?: number; // 0–1, soundfont or MP3 download
+  progress?: number; // 0–1, soundfont or MP3 download; the video reports none
   error?: string;
 }
 

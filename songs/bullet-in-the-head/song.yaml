@@ -5,7 +5,54 @@ source: { file: "Rage Against the Machine-Bullet In The Head-09-23-2026.gp", dat
 bassTrack: "Tim Commerford I Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: kmZAsLMUuPw, sync: [] }
+  youtube:
+    videoId: S8YsF-sBf0Q
+    songsterr: { songId: 9511, revisionId: 9281770 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 1720 }, { bar: 3, ms: 3180 }, { bar: 4, ms: 4600 }, { bar: 5, ms: 6010 },
+      { bar: 6, ms: 7480 }, { bar: 7, ms: 8890 }, { bar: 8, ms: 10360 }, { bar: 9, ms: 11750 }, { bar: 10, ms: 13210 },
+      { bar: 11, ms: 14540 }, { bar: 12, ms: 15930 }, { bar: 13, ms: 17300 }, { bar: 14, ms: 18720 }, { bar: 15, ms: 19970 },
+      { bar: 16, ms: 21500 }, { bar: 17, ms: 22890 }, { bar: 18, ms: 24310 }, { bar: 19, ms: 25700 }, { bar: 20, ms: 27100 },
+      { bar: 21, ms: 28440 }, { bar: 22, ms: 29910 }, { bar: 23, ms: 31250 }, { bar: 24, ms: 32740 }, { bar: 25, ms: 34130 },
+      { bar: 26, ms: 35480 }, { bar: 27, ms: 36760 }, { bar: 28, ms: 38220 }, { bar: 29, ms: 39660 }, { bar: 30, ms: 41080 },
+      { bar: 31, ms: 42350 }, { bar: 32, ms: 43770 }, { bar: 33, ms: 45090 }, { bar: 34, ms: 46650 }, { bar: 35, ms: 48040 },
+      { bar: 36, ms: 49300 }, { bar: 37, ms: 50850 }, { bar: 38, ms: 52270 }, { bar: 39, ms: 53570 }, { bar: 40, ms: 54960 },
+      { bar: 41, ms: 56420 }, { bar: 42, ms: 57750 }, { bar: 43, ms: 59330 }, { bar: 44, ms: 60670 }, { bar: 45, ms: 62020 },
+      { bar: 46, ms: 63600 }, { bar: 47, ms: 64950 }, { bar: 48, ms: 66340 }, { bar: 49, ms: 67620 }, { bar: 50, ms: 69200 },
+      { bar: 51, ms: 70590 }, { bar: 52, ms: 72240 }, { bar: 53, ms: 73470 }, { bar: 54, ms: 74980 }, { bar: 55, ms: 76250 },
+      { bar: 56, ms: 77530 }, { bar: 57, ms: 78880 }, { bar: 58, ms: 80290 }, { bar: 59, ms: 81730 }, { bar: 60, ms: 83310 },
+      { bar: 61, ms: 84590 }, { bar: 62, ms: 86010 }, { bar: 63, ms: 87490 }, { bar: 64, ms: 88860 }, { bar: 65, ms: 90230 },
+      { bar: 66, ms: 91770 }, { bar: 67, ms: 93090 }, { bar: 68, ms: 94550 }, { bar: 69, ms: 96060 }, { bar: 70, ms: 97340 },
+      { bar: 71, ms: 98920 }, { bar: 72, ms: 100310 }, { bar: 73, ms: 101630 }, { bar: 74, ms: 103280 }, { bar: 75, ms: 104680 },
+      { bar: 76, ms: 106050 }, { bar: 77, ms: 107600 }, { bar: 78, ms: 108900 }, { bar: 79, ms: 110270 }, { bar: 80, ms: 111550 },
+      { bar: 81, ms: 113170 }, { bar: 82, ms: 114590 }, { bar: 83, ms: 116010 }, { bar: 84, ms: 117470 }, { bar: 85, ms: 119050 },
+      { bar: 86, ms: 120440 }, { bar: 87, ms: 121790 }, { bar: 88, ms: 123210 }, { bar: 89, ms: 124640 }, { bar: 90, ms: 126040 },
+      { bar: 91, ms: 127450 }, { bar: 92, ms: 128870 }, { bar: 93, ms: 130120 }, { bar: 94, ms: 131660 }, { bar: 95, ms: 132980 },
+      { bar: 96, ms: 134470 }, { bar: 97, ms: 135860 }, { bar: 98, ms: 137300 }, { bar: 99, ms: 138530 }, { bar: 100, ms: 140040 },
+      { bar: 101, ms: 141430 }, { bar: 102, ms: 142870 }, { bar: 103, ms: 144240 }, { bar: 104, ms: 145770 }, { bar: 105, ms: 147100 },
+      { bar: 106, ms: 148540 }, { bar: 107, ms: 150000 }, { bar: 108, ms: 151420 }, { bar: 109, ms: 152880 }, { bar: 110, ms: 154230 },
+      { bar: 111, ms: 155640 }, { bar: 112, ms: 157060 }, { bar: 113, ms: 158660 }, { bar: 114, ms: 160060 }, { bar: 115, ms: 161360 },
+      { bar: 116, ms: 162980 }, { bar: 117, ms: 164300 }, { bar: 118, ms: 165630 }, { bar: 119, ms: 167090 }, { bar: 120, ms: 168720 },
+      { bar: 121, ms: 170060 }, { bar: 122, ms: 171460 }, { bar: 123, ms: 173060 }, { bar: 124, ms: 174610 }, { bar: 125, ms: 175890 },
+      { bar: 126, ms: 177380 }, { bar: 127, ms: 178840 }, { bar: 128, ms: 180330 }, { bar: 129, ms: 181810 }, { bar: 130, ms: 183320 },
+      { bar: 131, ms: 184780 }, { bar: 132, ms: 186410 }, { bar: 133, ms: 187710 }, { bar: 134, ms: 189200 }, { bar: 135, ms: 190640 },
+      { bar: 136, ms: 192150 }, { bar: 137, ms: 193420 }, { bar: 138, ms: 195050 }, { bar: 139, ms: 196300 }, { bar: 140, ms: 197760 },
+      { bar: 141, ms: 199110 }, { bar: 142, ms: 200670 }, { bar: 143, ms: 201990 }, { bar: 144, ms: 203480 }, { bar: 145, ms: 204850 },
+      { bar: 146, ms: 206310 }, { bar: 147, ms: 207700 }, { bar: 148, ms: 209170 }, { bar: 149, ms: 210560 }, { bar: 150, ms: 212020 },
+      { bar: 151, ms: 213440 }, { bar: 152, ms: 214950 }, { bar: 153, ms: 216390 }, { bar: 154, ms: 217850 }, { bar: 155, ms: 219310 },
+      { bar: 156, ms: 220800 }, { bar: 157, ms: 222240 }, { bar: 158, ms: 223720 }, { bar: 159, ms: 225210 }, { bar: 160, ms: 226810 },
+      { bar: 161, ms: 228110 }, { bar: 162, ms: 229580 }, { bar: 163, ms: 231040 }, { bar: 164, ms: 232570 }, { bar: 165, ms: 234030 },
+      { bar: 166, ms: 235520 }, { bar: 167, ms: 237030 }, { bar: 168, ms: 238520 }, { bar: 169, ms: 239770 }, { bar: 170, ms: 241560 },
+      { bar: 171, ms: 243110 }, { bar: 172, ms: 244600 }, { bar: 173, ms: 245880 }, { bar: 174, ms: 247410 }, { bar: 175, ms: 248890 },
+      { bar: 176, ms: 250360 }, { bar: 177, ms: 251840 }, { bar: 178, ms: 253520 }, { bar: 179, ms: 254820 }, { bar: 180, ms: 256460 },
+      { bar: 181, ms: 257830 }, { bar: 182, ms: 259320 }, { bar: 183, ms: 260810 }, { bar: 184, ms: 262290 }, { bar: 185, ms: 263780 },
+      { bar: 186, ms: 265450 }, { bar: 187, ms: 266840 }, { bar: 188, ms: 268470 }, { bar: 189, ms: 269860 }, { bar: 190, ms: 271420 },
+      { bar: 191, ms: 272760 }, { bar: 192, ms: 274300 }, { bar: 193, ms: 275570 }, { bar: 194, ms: 277180 }, { bar: 195, ms: 278620 },
+      { bar: 196, ms: 280060 }, { bar: 197, ms: 281290 }, { bar: 198, ms: 282890 }, { bar: 199, ms: 284210 }, { bar: 200, ms: 285560 },
+      { bar: 201, ms: 287000 }, { bar: 202, ms: 288440 }, { bar: 203, ms: 289990 }, { bar: 204, ms: 291460 }, { bar: 205, ms: 292900 },
+      { bar: 206, ms: 294340 }, { bar: 207, ms: 295800 }, { bar: 208, ms: 297170 }, { bar: 209, ms: 298630 }, { bar: 210, ms: 300070 },
+      { bar: 211, ms: 301560 }, { bar: 212, ms: 303000 }, { bar: 213, ms: 304410 }, { bar: 214, ms: 305740 },
+      ]
   music: { source: "Rage Against the Machine-Bullet In The Head-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Rage Against the Machine", itunesId: 191450810 }
 chunks:
@@ -58,8 +105,11 @@ notes: >-
   (A7 + open-E eighths, then the A5–A7 grace figure and the final E). Fingering: the solver
   alternates positions 5 and 6 on the repeated riff (A7 with the little or the middle finger)
   so the finger that played G7 never rolls across to A7 at the same fret (ADR-0007 rule 6);
-  accepted, no overrides, no re-tabs. YouTube: official HD video on RATMVEVO (5:11 vs 5:15
-  in the score); sync anchors still needed.
+  accepted, no overrides, no re-tabs. YouTube (2026-10-11): Songsterr's default video for this tab,
+  "Rage Against The Machine - Bullet In The Head [HQ]" by Knallkopf105 (S8YsF-sBf0Q). Sync anchors
+  are Songsterr's point per bar (song 9511, revision 9281770; npm run fetch-video): 214 anchors for
+  214 bars, bar 1 at 0:00.00, up to 7.9 s from the score's tempo map (bar 214). To check by ear:
+  bars whose length in the recording is far from the score: 169 (×1.24).
 lyrics:
   # Pasted by the owner for private practice; unsynced, ADR-0024.
   text: |

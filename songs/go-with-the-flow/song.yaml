@@ -5,7 +5,36 @@ source: { file: "Queens of the Stone Age-Go With The Flow-10-01-2026.gp", date: 
 bassTrack: "Nick Oliveri | Fender Precision Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: DcHKOC64KnE, sync: [] }
+  youtube:
+    videoId: DcHKOC64KnE
+    songsterr: { songId: 16467, revisionId: 9451677 }
+    sync: [
+      { bar: 1, ms: 7810 }, { bar: 2, ms: 9460 }, { bar: 3, ms: 10990 }, { bar: 4, ms: 12480 }, { bar: 5, ms: 14010 },
+      { bar: 6, ms: 15500 }, { bar: 7, ms: 17010 }, { bar: 8, ms: 18510 }, { bar: 9, ms: 20000 }, { bar: 10, ms: 21510 },
+      { bar: 11, ms: 23000 }, { bar: 12, ms: 24510 }, { bar: 13, ms: 26010 }, { bar: 14, ms: 27550 }, { bar: 15, ms: 29030 },
+      { bar: 16, ms: 30570 }, { bar: 17, ms: 32100 }, { bar: 18, ms: 33560 }, { bar: 19, ms: 35090 }, { bar: 20, ms: 36580 },
+      { bar: 21, ms: 38110 }, { bar: 22, ms: 39570 }, { bar: 23, ms: 41110 }, { bar: 24, ms: 42590 }, { bar: 25, ms: 44100 },
+      { bar: 26, ms: 45640 }, { bar: 27, ms: 47140 }, { bar: 28, ms: 48630 }, { bar: 29, ms: 50140 }, { bar: 30, ms: 51630 },
+      { bar: 31, ms: 53160 }, { bar: 32, ms: 54640 }, { bar: 33, ms: 56150 }, { bar: 34, ms: 57690 }, { bar: 35, ms: 59200 },
+      { bar: 36, ms: 60730 }, { bar: 37, ms: 62260 }, { bar: 38, ms: 63750 }, { bar: 39, ms: 65280 }, { bar: 40, ms: 66770 },
+      { bar: 41, ms: 68300 }, { bar: 42, ms: 69830 }, { bar: 43, ms: 71360 }, { bar: 44, ms: 72870 }, { bar: 45, ms: 74400 },
+      { bar: 46, ms: 75940 }, { bar: 47, ms: 77420 }, { bar: 48, ms: 78930 }, { bar: 49, ms: 80440 }, { bar: 50, ms: 81930 },
+      { bar: 51, ms: 83440 }, { bar: 52, ms: 84900 }, { bar: 53, ms: 86430 }, { bar: 54, ms: 87940 }, { bar: 55, ms: 89430 },
+      { bar: 56, ms: 90960 }, { bar: 57, ms: 92470 }, { bar: 58, ms: 93960 }, { bar: 59, ms: 95490 }, { bar: 60, ms: 96970 },
+      { bar: 61, ms: 98510 }, { bar: 62, ms: 100020 }, { bar: 63, ms: 101500 }, { bar: 64, ms: 103040 }, { bar: 65, ms: 104520 },
+      { bar: 66, ms: 106050 }, { bar: 67, ms: 107520 }, { bar: 68, ms: 109050 }, { bar: 69, ms: 110510 }, { bar: 70, ms: 112020 },
+      { bar: 71, ms: 113480 }, { bar: 72, ms: 115020 }, { bar: 73, ms: 116530 }, { bar: 74, ms: 117970 }, { bar: 75, ms: 119500 },
+      { bar: 76, ms: 120980 }, { bar: 77, ms: 122470 }, { bar: 78, ms: 123960 }, { bar: 79, ms: 125490 }, { bar: 80, ms: 126950 },
+      { bar: 81, ms: 128460 }, { bar: 82, ms: 129920 }, { bar: 83, ms: 131460 }, { bar: 84, ms: 132940 }, { bar: 85, ms: 134450 },
+      { bar: 86, ms: 135940 }, { bar: 87, ms: 137470 }, { bar: 88, ms: 138960 }, { bar: 89, ms: 140470 }, { bar: 90, ms: 141930 },
+      { bar: 91, ms: 143460 }, { bar: 92, ms: 144920 }, { bar: 93, ms: 146410 }, { bar: 94, ms: 147870 }, { bar: 95, ms: 149380 },
+      { bar: 96, ms: 150870 }, { bar: 97, ms: 152380 }, { bar: 98, ms: 153820 }, { bar: 99, ms: 155280 }, { bar: 100, ms: 156740 },
+      { bar: 101, ms: 158210 }, { bar: 102, ms: 159690 }, { bar: 103, ms: 161150 }, { bar: 104, ms: 162590 }, { bar: 105, ms: 164080 },
+      { bar: 106, ms: 165540 }, { bar: 107, ms: 166960 }, { bar: 108, ms: 168420 }, { bar: 109, ms: 169910 }, { bar: 110, ms: 171370 },
+      { bar: 111, ms: 172790 }, { bar: 112, ms: 174250 }, { bar: 113, ms: 175740 }, { bar: 114, ms: 177180 }, { bar: 115, ms: 178590 },
+      { bar: 116, ms: 180030 }, { bar: 117, ms: 181450 }, { bar: 118, ms: 182910 }, { bar: 119, ms: 184350 }, { bar: 120, ms: 185790 },
+      { bar: 121, ms: 187220 }, { bar: 122, ms: 188630 }, { bar: 123, ms: 190140 }, { bar: 124, ms: 191590 }, { bar: 125, ms: 193030 },
+      ]
   music: { source: "Queens of the Stone Age-Go With The Flow-10-11-2026.mp3", offsetMs: 0 }
 cover: { album: "Songs for the Deaf", itunesId: 1440759826 }
 chunks:
@@ -48,7 +77,10 @@ notes: >-
   fret 9 because the hand is already up there for the fill that follows. In the Outro the E stays
   at fret 11 (C7–D9–E11 climbs one string). The shifts of 3 frets are C (fret 7) to A (fret 4) on
   the same string at a bar line; the 1-2-4 box of the low positions does not span both (ADR-0007
-  rule 5). No overrides. YouTube: the owner asked for the video Songsterr uses. Its default for
-  this tab (YNq1U-Aox1o, Queens Of The Stone Age - Topic, 3:07) is not available in Norway, so the
-  id here is the official music video on QueensStoneAgeVEVO (3:11), which is on Songsterr's list
-  of alternatives and uses the album take. Sync anchors still needed.
+  rule 5). No overrides. YouTube (2026-10-11): Songsterr's default video for this tab (YNq1U-Aox1o,
+  Queens Of The Stone Age - Topic) is blocked in Norway, so this is the official music video from
+  Songsterr's alternatives, "Queens Of The Stone Age - Go With The Flow (Official Music Video)" by
+  QueensStoneAgeVEVO (DcHKOC64KnE). Sync anchors are Songsterr's point per bar (song 16467, revision
+  9451677; npm run fetch-video): 125 anchors for 126 bars, bar 1 at 0:07.81, up to 1.2 s from the
+  score's tempo map (bar 125). To check by ear: bar 126: no point, continued at the score's tempo.
+  The video is 3:11 and ends about two bars before the score does; playback stops there.

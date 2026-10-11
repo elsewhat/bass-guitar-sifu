@@ -56,15 +56,15 @@ Gaps are 12 px, page padding 16 px.
 ### 3.3 Video cell (centre, top)
 
 - Source switch overlaid top-left: `YouTube · Synth · Music · Metronome` (Spotify deferred, ADR-0016; Music added by ADR-0022, disabled for songs without an MP3). The Metronome is the count source (called Count before 2026-09-29; the code keeps the id `count`).
-- YouTube: embedded player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position. The Synth and Music views show the same cells during a count-in only (§5.6).
-- Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range.
+- YouTube (ADR-0028): the recording as an embedded player that fills the cell, synced to the score bar by bar. Its own controls are off; the transport bar drives it, and a click on the video plays or pauses it with the transport following. It is disabled for a song without a video. "Loading video…" or an error text ("the video may not be played here …") shows over the player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position. The Synth, Music and YouTube views show the same cells during a count-in only (§5.6); with YouTube they lie over the video, which is dimmed while the count-in plays.
+- Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range, in score time, or in video time with YouTube (`Loop 0:20–0:30 · video time`).
 - Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
 - Lyrics button (subtitles icon) left of the mixer button (ADR-0024, `design/artboards/LyricsView.dc.html`). On by default and kept in the settings; disabled for songs without lyrics. With lyrics on:
   - the source's view shrinks to one row under the source switch, with only the key info: `Audio count` and eight small count cells, or `Synth playback` / `Music playback` with the loading or status text;
   - the lyrics fill the cell between that row and the chips, under the label `Lyrics · synced to the vocal track` or `Lyrics · not synced · ↑ ↓ to scroll`;
   - **synced lyrics** (from the `.gp` vocal track): the line before (16 px, grey), the current line (30 px, weight 800, wraps), the next line (20 px, light grey) and further lines (16 px, grey). In the current line, sung words are white, the word being sung is black on a white box, and words to come are grey. The list glides up as lines change; a line becomes current when the previous line has ended, at most two beats before its first word. Section labels (`Verse 1`) and stanza breaks come from the lyrics text in the file;
   - **unsynced lyrics** (from `lyrics.text` in `song.yaml`): every line white at 20 px, no word highlight and no automatic scroll. `↑` / `↓` and the mouse wheel move one line.
-  - With YouTube (on hold), the lyrics are to be a subtitle band over the video: the current line and the next line.
+  - With YouTube, synced lyrics are a subtitle band over the video, above the chips: the current line (20 px, the same word states) and the next line. Unsynced lyrics are not shown over the video, and the lyrics button is disabled for them while YouTube is the source (ADR-0028).
 
 ### 3.4 Transport bar (under the video only)
 
@@ -157,7 +157,7 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 ### 5.3 Tempo
 
 - Effective BPM = score BPM × tempo %. Score tempo comes from the Guitar Pro tempo map (automation events).
-- YouTube: the IFrame API only supports discrete playback rates and rounds requested values. The app requests the nearest rate from `getAvailablePlaybackRates()` and shows the actual rate.
+- YouTube: the tempo is the player's playback rate. The IFrame API takes any rate from 0.25 to 2 (measured 2026-10-11), so the control works as for the Synth, 40–100 % in steps of 5; the sound keeps its pitch. The clock follows the rate the player reports (ADR-0028).
 - Spotify (deferred, ADR-0016): the Web Playback SDK has no playback-rate control.
 - Synth and Metronome: any tempo.
 - Music (ADR-0022): full speed only. The tempo control shows 100 % and the score BPM and is disabled; passes count as done at 100 %.
@@ -191,7 +191,7 @@ music/<Artist-Title-date>.gp  Inbox (+ .mp3 rendered from it); /preprocess-song 
 songs/<slug>/score.gp         Guitar Pro file (GP3–GP8)
 songs/<slug>/audio.mp3        Optional audio rendered from the transcription, the Music source (ADR-0022)
 songs/<slug>/cover.jpg        Optional 300 px album cover for the header, from npm run fetch-cover (ADR-0026)
-songs/<slug>/song.yaml        Sidecar: metadata, chunks, media + sync, overrides (ADR-0013)
+songs/<slug>/song.yaml        Sidecar: metadata, chunks, media + sync (npm run fetch-video, ADR-0028), overrides (ADR-0013)
         │  npm run build:songs  (Node; run locally and committed, CI runs --check; ADR-0014)
         ▼
 public/data/catalog.json       List of songs for the library overlay
@@ -224,7 +224,7 @@ public/data/songs/<slug>.json  Normalised bass track + chunks + fingering
   "tacet": [[1, 129], [177, 191], [241, 243]],
   "chunks": [{ "id": 1, "name": "Riff A", "bars": [130, 133], "position": 3, "shifts": 0 }],
   "stats": { "durationSec": 530.2, "noteCount": 692, "maxFret": 6, "strings": [0, 1], "firstBar": 130 },
-  "media": { "youtube": { "videoId": "ENCBJU-xHcA", "sync": [] },
+  "media": { "youtube": { "videoId": "ENZaFo2cEog", "sync": [{ "bar": 1, "ms": 0 }, { "bar": 2, "ms": 2190 }] },   // ADR-0028
              "music": { "url": "data/audio/vortex-surfer.mp3", "offsetMs": 0 } },   // null without an MP3
   "tempoNote": null,
   "cover": { "url": "data/covers/vortex-surfer.jpg", "album": "Trust Us" },   // only with cover.jpg (ADR-0026)
@@ -257,7 +257,12 @@ source: { file: "Motorpsycho-Vortex Surfer-10-13-2025.gp", date: 2025-10-13 }
 bassTrack: "Electric Bass (finger)"   # track name or zero-based index
 tempo: { note: null }                 # e.g. "notated half-time"
 media:
-  youtube: { videoId: null, sync: [{ bar: 1, ms: 0 }] }
+  youtube:                            # written by npm run fetch-video (ADR-0028)
+    videoId: ENZaFo2cEog              # the video Songsterr plays with the tab
+    songsterr: { songId: 2582753, revisionId: 3403501 }   # where the video and the sync come from
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 2190 }, { bar: 3, ms: 4410 },   # … one anchor per bar
+      ]
   music: { source: "Motorpsycho-Vortex Surfer-09-29-2026.mp3", offsetMs: 0 }   # ADR-0022
 chunks:                               # required; the build does not invent chunks
   - { name: Riff A, bars: [130, 133] }
@@ -275,7 +280,7 @@ lyrics:                               # optional (ADR-0024)
 notes: ""                             # review notes from the skill
 ```
 
-`sync` is a list of anchor points from score bar to recording time. The app interpolates linearly between anchors using the tempo map. A single anchor is enough if the recording follows the score tempo.
+`sync` is a list of anchors from score bar (and optional `tick` inside the bar) to recording time, in order. Between two anchors the recording time is interpolated linearly over score time; before the first and after the last the recording runs at the score's tempo (`src/core/sync.ts`). One anchor is an offset: the place in the video where the music starts. `npm run fetch-video -- <slug> --write` writes `videoId`, `songsterr` and `sync` from Songsterr: the tab's default video and its video time for every bar start. Real recordings drift by seconds from the tempo map, so the songs have an anchor on nearly every bar; bars without one are noted in `notes`. The build rejects anchors outside the score or out of order.
 
 `music` needs `songs/<slug>/audio.mp3`. `offsetMs` is the audio time of the score's first tick, measured once with `npm run inspect-song -- <slug> --audio songs/<slug>/audio.mp3`, which also reports drift between the first and last minute.
 
@@ -309,14 +314,19 @@ The pseudo code and cost values are in ADR-0007. The fingering for Vortex Surfer
 
 ## 8. Playback and timing (ADR-0008)
 
-One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `MusicClock`, `CountClock`. With ADR-0017, YouTube and Synth are adapters over the alphaTab player (external-media mode and synth).
+One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `MusicClock`, `CountClock`. The Synth is an adapter over the alphaTab player (ADR-0017, ADR-0019); YouTube and Music have their own clocks over a small player port (ADR-0022, ADR-0028).
 
 - The clock reports the current score position as an absolute tick, read once per animation frame (ADR-0018).
-- Recording-based clocks map recording time to score position through the sync map.
+- The YouTube clock maps video time to score position through the sync map (§6.2). It works in video time and converts at the edges.
 - Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
-- YouTube `seekTo` lands on the nearest keyframe unless the target is buffered. Buffer the chunk start before the first loop and compensate by holding the playhead at the chunk start until the clock passes it.
+- YouTube (ADR-0028): the player is the IFrame API with its own controls off. It cannot loop a range, so the clock seeks at the chunk end, as Music does; a chunk that continues right after the current one needs no seek.
+  - A started or moved video is heard again after about 50 ms, but the player reports "playing" only 250–300 ms later. The clock runs on from the target meanwhile and corrects when the report comes; with no report after 0.6 s it waits at the target.
+  - Right after a seek the player still reports the old position; reports that do not fit the seek are ignored for 1.5 s, so a wrap is not counted twice.
+  - The position is held while the video buffers, and it never leaves the chunk: it waits at the chunk start until the video passes it.
+  - A click on the video pauses or plays it; the clock follows and the Play button with it.
+  - Measured against the real player: the tick is within 2 ms of the video's time while playing and within about 10 ms after a wrap; a wrap has a gap of about 50 ms.
 - The Metronome schedules audio with the Web Audio API clock (look-ahead of about 100 ms, scheduling interval about 25 ms).
-- `play({ countIn: true })` plays the one-bar count-in first (ADR-0025). The Metronome schedules it on its own audio clock; the Synth and Music start their player when the count-in's end is due. `getTick()` stays at the start during the count-in, and `countInState()` feeds the count cells.
+- `play({ countIn: true })` plays the one-bar count-in first (ADR-0025). The Metronome schedules it on its own audio clock; the Synth and Music start their player when the count-in's end is due. The YouTube video is made ready at the start position while the count-in plays (a video that has never played is run muted for a moment and paused there) and is started 50 ms before the count-in ends, so it is heard on the downbeat. `getTick()` stays at the start during the count-in, and `countInState()` feeds the count cells.
 - Music streams `data/audio/<slug>.mp3` through `<audio>` and Web Audio. Audio time = score time + `offsetMs`; the clock seeks at chunk wraps, accurate to tens of milliseconds (ADR-0022).
 - Synth is alphaTab's player on the strip's alphaTab instance, loaded when the Synth is first chosen. It plays the bass track alone by default; full band and band without bass are prepared (ADR-0019).
 - While playing (count-in included) the page holds a screen wake lock, so the screen does not dim or lock; it is released on pause and requested again when the page becomes visible (ADR-0027).
@@ -372,7 +382,7 @@ Work proceeds in vertical slices. The first slice uses two songs: Vortex Surfer,
 5. Broaden:
    - Remaining songs through the skill.
    - Song library overlay and progress persistence.
-6. YouTube source with sync map, and the tap sync editor (ADR-0016).
+6. YouTube source with sync map (ADR-0028, done 2026-10-11). The sync comes from Songsterr through `npm run fetch-video`; the tap sync editor of ADR-0016 is not built.
 7. Synth source.
 7b. Music source: MP3 rendered from the transcription, full speed only (ADR-0022).
 8. Spotify source: deferred (ADR-0016).

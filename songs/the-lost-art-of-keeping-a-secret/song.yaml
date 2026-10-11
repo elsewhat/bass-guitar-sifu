@@ -5,7 +5,32 @@ source: { file: "Queens of the Stone Age-The Lost Art Of Keeping A Secret-08-08-
 bassTrack: "Nick Oliveri | Fender Deluxe Active Precision | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: "-QlIs-fT8Mc", sync: [] }
+  youtube:
+    videoId: "-QlIs-fT8Mc"
+    songsterr: { songId: 16273, revisionId: 8360573 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 650 }, { bar: 3, ms: 2860 }, { bar: 4, ms: 5020 }, { bar: 5, ms: 7200 },
+      { bar: 6, ms: 9360 }, { bar: 7, ms: 11520 }, { bar: 8, ms: 13700 }, { bar: 9, ms: 15860 }, { bar: 10, ms: 18020 },
+      { bar: 11, ms: 20200 }, { bar: 12, ms: 22380 }, { bar: 13, ms: 24570 }, { bar: 14, ms: 26750 }, { bar: 15, ms: 28910 },
+      { bar: 16, ms: 31050 }, { bar: 17, ms: 33250 }, { bar: 18, ms: 35390 }, { bar: 19, ms: 37520 }, { bar: 20, ms: 39680 },
+      { bar: 21, ms: 41870 }, { bar: 22, ms: 44000 }, { bar: 23, ms: 46140 }, { bar: 24, ms: 48320 }, { bar: 25, ms: 50460 },
+      { bar: 26, ms: 52640 }, { bar: 27, ms: 54780 }, { bar: 28, ms: 56940 }, { bar: 29, ms: 59070 }, { bar: 30, ms: 61180 },
+      { bar: 31, ms: 63320 }, { bar: 32, ms: 65500 }, { bar: 33, ms: 67660 }, { bar: 34, ms: 69780 }, { bar: 35, ms: 71910 },
+      { bar: 36, ms: 74070 }, { bar: 37, ms: 76230 }, { bar: 38, ms: 78370 }, { bar: 39, ms: 80550 }, { bar: 40, ms: 82710 },
+      { bar: 41, ms: 84870 }, { bar: 42, ms: 86980 }, { bar: 43, ms: 89140 }, { bar: 44, ms: 91300 }, { bar: 45, ms: 93440 },
+      { bar: 46, ms: 95550 }, { bar: 47, ms: 97710 }, { bar: 48, ms: 99890 }, { bar: 49, ms: 102030 }, { bar: 50, ms: 104210 },
+      { bar: 51, ms: 106350 }, { bar: 52, ms: 108480 }, { bar: 53, ms: 110600 }, { bar: 54, ms: 112760 }, { bar: 55, ms: 114870 },
+      { bar: 56, ms: 116980 }, { bar: 57, ms: 119140 }, { bar: 58, ms: 121230 }, { bar: 59, ms: 123370 }, { bar: 60, ms: 125530 },
+      { bar: 61, ms: 127640 }, { bar: 62, ms: 129780 }, { bar: 63, ms: 131940 }, { bar: 64, ms: 134070 }, { bar: 65, ms: 136210 },
+      { bar: 66, ms: 138320 }, { bar: 67, ms: 140390 }, { bar: 68, ms: 142550 }, { bar: 69, ms: 144730 }, { bar: 70, ms: 146820 },
+      { bar: 71, ms: 148980 }, { bar: 72, ms: 151090 }, { bar: 73, ms: 153210 }, { bar: 74, ms: 155340 }, { bar: 75, ms: 157480 },
+      { bar: 76, ms: 159540 }, { bar: 77, ms: 161680 }, { bar: 78, ms: 163820 }, { bar: 79, ms: 165930 }, { bar: 80, ms: 168020 },
+      { bar: 81, ms: 170160 }, { bar: 82, ms: 172290 }, { bar: 83, ms: 174360 }, { bar: 84, ms: 176540 }, { bar: 85, ms: 178630 },
+      { bar: 86, ms: 180770 }, { bar: 87, ms: 182860 }, { bar: 88, ms: 185020 }, { bar: 89, ms: 187130 }, { bar: 90, ms: 189270 },
+      { bar: 91, ms: 191380 }, { bar: 92, ms: 193470 }, { bar: 93, ms: 195580 }, { bar: 94, ms: 197690 }, { bar: 95, ms: 199780 },
+      { bar: 96, ms: 201870 }, { bar: 97, ms: 203890 }, { bar: 98, ms: 206010 }, { bar: 99, ms: 208140 }, { bar: 100, ms: 210090 },
+      { bar: 101, ms: 211350 },
+      ]
   music: { source: "Queens of the Stone Age-The Lost Art Of Keeping A Secret-10-11-2026.mp3", offsetMs: 0 }
 cover: { album: "Rated R", itunesId: 1440751505 }
 chunks:
@@ -52,7 +77,9 @@ notes: >-
   down to frets 3–1). Two overrides keep 92–93 on the source tab so the repeat is fingered like
   the first time. Remove them if the first-position version feels better. No re-tabs remain. The
   shifts of 3+ frets are the descents inside the chorus (fret 6 to fret 3) and the two high fills
-  (bars 17 and 79, up to frets 10–14). YouTube: the owner asked for the video Songsterr uses; its
-  default for this tab is a third-party upload ("Vinyl Rip", channel d0rky, 3:35), not an official
-  channel. The official video 0l0nzPpvbFs on QueensStoneAgeVEVO (3:41) is an alternative if that
-  upload disappears. Sync anchors still needed.
+  (bars 17 and 79, up to frets 10–14). YouTube (2026-10-11): Songsterr's default video for this tab,
+  "Queens of The Stone Age - The Lost Art Of Keeping A Secret (Vinyl Rip) HQ" by d0rky
+  (-QlIs-fT8Mc). Sync anchors are Songsterr's point per bar (song 16273, revision 8360573; npm run
+  fetch-video): 101 anchors for 103 bars, bar 1 at 0:00.00, up to 1.5 s from the score's tempo map
+  (bar 101). To check by ear: bars 102–103: no point, continued at the score's tempo; bars whose
+  length in the recording is far from the score: 100 (×0.59).

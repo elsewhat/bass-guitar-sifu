@@ -1,6 +1,7 @@
 // Text and row models for the practice view (system description §3), kept pure for tests.
 import type { Chunk, SongData } from '../core/model';
 import { chunkRange } from '../playback/loop';
+import type { SyncMap } from '../core/sync';
 import type { TempoLookup } from '../core/timing';
 import { stringNames } from '../core/tuning';
 
@@ -38,10 +39,11 @@ export function formatTime(sec: number): string {
   return `${m}:${s < 10 ? '0' : ''}${s}`;
 }
 
-/** "Loop 4:30–4:39 · score time" */
-export function loopTimeLabel(song: SongData, chunkIndex: number, tempo: TempoLookup): string {
+/** "Loop 4:30–4:39 · score time", or "… · video time" with the YouTube video's sync map (ADR-0028). */
+export function loopTimeLabel(song: SongData, chunkIndex: number, tempo: TempoLookup, video: SyncMap | null = null): string {
   const range = chunkRange(song.chunks[chunkIndex]!, song.bars);
-  return `Loop ${formatTime(tempo.secondsAt(range.start))}–${formatTime(tempo.secondsAt(range.end))} · score time`;
+  const at = (tick: number) => formatTime(video ? Math.max(0, video.secondsAt(tick)) : tempo.secondsAt(tick));
+  return `Loop ${at(range.start)}–${at(range.end)} · ${video ? 'video' : 'score'} time`;
 }
 
 /** "Intro skipped · bass rests bars 1–129" when the bass enters after a leading tacet. */

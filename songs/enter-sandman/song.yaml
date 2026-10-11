@@ -5,7 +5,46 @@ source: { file: "Metallica-Enter Sandman-09-29-2026.gp", date: 2026-09-29 }
 bassTrack: "Jason Newsted | Spector NS-2 | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: CD-E-LDc384, sync: [] }
+  youtube:
+    videoId: "2bZPb025Wjw"
+    songsterr: { songId: 19, revisionId: 9400260 }
+    sync: [
+      { bar: 1, ms: 40 }, { bar: 2, ms: 300 }, { bar: 3, ms: 2200 }, { bar: 4, ms: 4170 }, { bar: 5, ms: 6260 },
+      { bar: 6, ms: 8450 }, { bar: 7, ms: 10160 }, { bar: 8, ms: 12250 }, { bar: 9, ms: 14250 }, { bar: 10, ms: 16250 },
+      { bar: 11, ms: 18170 }, { bar: 12, ms: 20150 }, { bar: 13, ms: 22080 }, { bar: 14, ms: 24050 }, { bar: 15, ms: 26000 },
+      { bar: 16, ms: 27930 }, { bar: 17, ms: 29920 }, { bar: 18, ms: 31900 }, { bar: 19, ms: 33830 }, { bar: 20, ms: 35750 },
+      { bar: 21, ms: 37750 }, { bar: 22, ms: 39720 }, { bar: 23, ms: 41650 }, { bar: 24, ms: 43600 }, { bar: 25, ms: 45570 },
+      { bar: 26, ms: 47520 }, { bar: 27, ms: 49480 }, { bar: 28, ms: 51450 }, { bar: 29, ms: 53350 }, { bar: 30, ms: 55330 },
+      { bar: 31, ms: 57280 }, { bar: 32, ms: 59200 }, { bar: 33, ms: 61130 }, { bar: 34, ms: 63060 }, { bar: 35, ms: 65010 },
+      { bar: 36, ms: 66910 }, { bar: 37, ms: 68840 }, { bar: 38, ms: 70740 }, { bar: 39, ms: 72720 }, { bar: 40, ms: 74650 },
+      { bar: 41, ms: 76530 }, { bar: 42, ms: 78480 }, { bar: 43, ms: 80430 }, { bar: 44, ms: 82310 }, { bar: 45, ms: 84260 },
+      { bar: 46, ms: 86140 }, { bar: 47, ms: 88090 }, { bar: 48, ms: 90040 }, { bar: 49, ms: 91900 }, { bar: 50, ms: 93850 },
+      { bar: 51, ms: 95820 }, { bar: 52, ms: 97730 }, { bar: 53, ms: 99630 }, { bar: 54, ms: 101530 }, { bar: 55, ms: 103480 },
+      { bar: 56, ms: 105410 }, { bar: 57, ms: 107340 }, { bar: 58, ms: 109310 }, { bar: 59, ms: 111240 }, { bar: 60, ms: 113140 },
+      { bar: 61, ms: 115090 }, { bar: 62, ms: 117020 }, { bar: 63, ms: 118970 }, { bar: 64, ms: 120850 }, { bar: 65, ms: 122780 },
+      { bar: 66, ms: 124750 }, { bar: 67, ms: 126700 }, { bar: 68, ms: 128630 }, { bar: 69, ms: 130560 }, { bar: 70, ms: 132460 },
+      { bar: 71, ms: 134410 }, { bar: 72, ms: 136320 }, { bar: 73, ms: 138220 }, { bar: 74, ms: 140170 }, { bar: 75, ms: 142100 },
+      { bar: 76, ms: 144000 }, { bar: 77, ms: 145880 }, { bar: 78, ms: 147880 }, { bar: 79, ms: 149790 }, { bar: 80, ms: 151740 },
+      { bar: 81, ms: 153640 }, { bar: 82, ms: 155570 }, { bar: 83, ms: 157470 }, { bar: 84, ms: 159420 }, { bar: 85, ms: 161330 },
+      { bar: 86, ms: 163280 }, { bar: 87, ms: 165200 }, { bar: 88, ms: 167130 }, { bar: 89, ms: 169060 }, { bar: 90, ms: 170990 },
+      { bar: 91, ms: 172890 }, { bar: 92, ms: 174820 }, { bar: 93, ms: 176740 }, { bar: 94, ms: 178670 }, { bar: 95, ms: 180600 },
+      { bar: 96, ms: 182500 }, { bar: 97, ms: 184450 }, { bar: 98, ms: 186380 }, { bar: 99, ms: 188330 }, { bar: 100, ms: 190230 },
+      { bar: 101, ms: 192140 }, { bar: 102, ms: 194090 }, { bar: 103, ms: 195990 }, { bar: 104, ms: 197920 }, { bar: 105, ms: 199870 },
+      { bar: 106, ms: 201800 }, { bar: 107, ms: 203750 }, { bar: 108, ms: 205720 }, { bar: 109, ms: 207650 }, { bar: 110, ms: 209650 },
+      { bar: 111, ms: 211600 }, { bar: 112, ms: 213590 }, { bar: 113, ms: 215540 }, { bar: 114, ms: 217470 }, { bar: 115, ms: 219420 },
+      { bar: 116, ms: 221350 }, { bar: 117, ms: 223320 }, { bar: 118, ms: 225250 }, { bar: 119, ms: 227200 }, { bar: 120, ms: 229150 },
+      { bar: 121, ms: 231100 }, { bar: 122, ms: 233050 }, { bar: 123, ms: 235000 }, { bar: 124, ms: 236950 }, { bar: 125, ms: 238900 },
+      { bar: 126, ms: 240810 }, { bar: 127, ms: 242710 }, { bar: 128, ms: 244640 }, { bar: 129, ms: 246590 }, { bar: 130, ms: 248490 },
+      { bar: 131, ms: 250420 }, { bar: 132, ms: 252350 }, { bar: 133, ms: 254280 }, { bar: 134, ms: 256180 }, { bar: 135, ms: 258130 },
+      { bar: 136, ms: 260030 }, { bar: 137, ms: 261980 }, { bar: 138, ms: 263910 }, { bar: 139, ms: 265790 }, { bar: 140, ms: 267740 },
+      { bar: 141, ms: 269690 }, { bar: 142, ms: 271600 }, { bar: 143, ms: 273550 }, { bar: 144, ms: 275480 }, { bar: 145, ms: 277380 },
+      { bar: 146, ms: 279350 }, { bar: 147, ms: 281300 }, { bar: 148, ms: 283250 }, { bar: 149, ms: 285180 }, { bar: 150, ms: 287130 },
+      { bar: 151, ms: 289060 }, { bar: 152, ms: 290990 }, { bar: 153, ms: 292940 }, { bar: 154, ms: 294910 }, { bar: 155, ms: 296880 },
+      { bar: 156, ms: 298810 }, { bar: 157, ms: 300830 }, { bar: 158, ms: 302780 }, { bar: 159, ms: 304730 }, { bar: 160, ms: 306710 },
+      { bar: 161, ms: 308660 }, { bar: 162, ms: 310610 }, { bar: 163, ms: 312420 }, { bar: 164, ms: 314040 }, { bar: 165, ms: 315950 },
+      { bar: 166, ms: 317500 }, { bar: 167, ms: 319220 }, { bar: 168, ms: 320710 }, { bar: 169, ms: 322190 }, { bar: 170, ms: 323350 },
+      { bar: 171, ms: 324980 }, { bar: 172, ms: 326300 }, { bar: 173, ms: 327810 }, { bar: 174, ms: 328880 },
+      ]
   music: { source: "Metallica-Enter Sandman-10-06-2026.mp3", offsetMs: 10 }
 cover: { album: "Metallica", itunesId: 1572046434 }
 chunks:
@@ -65,9 +104,12 @@ notes: >-
   before the main riff returns at 140. Outro c repeat (150–153) differs from Outro c only by
   the tie into bar 146. Fade Out is straight open-E eighths. Fingering: no re-tabs; the 3+
   fret shifts at bars 54 and 134 (E7 fill → F♯ on E2) and bar 144 (B♭ on E6 → G on E3 at the
-  end of the outro riff) are inherent to the line on one string. No overrides. YouTube:
-  "Metallica: Enter Sandman (Official Music Video)" on the Metallica channel (5:31 vs 5:38
-  in the score, which has 9 tacet bars of intro). Sync anchors still needed. Music: the onset
-  match is weak (confidence 1.36 / 1.27, both at 0 ms), so offsetMs is the first-sound
-  estimate (10 ms); the MP3 is 4 s longer than the score (tail). Check the strip against the
-  audio by ear.
+  end of the outro riff) are inherent to the line on one string. No overrides. YouTube (2026-10-11):
+  Songsterr's default video for this tab, "Metallica: Enter Sandman (Remastered) (Audio Preview)" by
+  Metallica (2bZPb025Wjw). Sync anchors are Songsterr's point per bar (song 19, revision 9400260;
+  npm run fetch-video): 174 anchors for 174 bars, bar 1 at 0:00.04, up to 7.0 s from the score's
+  tempo map (bar 174). To check by ear: bars whose length in the recording is far from the score:
+  165 (×0.80), 167 (×0.77), 168 (×0.77), 169 (×0.60), 171 (×0.68), 172 (×0.78), 173 (×0.55). Music:
+  the onset match is weak (confidence 1.36 / 1.27, both at 0 ms), so offsetMs is the first-sound
+  estimate (10 ms); the MP3 is 4 s longer than the score (tail). Check the strip against the audio
+  by ear.

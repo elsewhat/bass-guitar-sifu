@@ -1,6 +1,6 @@
 # ADR-0013: YAML sidecar per song
 
-Status: Accepted, amended by ADR-0022 (`media.music`), ADR-0024 (`lyrics`) and ADR-0026 (`cover`)
+Status: Accepted, amended by ADR-0022 (`media.music`), ADR-0024 (`lyrics`), ADR-0026 (`cover`) and ADR-0028 (`media.youtube.songsterr`, sync from `fetch-video`)
 Date: 2026-09-28
 Supersedes: the sidecar part of ADR-0003 (`song.json`).
 
@@ -21,7 +21,7 @@ The sidecar is edited by hand and by the `preprocess-song` agent skill (ADR-0015
   | `source` | yes | skill | Original file name and date from the `music/` inbox. |
   | `bassTrack` | yes | skill | Track name or zero-based index in `score.gp`. |
   | `tempo.note` | no | skill | Free-text remark, for example a half-time notation. |
-  | `media.youtube` | no | skill / owner | `videoId` and `sync` anchors (`bar`, optional `tick`, `ms`). |
+  | `media.youtube` | no | `npm run fetch-video` / owner | `videoId`, `sync` anchors (`bar`, optional `tick`, `ms`) and `songsterr` (`songId`, `revisionId`: where both came from). ADR-0028. |
   | `chunks` | yes | skill | Ordered list of `{ name, bars: [first, last] }`. |
   | `fingeringOverrides` | no | skill / owner | `{ bar, tick, string?, fret?, finger? }` pins for the solver. |
   | `lyrics` | no | owner | `{ source: score \| text \| none, track, text }`: where the lyrics come from, and unsynced lyrics as a block scalar (ADR-0024). |

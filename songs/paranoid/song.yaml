@@ -5,7 +5,34 @@ source: { file: "Black Sabbath-Paranoid-09-25-2026.gp", date: 2026-09-25 }
 bassTrack: "Geezer Butler | Fender Precision Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: 0qanF-91aJo, sync: [] }
+  youtube:
+    videoId: BOTIIw76qiE
+    songsterr: { songId: 296, revisionId: 9327542 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 1600 }, { bar: 3, ms: 3130 }, { bar: 4, ms: 4740 }, { bar: 5, ms: 6320 },
+      { bar: 6, ms: 7800 }, { bar: 7, ms: 9240 }, { bar: 8, ms: 10730 }, { bar: 9, ms: 12140 }, { bar: 10, ms: 13610 },
+      { bar: 11, ms: 15090 }, { bar: 12, ms: 16510 }, { bar: 13, ms: 18000 }, { bar: 14, ms: 19480 }, { bar: 15, ms: 20970 },
+      { bar: 16, ms: 22410 }, { bar: 17, ms: 23850 }, { bar: 18, ms: 25330 }, { bar: 19, ms: 26770 }, { bar: 20, ms: 28260 },
+      { bar: 21, ms: 29700 }, { bar: 22, ms: 31180 }, { bar: 23, ms: 32670 }, { bar: 24, ms: 34160 }, { bar: 25, ms: 35600 },
+      { bar: 26, ms: 37080 }, { bar: 27, ms: 38520 }, { bar: 28, ms: 40010 }, { bar: 29, ms: 41400 }, { bar: 30, ms: 42930 },
+      { bar: 31, ms: 44420 }, { bar: 32, ms: 45840 }, { bar: 33, ms: 47210 }, { bar: 34, ms: 48620 }, { bar: 35, ms: 50110 },
+      { bar: 36, ms: 51590 }, { bar: 37, ms: 53080 }, { bar: 38, ms: 54570 }, { bar: 39, ms: 56050 }, { bar: 40, ms: 57540 },
+      { bar: 41, ms: 59000 }, { bar: 42, ms: 60440 }, { bar: 43, ms: 61970 }, { bar: 44, ms: 63550 }, { bar: 45, ms: 65060 },
+      { bar: 46, ms: 66500 }, { bar: 47, ms: 67990 }, { bar: 48, ms: 69430 }, { bar: 49, ms: 70870 }, { bar: 50, ms: 72350 },
+      { bar: 51, ms: 73840 }, { bar: 52, ms: 75330 }, { bar: 53, ms: 76790 }, { bar: 54, ms: 78270 }, { bar: 55, ms: 79810 },
+      { bar: 56, ms: 81250 }, { bar: 57, ms: 82710 }, { bar: 58, ms: 84200 }, { bar: 59, ms: 85680 }, { bar: 60, ms: 87170 },
+      { bar: 61, ms: 88610 }, { bar: 62, ms: 90090 }, { bar: 63, ms: 91530 }, { bar: 64, ms: 93020 }, { bar: 65, ms: 94460 },
+      { bar: 66, ms: 95900 }, { bar: 67, ms: 97380 }, { bar: 68, ms: 98820 }, { bar: 69, ms: 100240 }, { bar: 70, ms: 101730 },
+      { bar: 71, ms: 103210 }, { bar: 72, ms: 104650 }, { bar: 73, ms: 106090 }, { bar: 74, ms: 107530 }, { bar: 75, ms: 109020 },
+      { bar: 76, ms: 110500 }, { bar: 77, ms: 111920 }, { bar: 78, ms: 113360 }, { bar: 79, ms: 114890 }, { bar: 80, ms: 116330 },
+      { bar: 81, ms: 117750 }, { bar: 82, ms: 119230 }, { bar: 83, ms: 120770 }, { bar: 84, ms: 122210 }, { bar: 85, ms: 123650 },
+      { bar: 86, ms: 125180 }, { bar: 87, ms: 126620 }, { bar: 88, ms: 128080 }, { bar: 89, ms: 129520 }, { bar: 90, ms: 131010 },
+      { bar: 91, ms: 132420 }, { bar: 92, ms: 133960 }, { bar: 93, ms: 135440 }, { bar: 94, ms: 136880 }, { bar: 95, ms: 138370 },
+      { bar: 96, ms: 139850 }, { bar: 97, ms: 141290 }, { bar: 98, ms: 142780 }, { bar: 99, ms: 144270 }, { bar: 100, ms: 145750 },
+      { bar: 101, ms: 147190 }, { bar: 102, ms: 148680 }, { bar: 103, ms: 150210 }, { bar: 104, ms: 151650 }, { bar: 105, ms: 153090 },
+      { bar: 106, ms: 154580 }, { bar: 107, ms: 156010 }, { bar: 108, ms: 157500 }, { bar: 109, ms: 158940 }, { bar: 110, ms: 160380 },
+      { bar: 111, ms: 161870 }, { bar: 112, ms: 163350 },
+      ]
   music: { source: "Black Sabbath-Paranoid-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Paranoid", itunesId: 785232473 }
 chunks:
@@ -49,6 +76,7 @@ notes: >-
   so the hand can come down from position 7 without a two-fret shift on continuous eighths;
   accepted as a beginner simplification (the other D bars stay on A5). Large shifts at bar 5
   (B on A2 → E on A7, the pickup) and bars 22/94 (E → C on A3) are inherent to the line.
-  YouTube: "BLACK SABBATH - "Paranoid" (Official Video)" on the Black Sabbath channel, the 1970
-  Belgian TV clip (2:51 vs 2:45 in the score); if it turns out not to use the studio take, the
-  Rhino "Official Audio" upload BOTIIw76qiE (2:48) is the fallback. Sync anchors still needed.
+  YouTube (2026-10-11): Songsterr's default video for this tab, "Black Sabbath - Paranoid (Official
+  Audio)" by RHINO (BOTIIw76qiE). Sync anchors are Songsterr's point per bar (song 296, revision
+  9327542; npm run fetch-video): 112 anchors for 112 bars, bar 1 at 0:00.00, up to 0.4 s from the
+  score's tempo map (bar 6).

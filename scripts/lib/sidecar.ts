@@ -5,6 +5,7 @@ import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { parse } from 'yaml';
 import type { FingeringOverride } from '../../src/core/fingering';
+import type { SyncAnchor } from '../../src/core/sync';
 
 export interface Sidecar {
   title: string;
@@ -13,7 +14,7 @@ export interface Sidecar {
   bassTrack: string | number;
   tempo?: { note?: string | null };
   media?: {
-    youtube?: { videoId?: string | null; sync?: { bar: number; tick?: number; ms: number }[] };
+    youtube?: { videoId?: string | null; songsterr?: { songId: number; revisionId: number }; sync?: SyncAnchor[] };
     music?: { source: string; offsetMs: number };
   };
   cover?: { album: string; itunesId?: number };

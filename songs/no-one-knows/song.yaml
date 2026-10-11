@@ -5,7 +5,47 @@ source: { file: "Queens of the Stone Age-No One Knows-09-29-2026.gp", date: 2026
 bassTrack: "Nick Oliveri | Fender Precision Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: s88r_q7oufE, sync: [] }
+  youtube:
+    videoId: s88r_q7oufE
+    songsterr: { songId: 17108, revisionId: 9405699 }
+    sync: [
+      { bar: 1, ms: 830 }, { bar: 2, ms: 2620 }, { bar: 3, ms: 4020 }, { bar: 4, ms: 5460 }, { bar: 5, ms: 6860 },
+      { bar: 6, ms: 8260 }, { bar: 7, ms: 9660 }, { bar: 8, ms: 11060 }, { bar: 9, ms: 12460 }, { bar: 10, ms: 13860 },
+      { bar: 11, ms: 15230 }, { bar: 12, ms: 16630 }, { bar: 13, ms: 18090 }, { bar: 14, ms: 19500 }, { bar: 15, ms: 20930 },
+      { bar: 16, ms: 22350 }, { bar: 17, ms: 23770 }, { bar: 18, ms: 25190 }, { bar: 19, ms: 26590 }, { bar: 20, ms: 28030 },
+      { bar: 21, ms: 29430 }, { bar: 22, ms: 30830 }, { bar: 23, ms: 32230 }, { bar: 24, ms: 33640 }, { bar: 25, ms: 35040 },
+      { bar: 26, ms: 36420 }, { bar: 27, ms: 37810 }, { bar: 28, ms: 39240 }, { bar: 29, ms: 40640 }, { bar: 30, ms: 42070 },
+      { bar: 31, ms: 43470 }, { bar: 32, ms: 44880 }, { bar: 33, ms: 46300 }, { bar: 34, ms: 47700 }, { bar: 35, ms: 49110 },
+      { bar: 36, ms: 50510 }, { bar: 37, ms: 51940 }, { bar: 38, ms: 53340 }, { bar: 39, ms: 54740 }, { bar: 40, ms: 56140 },
+      { bar: 41, ms: 57540 }, { bar: 42, ms: 58910 }, { bar: 43, ms: 60340 }, { bar: 44, ms: 61710 }, { bar: 45, ms: 63110 },
+      { bar: 46, ms: 64510 }, { bar: 47, ms: 65920 }, { bar: 48, ms: 67310 }, { bar: 49, ms: 68680 }, { bar: 50, ms: 70080 },
+      { bar: 51, ms: 71450 }, { bar: 52, ms: 72880 }, { bar: 53, ms: 74280 }, { bar: 54, ms: 75710 }, { bar: 55, ms: 77120 },
+      { bar: 56, ms: 78520 }, { bar: 57, ms: 79950 }, { bar: 58, ms: 81350 }, { bar: 59, ms: 82750 }, { bar: 60, ms: 84180 },
+      { bar: 61, ms: 85610 }, { bar: 62, ms: 87050 }, { bar: 63, ms: 88450 }, { bar: 64, ms: 89900 }, { bar: 65, ms: 91330 },
+      { bar: 66, ms: 92790 }, { bar: 67, ms: 94260 }, { bar: 68, ms: 95690 }, { bar: 69, ms: 97120 }, { bar: 70, ms: 98560 },
+      { bar: 71, ms: 99960 }, { bar: 72, ms: 101360 }, { bar: 73, ms: 102790 }, { bar: 74, ms: 104230 }, { bar: 75, ms: 105660 },
+      { bar: 76, ms: 107100 }, { bar: 77, ms: 108560 }, { bar: 78, ms: 109990 }, { bar: 79, ms: 111390 }, { bar: 80, ms: 112820 },
+      { bar: 81, ms: 114230 }, { bar: 82, ms: 115660 }, { bar: 83, ms: 117080 }, { bar: 84, ms: 118490 }, { bar: 85, ms: 119890 },
+      { bar: 86, ms: 121260 }, { bar: 87, ms: 122690 }, { bar: 88, ms: 124090 }, { bar: 89, ms: 125520 }, { bar: 90, ms: 126950 },
+      { bar: 91, ms: 128390 }, { bar: 92, ms: 129810 }, { bar: 93, ms: 131230 }, { bar: 94, ms: 132650 }, { bar: 95, ms: 134050 },
+      { bar: 96, ms: 135490 }, { bar: 97, ms: 136890 }, { bar: 98, ms: 138310 }, { bar: 99, ms: 139710 }, { bar: 100, ms: 141110 },
+      { bar: 101, ms: 142490 }, { bar: 102, ms: 143860 }, { bar: 103, ms: 145250 }, { bar: 104, ms: 146660 }, { bar: 105, ms: 148030 },
+      { bar: 106, ms: 149430 }, { bar: 107, ms: 150860 }, { bar: 108, ms: 152260 }, { bar: 109, ms: 153660 }, { bar: 110, ms: 155020 },
+      { bar: 111, ms: 156420 }, { bar: 112, ms: 157830 }, { bar: 113, ms: 159260 }, { bar: 114, ms: 160690 }, { bar: 115, ms: 162060 },
+      { bar: 116, ms: 163480 }, { bar: 117, ms: 164890 }, { bar: 118, ms: 166360 }, { bar: 119, ms: 167760 }, { bar: 120, ms: 169190 },
+      { bar: 121, ms: 170620 }, { bar: 122, ms: 172060 }, { bar: 123, ms: 173460 }, { bar: 124, ms: 174900 }, { bar: 125, ms: 176330 },
+      { bar: 126, ms: 177740 }, { bar: 127, ms: 179140 }, { bar: 128, ms: 180570 }, { bar: 129, ms: 182010 }, { bar: 130, ms: 183440 },
+      { bar: 131, ms: 184870 }, { bar: 132, ms: 186330 }, { bar: 133, ms: 187770 }, { bar: 134, ms: 189200 }, { bar: 135, ms: 190670 },
+      { bar: 136, ms: 192170 }, { bar: 137, ms: 193640 }, { bar: 138, ms: 195110 }, { bar: 139, ms: 196570 }, { bar: 140, ms: 197970 },
+      { bar: 141, ms: 199370 }, { bar: 142, ms: 200810 }, { bar: 143, ms: 202230 }, { bar: 144, ms: 203640 }, { bar: 145, ms: 205040 },
+      { bar: 146, ms: 206410 }, { bar: 147, ms: 207810 }, { bar: 148, ms: 209200 }, { bar: 149, ms: 210600 }, { bar: 150, ms: 212000 },
+      { bar: 151, ms: 213410 }, { bar: 152, ms: 214810 }, { bar: 153, ms: 216240 }, { bar: 154, ms: 217660 }, { bar: 155, ms: 219070 },
+      { bar: 156, ms: 220470 }, { bar: 157, ms: 221870 }, { bar: 158, ms: 223300 }, { bar: 159, ms: 224710 }, { bar: 160, ms: 226140 },
+      { bar: 161, ms: 227540 }, { bar: 162, ms: 229000 }, { bar: 163, ms: 230410 }, { bar: 164, ms: 231840 }, { bar: 165, ms: 233250 },
+      { bar: 166, ms: 234620 }, { bar: 167, ms: 236020 }, { bar: 168, ms: 237420 }, { bar: 169, ms: 238820 }, { bar: 170, ms: 240200 },
+      { bar: 171, ms: 241590 }, { bar: 172, ms: 242980 }, { bar: 173, ms: 244350 }, { bar: 174, ms: 245750 }, { bar: 175, ms: 247180 },
+      { bar: 176, ms: 248580 }, { bar: 177, ms: 249990 }, { bar: 178, ms: 251420 }, { bar: 179, ms: 252850 }, { bar: 180, ms: 254250 },
+      ]
   music: { source: "Queens of the Stone Age-No One Knows-10-11-2026.mp3", offsetMs: 0 }
 cover: { album: "Songs for the Deaf", itunesId: 1440759826 }
 chunks:
@@ -73,6 +113,8 @@ notes: >-
   B♭ into Chorus 2) keeps the fretted B♭. Re-tab accepted: bar 56's G goes from the F string fret
   14 to the B♭ string fret 9, keeping the triplet figure in position 9. The two large shifts (bar
   65 back to the G/C figure, bar 138 up to the solo) are at phrase starts. Double stops are the
-  octaves in bars 1–2, 63–64 and 123. YouTube: the owner asked for the video Songsterr uses, which
-  is the official music video on QueensStoneAgeVEVO (4:19); it fits the score length. Sync anchors
-  still needed.
+  octaves in bars 1–2, 63–64 and 123. YouTube (2026-10-11): Songsterr's default video for this tab,
+  "Queens Of The Stone Age - No One Knows (Official Music Video)" by QueensStoneAgeVEVO
+  (s88r_q7oufE). Sync anchors are Songsterr's point per bar (song 17108, revision 9405699; npm run
+  fetch-video): 180 anchors for 180 bars, bar 1 at 0:00.83, up to 0.8 s from the score's tempo map
+  (bar 180). To check by ear: bars whose length in the recording is far from the score: 1 (×1.27).

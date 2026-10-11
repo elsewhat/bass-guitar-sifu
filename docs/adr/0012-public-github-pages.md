@@ -1,6 +1,6 @@
 # ADR-0012: Public repository and public GitHub Pages
 
-Status: Accepted, amended by ADR-0022 (rendered MP3s are published with the `.gp` files) and ADR-0024 (lyrics are published)
+Status: Accepted, amended by ADR-0022 (rendered MP3s are published with the `.gp` files) ADR-0024 (lyrics are published) and ADR-0028 (YouTube sync anchors from Songsterr are published)
 Date: 2026-09-28
 Supersedes: ADR-0001. Amends: ADR-0011.
 

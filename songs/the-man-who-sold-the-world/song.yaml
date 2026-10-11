@@ -5,7 +5,31 @@ source: { file: "Nirvana-The Man Who Sold The World-09-22-2026.gp", date: 2026-0
 bassTrack: "Krist Novoselic | Guild B30E Semi-Acoustic | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: fregObNcHC8, sync: [] }
+  youtube:
+    videoId: fregObNcHC8
+    songsterr: { songId: 7346, revisionId: 9254939 }
+    sync: [
+      { bar: 1, ms: 1560 }, { bar: 2, ms: 3780 }, { bar: 3, ms: 5870 }, { bar: 4, ms: 7960 }, { bar: 5, ms: 10050 },
+      { bar: 6, ms: 12140 }, { bar: 7, ms: 14230 }, { bar: 8, ms: 16420 }, { bar: 9, ms: 18600 }, { bar: 10, ms: 20690 },
+      { bar: 11, ms: 22830 }, { bar: 12, ms: 24920 }, { bar: 13, ms: 27030 }, { bar: 14, ms: 29140 }, { bar: 15, ms: 31230 },
+      { bar: 16, ms: 33270 }, { bar: 17, ms: 35430 }, { bar: 18, ms: 37550 }, { bar: 19, ms: 39660 }, { bar: 20, ms: 42910 },
+      { bar: 21, ms: 45020 }, { bar: 22, ms: 47020 }, { bar: 23, ms: 49200 }, { bar: 24, ms: 51320 }, { bar: 25, ms: 53360 },
+      { bar: 26, ms: 55400 }, { bar: 27, ms: 57490 }, { bar: 28, ms: 59420 }, { bar: 29, ms: 61580 }, { bar: 30, ms: 63670 },
+      { bar: 31, ms: 65760 }, { bar: 32, ms: 67900 }, { bar: 33, ms: 69960 }, { bar: 34, ms: 72100 }, { bar: 35, ms: 74190 },
+      { bar: 36, ms: 76300 }, { bar: 37, ms: 78390 }, { bar: 38, ms: 80550 }, { bar: 39, ms: 82800 }, { bar: 40, ms: 84890 },
+      { bar: 41, ms: 87050 }, { bar: 42, ms: 89190 }, { bar: 43, ms: 91300 }, { bar: 44, ms: 93440 }, { bar: 45, ms: 95530 },
+      { bar: 46, ms: 97640 }, { bar: 47, ms: 99780 }, { bar: 48, ms: 101870 }, { bar: 49, ms: 104000 }, { bar: 50, ms: 107230 },
+      { bar: 51, ms: 109340 }, { bar: 52, ms: 111360 }, { bar: 53, ms: 113520 }, { bar: 54, ms: 115640 }, { bar: 55, ms: 117680 },
+      { bar: 56, ms: 119750 }, { bar: 57, ms: 121810 }, { bar: 58, ms: 123880 }, { bar: 59, ms: 125920 }, { bar: 60, ms: 127990 },
+      { bar: 61, ms: 130100 }, { bar: 62, ms: 132170 }, { bar: 63, ms: 134210 }, { bar: 64, ms: 136300 }, { bar: 65, ms: 138410 },
+      { bar: 66, ms: 140480 }, { bar: 67, ms: 142480 }, { bar: 68, ms: 144570 }, { bar: 69, ms: 146470 }, { bar: 70, ms: 148630 },
+      { bar: 71, ms: 150650 }, { bar: 72, ms: 152720 }, { bar: 73, ms: 154850 }, { bar: 74, ms: 156940 }, { bar: 75, ms: 159030 },
+      { bar: 76, ms: 161120 }, { bar: 77, ms: 163170 }, { bar: 78, ms: 165230 }, { bar: 79, ms: 167280 }, { bar: 80, ms: 169180 },
+      { bar: 81, ms: 171340 }, { bar: 82, ms: 173380 }, { bar: 83, ms: 175430 }, { bar: 84, ms: 177470 }, { bar: 85, ms: 179490 },
+      { bar: 86, ms: 181510 }, { bar: 87, ms: 183530 }, { bar: 88, ms: 185570 }, { bar: 89, ms: 187620 }, { bar: 90, ms: 189610 },
+      { bar: 91, ms: 191630 }, { bar: 92, ms: 193680 }, { bar: 93, ms: 195700 }, { bar: 94, ms: 197690 }, { bar: 95, ms: 199710 },
+      { bar: 96, ms: 201730 }, { bar: 97, ms: 203760 }, { bar: 98, ms: 205780 }, { bar: 99, ms: 207700 }, { bar: 100, ms: 209770 },
+      ]
   music: { source: "Nirvana-The Man Who Sold The World-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "MTV Unplugged in New York", itunesId: 1440892370 }
 chunks:
@@ -44,6 +68,9 @@ notes: >-
   solo riff) take the tied A♭ as an open string instead of E♭5, which gives the hand a free
   shift in the descending figure. No shifts of 3+ frets and no overrides. The chorus
   (A♭3-5, C♯2-3-5, F♯2-3-5) spans four frets in a low position, so the solver shifts a fret
-  within each string (rule 5). A teacher might prefer one finger per fret there. YouTube:
-  official MTV Unplugged video on NirvanaVEVO (3:38 vs 3:37 in the score); the unedited
-  version (OgeR2oqZGTs, 4:19) includes stage talk. Sync anchors still needed.
+  within each string (rule 5). A teacher might prefer one finger per fret there. YouTube
+  (2026-10-11): Songsterr's default video for this tab, "Nirvana - The Man Who Sold The World (MTV
+  Unplugged)" by NirvanaVEVO (fregObNcHC8). Sync anchors are Songsterr's point per bar (song 7346,
+  revision 9254939; npm run fetch-video): 100 anchors for 102 bars, bar 1 at 0:01.56, up to 2.3 s
+  from the score's tempo map (bar 100). To check by ear: bars 101–102: no point, continued at the
+  score's tempo.

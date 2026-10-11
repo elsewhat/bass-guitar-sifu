@@ -5,7 +5,42 @@ source: { file: "LCD Soundsystem-I Can Change-06-21-2025.gp", date: 2025-06-21 }
 bassTrack: "Synth Bass 1"
 tempo: { note: null }
 media:
-  youtube: { videoId: Fq4jVhJdYoM, sync: [] }
+  youtube:
+    videoId: V7QaGc2fmmE
+    songsterr: { songId: 211700, revisionId: 2281027 }
+    sync: [
+      { bar: 1, ms: 20 }, { bar: 2, ms: 2550 }, { bar: 3, ms: 4690 }, { bar: 4, ms: 6710 }, { bar: 5, ms: 8750 },
+      { bar: 6, ms: 10800 }, { bar: 7, ms: 12890 }, { bar: 8, ms: 14910 }, { bar: 9, ms: 16950 }, { bar: 10, ms: 19040 },
+      { bar: 11, ms: 21060 }, { bar: 12, ms: 23150 }, { bar: 13, ms: 25190 }, { bar: 14, ms: 27210 }, { bar: 15, ms: 29260 },
+      { bar: 16, ms: 31300 }, { bar: 17, ms: 33390 }, { bar: 18, ms: 36730 }, { bar: 19, ms: 39010 }, { bar: 20, ms: 41050 },
+      { bar: 21, ms: 43350 }, { bar: 22, ms: 45630 }, { bar: 23, ms: 47720 }, { bar: 24, ms: 49830 }, { bar: 25, ms: 51860 },
+      { bar: 26, ms: 53990 }, { bar: 27, ms: 55930 }, { bar: 28, ms: 58010 }, { bar: 29, ms: 59960 }, { bar: 30, ms: 62270 },
+      { bar: 31, ms: 64220 }, { bar: 32, ms: 66250 }, { bar: 33, ms: 68280 }, { bar: 34, ms: 70390 }, { bar: 35, ms: 72520 },
+      { bar: 36, ms: 74660 }, { bar: 37, ms: 76570 }, { bar: 38, ms: 78570 }, { bar: 39, ms: 80650 }, { bar: 40, ms: 82650 },
+      { bar: 41, ms: 84800 }, { bar: 42, ms: 86740 }, { bar: 43, ms: 88920 }, { bar: 44, ms: 90860 }, { bar: 45, ms: 92900 },
+      { bar: 46, ms: 95040 }, { bar: 47, ms: 97010 }, { bar: 48, ms: 99060 }, { bar: 49, ms: 101120 }, { bar: 50, ms: 103380 },
+      { bar: 51, ms: 105320 }, { bar: 52, ms: 107360 }, { bar: 53, ms: 109310 }, { bar: 54, ms: 111460 }, { bar: 55, ms: 113510 },
+      { bar: 56, ms: 115530 }, { bar: 57, ms: 117640 }, { bar: 58, ms: 119620 }, { bar: 59, ms: 121690 }, { bar: 60, ms: 123660 },
+      { bar: 61, ms: 125700 }, { bar: 62, ms: 127790 }, { bar: 63, ms: 129770 }, { bar: 64, ms: 131700 }, { bar: 65, ms: 133890 },
+      { bar: 66, ms: 136020 }, { bar: 67, ms: 137910 }, { bar: 68, ms: 139890 }, { bar: 69, ms: 142030 }, { bar: 70, ms: 144090 },
+      { bar: 71, ms: 146190 }, { bar: 72, ms: 148070 }, { bar: 73, ms: 150180 }, { bar: 74, ms: 152290 }, { bar: 75, ms: 154440 },
+      { bar: 76, ms: 156560 }, { bar: 77, ms: 158590 }, { bar: 78, ms: 160640 }, { bar: 79, ms: 162700 }, { bar: 80, ms: 164820 },
+      { bar: 81, ms: 166800 }, { bar: 82, ms: 168780 }, { bar: 83, ms: 170720 }, { bar: 84, ms: 172970 }, { bar: 85, ms: 174990 },
+      { bar: 86, ms: 177060 }, { bar: 87, ms: 179150 }, { bar: 88, ms: 181120 }, { bar: 89, ms: 183240 }, { bar: 90, ms: 185190 },
+      { bar: 91, ms: 187170 }, { bar: 92, ms: 189090 }, { bar: 93, ms: 191230 }, { bar: 94, ms: 193520 }, { bar: 95, ms: 195510 },
+      { bar: 96, ms: 197500 }, { bar: 97, ms: 199560 }, { bar: 98, ms: 201540 }, { bar: 99, ms: 203560 }, { bar: 100, ms: 205650 },
+      { bar: 101, ms: 207770 }, { bar: 102, ms: 209860 }, { bar: 103, ms: 211980 }, { bar: 104, ms: 214000 }, { bar: 105, ms: 216080 },
+      { bar: 106, ms: 218090 }, { bar: 107, ms: 220100 }, { bar: 108, ms: 222180 }, { bar: 109, ms: 224190 }, { bar: 110, ms: 226370 },
+      { bar: 111, ms: 228360 }, { bar: 112, ms: 230400 }, { bar: 113, ms: 232360 }, { bar: 114, ms: 234550 }, { bar: 115, ms: 236510 },
+      { bar: 116, ms: 238530 }, { bar: 117, ms: 240540 }, { bar: 118, ms: 242560 }, { bar: 119, ms: 244590 }, { bar: 120, ms: 246620 },
+      { bar: 121, ms: 248730 }, { bar: 122, ms: 250740 }, { bar: 123, ms: 252750 }, { bar: 124, ms: 254900 }, { bar: 125, ms: 256890 },
+      { bar: 126, ms: 258860 }, { bar: 127, ms: 261080 }, { bar: 128, ms: 262960 }, { bar: 129, ms: 265210 }, { bar: 130, ms: 267240 },
+      { bar: 131, ms: 269370 }, { bar: 132, ms: 271440 }, { bar: 133, ms: 273470 }, { bar: 134, ms: 275440 }, { bar: 135, ms: 277550 },
+      { bar: 136, ms: 279670 }, { bar: 137, ms: 281720 }, { bar: 138, ms: 283660 }, { bar: 139, ms: 285640 }, { bar: 140, ms: 287710 },
+      { bar: 141, ms: 289830 }, { bar: 142, ms: 291960 }, { bar: 143, ms: 293900 }, { bar: 144, ms: 296010 }, { bar: 145, ms: 297950 },
+      { bar: 146, ms: 299960 }, { bar: 147, ms: 302120 }, { bar: 148, ms: 304020 }, { bar: 149, ms: 306240 }, { bar: 150, ms: 308330 },
+      { bar: 151, ms: 310350 }, { bar: 152, ms: 312350 }, { bar: 153, ms: 314430 }, { bar: 154, ms: 316460 },
+      ]
   music: { source: "LCD Soundsystem-I Can Change-10-02-2026.mp3", offsetMs: 0 }
 cover: { album: "This Is Happening", itunesId: 693387639 }
 chunks:
@@ -49,8 +84,12 @@ notes: >-
   P L Q L (J/M variants in chorus 1, U in the last chorus). Bar 120 is tacet; Verse 3 b ends at
   119. Chorus 3 e (V B C B P L U L) is repeated once and the song ends on bars 153–154.
   The score is 5:13 at a steady 118 BPM; the album recording is 5:56, so the transcription is
-  shorter than the record (check where by ear before tapping sync anchors). YouTube: "LCD
-  Soundsystem - Topic" upload from This Is Happening (Parlophone).
+  shorter than the record (Songsterr's last point is at 5:16 of the 5:52 video, so the tab stops
+  before the record's ending). YouTube (2026-10-11):
+  Songsterr's default video for this tab, "I Can Change" by LCD Soundsystem - Topic (V7QaGc2fmmE).
+  Sync anchors are Songsterr's point per bar (song 211700, revision 2281027; npm run fetch-video):
+  154 anchors for 154 bars, bar 1 at 0:00.02, up to 5.3 s from the score's tempo map (bar 150). To
+  check by ear: bars whose length in the recording is far from the score: 1 (×1.24), 17 (×1.64).
 lyrics:
   # Pasted by the owner for private practice; unsynced, ADR-0024.
   text: |

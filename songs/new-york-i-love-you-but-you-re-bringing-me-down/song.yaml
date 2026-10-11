@@ -5,7 +5,27 @@ source: { file: "LCD Soundsystem-New York, I Love You But You're Bringing Me Dow
 bassTrack: "Electric Bass (finger)"
 tempo: { note: null }
 media:
-  youtube: { videoId: c5kM3iwYVi0, sync: [] }
+  youtube:
+    videoId: c5kM3iwYVi0
+    songsterr: { songId: 460918, revisionId: 6109376 }
+    sync: [
+      { bar: 1, ms: 720 }, { bar: 2, ms: 5200 }, { bar: 3, ms: 10680 }, { bar: 4, ms: 15650 }, { bar: 5, ms: 20670 },
+      { bar: 6, ms: 24870 }, { bar: 7, ms: 29860 }, { bar: 8, ms: 34320 }, { bar: 9, ms: 39680 }, { bar: 10, ms: 44300 },
+      { bar: 11, ms: 48720 }, { bar: 12, ms: 53080 }, { bar: 13, ms: 57380 }, { bar: 14, ms: 61490 }, { bar: 15, ms: 65900 },
+      { bar: 16, ms: 70170 }, { bar: 17, ms: 74370 }, { bar: 18, ms: 78440 }, { bar: 19, ms: 82590 }, { bar: 20, ms: 86800 },
+      { bar: 21, ms: 91070 }, { bar: 22, ms: 95200 }, { bar: 23, ms: 99240 }, { bar: 24, ms: 103330 }, { bar: 25, ms: 107490 },
+      { bar: 26, ms: 111550 }, { bar: 27, ms: 115570 }, { bar: 28, ms: 119300 }, { bar: 29, ms: 123580 }, { bar: 30, ms: 127590 },
+      { bar: 31, ms: 131520 }, { bar: 32, ms: 135490 }, { bar: 33, ms: 139410 }, { bar: 34, ms: 143360 }, { bar: 35, ms: 147280 },
+      { bar: 36, ms: 151230 }, { bar: 37, ms: 155230 }, { bar: 38, ms: 159010 }, { bar: 39, ms: 163120 }, { bar: 40, ms: 167020 },
+      { bar: 41, ms: 170920 }, { bar: 42, ms: 174800 }, { bar: 43, ms: 178650 }, { bar: 44, ms: 182300 }, { bar: 45, ms: 186390 },
+      { bar: 46, ms: 190170 }, { bar: 47, ms: 194050 }, { bar: 48, ms: 197880 }, { bar: 49, ms: 201670 }, { bar: 50, ms: 205290 },
+      { bar: 51, ms: 208860 }, { bar: 52, ms: 212440 }, { bar: 53, ms: 216060 }, { bar: 54, ms: 219410 }, { bar: 55, ms: 223140 },
+      { bar: 56, ms: 226650 }, { bar: 57, ms: 230200 }, { bar: 58, ms: 233620 }, { bar: 59, ms: 237030 }, { bar: 60, ms: 240700 },
+      { bar: 61, ms: 244300 }, { bar: 62, ms: 247780 }, { bar: 63, ms: 251380 }, { bar: 64, ms: 254820 }, { bar: 65, ms: 258280 },
+      { bar: 66, ms: 262500 }, { bar: 67, ms: 266980 }, { bar: 68, ms: 272110 }, { bar: 69, ms: 277250 }, { bar: 70, ms: 283470 },
+      { bar: 71, ms: 289690 }, { bar: 72, ms: 293870 }, { bar: 73, ms: 298000 }, { bar: 74, ms: 302110 }, { bar: 75, ms: 306200 },
+      { bar: 76, ms: 310220 }, { bar: 77, ms: 314140 }, { bar: 78, ms: 318140 }, { bar: 79, ms: 322150 },
+      ]
   music: { source: "LCD Soundsystem-New York, I Love You But You're Bringing Me Down-10-02-2026.mp3", offsetMs: 0 }
 cover: { album: "Sound of Silver", itunesId: 742432549 }
 chunks:
@@ -36,7 +56,12 @@ notes: >-
   by phrase position, not lyric verses (there is no vocal track to align them). Fingering: the
   solver re-tabs F2 in bars 57 and 61 to D string fret 3 as an octave shape over F1 (E string
   fret 1); kept. No overrides. Score 4:55, the album recording 5:35, so the transcription is
-  shorter than the record. YouTube: "LCD Soundsystem - Topic" upload from Sound of Silver.
+  shorter than the record. YouTube (2026-10-11): Songsterr's default video for this tab, "New York,
+  I Love You but You're Bringing Me Down" by LCD Soundsystem - Topic (c5kM3iwYVi0). Sync anchors are
+  Songsterr's point per bar (song 460918, revision 6109376; npm run fetch-video): 79 anchors for 79
+  bars, bar 1 at 0:00.72, up to 30.2 s from the score's tempo map (bar 79). To check by ear: 1 extra
+  point at the end ignored; bars whose length in the recording is far from the score: 2 (×1.37), 3
+  (×1.24), 4 (×1.25), 6 (×1.25), 8 (×1.34), 67 (×0.74), 68 (×0.75).
 lyrics:
   # Pasted by the owner for private practice; unsynced, ADR-0024.
   text: |

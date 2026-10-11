@@ -5,7 +5,34 @@ source: { file: "The Blues Brothers-Peter Gunn-05-20-2025.gp", date: 2025-05-20 
 bassTrack: "Electric Bass (finger)"
 tempo: { note: "116 BPM, dropping to 100 BPM at bar 53 as notated; check the second half against the recording." }
 media:
-  youtube: { videoId: 9DgFOsEs-kE, sync: [] }
+  youtube:
+    videoId: "9DgFOsEs-kE"
+    songsterr: { songId: 3601, revisionId: 2034809 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 2720 }, { bar: 3, ms: 4700 }, { bar: 4, ms: 6780 }, { bar: 5, ms: 8780 },
+      { bar: 6, ms: 10770 }, { bar: 7, ms: 12750 }, { bar: 8, ms: 14750 }, { bar: 9, ms: 16750 }, { bar: 10, ms: 18750 },
+      { bar: 11, ms: 20710 }, { bar: 12, ms: 22690 }, { bar: 13, ms: 24640 }, { bar: 14, ms: 26660 }, { bar: 15, ms: 28680 },
+      { bar: 16, ms: 30660 }, { bar: 17, ms: 32660 }, { bar: 18, ms: 34650 }, { bar: 19, ms: 36660 }, { bar: 20, ms: 38630 },
+      { bar: 21, ms: 40620 }, { bar: 22, ms: 42620 }, { bar: 23, ms: 44610 }, { bar: 24, ms: 46620 }, { bar: 25, ms: 48570 },
+      { bar: 26, ms: 50590 }, { bar: 27, ms: 52550 }, { bar: 28, ms: 54510 }, { bar: 29, ms: 56460 }, { bar: 30, ms: 58420 },
+      { bar: 31, ms: 60430 }, { bar: 32, ms: 62370 }, { bar: 33, ms: 64400 }, { bar: 34, ms: 66330 }, { bar: 35, ms: 68350 },
+      { bar: 36, ms: 70370 }, { bar: 37, ms: 72320 }, { bar: 38, ms: 74270 }, { bar: 39, ms: 76250 }, { bar: 40, ms: 78250 },
+      { bar: 41, ms: 80200 }, { bar: 42, ms: 82190 }, { bar: 43, ms: 84160 }, { bar: 44, ms: 86150 }, { bar: 45, ms: 88070 },
+      { bar: 46, ms: 90120 }, { bar: 47, ms: 92040 }, { bar: 48, ms: 94020 }, { bar: 49, ms: 95970 }, { bar: 50, ms: 97940 },
+      { bar: 51, ms: 99940 }, { bar: 52, ms: 101920 }, { bar: 53, ms: 103900 }, { bar: 54, ms: 105860 }, { bar: 55, ms: 107820 },
+      { bar: 56, ms: 109790 }, { bar: 57, ms: 111780 }, { bar: 58, ms: 113710 }, { bar: 59, ms: 115680 }, { bar: 60, ms: 117650 },
+      { bar: 61, ms: 119620 }, { bar: 62, ms: 121590 }, { bar: 63, ms: 123530 }, { bar: 64, ms: 125490 }, { bar: 65, ms: 127460 },
+      { bar: 66, ms: 129450 }, { bar: 67, ms: 131410 }, { bar: 68, ms: 133440 }, { bar: 69, ms: 135430 }, { bar: 70, ms: 137410 },
+      { bar: 71, ms: 139350 }, { bar: 72, ms: 141280 }, { bar: 73, ms: 143240 }, { bar: 74, ms: 145210 }, { bar: 75, ms: 147240 },
+      { bar: 76, ms: 149100 }, { bar: 77, ms: 151060 }, { bar: 78, ms: 153060 }, { bar: 79, ms: 155000 }, { bar: 80, ms: 156990 },
+      { bar: 81, ms: 158970 }, { bar: 82, ms: 160930 }, { bar: 83, ms: 162900 }, { bar: 84, ms: 164890 }, { bar: 85, ms: 166820 },
+      { bar: 86, ms: 168780 }, { bar: 87, ms: 170780 }, { bar: 88, ms: 172740 }, { bar: 89, ms: 174730 }, { bar: 90, ms: 176690 },
+      { bar: 91, ms: 178680 }, { bar: 92, ms: 180690 }, { bar: 93, ms: 182630 }, { bar: 94, ms: 184640 }, { bar: 95, ms: 186660 },
+      { bar: 96, ms: 188650 }, { bar: 97, ms: 190630 }, { bar: 98, ms: 192630 }, { bar: 99, ms: 194590 }, { bar: 100, ms: 196590 },
+      { bar: 101, ms: 198550 }, { bar: 102, ms: 200540 }, { bar: 103, ms: 202520 }, { bar: 104, ms: 204520 }, { bar: 105, ms: 206420 },
+      { bar: 106, ms: 208440 }, { bar: 107, ms: 210430 }, { bar: 108, ms: 212400 }, { bar: 109, ms: 214440 }, { bar: 110, ms: 216960 },
+      { bar: 111, ms: 220120 }, { bar: 112, ms: 222620 }, { bar: 113, ms: 225060 },
+      ]
   music: { source: "The Blues Brothers-Peter Gunn-10-06-2026.mp3", offsetMs: 0 }
 cover: { album: "The Blues Brothers (Original Soundtrack Recording)", itunesId: 452584443 }
 chunks:
@@ -46,7 +73,9 @@ notes: >-
   inside each bar (index slides F♯ → G, or the little finger slides G♯ → A), always by one
   fret along the E string or across an open E; kept. No re-tabs, no 3+ fret shifts, no
   overrides.
-  YouTube: "The Blues Brothers - Peter Gunn Theme (Official Audio)" on The Blues Brothers
-  channel (3:48 vs about 3:43 of played bars in the score), from the 1980 film soundtrack;
-  the Topic upload FzW9YcfXNNU (3:50) is the fallback. Music: the rendered MP3 matches with
-  0 ms offset, 20 ms drift. Sync anchors still needed.
+  YouTube (2026-10-11): Songsterr's default video for this tab, "The Blues Brothers - Peter Gunn
+  Theme (Official Audio)" by The Blues Brothers (9DgFOsEs-kE). Sync anchors are Songsterr's point
+  per bar (song 3601, revision 2034809; npm run fetch-video): 113 anchors for 113 bars, bar 1 at
+  0:00.00, up to 27.6 s from the score's tempo map (bar 109). To check by ear: bars whose length in
+  the recording is far from the score: 1 (×1.42), 75 (×0.84), 110 (×1.42). Music: the rendered MP3
+  matches with 0 ms offset, 20 ms drift.

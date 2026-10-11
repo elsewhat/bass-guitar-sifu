@@ -1,6 +1,6 @@
 # ADR-0016: Playback sources for version 1 and sync authoring
 
-Status: Accepted, amended by ADR-0022 (Music, a fourth source)
+Status: Accepted, amended by ADR-0022 (Music, a fourth source) and ADR-0028 (sync anchors come from Songsterr; the tap editor is not built)
 Date: 2026-09-28
 Amends: ADR-0008.
 

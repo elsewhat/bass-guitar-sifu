@@ -1,17 +1,19 @@
 import { useRef } from 'react';
 import { countCells, EIGHTH } from '../core/count';
+import type { SongLyrics } from '../core/model';
 import { barIndexAt } from '../core/timing';
 import { useFrame } from '../playback/frame';
+import { setVideoHost } from '../playback/video-host';
 import { countInState, openMixer, setSource, toggleLyrics } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { introChip, loopTimeLabel } from '../practice/view-model';
 import { SOURCES, sourceAvailable, useSession, type SourceId, type SourceStatus } from '../state/session';
 import { Icon } from './icons';
-import { Lyrics } from './Lyrics';
+import { Lyrics, Subtitles } from './Lyrics';
 
 // Video cell (system description §3.3): source switch, the source's view, chips, the lyrics toggle and
 // the mixer button. With lyrics on (ADR-0024), the lyrics take the cell and the source's view
-// shrinks to one row under the source switch.
+// shrinks to one row under the source switch. The YouTube source fills the cell with the video.
 
 const overlayChip = 'bg-[rgba(18,18,18,0.85)] text-white';
 
@@ -27,7 +29,9 @@ export function VideoCell() {
 
   return (
     <section aria-label="Video" data-source-status={status.state} className="rounded-comfortable relative overflow-hidden bg-black">
-      {lyrics ? (
+      {source === 'youtube' ? (
+        <YouTubeView status={status} lyrics={lyrics} slug={song?.slug} />
+      ) : lyrics ? (
         <>
           <div className="bg-page rounded-comfortable absolute top-[60px] right-3 left-3 flex h-9 items-center gap-2.5 px-2.5 text-xs leading-none">
             <SourceRow source={source} status={status} />
@@ -48,16 +52,12 @@ export function VideoCell() {
               <div className="text-base font-bold text-white">Synth playback</div>
               <div className="text-sm">{synthDetail(status)}</div>
             </>
-          ) : source === 'music' ? (
+          ) : (
             <>
               <CountCells countInOnly />
               <div className="text-base font-bold text-white">Music playback</div>
               <div className="text-sm">{musicDetail(status)}</div>
             </>
-          ) : (
-            <div className="flex size-18 items-center justify-center rounded-full bg-white/8 text-white">
-              <Icon name="play" size={32} />
-            </div>
           )}
         </div>
       )}
@@ -70,7 +70,7 @@ export function VideoCell() {
               type="button"
               aria-pressed={source === s.id}
               disabled={!available}
-              title={available ? undefined : s.ready ? 'No audio for this song' : 'Not available yet'}
+              title={available ? undefined : s.id === 'youtube' ? 'No video for this song' : 'No audio for this song'}
               onClick={() => setSource(s.id)}
               className={`h-8 rounded-full border-0 px-3.5 text-sm leading-none font-bold ${
                 source === s.id ? 'bg-white text-black' : 'bg-transparent text-white'
@@ -96,18 +96,47 @@ export function VideoCell() {
       {intro && <div className={`${overlayChip} absolute bottom-3 left-3 rounded-full px-3 py-1.5 text-xs font-bold`}>{intro}</div>}
       {song && song.chunks[chunkIndex] && (
         <div className={`${overlayChip} absolute right-3 bottom-3 rounded-full px-3 py-1.5 text-xs font-bold`}>
-          {loopTimeLabel(song, chunkIndex, songModel(song).tempo)}
+          {loopTimeLabel(song, chunkIndex, songModel(song).tempo, source === 'youtube' ? songModel(song).video : null)}
         </div>
       )}
     </section>
   );
 }
 
-/** Lyrics toggle next to the mixer button; disabled for songs without lyrics. */
+/**
+ * The YouTube source (ADR-0028): the player fills the cell, and the practice engine puts the video
+ * into the host element. Nothing here takes clicks from the video. During a count-in the count cells
+ * show over it, and synced lyrics are a subtitle band (ADR-0024); unsynced lyrics are not shown.
+ */
+function YouTubeView({ status, lyrics, slug }: { status: SourceStatus; lyrics: SongLyrics | undefined; slug: string | undefined }) {
+  return (
+    <>
+      {/* One host for every song: the engine swaps the player in it. */}
+      <div ref={setVideoHost} data-testid="video-host" className="absolute inset-0" />
+      {status.state !== 'ready' && (
+        <div className="text-subdued pointer-events-none absolute inset-0 flex flex-col items-center justify-center gap-2.5 bg-black/70 px-12 text-center">
+          <div className="text-base font-bold text-white">YouTube player</div>
+          <div className="text-sm">{status.state === 'loading' ? 'Loading video…' : (status.error ?? 'YouTube unavailable')}</div>
+        </div>
+      )}
+      {/* The paused video shows YouTube's own "More videos" shelf; it is dimmed while the count-in plays. */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center has-[[data-count-in=true]]:bg-black/90">
+        <CountCells countInOnly />
+      </div>
+      {lyrics?.synced && <Subtitles key={slug} lines={lyrics.lines} />}
+    </>
+  );
+}
+
+/**
+ * Lyrics toggle next to the mixer button; disabled for songs without lyrics, and for unsynced
+ * lyrics while the video plays (they would cover it).
+ */
 function LyricsButton() {
   const on = useSession((s) => s.lyricsOn);
-  const has = useSession((s) => !!s.song?.lyrics);
-  const title = !has ? 'No lyrics for this song' : on ? 'Hide lyrics' : 'Show lyrics';
+  const has = useSession((s) => !!s.song?.lyrics && (s.source !== 'youtube' || s.song.lyrics.synced));
+  const any = useSession((s) => !!s.song?.lyrics);
+  const title = !any ? 'No lyrics for this song' : !has ? 'These lyrics are not synced; they are not shown over the video' : on ? 'Hide lyrics' : 'Show lyrics';
   return (
     <button
       type="button"

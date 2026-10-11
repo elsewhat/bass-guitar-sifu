@@ -5,7 +5,34 @@ source: { file: "Nirvana-Come As You Are-09-11-2026.gp", date: 2026-09-11 }
 bassTrack: "Krist Novoselic | Gibson Ripper | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: vabnZ9-ex7o, sync: [] }
+  youtube:
+    videoId: vabnZ9-ex7o
+    songsterr: { songId: 14, revisionId: 9023394 }
+    sync: [
+      { bar: 1, ms: 490 }, { bar: 2, ms: 1730 }, { bar: 3, ms: 3770 }, { bar: 4, ms: 5850 }, { bar: 5, ms: 7860 },
+      { bar: 6, ms: 9900 }, { bar: 7, ms: 11890 }, { bar: 8, ms: 13890 }, { bar: 9, ms: 15900 }, { bar: 10, ms: 17880 },
+      { bar: 11, ms: 19900 }, { bar: 12, ms: 21910 }, { bar: 13, ms: 23890 }, { bar: 14, ms: 25910 }, { bar: 15, ms: 27880 },
+      { bar: 16, ms: 29920 }, { bar: 17, ms: 31890 }, { bar: 18, ms: 33920 }, { bar: 19, ms: 35920 }, { bar: 20, ms: 37920 },
+      { bar: 21, ms: 39890 }, { bar: 22, ms: 41890 }, { bar: 23, ms: 43890 }, { bar: 24, ms: 45900 }, { bar: 25, ms: 47850 },
+      { bar: 26, ms: 49900 }, { bar: 27, ms: 51880 }, { bar: 28, ms: 53890 }, { bar: 29, ms: 55890 }, { bar: 30, ms: 57890 },
+      { bar: 31, ms: 59900 }, { bar: 32, ms: 61870 }, { bar: 33, ms: 63880 }, { bar: 34, ms: 65880 }, { bar: 35, ms: 67960 },
+      { bar: 36, ms: 69960 }, { bar: 37, ms: 71940 }, { bar: 38, ms: 73960 }, { bar: 39, ms: 75950 }, { bar: 40, ms: 77990 },
+      { bar: 41, ms: 79990 }, { bar: 42, ms: 82020 }, { bar: 43, ms: 84020 }, { bar: 44, ms: 86050 }, { bar: 45, ms: 88060 },
+      { bar: 46, ms: 90110 }, { bar: 47, ms: 92100 }, { bar: 48, ms: 94130 }, { bar: 49, ms: 96110 }, { bar: 50, ms: 98150 },
+      { bar: 51, ms: 100140 }, { bar: 52, ms: 102110 }, { bar: 53, ms: 104060 }, { bar: 54, ms: 106030 }, { bar: 55, ms: 107990 },
+      { bar: 56, ms: 109980 }, { bar: 57, ms: 111910 }, { bar: 58, ms: 113910 }, { bar: 59, ms: 115870 }, { bar: 60, ms: 117900 },
+      { bar: 61, ms: 119830 }, { bar: 62, ms: 121830 }, { bar: 63, ms: 123800 }, { bar: 64, ms: 125750 }, { bar: 65, ms: 127730 },
+      { bar: 66, ms: 129690 }, { bar: 67, ms: 131640 }, { bar: 68, ms: 133600 }, { bar: 69, ms: 135580 }, { bar: 70, ms: 137540 },
+      { bar: 71, ms: 139500 }, { bar: 72, ms: 141460 }, { bar: 73, ms: 143440 }, { bar: 74, ms: 145390 }, { bar: 75, ms: 147310 },
+      { bar: 76, ms: 149290 }, { bar: 77, ms: 151220 }, { bar: 78, ms: 153200 }, { bar: 79, ms: 155180 }, { bar: 80, ms: 157170 },
+      { bar: 81, ms: 159210 }, { bar: 82, ms: 161220 }, { bar: 83, ms: 163200 }, { bar: 84, ms: 165200 }, { bar: 85, ms: 167210 },
+      { bar: 86, ms: 169140 }, { bar: 87, ms: 171150 }, { bar: 88, ms: 173140 }, { bar: 89, ms: 175090 }, { bar: 90, ms: 177090 },
+      { bar: 91, ms: 178990 }, { bar: 92, ms: 180960 }, { bar: 93, ms: 182900 }, { bar: 94, ms: 184870 }, { bar: 95, ms: 186800 },
+      { bar: 96, ms: 188760 }, { bar: 97, ms: 190720 }, { bar: 98, ms: 192700 }, { bar: 99, ms: 194630 }, { bar: 100, ms: 196640 },
+      { bar: 101, ms: 198550 }, { bar: 102, ms: 200570 }, { bar: 103, ms: 202490 }, { bar: 104, ms: 204520 }, { bar: 105, ms: 206390 },
+      { bar: 106, ms: 208400 }, { bar: 107, ms: 210450 }, { bar: 108, ms: 212420 }, { bar: 109, ms: 214390 }, { bar: 110, ms: 216360 },
+      { bar: 111, ms: 218330 }, { bar: 112, ms: 220300 },
+      ]
   music: { source: "Nirvana-Come As You Are-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Nevermind", itunesId: 1440783617 }
 chunks:
@@ -48,5 +75,9 @@ notes: >-
   little finger so the refrain and pre-chorus are played the same way throughout. The shift at
   bar 33 (position 2 → 5) leads into the verse riff and is in the source tab. The main riff is
   fingered 1-2-3 (position 7) in the intro and verse 1 and 2-3-4 (position 6) from verse 2 on,
-  because the solver slides in from below; both are valid under the rules. YouTube: official
-  HD music video on NirvanaVEVO (3:44 vs 3:43 in the score); sync anchors still needed.
+  because the solver slides in from below; both are valid under the rules. YouTube (2026-10-11):
+  Songsterr's default video for this tab, "Nirvana - Come As You Are (Official Music Video)" by
+  NirvanaVEVO (vabnZ9-ex7o). Sync anchors are Songsterr's point per bar (song 14, revision 9023394;
+  npm run fetch-video): 112 anchors for 112 bars, bar 1 at 0:00.49, up to 1.2 s from the score's
+  tempo map (bar 112). To check by ear: bar 107: 2 points merged (the recording has 1.97 s, the
+  score 2.00 s); bars whose length in the recording is far from the score: 1 (×1.25).

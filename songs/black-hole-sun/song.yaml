@@ -5,7 +5,27 @@ source: { file: "Soundgarden-Black Hole Sun-09-14-2026.gp", date: 2026-09-14 }
 bassTrack: "Ben Shepard | Fender Jazz | Bass"
 tempo: { note: "Notated in half time (53 BPM); the recording is about 106 BPM." }
 media:
-  youtube: { videoId: 3mbBbFH9fAg, sync: [] }
+  youtube:
+    videoId: "3mbBbFH9fAg"
+    songsterr: { songId: 227, revisionId: 9085891 }
+    sync: [
+      { bar: 1, ms: 1210 }, { bar: 2, ms: 5900 }, { bar: 3, ms: 10420 }, { bar: 4, ms: 15110 }, { bar: 5, ms: 17530 },
+      { bar: 6, ms: 22100 }, { bar: 7, ms: 26650 }, { bar: 8, ms: 31230 }, { bar: 9, ms: 35870 }, { bar: 10, ms: 40420 },
+      { bar: 11, ms: 45020 }, { bar: 12, ms: 49600 }, { bar: 13, ms: 54190 }, { bar: 14, ms: 56520 }, { bar: 15, ms: 61040 },
+      { bar: 16, ms: 65590 }, { bar: 17, ms: 70080 }, { bar: 18, ms: 74580 }, { bar: 19, ms: 76900 }, { bar: 20, ms: 81450 },
+      { bar: 21, ms: 86000 }, { bar: 22, ms: 90560 }, { bar: 23, ms: 95150 }, { bar: 24, ms: 99750 }, { bar: 25, ms: 104350 },
+      { bar: 26, ms: 108880 }, { bar: 27, ms: 113470 }, { bar: 28, ms: 115750 }, { bar: 29, ms: 120280 }, { bar: 30, ms: 124830 },
+      { bar: 31, ms: 129400 }, { bar: 32, ms: 133910 }, { bar: 33, ms: 138440 }, { bar: 34, ms: 142990 }, { bar: 35, ms: 147470 },
+      { bar: 36, ms: 152020 }, { bar: 37, ms: 154270 }, { bar: 38, ms: 158780 }, { bar: 39, ms: 161030 }, { bar: 40, ms: 165510 },
+      { bar: 41, ms: 167740 }, { bar: 42, ms: 172220 }, { bar: 43, ms: 174360 }, { bar: 44, ms: 179330 }, { bar: 45, ms: 184340 },
+      { bar: 46, ms: 189220 }, { bar: 47, ms: 194190 }, { bar: 48, ms: 199110 }, { bar: 49, ms: 204150 }, { bar: 50, ms: 208700 },
+      { bar: 51, ms: 213180 }, { bar: 52, ms: 217730 }, { bar: 53, ms: 219960 }, { bar: 54, ms: 224510 }, { bar: 55, ms: 229020 },
+      { bar: 56, ms: 233520 }, { bar: 57, ms: 237980 }, { bar: 58, ms: 242480 }, { bar: 59, ms: 246990 }, { bar: 60, ms: 251450 },
+      { bar: 61, ms: 255930 }, { bar: 62, ms: 258160 }, { bar: 63, ms: 262680 }, { bar: 64, ms: 264840 }, { bar: 65, ms: 269370 },
+      { bar: 66, ms: 271620 }, { bar: 67, ms: 275940 }, { bar: 68, ms: 278100 }, { bar: 69, ms: 282560 }, { bar: 70, ms: 284770 },
+      { bar: 71, ms: 289250 }, { bar: 72, ms: 291270 }, { bar: 73, ms: 295770 }, { bar: 74, ms: 297930 }, { bar: 75, ms: 302390 },
+      { bar: 76, ms: 304530 }, { bar: 77, ms: 309640 }, { bar: 78, ms: 313370 }, { bar: 79, ms: 316450 },
+      ]
   music: { source: "Soundgarden-Black Hole Sun-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Superunknown", itunesId: 1440811129 }
 chunks:
@@ -41,5 +61,8 @@ notes: >-
   and 23 take the G with the middle finger in position 4 after the held A♭, then drop to
   position 1 for B♭ during the long notes; in the solo the F octave (fret 3 on the low D and D strings) alternates
   index and middle finger (positions 3 and 2) so the index does not roll across strings at the
-  same fret, which inflates the shift count. No overrides. YouTube: "Soundgarden - Black Hole
-  Sun" on SoundgardenVEVO (the music video, 5:20); sync anchors still needed.
+  same fret, which inflates the shift count. No overrides. YouTube (2026-10-11): Songsterr's default
+  video for this tab, "Soundgarden - Black Hole Sun" by SoundgardenVEVO (3mbBbFH9fAg). Sync anchors
+  are Songsterr's point per bar (song 227, revision 9085891; npm run fetch-video): 79 anchors for 79
+  bars, bar 1 at 0:01.21, up to 3.4 s from the score's tempo map (bar 79). To check by ear: bars
+  whose length in the recording is far from the score: 77 (×0.83), 78 (×0.68).

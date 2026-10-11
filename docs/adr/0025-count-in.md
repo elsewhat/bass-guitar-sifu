@@ -1,6 +1,6 @@
 # ADR-0025: One-bar count-in before playback starts
 
-Status: Proposed (implemented, awaiting owner review)
+Status: Proposed (implemented, awaiting owner review), amended by ADR-0028 (the video is made ready during the count-in)
 Date: 2026-09-30
 Amends: ADR-0018 (`PlaybackClock.play` takes options; new `countInState()`).
 

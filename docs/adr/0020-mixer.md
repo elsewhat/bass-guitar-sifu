@@ -1,6 +1,6 @@
 # ADR-0020: Mixer per source
 
-Status: Proposed, amended by ADR-0022 (Music channel)
+Status: Proposed, amended by ADR-0022 (Music channel) and ADR-0028 (the Video channel is applied)
 Date: 2026-09-29
 Amends: ADR-0008 (sources), ADR-0019 (Synth track mix).
 

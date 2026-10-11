@@ -5,7 +5,40 @@ source: { file: "Nirvana-Smells Like Teen Spirit-09-26-2026.gp", date: 2026-09-2
 bassTrack: "Krist Novoselic | Gibson Ripper | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: 7TDeBi34OtE, sync: [] }
+  youtube:
+    videoId: hqcoStdsQog
+    songsterr: { songId: 269, revisionId: 9340477 }
+    sync: [
+      { bar: 1, ms: 330 }, { bar: 2, ms: 2510 }, { bar: 3, ms: 4690 }, { bar: 4, ms: 6940 }, { bar: 5, ms: 9030 },
+      { bar: 6, ms: 11080 }, { bar: 7, ms: 13070 }, { bar: 8, ms: 15140 }, { bar: 9, ms: 17180 }, { bar: 10, ms: 19200 },
+      { bar: 11, ms: 21220 }, { bar: 12, ms: 23220 }, { bar: 13, ms: 25240 }, { bar: 14, ms: 27310 }, { bar: 15, ms: 29420 },
+      { bar: 16, ms: 31460 }, { bar: 17, ms: 33530 }, { bar: 18, ms: 35640 }, { bar: 19, ms: 37660 }, { bar: 20, ms: 39780 },
+      { bar: 21, ms: 41840 }, { bar: 22, ms: 43930 }, { bar: 23, ms: 45980 }, { bar: 24, ms: 48090 }, { bar: 25, ms: 50130 },
+      { bar: 26, ms: 52220 }, { bar: 27, ms: 54240 }, { bar: 28, ms: 56310 }, { bar: 29, ms: 58400 }, { bar: 30, ms: 60420 },
+      { bar: 31, ms: 62440 }, { bar: 32, ms: 64530 }, { bar: 33, ms: 66500 }, { bar: 34, ms: 68570 }, { bar: 35, ms: 70640 },
+      { bar: 36, ms: 72680 }, { bar: 37, ms: 74680 }, { bar: 38, ms: 76740 }, { bar: 39, ms: 78760 }, { bar: 40, ms: 80810 },
+      { bar: 41, ms: 82850 }, { bar: 42, ms: 84870 }, { bar: 43, ms: 86870 }, { bar: 44, ms: 88910 }, { bar: 45, ms: 90950 },
+      { bar: 46, ms: 93040 }, { bar: 47, ms: 95110 }, { bar: 48, ms: 97150 }, { bar: 49, ms: 99150 }, { bar: 50, ms: 101260 },
+      { bar: 51, ms: 103280 }, { bar: 52, ms: 105370 }, { bar: 53, ms: 107440 }, { bar: 54, ms: 109510 }, { bar: 55, ms: 111570 },
+      { bar: 56, ms: 113660 }, { bar: 57, ms: 115710 }, { bar: 58, ms: 117840 }, { bar: 59, ms: 119910 }, { bar: 60, ms: 121950 },
+      { bar: 61, ms: 124040 }, { bar: 62, ms: 126110 }, { bar: 63, ms: 128150 }, { bar: 64, ms: 130260 }, { bar: 65, ms: 132280 },
+      { bar: 66, ms: 134350 }, { bar: 67, ms: 136350 }, { bar: 68, ms: 138370 }, { bar: 69, ms: 140360 }, { bar: 70, ms: 142430 },
+      { bar: 71, ms: 144450 }, { bar: 72, ms: 146520 }, { bar: 73, ms: 148540 }, { bar: 74, ms: 150580 }, { bar: 75, ms: 152600 },
+      { bar: 76, ms: 154640 }, { bar: 77, ms: 156670 }, { bar: 78, ms: 158690 }, { bar: 79, ms: 160750 }, { bar: 80, ms: 162750 },
+      { bar: 81, ms: 164770 }, { bar: 82, ms: 166840 }, { bar: 83, ms: 168860 }, { bar: 84, ms: 170880 }, { bar: 85, ms: 172900 },
+      { bar: 86, ms: 174920 }, { bar: 87, ms: 176890 }, { bar: 88, ms: 178960 }, { bar: 89, ms: 180980 }, { bar: 90, ms: 182970 },
+      { bar: 91, ms: 185020 }, { bar: 92, ms: 187010 }, { bar: 93, ms: 189030 }, { bar: 94, ms: 191030 }, { bar: 95, ms: 193100 },
+      { bar: 96, ms: 195120 }, { bar: 97, ms: 197140 }, { bar: 98, ms: 199200 }, { bar: 99, ms: 201200 }, { bar: 100, ms: 203270 },
+      { bar: 101, ms: 205260 }, { bar: 102, ms: 207310 }, { bar: 103, ms: 209420 }, { bar: 104, ms: 211440 }, { bar: 105, ms: 213530 },
+      { bar: 106, ms: 215570 }, { bar: 107, ms: 217620 }, { bar: 108, ms: 219680 }, { bar: 109, ms: 221730 }, { bar: 110, ms: 223820 },
+      { bar: 111, ms: 225860 }, { bar: 112, ms: 227900 }, { bar: 113, ms: 229970 }, { bar: 114, ms: 232040 }, { bar: 115, ms: 234060 },
+      { bar: 116, ms: 236120 }, { bar: 117, ms: 238170 }, { bar: 118, ms: 240160 }, { bar: 119, ms: 242180 }, { bar: 120, ms: 244200 },
+      { bar: 121, ms: 246180 }, { bar: 122, ms: 248200 }, { bar: 123, ms: 250240 }, { bar: 124, ms: 252260 }, { bar: 125, ms: 254260 },
+      { bar: 126, ms: 256330 }, { bar: 127, ms: 258350 }, { bar: 128, ms: 260340 }, { bar: 129, ms: 262360 }, { bar: 130, ms: 264380 },
+      { bar: 131, ms: 266380 }, { bar: 132, ms: 268400 }, { bar: 133, ms: 270370 }, { bar: 134, ms: 272420 }, { bar: 135, ms: 274480 },
+      { bar: 136, ms: 276530 }, { bar: 137, ms: 278550 }, { bar: 138, ms: 280610 }, { bar: 139, ms: 282660 }, { bar: 140, ms: 284680 },
+      { bar: 141, ms: 286700 }, { bar: 142, ms: 288600 }, { bar: 143, ms: 290670 }, { bar: 144, ms: 292690 }, { bar: 145, ms: 294680 },
+      ]
   music: { source: "Nirvana-Smells Like Teen Spirit-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Nevermind", itunesId: 1440783617 }
 chunks:
@@ -52,6 +85,8 @@ notes: >-
   Ending: a low F held for four bars. Tempo 113 BPM for the intro, 117 from bar 5, as on the
   record. Fingering: no re-tabs and no overrides. The six shifts of 3 frets (bar 4 twice, 47, 49,
   83, 85) are the F/B♭ at fret 1 against A♭/D♭ at fret 4, and the drop from the E6–E5–E4
-  figure back to F on E1. A four-fret span cannot be held in one low-position 1-2-4 box. YouTube: "Nirvana - Topic"
-  upload of the album track (5:02 vs 4:58 in the score); the NirvanaVEVO music video is a
-  4:38 edit, so it was not used. Sync anchors still needed.
+  figure back to F on E1. A four-fret span cannot be held in one low-position 1-2-4 box. YouTube
+  (2026-10-11): Songsterr's default video for this tab, "Smells Like Teen Spirit (Remastered 2021)"
+  by Nirvana - Topic (hqcoStdsQog). Sync anchors are Songsterr's point per bar (song 269, revision
+  9340477; npm run fetch-video): 145 anchors for 145 bars, bar 1 at 0:00.33, up to 1.3 s from the
+  score's tempo map (bar 145).

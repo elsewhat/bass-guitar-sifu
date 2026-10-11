@@ -5,7 +5,33 @@ source: { file: "Rage Against the Machine-Freedom-09-23-2026.gp", date: 2026-09-
 bassTrack: "Tim Commerford | Music Man Stingray | Bass"
 tempo: { note: "Tempo map follows the recording: 72 BPM in the verses, 120 in the refrains, slowing to 55 and 40 at the end." }
 media:
-  youtube: { videoId: H_vQt_v8Jmw, sync: [] }
+  youtube:
+    videoId: H_vQt_v8Jmw
+    songsterr: { songId: 10118, revisionId: 9284035 }
+    sync: [
+      { bar: 1, ms: 500 }, { bar: 2, ms: 3990 }, { bar: 3, ms: 7220 }, { bar: 4, ms: 10500 }, { bar: 5, ms: 13720 },
+      { bar: 6, ms: 17000 }, { bar: 7, ms: 20220 }, { bar: 8, ms: 23500 }, { bar: 9, ms: 26700 }, { bar: 10, ms: 30070 },
+      { bar: 11, ms: 33440 }, { bar: 12, ms: 36800 }, { bar: 13, ms: 40190 }, { bar: 14, ms: 43470 }, { bar: 15, ms: 46740 },
+      { bar: 16, ms: 50040 }, { bar: 17, ms: 53270 }, { bar: 18, ms: 56520 }, { bar: 19, ms: 59790 }, { bar: 20, ms: 63070 },
+      { bar: 21, ms: 66290 }, { bar: 22, ms: 69660 }, { bar: 23, ms: 73050 }, { bar: 24, ms: 76420 }, { bar: 25, ms: 79780 },
+      { bar: 26, ms: 83150 }, { bar: 27, ms: 86490 }, { bar: 28, ms: 89840 }, { bar: 29, ms: 93200 }, { bar: 30, ms: 96600 },
+      { bar: 31, ms: 100010 }, { bar: 32, ms: 103470 }, { bar: 33, ms: 105230 }, { bar: 34, ms: 107250 }, { bar: 35, ms: 109270 },
+      { bar: 36, ms: 111270 }, { bar: 37, ms: 113290 }, { bar: 38, ms: 115310 }, { bar: 39, ms: 117330 }, { bar: 40, ms: 119370 },
+      { bar: 41, ms: 121390 }, { bar: 42, ms: 123410 }, { bar: 43, ms: 125410 }, { bar: 44, ms: 127410 }, { bar: 45, ms: 128170 },
+      { bar: 46, ms: 129960 }, { bar: 47, ms: 133240 }, { bar: 48, ms: 136510 }, { bar: 49, ms: 139710 }, { bar: 50, ms: 142940 },
+      { bar: 51, ms: 146220 }, { bar: 52, ms: 149440 }, { bar: 53, ms: 152690 }, { bar: 54, ms: 155900 }, { bar: 55, ms: 161540 },
+      { bar: 56, ms: 167180 }, { bar: 57, ms: 172920 }, { bar: 58, ms: 178520 }, { bar: 59, ms: 181770 }, { bar: 60, ms: 185130 },
+      { bar: 61, ms: 188450 }, { bar: 62, ms: 191750 }, { bar: 63, ms: 195070 }, { bar: 64, ms: 198410 }, { bar: 65, ms: 201760 },
+      { bar: 66, ms: 205100 }, { bar: 67, ms: 208420 }, { bar: 68, ms: 211770 }, { bar: 69, ms: 215130 }, { bar: 70, ms: 218480 },
+      { bar: 71, ms: 221750 }, { bar: 72, ms: 223490 }, { bar: 73, ms: 225490 }, { bar: 74, ms: 227460 }, { bar: 75, ms: 229440 },
+      { bar: 76, ms: 231430 }, { bar: 77, ms: 233430 }, { bar: 78, ms: 235430 }, { bar: 79, ms: 237420 }, { bar: 80, ms: 239190 },
+      { bar: 81, ms: 241300 }, { bar: 82, ms: 243320 }, { bar: 83, ms: 245370 }, { bar: 84, ms: 247340 }, { bar: 85, ms: 249380 },
+      { bar: 86, ms: 251400 }, { bar: 87, ms: 253450 }, { bar: 88, ms: 255330 }, { bar: 89, ms: 256720 }, { bar: 90, ms: 261250 },
+      { bar: 91, ms: 265910 }, { bar: 92, ms: 270090 }, { bar: 93, ms: 274690 }, { bar: 94, ms: 278960 }, { bar: 95, ms: 283350 },
+      { bar: 96, ms: 287720 }, { bar: 97, ms: 292250 }, { bar: 98, ms: 296740 }, { bar: 99, ms: 301090 }, { bar: 100, ms: 305410 },
+      { bar: 101, ms: 309720 }, { bar: 102, ms: 313980 }, { bar: 103, ms: 318160 }, { bar: 104, ms: 322310 }, { bar: 105, ms: 326630 },
+      { bar: 106, ms: 332110 }, { bar: 107, ms: 336030 }, { bar: 108, ms: 340730 }, { bar: 109, ms: 345210 }, { bar: 110, ms: 350300 },
+      ]
   music: { source: "Rage Against the Machine-Freedom-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Rage Against the Machine", itunesId: 191450810 }
 chunks:
@@ -45,8 +71,13 @@ notes: >-
   The Outro riff (D0 D3 D5 D6 A0 A3 A4 A5) is 14 bars, split 7 + 7. Its G♯ on D6 takes a small
   shift up from the 1-2-4 box at position 3, and the open A that follows gives time to shift back.
   Outro end: the last riff bar into the D5 chords (40 BPM) and the held D.
-  YouTube: the official video on RATMVEVO; it may have extra footage around the song. The album
-  track is on the Topic channel as 7pAr6B7fqyM if the video's timing turns out not to fit.
+  YouTube (2026-10-11): Songsterr's default video for this tab, "Rage Against The Machine - Freedom
+  (Official HD Video)" by RATMVEVO (H_vQt_v8Jmw). Sync anchors are Songsterr's point per bar (song
+  10118, revision 9284035; npm run fetch-video): 110 anchors for 110 bars, bar 1 at 0:00.50, up to
+  5.5 s from the score's tempo map (bar 110). To check by ear: bar 89: 2 points merged (the
+  recording has 4.53 s, the score 4.36 s); 1 extra point at the end ignored; bars whose length in
+  the recording is far from the score: 45 (×0.57), 88 (×0.69), 105 (×1.25), 106 (×0.65), 107
+  (×0.78), 108 (×0.75).
 lyrics:
   # Pasted by the owner for private practice; unsynced, ADR-0024.
   text: |

@@ -1,6 +1,6 @@
 # ADR-0015: Song intake through the `preprocess-song` agent skill
 
-Status: Accepted, amended by ADR-0022 (the paired MP3 and its offset)
+Status: Accepted, amended by ADR-0022 (the paired MP3 and its offset) and ADR-0028 (the video and its sync come from Songsterr through `npm run fetch-video`)
 Date: 2026-09-28
 Amends: ADR-0006 (chunk naming heuristic).
 

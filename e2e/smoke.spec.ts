@@ -141,6 +141,112 @@ test('Music plays the rendered MP3 at full speed only and hands its position to 
   await expect(page.getByTestId('tempo')).toHaveText('95%'); // the chosen tempo is back
 });
 
+/**
+ * A stand-in for YouTube's IFrame API, so the YouTube source is tested without the network: the
+ * same commands and states, a video time that runs on while "playing", and `window.__yt` for the
+ * test to read the commands and to act as the user clicking on the video.
+ */
+const YOUTUBE_STUB = `(() => {
+  class Player {
+    constructor(el, options) {
+      Object.assign(this, { o: options, state: 5, t: 0, at: 0, rate: 1, muted: false, volume: 100, calls: [], videoId: options.videoId });
+      this.frame = document.createElement('iframe');
+      el.replaceWith(this.frame);
+      window.__yt = this;
+      setTimeout(() => options.events.onReady({ target: this }), 0);
+    }
+    set(state, t = this.getCurrentTime()) { this.t = t; this.at = performance.now(); this.state = state; this.o.events.onStateChange({ data: state }); }
+    getCurrentTime() { return this.state === 1 ? this.t + ((performance.now() - this.at) / 1000) * this.rate : this.t; }
+    getPlayerState() { return this.state; }
+    playVideo() { this.calls.push('play'); setTimeout(() => this.set(1), 30); }
+    pauseVideo() { this.calls.push('pause'); if (this.state === 1 || this.state === 3) this.set(2); }
+    seekTo(s) { this.calls.push('seek ' + s.toFixed(2)); const playing = this.state === 1; this.t = s; this.at = performance.now(); if (playing) { this.state = 3; setTimeout(() => this.state === 3 && this.set(1), 30); } }
+    loadVideoById({ startSeconds }) { this.calls.push('load ' + startSeconds.toFixed(2)); this.t = startSeconds; this.state = 3; setTimeout(() => this.state === 3 && this.set(1), 50); }
+    stopVideo() { this.set(5); }
+    setPlaybackRate(r) { this.t = this.getCurrentTime(); this.at = performance.now(); this.rate = r; this.o.events.onPlaybackRateChange({ data: r }); }
+    setVolume(v) { this.volume = v; }
+    mute() { this.muted = true; }
+    unMute() { this.muted = false; }
+    getIframe() { return this.frame; }
+    destroy() { this.frame.remove(); }
+  }
+  window.YT = { Player };
+  window.onYouTubeIframeAPIReady();
+})();`;
+
+interface YouTubeStub {
+  videoId: string;
+  state: number;
+  rate: number;
+  volume: number;
+  muted: boolean;
+  calls: string[];
+  getCurrentTime(): number;
+  set(state: number, t?: number): void;
+}
+
+test('YouTube plays the synced video: count-in, tempo, chunks, loop, and clicks on the video (ADR-0028)', async ({ page }) => {
+  await page.route('https://www.youtube.com/iframe_api', (route) => route.fulfill({ contentType: 'text/javascript', body: YOUTUBE_STUB }));
+  const yt = <T>(read: (stub: YouTubeStub) => T) => page.evaluate(`(${read.toString()})(window.__yt)`) as Promise<T>;
+  await openSong(page, 'creep');
+  const video = page.getByRole('region', { name: 'Video' });
+  const transport = page.getByRole('region', { name: 'Loop and tempo' });
+  await page.getByRole('button', { name: /^Play through: each chunk once/ }).click(); // loop this chunk
+
+  await page.getByRole('button', { name: 'YouTube' }).click();
+  await expect(video).toHaveAttribute('data-source-status', 'ready');
+  expect(await yt((s) => s.videoId)).toBe('XFkzRNyygfk'); // the video Songsterr plays with the tab
+  await expect(video.getByText('Loop 0:00–0:10 · video time')).toBeVisible(); // bars 1–4 in the recording
+  await expect(page.getByTestId('subtitles')).toContainText('When you were here before'); // synced lyrics as subtitles
+  expect(await yt((s) => s.volume)).toBe(80); // master 80 % × Video 100 %
+
+  // Play: the video is made ready at bar 1 of the recording (0:00.14) during the count-in, then plays.
+  const before = await stripX(page);
+  await transport.getByRole('button', { name: 'Play', exact: true }).click();
+  await expect(page.getByTestId('count-in-cells')).toHaveAttribute('data-count-in', 'true');
+  await expect.poll(() => yt((s) => s.calls.join())).toBe('load 0.14,pause,seek 0.14');
+  expect(await yt((s) => s.state)).toBe(2); // paused at the place while the count-in plays
+  await expect(page.getByTestId('count-in-cells')).toHaveAttribute('data-count-in', 'false');
+  await expect.poll(() => yt((s) => s.state)).toBe(1);
+  await expect.poll(() => stripX(page)).toBeLessThan(before - 20);
+  expect(await yt((s) => s.muted)).toBe(false);
+
+  // The tempo is the video's playback rate.
+  await page.getByRole('button', { name: 'Slower' }).click();
+  await expect(page.getByTestId('tempo')).toHaveText('95%');
+  expect(await yt((s) => s.rate)).toBe(0.95);
+  await page.getByRole('button', { name: 'Faster' }).click();
+
+  // The end of the chunk (bar 5 at 0:10.15): back to its start, pass 2.
+  await yt((s) => s.set(1, 9.9));
+  await expect(page.getByTestId('pass-counter')).toHaveText('Pass 2');
+  expect(await yt((s) => s.calls.at(-1))).toBe('seek 0.14');
+  await expect.poll(() => yt((s) => s.getCurrentTime())).toBeLessThan(2);
+
+  // A click on the video pauses and plays it; the transport follows.
+  await page.waitForTimeout(1100); // not within a second of the clock's own seek
+  await yt((s) => s.set(2));
+  await expect(transport.getByRole('button', { name: 'Play', exact: true })).toBeVisible();
+  await page.waitForTimeout(1100);
+  await yt((s) => s.set(1));
+  await expect(transport.getByRole('button', { name: 'Pause' })).toBeVisible();
+
+  // Another chunk while playing: the video waits at bar 9 (0:20.29) for the count-in.
+  await page.getByRole('button', { name: 'Chunk 3, Verse 1 a, bars 9–12' }).click();
+  await expect.poll(() => yt((s) => s.calls.at(-1))).toBe('seek 20.29');
+  await expect(video.getByText('Loop 0:20–0:30 · video time')).toBeVisible();
+  await expect.poll(() => yt((s) => s.calls.at(-1)), { timeout: 10_000 }).toBe('play');
+  await transport.getByRole('button', { name: 'Pause' }).click();
+  expect(await yt((s) => s.state)).toBe(2);
+
+  // Back to the Metronome: the video is gone and the position is kept.
+  const paused = await stripX(page);
+  await page.getByRole('button', { name: 'Metronome' }).click();
+  await expect(video.locator('iframe')).toHaveCount(0);
+  await expect(video.getByText('Audio count')).toBeVisible();
+  expect(Math.abs((await stripX(page)) - paused)).toBeLessThan(2);
+});
+
 test('Music is disabled for a song without a rendered MP3', async ({ page }) => {
   await openSong(page);
   await expect(page.getByRole('button', { name: 'Music', exact: true })).toBeDisabled();

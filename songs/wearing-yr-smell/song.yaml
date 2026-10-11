@@ -5,7 +5,35 @@ source: { file: "Motorpsycho-wearing yr smell-04-07-2025.gp", date: 2025-04-07 }
 bassTrack: "Electric Bass (finger)"
 tempo: { note: null }
 media:
-  youtube: { videoId: pccEF5TsrHU, sync: [] }
+  youtube:
+    videoId: "9V80UGQGblo"
+    songsterr: { songId: 1265723, revisionId: 1690241 }
+    sync: [
+      { bar: 1, ms: 570 }, { bar: 2, ms: 2310 }, { bar: 3, ms: 4040 }, { bar: 4, ms: 5770 }, { bar: 5, ms: 7510 },
+      { bar: 6, ms: 9250 }, { bar: 7, ms: 11020 }, { bar: 8, ms: 12810 }, { bar: 9, ms: 14570 }, { bar: 10, ms: 16310 },
+      { bar: 11, ms: 18070 }, { bar: 12, ms: 19830 }, { bar: 13, ms: 21580 }, { bar: 14, ms: 23330 }, { bar: 15, ms: 25090 },
+      { bar: 16, ms: 26840 }, { bar: 17, ms: 28610 }, { bar: 18, ms: 30340 }, { bar: 19, ms: 32180 }, { bar: 20, ms: 33950 },
+      { bar: 21, ms: 35710 }, { bar: 22, ms: 37450 }, { bar: 23, ms: 39210 }, { bar: 24, ms: 40920 }, { bar: 25, ms: 42680 },
+      { bar: 26, ms: 44430 }, { bar: 27, ms: 46180 }, { bar: 28, ms: 47920 }, { bar: 29, ms: 49680 }, { bar: 30, ms: 51430 },
+      { bar: 31, ms: 53200 }, { bar: 32, ms: 54920 }, { bar: 33, ms: 56700 }, { bar: 34, ms: 58450 }, { bar: 35, ms: 60220 },
+      { bar: 36, ms: 61980 }, { bar: 37, ms: 63730 }, { bar: 38, ms: 65490 }, { bar: 39, ms: 67230 }, { bar: 40, ms: 68970 },
+      { bar: 41, ms: 70730 }, { bar: 42, ms: 72470 }, { bar: 43, ms: 74230 }, { bar: 44, ms: 76000 }, { bar: 45, ms: 77760 },
+      { bar: 46, ms: 79530 }, { bar: 47, ms: 81260 }, { bar: 48, ms: 82990 }, { bar: 49, ms: 84760 }, { bar: 50, ms: 86520 },
+      { bar: 51, ms: 88290 }, { bar: 52, ms: 90040 }, { bar: 53, ms: 91800 }, { bar: 54, ms: 93530 }, { bar: 55, ms: 95280 },
+      { bar: 56, ms: 97030 }, { bar: 57, ms: 98800 }, { bar: 58, ms: 100550 }, { bar: 59, ms: 102310 }, { bar: 60, ms: 104050 },
+      { bar: 61, ms: 105800 }, { bar: 62, ms: 107550 }, { bar: 63, ms: 109290 }, { bar: 64, ms: 111050 }, { bar: 65, ms: 112820 },
+      { bar: 66, ms: 114600 }, { bar: 67, ms: 116350 }, { bar: 68, ms: 118110 }, { bar: 69, ms: 119860 }, { bar: 70, ms: 121620 },
+      { bar: 71, ms: 123370 }, { bar: 72, ms: 125120 }, { bar: 73, ms: 126870 }, { bar: 74, ms: 128630 }, { bar: 75, ms: 130380 },
+      { bar: 76, ms: 132150 }, { bar: 77, ms: 133880 }, { bar: 78, ms: 135630 }, { bar: 79, ms: 137370 }, { bar: 80, ms: 139110 },
+      { bar: 81, ms: 140840 }, { bar: 82, ms: 142600 }, { bar: 83, ms: 144370 }, { bar: 84, ms: 146120 }, { bar: 85, ms: 147880 },
+      { bar: 86, ms: 149650 }, { bar: 87, ms: 151460 }, { bar: 88, ms: 153210 }, { bar: 89, ms: 154970 }, { bar: 90, ms: 156690 },
+      { bar: 91, ms: 158450 }, { bar: 92, ms: 160180 }, { bar: 93, ms: 161930 }, { bar: 94, ms: 163670 }, { bar: 95, ms: 165460 },
+      { bar: 96, ms: 167210 }, { bar: 97, ms: 168960 }, { bar: 98, ms: 170710 }, { bar: 99, ms: 172470 }, { bar: 100, ms: 174230 },
+      { bar: 101, ms: 175990 }, { bar: 102, ms: 177760 }, { bar: 103, ms: 179520 }, { bar: 104, ms: 181260 }, { bar: 105, ms: 183010 },
+      { bar: 106, ms: 184760 }, { bar: 107, ms: 186530 }, { bar: 108, ms: 188290 }, { bar: 109, ms: 190030 }, { bar: 110, ms: 191780 },
+      { bar: 111, ms: 193510 }, { bar: 112, ms: 195260 }, { bar: 113, ms: 197010 }, { bar: 114, ms: 198760 }, { bar: 115, ms: 200530 },
+      { bar: 116, ms: 202270 }, { bar: 117, ms: 204030 }, { bar: 118, ms: 205790 }, { bar: 119, ms: 207550 }, { bar: 120, ms: 209310 },
+      ]
   music: { source: "Motorpsycho-wearing yr smell-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Timothy's Monster", itunesId: 1701791348 }
 chunks:
@@ -59,8 +87,10 @@ notes: >-
   climb (a break to shift to position 12; play A10 if you prefer the fretted tone); (5) bar 91
   open D → A5 to stay in position 5 for the next bar. Bars 11/15/35 (B on A2, D on A5) use
   index and little finger with a one-fret pivot (1-2-4 box, ADR-0007 rule 5).
-  YouTube: "Wearing Yr Smell" on "Motorpsycho - Topic" (Timothy's Monster, 1994), 3:36 vs
-  3:30 in the score. Sync anchors still needed.
+  YouTube (2026-10-11): Songsterr's default video for this tab, "Motorpsycho - Wearing your smell"
+  by diangle (9V80UGQGblo). Sync anchors are Songsterr's point per bar (song 1265723, revision
+  1690241; npm run fetch-video): 120 anchors for 120 bars, bar 1 at 0:00.57, up to 0.3 s from the
+  score's tempo map (bar 108).
 lyrics:
   # Pasted by the owner (Motorpsycho's shared lyrics, motorpsycho.fix.no); unsynced, ADR-0024.
   text: |

@@ -5,7 +5,35 @@ source: { file: "The White Stripes-Seven Nation Army (With Bass Guitar)-09-30-20
 bassTrack: "Electric Bass (finger)"
 tempo: { note: null }
 media:
-  youtube: { videoId: 0J2QdDbelmY, sync: [] }
+  youtube:
+    videoId: oPxPMCmnxno
+    songsterr: { songId: 397405, revisionId: 9427664 }
+    sync: [
+      { bar: 1, ms: 2990 }, { bar: 2, ms: 5080 }, { bar: 3, ms: 7060 }, { bar: 4, ms: 9100 }, { bar: 5, ms: 11070 },
+      { bar: 6, ms: 13090 }, { bar: 7, ms: 15020 }, { bar: 8, ms: 16970 }, { bar: 9, ms: 18900 }, { bar: 10, ms: 20830 },
+      { bar: 11, ms: 22750 }, { bar: 12, ms: 24630 }, { bar: 13, ms: 26540 }, { bar: 14, ms: 28440 }, { bar: 15, ms: 30350 },
+      { bar: 16, ms: 32270 }, { bar: 17, ms: 34220 }, { bar: 18, ms: 36200 }, { bar: 19, ms: 38100 }, { bar: 20, ms: 39980 },
+      { bar: 21, ms: 41910 }, { bar: 22, ms: 43860 }, { bar: 23, ms: 45790 }, { bar: 24, ms: 47690 }, { bar: 25, ms: 49690 },
+      { bar: 26, ms: 51710 }, { bar: 27, ms: 53750 }, { bar: 28, ms: 55680 }, { bar: 29, ms: 57630 }, { bar: 30, ms: 59580 },
+      { bar: 31, ms: 61530 }, { bar: 32, ms: 63480 }, { bar: 33, ms: 65430 }, { bar: 34, ms: 67410 }, { bar: 35, ms: 69440 },
+      { bar: 36, ms: 71370 }, { bar: 37, ms: 73330 }, { bar: 38, ms: 75490 }, { bar: 39, ms: 77560 }, { bar: 40, ms: 79540 },
+      { bar: 41, ms: 81570 }, { bar: 42, ms: 83590 }, { bar: 43, ms: 85520 }, { bar: 44, ms: 87470 }, { bar: 45, ms: 89440 },
+      { bar: 46, ms: 91390 }, { bar: 47, ms: 93340 }, { bar: 48, ms: 95320 }, { bar: 49, ms: 97270 }, { bar: 50, ms: 99170 },
+      { bar: 51, ms: 101120 }, { bar: 52, ms: 103050 }, { bar: 53, ms: 105000 }, { bar: 54, ms: 106970 }, { bar: 55, ms: 108900 },
+      { bar: 56, ms: 110830 }, { bar: 57, ms: 112710 }, { bar: 58, ms: 114630 }, { bar: 59, ms: 116540 }, { bar: 60, ms: 118440 },
+      { bar: 61, ms: 120420 }, { bar: 62, ms: 122460 }, { bar: 63, ms: 124460 }, { bar: 64, ms: 126410 }, { bar: 65, ms: 128330 },
+      { bar: 66, ms: 130350 }, { bar: 67, ms: 132330 }, { bar: 68, ms: 134280 }, { bar: 69, ms: 136250 }, { bar: 70, ms: 138230 },
+      { bar: 71, ms: 140150 }, { bar: 72, ms: 142100 }, { bar: 73, ms: 144050 }, { bar: 74, ms: 146070 }, { bar: 75, ms: 147980 },
+      { bar: 76, ms: 149950 }, { bar: 77, ms: 151930 }, { bar: 78, ms: 153810 }, { bar: 79, ms: 155710 }, { bar: 80, ms: 157670 },
+      { bar: 81, ms: 159630 }, { bar: 82, ms: 161740 }, { bar: 83, ms: 163810 }, { bar: 84, ms: 165920 }, { bar: 85, ms: 167850 },
+      { bar: 86, ms: 169890 }, { bar: 87, ms: 171780 }, { bar: 88, ms: 173840 }, { bar: 89, ms: 175620 }, { bar: 90, ms: 177710 },
+      { bar: 91, ms: 179570 }, { bar: 92, ms: 181600 }, { bar: 93, ms: 183510 }, { bar: 94, ms: 185470 }, { bar: 95, ms: 187460 },
+      { bar: 96, ms: 189400 }, { bar: 97, ms: 191300 }, { bar: 98, ms: 193300 }, { bar: 99, ms: 195220 }, { bar: 100, ms: 197140 },
+      { bar: 101, ms: 198980 }, { bar: 102, ms: 200900 }, { bar: 103, ms: 202730 }, { bar: 104, ms: 204800 }, { bar: 105, ms: 206720 },
+      { bar: 106, ms: 208720 }, { bar: 107, ms: 210700 }, { bar: 108, ms: 212680 }, { bar: 109, ms: 214620 }, { bar: 110, ms: 216570 },
+      { bar: 111, ms: 218500 }, { bar: 112, ms: 220430 }, { bar: 113, ms: 222420 }, { bar: 114, ms: 224400 }, { bar: 115, ms: 226370 },
+      { bar: 116, ms: 228350 }, { bar: 117, ms: 230280 },
+      ]
   music: { source: "The White Stripes-Seven Nation Army (With Bass Guitar)-10-02-2026.mp3", offsetMs: 0 }
 cover: { album: "Elephant", itunesId: 1533513536 }
 chunks:
@@ -47,8 +75,10 @@ notes: >-
   D E figure before each break is its own chunk. "Break 2 / Guitar solo" is shortened to Solo.
   Fingering: the riff ends on B (A string fret 2) and restarts on E (fret 7), so every second
   bar shifts from position 2 to 5; this is the riff itself, no overrides. 124 BPM steady,
-  matching the record. YouTube: official music video on The White Stripes channel (3:58; the
-  album audio is 3:52 on "The White Stripes - Topic", D_QLxj8jCF0).
+  matching the record. YouTube (2026-10-11): Songsterr's default video for this tab, "The White
+  Stripes - Seven Nation Army in Standard Tuning with 4 Count" by GOBBLESS GUITAR (oPxPMCmnxno).
+  Sync anchors are Songsterr's point per bar (song 397405, revision 9427664; npm run fetch-video):
+  117 anchors for 117 bars, bar 1 at 0:02.99, up to 2.8 s from the score's tempo map (bar 116).
 lyrics:
   # Pasted by the owner for private practice; unsynced, ADR-0024.
   text: |

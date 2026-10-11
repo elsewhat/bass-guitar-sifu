@@ -5,7 +5,27 @@ source: { file: "Rage Against the Machine-Bombtrack-09-20-2026.gp", date: 2026-0
 bassTrack: "Tim Commerford - Bass"
 tempo: { note: "Tempo map follows the recording: 85 and 79 BPM in bars 1–2, 76 BPM from bar 3." }
 media:
-  youtube: { videoId: MUaL1FnotRQ, sync: [] }
+  youtube:
+    videoId: MUaL1FnotRQ
+    songsterr: { songId: 461, revisionId: 9212199 }
+    sync: [
+      { bar: 1, ms: 420 }, { bar: 2, ms: 3440 }, { bar: 3, ms: 6470 }, { bar: 4, ms: 9500 }, { bar: 5, ms: 12560 },
+      { bar: 6, ms: 15610 }, { bar: 7, ms: 18720 }, { bar: 8, ms: 21730 }, { bar: 9, ms: 24800 }, { bar: 10, ms: 28030 },
+      { bar: 11, ms: 31130 }, { bar: 12, ms: 34300 }, { bar: 13, ms: 37430 }, { bar: 14, ms: 40540 }, { bar: 15, ms: 43650 },
+      { bar: 16, ms: 46820 }, { bar: 17, ms: 49960 }, { bar: 18, ms: 53090 }, { bar: 19, ms: 56360 }, { bar: 20, ms: 59500 },
+      { bar: 21, ms: 62730 }, { bar: 22, ms: 65910 }, { bar: 23, ms: 69140 }, { bar: 24, ms: 72320 }, { bar: 25, ms: 75540 },
+      { bar: 26, ms: 78750 }, { bar: 27, ms: 81950 }, { bar: 28, ms: 85170 }, { bar: 29, ms: 88390 }, { bar: 30, ms: 91570 },
+      { bar: 31, ms: 94800 }, { bar: 32, ms: 97960 }, { bar: 33, ms: 101130 }, { bar: 34, ms: 104360 }, { bar: 35, ms: 107480 },
+      { bar: 36, ms: 110590 }, { bar: 37, ms: 113720 }, { bar: 38, ms: 116880 }, { bar: 39, ms: 119990 }, { bar: 40, ms: 123120 },
+      { bar: 41, ms: 126250 }, { bar: 42, ms: 129360 }, { bar: 43, ms: 132510 }, { bar: 44, ms: 135680 }, { bar: 45, ms: 138900 },
+      { bar: 46, ms: 142130 }, { bar: 47, ms: 145320 }, { bar: 48, ms: 148430 }, { bar: 49, ms: 151640 }, { bar: 50, ms: 154790 },
+      { bar: 51, ms: 158030 }, { bar: 52, ms: 161080 }, { bar: 53, ms: 164210 }, { bar: 54, ms: 167360 }, { bar: 55, ms: 170470 },
+      { bar: 56, ms: 173640 }, { bar: 57, ms: 176770 }, { bar: 58, ms: 179880 }, { bar: 59, ms: 182990 }, { bar: 60, ms: 186100 },
+      { bar: 61, ms: 189230 }, { bar: 62, ms: 192320 }, { bar: 63, ms: 195480 }, { bar: 64, ms: 198610 }, { bar: 65, ms: 201750 },
+      { bar: 66, ms: 204870 }, { bar: 67, ms: 207910 }, { bar: 68, ms: 211040 }, { bar: 69, ms: 214130 }, { bar: 70, ms: 217250 },
+      { bar: 71, ms: 220390 }, { bar: 72, ms: 223540 }, { bar: 73, ms: 226680 }, { bar: 74, ms: 229800 }, { bar: 75, ms: 232920 },
+      { bar: 76, ms: 236050 }, { bar: 77, ms: 239160 }, { bar: 78, ms: 242550 },
+      ]
   music: { source: "Rage Against the Machine-Bombtrack-09-29-2026.mp3", offsetMs: 0 }
 cover: { album: "Rage Against the Machine", itunesId: 191450810 }
 chunks:
@@ -43,8 +63,10 @@ notes: >-
   index finger in position 7. The solver chose the little finger in position 5 only to make
   the jump back to fret 2 in bar 61 two frets shorter; hammering repeated 16ths with the
   little finger is what a teacher would avoid (sparse passage, rule 2), and the open E before
-  it gives the hand time to move. No re-tabs. YouTube: official video on RATMVEVO (4:04 vs
-  4:06 in the score); sync anchors still needed.
+  it gives the hand time to move. No re-tabs. YouTube (2026-10-11): Songsterr's default video for
+  this tab, "Rage Against The Machine - Bombtrack (Official Video)" by RATMVEVO (MUaL1FnotRQ). Sync
+  anchors are Songsterr's point per bar (song 461, revision 9212199; npm run fetch-video): 78
+  anchors for 78 bars, bar 1 at 0:00.42, up to 0.8 s from the score's tempo map (bar 77).
 lyrics:
   # Pasted by the owner for private practice; unsynced, ADR-0024.
   text: |

@@ -1,6 +1,6 @@
 # ADR-0024: Lyrics from the Guitar Pro vocal track and from song.yaml
 
-Status: Proposed (implemented, awaiting owner review)
+Status: Proposed (implemented, awaiting owner review), amended by ADR-0028 (subtitle band over the YouTube video)
 Date: 2026-09-30
 Amends: ADR-0011 and ADR-0012 (lyrics may be stored and published), ADR-0013 (`lyrics` in `song.yaml`), ADR-0003 (`lyrics` in the song JSON).
 
