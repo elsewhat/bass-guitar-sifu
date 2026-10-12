@@ -142,12 +142,25 @@ Updated 2026-10-11. This is the hand-off point between working sessions: what is
    - Tests: 228 unit tests (`sync.test.ts`, `youtube-clock.test.ts` with a fake player, `video-sync.test.ts`, sidecar and build validation, the video-time loop label); 19 Playwright tests, one of them the YouTube source against a stand-in for the IFrame API (count-in, tempo, loop wrap, chunk change, clicks on the video, back to the Metronome).
    - The `preprocess-song` skill has a new step 6b (`fetch-video`) instead of the YouTube search.
 
+17. **Vortex Surfer: sync measured in the recording, and two copies** (2026-10-11; **ADR-0029, proposed**). The owner reported that the tab trailed the video and that the first minutes of the song have no bass tab.
+   - **Sources.** No transcription by a person exists. Songsterr's tab is AI-generated, and the file in the inbox was its AI retranscription. Elsewhere there is only a chord sheet written by ear (nortabs.net) and automatic chord sites.
+   - **The lag.** Songsterr's points put every bar a quarter note late up to bar 176 and an eighth late from bar 192: 0.55 s and 0.27 s, measured on the bass's pitch changes. The tab's notes from bar 130 and its 243 bars are right.
+   - **The fix.** `vortex-surfer` has new anchors: the bar starts measured in the recording (an eighth-note grid tracked from its onsets, the bars placed on the chord changes). On the same check they are within about 30 ms. The method and the checks are in ADR-0029. The measuring scripts were one-off (Python with numpy and scipy) and are not in the repository. The audio was fetched into a temp folder with the owner's permission and deleted.
+   - **The first minutes.** The recording has no bass below the guitar before bar 130. The lowest voice is a guitar's low strings (B2, A2, E2, G2); below 80 Hz there is only the kick drum.
+   - **Copies** for comparing, with the same video and cover:
+     - `vortex-surfer-from-the-start`: the same tab with one whole note added in each of bars 16–129, the guitar's lowest note at the pitch it sounds. 18 chunks. Its `score.gp` is derived with alphaTab, not a Songsterr export.
+     - `vortex-surfer-retranscribed`: the inbox retranscription (236 bars, eight tracks). 10 chunks, synced lyrics from its AI vocal track, measured anchors.
+   - **Music.** The inbox MP3 is rendered at 110 BPM, from the 243-bar score, so it is now `songs/vortex-surfer/audio.mp3` (offset 3 ms). The copies have no Music source.
+   - Three of the 31 Songsterr tabs in the library are AI-generated: Vortex Surfer, The Wheel and wearing yr smell.
+   - Tests: 228 unit tests and 19 Playwright tests. The e2e tests pick the Vortex Surfer card without brackets, and the "no MP3" test uses `vortex-surfer-from-the-start`. Checked in the preview: the three songs load, YouTube is ready, and chunk 1 of `vortex-surfer` loops 4:45–4:54 of the video (4:46–4:55 before).
+
 ## Next
 
 - A tap-sync editor (ADR-0016) is not built. It is only needed if Songsterr's points turn out wrong for a song; anchors can also be corrected by hand in `song.yaml`.
 - Remember the chosen source per song (the system description lists it under persistence; today every load starts on the Metronome).
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
-- Still in `music/`: the `Vortex Surfer` retranscription (236 bars against the fixture's 243, with an MP3), on hold by the owner.
+- The Wheel and wearing yr smell come from AI-generated Songsterr tabs, like Vortex Surfer. Their bars may sit on the wrong beat of the video in the same way. Measuring them needs the recording (ADR-0029: the owner's permission each time).
+- `fetch-video --write` does not know which songs have measured anchors and would replace them. The warning is only in those songs' `notes`.
 
 Open points from slice 1 (not blocking):
 
@@ -156,6 +169,11 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- Review ADR-0029 and try the three Vortex Surfer cards with YouTube in a normal browser:
+  - `Vortex Surfer`: does the tab ring land on the bass from bar 130 (4:46) and again from bar 192 (7:04)? Does Music sound right against the strip?
+  - `Vortex Surfer (from the start)`: are the added notes what you hear as bass in the first minutes? Should they be an octave lower, where the bass plays the same roots later? Is one note per bar enough?
+  - `Vortex Surfer (retranscribed)`: does the lit word land on the singing? Are bars 124–127 wanted? They are not in the recording.
+  - Decide which copies to keep. To remove one, delete its folder in `songs/` and run `npm run build:songs`.
 - Approve the revised Vortex Surfer fingering in `reference/vortex-surfer-chunks.json` (bars 130–141, 143, 162–165 and 170–173 changed with the beginner rules). Also check the new small shifts in the Killing in the Name verses; they fall on the open D.
 - Review ADR-0018 (clock interface and loop decisions) and accept or change it.
 - Review ADR-0019 (Synth source). Listen to the Synth in a normal browser: the bass-only sound, the wrap and play-through gaps, a tempo change while playing, and whether the ring and scroll lag the sound (if they do, add an output-latency offset in `src/strip/synth-player.ts`). The mix switch is now the mixer's Quick mix (ADR-0020).
@@ -200,3 +218,4 @@ Open points from slice 1 (not blocking):
 - Playwright's own browsers are not installed on the owner's machine. The e2e suite was run with the installed Chrome through a temporary config (`projects: [{ use: { channel: 'chrome' } }]`); `npx playwright install chromium` makes `npm run test:e2e` work as it is.
 - The in-app preview pane does not run `requestAnimationFrame` while it is hidden and cannot click into the scaled video frame. The YouTube source was checked with headless Chrome instead.
 - The owner makes the git commits. Do not commit.
+- Python 3.14 with numpy and scipy is at `C:\Users\dagfi\AppData\Local\Python\pythoncore-3.14-64\python.exe`. The `python` alias fails from some folders; use the full path. There is no ffmpeg on the machine (the `imageio-ffmpeg` package carries one).

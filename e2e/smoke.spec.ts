@@ -248,7 +248,7 @@ test('YouTube plays the synced video: count-in, tempo, chunks, loop, and clicks 
 });
 
 test('Music is disabled for a song without a rendered MP3', async ({ page }) => {
-  await openSong(page);
+  await openSong(page, 'vortex-surfer-from-the-start');
   await expect(page.getByRole('button', { name: 'Music', exact: true })).toBeDisabled();
 });
 
@@ -385,9 +385,11 @@ test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ pa
   await expect(page.getByRole('img', { name: 'Pablo Honey cover' })).toHaveJSProperty('naturalWidth', 300);
 
   // Vortex Surfer's progress is kept and shown on its card, and restored when it is chosen again.
+  // The library also has copies of the song, "Vortex Surfer (…)" (ADR-0029); this is the card without a suffix.
+  const vortexSurfer = library.getByRole('button', { name: /^Vortex Surfer(?! \()/ });
   await page.keyboard.press('Control+k');
-  await expect(library.getByRole('button', { name: /^Vortex Surfer/ })).toContainText('Chunk 2 of 9');
-  await library.getByRole('button', { name: /^Vortex Surfer/ }).click();
+  await expect(vortexSurfer).toContainText('Chunk 2 of 9');
+  await vortexSurfer.click();
   await expect(page.getByRole('button', { name: 'Chunk 2, Riff A ×2, bars 134–141' })).toHaveAttribute('aria-current', 'step');
 });
 

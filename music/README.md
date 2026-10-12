@@ -10,7 +10,3 @@ Then run `/preprocess-song` in Claude Code (ADR-0015). The skill:
 4. regenerates `public/data/`.
 
 Processed files leave this folder, so anything here is still waiting to be added.
-
-Waiting:
-
-- `Motorpsycho-Vortex Surfer-09-29-2026.gp` / `.mp3`: a retranscription (236 bars) that differs from `songs/vortex-surfer` (243 bars, the acceptance fixture). On hold by the owner.

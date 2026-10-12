@@ -1,6 +1,6 @@
 # ADR-0028: YouTube source on its own clock, synced with Songsterr's bar points
 
-Status: Proposed (implemented, awaiting owner review)
+Status: Proposed (implemented, awaiting owner review), amended by ADR-0029 (anchors measured in the recording where Songsterr's points are off)
 Date: 2026-10-11
 Amends: ADR-0008 and ADR-0017 (the YouTube clock), ADR-0016 (where the sync comes from), ADR-0013 (`media.youtube.songsterr`), ADR-0015 (the skill's video step), ADR-0011 and ADR-0012 (Songsterr's timings in the repository), ADR-0020 (the Video channel is applied), ADR-0024 (subtitle band), ADR-0025 (count-in with a video).
 

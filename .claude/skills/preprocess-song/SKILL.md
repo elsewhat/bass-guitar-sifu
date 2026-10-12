@@ -122,6 +122,8 @@ npm run fetch-video -- <slug> --write
 
 This replaces `media.youtube` in `song.yaml` (`videoId`, `songsterr`, `sync`). Never write anchors by hand from guesses.
 
+Do not run it with `--write` for a song whose `notes` say the anchors were measured in the recording (ADR-0029: the Vortex Surfer songs). Songsterr's points for AI-generated tabs can sit on the wrong beat of the bar, a quarter or an eighth note late. If the tab's page on Songsterr says it is AI-generated, say so in `notes` and in the summary, so the owner checks the tab ring against the bass by ear.
+
 The owner is in Norway, and "- Topic" uploads are sometimes blocked there. After the build (step 7), check that the video plays: choose YouTube for the song in the app and press Play. If the video cell says it may not be played, pick another video from the report's "Other videos" list, preferring the artist's official channel, and run `npm run fetch-video -- <slug> --video <id> --write`.
 
 Copy the report's findings into `notes`: the video (title, channel, default or why not), the anchor count, and the lines to check by ear. If Songsterr has no synced video, leave `videoId: null` and say so in the summary.

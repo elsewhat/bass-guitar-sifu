@@ -12,11 +12,11 @@
 | [0008](0008-playback-sources.md) | Playback sources behind one clock | Accepted, amended by 0016, 0017, 0018, 0020, 0022 and 0028 |
 | [0009](0009-string-colours.md) | String colour palette | Accepted |
 | [0010](0010-progress-storage.md) | Practice progress in the browser | Accepted |
-| [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012, 0022, 0024, 0026 and 0028 |
+| [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012, 0022, 0024, 0026, 0028 and 0029 |
 | [0012](0012-public-github-pages.md) | Public repository and public GitHub Pages | Accepted, amended by 0022, 0024 and 0028 |
-| [0013](0013-yaml-sidecar.md) | YAML sidecar per song | Accepted, amended by 0022, 0023, 0024, 0026 and 0028 |
+| [0013](0013-yaml-sidecar.md) | YAML sidecar per song | Accepted, amended by 0022, 0023, 0024, 0026, 0028 and 0029 |
 | [0014](0014-committed-generated-data.md) | Generated song data is committed | Accepted |
-| [0015](0015-song-intake-skill.md) | Song intake through the `preprocess-song` agent skill | Accepted, amended by 0022 and 0028 |
+| [0015](0015-song-intake-skill.md) | Song intake through the `preprocess-song` agent skill | Accepted, amended by 0022, 0028 and 0029 |
 | [0016](0016-playback-scope-v1.md) | Playback sources for version 1 and sync authoring | Accepted, amended by 0022 and 0028 |
 | [0017](0017-alphatab-runtime.md) | alphaTab at runtime for the strip, Synth and YouTube sync | Accepted, amended by 0019, 0023 and 0028 |
 | [0018](0018-clock-and-loop-interface.md) | Clock interface and loop decisions ahead of the audio | Proposed, amended by 0019, 0021 and 0025 |
@@ -29,6 +29,7 @@
 | [0025](0025-count-in.md) | One-bar count-in before playback starts | Proposed, amended by 0028 |
 | [0026](0026-album-covers.md) | Album covers in the header | Proposed |
 | [0027](0027-screen-wake-lock.md) | Keep the screen awake while playing | Proposed |
-| [0028](0028-youtube-source.md) | YouTube source on its own clock, synced with Songsterr's bar points | Proposed |
+| [0028](0028-youtube-source.md) | YouTube source on its own clock, synced with Songsterr's bar points | Proposed, amended by 0029 |
+| [0029](0029-song-copies-and-measured-sync.md) | Copies of a song, and sync measured in the recording | Proposed |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".

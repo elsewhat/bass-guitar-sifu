@@ -13,7 +13,7 @@ Read these before starting any task:
 
 - `docs/system-description.md`: screens, behaviour, data model, algorithms and milestones.
 - `docs/status.md`: what is done, what is next, and what waits on the owner. Start here when resuming work.
-- `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones, and ADR-0028 overrides the YouTube parts of ADR-0016 and ADR-0017.
+- `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones, and ADR-0028 overrides the YouTube parts of ADR-0016 and ADR-0017. ADR-0029 adds copies of a song and sync measured in the recording.
 - `design/README.md` and `design/artboards/*.dc.html`: the visual and behavioural reference. Match sizes, colours and timing from these files.
 
 ## Stack
@@ -66,7 +66,7 @@ Drop `Artist-Title-MM-DD-YYYY.gp` into `music/` and run `/preprocess-song`. See 
 
 - No backend and no runtime secrets. Everything is static files.
 - Data URLs are relative to `import.meta.env.BASE_URL`. The Pages base path is `/bass-guitar-sifu/`.
-- Never store downloaded audio or video in the repository (ADR-0011). YouTube is an embed; its sync anchors (bar start times from Songsterr) are stored (ADR-0028). Audio rendered from the transcription is the exception (ADR-0022). Lyrics may be stored: from the `.gp` vocal track or `lyrics.text` in `song.yaml` (ADR-0024). So may album covers (ADR-0026).
+- Never store downloaded audio or video in the repository (ADR-0011). YouTube is an embed; its sync anchors (bar start times from Songsterr) are stored (ADR-0028). Where a song's `notes` say the anchors were measured in the recording, do not run `fetch-video --write` for it; fetching a recording to measure needs the owner's permission each time (ADR-0029). Audio rendered from the transcription is the exception (ADR-0022). Lyrics may be stored: from the `.gp` vocal track or `lyrics.text` in `song.yaml` (ADR-0024). So may album covers (ADR-0026).
 - After changing `song.yaml` or any algorithm in `src/core/`, run `npm run build:songs` and commit `public/data/`.
 - Playback position is not React state. Per-frame updates go through the clock subscription and `requestAnimationFrame` (ADR-0002, ADR-0008).
 - String colours come only from the `--string-1..4` variables (ADR-0009). The green accent is for play, loop and current-chunk markers only.

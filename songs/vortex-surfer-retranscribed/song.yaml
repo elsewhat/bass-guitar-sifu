@@ -1,0 +1,89 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Vortex Surfer (retranscribed)
+artist: Motorpsycho
+source: { file: "Motorpsycho-Vortex Surfer-09-29-2026.gp", date: 2026-09-29 }
+bassTrack: "Electric Bass (finger) (retranscribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: ENZaFo2cEog
+    sync: [
+      { bar: 1, ms: 376 }, { bar: 2, ms: 2602 }, { bar: 3, ms: 4841 }, { bar: 4, ms: 7059 }, { bar: 5, ms: 9286 },
+      { bar: 6, ms: 11520 }, { bar: 7, ms: 13718 }, { bar: 8, ms: 15916 }, { bar: 9, ms: 18148 }, { bar: 10, ms: 20387 },
+      { bar: 11, ms: 22621 }, { bar: 12, ms: 24824 }, { bar: 13, ms: 27052 }, { bar: 14, ms: 29285 }, { bar: 15, ms: 31494 },
+      { bar: 16, ms: 33718 }, { bar: 17, ms: 35964 }, { bar: 18, ms: 38187 }, { bar: 19, ms: 40407 }, { bar: 20, ms: 42617 },
+      { bar: 21, ms: 44848 }, { bar: 22, ms: 47067 }, { bar: 23, ms: 49285 }, { bar: 24, ms: 51510 }, { bar: 25, ms: 53731 },
+      { bar: 26, ms: 55968 }, { bar: 27, ms: 58182 }, { bar: 28, ms: 60405 }, { bar: 29, ms: 62621 }, { bar: 30, ms: 64853 },
+      { bar: 31, ms: 67071 }, { bar: 32, ms: 69299 }, { bar: 33, ms: 71502 }, { bar: 34, ms: 73721 }, { bar: 35, ms: 75948 },
+      { bar: 36, ms: 78176 }, { bar: 37, ms: 80395 }, { bar: 38, ms: 82611 }, { bar: 39, ms: 84837 }, { bar: 40, ms: 87078 },
+      { bar: 41, ms: 89289 }, { bar: 42, ms: 91505 }, { bar: 43, ms: 93740 }, { bar: 44, ms: 95966 }, { bar: 45, ms: 98183 },
+      { bar: 46, ms: 100405 }, { bar: 47, ms: 102602 }, { bar: 48, ms: 104835 }, { bar: 49, ms: 107069 }, { bar: 50, ms: 109285 },
+      { bar: 51, ms: 111502 }, { bar: 52, ms: 113729 }, { bar: 53, ms: 115939 }, { bar: 54, ms: 118162 }, { bar: 55, ms: 120394 },
+      { bar: 56, ms: 122621 }, { bar: 57, ms: 124832 }, { bar: 58, ms: 127052 }, { bar: 59, ms: 129278 }, { bar: 60, ms: 131499 },
+      { bar: 61, ms: 133719 }, { bar: 62, ms: 135959 }, { bar: 63, ms: 138195 }, { bar: 64, ms: 139302 }, { bar: 65, ms: 141508 },
+      { bar: 66, ms: 143715 }, { bar: 67, ms: 145961 }, { bar: 68, ms: 148179 }, { bar: 69, ms: 150397 }, { bar: 70, ms: 152621 },
+      { bar: 71, ms: 153732 }, { bar: 72, ms: 155949 }, { bar: 73, ms: 157052 }, { bar: 74, ms: 159283 }, { bar: 75, ms: 161504 },
+      { bar: 76, ms: 163725 }, { bar: 77, ms: 165943 }, { bar: 78, ms: 168176 }, { bar: 79, ms: 170402 }, { bar: 80, ms: 172617 },
+      { bar: 81, ms: 174822 }, { bar: 82, ms: 177045 }, { bar: 83, ms: 179271 }, { bar: 84, ms: 181514 }, { bar: 85, ms: 183768 },
+      { bar: 86, ms: 185998 }, { bar: 87, ms: 188215 }, { bar: 88, ms: 190418 }, { bar: 89, ms: 192631 }, { bar: 90, ms: 194851 },
+      { bar: 91, ms: 197088 }, { bar: 92, ms: 199305 }, { bar: 93, ms: 201539 }, { bar: 94, ms: 203765 }, { bar: 95, ms: 205989 },
+      { bar: 96, ms: 208224 }, { bar: 97, ms: 210429 }, { bar: 98, ms: 212653 }, { bar: 99, ms: 214879 }, { bar: 100, ms: 217095 },
+      { bar: 101, ms: 219307 }, { bar: 102, ms: 221533 }, { bar: 103, ms: 223765 }, { bar: 104, ms: 225999 }, { bar: 105, ms: 228212 },
+      { bar: 106, ms: 230445 }, { bar: 107, ms: 232657 }, { bar: 108, ms: 234885 }, { bar: 109, ms: 237098 }, { bar: 110, ms: 239319 },
+      { bar: 111, ms: 241535 }, { bar: 112, ms: 243752 }, { bar: 113, ms: 245974 }, { bar: 114, ms: 248191 }, { bar: 115, ms: 250423 },
+      { bar: 116, ms: 252657 }, { bar: 117, ms: 254881 }, { bar: 118, ms: 257112 }, { bar: 119, ms: 259331 }, { bar: 120, ms: 261549 },
+      { bar: 121, ms: 263756 }, { bar: 122, ms: 265976 }, { bar: 123, ms: 268209 }, { bar: 124, ms: 270434 }, { bar: 125, ms: 272660 },
+      { bar: 126, ms: 274872 }, { bar: 127, ms: 277095 }, { bar: 128, ms: 279322 }, { bar: 129, ms: 281569 }, { bar: 130, ms: 283778 },
+      { bar: 131, ms: 285969 }, { bar: 132, ms: 288181 }, { bar: 133, ms: 290404 }, { bar: 134, ms: 292650 }, { bar: 135, ms: 294894 },
+      { bar: 136, ms: 297127 }, { bar: 137, ms: 299346 }, { bar: 138, ms: 301549 }, { bar: 139, ms: 303767 }, { bar: 140, ms: 305991 },
+      { bar: 141, ms: 308208 }, { bar: 142, ms: 310431 }, { bar: 143, ms: 312643 }, { bar: 144, ms: 314861 }, { bar: 145, ms: 317084 },
+      { bar: 146, ms: 319327 }, { bar: 147, ms: 321560 }, { bar: 148, ms: 323780 }, { bar: 149, ms: 325995 }, { bar: 150, ms: 328210 },
+      { bar: 151, ms: 330425 }, { bar: 152, ms: 332640 }, { bar: 153, ms: 334865 }, { bar: 154, ms: 337103 }, { bar: 155, ms: 339320 },
+      { bar: 156, ms: 341542 }, { bar: 157, ms: 343763 }, { bar: 158, ms: 345986 }, { bar: 159, ms: 348198 }, { bar: 160, ms: 350423 },
+      { bar: 161, ms: 352650 }, { bar: 162, ms: 354869 }, { bar: 163, ms: 357087 }, { bar: 164, ms: 359316 }, { bar: 165, ms: 361541 },
+      { bar: 166, ms: 363750 }, { bar: 167, ms: 365959 }, { bar: 168, ms: 368177 }, { bar: 169, ms: 370397 }, { bar: 170, ms: 372620 },
+      { bar: 171, ms: 374857 }, { bar: 172, ms: 377085 }, { bar: 173, ms: 379305 }, { bar: 174, ms: 381532 }, { bar: 175, ms: 383761 },
+      { bar: 176, ms: 385977 }, { bar: 177, ms: 388201 }, { bar: 178, ms: 390441 }, { bar: 179, ms: 392666 }, { bar: 180, ms: 394879 },
+      { bar: 181, ms: 397090 }, { bar: 182, ms: 399322 }, { bar: 183, ms: 401550 }, { bar: 184, ms: 403766 }, { bar: 185, ms: 405997 },
+      { bar: 186, ms: 408217 }, { bar: 187, ms: 410443 }, { bar: 188, ms: 412647 }, { bar: 189, ms: 414849 }, { bar: 190, ms: 417090 },
+      { bar: 191, ms: 419320 }, { bar: 192, ms: 421559 }, { bar: 193, ms: 423767 }, { bar: 194, ms: 425976 }, { bar: 195, ms: 428206 },
+      { bar: 196, ms: 430420 }, { bar: 197, ms: 432617 }, { bar: 198, ms: 434852 }, { bar: 199, ms: 437070 }, { bar: 200, ms: 439289 },
+      { bar: 201, ms: 441515 }, { bar: 202, ms: 443750 }, { bar: 203, ms: 445988 }, { bar: 204, ms: 448230 }, { bar: 205, ms: 450452 },
+      { bar: 206, ms: 452671 }, { bar: 207, ms: 454869 }, { bar: 208, ms: 457085 }, { bar: 209, ms: 459309 }, { bar: 210, ms: 461531 },
+      { bar: 211, ms: 463753 }, { bar: 212, ms: 465973 }, { bar: 213, ms: 468204 }, { bar: 214, ms: 470431 }, { bar: 215, ms: 472660 },
+      { bar: 216, ms: 474881 }, { bar: 217, ms: 477092 }, { bar: 218, ms: 479310 }, { bar: 219, ms: 481528 }, { bar: 220, ms: 483745 },
+      { bar: 221, ms: 485965 }, { bar: 222, ms: 488194 }, { bar: 223, ms: 490418 }, { bar: 224, ms: 492641 }, { bar: 225, ms: 494862 },
+      { bar: 226, ms: 497081 }, { bar: 227, ms: 499299 }, { bar: 228, ms: 501525 }, { bar: 229, ms: 503744 }, { bar: 230, ms: 505972 },
+      { bar: 231, ms: 508200 }, { bar: 232, ms: 510422 }, { bar: 233, ms: 512635 }, { bar: 234, ms: 514873 }, { bar: 235, ms: 517116 },
+      { bar: 236, ms: 519323 },
+      ]
+cover: { album: "Trust Us", itunesId: 506369467 }
+chunks:
+  - { name: Lead-in, bars: [124, 127] }
+  - { name: Riff A, bars: [131, 134] }
+  - { name: Riff A ×2, bars: [135, 142] }
+  - { name: Climb, bars: [143, 148] }
+  - { name: E pedal, bars: [149, 160] }
+  - { name: Descent, bars: [161, 178] }
+  - { name: Return, bars: [193, 208] }
+  - { name: Rise, bars: [209, 220] }
+  - { name: Half-step, bars: [221, 232] }
+  - { name: Outro, bars: [233, 236] }
+fingeringOverrides: []
+notes: >-
+  A copy of Vortex Surfer for comparison (ADR-0029): Songsterr's AI retranscription of the same tab
+  (song 2582753), exported 2026-09-29. 236 bars at 107 BPM with 2/4 bars at 63, 70 and 72, and eight
+  tracks, among them a vocal track that gives synced lyrics. Bass: from bar 131 it is the bass of
+  songs/vortex-surfer one bar number later, so the chunks are that song's chunks moved by one bar.
+  Bars 124–127 (Lead-in: B, G, G, A, an octave below the guitar) are in this file only; the recording
+  has no bass below the guitar's notes before the loud part. Up to bar 62 the bar lines are half a
+  bar away from the chord changes in the recording; the 2/4 bars put them right from bar 73.
+  YouTube (2026-10-11): the same video as songs/vortex-surfer, "Motorpsycho - Vortex Surfer" by
+  Overdrive Arcade (ENZaFo2cEog). Songsterr has no points for this file. The anchors are measured in
+  the recording (ADR-0029): beat b of this score is eighth 2b+1 of the grid tracked from the
+  recording's onsets. Checked on the guitar track's chord changes in bars 15–52 (every one on its
+  eighth) and on the bass's pitch changes from bar 131 (within about 30 ms). Do not run fetch-video
+  --write for this song. No Music source: the inbox MP3 with this file's date is rendered from the
+  243-bar score (110 BPM) and is attached to songs/vortex-surfer. Lyrics: the words and their timing
+  are the AI's reading of the singing, not checked. To check by ear: the tab ring on the bass with
+  YouTube from bar 131 and from bar 193, and the lit word on the singing from bar 32.

@@ -10,7 +10,7 @@
     "title": { "type": "string", "minLength": 1 },
     "artist": { "type": "string", "minLength": 1 },
     "source": {
-      "description": "Where score.gp came from (the music/ inbox file).",
+      "description": "Where score.gp came from (the music/ inbox file). For a derived score (ADR-0029): the file it was derived from.",
       "type": "object",
       "additionalProperties": false,
       "required": ["file"],
@@ -41,7 +41,7 @@
           "properties": {
             "videoId": { "type": ["string", "null"], "pattern": "^[A-Za-z0-9_-]{11}$", "description": "The video Songsterr plays with the tab. null: no YouTube source." },
             "songsterr": {
-              "description": "The Songsterr tab and revision the video and its sync were taken from.",
+              "description": "The Songsterr tab and revision the video and its sync were taken from. When `notes` say the sync was measured in the recording (ADR-0029), only the tab and the video are Songsterr's.",
               "type": "object",
               "additionalProperties": false,
               "required": ["songId", "revisionId"],
