@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Black to Comm
+artist: Motorpsycho
+source: { file: "Transcribed from the recording (ADR-0030)", date: 2026-10-12 }
+bassTrack: "Electric Bass (transcribed)"
+tempo: { note: "Notated in eighth notes at 104–113 BPM with the kick on the beat and the snare on the off-beat; it can also be counted at twice that." }
+media:
+  youtube:
+    videoId: szWEif9dPQk
+    sync: [
+      { bar: 1, ms: 202 }, { bar: 2, ms: 1084 }, { bar: 3, ms: 3429 }, { bar: 4, ms: 5759 }, { bar: 5, ms: 8091 },
+      { bar: 6, ms: 10397 }, { bar: 7, ms: 12659 }, { bar: 8, ms: 14923 }, { bar: 9, ms: 17216 }, { bar: 10, ms: 19543 },
+      { bar: 11, ms: 21797 }, { bar: 12, ms: 24020 }, { bar: 13, ms: 26243 }, { bar: 14, ms: 28457 }, { bar: 15, ms: 30667 },
+      { bar: 16, ms: 32864 }, { bar: 17, ms: 35077 }, { bar: 18, ms: 37278 }, { bar: 19, ms: 39449 }, { bar: 20, ms: 41641 },
+      { bar: 21, ms: 43833 }, { bar: 22, ms: 46010 }, { bar: 23, ms: 48192 }, { bar: 24, ms: 50388 }, { bar: 25, ms: 52580 },
+      { bar: 26, ms: 54768 }, { bar: 27, ms: 56934 }, { bar: 28, ms: 59127 }, { bar: 29, ms: 61331 }, { bar: 30, ms: 63525 },
+      { bar: 31, ms: 65671 }, { bar: 32, ms: 67851 }, { bar: 33, ms: 70047 }, { bar: 34, ms: 72236 }, { bar: 35, ms: 74397 },
+      { bar: 36, ms: 76583 }, { bar: 37, ms: 78771 }, { bar: 38, ms: 80953 }, { bar: 39, ms: 83095 }, { bar: 40, ms: 85266 },
+      { bar: 41, ms: 87428 }, { bar: 42, ms: 89587 }, { bar: 43, ms: 91721 }, { bar: 44, ms: 93879 }, { bar: 45, ms: 96052 },
+      { bar: 46, ms: 98200 }, { bar: 47, ms: 100314 }, { bar: 48, ms: 102472 }, { bar: 49, ms: 104637 }, { bar: 50, ms: 106785 },
+      { bar: 51, ms: 108940 }, { bar: 52, ms: 111097 }, { bar: 53, ms: 113261 }, { bar: 54, ms: 115420 }, { bar: 55, ms: 117555 },
+      { bar: 56, ms: 119713 }, { bar: 57, ms: 121902 }, { bar: 58, ms: 124073 }, { bar: 59, ms: 126215 }, { bar: 60, ms: 128380 },
+      { bar: 61, ms: 130542 }, { bar: 62, ms: 132710 }, { bar: 63, ms: 134829 }, { bar: 64, ms: 136928 }, { bar: 65, ms: 139060 },
+      { bar: 66, ms: 141161 }, { bar: 67, ms: 143320 }, { bar: 68, ms: 145463 }, { bar: 69, ms: 147634 }, { bar: 70, ms: 149760 },
+      { bar: 71, ms: 151883 }, { bar: 72, ms: 154049 }, { bar: 73, ms: 156224 }, { bar: 74, ms: 158394 }, { bar: 75, ms: 160547 },
+      { bar: 76, ms: 162724 }, { bar: 77, ms: 164910 }, { bar: 78, ms: 167086 }, { bar: 79, ms: 169242 }, { bar: 80, ms: 171386 },
+      { bar: 81, ms: 173547 }, { bar: 82, ms: 175712 }, { bar: 83, ms: 177862 }, { bar: 84, ms: 179987 }, { bar: 85, ms: 182085 },
+      { bar: 86, ms: 184179 }, { bar: 87, ms: 186285 }, { bar: 88, ms: 188397 }, { bar: 89, ms: 190504 }, { bar: 90, ms: 192619 },
+      { bar: 91, ms: 194722 }, { bar: 92, ms: 196831 }, { bar: 93, ms: 198948 }, { bar: 94, ms: 201078 }, { bar: 95, ms: 203193 },
+      { bar: 96, ms: 205302 }, { bar: 97, ms: 207415 }, { bar: 98, ms: 209534 }, { bar: 99, ms: 211637 }, { bar: 100, ms: 213752 },
+      { bar: 101, ms: 215863 }, { bar: 102, ms: 217951 }, { bar: 103, ms: 220012 }, { bar: 104, ms: 222113 }, { bar: 105, ms: 224222 },
+      { bar: 106, ms: 226311 }, { bar: 107, ms: 228390 }, { bar: 108, ms: 230481 }, { bar: 109, ms: 232558 }, { bar: 110, ms: 234638 },
+      { bar: 111, ms: 236722 }, { bar: 112, ms: 238810 }, { bar: 113, ms: 240909 }, { bar: 114, ms: 243007 }, { bar: 115, ms: 245102 },
+      { bar: 116, ms: 247210 }, { bar: 117, ms: 249305 }, { bar: 118, ms: 251411 }, { bar: 119, ms: 253517 }, { bar: 120, ms: 255607 },
+      { bar: 121, ms: 257685 }, { bar: 122, ms: 259746 }, { bar: 123, ms: 261799 }, { bar: 124, ms: 263862 }, { bar: 125, ms: 265946 },
+      { bar: 126, ms: 268032 }, { bar: 127, ms: 270131 }, { bar: 128, ms: 272222 }, { bar: 129, ms: 274304 }, { bar: 130, ms: 276374 },
+      { bar: 131, ms: 278394 }, { bar: 132, ms: 280523 }, { bar: 133, ms: 282673 }, { bar: 134, ms: 284794 }, { bar: 135, ms: 286918 },
+      { bar: 136, ms: 289058 }, { bar: 137, ms: 291194 }, { bar: 138, ms: 293310 }, { bar: 139, ms: 295430 }, { bar: 140, ms: 297535 },
+      { bar: 141, ms: 299621 }, { bar: 142, ms: 301719 }, { bar: 143, ms: 303821 }, { bar: 144, ms: 305933 }, { bar: 145, ms: 308021 },
+      { bar: 146, ms: 310084 }, { bar: 147, ms: 312095 }, { bar: 148, ms: 314192 }, { bar: 149, ms: 316325 }, { bar: 150, ms: 318445 },
+      { bar: 151, ms: 320521 }, { bar: 152, ms: 322610 }, { bar: 153, ms: 324734 }, { bar: 154, ms: 326839 }, { bar: 155, ms: 328918 },
+      { bar: 156, ms: 331035 }, { bar: 157, ms: 333162 }, { bar: 158, ms: 335286 }, { bar: 159, ms: 337395 }, { bar: 160, ms: 339509 },
+      { bar: 161, ms: 341626 }, { bar: 162, ms: 343735 }, { bar: 163, ms: 345786 }, { bar: 164, ms: 347844 }, { bar: 165, ms: 349951 },
+      { bar: 166, ms: 352025 }, { bar: 167, ms: 354127 }, { bar: 168, ms: 356211 }, { bar: 169, ms: 358295 }, { bar: 170, ms: 360344 },
+      { bar: 171, ms: 362373 },
+      ]
+cover: { album: "Roadwork Vol. 1: Heavy Metall iz a Poze, Hardt Rock iz a Laifschteil", itunesId: 1701790321 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 8] }
+  - { name: Intro c, bars: [9, 10] }
+  - { name: D drone 1, bars: [11, 14] }
+  - { name: D drone ×4, bars: [15, 30] }
+  - { name: D drone ×2, bars: [31, 38] }
+  - { name: D drone 2, bars: [39, 42] }
+  - { name: D drone 3, bars: [43, 46] }
+  - { name: D drone repeat, bars: [47, 50] }
+  - { name: D drone 4, bars: [51, 54] }
+  - { name: D drone 5, bars: [55, 58] }
+  - { name: D drone 6, bars: [59, 62] }
+  - { name: D drone 7, bars: [63, 66] }
+  - { name: D drone 8, bars: [67, 70] }
+  - { name: D drone 9, bars: [71, 74] }
+  - { name: D drone ×4, bars: [75, 90] }
+  - { name: D drone 10, bars: [91, 94] }
+  - { name: D drone 11, bars: [95, 98] }
+  - { name: D drone ×4, bars: [99, 114] }
+  - { name: D drone repeat, bars: [115, 118] }
+  - { name: D drone 12, bars: [119, 122] }
+  - { name: D drone 13, bars: [123, 126] }
+  - { name: D drone repeat, bars: [127, 130] }
+  - { name: D drone 14, bars: [131, 134] }
+  - { name: D drone 15, bars: [135, 138] }
+  - { name: D drone 16, bars: [139, 142] }
+  - { name: D drone ×4, bars: [143, 158] }
+  - { name: D drone 17, bars: [159, 160] }
+  - { name: Ending a, bars: [161, 164] }
+  - { name: Ending b, bars: [165, 168] }
+  - { name: Ending c, bars: [169, 171] }
+fingeringOverrides: []
+notes: >-
+  Transcribed from the recording by analysis (ADR-0030, 2026-10-12), not by ear and not from a tab:
+  no tab of this version exists. Expect wrong notes and check by ear.
+  The recording: Roadwork Vol. 1 (live in Europe 1998), track 5, the MC5 song, the upload "Black to
+  Comm (Live)" by Motorpsycho - Topic (szWEif9dPQk).
+  Method: drums and vocals removed with Demucs; the lowest voice read per eighth note on a beat grid
+  tracked in the recording; bars that sound alike vote together; the octave is the lower one when
+  its fundamental is in the sound.
+  The song: 171 bars, standard tuning. One figure throughout: seven eighth notes on D (A string fret
+  5, or the open D string) and a C on the last eighth, hammered back to D on the next downbeat. Bars
+  1–10 are the guitar alone (bar 1 is a 3/8 pickup). From about bar 82 to 129 the drums are out and
+  the figure goes on. Some bars are read as eight Ds; whether the C is really missing there is not
+  known. Bars 161–171 are the ending: the readings between the D bars are noise from the freak-out,
+  not notes to learn.
+  YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029), not Songsterr
+  points. Do not run fetch-video --write for this song.
+  To check by ear: whether the C comes on the last eighth of every bar, and whether there is a C
+  sharp on the way down to it (the tracker read one in many bars; it is not written).

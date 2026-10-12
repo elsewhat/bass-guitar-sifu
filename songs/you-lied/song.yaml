@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: You Lied
+artist: Motorpsycho
+source: { file: "Transcribed from the recording (ADR-0030)", date: 2026-10-12 }
+bassTrack: "Electric Bass (transcribed)"
+tempo: { note: "Notated at 83 BPM with sixteenth notes; the pulse you tap is about 167." }
+media:
+  youtube:
+    videoId: KhNfjWN1KEg
+    sync: [
+      { bar: 1, ms: 101 }, { bar: 2, ms: 1950 }, { bar: 3, ms: 4900 }, { bar: 4, ms: 7784 }, { bar: 5, ms: 10661 },
+      { bar: 6, ms: 13521 }, { bar: 7, ms: 16389 }, { bar: 8, ms: 19265 }, { bar: 9, ms: 22106 }, { bar: 10, ms: 24997 },
+      { bar: 11, ms: 27936 }, { bar: 12, ms: 30877 }, { bar: 13, ms: 33848 }, { bar: 14, ms: 36734 }, { bar: 15, ms: 39672 },
+      { bar: 16, ms: 42617 }, { bar: 17, ms: 45505 }, { bar: 18, ms: 48317 }, { bar: 19, ms: 51181 }, { bar: 20, ms: 54050 },
+      { bar: 21, ms: 56895 }, { bar: 22, ms: 59732 }, { bar: 23, ms: 62634 }, { bar: 24, ms: 65515 }, { bar: 25, ms: 68382 },
+      { bar: 26, ms: 71250 }, { bar: 27, ms: 74160 }, { bar: 28, ms: 77088 }, { bar: 29, ms: 79968 }, { bar: 30, ms: 82894 },
+      { bar: 31, ms: 85798 }, { bar: 32, ms: 88709 }, { bar: 33, ms: 91632 }, { bar: 34, ms: 94480 }, { bar: 35, ms: 97444 },
+      { bar: 36, ms: 100391 }, { bar: 36, tick: 3600, ms: 103115 }, { bar: 37, ms: 103476 }, { bar: 38, ms: 106231 }, { bar: 39, ms: 109074 },
+      { bar: 39, tick: 3600, ms: 111612 }, { bar: 40, ms: 111958 }, { bar: 41, ms: 114821 }, { bar: 42, ms: 117640 }, { bar: 43, ms: 120523 },
+      { bar: 44, ms: 123404 }, { bar: 45, ms: 126294 }, { bar: 46, ms: 129175 }, { bar: 47, ms: 132045 }, { bar: 48, ms: 134894 },
+      { bar: 49, ms: 137780 }, { bar: 50, ms: 140675 }, { bar: 51, ms: 143549 }, { bar: 52, ms: 146456 }, { bar: 53, ms: 149325 },
+      { bar: 54, ms: 152217 }, { bar: 55, ms: 155102 }, { bar: 56, ms: 157957 }, { bar: 57, ms: 160878 }, { bar: 58, ms: 163755 },
+      { bar: 59, ms: 166643 }, { bar: 60, ms: 169502 }, { bar: 61, ms: 172373 }, { bar: 62, ms: 175274 }, { bar: 63, ms: 178066 },
+      { bar: 64, ms: 180778 }, { bar: 65, ms: 183537 }, { bar: 66, ms: 186293 }, { bar: 67, ms: 189240 }, { bar: 68, ms: 192151 },
+      { bar: 69, ms: 195015 }, { bar: 70, ms: 197852 }, { bar: 71, ms: 200743 }, { bar: 72, ms: 203650 }, { bar: 73, ms: 206513 },
+      { bar: 73, tick: 4080, ms: 209522 }, { bar: 74, ms: 209880 }, { bar: 75, ms: 212690 }, { bar: 75, tick: 1920, ms: 214061 }, { bar: 76, ms: 214235 },
+      { bar: 77, ms: 217072 }, { bar: 78, ms: 219995 }, { bar: 79, ms: 222874 }, { bar: 80, ms: 225785 }, { bar: 81, ms: 228686 },
+      { bar: 82, ms: 231658 }, { bar: 82, tick: 3600, ms: 234395 }, { bar: 83, ms: 234745 }, { bar: 84, ms: 237613 }, { bar: 85, ms: 240590 },
+      { bar: 86, ms: 243526 }, { bar: 87, ms: 246422 }, { bar: 88, ms: 249295 }, { bar: 88, tick: 1920, ms: 250736 }, { bar: 89, ms: 250917 },
+      { bar: 90, ms: 253835 }, { bar: 90, tick: 1920, ms: 255294 }, { bar: 91, ms: 255476 }, { bar: 92, ms: 258321 }, { bar: 93, ms: 261436 },
+      { bar: 94, ms: 264250 }, { bar: 95, ms: 267092 }, { bar: 96, ms: 269867 }, { bar: 97, ms: 272585 }, { bar: 98, ms: 275375 },
+      { bar: 99, ms: 278149 },
+      ]
+cover: { album: "Roadwork Vol. 1: Heavy Metall iz a Poze, Hardt Rock iz a Laifschteil", itunesId: 1701790321 }
+chunks:
+  - { name: Main riff 1, bars: [1, 4] }
+  - { name: Main riff 2, bars: [5, 8] }
+  - { name: Main riff 3, bars: [9, 12] }
+  - { name: Main riff 4, bars: [13, 16] }
+  - { name: Main riff 5, bars: [17, 20] }
+  - { name: Main riff 6, bars: [21, 24] }
+  - { name: Main riff 7, bars: [25, 28] }
+  - { name: Main riff 8, bars: [29, 32] }
+  - { name: Main riff 9, bars: [33, 36] }
+  - { name: Main riff 10, bars: [37, 40] }
+  - { name: Main riff 11, bars: [41, 44] }
+  - { name: Main riff 12, bars: [45, 48] }
+  - { name: Main riff 13, bars: [49, 52] }
+  - { name: Main riff 14, bars: [53, 56] }
+  - { name: Main riff 15, bars: [57, 60] }
+  - { name: Main riff 16, bars: [61, 62] }
+  - { name: C♯ riff, bars: [63, 64] }
+  - { name: Middle riff a, bars: [65, 68] }
+  - { name: Middle riff b, bars: [69, 73] }
+  - { name: Main riff 17, bars: [74, 77] }
+  - { name: Main riff 18, bars: [78, 81] }
+  - { name: Main riff 19, bars: [82, 85] }
+  - { name: Main riff 20, bars: [86, 89] }
+  - { name: Main riff 21, bars: [90, 94] }
+  - { name: Ending, bars: [95, 99] }
+fingeringOverrides: []
+notes: >-
+  Transcribed from the recording by analysis (ADR-0030, 2026-10-12), not by ear and not from a tab:
+  no tab of this song exists. Expect wrong notes and check by ear.
+  The recording: Roadwork Vol. 1 (live in Europe 1998), track 4, the upload "You Lied (Live)" by
+  Motorpsycho - Topic (KhNfjWN1KEg).
+  Method: drums and vocals removed with Demucs; the lowest voice read per sixteenth note on a beat
+  grid tracked in the recording; bars that sound alike vote together, so small variations between
+  repeats are smoothed away; the octave is the lower one when its fundamental is in the sound. Where
+  the bass rests, the lowest guitar note is written.
+  The song: 99 bars, standard tuning. Main riff (bars 2–62 and 74–94): the pickup A–C, then D . D .
+  A C A D A D . D . A C, all on the A string (D on fret 5, C on fret 3, open A). A bar that starts
+  on a held G comes about every eighth bar (29, 37, 51, 59). Bars 63–64 are a stop. Middle riff
+  65–73 on A and E. From bar 95 the ending is loose and the reading is rough.
+  Bar lines: bar 1 is a 5/8 pickup, bars 75, 88 and 90 are also 5/8, and bars 73 and 92 are 9/8.
+  Bars 36, 39, 73 and 82 are one sixteenth longer in the playing than they are written (their last
+  note takes it up), and bars 75, 88 and 90 one sixteenth shorter (their last two sixteenths are
+  squeezed into one); those seven bars have a second anchor. The odd bars follow how the band played
+  the turns; some may be the beat tracker's doing.
+  YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029), not Songsterr
+  points. Do not run fetch-video --write for this song.
+  To check by ear: the octave of the A (written as the open A string; the guitar plays it an octave
+  up), the first sixteenth of each bar (C held over the bar line or D struck), the G bars, and the
+  middle riff.

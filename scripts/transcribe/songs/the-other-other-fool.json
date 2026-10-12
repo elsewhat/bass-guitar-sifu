@@ -1,0 +1,30 @@
+{
+  "videoId": "IHORZUZdTpQ",
+  "grid": {
+    "bpm_lo": 250,
+    "bpm_hi": 300,
+    "div": 1
+  },
+  "title": "The Other Other Fool",
+  "artist": "Motorpsycho",
+  "album": "Roadwork Vol. 1",
+  "trackName": "Electric Bass (transcribed)",
+  "tuning": [28, 33, 38, 43],
+  "spq": 2,
+  "start": 0,
+  "bar": 8,
+  "lowest": 28,
+  "odd": {
+    "1": 3,
+    "111": 7,
+    "144": 7,
+    "215": 7,
+    "238": 7
+  },
+  "end_s": 576,
+  "rest_db": 30,
+  "sections_chunks": [
+    [1, 32, "Intro"]
+  ],
+  "chunk_bars": 8
+}

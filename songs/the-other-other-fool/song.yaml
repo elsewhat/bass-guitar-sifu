@@ -1,0 +1,142 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: The Other Other Fool
+artist: Motorpsycho
+source: { file: "Transcribed from the recording (ADR-0030)", date: 2026-10-12 }
+bassTrack: "Electric Bass (transcribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: IHORZUZdTpQ
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 674 }, { bar: 3, ms: 2457 }, { bar: 4, ms: 4235 }, { bar: 5, ms: 6011 },
+      { bar: 6, ms: 7792 }, { bar: 7, ms: 9608 }, { bar: 8, ms: 11426 }, { bar: 9, ms: 13225 }, { bar: 10, ms: 14985 },
+      { bar: 11, ms: 16771 }, { bar: 12, ms: 18527 }, { bar: 13, ms: 20280 }, { bar: 14, ms: 22071 }, { bar: 15, ms: 23770 },
+      { bar: 16, ms: 25511 }, { bar: 17, ms: 27245 }, { bar: 18, ms: 29041 }, { bar: 19, ms: 30762 }, { bar: 20, ms: 32535 },
+      { bar: 21, ms: 34262 }, { bar: 22, ms: 36028 }, { bar: 23, ms: 37754 }, { bar: 24, ms: 39499 }, { bar: 25, ms: 41233 },
+      { bar: 26, ms: 43031 }, { bar: 27, ms: 44797 }, { bar: 28, ms: 46634 }, { bar: 29, ms: 48409 }, { bar: 30, ms: 50216 },
+      { bar: 31, ms: 51981 }, { bar: 32, ms: 53821 }, { bar: 33, ms: 55617 }, { bar: 34, ms: 57412 }, { bar: 35, ms: 59208 },
+      { bar: 36, ms: 61026 }, { bar: 37, ms: 62833 }, { bar: 38, ms: 64670 }, { bar: 39, ms: 66460 }, { bar: 40, ms: 68269 },
+      { bar: 41, ms: 70058 }, { bar: 42, ms: 71869 }, { bar: 43, ms: 73669 }, { bar: 44, ms: 75470 }, { bar: 45, ms: 77270 },
+      { bar: 46, ms: 79077 }, { bar: 47, ms: 80876 }, { bar: 48, ms: 82657 }, { bar: 49, ms: 84443 }, { bar: 50, ms: 86224 },
+      { bar: 51, ms: 88017 }, { bar: 52, ms: 89806 }, { bar: 53, ms: 91604 }, { bar: 54, ms: 93400 }, { bar: 55, ms: 95189 },
+      { bar: 56, ms: 96975 }, { bar: 57, ms: 98788 }, { bar: 58, ms: 100590 }, { bar: 59, ms: 102387 }, { bar: 60, ms: 104159 },
+      { bar: 61, ms: 105956 }, { bar: 62, ms: 107773 }, { bar: 63, ms: 109600 }, { bar: 64, ms: 111396 }, { bar: 65, ms: 113207 },
+      { bar: 66, ms: 115001 }, { bar: 67, ms: 116806 }, { bar: 68, ms: 118602 }, { bar: 69, ms: 120394 }, { bar: 70, ms: 122184 },
+      { bar: 71, ms: 123970 }, { bar: 72, ms: 125756 }, { bar: 73, ms: 127556 }, { bar: 74, ms: 129359 }, { bar: 75, ms: 131163 },
+      { bar: 76, ms: 132966 }, { bar: 77, ms: 134755 }, { bar: 78, ms: 136550 }, { bar: 79, ms: 138345 }, { bar: 80, ms: 140142 },
+      { bar: 81, ms: 141933 }, { bar: 82, ms: 143750 }, { bar: 83, ms: 145535 }, { bar: 84, ms: 147344 }, { bar: 85, ms: 149140 },
+      { bar: 86, ms: 150936 }, { bar: 87, ms: 152724 }, { bar: 88, ms: 154497 }, { bar: 89, ms: 156255 }, { bar: 90, ms: 158040 },
+      { bar: 91, ms: 159839 }, { bar: 92, ms: 161612 }, { bar: 93, ms: 163399 }, { bar: 94, ms: 165172 }, { bar: 95, ms: 166958 },
+      { bar: 96, ms: 168722 }, { bar: 97, ms: 170518 }, { bar: 98, ms: 172321 }, { bar: 99, ms: 174107 }, { bar: 100, ms: 175928 },
+      { bar: 101, ms: 177709 }, { bar: 102, ms: 179476 }, { bar: 103, ms: 181240 }, { bar: 104, ms: 183035 }, { bar: 105, ms: 184856 },
+      { bar: 106, ms: 186676 }, { bar: 107, ms: 188435 }, { bar: 108, ms: 190162 }, { bar: 109, ms: 191934 }, { bar: 110, ms: 193664 },
+      { bar: 111, ms: 195444 }, { bar: 112, ms: 196954 }, { bar: 113, ms: 198742 }, { bar: 114, ms: 200516 }, { bar: 115, ms: 202306 },
+      { bar: 116, ms: 204111 }, { bar: 117, ms: 205878 }, { bar: 118, ms: 207658 }, { bar: 119, ms: 209428 }, { bar: 120, ms: 211169 },
+      { bar: 121, ms: 212940 }, { bar: 122, ms: 214715 }, { bar: 123, ms: 216473 }, { bar: 124, ms: 218244 }, { bar: 125, ms: 219999 },
+      { bar: 126, ms: 221795 }, { bar: 127, ms: 223549 }, { bar: 128, ms: 225347 }, { bar: 129, ms: 227135 }, { bar: 130, ms: 228933 },
+      { bar: 131, ms: 230697 }, { bar: 132, ms: 232439 }, { bar: 133, ms: 234237 }, { bar: 134, ms: 235966 }, { bar: 135, ms: 237732 },
+      { bar: 136, ms: 239448 }, { bar: 137, ms: 241218 }, { bar: 138, ms: 242987 }, { bar: 139, ms: 244734 }, { bar: 140, ms: 246492 },
+      { bar: 141, ms: 248246 }, { bar: 142, ms: 250017 }, { bar: 143, ms: 251770 }, { bar: 144, ms: 253492 }, { bar: 145, ms: 254988 },
+      { bar: 146, ms: 256758 }, { bar: 147, ms: 258510 }, { bar: 148, ms: 260240 }, { bar: 149, ms: 262003 }, { bar: 150, ms: 263796 },
+      { bar: 151, ms: 265581 }, { bar: 152, ms: 267335 }, { bar: 153, ms: 269125 }, { bar: 154, ms: 270930 }, { bar: 155, ms: 272729 },
+      { bar: 156, ms: 274520 }, { bar: 157, ms: 276299 }, { bar: 158, ms: 278103 }, { bar: 159, ms: 279852 }, { bar: 160, ms: 281589 },
+      { bar: 161, ms: 283353 }, { bar: 162, ms: 285123 }, { bar: 163, ms: 286886 }, { bar: 164, ms: 288682 }, { bar: 165, ms: 290455 },
+      { bar: 166, ms: 292253 }, { bar: 167, ms: 294009 }, { bar: 168, ms: 295738 }, { bar: 169, ms: 297476 }, { bar: 170, ms: 299234 },
+      { bar: 171, ms: 301003 }, { bar: 172, ms: 302785 }, { bar: 173, ms: 304549 }, { bar: 174, ms: 306325 }, { bar: 175, ms: 308082 },
+      { bar: 176, ms: 309850 }, { bar: 177, ms: 311624 }, { bar: 178, ms: 313431 }, { bar: 179, ms: 315235 }, { bar: 180, ms: 317020 },
+      { bar: 181, ms: 318772 }, { bar: 182, ms: 320548 }, { bar: 183, ms: 322306 }, { bar: 184, ms: 324060 }, { bar: 185, ms: 325792 },
+      { bar: 186, ms: 327556 }, { bar: 187, ms: 329308 }, { bar: 188, ms: 331057 }, { bar: 189, ms: 332821 }, { bar: 190, ms: 334571 },
+      { bar: 191, ms: 336327 }, { bar: 192, ms: 338090 }, { bar: 193, ms: 339855 }, { bar: 194, ms: 341621 }, { bar: 195, ms: 343369 },
+      { bar: 196, ms: 345134 }, { bar: 197, ms: 346894 }, { bar: 198, ms: 348646 }, { bar: 199, ms: 350388 }, { bar: 200, ms: 352142 },
+      { bar: 201, ms: 353886 }, { bar: 202, ms: 355659 }, { bar: 203, ms: 357380 }, { bar: 204, ms: 359124 }, { bar: 205, ms: 360849 },
+      { bar: 206, ms: 362606 }, { bar: 207, ms: 364330 }, { bar: 208, ms: 366046 }, { bar: 209, ms: 367779 }, { bar: 210, ms: 369520 },
+      { bar: 211, ms: 371264 }, { bar: 212, ms: 372988 }, { bar: 213, ms: 374693 }, { bar: 214, ms: 376426 }, { bar: 215, ms: 378164 },
+      { bar: 216, ms: 379757 }, { bar: 217, ms: 381575 }, { bar: 218, ms: 383323 }, { bar: 219, ms: 385070 }, { bar: 220, ms: 386801 },
+      { bar: 221, ms: 388568 }, { bar: 222, ms: 390343 }, { bar: 223, ms: 392079 }, { bar: 224, ms: 393819 }, { bar: 225, ms: 395612 },
+      { bar: 226, ms: 397463 }, { bar: 227, ms: 399255 }, { bar: 228, ms: 401062 }, { bar: 229, ms: 402832 }, { bar: 230, ms: 404562 },
+      { bar: 231, ms: 406292 }, { bar: 232, ms: 407997 }, { bar: 233, ms: 409746 }, { bar: 234, ms: 411510 }, { bar: 235, ms: 413281 },
+      { bar: 236, ms: 415047 }, { bar: 237, ms: 416783 }, { bar: 238, ms: 418538 }, { bar: 239, ms: 420119 }, { bar: 240, ms: 421922 },
+      { bar: 241, ms: 423682 }, { bar: 242, ms: 425431 }, { bar: 243, ms: 427181 }, { bar: 244, ms: 428921 }, { bar: 245, ms: 430667 },
+      { bar: 246, ms: 432455 }, { bar: 247, ms: 434215 }, { bar: 248, ms: 435944 }, { bar: 249, ms: 437675 }, { bar: 250, ms: 439425 },
+      { bar: 251, ms: 441170 }, { bar: 252, ms: 442931 }, { bar: 253, ms: 444686 }, { bar: 254, ms: 446455 }, { bar: 255, ms: 448206 },
+      { bar: 256, ms: 449949 }, { bar: 257, ms: 451678 }, { bar: 258, ms: 453449 }, { bar: 259, ms: 455240 }, { bar: 260, ms: 457015 },
+      { bar: 261, ms: 458800 }, { bar: 262, ms: 460571 }, { bar: 263, ms: 462319 }, { bar: 264, ms: 464126 }, { bar: 265, ms: 465941 },
+      { bar: 266, ms: 467691 }, { bar: 267, ms: 469437 }, { bar: 268, ms: 471188 }, { bar: 269, ms: 472940 }, { bar: 270, ms: 474687 },
+      { bar: 271, ms: 476426 }, { bar: 272, ms: 478131 }, { bar: 273, ms: 479880 }, { bar: 274, ms: 481620 }, { bar: 275, ms: 483360 },
+      { bar: 276, ms: 485092 }, { bar: 277, ms: 486842 }, { bar: 278, ms: 488618 }, { bar: 279, ms: 490376 }, { bar: 280, ms: 492112 },
+      { bar: 281, ms: 493896 }, { bar: 282, ms: 495642 }, { bar: 283, ms: 497394 }, { bar: 284, ms: 499149 }, { bar: 285, ms: 500924 },
+      { bar: 286, ms: 502667 }, { bar: 287, ms: 504423 }, { bar: 288, ms: 506180 }, { bar: 289, ms: 507934 }, { bar: 290, ms: 509692 },
+      { bar: 291, ms: 511447 }, { bar: 292, ms: 513175 }, { bar: 293, ms: 514938 }, { bar: 294, ms: 516696 }, { bar: 295, ms: 518459 },
+      { bar: 296, ms: 520215 }, { bar: 297, ms: 522015 }, { bar: 298, ms: 523776 }, { bar: 299, ms: 525540 }, { bar: 300, ms: 527298 },
+      { bar: 301, ms: 529071 }, { bar: 302, ms: 530819 }, { bar: 303, ms: 532586 }, { bar: 304, ms: 534340 }, { bar: 305, ms: 536107 },
+      { bar: 306, ms: 537892 }, { bar: 307, ms: 539658 }, { bar: 308, ms: 541438 }, { bar: 309, ms: 543192 }, { bar: 310, ms: 544952 },
+      { bar: 311, ms: 546710 }, { bar: 312, ms: 548488 }, { bar: 313, ms: 550243 }, { bar: 314, ms: 552006 }, { bar: 315, ms: 553760 },
+      { bar: 316, ms: 555530 }, { bar: 317, ms: 557316 }, { bar: 318, ms: 559086 }, { bar: 319, ms: 560847 }, { bar: 320, ms: 562592 },
+      { bar: 321, ms: 564345 }, { bar: 322, ms: 566111 }, { bar: 323, ms: 567844 }, { bar: 324, ms: 569582 }, { bar: 325, ms: 571320 },
+      { bar: 326, ms: 573092 },
+      ]
+cover: { album: "Roadwork Vol. 1: Heavy Metall iz a Poze, Hardt Rock iz a Laifschteil", itunesId: 1701790321 }
+chunks:
+  - { name: Intro a, bars: [7, 14] }
+  - { name: Intro b, bars: [15, 22] }
+  - { name: Intro c, bars: [23, 32] }
+  - { name: E riff 1, bars: [33, 40] }
+  - { name: E riff 2, bars: [41, 48] }
+  - { name: E riff 3, bars: [49, 56] }
+  - { name: E–C a, bars: [57, 64] }
+  - { name: E riff 4, bars: [65, 72] }
+  - { name: E riff 5, bars: [73, 80] }
+  - { name: E riff repeat, bars: [81, 88] }
+  - { name: E riff 6, bars: [89, 96] }
+  - { name: E–G–E–A a, bars: [97, 104] }
+  - { name: E line 1, bars: [105, 112] }
+  - { name: E riff 7, bars: [113, 120] }
+  - { name: E–C b, bars: [121, 128] }
+  - { name: E line 2, bars: [129, 136] }
+  - { name: E line 3, bars: [137, 144] }
+  - { name: E riff 8, bars: [145, 152] }
+  - { name: E–A–E, bars: [153, 160] }
+  - { name: E riff 9, bars: [161, 168] }
+  - { name: E–D a, bars: [169, 176] }
+  - { name: E–D b, bars: [177, 184] }
+  - { name: E riff 10, bars: [185, 192] }
+  - { name: E riff 11, bars: [193, 200] }
+  - { name: E riff 12, bars: [201, 208] }
+  - { name: E riff 13, bars: [209, 216] }
+  - { name: E riff 14, bars: [217, 224] }
+  - { name: E line 4, bars: [225, 232] }
+  - { name: E–F♯–E, bars: [233, 240] }
+  - { name: E–G–C, bars: [241, 248] }
+  - { name: E–G–E–G, bars: [249, 256] }
+  - { name: E–G–E–A b, bars: [257, 264] }
+  - { name: E riff 15, bars: [265, 272] }
+  - { name: E riff 16, bars: [273, 280] }
+  - { name: E line 5, bars: [281, 288] }
+  - { name: E line 6, bars: [289, 296] }
+  - { name: E–D–E, bars: [297, 304] }
+  - { name: G line, bars: [305, 312] }
+  - { name: B–D–B–E, bars: [313, 320] }
+  - { name: G–D–A–B, bars: [321, 326] }
+fingeringOverrides: []
+notes: >-
+  Transcribed from the recording by analysis (ADR-0030, 2026-10-12), not by ear and not from a tab:
+  no tab of this song exists. Expect wrong notes and check by ear.
+  The recording: Roadwork Vol. 1 (live in Europe 1998), track 1, an early version of The Other Fool,
+  the upload "The Other Other Fool (Live)" by Motorpsycho - Topic (IHORZUZdTpQ).
+  Method: drums and vocals removed with Demucs; the lowest voice read per eighth note on a beat grid
+  tracked in the recording; bars that sound alike vote together, so small variations between repeats
+  are smoothed away. Where the bass rests, the lowest guitar note is written.
+  The song: 326 bars at about 135 BPM, standard tuning. Nearly all of it is one figure on E: D E .
+  E, F♯ E . E (the D on the open D string, E and F♯ on frets 2 and 4), with a bar of held E every
+  few bars, a turn E . . G . A . A in places, and a part with long F♯ and E notes (about 3:04–3:17
+  and 6:38–6:50). The snare is on beat 3.
+  Nothing in this recording sounds below the D of the open D string, and Demucs found almost no bass
+  in it. So the line is written where it sounds, on the D and G strings; it may partly be a guitar's
+  low strings. An octave lower (open E string) would also fit the song.
+  Bar lines: bar 1 is a 3/8 pickup; bars 111, 144, 215 and 238 are 7/8, where the figure comes back
+  an eighth early. Bars 2–6 are silence before the band starts, and after about 8:14 (bar 282) the
+  drums stop and the bars are only a grid. The score ends at 9:36; the recording runs to 10:40.
+  YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029), not Songsterr
+  points. Do not run fetch-video --write for this song.
+  To check by ear: the octave, whether the first note of the figure is D or A (both were read), the
+  7/8 bars, and the looser parts between 3:40 and 5:30.

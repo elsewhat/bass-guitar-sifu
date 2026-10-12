@@ -1,6 +1,6 @@
 ---
 name: preprocess-song
-description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, the YouTube video and its sync, Music offset, album cover, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file].
+description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox to the Bass Trainer catalogue. Inspects the file, moves it to songs/<slug>/score.gp (+ audio.mp3), writes song.yaml (metadata, named practice chunks, the YouTube video and its sync, Music offset, album cover, fingering overrides) and regenerates public/data. Use when the user wants to add, import or preprocess a song, or runs /preprocess-song [file]. Also covers a song that has no bass tab anywhere: section 10 transcribes the bass from the recording (ADR-0030).
 ---
 
 # preprocess-song
@@ -8,6 +8,8 @@ description: Add a Guitar Pro file (and its rendered MP3) from the music/ inbox 
 Turns `music/<Artist-Title-MM-DD-YYYY>.gp` (and the MP3 rendered from it, if present) into `songs/<slug>/score.gp` + `audio.mp3` + `song.yaml` and regenerates `public/data/` (ADR-0013, ADR-0014, ADR-0015, ADR-0022). Deterministic work is done by scripts; your job is the judgment: naming, chunking, checking the recording, and reviewing the fingering.
 
 **Input:** a path or file name in `music/`. If none is given, list `music/*.gp`; with one file, process it; with several, ask which (or "all", processed one at a time).
+
+**No file, because no bass tab exists for the song?** Go to section 10.
 
 Do not commit. The owner reviews the diff and commits.
 
@@ -122,7 +124,7 @@ npm run fetch-video -- <slug> --write
 
 This replaces `media.youtube` in `song.yaml` (`videoId`, `songsterr`, `sync`). Never write anchors by hand from guesses.
 
-Do not run it with `--write` for a song whose `notes` say the anchors were measured in the recording (ADR-0029: the Vortex Surfer songs). Songsterr's points for AI-generated tabs can sit on the wrong beat of the bar, a quarter or an eighth note late. If the tab's page on Songsterr says it is AI-generated, say so in `notes` and in the summary, so the owner checks the tab ring against the bass by ear.
+Do not run it with `--write` for a song whose `notes` say the anchors were measured in the recording (ADR-0029 and ADR-0030: the Vortex Surfer songs and the six Roadwork Vol. 1 songs). Songsterr's points for AI-generated tabs can sit on the wrong beat of the bar, a quarter or an eighth note late. If the tab's page on Songsterr says it is AI-generated, say so in `notes` and in the summary, so the owner checks the tab ring against the bass by ear.
 
 The owner is in Norway, and "- Topic" uploads are sometimes blocked there. After the build (step 7), check that the video plays: choose YouTube for the song in the app and press Play. If the video cell says it may not be played, pick another video from the report's "Other videos" list, preferring the artist's official channel, and run `npm run fetch-video -- <slug> --video <id> --write`.
 
@@ -167,3 +169,61 @@ Then report to the owner:
 - lyrics: synced from which track, or none (the owner can paste `lyrics.text` into `song.yaml`),
 - re-tabs and any overrides, with the reason,
 - what to check by ear: tempo interpretation, chunk boundaries you were unsure about, anything the report warned about.
+
+## 10. No tab exists: transcribe the bass from the recording
+
+Use this only when there is nothing to import (ADR-0030). The result is a machine reading with your decisions on top. You cannot hear it, so nobody has checked it: say that in `song.yaml` and in your summary.
+
+- Commands, installs and file formats: `scripts/transcribe/README.md`.
+- Background and what was measured: ADR-0030.
+- Worked examples: the six Roadwork Vol. 1 songs and their files in `scripts/transcribe/songs/`.
+
+Of the steps above, 2 (metadata), 4c (cover), 6 (`song.yaml`), 7 (build) and 9 (check and summarise) still apply, and `chunks.py` follows the rules of step 5. Steps 1, 3, 4, 4b and 6b do not apply. Leave step 8 (fingering overrides) until the owner has confirmed the notes.
+
+### Before you start
+
+- **Make sure there is no tab.** Search Songsterr (`https://www.songsterr.com/api/songs?pattern=<artist title>`), Ultimate Guitar and the web. A Songsterr tab marked `aiGenerated` is still a tab: import it the normal way. A tab of another take of the song (studio against live, another key) cannot be imported for this recording, but keep it. It is the best check you will get.
+- **Ask the owner first**, every time: before fetching the recording, and before installing anything. Say what is fetched, from where and how big. PyTorch and Demucs are not installed on the machine (about 4.5 GB with GPU support).
+- **Work in a temporary folder outside the repository.** Delete the audio and the stems when you are done. Only notes and bar times go into the repository (ADR-0011).
+- **The video is the upload you analysed.** The anchors belong to it; another upload of the same track can be offset.
+
+### What decides the quality
+
+1. **Do not rely on the bass stem.** Demucs removes drums and vocals well, but it files a distorted bass under "other" for long stretches. `pitch.py` reads the lowest voice of both stems together for that reason.
+2. **Track the eighth notes themselves** (`grid.py` with a range around twice the tempo, then `slotfeat.py <dir> 1`). A quarter-note grid cut in half loses or gains an eighth wherever the tracker flips to the off-beat, and the song then seems full of 7/8 and 9/8 bars. The exception is a very fast pulse: at 334 a minute the tracker drifted, so track the slower pulse there and use two slots per pulse.
+3. **The notated tempo is your decision.** The pulse the tracker locks to can be twice the beat. Let the snare decide: on 2 and 4, or on 3 in a half-time feel. Write a `tempo.note` when the notated tempo is not the pulse one taps.
+4. **Where bar 1 starts.** Fold a riff over its cycle with `sfold.py` and look at the snare, the kick, where the riff starts and the first sound of the track. When drums and riff disagree, trust the drums. Make bar 1 a short pickup bar (`"odd": {"1": n}`) rather than letting it start before 0:00.
+5. **Odd bars.** A live band adds and drops beats at the turns, and comes in after a stop without counting. `align.py` proposes the bars of another length. Take a proposal that stands alone with a clear gain. Ignore pairs that cancel each other. Ignore proposals in drone parts, where every shift fits; place those bar lines on the chord changes yourself.
+6. **Octaves.** The transcriber writes a note an octave lower when that octave's fundamental is in the sound; `octave.py` shows how clear the case is per pitch. Notes below the lowest string (bass pedals, a detuned string) are folded up with `lowest`. Where you know a part's octave and the reading wavers, fix it with `fold`.
+7. **The lowest voice is not always the bass.** Where nothing sounds below about 80 Hz, the reading is the guitar. Write such a part as one note per bar (`whole`) or leave it empty (`tacet`), and say which in `notes`.
+8. **Quiet parts and drones.** A quiet part reads as silence until `rest_db` is raised. A held note read slot by slot turns into noise: use `whole`, or `pedal` for a root struck on every slot.
+9. **Read the printed bars.** A riff that repeats must come out the same each time. If every bar differs, the grid or the bar lines are wrong, not the band.
+
+### Checks
+
+- If a tab of another take exists, compare the root of every bar with it.
+- `npm run inspect-song -- <slug>`: the bar patterns should show the repeats, and the time signatures only the odd bars you meant.
+- After the build, choose YouTube for the song in the app and see that the video loads.
+- `npm run test:e2e`: a new title can change what a library search in the tests finds.
+
+### song.yaml
+
+- `source: { file: "Transcribed from the recording (ADR-0030)", date: <today> }`
+- `bassTrack: "Electric Bass (transcribed)"`, the name `write-score.ts` gets from the song's file.
+- `media.youtube`: the `videoId` of the upload you analysed and the anchors from `write-sync.ts`. Never run `fetch-video --write` for the song.
+- `chunks` from `chunks.py`. Give it section names in `sections_chunks`, and `chunk_bars: 8` for a song of more than about 300 bars.
+- `cover` as in step 4c; use `--term "<artist> <album>"` when the title finds nothing.
+- No Music source. No lyrics, unless the owner pastes them.
+- `notes`, in this order:
+  1. that the part is transcribed by analysis, not by ear and not from a tab;
+  2. the recording: album, track, upload and video id;
+  3. the method in two sentences;
+  4. the form with bar numbers, and what the riffs are;
+  5. where the lowest voice is not the bass, and what was folded an octave;
+  6. the bars that are not in the main meter, and why;
+  7. that the anchors are measured and `fetch-video --write` must not be run;
+  8. what to check by ear.
+
+### In the summary
+
+Besides the items of step 9: that it is a machine reading nobody has listened to, where it is weakest (improvised parts, held against struck notes, octaves), which check it passed, and what is left on the machine (the temporary Python environment, Demucs's model weights).

@@ -370,7 +370,7 @@ test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ pa
   await library.getByRole('button', { name: /^Motorpsycho/ }).click(); // clicking the active chip clears it
   await expect(library.getByRole('button', { name: 'All', exact: true })).toHaveAttribute('aria-pressed', 'true');
 
-  await library.getByRole('searchbox').fill('wheel');
+  await library.getByRole('searchbox').fill('the wheel'); // "wheel" alone also finds Super/Wheel
   await expect(library.getByText(`1 of ${total} songs`)).toBeVisible();
   await expect(library.getByRole('button', { name: /^The Wheel/ })).toContainText('C♯ standard');
 

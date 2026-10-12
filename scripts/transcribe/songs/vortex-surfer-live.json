@@ -1,0 +1,56 @@
+{
+  "videoId": "rFqaa8PWC_I",
+  "grid": {
+    "bpm_lo": 98,
+    "bpm_hi": 122,
+    "div": 2
+  },
+  "title": "Vortex Surfer (live)",
+  "artist": "Motorpsycho",
+  "album": "Roadwork Vol. 1",
+  "trackName": "Electric Bass (transcribed)",
+  "tuning": [28, 33, 38, 43],
+  "spq": 2,
+  "start": 0,
+  "bar": 8,
+  "lowest": 28,
+  "odd": {
+    "1": 2,
+    "116": 6,
+    "179": 4
+  },
+  "end_s": 482,
+  "rest_db": 45,
+  "fold": [
+    [1, 116, "G1", "G2"],
+    [1, 116, "E1", "E2"],
+    [1, 116, "A1", "A2"],
+    [1, 116, "B1", "B2"]
+  ],
+  "whole": [
+    [1, 116],
+    [222, 224]
+  ],
+  "pedal": [
+    [117, 221, 8]
+  ],
+  "tacet": [
+    [165, 179]
+  ],
+  "sections_chunks": [
+    [1, 17, "Intro"],
+    [18, 49, "Verse 1"],
+    [50, 61, "Rise"],
+    [62, 69, "B pedal"],
+    [70, 101, "Verse 2"],
+    [102, 116, "Rise"],
+    [117, 128, "Riff A"],
+    [129, 134, "Climb"],
+    [135, 146, "E pedal"],
+    [147, 164, "Descent"],
+    [180, 195, "Return"],
+    [196, 207, "Rise"],
+    [208, 219, "Half-step"],
+    [220, 224, "Outro"]
+  ]
+}

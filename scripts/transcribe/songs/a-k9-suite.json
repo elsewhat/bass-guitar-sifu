@@ -1,0 +1,37 @@
+{
+  "videoId": "_r-DQCzz6Oo",
+  "grid": {
+    "bpm_lo": 172,
+    "bpm_hi": 280,
+    "div": 1
+  },
+  "title": "A K9 Suite",
+  "artist": "Motorpsycho",
+  "album": "Roadwork Vol. 1",
+  "trackName": "Electric Bass (transcribed)",
+  "tuning": [28, 33, 38, 43],
+  "spq": 2,
+  "start": 0,
+  "bar": 8,
+  "lowest": 28,
+  "odd": {
+    "1": 2
+  },
+  "end_s": 1762,
+  "rest_db": 32,
+  "tacet": [
+    [1, 42]
+  ],
+  "fold": [
+    [142, 361, "C3", "C2"],
+    [142, 361, "C4", "C2"],
+    [142, 361, "G3", "C2"]
+  ],
+  "whole": [
+    [142, 361]
+  ],
+  "sections_chunks": [
+    [142, 361, "C drone"]
+  ],
+  "chunk_bars": 8
+}

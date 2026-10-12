@@ -1,0 +1,261 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: A K9 Suite
+artist: Motorpsycho
+source: { file: "Transcribed from the recording (ADR-0030)", date: 2026-10-12 }
+bassTrack: "Electric Bass (transcribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: "_r-DQCzz6Oo"
+    sync: [
+      { bar: 1, ms: 69 }, { bar: 2, ms: 749 }, { bar: 3, ms: 3487 }, { bar: 4, ms: 6213 }, { bar: 5, ms: 8879 },
+      { bar: 6, ms: 11536 }, { bar: 7, ms: 14149 }, { bar: 8, ms: 16836 }, { bar: 9, ms: 19523 }, { bar: 10, ms: 22204 },
+      { bar: 11, ms: 24933 }, { bar: 12, ms: 27554 }, { bar: 13, ms: 30176 }, { bar: 14, ms: 32865 }, { bar: 15, ms: 35523 },
+      { bar: 16, ms: 38185 }, { bar: 17, ms: 40952 }, { bar: 18, ms: 43711 }, { bar: 19, ms: 46491 }, { bar: 20, ms: 49189 },
+      { bar: 21, ms: 51945 }, { bar: 22, ms: 54696 }, { bar: 23, ms: 57406 }, { bar: 24, ms: 60152 }, { bar: 25, ms: 62914 },
+      { bar: 26, ms: 65709 }, { bar: 27, ms: 68357 }, { bar: 28, ms: 71019 }, { bar: 29, ms: 73716 }, { bar: 30, ms: 76475 },
+      { bar: 31, ms: 79105 }, { bar: 32, ms: 81852 }, { bar: 33, ms: 84593 }, { bar: 34, ms: 87328 }, { bar: 35, ms: 89984 },
+      { bar: 36, ms: 92652 }, { bar: 37, ms: 95371 }, { bar: 38, ms: 98128 }, { bar: 39, ms: 100807 }, { bar: 40, ms: 103435 },
+      { bar: 41, ms: 106182 }, { bar: 42, ms: 108939 }, { bar: 43, ms: 111658 }, { bar: 44, ms: 114190 }, { bar: 45, ms: 116729 },
+      { bar: 46, ms: 119285 }, { bar: 47, ms: 121858 }, { bar: 48, ms: 124401 }, { bar: 49, ms: 126972 }, { bar: 50, ms: 129531 },
+      { bar: 51, ms: 132096 }, { bar: 52, ms: 134672 }, { bar: 53, ms: 137233 }, { bar: 54, ms: 139810 }, { bar: 55, ms: 142380 },
+      { bar: 56, ms: 144948 }, { bar: 57, ms: 147540 }, { bar: 58, ms: 150097 }, { bar: 59, ms: 152678 }, { bar: 60, ms: 155262 },
+      { bar: 61, ms: 157843 }, { bar: 62, ms: 160409 }, { bar: 63, ms: 162977 }, { bar: 64, ms: 165532 }, { bar: 65, ms: 168083 },
+      { bar: 66, ms: 170629 }, { bar: 67, ms: 173193 }, { bar: 68, ms: 175738 }, { bar: 69, ms: 178300 }, { bar: 70, ms: 180837 },
+      { bar: 71, ms: 183390 }, { bar: 72, ms: 185918 }, { bar: 73, ms: 188447 }, { bar: 74, ms: 190967 }, { bar: 75, ms: 193497 },
+      { bar: 76, ms: 195994 }, { bar: 77, ms: 198534 }, { bar: 78, ms: 201049 }, { bar: 79, ms: 203569 }, { bar: 80, ms: 206055 },
+      { bar: 81, ms: 208571 }, { bar: 82, ms: 211075 }, { bar: 83, ms: 213569 }, { bar: 84, ms: 216061 }, { bar: 85, ms: 218605 },
+      { bar: 86, ms: 221114 }, { bar: 87, ms: 223637 }, { bar: 88, ms: 226140 }, { bar: 89, ms: 228665 }, { bar: 90, ms: 231172 },
+      { bar: 91, ms: 233698 }, { bar: 92, ms: 236233 }, { bar: 93, ms: 238812 }, { bar: 94, ms: 241417 }, { bar: 95, ms: 244033 },
+      { bar: 96, ms: 246624 }, { bar: 97, ms: 249231 }, { bar: 98, ms: 251810 }, { bar: 99, ms: 254397 }, { bar: 100, ms: 256899 },
+      { bar: 101, ms: 259390 }, { bar: 102, ms: 261950 }, { bar: 103, ms: 264416 }, { bar: 104, ms: 266937 }, { bar: 105, ms: 269559 },
+      { bar: 106, ms: 272148 }, { bar: 107, ms: 274778 }, { bar: 108, ms: 277356 }, { bar: 109, ms: 279832 }, { bar: 110, ms: 282399 },
+      { bar: 111, ms: 284858 }, { bar: 112, ms: 287406 }, { bar: 113, ms: 290044 }, { bar: 114, ms: 292603 }, { bar: 115, ms: 295148 },
+      { bar: 116, ms: 297648 }, { bar: 117, ms: 300177 }, { bar: 118, ms: 302632 }, { bar: 119, ms: 305128 }, { bar: 120, ms: 307580 },
+      { bar: 121, ms: 310092 }, { bar: 122, ms: 312570 }, { bar: 123, ms: 315084 }, { bar: 124, ms: 317560 }, { bar: 125, ms: 320088 },
+      { bar: 126, ms: 322573 }, { bar: 127, ms: 325107 }, { bar: 128, ms: 327580 }, { bar: 129, ms: 330113 }, { bar: 130, ms: 332591 },
+      { bar: 131, ms: 335100 }, { bar: 132, ms: 337551 }, { bar: 133, ms: 339972 }, { bar: 134, ms: 342380 }, { bar: 135, ms: 344758 },
+      { bar: 136, ms: 347158 }, { bar: 137, ms: 349570 }, { bar: 138, ms: 351958 }, { bar: 139, ms: 354339 }, { bar: 140, ms: 356703 },
+      { bar: 141, ms: 359148 }, { bar: 142, ms: 361656 }, { bar: 143, ms: 364155 }, { bar: 144, ms: 366604 }, { bar: 145, ms: 369119 },
+      { bar: 146, ms: 371608 }, { bar: 147, ms: 374137 }, { bar: 148, ms: 376633 }, { bar: 149, ms: 379161 }, { bar: 150, ms: 381621 },
+      { bar: 151, ms: 384104 }, { bar: 152, ms: 386592 }, { bar: 153, ms: 389143 }, { bar: 154, ms: 391674 }, { bar: 155, ms: 394193 },
+      { bar: 156, ms: 396664 }, { bar: 157, ms: 399218 }, { bar: 158, ms: 401710 }, { bar: 159, ms: 404240 }, { bar: 160, ms: 406733 },
+      { bar: 161, ms: 409240 }, { bar: 162, ms: 411728 }, { bar: 163, ms: 414225 }, { bar: 164, ms: 416687 }, { bar: 165, ms: 419132 },
+      { bar: 166, ms: 421672 }, { bar: 167, ms: 424158 }, { bar: 168, ms: 426650 }, { bar: 169, ms: 429115 }, { bar: 170, ms: 431587 },
+      { bar: 171, ms: 434082 }, { bar: 172, ms: 436563 }, { bar: 173, ms: 439065 }, { bar: 174, ms: 441571 }, { bar: 175, ms: 444059 },
+      { bar: 176, ms: 446539 }, { bar: 177, ms: 449004 }, { bar: 178, ms: 451463 }, { bar: 179, ms: 453891 }, { bar: 180, ms: 456390 },
+      { bar: 181, ms: 458872 }, { bar: 182, ms: 461330 }, { bar: 183, ms: 463833 }, { bar: 184, ms: 466310 }, { bar: 185, ms: 468774 },
+      { bar: 186, ms: 471208 }, { bar: 187, ms: 473687 }, { bar: 188, ms: 476155 }, { bar: 189, ms: 478636 }, { bar: 190, ms: 481144 },
+      { bar: 191, ms: 483583 }, { bar: 192, ms: 486019 }, { bar: 193, ms: 488448 }, { bar: 194, ms: 490924 }, { bar: 195, ms: 493369 },
+      { bar: 196, ms: 495815 }, { bar: 197, ms: 498268 }, { bar: 198, ms: 500722 }, { bar: 199, ms: 503172 }, { bar: 200, ms: 505675 },
+      { bar: 201, ms: 508171 }, { bar: 202, ms: 510636 }, { bar: 203, ms: 513132 }, { bar: 204, ms: 515612 }, { bar: 205, ms: 518114 },
+      { bar: 206, ms: 520601 }, { bar: 207, ms: 523077 }, { bar: 208, ms: 525588 }, { bar: 209, ms: 528077 }, { bar: 210, ms: 530547 },
+      { bar: 211, ms: 533046 }, { bar: 212, ms: 535524 }, { bar: 213, ms: 537960 }, { bar: 214, ms: 540452 }, { bar: 215, ms: 542943 },
+      { bar: 216, ms: 545480 }, { bar: 217, ms: 548006 }, { bar: 218, ms: 550512 }, { bar: 219, ms: 553009 }, { bar: 220, ms: 555535 },
+      { bar: 221, ms: 558084 }, { bar: 222, ms: 560575 }, { bar: 223, ms: 563105 }, { bar: 224, ms: 565616 }, { bar: 225, ms: 568127 },
+      { bar: 226, ms: 570610 }, { bar: 227, ms: 573144 }, { bar: 228, ms: 575686 }, { bar: 229, ms: 578253 }, { bar: 230, ms: 580803 },
+      { bar: 231, ms: 583299 }, { bar: 232, ms: 585810 }, { bar: 233, ms: 588342 }, { bar: 234, ms: 590867 }, { bar: 235, ms: 593348 },
+      { bar: 236, ms: 595851 }, { bar: 237, ms: 598368 }, { bar: 238, ms: 600832 }, { bar: 239, ms: 603310 }, { bar: 240, ms: 605797 },
+      { bar: 241, ms: 608267 }, { bar: 242, ms: 610630 }, { bar: 243, ms: 613083 }, { bar: 244, ms: 615535 }, { bar: 245, ms: 617988 },
+      { bar: 246, ms: 620418 }, { bar: 247, ms: 622936 }, { bar: 248, ms: 625486 }, { bar: 249, ms: 628010 }, { bar: 250, ms: 630435 },
+      { bar: 251, ms: 632879 }, { bar: 252, ms: 635358 }, { bar: 253, ms: 637878 }, { bar: 254, ms: 640452 }, { bar: 255, ms: 643010 },
+      { bar: 256, ms: 645549 }, { bar: 257, ms: 648030 }, { bar: 258, ms: 650483 }, { bar: 259, ms: 652943 }, { bar: 260, ms: 655402 },
+      { bar: 261, ms: 657871 }, { bar: 262, ms: 660451 }, { bar: 263, ms: 663008 }, { bar: 264, ms: 665414 }, { bar: 265, ms: 667833 },
+      { bar: 266, ms: 670203 }, { bar: 267, ms: 672597 }, { bar: 268, ms: 674975 }, { bar: 269, ms: 677353 }, { bar: 270, ms: 679744 },
+      { bar: 271, ms: 682128 }, { bar: 272, ms: 684495 }, { bar: 273, ms: 686923 }, { bar: 274, ms: 689382 }, { bar: 275, ms: 691778 },
+      { bar: 276, ms: 694184 }, { bar: 277, ms: 696613 }, { bar: 278, ms: 699065 }, { bar: 279, ms: 701460 }, { bar: 280, ms: 703856 },
+      { bar: 281, ms: 706206 }, { bar: 282, ms: 708616 }, { bar: 283, ms: 711072 }, { bar: 284, ms: 713507 }, { bar: 285, ms: 715908 },
+      { bar: 286, ms: 718290 }, { bar: 287, ms: 720772 }, { bar: 288, ms: 723208 }, { bar: 289, ms: 725587 }, { bar: 290, ms: 728031 },
+      { bar: 291, ms: 730500 }, { bar: 292, ms: 732987 }, { bar: 293, ms: 735399 }, { bar: 294, ms: 737843 }, { bar: 295, ms: 740269 },
+      { bar: 296, ms: 742657 }, { bar: 297, ms: 745053 }, { bar: 298, ms: 747433 }, { bar: 299, ms: 749840 }, { bar: 300, ms: 752223 },
+      { bar: 301, ms: 754666 }, { bar: 302, ms: 757104 }, { bar: 303, ms: 759492 }, { bar: 304, ms: 761856 }, { bar: 305, ms: 764243 },
+      { bar: 306, ms: 766700 }, { bar: 307, ms: 769087 }, { bar: 308, ms: 771520 }, { bar: 309, ms: 773924 }, { bar: 310, ms: 776305 },
+      { bar: 311, ms: 778631 }, { bar: 312, ms: 781015 }, { bar: 313, ms: 783394 }, { bar: 314, ms: 785768 }, { bar: 315, ms: 788132 },
+      { bar: 316, ms: 790519 }, { bar: 317, ms: 792887 }, { bar: 318, ms: 795288 }, { bar: 319, ms: 797726 }, { bar: 320, ms: 800120 },
+      { bar: 321, ms: 802468 }, { bar: 322, ms: 804868 }, { bar: 323, ms: 807241 }, { bar: 324, ms: 809670 }, { bar: 325, ms: 812022 },
+      { bar: 326, ms: 814419 }, { bar: 327, ms: 816806 }, { bar: 328, ms: 819214 }, { bar: 329, ms: 821578 }, { bar: 330, ms: 823996 },
+      { bar: 331, ms: 826433 }, { bar: 332, ms: 828872 }, { bar: 333, ms: 831227 }, { bar: 334, ms: 833684 }, { bar: 335, ms: 836090 },
+      { bar: 336, ms: 838513 }, { bar: 337, ms: 840924 }, { bar: 338, ms: 843303 }, { bar: 339, ms: 845720 }, { bar: 340, ms: 848108 },
+      { bar: 341, ms: 850513 }, { bar: 342, ms: 852962 }, { bar: 343, ms: 855416 }, { bar: 344, ms: 857863 }, { bar: 345, ms: 860385 },
+      { bar: 346, ms: 862858 }, { bar: 347, ms: 865318 }, { bar: 348, ms: 867763 }, { bar: 349, ms: 870116 }, { bar: 350, ms: 872471 },
+      { bar: 351, ms: 874813 }, { bar: 352, ms: 877227 }, { bar: 353, ms: 879671 }, { bar: 354, ms: 882109 }, { bar: 355, ms: 884479 },
+      { bar: 356, ms: 886881 }, { bar: 357, ms: 889295 }, { bar: 358, ms: 891706 }, { bar: 359, ms: 894152 }, { bar: 360, ms: 896578 },
+      { bar: 361, ms: 898985 }, { bar: 362, ms: 901415 }, { bar: 363, ms: 903791 }, { bar: 364, ms: 906210 }, { bar: 365, ms: 908626 },
+      { bar: 366, ms: 911065 }, { bar: 367, ms: 913530 }, { bar: 368, ms: 915952 }, { bar: 369, ms: 918332 }, { bar: 370, ms: 920731 },
+      { bar: 371, ms: 923139 }, { bar: 372, ms: 925515 }, { bar: 373, ms: 927914 }, { bar: 374, ms: 930303 }, { bar: 375, ms: 932722 },
+      { bar: 376, ms: 935134 }, { bar: 377, ms: 937540 }, { bar: 378, ms: 939945 }, { bar: 379, ms: 942361 }, { bar: 380, ms: 944754 },
+      { bar: 381, ms: 947140 }, { bar: 382, ms: 949545 }, { bar: 383, ms: 951993 }, { bar: 384, ms: 954489 }, { bar: 385, ms: 956987 },
+      { bar: 386, ms: 959478 }, { bar: 387, ms: 961931 }, { bar: 388, ms: 964388 }, { bar: 389, ms: 966807 }, { bar: 390, ms: 969243 },
+      { bar: 391, ms: 971686 }, { bar: 392, ms: 974126 }, { bar: 393, ms: 976574 }, { bar: 394, ms: 979025 }, { bar: 395, ms: 981485 },
+      { bar: 396, ms: 983957 }, { bar: 397, ms: 986432 }, { bar: 398, ms: 988908 }, { bar: 399, ms: 991350 }, { bar: 400, ms: 993805 },
+      { bar: 401, ms: 996254 }, { bar: 402, ms: 998702 }, { bar: 403, ms: 1001133 }, { bar: 404, ms: 1003587 }, { bar: 405, ms: 1006033 },
+      { bar: 406, ms: 1008489 }, { bar: 407, ms: 1010952 }, { bar: 408, ms: 1013406 }, { bar: 409, ms: 1015871 }, { bar: 410, ms: 1018326 },
+      { bar: 411, ms: 1020766 }, { bar: 412, ms: 1023230 }, { bar: 413, ms: 1025707 }, { bar: 414, ms: 1028150 }, { bar: 415, ms: 1030617 },
+      { bar: 416, ms: 1033095 }, { bar: 417, ms: 1035581 }, { bar: 418, ms: 1038067 }, { bar: 419, ms: 1040549 }, { bar: 420, ms: 1043021 },
+      { bar: 421, ms: 1045490 }, { bar: 422, ms: 1047969 }, { bar: 423, ms: 1050436 }, { bar: 424, ms: 1052885 }, { bar: 425, ms: 1055348 },
+      { bar: 426, ms: 1057818 }, { bar: 427, ms: 1060292 }, { bar: 428, ms: 1062777 }, { bar: 429, ms: 1065260 }, { bar: 430, ms: 1067731 },
+      { bar: 431, ms: 1070217 }, { bar: 432, ms: 1072703 }, { bar: 433, ms: 1075176 }, { bar: 434, ms: 1077645 }, { bar: 435, ms: 1080108 },
+      { bar: 436, ms: 1082604 }, { bar: 437, ms: 1085086 }, { bar: 438, ms: 1087543 }, { bar: 439, ms: 1089987 }, { bar: 440, ms: 1092456 },
+      { bar: 441, ms: 1094901 }, { bar: 442, ms: 1097349 }, { bar: 443, ms: 1099802 }, { bar: 444, ms: 1102251 }, { bar: 445, ms: 1104701 },
+      { bar: 446, ms: 1107148 }, { bar: 447, ms: 1109572 }, { bar: 448, ms: 1112010 }, { bar: 449, ms: 1114430 }, { bar: 450, ms: 1116871 },
+      { bar: 451, ms: 1119306 }, { bar: 452, ms: 1121750 }, { bar: 453, ms: 1124190 }, { bar: 454, ms: 1126606 }, { bar: 455, ms: 1129004 },
+      { bar: 456, ms: 1131421 }, { bar: 457, ms: 1133817 }, { bar: 458, ms: 1136220 }, { bar: 459, ms: 1138638 }, { bar: 460, ms: 1141053 },
+      { bar: 461, ms: 1143466 }, { bar: 462, ms: 1145864 }, { bar: 463, ms: 1148277 }, { bar: 464, ms: 1150662 }, { bar: 465, ms: 1153046 },
+      { bar: 466, ms: 1155438 }, { bar: 467, ms: 1157826 }, { bar: 468, ms: 1160197 }, { bar: 469, ms: 1162563 }, { bar: 470, ms: 1164928 },
+      { bar: 471, ms: 1167324 }, { bar: 472, ms: 1169704 }, { bar: 473, ms: 1172081 }, { bar: 474, ms: 1174435 }, { bar: 475, ms: 1176802 },
+      { bar: 476, ms: 1179178 }, { bar: 477, ms: 1181540 }, { bar: 478, ms: 1183909 }, { bar: 479, ms: 1186290 }, { bar: 480, ms: 1188650 },
+      { bar: 481, ms: 1190998 }, { bar: 482, ms: 1193341 }, { bar: 483, ms: 1195708 }, { bar: 484, ms: 1198052 }, { bar: 485, ms: 1200363 },
+      { bar: 486, ms: 1202681 }, { bar: 487, ms: 1205031 }, { bar: 488, ms: 1207357 }, { bar: 489, ms: 1209696 }, { bar: 490, ms: 1212024 },
+      { bar: 491, ms: 1214336 }, { bar: 492, ms: 1216664 }, { bar: 493, ms: 1218969 }, { bar: 494, ms: 1221255 }, { bar: 495, ms: 1223539 },
+      { bar: 496, ms: 1225797 }, { bar: 497, ms: 1228059 }, { bar: 498, ms: 1230313 }, { bar: 499, ms: 1232589 }, { bar: 500, ms: 1234927 },
+      { bar: 501, ms: 1237198 }, { bar: 502, ms: 1239446 }, { bar: 503, ms: 1241713 }, { bar: 504, ms: 1243955 }, { bar: 505, ms: 1246200 },
+      { bar: 506, ms: 1248448 }, { bar: 507, ms: 1250708 }, { bar: 508, ms: 1252880 }, { bar: 509, ms: 1255096 }, { bar: 510, ms: 1257344 },
+      { bar: 511, ms: 1259583 }, { bar: 512, ms: 1261798 }, { bar: 513, ms: 1264018 }, { bar: 514, ms: 1266228 }, { bar: 515, ms: 1268447 },
+      { bar: 516, ms: 1270654 }, { bar: 517, ms: 1272857 }, { bar: 518, ms: 1275053 }, { bar: 519, ms: 1277257 }, { bar: 520, ms: 1279437 },
+      { bar: 521, ms: 1281631 }, { bar: 522, ms: 1283844 }, { bar: 523, ms: 1286141 }, { bar: 524, ms: 1288318 }, { bar: 525, ms: 1290501 },
+      { bar: 526, ms: 1292654 }, { bar: 527, ms: 1294851 }, { bar: 528, ms: 1297039 }, { bar: 529, ms: 1299233 }, { bar: 530, ms: 1301327 },
+      { bar: 531, ms: 1303442 }, { bar: 532, ms: 1305561 }, { bar: 533, ms: 1307671 }, { bar: 534, ms: 1309773 }, { bar: 535, ms: 1311866 },
+      { bar: 536, ms: 1313948 }, { bar: 537, ms: 1316025 }, { bar: 538, ms: 1318095 }, { bar: 539, ms: 1320149 }, { bar: 540, ms: 1322188 },
+      { bar: 541, ms: 1324212 }, { bar: 542, ms: 1326250 }, { bar: 543, ms: 1328326 }, { bar: 544, ms: 1330385 }, { bar: 545, ms: 1332475 },
+      { bar: 546, ms: 1334579 }, { bar: 547, ms: 1336657 }, { bar: 548, ms: 1338738 }, { bar: 549, ms: 1340812 }, { bar: 550, ms: 1342871 },
+      { bar: 551, ms: 1344898 }, { bar: 552, ms: 1346923 }, { bar: 553, ms: 1348963 }, { bar: 554, ms: 1351000 }, { bar: 555, ms: 1353030 },
+      { bar: 556, ms: 1355046 }, { bar: 557, ms: 1357046 }, { bar: 558, ms: 1359028 }, { bar: 559, ms: 1361016 }, { bar: 560, ms: 1363005 },
+      { bar: 561, ms: 1365050 }, { bar: 562, ms: 1367062 }, { bar: 563, ms: 1369016 }, { bar: 564, ms: 1371004 }, { bar: 565, ms: 1372973 },
+      { bar: 566, ms: 1374935 }, { bar: 567, ms: 1376905 }, { bar: 568, ms: 1378900 }, { bar: 569, ms: 1380895 }, { bar: 570, ms: 1382869 },
+      { bar: 571, ms: 1384812 }, { bar: 572, ms: 1386755 }, { bar: 573, ms: 1388676 }, { bar: 574, ms: 1390600 }, { bar: 575, ms: 1392503 },
+      { bar: 576, ms: 1394464 }, { bar: 577, ms: 1396450 }, { bar: 578, ms: 1398433 }, { bar: 579, ms: 1400436 }, { bar: 580, ms: 1402361 },
+      { bar: 581, ms: 1404328 }, { bar: 582, ms: 1406270 }, { bar: 583, ms: 1408133 }, { bar: 584, ms: 1409998 }, { bar: 585, ms: 1411938 },
+      { bar: 586, ms: 1413934 }, { bar: 587, ms: 1415922 }, { bar: 588, ms: 1417880 }, { bar: 589, ms: 1419883 }, { bar: 590, ms: 1421882 },
+      { bar: 591, ms: 1423872 }, { bar: 592, ms: 1425897 }, { bar: 593, ms: 1427911 }, { bar: 594, ms: 1429916 }, { bar: 595, ms: 1431945 },
+      { bar: 596, ms: 1433933 }, { bar: 597, ms: 1435893 }, { bar: 598, ms: 1437874 }, { bar: 599, ms: 1439841 }, { bar: 600, ms: 1441817 },
+      { bar: 601, ms: 1443813 }, { bar: 602, ms: 1445829 }, { bar: 603, ms: 1447820 }, { bar: 604, ms: 1449749 }, { bar: 605, ms: 1451721 },
+      { bar: 606, ms: 1453697 }, { bar: 607, ms: 1455687 }, { bar: 608, ms: 1457663 }, { bar: 609, ms: 1459589 }, { bar: 610, ms: 1461558 },
+      { bar: 611, ms: 1463554 }, { bar: 612, ms: 1465581 }, { bar: 613, ms: 1467581 }, { bar: 614, ms: 1469556 }, { bar: 615, ms: 1471525 },
+      { bar: 616, ms: 1473527 }, { bar: 617, ms: 1475502 }, { bar: 618, ms: 1477453 }, { bar: 619, ms: 1479380 }, { bar: 620, ms: 1481307 },
+      { bar: 621, ms: 1483277 }, { bar: 622, ms: 1485251 }, { bar: 623, ms: 1487244 }, { bar: 624, ms: 1489221 }, { bar: 625, ms: 1491195 },
+      { bar: 626, ms: 1493164 }, { bar: 627, ms: 1495140 }, { bar: 628, ms: 1497130 }, { bar: 629, ms: 1499127 }, { bar: 630, ms: 1501118 },
+      { bar: 631, ms: 1503100 }, { bar: 632, ms: 1505106 }, { bar: 633, ms: 1507076 }, { bar: 634, ms: 1509043 }, { bar: 635, ms: 1511012 },
+      { bar: 636, ms: 1513002 }, { bar: 637, ms: 1514962 }, { bar: 638, ms: 1516902 }, { bar: 639, ms: 1518847 }, { bar: 640, ms: 1520829 },
+      { bar: 641, ms: 1522799 }, { bar: 642, ms: 1524766 }, { bar: 643, ms: 1526714 }, { bar: 644, ms: 1528650 }, { bar: 645, ms: 1530613 },
+      { bar: 646, ms: 1532614 }, { bar: 647, ms: 1534635 }, { bar: 648, ms: 1536625 }, { bar: 649, ms: 1538585 }, { bar: 650, ms: 1540569 },
+      { bar: 651, ms: 1542538 }, { bar: 652, ms: 1544539 }, { bar: 653, ms: 1546491 }, { bar: 654, ms: 1548458 }, { bar: 655, ms: 1550436 },
+      { bar: 656, ms: 1552436 }, { bar: 657, ms: 1554424 }, { bar: 658, ms: 1556446 }, { bar: 659, ms: 1558424 }, { bar: 660, ms: 1560395 },
+      { bar: 661, ms: 1562400 }, { bar: 662, ms: 1564406 }, { bar: 663, ms: 1566420 }, { bar: 664, ms: 1568398 }, { bar: 665, ms: 1570400 },
+      { bar: 666, ms: 1572363 }, { bar: 667, ms: 1574310 }, { bar: 668, ms: 1576316 }, { bar: 669, ms: 1578322 }, { bar: 670, ms: 1580362 },
+      { bar: 671, ms: 1582378 }, { bar: 672, ms: 1584437 }, { bar: 673, ms: 1586475 }, { bar: 674, ms: 1588493 }, { bar: 675, ms: 1590432 },
+      { bar: 676, ms: 1592402 }, { bar: 677, ms: 1594393 }, { bar: 678, ms: 1596403 }, { bar: 679, ms: 1598357 }, { bar: 680, ms: 1600340 },
+      { bar: 681, ms: 1602272 }, { bar: 682, ms: 1604188 }, { bar: 683, ms: 1606127 }, { bar: 684, ms: 1608132 }, { bar: 685, ms: 1610083 },
+      { bar: 686, ms: 1612106 }, { bar: 687, ms: 1614105 }, { bar: 688, ms: 1616088 }, { bar: 689, ms: 1618054 }, { bar: 690, ms: 1619993 },
+      { bar: 691, ms: 1621920 }, { bar: 692, ms: 1623898 }, { bar: 693, ms: 1625895 }, { bar: 694, ms: 1627859 }, { bar: 695, ms: 1629811 },
+      { bar: 696, ms: 1631760 }, { bar: 697, ms: 1633733 }, { bar: 698, ms: 1635670 }, { bar: 699, ms: 1637589 }, { bar: 700, ms: 1639529 },
+      { bar: 701, ms: 1641522 }, { bar: 702, ms: 1643527 }, { bar: 703, ms: 1645512 }, { bar: 704, ms: 1647482 }, { bar: 705, ms: 1649444 },
+      { bar: 706, ms: 1651404 }, { bar: 707, ms: 1653364 }, { bar: 708, ms: 1655373 }, { bar: 709, ms: 1657539 }, { bar: 710, ms: 1659723 },
+      { bar: 711, ms: 1661936 }, { bar: 712, ms: 1664051 }, { bar: 713, ms: 1666216 }, { bar: 714, ms: 1668636 }, { bar: 715, ms: 1671028 },
+      { bar: 716, ms: 1673426 }, { bar: 717, ms: 1675815 }, { bar: 718, ms: 1678242 }, { bar: 719, ms: 1680625 }, { bar: 720, ms: 1683043 },
+      { bar: 721, ms: 1685445 }, { bar: 722, ms: 1687889 }, { bar: 723, ms: 1690302 }, { bar: 724, ms: 1692724 }, { bar: 725, ms: 1695082 },
+      { bar: 726, ms: 1697310 }, { bar: 727, ms: 1699655 }, { bar: 728, ms: 1702078 }, { bar: 729, ms: 1704469 }, { bar: 730, ms: 1706875 },
+      { bar: 731, ms: 1709182 }, { bar: 732, ms: 1711539 }, { bar: 733, ms: 1713844 }, { bar: 734, ms: 1716187 }, { bar: 735, ms: 1718492 },
+      { bar: 736, ms: 1720874 }, { bar: 737, ms: 1723195 }, { bar: 738, ms: 1725532 }, { bar: 739, ms: 1727863 }, { bar: 740, ms: 1730099 },
+      { bar: 741, ms: 1732409 }, { bar: 742, ms: 1734714 }, { bar: 743, ms: 1737086 }, { bar: 744, ms: 1739501 }, { bar: 745, ms: 1741829 },
+      { bar: 746, ms: 1744155 }, { bar: 747, ms: 1746485 }, { bar: 748, ms: 1748975 }, { bar: 749, ms: 1751416 }, { bar: 750, ms: 1753920 },
+      { bar: 751, ms: 1756399 }, { bar: 752, ms: 1758904 },
+      ]
+cover: { album: "Roadwork Vol. 1: Heavy Metall iz a Poze, Hardt Rock iz a Laifschteil", itunesId: 1701790321 }
+chunks:
+  - { name: C riff 1, bars: [43, 50] }
+  - { name: C riff 2, bars: [51, 58] }
+  - { name: C–F–G–C a, bars: [59, 66] }
+  - { name: C–F–G–C b, bars: [67, 74] }
+  - { name: C line 1, bars: [75, 82] }
+  - { name: C♯–C, bars: [83, 90] }
+  - { name: C line 2, bars: [91, 98] }
+  - { name: C–F–G–C c, bars: [99, 106] }
+  - { name: C line 3, bars: [107, 114] }
+  - { name: C♯–C, bars: [115, 122] }
+  - { name: C riff 3, bars: [123, 130] }
+  - { name: C–F a, bars: [131, 138] }
+  - { name: E♭–D–C, bars: [139, 141] }
+  - { name: C drone 1, bars: [142, 144] }
+  - { name: C drone 2, bars: [148, 153] }
+  - { name: C drone 3, bars: [156, 156] }
+  - { name: C drone 4, bars: [159, 166] }
+  - { name: C drone 5, bars: [167, 174] }
+  - { name: C drone 6, bars: [175, 182] }
+  - { name: C drone 7, bars: [183, 190] }
+  - { name: C drone ×2, bars: [191, 206] }
+  - { name: C drone ×2, bars: [207, 222] }
+  - { name: C drone ×2, bars: [223, 238] }
+  - { name: C drone ×2, bars: [239, 254] }
+  - { name: C drone ×2, bars: [255, 270] }
+  - { name: C drone repeat, bars: [271, 278] }
+  - { name: C drone 8, bars: [279, 286] }
+  - { name: C drone 9, bars: [287, 294] }
+  - { name: C drone ×2, bars: [295, 310] }
+  - { name: C drone ×2, bars: [311, 326] }
+  - { name: C drone ×2, bars: [327, 342] }
+  - { name: C drone ×2, bars: [343, 358] }
+  - { name: C drone 10, bars: [359, 361] }
+  - { name: C–G–C, bars: [362, 369] }
+  - { name: C riff 4, bars: [370, 377] }
+  - { name: C riff 5, bars: [378, 385] }
+  - { name: C riff 6, bars: [386, 393] }
+  - { name: C riff 7, bars: [394, 401] }
+  - { name: C riff 8, bars: [402, 409] }
+  - { name: C riff 9, bars: [410, 417] }
+  - { name: C riff ×2, bars: [418, 433] }
+  - { name: C riff ×2, bars: [434, 449] }
+  - { name: C riff ×2, bars: [450, 465] }
+  - { name: C riff ×2, bars: [466, 481] }
+  - { name: C riff ×2, bars: [482, 497] }
+  - { name: C riff ×2, bars: [498, 513] }
+  - { name: C riff ×2, bars: [514, 529] }
+  - { name: C riff ×2, bars: [530, 545] }
+  - { name: C riff ×2, bars: [546, 561] }
+  - { name: C riff ×2, bars: [562, 577] }
+  - { name: C riff ×2, bars: [578, 593] }
+  - { name: C riff repeat, bars: [594, 601] }
+  - { name: C riff 10, bars: [602, 609] }
+  - { name: C riff 11, bars: [610, 617] }
+  - { name: C riff repeat, bars: [618, 625] }
+  - { name: C riff 12, bars: [626, 633] }
+  - { name: C riff 13, bars: [634, 641] }
+  - { name: C riff ×2, bars: [642, 657] }
+  - { name: C riff 14, bars: [658, 665] }
+  - { name: C riff 15, bars: [666, 673] }
+  - { name: C–F–G–C d, bars: [674, 681] }
+  - { name: C–F b, bars: [682, 689] }
+  - { name: F–G–C, bars: [690, 697] }
+  - { name: F–E♭–D, bars: [698, 704] }
+  - { name: C♯ riff, bars: [707, 708] }
+  - { name: C line 4, bars: [712, 719] }
+  - { name: C line 5, bars: [720, 727] }
+  - { name: C riff 16, bars: [728, 735] }
+  - { name: C riff 17, bars: [736, 743] }
+  - { name: C riff 18, bars: [744, 752] }
+fingeringOverrides: []
+notes: >-
+  Transcribed from the recording by analysis (ADR-0030, 2026-10-12), not by ear and not from a tab:
+  no tab of this suite exists. Expect wrong notes and check by ear.
+  The recording: Roadwork Vol. 1 (live in Europe 1998), track 2 (30:47): Un Chien d'Espace with
+  Astral Travelling and other parts inside it, the upload "A K9 Suite (Live)" by Motorpsycho - Topic
+  (_r-DQCzz6Oo). The library's Un Chien d'Espace (songs/un-chien-d-espace) is the studio take.
+  Method: drums and vocals removed with Demucs; the lowest voice read per eighth note on a beat grid
+  tracked in the recording; bars that sound alike vote together, so small variations between repeats
+  are smoothed away.
+  The suite: 752 bars, standard tuning. Bars 1–42 (to 1:51) are the quiet opening without bass.
+  43–141 (to 6:00) is the first Un Chien d'Espace part, as in the studio tab: C in eighth notes (A
+  string fret 3), the figure on low F rising to G, the walk down E♭, D, C♯ to C, a quiet repeat with
+  long notes from bar 92, and loud C again from 116. 142–361 (6:00–15:00) is the long quiet middle:
+  a C drone, written as one whole note per bar; what the bass really plays there, if anything, could
+  not be read. 362–664 (15:00–26:10) builds on C from near silence to full volume and from 97 to 119
+  BPM; it is written as C in eighth notes, which is the pulse but not the detail. 665–712 is quiet
+  again (C, F, G), 713–752 the loud ending on C.
+  Octaves: a C an octave below the bass's lowest string sounds through much of the suite (bass
+  pedals, most likely). It is written an octave up, as the C on the A string.
+  Bar lines: bar 1 is a quarter-note pickup. The quiet parts have no steady pulse, so their bars are
+  only a grid; in the loud parts the chord changes fall on the bar lines, with the G in the F–G
+  figure a quarter note early, as it is played.
+  YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029), not Songsterr
+  points. Do not run fetch-video --write for this song.
+  To check by ear: the figure on F and G (60–63, 68–71), the walk down (79–83), and how much of the
+  eighth-note C in the long build you want to play.

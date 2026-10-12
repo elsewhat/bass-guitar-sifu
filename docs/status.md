@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-11. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-10-12. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -154,12 +154,32 @@ Updated 2026-10-11. This is the hand-off point between working sessions: what is
    - Three of the 31 Songsterr tabs in the library are AI-generated: Vortex Surfer, The Wheel and wearing yr smell.
    - Tests: 228 unit tests and 19 Playwright tests. The e2e tests pick the Vortex Surfer card without brackets, and the "no MP3" test uses `vortex-surfer-from-the-start`. Checked in the preview: the three songs load, YouTube is ready, and chunk 1 of `vortex-surfer` loops 4:45–4:54 of the video (4:46–4:55 before).
 
+18. **Roadwork Vol. 1: six songs transcribed from the recording** (2026-10-12; **ADR-0030, proposed**). The owner asked for the rest of the album (without Words of Wisdom) and expected that no tabs exist.
+   - **Sources.** None: Songsterr, Ultimate Guitar and the chord sites have nothing for these tracks. The library's The Wheel and Un Chien d'Espace are other takes.
+   - **Songs.** All in standard tuning, with the album's uploads by Motorpsycho - Topic as the YouTube video, measured anchors and the cover of Roadwork Vol. 1. No Music source and no lyrics.
+     - `you-lied`: 99 bars, 25 chunks. 83 BPM in sixteenth notes; the riff D–A–C on the A string.
+     - `black-to-comm`: 171 bars, 31 chunks. Seven eighth notes on D and a C.
+     - `vortex-surfer-live`: 224 bars, 51 chunks. One more copy of Vortex Surfer (ADR-0029): whole notes of the lowest voice to 4:11, then the roots in eighth notes.
+     - `the-other-other-fool`: 326 bars, 40 chunks. One figure on E; nothing sounds below the open D string.
+     - `super-wheel`: 464 bars, 57 chunks. Superstooge's two-bar riff, a jam, The Wheel's riff in D.
+     - `a-k9-suite`: 752 bars, 70 chunks. Un Chien d'Espace's parts, a long C drone as whole notes, a long build as C in eighth notes.
+   - **Method.** Demucs removes drums and vocals. The lowest voice of the rest is read per eighth note (per sixteenth in You Lied) on a pulse grid tracked in the recording. Bars that sound alike vote together. The bar starts are the sync anchors. The analyst's decisions per song (bar lines, odd bars, lowest note, parts written as whole notes) are in `scripts/transcribe/songs/`. ADR-0030 has the details and what was measured on the way.
+   - **Tools.** `scripts/transcribe/`: Python with numpy, scipy, PyTorch and Demucs, and `write-score.ts` and `write-sync.ts` with alphaTab. They are not part of the build or CI. Run on the saved features, they give the six scores again byte for byte.
+   - **Skill.** The `preprocess-song` skill has a section 10 for a song without a tab: what to ask the owner, the decisions that make or break the reading (the grid, the bar lines, octaves, parts where the lowest voice is the guitar), the checks, and what `song.yaml` and the summary must say. `scripts/transcribe/README.md` has the installs and commands that were run.
+   - **Checks.** Vortex Surfer (Live) has the studio tab's root in 92 of 93 loud bars (the other is a rest in the tab), and the roots of `vortex-surfer-from-the-start` in all 114 bars before that. The main riffs come out the same across their repeats. Nobody has listened: the transcriptions are not checked by ear.
+   - **Recordings.** Fetched into a temp folder with the owner's permission and deleted. PyTorch and Demucs went into a temporary Python environment.
+   - Tests: 228 unit tests and 19 Playwright tests. The library search test types "the wheel" now, because "wheel" also finds Super/Wheel. Checked in the preview: the six songs load and their videos are ready.
+
 ## Next
 
+- The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
+  - the owner's corrections by ear, written into `scripts/transcribe/songs/<slug>.json` (octaves, bar lines, parts to leave out);
+  - telling held notes from struck ones better;
+  - a second opinion from Songsterr's AI transcription, where the owner can make one.
 - A tap-sync editor (ADR-0016) is not built. It is only needed if Songsterr's points turn out wrong for a song; anchors can also be corrected by hand in `song.yaml`.
 - Remember the chosen source per song (the system description lists it under persistence; today every load starts on the Metronome).
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
-- The Wheel and wearing yr smell come from AI-generated Songsterr tabs, like Vortex Surfer. Their bars may sit on the wrong beat of the video in the same way. Measuring them needs the recording (ADR-0029: the owner's permission each time).
+- The Wheel and wearing yr smell come from AI-generated Songsterr tabs, like Vortex Surfer. Their bars may sit on the wrong beat of the video in the same way. Measuring them needs the recording (ADR-0029: the owner's permission each time); the tools are now in `scripts/transcribe/`.
 - `fetch-video --write` does not know which songs have measured anchors and would replace them. The warning is only in those songs' `notes`.
 
 Open points from slice 1 (not blocking):
@@ -169,6 +189,15 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- Review ADR-0030 and listen to the six Roadwork songs with YouTube in a normal browser. Each song's `notes` end with what to check. In short:
+  - `You Lied`: the octave of the A, the first sixteenth of the bar, the bars with G.
+  - `Black to Comm`: is the C on the last eighth of every bar?
+  - `Vortex Surfer (live)`: does the tab ring land on the first B♭ at 4:11 and on the B at 6:25? Are the whole notes of the first four minutes wanted?
+  - `The Other Other Fool`: the octave (written on the D string; nothing lower sounds), D or A as the first note of the figure, the 7/8 bars.
+  - `Super/Wheel`: where the Superstooge riff starts in the bar, and The Wheel's riff against the snare.
+  - `A K9 Suite`: the figure on F and G, the walk down, and how much of the long C parts to keep.
+  - Most corrections are a line in the song's file under `scripts/transcribe/songs/`. The features computed from the audio are only in the session's temp folder, so a later session needs the recordings again, with the owner's permission.
+  - Paste lyrics into `lyrics.text` where wanted; none were added.
 - Review ADR-0029 and try the three Vortex Surfer cards with YouTube in a normal browser:
   - `Vortex Surfer`: does the tab ring land on the bass from bar 130 (4:46) and again from bar 192 (7:04)? Does Music sound right against the strip?
   - `Vortex Surfer (from the start)`: are the added notes what you hear as bass in the first minutes? Should they be an octave lower, where the bass plays the same roots later? Is one note per bar enough?
@@ -219,3 +248,4 @@ Open points from slice 1 (not blocking):
 - The in-app preview pane does not run `requestAnimationFrame` while it is hidden and cannot click into the scaled video frame. The YouTube source was checked with headless Chrome instead.
 - The owner makes the git commits. Do not commit.
 - Python 3.14 with numpy and scipy is at `C:\Users\dagfi\AppData\Local\Python\pythoncore-3.14-64\python.exe`. The `python` alias fails from some folders; use the full path. There is no ffmpeg on the machine (the `imageio-ffmpeg` package carries one).
+- `scripts/transcribe/` needs PyTorch and Demucs as well. They are not installed on the machine: they were in a temporary virtual environment (PyTorch 2.14 with CUDA 12.6 for the RTX 2080 Ti, about 4.5 GB). Demucs keeps its model weights in `.cache\huggingface` under the user folder (81 MB).

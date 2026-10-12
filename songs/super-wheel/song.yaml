@@ -1,0 +1,189 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Super/Wheel"
+artist: Motorpsycho
+source: { file: "Transcribed from the recording (ADR-0030)", date: 2026-10-12 }
+bassTrack: "Electric Bass (transcribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: uKOC9CpTs5I
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 1881 }, { bar: 3, ms: 3800 }, { bar: 4, ms: 5767 }, { bar: 5, ms: 7733 },
+      { bar: 6, ms: 9773 }, { bar: 7, ms: 11789 }, { bar: 8, ms: 13793 }, { bar: 9, ms: 15784 }, { bar: 10, ms: 17804 },
+      { bar: 11, ms: 19761 }, { bar: 12, ms: 21756 }, { bar: 13, ms: 23714 }, { bar: 14, ms: 25703 }, { bar: 15, ms: 27656 },
+      { bar: 16, ms: 29631 }, { bar: 17, ms: 31580 }, { bar: 18, ms: 33567 }, { bar: 19, ms: 35546 }, { bar: 20, ms: 37523 },
+      { bar: 21, ms: 39484 }, { bar: 22, ms: 41478 }, { bar: 23, ms: 43447 }, { bar: 24, ms: 45425 }, { bar: 25, ms: 47389 },
+      { bar: 26, ms: 49341 }, { bar: 27, ms: 51314 }, { bar: 28, ms: 53297 }, { bar: 29, ms: 55262 }, { bar: 30, ms: 57228 },
+      { bar: 31, ms: 59203 }, { bar: 32, ms: 61192 }, { bar: 33, ms: 63142 }, { bar: 34, ms: 65109 }, { bar: 35, ms: 67090 },
+      { bar: 36, ms: 69067 }, { bar: 37, ms: 71028 }, { bar: 38, ms: 73021 }, { bar: 39, ms: 74980 }, { bar: 40, ms: 76960 },
+      { bar: 41, ms: 78922 }, { bar: 42, ms: 80905 }, { bar: 43, ms: 82875 }, { bar: 44, ms: 84863 }, { bar: 45, ms: 86845 },
+      { bar: 46, ms: 88832 }, { bar: 47, ms: 90788 }, { bar: 48, ms: 92719 }, { bar: 49, ms: 94672 }, { bar: 50, ms: 96635 },
+      { bar: 51, ms: 98581 }, { bar: 52, ms: 100518 }, { bar: 53, ms: 102456 }, { bar: 54, ms: 104378 }, { bar: 55, ms: 106282 },
+      { bar: 56, ms: 108194 }, { bar: 57, ms: 110096 }, { bar: 58, ms: 112018 }, { bar: 59, ms: 113943 }, { bar: 60, ms: 115855 },
+      { bar: 61, ms: 117757 }, { bar: 62, ms: 119665 }, { bar: 63, ms: 121566 }, { bar: 64, ms: 122990 }, { bar: 65, ms: 124937 },
+      { bar: 66, ms: 126879 }, { bar: 67, ms: 128826 }, { bar: 68, ms: 130796 }, { bar: 69, ms: 132770 }, { bar: 70, ms: 134743 },
+      { bar: 71, ms: 136711 }, { bar: 72, ms: 138693 }, { bar: 73, ms: 140657 }, { bar: 74, ms: 142619 }, { bar: 75, ms: 144587 },
+      { bar: 76, ms: 146537 }, { bar: 77, ms: 148527 }, { bar: 78, ms: 150488 }, { bar: 79, ms: 152468 }, { bar: 80, ms: 154442 },
+      { bar: 81, ms: 156414 }, { bar: 82, ms: 158378 }, { bar: 83, ms: 160329 }, { bar: 84, ms: 162252 }, { bar: 85, ms: 164218 },
+      { bar: 86, ms: 166171 }, { bar: 87, ms: 168149 }, { bar: 88, ms: 170110 }, { bar: 89, ms: 172093 }, { bar: 90, ms: 174047 },
+      { bar: 91, ms: 176020 }, { bar: 92, ms: 177966 }, { bar: 93, ms: 179907 }, { bar: 94, ms: 181860 }, { bar: 95, ms: 183791 },
+      { bar: 96, ms: 185725 }, { bar: 97, ms: 187686 }, { bar: 98, ms: 189600 }, { bar: 99, ms: 191508 }, { bar: 100, ms: 193433 },
+      { bar: 101, ms: 195384 }, { bar: 102, ms: 197326 }, { bar: 103, ms: 199268 }, { bar: 104, ms: 201192 }, { bar: 105, ms: 203120 },
+      { bar: 106, ms: 205041 }, { bar: 107, ms: 206977 }, { bar: 108, ms: 208913 }, { bar: 109, ms: 210861 }, { bar: 110, ms: 212807 },
+      { bar: 111, ms: 214734 }, { bar: 112, ms: 216649 }, { bar: 113, ms: 218554 }, { bar: 114, ms: 220432 }, { bar: 115, ms: 222323 },
+      { bar: 116, ms: 224212 }, { bar: 117, ms: 226106 }, { bar: 118, ms: 227989 }, { bar: 119, ms: 229866 }, { bar: 120, ms: 231714 },
+      { bar: 121, ms: 233580 }, { bar: 122, ms: 235438 }, { bar: 123, ms: 237286 }, { bar: 124, ms: 239128 }, { bar: 125, ms: 240974 },
+      { bar: 126, ms: 242818 }, { bar: 127, ms: 244665 }, { bar: 128, ms: 246486 }, { bar: 129, ms: 248326 }, { bar: 130, ms: 250169 },
+      { bar: 131, ms: 252005 }, { bar: 132, ms: 253772 }, { bar: 133, ms: 255610 }, { bar: 134, ms: 257460 }, { bar: 135, ms: 259296 },
+      { bar: 136, ms: 261134 }, { bar: 137, ms: 262954 }, { bar: 138, ms: 264809 }, { bar: 139, ms: 266668 }, { bar: 140, ms: 268500 },
+      { bar: 141, ms: 270349 }, { bar: 142, ms: 272205 }, { bar: 143, ms: 274063 }, { bar: 144, ms: 275894 }, { bar: 145, ms: 277765 },
+      { bar: 146, ms: 279642 }, { bar: 147, ms: 281483 }, { bar: 148, ms: 283308 }, { bar: 149, ms: 285131 }, { bar: 150, ms: 286951 },
+      { bar: 151, ms: 288775 }, { bar: 152, ms: 290586 }, { bar: 153, ms: 292415 }, { bar: 154, ms: 294245 }, { bar: 155, ms: 296108 },
+      { bar: 156, ms: 297957 }, { bar: 157, ms: 299819 }, { bar: 158, ms: 301652 }, { bar: 159, ms: 303520 }, { bar: 160, ms: 305381 },
+      { bar: 161, ms: 307282 }, { bar: 162, ms: 309157 }, { bar: 163, ms: 311053 }, { bar: 164, ms: 312916 }, { bar: 165, ms: 314816 },
+      { bar: 166, ms: 316693 }, { bar: 167, ms: 318594 }, { bar: 168, ms: 320512 }, { bar: 169, ms: 322424 }, { bar: 170, ms: 324346 },
+      { bar: 171, ms: 326266 }, { bar: 172, ms: 328168 }, { bar: 173, ms: 330085 }, { bar: 174, ms: 331986 }, { bar: 175, ms: 333889 },
+      { bar: 176, ms: 335775 }, { bar: 177, ms: 337657 }, { bar: 178, ms: 339525 }, { bar: 179, ms: 341427 }, { bar: 180, ms: 343335 },
+      { bar: 181, ms: 345237 }, { bar: 182, ms: 347145 }, { bar: 183, ms: 349050 }, { bar: 184, ms: 350942 }, { bar: 185, ms: 352831 },
+      { bar: 186, ms: 354730 }, { bar: 187, ms: 356612 }, { bar: 188, ms: 358470 }, { bar: 189, ms: 360355 }, { bar: 190, ms: 362210 },
+      { bar: 191, ms: 364102 }, { bar: 192, ms: 365987 }, { bar: 193, ms: 367881 }, { bar: 194, ms: 369762 }, { bar: 195, ms: 371673 },
+      { bar: 196, ms: 373555 }, { bar: 197, ms: 375452 }, { bar: 198, ms: 377349 }, { bar: 199, ms: 379240 }, { bar: 200, ms: 381154 },
+      { bar: 201, ms: 382600 }, { bar: 202, ms: 384528 }, { bar: 203, ms: 386476 }, { bar: 204, ms: 388433 }, { bar: 205, ms: 390362 },
+      { bar: 206, ms: 392270 }, { bar: 207, ms: 394200 }, { bar: 208, ms: 396154 }, { bar: 209, ms: 398082 }, { bar: 210, ms: 400019 },
+      { bar: 211, ms: 401996 }, { bar: 212, ms: 403942 }, { bar: 213, ms: 405886 }, { bar: 214, ms: 407860 }, { bar: 215, ms: 409805 },
+      { bar: 216, ms: 411753 }, { bar: 217, ms: 413722 }, { bar: 218, ms: 415689 }, { bar: 219, ms: 417635 }, { bar: 220, ms: 419583 },
+      { bar: 221, ms: 421570 }, { bar: 222, ms: 423549 }, { bar: 223, ms: 425486 }, { bar: 224, ms: 427456 }, { bar: 225, ms: 429436 },
+      { bar: 226, ms: 431424 }, { bar: 227, ms: 433428 }, { bar: 228, ms: 435453 }, { bar: 229, ms: 437493 }, { bar: 230, ms: 439469 },
+      { bar: 231, ms: 441446 }, { bar: 232, ms: 443433 }, { bar: 233, ms: 445435 }, { bar: 234, ms: 447451 }, { bar: 235, ms: 449466 },
+      { bar: 236, ms: 451515 }, { bar: 237, ms: 453576 }, { bar: 238, ms: 455604 }, { bar: 239, ms: 457636 }, { bar: 240, ms: 459670 },
+      { bar: 241, ms: 461658 }, { bar: 242, ms: 463659 }, { bar: 243, ms: 465602 }, { bar: 244, ms: 467596 }, { bar: 245, ms: 469624 },
+      { bar: 246, ms: 471621 }, { bar: 247, ms: 473599 }, { bar: 248, ms: 475626 }, { bar: 249, ms: 477630 }, { bar: 250, ms: 479625 },
+      { bar: 251, ms: 481590 }, { bar: 252, ms: 483587 }, { bar: 253, ms: 485570 }, { bar: 254, ms: 487570 }, { bar: 255, ms: 489545 },
+      { bar: 256, ms: 491536 }, { bar: 257, ms: 493526 }, { bar: 258, ms: 495506 }, { bar: 259, ms: 497501 }, { bar: 260, ms: 499470 },
+      { bar: 261, ms: 501433 }, { bar: 262, ms: 503412 }, { bar: 263, ms: 505397 }, { bar: 264, ms: 507377 }, { bar: 265, ms: 509354 },
+      { bar: 266, ms: 511346 }, { bar: 267, ms: 513325 }, { bar: 268, ms: 515299 }, { bar: 269, ms: 517260 }, { bar: 270, ms: 519235 },
+      { bar: 271, ms: 521198 }, { bar: 272, ms: 523181 }, { bar: 273, ms: 525173 }, { bar: 274, ms: 527176 }, { bar: 275, ms: 529139 },
+      { bar: 276, ms: 531105 }, { bar: 277, ms: 533078 }, { bar: 278, ms: 535075 }, { bar: 279, ms: 537045 }, { bar: 280, ms: 539014 },
+      { bar: 281, ms: 541013 }, { bar: 282, ms: 543018 }, { bar: 283, ms: 545004 }, { bar: 284, ms: 546989 }, { bar: 285, ms: 548986 },
+      { bar: 286, ms: 550984 }, { bar: 287, ms: 552984 }, { bar: 288, ms: 554965 }, { bar: 289, ms: 556946 }, { bar: 290, ms: 558921 },
+      { bar: 291, ms: 560878 }, { bar: 292, ms: 562845 }, { bar: 293, ms: 564814 }, { bar: 294, ms: 566787 }, { bar: 295, ms: 568758 },
+      { bar: 296, ms: 570733 }, { bar: 297, ms: 572711 }, { bar: 298, ms: 574699 }, { bar: 299, ms: 576686 }, { bar: 300, ms: 578672 },
+      { bar: 301, ms: 580664 }, { bar: 302, ms: 582648 }, { bar: 303, ms: 584622 }, { bar: 304, ms: 586594 }, { bar: 305, ms: 588601 },
+      { bar: 306, ms: 590602 }, { bar: 307, ms: 592578 }, { bar: 308, ms: 594570 }, { bar: 309, ms: 596580 }, { bar: 310, ms: 598586 },
+      { bar: 311, ms: 600545 }, { bar: 312, ms: 602536 }, { bar: 313, ms: 604529 }, { bar: 314, ms: 606536 }, { bar: 315, ms: 608510 },
+      { bar: 316, ms: 610510 }, { bar: 317, ms: 612509 }, { bar: 318, ms: 614494 }, { bar: 319, ms: 616470 }, { bar: 320, ms: 618454 },
+      { bar: 321, ms: 620426 }, { bar: 322, ms: 622378 }, { bar: 323, ms: 624350 }, { bar: 324, ms: 626332 }, { bar: 325, ms: 628325 },
+      { bar: 326, ms: 630298 }, { bar: 327, ms: 632289 }, { bar: 328, ms: 634294 }, { bar: 329, ms: 636303 }, { bar: 330, ms: 638292 },
+      { bar: 331, ms: 640336 }, { bar: 332, ms: 642336 }, { bar: 333, ms: 644364 }, { bar: 334, ms: 646381 }, { bar: 335, ms: 648419 },
+      { bar: 336, ms: 650448 }, { bar: 337, ms: 652503 }, { bar: 338, ms: 654550 }, { bar: 339, ms: 656605 }, { bar: 340, ms: 658646 },
+      { bar: 341, ms: 660694 }, { bar: 342, ms: 662734 }, { bar: 343, ms: 664785 }, { bar: 344, ms: 666826 }, { bar: 345, ms: 668885 },
+      { bar: 346, ms: 670946 }, { bar: 347, ms: 673010 }, { bar: 348, ms: 675051 }, { bar: 349, ms: 677108 }, { bar: 350, ms: 679152 },
+      { bar: 351, ms: 681200 }, { bar: 352, ms: 683250 }, { bar: 353, ms: 685304 }, { bar: 354, ms: 687339 }, { bar: 355, ms: 689371 },
+      { bar: 356, ms: 691415 }, { bar: 357, ms: 693465 }, { bar: 358, ms: 695516 }, { bar: 359, ms: 697560 }, { bar: 360, ms: 699590 },
+      { bar: 361, ms: 701638 }, { bar: 362, ms: 703674 }, { bar: 363, ms: 705705 }, { bar: 364, ms: 707742 }, { bar: 365, ms: 709801 },
+      { bar: 366, ms: 711828 }, { bar: 367, ms: 713832 }, { bar: 368, ms: 715858 }, { bar: 369, ms: 717912 }, { bar: 370, ms: 719949 },
+      { bar: 371, ms: 722016 }, { bar: 372, ms: 724061 }, { bar: 373, ms: 726117 }, { bar: 374, ms: 728171 }, { bar: 375, ms: 730223 },
+      { bar: 376, ms: 732272 }, { bar: 377, ms: 734334 }, { bar: 378, ms: 736403 }, { bar: 379, ms: 738462 }, { bar: 380, ms: 740519 },
+      { bar: 381, ms: 742571 }, { bar: 382, ms: 744617 }, { bar: 383, ms: 746676 }, { bar: 384, ms: 748731 }, { bar: 385, ms: 750795 },
+      { bar: 386, ms: 752845 }, { bar: 387, ms: 754882 }, { bar: 388, ms: 756931 }, { bar: 389, ms: 758988 }, { bar: 390, ms: 761026 },
+      { bar: 391, ms: 763068 }, { bar: 392, ms: 765109 }, { bar: 393, ms: 767174 }, { bar: 394, ms: 769229 }, { bar: 395, ms: 771284 },
+      { bar: 396, ms: 773329 }, { bar: 397, ms: 775394 }, { bar: 398, ms: 777451 }, { bar: 399, ms: 779480 }, { bar: 400, ms: 781544 },
+      { bar: 401, ms: 783591 }, { bar: 402, ms: 785645 }, { bar: 403, ms: 787686 }, { bar: 404, ms: 789734 }, { bar: 405, ms: 791798 },
+      { bar: 406, ms: 793863 }, { bar: 407, ms: 795918 }, { bar: 408, ms: 797972 }, { bar: 409, ms: 800038 }, { bar: 410, ms: 802100 },
+      { bar: 411, ms: 804177 }, { bar: 412, ms: 806243 }, { bar: 413, ms: 808315 }, { bar: 414, ms: 810365 }, { bar: 415, ms: 812438 },
+      { bar: 416, ms: 814505 }, { bar: 417, ms: 816587 }, { bar: 418, ms: 818657 }, { bar: 419, ms: 820729 }, { bar: 420, ms: 822778 },
+      { bar: 421, ms: 824815 }, { bar: 422, ms: 826844 }, { bar: 423, ms: 828886 }, { bar: 424, ms: 830936 }, { bar: 425, ms: 832977 },
+      { bar: 426, ms: 835022 }, { bar: 427, ms: 837060 }, { bar: 428, ms: 839110 }, { bar: 429, ms: 841170 }, { bar: 430, ms: 843217 },
+      { bar: 431, ms: 845255 }, { bar: 432, ms: 847298 }, { bar: 433, ms: 849352 }, { bar: 434, ms: 851386 }, { bar: 435, ms: 853437 },
+      { bar: 436, ms: 855486 }, { bar: 437, ms: 857526 }, { bar: 438, ms: 859556 }, { bar: 439, ms: 861603 }, { bar: 440, ms: 863625 },
+      { bar: 441, ms: 865642 }, { bar: 442, ms: 867678 }, { bar: 443, ms: 869715 }, { bar: 444, ms: 871727 }, { bar: 445, ms: 873752 },
+      { bar: 446, ms: 875775 }, { bar: 447, ms: 877799 }, { bar: 448, ms: 879830 }, { bar: 449, ms: 881852 }, { bar: 450, ms: 883851 },
+      { bar: 451, ms: 885837 }, { bar: 452, ms: 887828 }, { bar: 453, ms: 889826 }, { bar: 454, ms: 891831 }, { bar: 455, ms: 893823 },
+      { bar: 456, ms: 895825 }, { bar: 457, ms: 897820 }, { bar: 458, ms: 899797 }, { bar: 459, ms: 901790 }, { bar: 460, ms: 903792 },
+      { bar: 461, ms: 905815 }, { bar: 462, ms: 907816 }, { bar: 463, ms: 909816 }, { bar: 464, ms: 911834 },
+      ]
+cover: { album: "Roadwork Vol. 1: Heavy Metall iz a Poze, Hardt Rock iz a Laifschteil", itunesId: 1701790321 }
+chunks:
+  - { name: Superstooge riff 1, bars: [1, 8] }
+  - { name: Superstooge riff 2, bars: [9, 16] }
+  - { name: Superstooge riff 3, bars: [17, 24] }
+  - { name: Superstooge riff 4, bars: [25, 32] }
+  - { name: Superstooge riff 5, bars: [33, 40] }
+  - { name: Superstooge riff 6, bars: [41, 48] }
+  - { name: Superstooge riff 7, bars: [49, 56] }
+  - { name: Superstooge riff 8, bars: [57, 64] }
+  - { name: Superstooge riff 9, bars: [65, 72] }
+  - { name: Superstooge riff 10, bars: [73, 80] }
+  - { name: Superstooge riff 11, bars: [81, 88] }
+  - { name: Superstooge riff 12, bars: [89, 96] }
+  - { name: Superstooge riff 13, bars: [97, 104] }
+  - { name: Superstooge riff 14, bars: [105, 110] }
+  - { name: Jam 1, bars: [111, 118] }
+  - { name: Jam 2, bars: [119, 126] }
+  - { name: Jam 3, bars: [127, 134] }
+  - { name: Jam 4, bars: [135, 142] }
+  - { name: Jam 5, bars: [143, 150] }
+  - { name: Jam 6, bars: [151, 158] }
+  - { name: Jam 7, bars: [159, 166] }
+  - { name: Jam 8, bars: [167, 174] }
+  - { name: Jam 9, bars: [175, 182] }
+  - { name: Jam 10, bars: [183, 190] }
+  - { name: Jam 11, bars: [191, 199] }
+  - { name: Bridge 1, bars: [200, 207] }
+  - { name: Bridge 2, bars: [208, 215] }
+  - { name: Bridge 3, bars: [216, 223] }
+  - { name: Bridge 4, bars: [224, 231] }
+  - { name: Bridge 5, bars: [232, 241] }
+  - { name: Wheel riff 1, bars: [242, 249] }
+  - { name: Wheel riff 2, bars: [250, 257] }
+  - { name: Wheel riff 3, bars: [258, 265] }
+  - { name: Wheel riff 4, bars: [266, 273] }
+  - { name: Wheel riff 5, bars: [274, 281] }
+  - { name: Wheel riff 6, bars: [282, 289] }
+  - { name: Wheel riff 7, bars: [290, 297] }
+  - { name: Wheel riff 8, bars: [298, 305] }
+  - { name: Wheel riff 9, bars: [306, 313] }
+  - { name: Wheel riff 10, bars: [314, 319] }
+  - { name: Turnaround a, bars: [320, 327] }
+  - { name: High riff a, bars: [328, 335] }
+  - { name: High riff b, bars: [336, 342] }
+  - { name: Wheel riff 11, bars: [343, 350] }
+  - { name: Wheel riff 12, bars: [351, 358] }
+  - { name: Wheel riff ×2, bars: [359, 374] }
+  - { name: Wheel riff 13, bars: [375, 382] }
+  - { name: Wheel riff 14, bars: [383, 390] }
+  - { name: Wheel riff 15, bars: [391, 398] }
+  - { name: Wheel riff 16, bars: [399, 406] }
+  - { name: Wheel riff 17, bars: [407, 414] }
+  - { name: Wheel riff 18, bars: [415, 422] }
+  - { name: Wheel riff 19, bars: [423, 430] }
+  - { name: Wheel riff 20, bars: [431, 439] }
+  - { name: Turnaround b, bars: [440, 447] }
+  - { name: Ending a, bars: [448, 455] }
+  - { name: Ending b, bars: [456, 464] }
+fingeringOverrides: []
+notes: >-
+  Transcribed from the recording by analysis (ADR-0030, 2026-10-12), not by ear and not from a tab:
+  no tab of this medley exists. Expect wrong notes and check by ear.
+  The recording: Roadwork Vol. 1 (live in Europe 1998), track 3, Superstooge into The Wheel, the
+  upload "Super/Wheel (Live)" by Motorpsycho - Topic (uKOC9CpTs5I). The library's The Wheel
+  (songs/the-wheel) is another take in another key.
+  Method: drums and vocals removed with Demucs; the lowest voice read per eighth note on a beat grid
+  tracked in the recording; bars that sound alike vote together, so small variations between repeats
+  are smoothed away. Where the bass rests, the lowest guitar note is written.
+  Superstooge, bars 1–110 (to 3:35): a two-bar riff in D, A♭ . A♭ F D D D A, then D G F D . D C F.
+  The drums group its sixteen eighth notes as nine and seven; it is written as two bars of 4/4. Bar
+  63 is 3/4. Jam, 111–199 (to 6:21): the band plays in a six-eight feel at about 127 BPM; it is
+  written in 4/4 and the reading is rough. Bridge, 200–241: long notes on A, G and F (bar 200 is
+  3/4).
+  The Wheel, from bar 242 (7:42): the riff D D D . D . D D, then C D D . D . D C, with the snare on
+  beat 3; a turn through G, C and F at 320–327 and 440–447; the riff an octave up at 328–342
+  (written where it was read, on the G string; it may be the guitar). The score ends at 15:14; the
+  recording fades to 16:22.
+  Octaves: in the last minutes of The Wheel a D an octave below the bass's lowest string sounds
+  (bass pedals or a detuned string). It is written an octave up, as the D on the A string. Standard
+  tuning is assumed.
+  YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029), not Songsterr
+  points. Do not run fetch-video --write for this song.
+  To check by ear: where the Superstooge riff starts in the bar, the A♭ and F against the guitar,
+  the jam, and whether The Wheel riff sits right on the snare.

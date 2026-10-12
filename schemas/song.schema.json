@@ -10,7 +10,7 @@
     "title": { "type": "string", "minLength": 1 },
     "artist": { "type": "string", "minLength": 1 },
     "source": {
-      "description": "Where score.gp came from (the music/ inbox file). For a derived score (ADR-0029): the file it was derived from.",
+      "description": "Where score.gp came from (the music/ inbox file). For a derived score (ADR-0029): the file it was derived from. For a score transcribed from the recording (ADR-0030): a sentence saying so.",
       "type": "object",
       "additionalProperties": false,
       "required": ["file"],

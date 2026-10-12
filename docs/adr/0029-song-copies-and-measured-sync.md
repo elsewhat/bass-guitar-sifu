@@ -1,6 +1,6 @@
 # ADR-0029: Copies of a song, and sync measured in the recording
 
-Status: Proposed (implemented, awaiting owner review)
+Status: Proposed (implemented, awaiting owner review), amended by ADR-0030 (the measuring scripts are now in `scripts/transcribe/`, and more songs have measured anchors)
 Date: 2026-10-11
 Amends: ADR-0028 (where the sync comes from when Songsterr's points are off), ADR-0011 (a recording fetched for measuring), ADR-0013 (`media.youtube.songsterr`), ADR-0015 (a slug per copy, a derived score).
 

@@ -1,0 +1,138 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Vortex Surfer (live)
+artist: Motorpsycho
+source: { file: "Transcribed from the recording (ADR-0030)", date: 2026-10-12 }
+bassTrack: "Electric Bass (transcribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: rFqaa8PWC_I
+    sync: [
+      { bar: 1, ms: 269 }, { bar: 2, ms: 809 }, { bar: 3, ms: 2963 }, { bar: 4, ms: 5083 }, { bar: 5, ms: 7227 },
+      { bar: 6, ms: 9419 }, { bar: 7, ms: 11617 }, { bar: 8, ms: 13821 }, { bar: 9, ms: 16078 }, { bar: 10, ms: 18250 },
+      { bar: 11, ms: 20356 }, { bar: 12, ms: 22545 }, { bar: 13, ms: 24716 }, { bar: 14, ms: 26869 }, { bar: 15, ms: 29070 },
+      { bar: 16, ms: 31233 }, { bar: 17, ms: 33365 }, { bar: 18, ms: 35536 }, { bar: 19, ms: 37740 }, { bar: 20, ms: 39971 },
+      { bar: 21, ms: 42055 }, { bar: 22, ms: 44198 }, { bar: 23, ms: 46367 }, { bar: 24, ms: 48553 }, { bar: 25, ms: 50745 },
+      { bar: 26, ms: 52919 }, { bar: 27, ms: 55085 }, { bar: 28, ms: 57236 }, { bar: 29, ms: 59409 }, { bar: 30, ms: 61566 },
+      { bar: 31, ms: 63699 }, { bar: 32, ms: 65879 }, { bar: 33, ms: 68065 }, { bar: 34, ms: 70248 }, { bar: 35, ms: 72459 },
+      { bar: 36, ms: 74670 }, { bar: 37, ms: 76845 }, { bar: 38, ms: 78996 }, { bar: 39, ms: 81119 }, { bar: 40, ms: 83254 },
+      { bar: 41, ms: 85437 }, { bar: 42, ms: 87604 }, { bar: 43, ms: 89806 }, { bar: 44, ms: 92047 }, { bar: 45, ms: 94265 },
+      { bar: 46, ms: 96476 }, { bar: 47, ms: 98615 }, { bar: 48, ms: 100773 }, { bar: 49, ms: 102983 }, { bar: 50, ms: 105165 },
+      { bar: 51, ms: 107362 }, { bar: 52, ms: 109551 }, { bar: 53, ms: 111772 }, { bar: 54, ms: 113987 }, { bar: 55, ms: 116188 },
+      { bar: 56, ms: 118362 }, { bar: 57, ms: 120566 }, { bar: 58, ms: 122758 }, { bar: 59, ms: 124899 }, { bar: 60, ms: 127044 },
+      { bar: 61, ms: 129230 }, { bar: 62, ms: 131388 }, { bar: 63, ms: 133574 }, { bar: 64, ms: 135732 }, { bar: 65, ms: 137897 },
+      { bar: 66, ms: 140064 }, { bar: 67, ms: 142238 }, { bar: 68, ms: 144399 }, { bar: 69, ms: 146551 }, { bar: 70, ms: 148698 },
+      { bar: 71, ms: 150847 }, { bar: 72, ms: 153015 }, { bar: 73, ms: 155189 }, { bar: 74, ms: 157353 }, { bar: 75, ms: 159525 },
+      { bar: 76, ms: 161704 }, { bar: 77, ms: 163896 }, { bar: 78, ms: 166088 }, { bar: 79, ms: 168282 }, { bar: 80, ms: 170492 },
+      { bar: 81, ms: 172673 }, { bar: 82, ms: 174861 }, { bar: 83, ms: 177046 }, { bar: 84, ms: 179237 }, { bar: 85, ms: 181431 },
+      { bar: 86, ms: 183639 }, { bar: 87, ms: 185852 }, { bar: 88, ms: 188057 }, { bar: 89, ms: 190255 }, { bar: 90, ms: 192443 },
+      { bar: 91, ms: 194608 }, { bar: 92, ms: 196784 }, { bar: 93, ms: 198986 }, { bar: 94, ms: 201180 }, { bar: 95, ms: 203385 },
+      { bar: 96, ms: 205573 }, { bar: 97, ms: 207761 }, { bar: 98, ms: 209963 }, { bar: 99, ms: 212142 }, { bar: 100, ms: 214316 },
+      { bar: 101, ms: 216514 }, { bar: 102, ms: 218702 }, { bar: 103, ms: 220893 }, { bar: 104, ms: 223084 }, { bar: 105, ms: 225278 },
+      { bar: 106, ms: 227466 }, { bar: 107, ms: 229651 }, { bar: 108, ms: 231821 }, { bar: 109, ms: 234006 }, { bar: 110, ms: 236175 },
+      { bar: 111, ms: 238368 }, { bar: 112, ms: 240565 }, { bar: 113, ms: 242801 }, { bar: 114, ms: 245014 }, { bar: 115, ms: 247217 },
+      { bar: 116, ms: 249391 }, { bar: 117, ms: 251010 }, { bar: 118, ms: 253131 }, { bar: 119, ms: 255243 }, { bar: 120, ms: 257364 },
+      { bar: 121, ms: 259489 }, { bar: 122, ms: 261619 }, { bar: 123, ms: 263747 }, { bar: 124, ms: 265876 }, { bar: 125, ms: 268025 },
+      { bar: 126, ms: 270156 }, { bar: 127, ms: 272289 }, { bar: 128, ms: 274407 }, { bar: 129, ms: 276552 }, { bar: 130, ms: 278681 },
+      { bar: 131, ms: 280826 }, { bar: 132, ms: 282983 }, { bar: 133, ms: 285147 }, { bar: 134, ms: 287313 }, { bar: 135, ms: 289493 },
+      { bar: 136, ms: 291670 }, { bar: 137, ms: 293847 }, { bar: 138, ms: 296016 }, { bar: 139, ms: 298186 }, { bar: 140, ms: 300336 },
+      { bar: 141, ms: 302510 }, { bar: 142, ms: 304666 }, { bar: 143, ms: 306845 }, { bar: 144, ms: 309011 }, { bar: 145, ms: 311199 },
+      { bar: 146, ms: 313350 }, { bar: 147, ms: 315523 }, { bar: 148, ms: 317679 }, { bar: 149, ms: 319848 }, { bar: 150, ms: 322010 },
+      { bar: 151, ms: 324172 }, { bar: 152, ms: 326341 }, { bar: 153, ms: 328521 }, { bar: 154, ms: 330697 }, { bar: 155, ms: 332874 },
+      { bar: 156, ms: 335034 }, { bar: 157, ms: 337205 }, { bar: 158, ms: 339367 }, { bar: 159, ms: 341531 }, { bar: 160, ms: 343672 },
+      { bar: 161, ms: 345831 }, { bar: 162, ms: 347963 }, { bar: 163, ms: 350115 }, { bar: 164, ms: 352287 }, { bar: 165, ms: 354438 },
+      { bar: 166, ms: 356568 }, { bar: 167, ms: 358716 }, { bar: 168, ms: 360865 }, { bar: 169, ms: 363008 }, { bar: 170, ms: 365153 },
+      { bar: 171, ms: 367293 }, { bar: 172, ms: 369444 }, { bar: 173, ms: 371580 }, { bar: 174, ms: 373706 }, { bar: 175, ms: 375845 },
+      { bar: 176, ms: 377993 }, { bar: 177, ms: 380135 }, { bar: 178, ms: 382275 }, { bar: 179, ms: 384421 }, { bar: 180, ms: 385489 },
+      { bar: 181, ms: 387620 }, { bar: 182, ms: 389777 }, { bar: 183, ms: 391913 }, { bar: 184, ms: 394043 }, { bar: 185, ms: 396158 },
+      { bar: 186, ms: 398297 }, { bar: 187, ms: 400420 }, { bar: 188, ms: 402552 }, { bar: 189, ms: 404683 }, { bar: 190, ms: 406811 },
+      { bar: 191, ms: 408940 }, { bar: 192, ms: 411069 }, { bar: 193, ms: 413176 }, { bar: 194, ms: 415297 }, { bar: 195, ms: 417404 },
+      { bar: 196, ms: 419550 }, { bar: 197, ms: 421673 }, { bar: 198, ms: 423822 }, { bar: 199, ms: 425938 }, { bar: 200, ms: 428087 },
+      { bar: 201, ms: 430228 }, { bar: 202, ms: 432384 }, { bar: 203, ms: 434525 }, { bar: 204, ms: 436672 }, { bar: 205, ms: 438805 },
+      { bar: 206, ms: 440935 }, { bar: 207, ms: 443019 }, { bar: 208, ms: 445140 }, { bar: 209, ms: 447246 }, { bar: 210, ms: 449376 },
+      { bar: 211, ms: 451483 }, { bar: 212, ms: 453621 }, { bar: 213, ms: 455736 }, { bar: 214, ms: 457842 }, { bar: 215, ms: 459954 },
+      { bar: 216, ms: 462066 }, { bar: 217, ms: 464189 }, { bar: 218, ms: 466296 }, { bar: 219, ms: 468415 }, { bar: 220, ms: 470549 },
+      { bar: 221, ms: 472652 }, { bar: 222, ms: 474767 }, { bar: 223, ms: 476785 }, { bar: 224, ms: 478751 },
+      ]
+cover: { album: "Roadwork Vol. 1: Heavy Metall iz a Poze, Hardt Rock iz a Laifschteil", itunesId: 1701790321 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro b, bars: [5, 8] }
+  - { name: Intro c, bars: [9, 12] }
+  - { name: Intro d, bars: [13, 17] }
+  - { name: Verse 1 a, bars: [18, 21] }
+  - { name: Verse 1 b, bars: [22, 25] }
+  - { name: Verse 1 a, bars: [26, 29] }
+  - { name: Verse 1 b, bars: [30, 33] }
+  - { name: Verse 1 a, bars: [34, 37] }
+  - { name: Verse 1 b, bars: [38, 41] }
+  - { name: Verse 1 a, bars: [42, 45] }
+  - { name: Verse 1 b, bars: [46, 49] }
+  - { name: Rise 1, bars: [50, 53] }
+  - { name: Rise 2, bars: [54, 57] }
+  - { name: Rise 3, bars: [58, 61] }
+  - { name: B pedal, bars: [62, 65] }
+  - { name: B pedal repeat, bars: [66, 69] }
+  - { name: Verse 2 a, bars: [70, 73] }
+  - { name: Verse 2 b, bars: [74, 77] }
+  - { name: Verse 2 a, bars: [78, 81] }
+  - { name: Verse 2 b, bars: [82, 85] }
+  - { name: Verse 2 a, bars: [86, 89] }
+  - { name: Verse 2 b, bars: [90, 93] }
+  - { name: Verse 2 a, bars: [94, 97] }
+  - { name: Verse 2 b, bars: [98, 101] }
+  - { name: Rise 4, bars: [102, 105] }
+  - { name: Rise 5, bars: [106, 109] }
+  - { name: Rise 6, bars: [110, 113] }
+  - { name: Rise 7, bars: [114, 116] }
+  - { name: Riff A, bars: [117, 120] }
+  - { name: Riff A ×2, bars: [121, 128] }
+  - { name: Climb a, bars: [129, 132] }
+  - { name: Climb b, bars: [133, 134] }
+  - { name: E pedal a, bars: [135, 138] }
+  - { name: E pedal b, bars: [139, 142] }
+  - { name: E pedal a, bars: [143, 146] }
+  - { name: Descent a, bars: [147, 150] }
+  - { name: Descent b, bars: [151, 154] }
+  - { name: Descent a, bars: [155, 158] }
+  - { name: Descent b, bars: [159, 162] }
+  - { name: Descent c, bars: [163, 164] }
+  - { name: Return a, bars: [180, 183] }
+  - { name: Return b, bars: [184, 187] }
+  - { name: Return a, bars: [188, 191] }
+  - { name: Return b, bars: [192, 195] }
+  - { name: Rise 8, bars: [196, 199] }
+  - { name: Rise 9, bars: [200, 203] }
+  - { name: Rise 10, bars: [204, 207] }
+  - { name: Half-step, bars: [208, 211] }
+  - { name: Half-step ×2, bars: [212, 219] }
+  - { name: Outro, bars: [220, 224] }
+fingeringOverrides: []
+notes: >-
+  A further copy of Vortex Surfer (ADR-0029): the live take on Roadwork Vol. 1 (live in Europe
+  1998), track 7, the upload "Vortex Surfer (Live)" by Motorpsycho - Topic (rFqaa8PWC_I). The others
+  are songs/vortex-surfer (the studio take), vortex-surfer-from-the-start and vortex-surfer-
+  retranscribed.
+  Transcribed from the recording by analysis (ADR-0030, 2026-10-12), not by ear and not from a tab.
+  Method: drums and vocals removed with Demucs; the lowest voice read per eighth note on a beat grid
+  tracked in the recording.
+  The song: 224 bars, standard tuning, the same chord order as the studio take. Bars 1–116 (to
+  4:11): as in the studio take nothing sounds below 80 Hz, so there is no bass line of its own; the
+  lowest voice is written as one whole note per bar at the pitch it sounds (B, A, E, G on the D and
+  G strings). That is an arrangement, as in vortex-surfer-from-the-start, and it has that copy's
+  root in every bar: B B A A E E E E six times (2–49), G G A A B B B B G G A A and eight bars of B
+  (50–69), four more cycles (70–101), G G A A B B B B G G and five bars of A (102–116).
+  From bar 117 (4:11) the bass plays the root in eighth notes, two bars per root, as in the studio
+  tab from its bar 130: Riff A 117–128 (B♭ G D D three times), Climb 129–134 (B♭ C B B A A), E pedal
+  135–146, Descent 147–164, a break without bass 165–179, Return 180–195, Rise 196–207, Half-step
+  208–219, Outro 220–224 (B♭, G, then D held). The chunk names are those of songs/vortex-surfer; the
+  bar numbers are 13 lower here up to the break.
+  Bar lines: bar 1 is a quarter-note pickup, bar 116 is 3/4 and bar 179 is 2/4. The band comes in
+  after both stops without counting, so the grid jumps there. The recording goes on to 9:14 with
+  feedback; the score ends at 8:00.
+  Every eighth note in the loud part is written as struck; the root of each bar was read from the
+  recording and agrees with the studio tab's order everywhere. Rhythmic variations are not written.
+  YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029). Do not run
+  fetch-video --write for this song.
+  To check by ear: the tab ring on the first B♭ at 4:11 and on the first B after the break at 6:25,
+  and whether you want the first four minutes at all.

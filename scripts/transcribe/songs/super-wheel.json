@@ -1,0 +1,35 @@
+{
+  "videoId": "uKOC9CpTs5I",
+  "grid": {
+    "bpm_lo": 222,
+    "bpm_hi": 272,
+    "div": 1
+  },
+  "title": "Super/Wheel",
+  "artist": "Motorpsycho",
+  "album": "Roadwork Vol. 1",
+  "trackName": "Electric Bass (transcribed)",
+  "tuning": [28, 33, 38, 43],
+  "spq": 2,
+  "start": 0,
+  "bar": 8,
+  "lowest": 28,
+  "odd": {
+    "63": 6,
+    "200": 6
+  },
+  "end_s": 915,
+  "rest_db": 30,
+  "sections_chunks": [
+    [1, 110, "Superstooge riff"],
+    [111, 199, "Jam"],
+    [200, 241, "Bridge"],
+    [242, 319, "Wheel riff"],
+    [320, 327, "Turnaround"],
+    [328, 342, "High riff"],
+    [343, 439, "Wheel riff"],
+    [440, 447, "Turnaround"],
+    [448, 464, "Ending"]
+  ],
+  "chunk_bars": 8
+}
