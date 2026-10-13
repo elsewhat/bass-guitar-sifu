@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-12. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-10-13. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -177,6 +177,15 @@ Updated 2026-10-12. This is the hand-off point between working sessions: what is
    - **View.** The plan's rest rows are buttons, and the one being played is white with a green dot. In a rest: the strip label `Bass rests · bars 1–129`, the chips `Bass rests · bars 1–129` and `Rest 0:00–4:41 · score time`, the pass counter `Bass rests`, an empty Now square. The `Intro skipped` chip is gone.
    - Tests: 237 unit tests (the loop controller tests now have rests round the chunks) and 20 Playwright tests (the start in the rest, play through across bars 128–130 of `vortex-surfer-retranscribed`, the rest rows, the library starting at bar 1). Checked in the preview with the Metronome: Lead-in → bars 128–130 → Riff A without a stop, and Vortex Surfer's Outro → bars 241–243 → stop.
 
+20. **Vortex Surfer (live): the strings of the loud part** (2026-10-13). The owner asked for the D on the A string instead of the open D string, and for the same patterns as `vortex-surfer-from-the-start`.
+   - **Changed** (bars 117–224; the notes and the rhythm are the same as before):
+     - D: fret 5 of the A string, in Riff A (119–120, 123–124, 127–128) and the Outro (222–224).
+     - B♭: fret 6 of the E string where Riff A repeats (121, 125). The first one (117) stays on fret 1 of the A string.
+     - A: fret 5 of the E string in the Descent (149–150, 157–158) and the first A of the last Rise (198–199).
+   - **How.** `transcribe.py` has a new option `place` (a pitch on a string and fret, for a range of bars). The four entries are in `scripts/transcribe/songs/vortex-surfer-live.json`. The score was written again from the saved features: without the entries it came out byte for byte as before, and the anchors did not change.
+   - **Check.** String, fret, finger and position are now the same as in `vortex-surfer-from-the-start` in all 206 bars the two copies share. The fingering solver moved none of the new positions.
+   - **Not changed.** The rhythm is the live take's: eighth notes in 163–164 and 220–221 (the studio tab has whole notes there), and D struck in each of 222–224 (tied in the studio tab). The catalogue's highest fret for the song went from 4 to 6.
+
 ## Next
 
 - The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
@@ -204,7 +213,7 @@ Open points from slice 1 (not blocking):
 - Review ADR-0030 and listen to the six Roadwork songs with YouTube in a normal browser. Each song's `notes` end with what to check. In short:
   - `You Lied`: the octave of the A, the first sixteenth of the bar, the bars with G.
   - `Black to Comm`: is the C on the last eighth of every bar?
-  - `Vortex Surfer (live)`: does the tab ring land on the first B♭ at 4:11 and on the B at 6:25? Are the whole notes of the first four minutes wanted?
+  - `Vortex Surfer (live)`: does the tab ring land on the first B♭ at 4:11 and on the B at 6:25? Are the whole notes of the first four minutes wanted? Should the ending be held notes as in the studio tab (163–164, 220–224)?
   - `The Other Other Fool`: the octave (written on the D string; nothing lower sounds), D or A as the first note of the figure, the 7/8 bars.
   - `Super/Wheel`: where the Superstooge riff starts in the bar, and The Wheel's riff against the snare.
   - `A K9 Suite`: the figure on F and G, the walk down, and how much of the long C parts to keep.

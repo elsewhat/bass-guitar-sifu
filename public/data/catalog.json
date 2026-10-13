@@ -14,7 +14,7 @@
   {"slug":"un-chien-d-espace","title":"Un Chien d'Espace","artist":"Motorpsycho","bpm":98,"durationSec":866.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":8,"bars":357,"chunks":36,"music":true},
   {"slug":"vortex-surfer","title":"Vortex Surfer","artist":"Motorpsycho","bpm":110,"durationSec":530.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":243,"chunks":9,"music":true},
   {"slug":"vortex-surfer-from-the-start","title":"Vortex Surfer (from the start)","artist":"Motorpsycho","bpm":110,"durationSec":530.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":243,"chunks":18,"music":false},
-  {"slug":"vortex-surfer-live","title":"Vortex Surfer (live)","artist":"Motorpsycho","bpm":110,"durationSec":485.1,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":4,"bars":224,"chunks":51,"music":false},
+  {"slug":"vortex-surfer-live","title":"Vortex Surfer (live)","artist":"Motorpsycho","bpm":110,"durationSec":485.1,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":6,"bars":224,"chunks":51,"music":false},
   {"slug":"vortex-surfer-retranscribed","title":"Vortex Surfer (retranscribed)","artist":"Motorpsycho","bpm":107,"durationSec":526,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":7,"bars":236,"chunks":10,"music":false},
   {"slug":"wearing-yr-smell","title":"wearing yr smell","artist":"Motorpsycho","bpm":137,"durationSec":210.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":17,"bars":120,"chunks":28,"music":true},
   {"slug":"you-lied","title":"You Lied","artist":"Motorpsycho","bpm":83,"durationSec":281.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":12,"bars":99,"chunks":25,"music":false},

@@ -36,13 +36,14 @@ The six songs: `the-other-other-fool`, `a-k9-suite`, `super-wheel`, `you-lied`, 
 2. `grid.py`: the pulse grid. Onset strength mainly from the drum stem, the tempo by autocorrelation with a Viterbi pass, the pulses by dynamic programming (as in ADR-0029, now without Songsterr's points).
 3. `drumenv.py` and `pitch.py`: kick and snare strength; the pitch of the lowest voice per 10 ms. Each semitone's harmonic sum counts a partial by how near the spectral peak lies, and only where the fundamental itself is a peak.
 4. `slotfeat.py`: the same per grid slot (an eighth note, or a sixteenth for You Lied).
-5. **The analyst's decisions**, one file per song in `scripts/transcribe/songs/`: where bar 1 starts, bars of another length, the lowest note, parts written as one note per bar, parts left empty. The tools for it print the grid bar by bar (`bars.py`, `roots.py`), fold a riff over its cycle with the drum pattern (`sfold.py`, `period.py`), and propose odd bars where repeated material slips against the bar lines (`align.py`).
+5. **The analyst's decisions**, one file per song in `scripts/transcribe/songs/`: where bar 1 starts, bars of another length, the lowest note, parts written as one note per bar, parts left empty, and the string for a pitch where the easiest one is not how the part is played (`place`, added 2026-10-13). The tools for it print the grid bar by bar (`bars.py`, `roots.py`), fold a riff over its cycle with the drum pattern (`sfold.py`, `period.py`), and propose odd bars where repeated material slips against the bar lines (`align.py`).
 6. `transcribe.py`: the notes.
    - Bars that sound alike vote together on every slot.
    - The octave rule above.
    - A loud slot without a clear pitch is a drum hit over a note; it takes the pitch that fits it better, the note before or the note after.
    - One-slot misreadings are folded into their neighbour, but only where the similar bars do not agree on the slot.
    - Bars that agree in most slots are made equal where the bar's own sound allows it.
+   - String and fret: the path with the least hand movement, except for the pitches the song's file places.
 7. `write-score.ts` writes the Guitar Pro file with alphaTab, `chunks.py` drafts the chunks by the skill's rules, `write-sync.ts` puts the anchors into `song.yaml`.
 
 **The skill.** Section 10 of the `preprocess-song` skill says when to transcribe, what to ask the owner, which decisions make or break the result, and what `song.yaml` and the summary must say.

@@ -12,7 +12,8 @@
 #     "fold": [[from_bar, to_bar, "A2", "A1"], ...]   in these bars read the first pitch as the second,
 #     "tacet": [[from_bar, to_bar], ...]              bars written as rests whatever the tracker says,
 #     "whole": [[from_bar, to_bar], ...]              one note per bar: the bar's main pitch, held,
-#     "pedal": [[from_bar, to_bar, unit], ...]        the main pitch of every <unit> slots, struck on every slot }
+#     "pedal": [[from_bar, to_bar, unit], ...]        the main pitch of every <unit> slots, struck on every slot,
+#     "place": [[from_bar, to_bar, "D2", string, fret], ...]   in these bars write the pitch there (string 1 = lowest) }
 # The main pitch of a stretch is the reading with the most support; a reading an octave, an octave and
 # a fifth or two octaves above a pitch (its partials 2, 3 and 4) counts as support for that pitch.
 # Steps: bars that sound alike vote together on every slot (salience and onset strength are summed
@@ -297,12 +298,21 @@ for bi, row in enumerate(rows):
 def positions(p):
     return [(si + 1, p - open_) for si, open_ in enumerate(tuning) if 0 <= p - open_ <= 15]
 
+# The analyst's choice of string for a pitch, where the easiest path is not how the part is played.
+place = [(a, b, NOTE_NAMES.index(x[:-1]) + 12 * (int(x[-1]) + 1), string, fret) for a, b, x, string, fret in cfg.get('place', [])]
+for a, b, p, string, fret in place:
+    if not 1 <= string <= len(tuning) or tuning[string - 1] + fret != p:
+        raise SystemExit(f'place: {name(p)} is not fret {fret} of string {string}')
+
+def placed(bi, p):
+    return [(string, fret) for a, b, q, string, fret in place if a <= bi + 1 <= b and q == p][:1]
+
 flat = [(bi, k) for bi, out in enumerate(notes_by_bar) for k in range(len(out))]
 cost_prev, back = None, []
 opts_all = []
 for (bi, k) in flat:
     p = notes_by_bar[bi][k][2]
-    opts = positions(p) or [(1, max(0, p - tuning[0]))]
+    opts = placed(bi, p) or positions(p) or [(1, max(0, p - tuning[0]))]
     opts_all.append(opts)
     base = np.array([0.15 * f + (0.0 if f else 0.3) for (_, f) in opts])
     if cost_prev is None:

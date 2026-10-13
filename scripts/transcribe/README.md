@@ -57,4 +57,5 @@ Steps 8 to 10 need only the files written in steps 4 to 6, not the audio.
 - Bars that sound alike vote together. Riffs come out the same each time; fills are smoothed away.
 - It writes one voice, on the slot grid, in standard notation values. No slides, ghost notes or dead notes.
 - Octaves: a note is written an octave lower when that octave's fundamental is in the sound (more than 0.12 of the note's own). Notes below `lowest` are folded up.
+- Strings: it takes the path with the least hand movement, which likes open strings. Where the part is played elsewhere, say so with `place` (a pitch on a string and fret, for a range of bars).
 - It cannot hear. Every result needs a listen.

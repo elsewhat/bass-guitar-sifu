@@ -132,6 +132,13 @@ notes: >-
   feedback; the score ends at 8:00.
   Every eighth note in the loud part is written as struck; the root of each bar was read from the
   recording and agrees with the studio tab's order everywhere. Rhythmic variations are not written.
+  Strings (owner, 2026-10-13): the loud part is tabbed as vortex-surfer-from-the-start shows it. D
+  is fret 5 of the A string, not the open D string (Riff A and the Outro). B♭ is fret 6 of the E
+  string where Riff A repeats (bars 121 and 125). A is fret 5 of the E string in the Descent
+  (149–150, 157–158) and in the first A of the last Rise (198–199). These are the place entries in
+  scripts/transcribe/songs/vortex-surfer-live.json. String, fret, finger and position now agree with
+  that copy in every bar the two share; the rhythm is still the live take's (eighth notes in
+  163–164 and 220–221, D struck in each of 222–224).
   YouTube: the sync anchors are the bar starts measured in the recording (ADR-0029). Do not run
   fetch-video --write for this song.
   To check by ear: the tab ring on the first B♭ at 4:11 and on the first B after the break at 6:25,
