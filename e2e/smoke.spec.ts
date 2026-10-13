@@ -16,6 +16,14 @@ async function openSong(page: Page, slug = 'vortex-surfer') {
   await expect(page.getByText('Loading notation…')).toBeHidden({ timeout: 20_000 });
 }
 
+const RIFF_A = 'Chunk 1, Riff A, bars 130–133';
+
+/** Vortex Surfer opens at bar 1, where the bass rests (ADR-0031); most tests want its first chunk. */
+async function openAtRiffA(page: Page) {
+  await openSong(page);
+  await page.getByRole('button', { name: RIFF_A }).click();
+}
+
 test('practice layout fills 1440×900 without scrolling', async ({ page }) => {
   await openSong(page);
   await expect(page.getByRole('navigation', { name: 'Practice plan' })).toBeVisible();
@@ -48,9 +56,23 @@ test('loads Vortex Surfer with its practice plan, strip and fingering', async ({
   // The album cover replaces the placeholder (ADR-0026).
   await expect(page.getByRole('img', { name: 'Trust Us cover' })).toHaveJSProperty('naturalWidth', 300);
   await expect(page.getByText('110 BPM · 4/4 · Standard E A D G · 243 bars')).toBeVisible();
-  await expect(page.getByText('Bars 1–129 · bass rests')).toBeVisible();
-  await expect(page.getByText('Intro skipped · bass rests bars 1–129')).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Chunk 1, Riff A, bars 130–133' })).toHaveAttribute('aria-current', 'step');
+  // The song starts at bar 1: the bars where the bass rests are played, not skipped (ADR-0031).
+  const video = page.getByRole('region', { name: 'Video' });
+  const intro = page.getByRole('button', { name: 'Bars 1–129 · bass rests' });
+  await expect(intro).toHaveAttribute('aria-current', 'step');
+  await expect(video.getByText('Bass rests · bars 1–129')).toBeVisible();
+  await expect(video.getByText('Rest 0:00–4:41 · score time')).toBeVisible();
+  await expect(page.getByTestId('pass-counter')).toHaveText('Bass rests');
+  await expect(page.getByTestId('strip-host').getByText('Bass rests · bars 1–129')).toBeVisible();
+  await expect(page.getByText('Next · chunk 1 · Riff A · bar 130')).toBeAttached();
+  await expect(page.getByTestId('now-fret')).toHaveText('');
+  await expect(page.getByLabel('Next', { exact: true })).toContainText('next chunk');
+  await expect(currentRings(page)).toHaveCount(0);
+
+  await page.getByRole('button', { name: RIFF_A }).click();
+  await expect(page.getByRole('button', { name: RIFF_A })).toHaveAttribute('aria-current', 'step');
+  await expect(intro).not.toHaveAttribute('aria-current');
+  await expect(video.getByText('Bass rests · bars 1–129')).toBeHidden();
   // Riff A starts on B♭ at A1 as tabbed, with the index finger (ADR-0007 beginner rules).
   await expect(page.getByTestId('now-fret')).toHaveText('1');
   await expect(page.getByLabel('Next', { exact: true })).toContainText('in 8');
@@ -253,9 +275,9 @@ test('Music is disabled for a song without a rendered MP3', async ({ page }) => 
 });
 
 test('the repeat button cycles play through, loop and advance', async ({ page }) => {
-  await openSong(page);
+  await openAtRiffA(page);
   const counter = page.getByTestId('pass-counter');
-  const current = page.getByRole('button', { name: 'Chunk 1, Riff A, bars 130–133' });
+  const current = page.getByRole('button', { name: RIFF_A });
   await expect(counter).toHaveText('Play through'); // the default
   await expect(current).toContainText('Bars 130–133 · play through');
   await page.getByRole('button', { name: /^Play through: each chunk once/ }).click();
@@ -266,6 +288,7 @@ test('the repeat button cycles play through, loop and advance', async ({ page })
   await expect(page.getByText('Loop · chunk 1 · Riff A · bars 130–133 · pass 1 of 3')).toBeVisible();
 
   await page.reload(); // the mode is kept in the browser
+  await current.click();
   await expect(page.getByTestId('pass-counter')).toHaveText('1/3');
   await page.getByRole('button', { name: /^Repeat each chunk 3 times/ }).click();
   await expect(page.getByTestId('pass-counter')).toHaveText('Play through');
@@ -311,15 +334,43 @@ test('the mixer sets master, Metronome and Synth track channels and keeps them',
 
 test('"Next chunk" and the practice plan select chunks', async ({ page }) => {
   await openSong(page);
+  // From the rest at the start, "Next chunk" is the chunk it leads into.
+  await page.getByRole('button', { name: 'Next chunk', exact: true }).click();
+  await expect(page.getByRole('button', { name: RIFF_A })).toHaveAttribute('aria-current', 'step');
   await page.getByRole('button', { name: 'Next chunk', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Chunk 2, Riff A ×2, bars 134–141' })).toHaveAttribute('aria-current', 'step');
   await page.getByRole('button', { name: 'Chunk 5, Descent, bars 160–176' }).click();
   await expect(page.getByText('Bars 160–176 · play through', { exact: true })).toBeVisible();
   await expect(page.getByText('Loop 5:46–6:24 · score time')).toBeVisible();
+  // A rest row starts playback in the bars where the bass rests; the last one ends the song.
+  await page.getByRole('button', { name: 'Bars 241–243 · bass rests' }).click();
+  await expect(page.getByRole('button', { name: 'Bars 241–243 · bass rests' })).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByText('Rest 8:43–8:50 · score time')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Next chunk', exact: true })).toBeDisabled();
+});
+
+test('play through runs on through the bars where the bass rests (ADR-0031)', async ({ page }) => {
+  test.setTimeout(60_000);
+  await openSong(page, 'vortex-surfer-retranscribed');
+  const row = (name: string) => page.getByRole('button', { name });
+  await expect(row('Bars 1–123 · bass rests')).toHaveAttribute('aria-current', 'step');
+  // Lead-in (bars 124–127), three bars of rest, Riff A: about 9 s and 7 s at 107 BPM.
+  await row('Chunk 1, Lead-in, bars 124–127').click();
+  await page.getByRole('button', { name: 'Play', exact: true }).click();
+  await expect(row('Bars 128–130 · bass rests')).toHaveAttribute('aria-current', 'step', { timeout: 20_000 });
+  const inRest = await stripX(page);
+  await expect(page.getByTestId('pass-counter')).toHaveText('Bass rests');
+  await expect(page.getByRole('region', { name: 'Video' }).getByText('Bass rests · bars 128–130')).toBeVisible();
+  await expect(row('Chunk 2, Riff A, bars 131–134')).toHaveAttribute('aria-current', 'step', { timeout: 15_000 });
+  expect(await stripX(page)).toBeLessThan(inRest - 50); // the strip scrolled through the empty bars
+  await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible(); // no stop and no count-in on the way
+  await expect(page.getByTestId('count-cells')).toHaveAttribute('data-count-in', 'false');
+  await page.getByRole('button', { name: 'Pause' }).click();
+  await expect(row('Chunk 1, Lead-in, bars 124–127')).toContainText('✓'); // done; the rest marks nothing
 });
 
 test('keyboard: Space plays and pauses, arrows change chunk, + and − change tempo', async ({ page }) => {
-  await openSong(page);
+  await openAtRiffA(page);
   const chunk = (name: string) => page.getByRole('button', { name });
   await page.keyboard.press('Space');
   await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
@@ -329,7 +380,7 @@ test('keyboard: Space plays and pauses, arrows change chunk, + and − change te
   await page.keyboard.press('ArrowRight');
   await expect(chunk('Chunk 2, Riff A ×2, bars 134–141')).toHaveAttribute('aria-current', 'step');
   await page.keyboard.press('ArrowLeft');
-  await expect(chunk('Chunk 1, Riff A, bars 130–133')).toHaveAttribute('aria-current', 'step');
+  await expect(chunk(RIFF_A)).toHaveAttribute('aria-current', 'step');
   await page.keyboard.press('-');
   await expect(page.getByTestId('tempo')).toHaveText('95%');
   await page.keyboard.press('+');
@@ -339,7 +390,7 @@ test('keyboard: Space plays and pauses, arrows change chunk, + and − change te
   await page.getByRole('button', { name: 'Next chunk', exact: true }).focus();
   await page.keyboard.press('Space');
   await expect(page.getByRole('button', { name: 'Pause' })).toBeVisible();
-  await expect(chunk('Chunk 1, Riff A, bars 130–133')).toHaveAttribute('aria-current', 'step');
+  await expect(chunk(RIFF_A)).toHaveAttribute('aria-current', 'step');
   await page.keyboard.press('Space');
 
   // Off while the song library is open: typing in the search does not drive the transport.
@@ -347,13 +398,13 @@ test('keyboard: Space plays and pauses, arrows change chunk, + and − change te
   await page.keyboard.press('ArrowRight');
   await page.keyboard.type(' -');
   await page.keyboard.press('Escape');
-  await expect(chunk('Chunk 1, Riff A, bars 130–133')).toHaveAttribute('aria-current', 'step');
+  await expect(chunk(RIFF_A)).toHaveAttribute('aria-current', 'step');
   await expect(page.getByTestId('tempo')).toHaveText('100%');
   await expect(page.getByRole('button', { name: 'Play', exact: true })).toBeVisible();
 });
 
 test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ page }) => {
-  await openSong(page);
+  await openAtRiffA(page);
   await page.getByRole('button', { name: 'Next chunk', exact: true }).click(); // progress: chunk 2
   await page.getByRole('button', { name: 'Songs' }).click();
   const library = page.getByRole('dialog', { name: 'Song library' });
@@ -384,13 +435,31 @@ test('song library: search, artist chips, Esc, Ctrl K and progress', async ({ pa
   await expect(page.getByRole('heading', { name: 'Creep' })).toBeVisible();
   await expect(page.getByRole('img', { name: 'Pablo Honey cover' })).toHaveJSProperty('naturalWidth', 300);
 
-  // Vortex Surfer's progress is kept and shown on its card, and restored when it is chosen again.
-  // The library also has copies of the song, "Vortex Surfer (…)" (ADR-0029); this is the card without a suffix.
+  // Vortex Surfer's progress is kept and shown on its card, but a song chosen in the library
+  // starts at bar 1 (ADR-0031). The library also has copies of the song, "Vortex Surfer (…)"
+  // (ADR-0029); this is the card without a suffix.
   const vortexSurfer = library.getByRole('button', { name: /^Vortex Surfer(?! \()/ });
+  const intro = page.getByRole('button', { name: 'Bars 1–129 · bass rests' });
   await page.keyboard.press('Control+k');
   await expect(vortexSurfer).toContainText('Chunk 2 of 9');
   await vortexSurfer.click();
-  await expect(page.getByRole('button', { name: 'Chunk 2, Riff A ×2, bars 134–141' })).toHaveAttribute('aria-current', 'step');
+  await expect(intro).toHaveAttribute('aria-current', 'step');
+  await expect(page.getByTestId('tempo')).toHaveText('100%');
+
+  // Choosing the song that is playing takes it back to bar 1 as well.
+  await page.getByRole('button', { name: 'Chunk 5, Descent, bars 160–176' }).click();
+  await page.keyboard.press('Control+k');
+  await expect(vortexSurfer).toContainText('Playing · Chunk 5 of 9');
+  await vortexSurfer.click();
+  await expect(library).toBeHidden();
+  await expect(intro).toHaveAttribute('aria-current', 'step');
+
+  // A reload continues where the song was left (ADR-0010): in the rest at bar 1, then in a chunk.
+  await page.reload();
+  await expect(intro).toHaveAttribute('aria-current', 'step');
+  await page.getByRole('button', { name: 'Chunk 5, Descent, bars 160–176' }).click();
+  await page.reload();
+  await expect(page.getByRole('button', { name: 'Chunk 5, Descent, bars 160–176' })).toHaveAttribute('aria-current', 'step');
 });
 
 test('switches to Killing in the Name through the song library and ?song=', async ({ page }) => {
@@ -474,7 +543,7 @@ test('synced lyrics fill the video cell, follow the playhead and can be hidden (
 });
 
 test('notes are within 15 px of the playhead when plucked, with four notes to its left', async ({ page }) => {
-  await openSong(page); // 100 %, the fastest tempo: crosses barlines sooner
+  await openAtRiffA(page); // 100 %, the fastest tempo: crosses barlines sooner
   await page.getByRole('button', { name: 'Play', exact: true }).click();
   // Sampling starts during the count-in (ADR-0025), while the first note waits at the playhead.
   await expect(page.getByTestId('count-cells')).toHaveAttribute('data-count-in', 'true');

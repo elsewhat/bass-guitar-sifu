@@ -1,6 +1,6 @@
 # ADR-0018: Clock interface and loop decisions ahead of the audio
 
-Status: Proposed (implemented in slice 1, awaiting owner review), amended by ADR-0019, ADR-0021 and ADR-0025 (`play` takes a count-in option)
+Status: Proposed (implemented in slice 1, awaiting owner review), amended by ADR-0019, ADR-0021, ADR-0025 (`play` takes a count-in option) and ADR-0031 (the rests between chunks are ranges too)
 Date: 2026-09-28
 Amends: ADR-0008.
 

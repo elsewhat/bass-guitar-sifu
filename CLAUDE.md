@@ -13,7 +13,7 @@ Read these before starting any task:
 
 - `docs/system-description.md`: screens, behaviour, data model, algorithms and milestones.
 - `docs/status.md`: what is done, what is next, and what waits on the owner. Start here when resuming work.
-- `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones, and ADR-0028 overrides the YouTube parts of ADR-0016 and ADR-0017. ADR-0029 adds copies of a song and sync measured in the recording. ADR-0030 adds songs whose bass part is transcribed from the recording.
+- `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones, and ADR-0028 overrides the YouTube parts of ADR-0016 and ADR-0017. ADR-0029 adds copies of a song and sync measured in the recording. ADR-0030 adds songs whose bass part is transcribed from the recording. ADR-0031 plays the bars where the bass rests instead of skipping them, and starts a song chosen in the library at bar 1.
 - `design/README.md` and `design/artboards/*.dc.html`: the visual and behavioural reference. Match sizes, colours and timing from these files.
 
 ## Stack

@@ -97,6 +97,8 @@ export function saveSynthTracks(song: { slug: string; tracks: string[] }, tracks
 /** Practice progress of a song (ADR-0010), stored as `<slug>.progress`. */
 export interface Progress {
   chunkIndex: number;
+  /** The rest next to the chunk, when the song was left there (ADR-0031). */
+  rest: 'before' | 'after' | null;
   done: Record<number, number>; // chunk index → tempo % it was completed at
   tempoPct: number;
   lastPractised: string; // ISO date and time
@@ -116,6 +118,7 @@ export function loadProgress(slug: string, chunkCount: number): Progress | null 
   }
   return {
     chunkIndex: inRange(raw.chunkIndex) ? raw.chunkIndex : 0,
+    rest: inRange(raw.chunkIndex) && (raw.rest === 'before' || raw.rest === 'after') ? raw.rest : null,
     done,
     tempoPct: typeof raw.tempoPct === 'number' && Number.isFinite(raw.tempoPct) ? raw.tempoPct : 100,
     lastPractised: typeof raw.lastPractised === 'string' ? raw.lastPractised : '',

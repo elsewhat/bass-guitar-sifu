@@ -3,19 +3,28 @@ import { countCells, countLabel, sampleName } from '../core/count';
 import type { Bar, Chunk, TempoPoint } from '../core/model';
 import { tempoLookup } from '../core/timing';
 import { CountTimeline, type TimelineStep } from './count-timeline';
+import type { TickRange } from '../core/plucks';
 import {
+  advanceChunk,
   chunkRange,
   completePass,
   endsSong,
   initialLoop,
+  loopRange,
   nextChunk,
   nextRepeatMode,
+  onLastChunk,
   passCounterText,
   passLabel,
   prevChunk,
   rangeAfterPass,
+  restBars,
+  restPlaces,
   selectChunk,
+  selectPlace,
   setRepeatMode,
+  songStart,
+  validPlace,
   willAdvance,
   type LoopState,
 } from './loop';
@@ -146,16 +155,21 @@ describe('CountTimeline', () => {
 
 describe('loop controller', () => {
   const bars = bars44;
+  // A and B follow each other; the bass rests in bar 1, in bar 5 and from bar 7 to the end.
   const chunks: Chunk[] = [
-    { id: 1, name: 'A', bars: [1, 2], position: 1, shifts: 0 },
+    { id: 1, name: 'A', bars: [2, 3], position: 1, shifts: 0 },
     { id: 2, name: 'B', bars: [4, 4], position: 1, shifts: 0 },
+    { id: 3, name: 'C', bars: [6, 6], position: 1, shifts: 0 },
   ];
-  const A = chunkRange(chunks[0]!, bars);
-  const B = chunkRange(chunks[1]!, bars);
+  const [A, B, C] = chunks.map((c) => chunkRange(c, bars)) as [TickRange, TickRange, TickRange];
+  const intro = { start: 0, end: 3840 };
+  const gap = { start: 15360, end: 19200 };
+  const tail = { start: 23040, end: 30720 };
 
   it('computes chunk tick ranges from bars', () => {
-    expect(A).toEqual({ start: 0, end: 7680 });
+    expect(A).toEqual({ start: 3840, end: 11520 });
     expect(B).toEqual({ start: 11520, end: 15360 });
+    expect(C).toEqual({ start: 19200, end: 23040 });
   });
 
   /** Plays `n` passes, each continuing where the loop decides (as the clocks do at the wrap). */
@@ -163,6 +177,89 @@ describe('loop controller', () => {
     for (let i = 0; i < n; i++) s = completePass(s, rangeAfterPass(s, chunks, bars), chunks, bars, tempo);
     return s;
   }
+
+  describe('rests: the bars outside every chunk (ADR-0031)', () => {
+    it('finds the rest before each chunk and the one after the last', () => {
+      expect(restPlaces(chunks, bars.length)).toEqual([
+        { chunkIndex: 0, rest: 'before', bars: [1, 1] },
+        { chunkIndex: 2, rest: 'before', bars: [5, 5] },
+        { chunkIndex: 2, rest: 'after', bars: [7, 8] },
+      ]);
+      expect(restBars(chunks, bars.length, 1, 'before')).toBeNull();
+      expect(restPlaces([{ ...chunks[0]!, bars: [1, 8] }], bars.length)).toEqual([]);
+    });
+
+    it('gives the range of the chunk or of the rest next to it', () => {
+      expect(loopRange({ chunkIndex: 0, rest: 'before' }, chunks, bars)).toEqual(intro);
+      expect(loopRange({ chunkIndex: 0, rest: null }, chunks, bars)).toEqual(A);
+      expect(loopRange({ chunkIndex: 2, rest: 'before' }, chunks, bars)).toEqual(gap);
+      expect(loopRange({ chunkIndex: 2, rest: 'after' }, chunks, bars)).toEqual(tail);
+    });
+
+    it('starts a song at bar 1: in the rest when the bass enters later', () => {
+      expect(songStart(chunks, bars.length)).toEqual({ chunkIndex: 0, rest: 'before' });
+      expect(songStart(chunks.slice(1), bars.length)).toEqual({ chunkIndex: 0, rest: 'before' });
+      expect(songStart([{ ...chunks[0]!, bars: [1, 3] }], bars.length)).toEqual({ chunkIndex: 0, rest: null });
+    });
+
+    it('drops a stored rest that the song does not have', () => {
+      expect(validPlace({ chunkIndex: 2, rest: 'before' }, chunks, bars.length)).toEqual({ chunkIndex: 2, rest: 'before' });
+      expect(validPlace({ chunkIndex: 2, rest: 'after' }, chunks, bars.length)).toEqual({ chunkIndex: 2, rest: 'after' });
+      expect(validPlace({ chunkIndex: 1, rest: 'before' }, chunks, bars.length)).toEqual({ chunkIndex: 1, rest: null });
+      // Only the last chunk has a rest after it; the one after B is the rest before C.
+      expect(validPlace({ chunkIndex: 1, rest: 'after' }, chunks, bars.length)).toEqual({ chunkIndex: 1, rest: null });
+    });
+
+    it('plays a rest once and goes on into its chunk, in every mode, marking nothing', () => {
+      for (const mode of ['advance', 'once', 'loop'] as const) {
+        let s = selectPlace(initialLoop(3, mode), songStart(chunks, bars.length));
+        expect(willAdvance(s, chunks.length)).toBe(true);
+        expect(advanceChunk(s, chunks.length)).toBe(0);
+        expect(rangeAfterPass(s, chunks, bars)).toEqual(A);
+        s = completePass(s, A, chunks, bars, 80);
+        expect(s).toMatchObject({ chunkIndex: 0, rest: null, pass: 1, done: {} });
+      }
+    });
+
+    it('plays through the whole song without leaving a bar out', () => {
+      let s = selectPlace(initialLoop(3, 'once'), songStart(chunks, bars.length));
+      const heard: TickRange[] = [loopRange(s, chunks, bars)];
+      for (let next = rangeAfterPass(s, chunks, bars); next; next = rangeAfterPass(s, chunks, bars)) {
+        heard.push(next);
+        s = completePass(s, next, chunks, bars, 80);
+      }
+      expect(heard).toEqual([intro, A, B, gap, C, tail]);
+      for (let i = 1; i < heard.length; i++) expect(heard[i]!.start).toBe(heard[i - 1]!.end);
+      expect(heard.at(-1)!.end).toBe(bars.at(-1)!.startTick + bars.at(-1)!.durTicks);
+      // The song is over in the rest after the last chunk: it stays selected, and every chunk is done.
+      expect(endsSong(s, chunks, bars.length)).toBe(true);
+      s = completePass(s, null, chunks, bars, 80);
+      expect(s).toMatchObject({ chunkIndex: 2, rest: 'after', pass: 1, done: { 0: 80, 1: 80, 2: 80 } });
+    });
+
+    it('goes through the rest when a chunk has had its passes', () => {
+      let s = { ...selectChunk(initialLoop(2, 'advance'), 1, chunks.length), pass: 2 };
+      expect(advanceChunk(s, chunks.length)).toBe(2); // the Next square looks past the rest
+      expect(rangeAfterPass(s, chunks, bars)).toEqual(gap);
+      s = completePass(s, gap, chunks, bars, 75);
+      expect(s).toMatchObject({ chunkIndex: 2, rest: 'before', pass: 1, done: { 1: 75 } });
+      s = play(s, 1);
+      expect(s).toMatchObject({ chunkIndex: 2, rest: null, pass: 1, done: { 1: 75 } });
+    });
+
+    it('"Next chunk" and "previous chunk" leave a rest for the chunk after or before it', () => {
+      const lead = selectPlace(initialLoop(3), { chunkIndex: 2, rest: 'before' });
+      expect(nextChunk(lead, chunks.length)).toMatchObject({ chunkIndex: 2, rest: null });
+      expect(prevChunk(lead, chunks.length)).toMatchObject({ chunkIndex: 1, rest: null });
+      const end = selectPlace(initialLoop(3), { chunkIndex: 2, rest: 'after' });
+      expect(prevChunk(end, chunks.length)).toMatchObject({ chunkIndex: 2, rest: null });
+      const start = selectPlace(initialLoop(3), songStart(chunks, bars.length));
+      expect(prevChunk(start, chunks.length)).toMatchObject({ chunkIndex: 0, rest: 'before' });
+      expect(onLastChunk(lead, chunks.length)).toBe(false);
+      expect(onLastChunk(end, chunks.length)).toBe(true);
+      expect(onLastChunk({ chunkIndex: 2, rest: null }, chunks.length)).toBe(true);
+    });
+  });
 
   describe('advance: each chunk `passes` times, then the next', () => {
     it('loops the chunk until the last pass, then advances and marks it done', () => {
@@ -174,16 +271,18 @@ describe('loop controller', () => {
       expect(passLabel(s)).toBe('pass 3 of 3');
       expect(passCounterText(s)).toBe('3/3');
       expect(willAdvance(s, chunks.length)).toBe(true);
+      expect(advanceChunk(s, chunks.length)).toBe(1);
       expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
       s = completePass(s, B, chunks, bars, 75);
-      expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: { 0: 75 } });
+      expect(s).toMatchObject({ chunkIndex: 1, rest: null, pass: 1, done: { 0: 75 } });
     });
 
     it('keeps looping the last chunk, marks it done and counts on past the target', () => {
-      let s = selectChunk(initialLoop(1, 'advance'), 1, chunks.length);
+      let s = selectChunk(initialLoop(1, 'advance'), 2, chunks.length);
       expect(willAdvance(s, chunks.length)).toBe(false);
+      expect(advanceChunk(s, chunks.length)).toBeNull();
       s = play(s, 1, 90);
-      expect(s).toMatchObject({ chunkIndex: 1, pass: 2, done: { 1: 90 } });
+      expect(s).toMatchObject({ chunkIndex: 2, rest: null, pass: 2, done: { 2: 90 } });
       expect(passLabel(s)).toBe('pass 2');
       expect(passCounterText(s)).toBe('2');
     });
@@ -200,21 +299,31 @@ describe('loop controller', () => {
       expect(passCounterText(s)).toBe('Play through');
     });
 
-    it('stops after the last chunk and marks it done', () => {
-      let s = selectChunk(initialLoop(3, 'once'), 1, chunks.length);
+    it('plays the rest after the last chunk, then stops', () => {
+      let s = selectChunk(initialLoop(3, 'once'), 2, chunks.length);
       expect(willAdvance(s, chunks.length)).toBe(false);
-      expect(endsSong(s, chunks.length)).toBe(true);
+      expect(endsSong(s, chunks, bars.length)).toBe(false);
+      expect(rangeAfterPass(s, chunks, bars)).toEqual(tail);
+      s = play(s, 1, 70);
+      expect(s).toMatchObject({ chunkIndex: 2, rest: 'after', pass: 1, done: { 2: 70 } });
       expect(rangeAfterPass(s, chunks, bars)).toBeNull();
-      s = completePass(s, null, chunks, bars, 70);
-      expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: { 1: 70 } });
+    });
+
+    it('stops after a last chunk that ends the song and marks it done', () => {
+      const whole = [chunks[0]!, { ...chunks[1]!, bars: [4, 8] as [number, number] }];
+      let s = selectChunk(initialLoop(3, 'once'), 1, whole.length);
+      expect(endsSong(s, whole, bars.length)).toBe(true);
+      expect(rangeAfterPass(s, whole, bars)).toBeNull();
+      s = completePass(s, null, whole, bars, 70);
+      expect(s).toMatchObject({ chunkIndex: 1, rest: null, pass: 1, done: { 1: 70 } });
       expect(passLabel(s)).toBe('play through');
     });
 
     it('only play through ends the song', () => {
       for (const mode of ['advance', 'loop'] as const) {
-        const s = { ...selectChunk(initialLoop(1, mode), 1, chunks.length), pass: 3 };
-        expect(endsSong(s, chunks.length)).toBe(false);
-        expect(rangeAfterPass(s, chunks, bars)).toEqual(B);
+        const s = { ...selectChunk(initialLoop(1, mode), 2, chunks.length), pass: 3 };
+        expect(endsSong(s, chunks, bars.length)).toBe(false);
+        expect(rangeAfterPass(s, chunks, bars)).toEqual(C);
       }
     });
   });
@@ -229,8 +338,8 @@ describe('loop controller', () => {
     });
 
     it('repeats the last chunk without marking it done', () => {
-      const s = play(selectChunk(initialLoop(2, 'loop'), 1, chunks.length), 3);
-      expect(s).toMatchObject({ chunkIndex: 1, pass: 4, done: {} });
+      const s = play(selectChunk(initialLoop(2, 'loop'), 2, chunks.length), 3);
+      expect(s).toMatchObject({ chunkIndex: 2, pass: 4, done: {} });
     });
   });
 
@@ -253,7 +362,7 @@ describe('loop controller', () => {
     let s = { ...initialLoop(3), pass: 2 };
     s = nextChunk(s, chunks.length);
     expect(s).toMatchObject({ chunkIndex: 1, pass: 1, done: {} });
-    expect(nextChunk(s, chunks.length).chunkIndex).toBe(1);
+    expect(nextChunk(nextChunk(s, chunks.length), chunks.length).chunkIndex).toBe(2);
   });
 
   it('previous chunk restarts at pass 1 and stays on the first chunk', () => {

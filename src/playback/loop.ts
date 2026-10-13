@@ -1,6 +1,7 @@
 // Loop controller (system description §5.1, ADR-0008, ADR-0021): chunk bounds, passes, repeat
-// modes, "next chunk" and restart. Pure state transitions; the practice engine applies them to the clock and
-// the session store. The same rules hold for every playback source.
+// modes, "next chunk" and restart, and the rests between the chunks (ADR-0031). Pure state transitions;
+// the practice engine applies them to the clock and the session store. The same rules hold for every
+// playback source.
 import type { Bar, Chunk } from '../core/model';
 import type { TickRange } from '../core/plucks';
 
@@ -14,8 +15,17 @@ export const REPEAT_MODES: readonly RepeatMode[] = ['advance', 'once', 'loop']; 
 /** Play through until the player picks another mode (owner, 2026-09-29). */
 export const DEFAULT_REPEAT_MODE: RepeatMode = 'once';
 
+/**
+ * The bars outside every chunk, where the bass rests, are played and never looped (ADR-0031):
+ * `before` is the rest that leads into chunk `chunkIndex`, `after` the one that ends the song.
+ */
+export type RestSide = 'before' | 'after';
+export type LoopPlace = Pick<LoopState, 'chunkIndex' | 'rest'>;
+
 export interface LoopState {
   chunkIndex: number;
+  /** Playing the rest next to chunk `chunkIndex`; null inside the chunk. */
+  rest: RestSide | null;
   pass: number; // 1-based, the pass being played
   passes: number; // target passes per chunk in `advance` mode
   repeatMode: RepeatMode;
@@ -23,7 +33,7 @@ export interface LoopState {
 }
 
 export function initialLoop(passes = 3, repeatMode: RepeatMode = DEFAULT_REPEAT_MODE): LoopState {
-  return { chunkIndex: 0, pass: 1, passes, repeatMode, done: {} };
+  return { chunkIndex: 0, rest: null, pass: 1, passes, repeatMode, done: {} };
 }
 
 /** Passes before the loop moves on: `passes`, 1 in play-through mode, none when looping. */
@@ -47,56 +57,149 @@ function lastPass(state: LoopState): boolean {
   return target !== null && state.pass >= target;
 }
 
-/** Absolute tick range of a chunk: from its first bar's start to its last bar's end. */
-export function chunkRange(chunk: Chunk, bars: Bar[]): TickRange {
-  const first = bars[chunk.bars[0] - 1]!;
-  const last = bars[chunk.bars[1] - 1]!;
+/** Absolute tick range of a bar range: from its first bar's start to its last bar's end. */
+export function barsRange([from, to]: [number, number], bars: Bar[]): TickRange {
+  const first = bars[from - 1]!;
+  const last = bars[to - 1]!;
   return { start: first.startTick, end: last.startTick + last.durTicks };
 }
 
-/** True when the current pass is the last one and the loop will move on at its end. */
+/** Absolute tick range of a chunk. */
+export function chunkRange(chunk: Chunk, bars: Bar[]): TickRange {
+  return barsRange(chunk.bars, bars);
+}
+
+/** The bars of the rest next to a chunk, or null when the chunk starts (or ends) without one. */
+export function restBars(chunks: Chunk[], barCount: number, chunkIndex: number, side: RestSide): [number, number] | null {
+  const chunk = chunks[chunkIndex]!;
+  const from = side === 'before' ? (chunks[chunkIndex - 1]?.bars[1] ?? 0) + 1 : chunk.bars[1] + 1;
+  const to = side === 'before' ? chunk.bars[0] - 1 : (chunks[chunkIndex + 1]?.bars[0] ?? barCount + 1) - 1;
+  return from <= to ? [from, to] : null;
+}
+
+export type RestPlace = { chunkIndex: number; rest: RestSide; bars: [number, number] };
+
+/** Every rest of the song in order: one before each chunk that has one, and the one after the last chunk. */
+export function restPlaces(chunks: Chunk[], barCount: number): RestPlace[] {
+  const places: RestPlace[] = [];
+  chunks.forEach((_, chunkIndex) => {
+    const bars = restBars(chunks, barCount, chunkIndex, 'before');
+    if (bars) places.push({ chunkIndex, rest: 'before', bars });
+  });
+  const last = chunks.length - 1;
+  const tail = last >= 0 ? restBars(chunks, barCount, last, 'after') : null;
+  if (tail) places.push({ chunkIndex: last, rest: 'after', bars: tail });
+  return places;
+}
+
+/** Bar 1: the rest before the first chunk when the bass enters later, else the first chunk. */
+export function songStart(chunks: Chunk[], barCount: number): LoopPlace {
+  return { chunkIndex: 0, rest: restBars(chunks, barCount, 0, 'before') ? 'before' : null };
+}
+
+/** A stored place, with a rest the song does not have (any more) replaced by its chunk. */
+export function validPlace(place: LoopPlace, chunks: Chunk[], barCount: number): LoopPlace {
+  const { chunkIndex, rest } = place;
+  const exists = rest && (rest === 'before' || chunkIndex === chunks.length - 1) && restBars(chunks, barCount, chunkIndex, rest);
+  return { chunkIndex, rest: exists ? rest : null };
+}
+
+/** The bars being played: the chunk's, or those of the rest next to it. */
+export function placeBars(place: LoopPlace, chunks: Chunk[], barCount: number): [number, number] {
+  const chunk = chunks[place.chunkIndex]!;
+  return (place.rest && restBars(chunks, barCount, place.chunkIndex, place.rest)) ?? chunk.bars;
+}
+
+/** Absolute tick range of the chunk or rest being played. */
+export function loopRange(place: LoopPlace, chunks: Chunk[], bars: Bar[]): TickRange {
+  return barsRange(placeBars(place, chunks, bars.length), bars);
+}
+
+/** True when the current pass is the last one and the loop will move on to the next chunk at its end. */
 export function willAdvance(state: LoopState, chunkCount: number): boolean {
+  if (state.rest) return state.rest === 'before';
   return lastPass(state) && state.chunkIndex < chunkCount - 1;
 }
 
-/** Play through has reached the last pass of the last chunk: playback stops at its end. */
-export function endsSong(state: LoopState, chunkCount: number): boolean {
-  return state.repeatMode === 'once' && lastPass(state) && state.chunkIndex === chunkCount - 1;
+/**
+ * The chunk the loop is about to move on to (through the rest before it, if any), else null; for
+ * the "next chunk" preview of the Next square.
+ */
+export function advanceChunk(state: LoopState, chunkCount: number): number | null {
+  if (!willAdvance(state, chunkCount)) return null;
+  return state.rest ? state.chunkIndex : state.chunkIndex + 1;
 }
 
-/** The range to continue with when the current pass reaches the chunk end, or null to stop there. */
+/** Where the loop goes when the current pass ends, or null when the song is over. */
+function placeAfterPass(state: LoopState, chunks: Chunk[], barCount: number): LoopPlace | null {
+  const { chunkIndex } = state;
+  if (state.rest === 'before') return { chunkIndex, rest: null };
+  if (state.rest === 'after') return null;
+  if (!lastPass(state)) return { chunkIndex, rest: null };
+  if (chunkIndex < chunks.length - 1) return { chunkIndex: chunkIndex + 1, rest: restBars(chunks, barCount, chunkIndex + 1, 'before') ? 'before' : null };
+  // The last chunk: play through goes on to the end of the song, the other modes keep looping it.
+  if (state.repeatMode !== 'once') return { chunkIndex, rest: null };
+  return restBars(chunks, barCount, chunkIndex, 'after') ? { chunkIndex, rest: 'after' } : null;
+}
+
+/** The pass being played is the last of the song: playback stops at its end. */
+export function endsSong(state: LoopState, chunks: Chunk[], barCount: number): boolean {
+  return placeAfterPass(state, chunks, barCount) === null;
+}
+
+/**
+ * The range to continue with when the current pass reaches its end, or null to stop there. A
+ * chunk is followed by the rest after it, so playback runs on through the bars where the bass
+ * rests (ADR-0031).
+ */
 export function rangeAfterPass(state: LoopState, chunks: Chunk[], bars: Bar[]): TickRange | null {
-  if (endsSong(state, chunks.length)) return null;
-  const i = willAdvance(state, chunks.length) ? state.chunkIndex + 1 : state.chunkIndex;
-  return chunkRange(chunks[i]!, bars);
+  const next = placeAfterPass(state, chunks, bars.length);
+  return next && loopRange(next, chunks, bars);
 }
 
 /**
  * A pass has been heard to the end and playback continued at `next` (the range the clock chose
- * through `rangeAfterPass` when it scheduled the wrap). Continuing in another chunk means the
- * loop advanced: the finished chunk is marked done at the tempo used. A null `next` means
- * playback stopped at the end of the song: the chunk is done and stays selected at pass 1.
+ * through `rangeAfterPass` when it scheduled the wrap). Continuing outside the chunk, in a rest or
+ * in another chunk, means the loop advanced: the finished chunk is marked done at the tempo used.
+ * A rest marks nothing. A null `next` means playback stopped at the end of the song: a chunk is
+ * done, and the chunk or rest stays selected at pass 1.
  */
 export function completePass(state: LoopState, next: TickRange | null, chunks: Chunk[], bars: Bar[], tempoPct: number): LoopState {
-  const current = chunkRange(chunks[state.chunkIndex]!, bars);
-  const done = lastPass(state) ? { ...state.done, [state.chunkIndex]: tempoPct } : state.done;
+  const current = loopRange(state, chunks, bars);
+  const finished = { ...state.done, [state.chunkIndex]: tempoPct };
+  const done = !state.rest && lastPass(state) ? finished : state.done;
   if (!next) return { ...state, pass: 1, done };
   if (next.start === current.start && next.end === current.end) return { ...state, pass: state.pass + 1, done };
   const index = chunks.findIndex((c) => chunkRange(c, bars).start === next.start);
-  return { ...state, chunkIndex: index < 0 ? state.chunkIndex : index, pass: 1, done: { ...state.done, [state.chunkIndex]: tempoPct } };
+  const rest = restPlaces(chunks, bars.length).find((p) => barsRange(p.bars, bars).start === next.start);
+  const place: LoopPlace = index >= 0 ? { chunkIndex: index, rest: null } : rest ? { chunkIndex: rest.chunkIndex, rest: rest.rest } : state;
+  return { ...state, chunkIndex: place.chunkIndex, rest: place.rest, pass: 1, done: state.rest ? state.done : finished };
 }
 
 /** Selecting a chunk (practice plan, "Next chunk", restart) starts it at pass 1 without marking anything done. */
 export function selectChunk(state: LoopState, index: number, chunkCount: number): LoopState {
-  return { ...state, chunkIndex: Math.max(0, Math.min(chunkCount - 1, index)), pass: 1 };
+  return { ...state, chunkIndex: Math.max(0, Math.min(chunkCount - 1, index)), rest: null, pass: 1 };
 }
 
+/** Selecting a rest (practice plan, the start of the song): it is played once, into the chunk after it. */
+export function selectPlace(state: LoopState, place: LoopPlace): LoopState {
+  return { ...state, chunkIndex: place.chunkIndex, rest: place.rest, pass: 1 };
+}
+
+/** The chunk after this one; from a rest, the chunk it leads into. */
 export function nextChunk(state: LoopState, chunkCount: number): LoopState {
-  return selectChunk(state, state.chunkIndex + 1, chunkCount);
+  return selectChunk(state, state.rest === 'before' ? state.chunkIndex : state.chunkIndex + 1, chunkCount);
 }
 
+/** The chunk before this one; from a rest, the chunk it follows. The rest before the first chunk stays. */
 export function prevChunk(state: LoopState, chunkCount: number): LoopState {
-  return selectChunk(state, state.chunkIndex - 1, chunkCount);
+  if (state.rest === 'before' && state.chunkIndex === 0) return { ...state, pass: 1 };
+  return selectChunk(state, state.rest === 'after' ? state.chunkIndex : state.chunkIndex - 1, chunkCount);
+}
+
+/** No chunk follows: "Next chunk" has nowhere to go. */
+export function onLastChunk(place: LoopPlace, chunkCount: number): boolean {
+  return place.chunkIndex >= chunkCount - 1 && place.rest !== 'before';
 }
 
 /** Practice plan and loop label: "pass 2 of 3" ("pass 5" past it on the last chunk), "play through", "pass 5 · looping". */

@@ -1,6 +1,6 @@
 # ADR-0006: Chunking strategy
 
-Status: Accepted, amended by ADR-0015 (agent-authored chunks)
+Status: Accepted, amended by ADR-0015 (agent-authored chunks) and ADR-0031 (tacet ranges are played, not skipped)
 Date: 2026-09-28
 
 ## Context

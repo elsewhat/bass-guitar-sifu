@@ -170,6 +170,13 @@ Updated 2026-10-12. This is the hand-off point between working sessions: what is
    - **Recordings.** Fetched into a temp folder with the owner's permission and deleted. PyTorch and Demucs went into a temporary Python environment.
    - Tests: 228 unit tests and 19 Playwright tests. The library search test types "the wheel" now, because "wheel" also finds Super/Wheel. Checked in the preview: the six songs load and their videos are ready.
 
+19. **The bars where the bass rests are played** (2026-10-12; **ADR-0031, proposed**). The owner, after trying the Vortex Surfer copies: do not skip the parts without bass, in the middle or at the start, and start a song chosen in the library from the beginning.
+   - **Rests.** The bars outside every chunk are rests: before a chunk, or after the last one. A rest is played once in every repeat mode, never looped or marked done, and runs into its chunk without a seek or a count-in. This holds for every song and source; no song data changed.
+   - **Loop.** `LoopState.rest` (`'before'`, `'after'` or `null`) next to `chunkIndex` in `src/playback/loop.ts`. A chunk that has had its passes is followed by the rest after it, then the next chunk. Play through plays the rest after the last chunk and stops at the end of the song. The clocks did not change.
+   - **Start.** A song starts at bar 1. The library (`pickSong`) always starts there, also for the song that is playing; done chunks and tempo are kept. A reload continues at the stored chunk or rest (`progress.rest`).
+   - **View.** The plan's rest rows are buttons, and the one being played is white with a green dot. In a rest: the strip label `Bass rests · bars 1–129`, the chips `Bass rests · bars 1–129` and `Rest 0:00–4:41 · score time`, the pass counter `Bass rests`, an empty Now square. The `Intro skipped` chip is gone.
+   - Tests: 237 unit tests (the loop controller tests now have rests round the chunks) and 20 Playwright tests (the start in the rest, play through across bars 128–130 of `vortex-surfer-retranscribed`, the rest rows, the library starting at bar 1). Checked in the preview with the Metronome: Lead-in → bars 128–130 → Riff A without a stop, and Vortex Surfer's Outro → bars 241–243 → stop.
+
 ## Next
 
 - The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
@@ -189,6 +196,11 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- Review ADR-0031 and try it with YouTube in a normal browser:
+  - Vortex Surfer from the library: does the video start at the beginning, with empty tabs up to bar 130, and run through bars 177–191 without a jump?
+  - With the Metronome, the 129 bars are counted through; a click on `Riff A` goes past them. Is that acceptable, or should the Metronome start at the first chunk?
+  - In "repeat 3 times" mode the rest between two chunks is also played once on the way. Wanted?
+  - The design artboards still show the `Intro skipped` chip and plain separator rows.
 - Review ADR-0030 and listen to the six Roadwork songs with YouTube in a normal browser. Each song's `notes` end with what to check. In short:
   - `You Lied`: the octave of the A, the first sixteenth of the bar, the bars with G.
   - `Black to Comm`: is the C on the last eighth of every bar?

@@ -1,4 +1,4 @@
-import { passCounterText, type RepeatMode } from '../playback/loop';
+import { onLastChunk, passCounterText, type RepeatMode } from '../playback/loop';
 import { cycleRepeatMode, goNextChunk, restartChunk, stepTempo, togglePlay } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { effectiveBpm } from '../practice/view-model';
@@ -7,6 +7,7 @@ import { Icon, type IconName } from './icons';
 
 // Transport bar under the video (system description §3.4): play/pause, restart chunk, pass
 // counter with the repeat button (ADR-0021), tempo 40–100 % in steps of 5, and "Next chunk".
+// While a rest between chunks is played (ADR-0031) the counter reads "Bass rests".
 // Keyboard: Space, ← →, + − (useTransportKeys); the titles show the keys.
 
 const round = 'flex shrink-0 cursor-pointer items-center justify-center rounded-full border-0 p-0 text-white';
@@ -18,13 +19,13 @@ const REPEAT: Record<RepeatMode, { icon: IconName; accent: boolean; label: (pass
 };
 
 export function TransportBar() {
-  const { song, playing, pass, passes, repeatMode, chunkIndex, sourceStatus, source } = useSession();
+  const { song, playing, pass, passes, repeatMode, chunkIndex, rest, sourceStatus, source } = useSession();
   const tempoPct = useSession(effectiveTempo);
   const locked = tempoLocked(source);
   const bpm = song ? effectiveBpm(song, chunkIndex, songModel(song).tempo, tempoPct) : 0;
   const repeat = REPEAT[repeatMode];
   const repeatLabel = repeat.label(passes);
-  const isLast = !song || chunkIndex >= song.chunks.length - 1;
+  const isLast = !song || onLastChunk({ chunkIndex, rest }, song.chunks.length);
 
   return (
     <section aria-label="Loop and tempo" className="bg-surface rounded-comfortable flex min-w-0 items-center gap-3 px-3">
@@ -44,6 +45,7 @@ export function TransportBar() {
       </button>
       <div data-testid="pass-counter" className="bg-elevated flex h-9 shrink-0 items-center gap-1 rounded-full pr-1 pl-3">
         {repeatMode === 'advance' &&
+          !rest &&
           Array.from({ length: passes }, (_, i) => (
             <span
               key={i}
@@ -51,7 +53,7 @@ export function TransportBar() {
               style={{ background: i < pass - 1 ? '#ffffff' : i === pass - 1 ? 'var(--color-accent)' : 'var(--color-border-strong)' }}
             />
           ))}
-        <span className="mr-0.5 ml-1 text-sm leading-none font-bold whitespace-nowrap">{passCounterText({ pass, passes, repeatMode })}</span>
+        <span className="mr-0.5 ml-1 text-sm leading-none font-bold whitespace-nowrap">{rest ? 'Bass rests' : passCounterText({ pass, passes, repeatMode })}</span>
         <button
           type="button"
           aria-label={repeatLabel}

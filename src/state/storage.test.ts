@@ -85,23 +85,26 @@ describe('progress storage (ADR-0010)', () => {
     expect(loadProgress('creep', 9)).toBeNull();
     vi.stubGlobal('localStorage', undefined);
     expect(loadProgress('creep', 9)).toBeNull();
-    expect(() => saveProgress('creep', { chunkIndex: 1, done: {}, tempoPct: 80, lastPractised: '' })).not.toThrow();
+    expect(() => saveProgress('creep', { chunkIndex: 1, rest: null, done: {}, tempoPct: 80, lastPractised: '' })).not.toThrow();
   });
 
   it('round-trips next to the Synth tracks', () => {
     const store = memoryStorage({ 'bass-trainer:v1:creep': '{"synthTracks":[]}' });
     vi.stubGlobal('localStorage', store);
-    const progress = { chunkIndex: 3, done: { 0: 75, 1: 80, 2: 80 }, tempoPct: 85, lastPractised: '2026-09-29T20:00:00.000Z' };
+    const progress = { chunkIndex: 3, rest: null, done: { 0: 75, 1: 80, 2: 80 }, tempoPct: 85, lastPractised: '2026-09-29T20:00:00.000Z' };
     saveProgress('creep', progress);
     expect(loadProgress('creep', 9)).toEqual(progress);
+    // A song left in the bars where the bass rests continues there (ADR-0031).
+    saveProgress('creep', { ...progress, rest: 'before' });
+    expect(loadProgress('creep', 9)).toEqual({ ...progress, rest: 'before' });
     expect(JSON.parse(store.data.get('bass-trainer:v1:creep')!).synthTracks).toEqual([]);
   });
 
   it('drops chunks the song no longer has and invalid values', () => {
     vi.stubGlobal(
       'localStorage',
-      memoryStorage({ 'bass-trainer:v1:creep': '{"progress":{"chunkIndex":12,"done":{"1":80,"4":"x","12":90},"tempoPct":"fast"}}' }),
+      memoryStorage({ 'bass-trainer:v1:creep': '{"progress":{"chunkIndex":12,"rest":"after","done":{"1":80,"4":"x","12":90},"tempoPct":"fast"}}' }),
     );
-    expect(loadProgress('creep', 9)).toEqual({ chunkIndex: 0, done: { 1: 80 }, tempoPct: 100, lastPractised: '' });
+    expect(loadProgress('creep', 9)).toEqual({ chunkIndex: 0, rest: null, done: { 1: 80 }, tempoPct: 100, lastPractised: '' });
   });
 });

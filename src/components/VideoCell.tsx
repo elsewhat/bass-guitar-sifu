@@ -6,7 +6,7 @@ import { useFrame } from '../playback/frame';
 import { setVideoHost } from '../playback/video-host';
 import { countInState, openMixer, setSource, toggleLyrics } from '../practice/engine';
 import { songModel } from '../practice/song-model';
-import { introChip, loopTimeLabel } from '../practice/view-model';
+import { loopTimeLabel, restChip } from '../practice/view-model';
 import { SOURCES, sourceAvailable, useSession, type SourceId, type SourceStatus } from '../state/session';
 import { Icon } from './icons';
 import { Lyrics, Subtitles } from './Lyrics';
@@ -22,9 +22,10 @@ export function VideoCell() {
   const status = useSession((s) => s.sourceStatus);
   const song = useSession((s) => s.song);
   const chunkIndex = useSession((s) => s.chunkIndex);
+  const rest = useSession((s) => s.rest);
   const mixerOpen = useSession((s) => s.mixerOpen);
   const lyricsOn = useSession((s) => s.lyricsOn);
-  const intro = song && introChip(song);
+  const resting = song && song.chunks[chunkIndex] && restChip(song, { chunkIndex, rest });
   const lyrics = lyricsOn ? song?.lyrics : undefined;
 
   return (
@@ -93,10 +94,10 @@ export function VideoCell() {
       >
         <Icon name="equalizer" />
       </button>
-      {intro && <div className={`${overlayChip} absolute bottom-3 left-3 rounded-full px-3 py-1.5 text-xs font-bold`}>{intro}</div>}
+      {resting && <div className={`${overlayChip} absolute bottom-3 left-3 rounded-full px-3 py-1.5 text-xs font-bold`}>{resting}</div>}
       {song && song.chunks[chunkIndex] && (
         <div className={`${overlayChip} absolute right-3 bottom-3 rounded-full px-3 py-1.5 text-xs font-bold`}>
-          {loopTimeLabel(song, chunkIndex, songModel(song).tempo, source === 'youtube' ? songModel(song).video : null)}
+          {loopTimeLabel(song, { chunkIndex, rest }, songModel(song).tempo, source === 'youtube' ? songModel(song).video : null)}
         </div>
       )}
     </section>

@@ -50,14 +50,14 @@ Gaps are 12 px, page padding 16 px.
 
 - Vertical list of the song's chunks. Each row: number circle, chunk name, bar range. The current chunk is expanded and shows `Bars 130–133 · pass 2 of 3` and the current tempo percentage.
 - Completed chunks show a check mark and the tempo at which they were completed.
-- Ranges where the bass rests are shown as thin separator rows (`Bars 1–129 · bass rests`) and are skipped during playback.
+- Ranges where the bass rests are shown as thin separator rows (`Bars 1–129 · bass rests`). They are played, not skipped (§5.1, ADR-0031). A row is a button that starts playback there; the rest being played is white with a green dot.
 - The column can be collapsed to a 56 px rail of numbered circles. When collapsed, the video cell widens (619 → 711 px) and the fretboard scales up.
 
 ### 3.3 Video cell (centre, top)
 
 - Source switch overlaid top-left: `YouTube · Synth · Music · Metronome` (Spotify deferred, ADR-0016; Music added by ADR-0022, disabled for songs without an MP3). The Metronome is the count source (called Count before 2026-09-29; the code keeps the id `count`).
 - YouTube (ADR-0028): the recording as an embedded player that fills the cell, synced to the score bar by bar. Its own controls are off; the transport bar drives it, and a click on the video plays or pauses it with the transport following. It is disabled for a song without a video. "Loading video…" or an error text ("the video may not be played here …") shows over the player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position. The Synth, Music and YouTube views show the same cells during a count-in only (§5.6); with YouTube they lie over the video, which is dimmed while the count-in plays.
-- Chips: bottom-left "Intro skipped · bass rests bars 1–129" when a leading tacet exists; bottom-right the loop's time range, in score time, or in video time with YouTube (`Loop 0:20–0:30 · video time`).
+- Chips: bottom-left "Bass rests · bars 1–129" while a rest is played (ADR-0031); bottom-right the loop's time range, in score time, or in video time with YouTube (`Loop 0:20–0:30 · video time`; `Rest 0:00–4:41 · score time` for a rest).
 - Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
 - Lyrics button (subtitles icon) left of the mixer button (ADR-0024, `design/artboards/LyricsView.dc.html`). On by default and kept in the settings; disabled for songs without lyrics. With lyrics on:
   - the source's view shrinks to one row under the source switch, with only the key info: `Audio count` and eight small count cells, or `Synth playback` / `Music playback` with the loading or status text;
@@ -130,14 +130,14 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - Filter chips: `All`, then the three artists with the most songs, with the count in parentheses, e.g. `Motorpsycho (4)`. Recomputed from the catalogue. One artist filter at a time; clicking an active chip clears it.
 - Result count at the right.
 - Three-column grid of song cards (148 px high): title, artist, `BPM · length · frets 0–N`, tuning badge (`Standard` grey, other tunings orange such as `Drop D` or `C♯ standard`) followed by the string names, and a progress bar with text (`Chunk 3 of 9`, `Not started`). The current song has a green ring and `Playing · …`.
-- Selecting a card loads the song and closes the overlay. The song continues at its stored chunk and tempo (ADR-0010); a song never practised shows `Not started` and starts at chunk 1.
+- Selecting a card loads the song and closes the overlay. The song always starts at bar 1, also when it is the song that is playing (ADR-0031); its done chunks and tempo are kept (ADR-0010). A song never practised shows `Not started`.
 - `Ctrl K` / `Cmd K` opens the overlay and `Esc` closes it.
 
 ## 5. Practice behaviour
 
 ### 5.1 Loop and advance
 
-- The player selects a chunk (or starts at the first chunk).
+- The player selects a chunk. A song starts at bar 1: in the rest before the first chunk when the bass enters later, else in the first chunk. A reload continues at the stored chunk or rest.
 - Playback loops the chunk's bars. Each full loop increments the pass counter.
 - When the pass counter exceeds the target passes (default 3) and auto-advance is on, the chunk is marked done with the tempo used, the next chunk starts, and the pass counter resets to 1.
 - "Next chunk" advances immediately without marking the chunk done.
@@ -146,7 +146,12 @@ Opened from the header button. Full-screen dim backdrop, centred panel 960 × 64
 - On the last chunk, auto-advance marks the chunk done after its passes and keeps looping it. With auto-advance off, the pass counter keeps counting past the target.
 - The loop decides where to continue when the wrap is scheduled, ahead of the audio, so the next pass or chunk starts without a gap (ADR-0018).
 - In play-through mode (ADR-0021) each chunk is played once and the next chunk starts directly. After the last chunk playback stops: the chunk is marked done and stays selected, positioned at its start.
-- Bars in tacet ranges are never part of a chunk and are skipped.
+- Bars in tacet ranges are never part of a chunk. They are rests, and they are played (ADR-0031):
+  - A rest is the bars between two chunks, before the first chunk or after the last one. It is played once in every repeat mode, never looped and never marked done.
+  - When a chunk has had its passes, playback runs on through the rest after it and into the next chunk, without a seek or a count-in.
+  - In play-through mode the rest after the last chunk is played as well, and playback stops at the end of the song with that rest selected.
+  - While a rest is played, the strip's bracket spans it with the label `Bass rests · bars 177–191`, the pass counter reads `Bass rests`, the Now square is empty and the Next square shows the first note of the next chunk.
+  - "Next chunk" from a rest selects the chunk it leads into; "previous chunk" the chunk before it.
 
 ### 5.2 Visual metronome
 
@@ -333,7 +338,7 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 
 ## 9. Persistence (ADR-0010)
 
-- `localStorage` key `bass-trainer:v1:<slug>`: current chunk, passes, tempo, source, completed chunks with tempo, last practised timestamp, Synth track mix (`synthTracks`).
+- `localStorage` key `bass-trainer:v1:<slug>`: current chunk (and the rest next to it, when the song was left in one; ADR-0031), passes, tempo, source, completed chunks with tempo, last practised timestamp, Synth track mix (`synthTracks`).
 - `bass-trainer:v1:settings`: passes per chunk, repeat mode, practice plan collapsed, last song, mixer (master, YouTube, Music and Metronome channels), lyrics on or off (`lyricsOn`).
 - Settings dialog offers export and import of all progress as a JSON file.
 

@@ -11,8 +11,9 @@ import * as alphaTab from '@coderline/alphatab';
 import type { BeatEvent, SongData } from '../core/model';
 import { barIndexAt } from '../core/timing';
 import { stringNames } from '../core/tuning';
-import { passLabel, type RepeatMode } from '../playback/loop';
+import { passLabel, placeBars, type RepeatMode, type RestSide } from '../playback/loop';
 import { songModel } from '../practice/song-model';
+import { barRange } from '../practice/view-model';
 import { colourNotes, fetchScore, stringPalette } from './alphatab-score';
 import { MAX_ONSET_OFFSET, PLAYHEAD_X, playheadX, type Anchor } from './scroll';
 
@@ -23,6 +24,7 @@ const FONT = 'Figtree, sans-serif';
 
 export interface StripLoop {
   chunkIndex: number;
+  rest: RestSide | null;
   pass: number;
   passes: number;
   repeatMode: RepeatMode;
@@ -105,7 +107,7 @@ export class Strip {
   private loopLabel: { el: SVGGElement; min: number; max: number; offset: number } | null = null;
   private currentGroup: SVGGElement | null = null;
   private currentEventId = -1;
-  private loop: StripLoop = { chunkIndex: 0, pass: 1, passes: 3, repeatMode: 'advance' };
+  private loop: StripLoop = { chunkIndex: 0, rest: null, pass: 1, passes: 3, repeatMode: 'advance' };
   private barIndex = -1;
   private palette = stringPalette();
 
@@ -304,9 +306,11 @@ export class Strip {
     g.replaceChildren();
     this.loopLabel = null;
     const chunk = song.chunks[loop.chunkIndex];
-    const startBar = chunk && layout.barX.get(chunk.bars[0]);
-    const endBar = chunk && layout.barX.get(chunk.bars[1]);
-    if (!chunk || !startBar || !endBar) return;
+    // The chunk, or the rest next to it while that is played (ADR-0031).
+    const bars = chunk && placeBars(loop, song.chunks, song.bars.length);
+    const startBar = bars && layout.barX.get(bars[0]);
+    const endBar = bars && layout.barX.get(bars[1]);
+    if (!chunk || !bars || !startBar || !endBar) return;
     const start = startBar.x;
     const end = endBar.right;
     const width = Number(front.getAttribute('width'));
@@ -319,14 +323,17 @@ export class Strip {
     const label = svgEl('g', {}, g);
     const bg = svgEl('rect', { x: start + 12, y: 4, height: 16, fill: '#181818' }, label);
     const t = svgEl('text', { x: start + 20, y: 16, fill: '#ffffff', 'font-size': 12, 'font-weight': 700, 'font-family': FONT }, label);
-    t.textContent = `Loop · chunk ${loop.chunkIndex + 1} · ${chunk.name} · bars ${chunk.bars[0]}–${chunk.bars[1]} · ${passLabel(loop)}`;
+    t.textContent = loop.rest
+      ? `Bass rests · bars ${barRange(bars)}`
+      : `Loop · chunk ${loop.chunkIndex + 1} · ${chunk.name} · bars ${chunk.bars[0]}–${chunk.bars[1]} · ${passLabel(loop)}`;
     const labelW = t.getComputedTextLength() + 16;
     bg.setAttribute('width', String(labelW));
     this.loopLabel = { el: label, min: start + 12, max: Math.max(start + 12, end - labelW - 4), offset: -1 };
     // Next chunk preview label.
-    const next = song.chunks[loop.chunkIndex + 1];
+    const nextIndex = loop.rest === 'before' ? loop.chunkIndex : loop.rest === 'after' ? song.chunks.length : loop.chunkIndex + 1;
+    const next = song.chunks[nextIndex];
     const nt = svgEl('text', { x: end + 12, y: layout.tabTop + 3 * 20 + 26, fill: '#b3b3b3', 'font-size': 12, 'font-weight': 700, 'font-family': FONT }, g);
-    nt.textContent = next ? `Next · chunk ${loop.chunkIndex + 2} · ${next.name} · bar ${next.bars[0]}` : 'End of song';
+    nt.textContent = next ? `Next · chunk ${nextIndex + 1} · ${next.name} · bar ${next.bars[0]}` : 'End of song';
   }
 
   private drawGutter() {

@@ -7,7 +7,7 @@ import { CountClock, countSamplesAvailable, type CountGains } from '../playback/
 import type { CountInState } from '../playback/count-in';
 import { CountInPlayer } from '../playback/count-in-player';
 import { setTickSource } from '../playback/frame';
-import { chunkRange, completePass, initialLoop, nextChunk, nextRepeatMode, prevChunk, rangeAfterPass, selectChunk, setRepeatMode, willAdvance } from '../playback/loop';
+import { advanceChunk, chunkRange, completePass, initialLoop, loopRange, nextChunk, nextRepeatMode, prevChunk, rangeAfterPass, selectChunk, selectPlace, setRepeatMode, songStart, validPlace, type LoopPlace, type LoopState } from '../playback/loop';
 import { applyQuickMix, channelGain, clampVolume, effectiveGain, type Channel, type GlobalChannelId, type QuickMix, type TrackChannel } from '../playback/mixer';
 import { MusicClock } from '../playback/music-clock';
 import type { MusicPlayerHandle } from '../playback/music-player';
@@ -39,25 +39,26 @@ keepAwakeWhilePlaying(
   (sync) => useSession.subscribe((s, prev) => s.playing !== prev.playing && sync()),
 );
 
-// Progress is saved whenever the chunk, the done chunks or the tempo change within a song
+// Progress is saved whenever the chunk or rest, the done chunks or the tempo change within a song
 // (ADR-0010); loading a song restores them without counting as practice.
 useSession.subscribe((s, prev) => {
   if (!s.song || s.song !== prev.song) return;
-  if (s.chunkIndex === prev.chunkIndex && s.done === prev.done && s.tempoPct === prev.tempoPct) return;
-  saveProgress(s.song.slug, { chunkIndex: s.chunkIndex, done: s.done, tempoPct: s.tempoPct, lastPractised: new Date().toISOString() });
+  if (s.chunkIndex === prev.chunkIndex && s.rest === prev.rest && s.done === prev.done && s.tempoPct === prev.tempoPct) return;
+  saveProgress(s.song.slug, { chunkIndex: s.chunkIndex, rest: s.rest, done: s.done, tempoPct: s.tempoPct, lastPractised: new Date().toISOString() });
 });
 
 const clampTempo = (pct: number) => Math.max(TEMPO.min, Math.min(TEMPO.max, Math.round(pct / TEMPO.step) * TEMPO.step));
 
+/** The chunk being played, or the rest next to it (ADR-0031). */
 function currentRange(song: SongData) {
-  return chunkRange(song.chunks[state().chunkIndex]!, song.bars);
+  return loopRange(state(), song.chunks, song.bars);
 }
 
 /** The next chunk's range when the current pass is the last before advancing, else null. */
 export function advanceRange(): { start: number; end: number } | null {
   const { song, ...loop } = state();
-  if (!song || !willAdvance(loop, song.chunks.length)) return null;
-  return chunkRange(song.chunks[loop.chunkIndex + 1]!, song.bars);
+  const next = song ? advanceChunk(loop, song.chunks.length) : null;
+  return song && next !== null ? chunkRange(song.chunks[next]!, song.bars) : null;
 }
 
 const setStatus = (sourceStatus: SourceStatus) => useSession.setState({ sourceStatus });
@@ -182,7 +183,12 @@ export function initialSlug(catalog: CatalogEntry[]): string | null {
   return catalog.find((c) => c.slug === wanted)?.slug ?? catalog[0]?.slug ?? null;
 }
 
-export async function loadSong(slug: string) {
+/**
+ * Loads a song. It continues at its stored chunk or rest (ADR-0010), or at bar 1 when it has none
+ * or `fromStart` is set (the song library, ADR-0031). The done chunks and the tempo are kept
+ * either way.
+ */
+export async function loadSong(slug: string, fromStart = false) {
   const token = ++loadToken;
   pause();
   try {
@@ -191,11 +197,15 @@ export async function loadSong(slug: string) {
     const song = (await res.json()) as SongData;
     if (token !== loadToken) return;
     const progress = loadProgress(slug, song.chunks.length);
+    const start = songStart(song.chunks, song.bars.length);
+    const place = progress && !fromStart ? validPlace(progress, song.chunks, song.bars.length) : start;
+    // A practised song restarted from the library is stored at bar 1, so a reload stays there.
+    if (progress && fromStart) saveProgress(slug, { ...progress, ...start });
     useSession.setState({
       song,
       loadError: null,
       ...initialLoop(state().passes, state().repeatMode),
-      chunkIndex: progress?.chunkIndex ?? 0,
+      ...place,
       done: progress?.done ?? {},
       tempoPct: clampTempo(progress?.tempoPct ?? TEMPO.start),
       synthTracks: loadSynthTracks(song),
@@ -239,7 +249,7 @@ function jump(move: (c: PlaybackClock) => void) {
   if (playing) void clock.play({ countIn: true });
 }
 
-function goTo(update: (s: ReturnType<typeof state>, count: number) => ReturnType<typeof selectChunk>) {
+function goTo(update: (s: LoopState, count: number) => LoopState) {
   const song = state().song;
   if (!song || !clock) return;
   useSession.setState(update(state(), song.chunks.length));
@@ -252,6 +262,11 @@ function goTo(update: (s: ReturnType<typeof state>, count: number) => ReturnType
 
 export function selectChunkAt(index: number) {
   goTo((s, n) => selectChunk(s, index, n));
+}
+
+/** A rest row of the practice plan: the bars where the bass rests, played into the chunk after them. */
+export function selectRestAt(place: LoopPlace) {
+  goTo((s) => selectPlace(s, place));
 }
 
 export function goNextChunk() {
@@ -355,10 +370,12 @@ export function openLibrary(open: boolean) {
   useSession.setState(open ? { libraryOpen: true, mixerOpen: false } : { libraryOpen: false });
 }
 
-/** Loads the chosen song (unless it is the current one) and closes the library. */
+/** Closes the library and starts the chosen song at bar 1 (ADR-0031), also when it is the current one. */
 export function pickSong(slug: string) {
   openLibrary(false);
-  if (slug !== state().song?.slug) void loadSong(slug);
+  const song = state().song;
+  if (slug !== song?.slug) void loadSong(slug, true);
+  else goTo((s) => selectPlace(s, songStart(song.chunks, song.bars.length)));
 }
 
 /** Master, Video, Music, Click or Voice. */

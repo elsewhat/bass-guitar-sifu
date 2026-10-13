@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { lastPluckIndex, nextDifferentNote, pluckAt, type Pluck, type PluckNote } from '../core/plucks';
 import { stringNames } from '../core/tuning';
-import { chunkRange } from '../playback/loop';
+import { loopRange } from '../playback/loop';
 import { useFrame } from '../playback/frame';
 import { advanceRange } from '../practice/engine';
 import { songModel } from '../practice/song-model';
@@ -45,11 +45,11 @@ export function FingeringColumn() {
   const shown = useRef({ board: '', next: '', now: -2 });
 
   useFrame((tick) => {
-    const { song, chunkIndex } = useSession.getState();
+    const { song, chunkIndex, rest } = useSession.getState();
     if (!song || !board.current) return;
     const { plucks } = songModel(song);
     const cur = pluckAt(plucks, tick);
-    const next = nextDifferentNote(plucks, tick, chunkRange(song.chunks[chunkIndex]!, song.bars), advanceRange());
+    const next = nextDifferentNote(plucks, tick, loopRange({ chunkIndex, rest }, song.chunks, song.bars), advanceRange());
 
     if ((cur?.index ?? -1) !== shown.current.now) {
       shown.current.now = cur?.index ?? -1;

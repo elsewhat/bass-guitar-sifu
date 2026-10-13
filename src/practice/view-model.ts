@@ -1,6 +1,6 @@
 // Text and row models for the practice view (system description §3), kept pure for tests.
 import type { Chunk, SongData } from '../core/model';
-import { chunkRange } from '../playback/loop';
+import { chunkRange, loopRange, placeBars, restPlaces, type LoopPlace, type RestPlace } from '../playback/loop';
 import type { SyncMap } from '../core/sync';
 import type { TempoLookup } from '../core/timing';
 import { stringNames } from '../core/tuning';
@@ -13,13 +13,16 @@ export function headMeta(song: SongData): string {
   return `${bpm} BPM · ${meter} · ${song.tuningName} ${stringNames(song.tuning).join(' ')} · ${song.bars.length} bars`;
 }
 
-export type PlanRow = { kind: 'rest'; label: string; bar: number } | { kind: 'chunk'; index: number; chunk: Chunk; bar: number };
+export type PlanRow = { kind: 'rest'; label: string; bar: number; place: RestPlace } | { kind: 'chunk'; index: number; chunk: Chunk; bar: number };
 
-/** Chunks in order, with the tacet ranges as separator rows ("Bars 1–129 · bass rests"). */
+/**
+ * Chunks in order, with the bars between them as separator rows ("Bars 1–129 · bass rests"). The
+ * rows are the bars outside every chunk, which playback runs through (ADR-0031).
+ */
 export function planRows(song: SongData): PlanRow[] {
   const rows: PlanRow[] = [
     ...song.chunks.map((chunk, index) => ({ kind: 'chunk' as const, index, chunk, bar: chunk.bars[0] })),
-    ...song.tacet.map(([a, b]) => ({ kind: 'rest' as const, label: `${barsLabel([a, b])} · bass rests`, bar: a })),
+    ...restPlaces(song.chunks, song.bars.length).map((place) => ({ kind: 'rest' as const, label: `${barsLabel(place.bars)} · bass rests`, bar: place.bars[0], place })),
   ];
   return rows.sort((a, b) => a.bar - b.bar);
 }
@@ -39,17 +42,19 @@ export function formatTime(sec: number): string {
   return `${m}:${s < 10 ? '0' : ''}${s}`;
 }
 
-/** "Loop 4:30–4:39 · score time", or "… · video time" with the YouTube video's sync map (ADR-0028). */
-export function loopTimeLabel(song: SongData, chunkIndex: number, tempo: TempoLookup, video: SyncMap | null = null): string {
-  const range = chunkRange(song.chunks[chunkIndex]!, song.bars);
+/**
+ * "Loop 4:30–4:39 · score time", or "… · video time" with the YouTube video's sync map (ADR-0028).
+ * A rest is not looped: "Rest 0:00–4:41 · score time".
+ */
+export function loopTimeLabel(song: SongData, place: LoopPlace, tempo: TempoLookup, video: SyncMap | null = null): string {
+  const range = loopRange(place, song.chunks, song.bars);
   const at = (tick: number) => formatTime(video ? Math.max(0, video.secondsAt(tick)) : tempo.secondsAt(tick));
-  return `Loop ${at(range.start)}–${at(range.end)} · ${video ? 'video' : 'score'} time`;
+  return `${place.rest ? 'Rest' : 'Loop'} ${at(range.start)}–${at(range.end)} · ${video ? 'video' : 'score'} time`;
 }
 
-/** "Intro skipped · bass rests bars 1–129" when the bass enters after a leading tacet. */
-export function introChip(song: SongData): string | null {
-  const first = song.tacet[0];
-  return first && first[0] === 1 ? `Intro skipped · bass rests bars ${barRange(first)}` : null;
+/** "Bass rests · bars 1–129" while a rest is played, else null. */
+export function restChip(song: SongData, place: LoopPlace): string | null {
+  return place.rest ? `Bass rests · bars ${barRange(placeBars(place, song.chunks, song.bars.length))}` : null;
 }
 
 /** Effective BPM at the start of a chunk for a tempo percentage. */

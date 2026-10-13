@@ -1,6 +1,6 @@
 # ADR-0010: Practice progress in the browser
 
-Status: Accepted
+Status: Accepted, amended by ADR-0031 (the stored place can be a rest; a song chosen in the library starts at bar 1)
 Date: 2026-09-28
 
 ## Context

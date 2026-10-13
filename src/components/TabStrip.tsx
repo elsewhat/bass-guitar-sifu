@@ -23,14 +23,14 @@ export function TabStrip() {
       instance = new Strip(host.current!, gutter.current!, (ready, error) => setStatus({ ready, error }));
       strip.current = instance;
       setActiveStrip(instance);
-      const { song: current, chunkIndex, pass, passes, repeatMode } = useSession.getState();
-      instance.setLoop({ chunkIndex, pass, passes, repeatMode });
+      const { song: current, chunkIndex, rest, pass, passes, repeatMode } = useSession.getState();
+      instance.setLoop({ chunkIndex, rest, pass, passes, repeatMode });
       if (current) void instance.load(current).catch((e: unknown) => setStatus({ ready: false, error: String(e) }));
     });
-    // Loop bracket and label follow the chunk, pass and repeat mode.
+    // Loop bracket and label follow the chunk or rest, pass and repeat mode.
     const unsubscribe = useSession.subscribe((s, prev) => {
-      if (s.chunkIndex !== prev.chunkIndex || s.pass !== prev.pass || s.passes !== prev.passes || s.repeatMode !== prev.repeatMode) {
-        strip.current?.setLoop({ chunkIndex: s.chunkIndex, pass: s.pass, passes: s.passes, repeatMode: s.repeatMode });
+      if (s.chunkIndex !== prev.chunkIndex || s.rest !== prev.rest || s.pass !== prev.pass || s.passes !== prev.passes || s.repeatMode !== prev.repeatMode) {
+        strip.current?.setLoop({ chunkIndex: s.chunkIndex, rest: s.rest, pass: s.pass, passes: s.passes, repeatMode: s.repeatMode });
       }
     });
     return () => {

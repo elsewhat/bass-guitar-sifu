@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'react';
 import { passLabel } from '../playback/loop';
-import { selectChunkAt } from '../practice/engine';
+import { selectChunkAt, selectRestAt } from '../practice/engine';
 import { barRange, barsLabel, planRows } from '../practice/view-model';
 import { effectiveTempo, useSession } from '../state/session';
 import { Icon } from './icons';
 
 // Practice plan column (system description §3.2): chunks with bass-rest separators, the current
-// chunk expanded, done chunks with a check and their tempo; collapses to a 56 px rail.
+// chunk expanded, done chunks with a check and their tempo; collapses to a 56 px rail. A rest row
+// starts playback in the bars where the bass rests (ADR-0031).
 
 function circleStyle(current: boolean, done: boolean) {
   if (current) return 'bg-accent text-on-accent';
@@ -15,18 +16,18 @@ function circleStyle(current: boolean, done: boolean) {
 }
 
 export function PracticePlan() {
-  const { planOpen, togglePlan, song, chunkIndex, pass, passes, repeatMode, done } = useSession();
+  const { planOpen, togglePlan, song, chunkIndex, rest, pass, passes, repeatMode, done } = useSession();
   const tempoPct = useSession(effectiveTempo);
   const list = useRef<HTMLDivElement>(null);
 
-  // Keep the current chunk in view (scrollTop only: scrollIntoView would also move the stage).
+  // Keep the current chunk or rest in view (scrollTop only: scrollIntoView would also move the stage).
   useEffect(() => {
     const el = list.current?.querySelector<HTMLElement>('[aria-current="step"]');
     const box = list.current;
     if (!el || !box) return;
     if (el.offsetTop < box.scrollTop) box.scrollTop = el.offsetTop - 8;
     else if (el.offsetTop + el.offsetHeight > box.scrollTop + box.clientHeight) box.scrollTop = el.offsetTop + el.offsetHeight - box.clientHeight + 8;
-  }, [chunkIndex, planOpen, song]);
+  }, [chunkIndex, rest, planOpen, song]);
 
   const rows = song ? planRows(song) : [];
   return (
@@ -49,14 +50,23 @@ export function PracticePlan() {
       >
         {rows.map((row) => {
           if (row.kind === 'rest') {
-            return planOpen ? (
-              <div key={`rest-${row.bar}`} className="flex h-[18px] shrink-0 items-center pl-[42px] text-[11px] text-[#7c7c7c]">
+            if (!planOpen) return null;
+            const playing = row.place.chunkIndex === chunkIndex && row.place.rest === rest;
+            return (
+              <button
+                key={`rest-${row.bar}`}
+                type="button"
+                aria-current={playing ? 'step' : undefined}
+                onClick={() => selectRestAt(row.place)}
+                className={`flex h-[18px] shrink-0 cursor-pointer items-center gap-2.5 border-0 bg-transparent px-2 text-left text-[11px] ${playing ? 'font-bold text-white' : 'text-[#7c7c7c]'}`}
+              >
+                <span className="flex w-6 shrink-0 justify-center">{playing && <span className="bg-accent size-2 rounded-full" />}</span>
                 {row.label}
-              </div>
-            ) : null;
+              </button>
+            );
           }
           const { index, chunk } = row;
-          const current = index === chunkIndex;
+          const current = index === chunkIndex && !rest;
           const doneTempo = done[index];
           const isDone = doneTempo !== undefined && !current;
           const num = isDone ? '✓' : String(index + 1);

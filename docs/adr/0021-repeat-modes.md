@@ -1,6 +1,6 @@
 # ADR-0021: Repeat modes, including play-through
 
-Status: Proposed
+Status: Proposed, amended by ADR-0031 (a chunk is followed by the rest after it; tacet ranges are no longer skipped)
 Date: 2026-09-29
 Amends: ADR-0018 (loop rules).
 
