@@ -1,0 +1,127 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Whip That Ghost"
+artist: Motorpsycho
+source: { file: "Motorpsycho, Bent Sæther-Whip That Ghost-10-01-2026.gp", date: 2026-10-01 }
+bassTrack: "Electric Bass (pick) (retranscribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: Bo749ncghb8
+    songsterr: { songId: 4444486, revisionId: 9445142 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 2020 }, { bar: 3, ms: 3920 }, { bar: 4, ms: 5750 }, { bar: 5, ms: 7580 },
+      { bar: 6, ms: 9420 }, { bar: 7, ms: 11250 }, { bar: 8, ms: 13110 }, { bar: 9, ms: 14920 }, { bar: 10, ms: 16750 },
+      { bar: 11, ms: 18580 }, { bar: 12, ms: 20420 }, { bar: 13, ms: 22250 }, { bar: 14, ms: 24110 }, { bar: 15, ms: 25920 },
+      { bar: 16, ms: 27760 }, { bar: 17, ms: 29600 }, { bar: 18, ms: 31430 }, { bar: 19, ms: 33270 }, { bar: 20, ms: 35110 },
+      { bar: 21, ms: 36940 }, { bar: 22, ms: 38780 }, { bar: 23, ms: 40600 }, { bar: 24, ms: 42430 }, { bar: 25, ms: 44280 },
+      { bar: 26, ms: 46110 }, { bar: 27, ms: 47950 }, { bar: 28, ms: 49780 }, { bar: 29, ms: 51610 }, { bar: 30, ms: 53440 },
+      { bar: 31, ms: 55300 }, { bar: 32, ms: 57120 }, { bar: 33, ms: 58960 }, { bar: 34, ms: 60790 }, { bar: 35, ms: 62630 },
+      { bar: 36, ms: 64440 }, { bar: 37, ms: 66310 }, { bar: 38, ms: 68140 }, { bar: 39, ms: 69970 }, { bar: 40, ms: 71810 },
+      { bar: 41, ms: 73640 }, { bar: 42, ms: 75460 }, { bar: 43, ms: 77310 }, { bar: 44, ms: 79140 }, { bar: 45, ms: 80970 },
+      { bar: 46, ms: 82810 }, { bar: 47, ms: 84680 }, { bar: 48, ms: 86520 }, { bar: 49, ms: 88350 }, { bar: 50, ms: 90180 },
+      { bar: 51, ms: 92020 }, { bar: 52, ms: 93840 }, { bar: 53, ms: 95670 }, { bar: 54, ms: 97520 }, { bar: 55, ms: 99360 },
+      { bar: 56, ms: 101200 }, { bar: 57, ms: 103030 }, { bar: 58, ms: 104870 }, { bar: 59, ms: 106700 }, { bar: 60, ms: 108530 },
+      { bar: 61, ms: 110360 }, { bar: 62, ms: 112210 }, { bar: 63, ms: 114070 }, { bar: 64, ms: 115890 }, { bar: 65, ms: 117710 },
+      { bar: 66, ms: 119540 }, { bar: 67, ms: 121380 }, { bar: 68, ms: 123240 }, { bar: 69, ms: 125070 }, { bar: 70, ms: 126880 },
+      { bar: 71, ms: 128730 }, { bar: 72, ms: 130570 }, { bar: 73, ms: 132380 }, { bar: 74, ms: 134240 }, { bar: 75, ms: 136080 },
+      { bar: 76, ms: 137910 }, { bar: 77, ms: 139740 }, { bar: 78, ms: 141580 }, { bar: 79, ms: 143420 }, { bar: 80, ms: 145250 },
+      { bar: 81, ms: 147080 }, { bar: 82, ms: 148920 }, { bar: 83, ms: 150750 }, { bar: 84, ms: 152600 }, { bar: 85, ms: 154440 },
+      { bar: 86, ms: 156260 }, { bar: 87, ms: 158100 }, { bar: 88, ms: 159930 }, { bar: 89, ms: 161760 }, { bar: 90, ms: 163590 },
+      { bar: 91, ms: 165450 }, { bar: 92, ms: 167280 }, { bar: 93, ms: 169100 }, { bar: 94, ms: 170940 }, { bar: 95, ms: 172770 },
+      { bar: 96, ms: 174590 }, { bar: 97, ms: 176460 }, { bar: 98, ms: 178290 }, { bar: 99, ms: 180120 }, { bar: 100, ms: 181960 },
+      { bar: 101, ms: 183780 }, { bar: 102, ms: 185620 }, { bar: 103, ms: 187460 }, { bar: 104, ms: 189280 }, { bar: 105, ms: 191120 },
+      { bar: 106, ms: 192980 }, { bar: 107, ms: 194800 }, { bar: 108, ms: 196630 }, { bar: 109, ms: 198470 }, { bar: 110, ms: 200300 },
+      { bar: 111, ms: 202110 }, { bar: 112, ms: 203950 }, { bar: 113, ms: 205800 }, { bar: 114, ms: 207620 }, { bar: 115, ms: 209450 },
+      { bar: 116, ms: 211300 }, { bar: 117, ms: 213130 }, { bar: 118, ms: 214990 }, { bar: 119, ms: 216820 }, { bar: 120, ms: 218640 },
+      { bar: 121, ms: 220470 }, { bar: 122, ms: 222310 }, { bar: 123, ms: 224140 }, { bar: 124, ms: 225980 }, { bar: 125, ms: 227810 },
+      { bar: 126, ms: 229650 }, { bar: 127, ms: 231490 }, { bar: 128, ms: 233320 }, { bar: 129, ms: 235180 }, { bar: 130, ms: 237010 },
+      { bar: 131, ms: 238850 }, { bar: 132, ms: 240680 }, { bar: 133, ms: 242490 }, { bar: 134, ms: 244340 }, { bar: 135, ms: 246180 },
+      { bar: 136, ms: 248010 }, { bar: 137, ms: 249840 }, { bar: 138, ms: 251680 }, { bar: 139, ms: 253520 }, { bar: 140, ms: 255350 },
+      { bar: 141, ms: 257190 }, { bar: 142, ms: 259040 }, { bar: 143, ms: 260850 }, { bar: 144, ms: 262680 }, { bar: 145, ms: 264520 },
+      { bar: 146, ms: 266360 }, { bar: 147, ms: 268190 }, { bar: 148, ms: 270030 }, { bar: 149, ms: 271880 }, { bar: 150, ms: 273720 },
+      { bar: 151, ms: 275530 }, { bar: 152, ms: 277370 }, { bar: 153, ms: 279200 }, { bar: 154, ms: 281020 }, { bar: 155, ms: 282840 },
+      { bar: 156, ms: 284690 }, { bar: 157, ms: 286540 }, { bar: 158, ms: 288370 }, { bar: 159, ms: 290200 }, { bar: 160, ms: 292040 },
+      { bar: 161, ms: 293880 }, { bar: 162, ms: 295710 }, { bar: 163, ms: 297540 }, { bar: 164, ms: 299380 }, { bar: 165, ms: 301200 },
+      { bar: 166, ms: 303050 }, { bar: 167, ms: 304870 }, { bar: 168, ms: 306680 }, { bar: 169, ms: 308530 }, { bar: 170, ms: 310370 },
+      { bar: 171, ms: 312200 }, { bar: 172, ms: 314060 }, { bar: 173, ms: 315880 }, { bar: 174, ms: 317710 }, { bar: 175, ms: 319540 },
+      { bar: 176, ms: 321370 }, { bar: 177, ms: 323190 }, { bar: 178, ms: 325030 }, { bar: 179, ms: 326890 }, { bar: 180, ms: 328710 },
+      { bar: 181, ms: 330540 }, { bar: 182, ms: 332390 }, { bar: 183, ms: 334210 }, { bar: 184, ms: 336050 }, { bar: 185, ms: 337910 },
+      { bar: 186, ms: 339750 }, { bar: 187, ms: 341560 }, { bar: 188, ms: 343380 }, { bar: 189, ms: 345220 }, { bar: 190, ms: 347070 },
+      { bar: 191, ms: 348890 }, { bar: 192, ms: 350730 }, { bar: 193, ms: 352570 }, { bar: 194, ms: 354430 }, { bar: 195, ms: 356250 },
+      { bar: 196, ms: 358070 }, { bar: 197, ms: 359890 }, { bar: 198, ms: 361750 }, { bar: 199, ms: 363590 }, { bar: 200, ms: 365420 },
+      { bar: 201, ms: 367230 }, { bar: 202, ms: 369080 }, { bar: 203, ms: 370920 }, { bar: 204, ms: 372750 }, { bar: 205, ms: 374580 },
+      { bar: 206, ms: 376410 }, { bar: 207, ms: 378250 }, { bar: 208, ms: 380090 }, { bar: 209, ms: 381920 }, { bar: 210, ms: 383780 },
+      ]
+  music: { source: "Motorpsycho, Bent Sæther-Whip That Ghost-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Let Them Eat Cake", itunesId: 505499337 }
+chunks:
+  - { name: A–G riff, bars: [3, 6] }
+  - { name: A–G riff to high A, bars: [7, 10] }
+  - { name: A–G riff, bars: [11, 14] }
+  - { name: A–G riff to E, bars: [15, 18] }
+  - { name: A–G riff, bars: [19, 22] }
+  - { name: B–C♯–D climb, bars: [23, 26] }
+  - { name: B–C♯–D to E, bars: [27, 30] }
+  - { name: A–D figure, bars: [31, 34] }
+  - { name: A–D to E, bars: [35, 38] }
+  - { name: A–G riff, bars: [39, 42] }
+  - { name: A–G riff to high A, bars: [43, 46] }
+  - { name: A–G riff, bars: [47, 50] }
+  - { name: A–G riff to E, bars: [51, 54] }
+  - { name: A–G riff, bars: [55, 58] }
+  - { name: B–C♯–D climb, bars: [59, 62] }
+  - { name: B–C♯–D to E, bars: [63, 66] }
+  - { name: A–D figure, bars: [67, 70] }
+  - { name: A–D to E, bars: [71, 74] }
+  - { name: B–A climb, bars: [75, 78] }
+  - { name: High B–A, bars: [79, 82] }
+  - { name: Descent, bars: [83, 86] }
+  - { name: Scale up, bars: [87, 90] }
+  - { name: B–E, bars: [91, 94] }
+  - { name: B–E repeat, bars: [95, 98] }
+  - { name: B–C♯–D, bars: [99, 104] }
+  - { name: E pulse, bars: [105, 108] }
+  - { name: A–D figure, bars: [109, 112] }
+  - { name: A–D to E, bars: [113, 116] }
+  - { name: B–A climb, bars: [117, 120] }
+  - { name: B–A climb b, bars: [121, 124] }
+  - { name: High B–A, bars: [125, 128] }
+  - { name: High climb, bars: [129, 132] }
+  - { name: B–E, bars: [133, 136] }
+  - { name: B–E ×3, bars: [137, 148] }
+  - { name: A–D figure, bars: [149, 152] }
+  - { name: A–D to E, bars: [153, 156] }
+  - { name: E–D, bars: [157, 160] }
+  - { name: A–G riff, bars: [161, 164] }
+  - { name: A–G riff to E, bars: [165, 168] }
+  - { name: A–G riff, bars: [169, 172] }
+  - { name: A–G riff to D–E, bars: [173, 176] }
+  - { name: A–G riff, bars: [177, 180] }
+  - { name: A–G riff to D–E, bars: [181, 184] }
+  - { name: A–G riff, bars: [185, 188] }
+  - { name: A–G riff to D–E, bars: [189, 192] }
+  - { name: Climb to E, bars: [193, 196] }
+  - { name: A–G riff, bars: [203, 206] }
+  - { name: A–G riff repeat, bars: [207, 210] }
+fingeringOverrides: []
+notes: >-
+  Artist: the tab and the .gp credit "Motorpsycho, Bent Sæther"; the album and iTunes credit
+  Motorpsycho, which keeps the song with the band in the library. Standard tuning, 6/8 at 98 BPM
+  (quarter notes; the dotted quarter is about 65), almost all sixteenth notes. Bars 1–2 and 197–202
+  are tacet.
+  Songsterr does not flag the tab as AI-generated, but the revision (song 4444486, revision 9445142)
+  is described as "regenerated" and every track name ends in "(retranscribed)": treat it as an AI
+  transcription, and check the tab ring against the bass by ear (ADR-0029).
+  No section markers. A–G riff: A pedal against G and E in sixteenths ("to high A" ends on A an
+  octave up, "to E" on E sixteenths, "to D–E" on a D–C♯–B–A run and E). B–C♯–D climb (23–30, 59–66):
+  B–A, C♯–B–G♯, D–C♯–A. A–D figure (31–38, 67–74, 109–116, 149–156): A–B–C♯–E–F♯ to D, and
+  E–F♯–G♯–B–C♯ to C♯–D. B–A climb, High B–A, Descent (thirds down from D3) and Scale up (75–90). B–E
+  stabs (91–98, 133–148). High climb (129–132, up to A at fret 14 of the G string). Climb to E
+  (193–196).
+  Fingering: 7 re-tabs (C♯3 D11 → G6 in bar 124; A3 D19 → G14 in bar 130, whose run still reaches
+  fret 17 of the D string in position 14); no overrides. The climbs drop from position 5 to 2 (bars 24, 60).
+  YouTube (2026-10-30): Songsterr's default video, "Whip That Ghost" by Motorpsycho - Topic
+  (Bo749ncghb8). Sync: 210 anchors for 210 bars, bar 1 at 0:00.00, at most 0.25 s from the tempo
+  map.
+  Music: offset 0 ms, no drift (onset match 2.7 / 3.1). The tab has no vocal track, so no lyrics;
+  paste lyrics.text if wanted.

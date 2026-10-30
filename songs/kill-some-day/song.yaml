@@ -1,0 +1,146 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Kill Some Day"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Kill Some Day-07-13-2026.gp", date: 2026-07-13 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: p1TCwfu77r8
+    songsterr: { songId: 6027615, revisionId: 7872070 }
+    sync: [
+      { bar: 1, ms: 410 }, { bar: 2, ms: 1870 }, { bar: 3, ms: 3310 }, { bar: 4, ms: 4740 }, { bar: 5, ms: 6180 },
+      { bar: 6, ms: 7610 }, { bar: 7, ms: 9040 }, { bar: 8, ms: 10480 }, { bar: 9, ms: 11910 }, { bar: 10, ms: 13370 },
+      { bar: 11, ms: 14810 }, { bar: 12, ms: 16240 }, { bar: 13, ms: 17670 }, { bar: 14, ms: 19110 }, { bar: 15, ms: 20540 },
+      { bar: 16, ms: 21980 }, { bar: 17, ms: 23410 }, { bar: 18, ms: 24870 }, { bar: 19, ms: 26270 }, { bar: 20, ms: 27710 },
+      { bar: 21, ms: 29170 }, { bar: 22, ms: 30640 }, { bar: 23, ms: 32080 }, { bar: 24, ms: 33510 }, { bar: 25, ms: 34950 },
+      { bar: 26, ms: 36410 }, { bar: 27, ms: 37840 }, { bar: 28, ms: 39280 }, { bar: 29, ms: 40710 }, { bar: 30, ms: 42150 },
+      { bar: 31, ms: 43580 }, { bar: 32, ms: 45010 }, { bar: 33, ms: 46440 }, { bar: 34, ms: 47910 }, { bar: 35, ms: 49350 },
+      { bar: 36, ms: 50780 }, { bar: 37, ms: 52210 }, { bar: 38, ms: 53650 }, { bar: 39, ms: 55080 }, { bar: 40, ms: 56510 },
+      { bar: 41, ms: 57940 }, { bar: 42, ms: 59410 }, { bar: 43, ms: 60850 }, { bar: 44, ms: 62290 }, { bar: 45, ms: 63720 },
+      { bar: 46, ms: 65150 }, { bar: 47, ms: 66610 }, { bar: 48, ms: 68050 }, { bar: 49, ms: 69480 }, { bar: 50, ms: 70920 },
+      { bar: 51, ms: 72350 }, { bar: 52, ms: 73810 }, { bar: 53, ms: 75250 }, { bar: 54, ms: 76680 }, { bar: 55, ms: 78120 },
+      { bar: 56, ms: 79550 }, { bar: 57, ms: 80980 }, { bar: 58, ms: 82410 }, { bar: 59, ms: 83850 }, { bar: 60, ms: 85280 },
+      { bar: 61, ms: 86750 }, { bar: 62, ms: 88220 }, { bar: 63, ms: 89660 }, { bar: 64, ms: 91090 }, { bar: 65, ms: 92520 },
+      { bar: 66, ms: 93960 }, { bar: 67, ms: 95390 }, { bar: 68, ms: 96860 }, { bar: 69, ms: 98290 }, { bar: 70, ms: 99720 },
+      { bar: 71, ms: 101160 }, { bar: 72, ms: 102590 }, { bar: 73, ms: 104030 }, { bar: 74, ms: 105480 }, { bar: 75, ms: 106920 },
+      { bar: 76, ms: 108360 }, { bar: 77, ms: 109790 }, { bar: 78, ms: 111220 }, { bar: 79, ms: 112660 }, { bar: 80, ms: 114090 },
+      { bar: 81, ms: 115530 }, { bar: 82, ms: 117000 }, { bar: 83, ms: 118420 }, { bar: 84, ms: 119870 }, { bar: 85, ms: 121340 },
+      { bar: 86, ms: 122770 }, { bar: 87, ms: 124200 }, { bar: 88, ms: 125640 }, { bar: 89, ms: 127070 }, { bar: 90, ms: 128510 },
+      { bar: 91, ms: 129940 }, { bar: 92, ms: 131370 }, { bar: 93, ms: 132800 }, { bar: 94, ms: 134240 }, { bar: 95, ms: 135680 },
+      { bar: 96, ms: 137110 }, { bar: 97, ms: 138570 }, { bar: 98, ms: 140000 }, { bar: 99, ms: 141440 }, { bar: 100, ms: 142870 },
+      { bar: 101, ms: 144310 }, { bar: 102, ms: 145750 }, { bar: 103, ms: 147180 }, { bar: 104, ms: 148620 }, { bar: 105, ms: 150050 },
+      { bar: 106, ms: 151490 }, { bar: 107, ms: 152950 }, { bar: 108, ms: 154380 }, { bar: 109, ms: 155820 }, { bar: 110, ms: 157220 },
+      { bar: 111, ms: 158680 }, { bar: 112, ms: 160120 }, { bar: 113, ms: 161550 }, { bar: 114, ms: 163020 }, { bar: 115, ms: 164450 },
+      { bar: 116, ms: 165860 }, { bar: 117, ms: 167320 }, { bar: 118, ms: 168720 }, { bar: 119, ms: 170150 }, { bar: 120, ms: 171620 },
+      { bar: 121, ms: 173050 }, { bar: 122, ms: 174490 }, { bar: 123, ms: 175930 }, { bar: 124, ms: 177390 }, { bar: 125, ms: 178820 },
+      { bar: 126, ms: 180260 }, { bar: 127, ms: 181690 }, { bar: 128, ms: 183160 }, { bar: 129, ms: 184560 }, { bar: 130, ms: 185990 },
+      { bar: 131, ms: 187430 }, { bar: 132, ms: 188860 }, { bar: 133, ms: 190290 }, { bar: 134, ms: 191760 }, { bar: 135, ms: 193190 },
+      { bar: 136, ms: 194630 }, { bar: 137, ms: 196060 }, { bar: 138, ms: 197490 }, { bar: 139, ms: 198930 }, { bar: 140, ms: 200390 },
+      { bar: 141, ms: 201790 }, { bar: 142, ms: 203230 }, { bar: 143, ms: 204660 }, { bar: 144, ms: 206130 }, { bar: 145, ms: 207560 },
+      { bar: 146, ms: 209000 }, { bar: 147, ms: 210440 }, { bar: 148, ms: 211900 }, { bar: 149, ms: 213320 }, { bar: 150, ms: 214760 },
+      { bar: 151, ms: 216200 }, { bar: 152, ms: 217600 }, { bar: 153, ms: 219060 }, { bar: 154, ms: 220520 }, { bar: 155, ms: 221960 },
+      { bar: 156, ms: 223400 }, { bar: 157, ms: 224830 }, { bar: 158, ms: 226260 }, { bar: 159, ms: 227700 }, { bar: 160, ms: 229130 },
+      { bar: 161, ms: 230560 }, { bar: 162, ms: 231970 }, { bar: 163, ms: 233400 }, { bar: 164, ms: 234870 }, { bar: 165, ms: 236300 },
+      { bar: 166, ms: 237740 }, { bar: 167, ms: 239170 }, { bar: 168, ms: 240630 }, { bar: 169, ms: 242040 }, { bar: 170, ms: 243470 },
+      { bar: 171, ms: 244900 }, { bar: 172, ms: 246340 }, { bar: 173, ms: 247800 }, { bar: 174, ms: 249240 }, { bar: 175, ms: 250670 },
+      { bar: 176, ms: 252100 }, { bar: 177, ms: 253540 }, { bar: 178, ms: 254970 }, { bar: 179, ms: 256400 }, { bar: 180, ms: 257840 },
+      { bar: 181, ms: 259270 }, { bar: 182, ms: 260740 }, { bar: 183, ms: 262160 }, { bar: 184, ms: 263610 }, { bar: 185, ms: 265040 },
+      { bar: 186, ms: 266480 }, { bar: 187, ms: 267910 }, { bar: 188, ms: 269380 }, { bar: 189, ms: 270810 }, { bar: 190, ms: 272280 },
+      { bar: 191, ms: 273680 }, { bar: 192, ms: 275110 }, { bar: 193, ms: 276540 }, { bar: 194, ms: 277980 }, { bar: 195, ms: 279440 },
+      { bar: 196, ms: 280880 }, { bar: 197, ms: 282310 }, { bar: 198, ms: 283750 }, { bar: 199, ms: 285180 }, { bar: 200, ms: 286610 },
+      { bar: 201, ms: 288080 }, { bar: 202, ms: 289530 }, { bar: 203, ms: 290960 }, { bar: 204, ms: 292390 }, { bar: 205, ms: 293830 },
+      { bar: 206, ms: 295260 }, { bar: 207, ms: 296690 }, { bar: 208, ms: 298120 }, { bar: 209, ms: 299590 }, { bar: 210, ms: 301030 },
+      { bar: 211, ms: 302490 }, { bar: 212, ms: 303890 }, { bar: 213, ms: 305350 }, { bar: 214, ms: 306790 }, { bar: 215, ms: 308220 },
+      { bar: 216, ms: 309650 }, { bar: 217, ms: 311090 }, { bar: 218, ms: 312520 }, { bar: 219, ms: 313950 }, { bar: 220, ms: 315390 },
+      { bar: 221, ms: 316830 }, { bar: 222, ms: 318270 }, { bar: 223, ms: 319710 }, { bar: 224, ms: 321170 }, { bar: 225, ms: 322600 },
+      { bar: 226, ms: 324040 }, { bar: 227, ms: 325470 }, { bar: 228, ms: 326940 }, { bar: 229, ms: 328340 }, { bar: 230, ms: 329810 },
+      { bar: 231, ms: 331270 }, { bar: 232, ms: 332770 }, { bar: 233, ms: 334300 }, { bar: 234, ms: 335940 }, { bar: 235, ms: 337600 },
+      { bar: 236, ms: 339040 }, { bar: 237, ms: 340480 }, { bar: 238, ms: 341910 }, { bar: 239, ms: 343340 }, { bar: 240, ms: 344770 },
+      { bar: 241, ms: 346210 }, { bar: 242, ms: 347640 }, { bar: 243, ms: 349070 }, { bar: 244, ms: 350510 }, { bar: 245, ms: 351940 },
+      { bar: 246, ms: 353370 }, { bar: 247, ms: 354810 }, { bar: 248, ms: 356240 }, { bar: 249, ms: 357710 }, { bar: 250, ms: 359140 },
+      { bar: 251, ms: 360580 }, { bar: 252, ms: 362010 }, { bar: 253, ms: 363440 }, { bar: 254, ms: 364880 }, { bar: 255, ms: 366810 },
+      { bar: 256, ms: 368250 }, { bar: 257, ms: 369680 }, { bar: 258, ms: 371120 }, { bar: 259, ms: 372550 }, { bar: 260, ms: 373990 },
+      { bar: 261, ms: 375420 }, { bar: 262, ms: 376920 }, { bar: 263, ms: 378320 }, { bar: 264, ms: 379750 }, { bar: 265, ms: 381220 },
+      { bar: 266, ms: 382620 }, { bar: 267, ms: 384050 }, { bar: 268, ms: 385520 }, { bar: 269, ms: 386950 }, { bar: 270, ms: 388380 },
+      { bar: 271, ms: 389820 }, { bar: 272, ms: 391260 }, { bar: 273, ms: 392700 }, { bar: 274, ms: 394150 }, { bar: 275, ms: 395590 },
+      { bar: 276, ms: 397000 }, { bar: 277, ms: 398430 }, { bar: 278, ms: 399860 }, { bar: 279, ms: 401300 }, { bar: 280, ms: 402730 },
+      { bar: 281, ms: 404160 }, { bar: 282, ms: 405600 }, { bar: 283, ms: 407030 }, { bar: 284, ms: 408470 },
+      ]
+  music: { source: "Motorpsycho-Kill Some Day-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Timothy's Monster", itunesId: 1701791348 }
+chunks:
+  - { name: Intro D, bars: [1, 4] }
+  - { name: Intro G, bars: [5, 8] }
+  - { name: Intro low D, bars: [9, 12] }
+  - { name: Intro G, bars: [13, 16] }
+  - { name: D–E, bars: [17, 24] }
+  - { name: D–E repeat, bars: [25, 32] }
+  - { name: D–G, bars: [33, 40] }
+  - { name: D–E–G, bars: [41, 48] }
+  - { name: A–B, bars: [49, 52] }
+  - { name: G pedal, bars: [53, 56] }
+  - { name: A–B, bars: [57, 60] }
+  - { name: E–G–A, bars: [61, 64] }
+  - { name: D–G pump, bars: [65, 72] }
+  - { name: D–G pump repeat, bars: [73, 80] }
+  - { name: Held D, bars: [81, 88] }
+  - { name: E–G, bars: [89, 92] }
+  - { name: C to D, bars: [93, 96] }
+  - { name: E–G, bars: [97, 100] }
+  - { name: C–D, bars: [101, 104] }
+  - { name: C pedal, bars: [105, 108] }
+  - { name: A pedal, bars: [109, 112] }
+  - { name: E pedal, bars: [113, 116] }
+  - { name: D pedal, bars: [117, 120] }
+  - { name: C–D, bars: [121, 124] }
+  - { name: E–G run down, bars: [125, 128] }
+  - { name: C–A–D, bars: [129, 132] }
+  - { name: E–G, bars: [133, 136] }
+  - { name: B–A, bars: [137, 140] }
+  - { name: E–G–A, bars: [141, 144] }
+  - { name: D–F–B♭–C, bars: [145, 152] }
+  - { name: D–F–B♭–C repeat, bars: [153, 160] }
+  - { name: B♭–G–C, bars: [161, 164] }
+  - { name: D–E pump, bars: [165, 172] }
+  - { name: D–E, bars: [173, 180] }
+  - { name: D–G, bars: [181, 188] }
+  - { name: D–E–G, bars: [189, 196] }
+  - { name: A–B, bars: [197, 200] }
+  - { name: G pedal, bars: [201, 204] }
+  - { name: A–B, bars: [205, 208] }
+  - { name: G run down, bars: [209, 212] }
+  - { name: A–B, bars: [213, 216] }
+  - { name: G run down and up, bars: [217, 220] }
+  - { name: A–B, bars: [221, 224] }
+  - { name: E–G–A, bars: [225, 228] }
+  - { name: Held D, bars: [229, 236] }
+  - { name: Held D ×2, bars: [237, 252] }
+  - { name: Held D end, bars: [253, 254] }
+  - { name: A–B, bars: [255, 258] }
+  - { name: G run, bars: [259, 262] }
+  - { name: A–B, bars: [263, 266] }
+  - { name: Run up to D, bars: [267, 270] }
+  - { name: A–B, bars: [271, 274] }
+  - { name: G run, bars: [275, 278] }
+  - { name: A–B to D, bars: [279, 284] }
+fingeringOverrides: []
+notes: >-
+  D standard tuning (D G C F), 167 BPM, 4/4. No tacet bars.
+  Songsterr marks this tab AI-generated (song 6027615, revision 7872070, "Initial revision"). Its
+  points for AI tabs can sit a quarter or an eighth note late (ADR-0029): check the tab ring against
+  the bass by ear.
+  No section markers. Intro (1–16): D and G, first high, then on the open low D. Verse (17–48): D–E,
+  D–G and D–E–G in eighths, four bars per chord. Chorus (49–64, 197–228): A–B, G pedal, E–G–A, and G
+  runs down (G–F♯–E–D). D–G pump (65–80): eighths and quarters. Held D (81–88, 229–254): whole
+  notes. E–G, C–D, C/A/E/D pedals (89–132). E–G, B–A (133–144). D–F–B♭–C (145–164). The last part
+  (255–284): A–B with G runs and a run up to D.
+  Fingering: 119 re-tabs, no overrides. Most move G and C from fret 5 of the string below to the
+  open string (bars 13–14, 47–48, 93–96, 195–196); A1 G2 → D7 in 109–112 keeps the A pedal in
+  position 7. Shifts of 3+ frets only at chunk changes.
+  YouTube (2026-10-30): Songsterr's default video, "Motorpsycho - Kill Some Day" by Overdrive Arcade
+  (p1TCwfu77r8), a third-party upload. Sync: 284 anchors for 284 bars, bar 1 at 0:00.41, at most 1.4
+  s from the tempo map (bar 262). Bar 254, the end of the held D, is 1.34 × the score's length.
+  Music: offset 0 ms, no drift (onset match 1.9 / 2.4). Lyrics: synced from "Vocals", 291 syllables
+  from bar 17; lines cut by timing.
+  To check by ear: the 26 bars of held D in 229–254, and whether the chorus A–B is on the beat.

@@ -1,0 +1,123 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Sinful, Wind-Borne"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Sinful, Wind-Borne-10-11-2026.gp", date: 2026-10-11 }
+bassTrack: "Electric Bass (pick) (retranscribed)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: CRPYzOgwL3c
+    songsterr: { songId: 826753, revisionId: 9683652 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 1600 }, { bar: 3, ms: 3200 }, { bar: 4, ms: 4790 }, { bar: 5, ms: 6390 },
+      { bar: 6, ms: 8000 }, { bar: 7, ms: 9590 }, { bar: 8, ms: 11190 }, { bar: 9, ms: 12790 }, { bar: 10, ms: 14380 },
+      { bar: 11, ms: 15980 }, { bar: 12, ms: 17580 }, { bar: 13, ms: 19180 }, { bar: 14, ms: 20780 }, { bar: 15, ms: 22370 },
+      { bar: 16, ms: 23960 }, { bar: 17, ms: 25540 }, { bar: 18, ms: 27120 }, { bar: 19, ms: 28710 }, { bar: 20, ms: 30290 },
+      { bar: 21, ms: 31840 }, { bar: 22, ms: 33400 }, { bar: 23, ms: 34970 }, { bar: 24, ms: 36550 }, { bar: 25, ms: 38120 },
+      { bar: 26, ms: 39700 }, { bar: 27, ms: 41280 }, { bar: 28, ms: 42860 }, { bar: 29, ms: 44450 }, { bar: 30, ms: 46000 },
+      { bar: 31, ms: 47570 }, { bar: 32, ms: 49150 }, { bar: 33, ms: 50710 }, { bar: 34, ms: 52280 }, { bar: 35, ms: 53870 },
+      { bar: 36, ms: 55450 }, { bar: 37, ms: 57020 }, { bar: 38, ms: 58600 }, { bar: 39, ms: 60170 }, { bar: 40, ms: 61740 },
+      { bar: 41, ms: 63300 }, { bar: 42, ms: 64880 }, { bar: 43, ms: 66450 }, { bar: 44, ms: 68030 }, { bar: 45, ms: 69590 },
+      { bar: 46, ms: 71180 }, { bar: 47, ms: 72740 }, { bar: 48, ms: 74310 }, { bar: 49, ms: 75880 }, { bar: 50, ms: 77440 },
+      { bar: 51, ms: 79020 }, { bar: 52, ms: 80590 }, { bar: 53, ms: 82160 }, { bar: 54, ms: 83750 }, { bar: 55, ms: 85320 },
+      { bar: 56, ms: 86880 }, { bar: 57, ms: 88480 }, { bar: 58, ms: 90050 }, { bar: 59, ms: 91640 }, { bar: 60, ms: 93210 },
+      { bar: 61, ms: 94760 }, { bar: 62, ms: 96360 }, { bar: 63, ms: 97940 }, { bar: 64, ms: 99510 }, { bar: 65, ms: 101080 },
+      { bar: 66, ms: 102660 }, { bar: 67, ms: 104230 }, { bar: 68, ms: 105810 }, { bar: 69, ms: 107370 }, { bar: 70, ms: 108930 },
+      { bar: 71, ms: 110510 }, { bar: 72, ms: 112070 }, { bar: 73, ms: 113650 }, { bar: 74, ms: 115220 }, { bar: 75, ms: 116790 },
+      { bar: 76, ms: 118360 }, { bar: 77, ms: 119940 }, { bar: 78, ms: 121510 }, { bar: 79, ms: 123070 }, { bar: 80, ms: 124650 },
+      { bar: 81, ms: 126210 }, { bar: 82, ms: 127780 }, { bar: 83, ms: 129350 }, { bar: 84, ms: 130910 }, { bar: 85, ms: 132480 },
+      { bar: 86, ms: 134060 }, { bar: 87, ms: 135650 }, { bar: 88, ms: 137230 }, { bar: 89, ms: 138810 }, { bar: 90, ms: 140370 },
+      { bar: 91, ms: 141950 }, { bar: 92, ms: 143520 }, { bar: 93, ms: 145100 }, { bar: 94, ms: 146680 }, { bar: 95, ms: 148250 },
+      { bar: 96, ms: 149830 }, { bar: 97, ms: 151380 }, { bar: 98, ms: 152950 }, { bar: 99, ms: 154530 }, { bar: 100, ms: 156100 },
+      { bar: 101, ms: 157670 }, { bar: 102, ms: 159240 }, { bar: 103, ms: 160790 }, { bar: 104, ms: 162360 }, { bar: 105, ms: 163940 },
+      { bar: 106, ms: 165520 }, { bar: 107, ms: 167100 }, { bar: 108, ms: 168690 }, { bar: 109, ms: 170260 }, { bar: 110, ms: 171840 },
+      { bar: 111, ms: 173400 }, { bar: 112, ms: 174970 }, { bar: 113, ms: 176560 }, { bar: 114, ms: 178140 }, { bar: 115, ms: 179710 },
+      { bar: 116, ms: 181300 }, { bar: 117, ms: 182880 }, { bar: 118, ms: 184470 }, { bar: 119, ms: 186040 }, { bar: 120, ms: 187620 },
+      { bar: 121, ms: 189190 }, { bar: 122, ms: 190770 }, { bar: 123, ms: 192340 }, { bar: 124, ms: 193900 }, { bar: 125, ms: 195470 },
+      { bar: 126, ms: 197050 }, { bar: 127, ms: 198620 }, { bar: 128, ms: 200190 }, { bar: 129, ms: 201750 }, { bar: 130, ms: 203320 },
+      { bar: 131, ms: 204900 }, { bar: 132, ms: 206480 }, { bar: 133, ms: 208060 }, { bar: 134, ms: 209630 }, { bar: 135, ms: 211220 },
+      { bar: 136, ms: 212800 }, { bar: 137, ms: 214360 }, { bar: 138, ms: 215940 }, { bar: 139, ms: 217500 }, { bar: 140, ms: 219070 },
+      { bar: 141, ms: 220650 }, { bar: 142, ms: 221440 }, { bar: 143, ms: 223030 }, { bar: 144, ms: 224590 }, { bar: 145, ms: 226170 },
+      { bar: 146, ms: 227770 }, { bar: 147, ms: 229340 }, { bar: 148, ms: 230900 }, { bar: 149, ms: 232470 }, { bar: 150, ms: 234050 },
+      { bar: 151, ms: 235640 }, { bar: 152, ms: 237210 }, { bar: 153, ms: 238780 }, { bar: 154, ms: 240360 }, { bar: 155, ms: 241950 },
+      { bar: 156, ms: 243510 }, { bar: 157, ms: 245090 }, { bar: 158, ms: 246670 }, { bar: 159, ms: 248250 }, { bar: 160, ms: 249820 },
+      { bar: 161, ms: 251390 }, { bar: 162, ms: 252940 }, { bar: 163, ms: 254510 }, { bar: 164, ms: 256090 }, { bar: 165, ms: 257690 },
+      { bar: 166, ms: 259290 }, { bar: 167, ms: 260860 }, { bar: 168, ms: 262440 }, { bar: 169, ms: 264000 }, { bar: 170, ms: 265560 },
+      { bar: 171, ms: 267120 }, { bar: 172, ms: 268690 }, { bar: 173, ms: 270290 }, { bar: 174, ms: 271860 }, { bar: 175, ms: 273430 },
+      { bar: 176, ms: 275020 }, { bar: 177, ms: 276610 }, { bar: 178, ms: 278190 }, { bar: 179, ms: 279760 }, { bar: 180, ms: 281330 },
+      { bar: 181, ms: 282900 }, { bar: 182, ms: 284470 }, { bar: 183, ms: 286030 }, { bar: 184, ms: 287620 }, { bar: 185, ms: 289210 },
+      { bar: 186, ms: 290800 }, { bar: 187, ms: 292370 }, { bar: 188, ms: 293960 }, { bar: 189, ms: 295520 }, { bar: 190, ms: 297100 },
+      { bar: 191, ms: 298670 }, { bar: 192, ms: 300250 }, { bar: 193, ms: 301820 }, { bar: 194, ms: 303390 },
+      ]
+  music: { source: "Motorpsycho-Sinful, Wind-Borne-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Blissard", itunesId: 505504230 }
+chunks:
+  - { name: Intro F♯, bars: [19, 20] }
+  - { name: Riff a, bars: [21, 24] }
+  - { name: Riff b, bars: [25, 29] }
+  - { name: E–D♯ pulse, bars: [30, 33] }
+  - { name: E–F♯ pulse, bars: [34, 37] }
+  - { name: Riff a, bars: [38, 41] }
+  - { name: Riff b, bars: [42, 45] }
+  - { name: Riff a, bars: [46, 49] }
+  - { name: Riff b, bars: [50, 54] }
+  - { name: E–D♯ pulse, bars: [55, 58] }
+  - { name: E–F♯ pulse, bars: [59, 62] }
+  - { name: Riff a, bars: [63, 66] }
+  - { name: Riff b, bars: [67, 70] }
+  - { name: Riff a, bars: [71, 74] }
+  - { name: Riff b, bars: [75, 79] }
+  - { name: E–F♯–G♯ climb, bars: [80, 85] }
+  - { name: F♯ turn, bars: [86, 89] }
+  - { name: Riff a, bars: [90, 93] }
+  - { name: Riff b to C, bars: [94, 96] }
+  - { name: C run, bars: [97, 100] }
+  - { name: C run, bars: [101, 104] }
+  - { name: C–C♯–D climb, bars: [105, 108] }
+  - { name: C–D–E–G climb, bars: [109, 112] }
+  - { name: E–G♯ pulse, bars: [113, 116] }
+  - { name: B–G♯ pulse, bars: [117, 120] }
+  - { name: A♯–B figure, bars: [121, 126] }
+  - { name: Octave climb a, bars: [127, 130] }
+  - { name: Octave climb b, bars: [131, 135] }
+  - { name: E octaves, bars: [138, 142] }
+  - { name: B pulse, bars: [143, 146] }
+  - { name: Walk-up, bars: [147, 150] }
+  - { name: G♯–A♯–B–E, bars: [151, 154] }
+  - { name: G♯–A♯–B–E repeat, bars: [155, 158] }
+  - { name: Riff a, bars: [159, 162] }
+  - { name: Riff b, bars: [163, 167] }
+  - { name: E–D♯ pulse, bars: [168, 171] }
+  - { name: E–F♯ pulse, bars: [172, 175] }
+  - { name: B–E pulse, bars: [176, 179] }
+  - { name: B–E pulse ×2, bars: [180, 187] }
+  - { name: Outro run, bars: [188, 194] }
+fingeringOverrides:
+  - { bar: 86, tick: 2400, string: 1, fret: 7, finger: 2 }
+  - { bar: 86, tick: 2880, string: 1, fret: 6, finger: 1 }
+  - { bar: 87, tick: 2400, string: 1, fret: 7, finger: 2 }
+  - { bar: 87, tick: 2880, string: 1, fret: 6, finger: 1 }
+  - { bar: 88, tick: 2400, string: 1, fret: 7, finger: 2 }
+  - { bar: 88, tick: 2880, string: 1, fret: 6, finger: 1 }
+notes: >-
+  Standard tuning, 153 BPM, 4/4. Bars 1–18 and 136–137 are tacet.
+  Songsterr does not flag the tab as AI-generated, but the revision (song 826753, revision 9683652)
+  is described as "regenerated" and every track name ends in "(retranscribed)": treat it as an AI
+  transcription, and check the tab ring against the bass by ear (ADR-0029).
+  No section markers. Riff a/b: an 8-bar riff of two-bar cells, B–A♯–E, F♯–A♯–B–C♯, D♯–A♯–B and
+  F♯–A♯–B–C♯–E, ending E–D♯–B and B–A♯ (b chunks with 5 bars carry that tail). E–D♯ / E–F♯ pulse:
+  eighths with sixteenth pickups between the riffs. E–F♯–G♯ climb and F♯ turn (80–89). The break
+  (97–112): C run (C in sixteenths, F♯–G–G♯–A up to the high C, then B), C–C♯–D and C–D–E–G climbs.
+  E–G♯ / B–G♯ pulse (113–120), A♯–B figure (121–126), Octave climb on G (127–135: G1, G2, G3, then
+  B). After the stop: E octaves, B pulse, Walk-up and G♯–A♯–B–E (138–158), the riff again (159–167),
+  and the B–E pulse and Outro run (168–194).
+  Fingering: 62 re-tabs, mostly to stay in position (C♯3 D11 → G6 in bars 27, 40, 92 and 161; C2 A3
+  → E8 in 109; B1 A2 → E7 in 176–180) and the open G in 129–130. Override (bars 86–88): E on A7 and
+  D♯ on A6, so the F♯ turn is played A9–A7–A6 like the same figure in the intro (19–20). Bars 80–89
+  then stay in position 6, without the 7 shifts of the D-string tab (D4–D2–D1).
+  YouTube (2026-10-30): Songsterr's default video, "Sinful, Wind-Borne" by Motorpsycho - Topic
+  (CRPYzOgwL3c). Sync: 204 points for 194 bars, matched by bar durations; 9 extra points at the end
+  ignored. Bar 1 at 0:00.00, at most 1.0 s from the tempo map. Bar 141 is half the score's length
+  (3:40 in the video): check it.
+  Music: offset 0 ms, no drift (onset match 4.6 / 2.5). Lyrics: synced from "Vocals
+  (retranscribed)", 206 syllables from bar 38; lines cut by timing.

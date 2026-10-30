@@ -1,0 +1,98 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Hey, Jane"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Hey, Jane-07-06-2026.gp", date: 2026-07-06 }
+bassTrack: "Electric Bass (pick) (regenerated)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: yklGhX5JG4E
+    songsterr: { songId: 2989319, revisionId: 7748159 }
+    sync: [
+      { bar: 1, ms: 11380 }, { bar: 2, ms: 13170 }, { bar: 3, ms: 14950 }, { bar: 4, ms: 16720 }, { bar: 5, ms: 18520 },
+      { bar: 6, ms: 20320 }, { bar: 7, ms: 22120 }, { bar: 8, ms: 23880 }, { bar: 9, ms: 25710 }, { bar: 10, ms: 27520 },
+      { bar: 11, ms: 29280 }, { bar: 12, ms: 31090 }, { bar: 13, ms: 32860 }, { bar: 14, ms: 34650 }, { bar: 15, ms: 36450 },
+      { bar: 16, ms: 38250 }, { bar: 17, ms: 40050 }, { bar: 18, ms: 41800 }, { bar: 19, ms: 43590 }, { bar: 20, ms: 45400 },
+      { bar: 21, ms: 47200 }, { bar: 22, ms: 49000 }, { bar: 23, ms: 50790 }, { bar: 24, ms: 52590 }, { bar: 25, ms: 54390 },
+      { bar: 26, ms: 56160 }, { bar: 27, ms: 57960 }, { bar: 28, ms: 59760 }, { bar: 29, ms: 61600 }, { bar: 30, ms: 63400 },
+      { bar: 31, ms: 65200 }, { bar: 32, ms: 66980 }, { bar: 33, ms: 68780 }, { bar: 34, ms: 70570 }, { bar: 35, ms: 72340 },
+      { bar: 36, ms: 74140 }, { bar: 37, ms: 75940 }, { bar: 38, ms: 77740 }, { bar: 39, ms: 79540 }, { bar: 40, ms: 81340 },
+      { bar: 41, ms: 83130 }, { bar: 42, ms: 84910 }, { bar: 43, ms: 86680 }, { bar: 44, ms: 88460 }, { bar: 45, ms: 90270 },
+      { bar: 46, ms: 92090 }, { bar: 47, ms: 93890 }, { bar: 48, ms: 95680 }, { bar: 49, ms: 97480 }, { bar: 50, ms: 99250 },
+      { bar: 51, ms: 101050 }, { bar: 52, ms: 102840 }, { bar: 53, ms: 104610 }, { bar: 54, ms: 106440 }, { bar: 55, ms: 108210 },
+      { bar: 56, ms: 109990 }, { bar: 57, ms: 111790 }, { bar: 58, ms: 113590 }, { bar: 59, ms: 115370 }, { bar: 60, ms: 117150 },
+      { bar: 61, ms: 118940 }, { bar: 62, ms: 120740 }, { bar: 63, ms: 122520 }, { bar: 64, ms: 124320 }, { bar: 65, ms: 126120 },
+      { bar: 66, ms: 127890 }, { bar: 67, ms: 129680 }, { bar: 68, ms: 131460 }, { bar: 69, ms: 133260 }, { bar: 70, ms: 135050 },
+      { bar: 71, ms: 136850 }, { bar: 72, ms: 138620 }, { bar: 73, ms: 140410 }, { bar: 74, ms: 142220 }, { bar: 75, ms: 144010 },
+      { bar: 76, ms: 145810 }, { bar: 77, ms: 147590 }, { bar: 78, ms: 149380 }, { bar: 79, ms: 151150 }, { bar: 80, ms: 152970 },
+      { bar: 81, ms: 154730 }, { bar: 82, ms: 156520 }, { bar: 83, ms: 158330 }, { bar: 84, ms: 160120 }, { bar: 85, ms: 161930 },
+      { bar: 86, ms: 163720 }, { bar: 87, ms: 165490 }, { bar: 88, ms: 167270 }, { bar: 89, ms: 169080 }, { bar: 90, ms: 170860 },
+      { bar: 91, ms: 172660 }, { bar: 92, ms: 174460 }, { bar: 93, ms: 176230 }, { bar: 94, ms: 178030 }, { bar: 95, ms: 179820 },
+      { bar: 96, ms: 181620 }, { bar: 97, ms: 183400 }, { bar: 98, ms: 185170 }, { bar: 99, ms: 186960 }, { bar: 100, ms: 188740 },
+      { bar: 101, ms: 190540 }, { bar: 102, ms: 192340 }, { bar: 103, ms: 194130 }, { bar: 104, ms: 195930 }, { bar: 105, ms: 197730 },
+      { bar: 106, ms: 199490 }, { bar: 107, ms: 201270 }, { bar: 108, ms: 203070 }, { bar: 109, ms: 204900 }, { bar: 110, ms: 206690 },
+      { bar: 111, ms: 208470 }, { bar: 112, ms: 210250 }, { bar: 113, ms: 212040 }, { bar: 114, ms: 213820 }, { bar: 115, ms: 215610 },
+      { bar: 116, ms: 217410 }, { bar: 117, ms: 219210 }, { bar: 118, ms: 221010 }, { bar: 119, ms: 222760 }, { bar: 120, ms: 224560 },
+      { bar: 121, ms: 226360 }, { bar: 122, ms: 228150 }, { bar: 123, ms: 229950 }, { bar: 124, ms: 231750 }, { bar: 125, ms: 233510 },
+      { bar: 126, ms: 235310 }, { bar: 127, ms: 237110 }, { bar: 128, ms: 238910 }, { bar: 129, ms: 240690 }, { bar: 130, ms: 242490 },
+      { bar: 131, ms: 244300 }, { bar: 132, ms: 246070 }, { bar: 133, ms: 247880 }, { bar: 134, ms: 249670 }, { bar: 135, ms: 251460 },
+      { bar: 136, ms: 253260 }, { bar: 137, ms: 255030 }, { bar: 138, ms: 256810 }, { bar: 139, ms: 258610 }, { bar: 140, ms: 260410 },
+      { bar: 141, ms: 262210 }, { bar: 142, ms: 264010 }, { bar: 143, ms: 265780 }, { bar: 144, ms: 267560 }, { bar: 145, ms: 269370 },
+      { bar: 146, ms: 271160 }, { bar: 147, ms: 272960 }, { bar: 148, ms: 274740 }, { bar: 149, ms: 276530 }, { bar: 150, ms: 278290 },
+      { bar: 151, ms: 280080 }, { bar: 152, ms: 281880 }, { bar: 153, ms: 283680 }, { bar: 154, ms: 285480 }, { bar: 155, ms: 287270 },
+      { bar: 156, ms: 289070 }, { bar: 157, ms: 290870 }, { bar: 158, ms: 292670 }, { bar: 159, ms: 294470 }, { bar: 160, ms: 296240 },
+      { bar: 161, ms: 298040 }, { bar: 162, ms: 299830 }, { bar: 163, ms: 301600 }, { bar: 164, ms: 303380 }, { bar: 165, ms: 305160 },
+      { bar: 166, ms: 306920 },
+      ]
+  music: { source: "Motorpsycho-Hey, Jane-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Trust Us", itunesId: 506369467 }
+chunks:
+  - { name: Riff, bars: [1, 8] }
+  - { name: Riff repeat, bars: [9, 16] }
+  - { name: Stops, bars: [17, 22] }
+  - { name: Walk-up, bars: [23, 26] }
+  - { name: Walk-up ×2, bars: [27, 34] }
+  - { name: Turn, bars: [35, 38] }
+  - { name: Verse hits a, bars: [44, 46] }
+  - { name: Verse hits b, bars: [50, 53] }
+  - { name: Walk-up, bars: [54, 57] }
+  - { name: Walk-up repeat, bars: [58, 61] }
+  - { name: Walk-up to high E, bars: [62, 66] }
+  - { name: High G♯, bars: [67, 72] }
+  - { name: F♯–E stop, bars: [73, 74] }
+  - { name: High G♯, bars: [75, 78] }
+  - { name: Stutter, bars: [79, 82] }
+  - { name: Walk-up, bars: [83, 86] }
+  - { name: Walk-up ×2, bars: [87, 94] }
+  - { name: E pedal, bars: [95, 99] }
+  - { name: Low riff, bars: [100, 107] }
+  - { name: Low riff ×2, bars: [108, 123] }
+  - { name: Low riff repeat, bars: [124, 131] }
+  - { name: Walk-up, bars: [132, 135] }
+  - { name: Walk-up ×4, bars: [136, 151] }
+  - { name: Run down, bars: [152, 154] }
+  - { name: Held E, bars: [155, 160] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 134 BPM, 4/4. Bars 39–43, 47–49 and 161–167 are tacet.
+  Songsterr does not flag the tab as AI-generated, but the revision (song 2989319, revision 7748159)
+  is described as "regenerated ai" and every track name ends in "(regenerated)": treat it as an AI
+  transcription, and check the tab ring against the bass by ear (ADR-0029).
+  No section markers, so chunks are named by what the bass does. Riff (1–16): G♯–D♯ in eighths for
+  four bars, then E–B for four. Stops (17–22): F♯, D♯ and E held. Walk-up: the two-bar figure
+  G♯–E–G♯–A♯–B–D♯–E, then E–B in eighths; it carries the intro (23–34), the choruses (54–66, 83–94)
+  and the outro (132–151). Verse hits (44–46, 50–53): F♯ to E, sparse under the verse. High G♯
+  (67–72, 75–78): the riff's G♯–D♯ again. Low riff (100–131): the intro riff an octave lower. Run
+  down (152–154): D♯–C♯–B down to E, held to bar 160.
+  Fingering: no re-tabs; no overrides. The Walk-up chunks show many shifts because E (A7) and B (E7)
+  alternate at the same fret on neighbouring strings: without finger rolling (ADR-0007) the solver
+  takes them with fingers 2 and 1, one fret apart. The Riff is tabbed in position 11 (G♯ on A11, D♯
+  on D13) and moves 4 frets to position 7 for E–B (bars 5, 9, 13).
+  YouTube (2026-10-30): Songsterr's default video, "Motorpsycho - Hey, Jane" by Motorpsycho
+  (yklGhX5JG4E), the band's own upload. Sync: 166 points for 167 bars, matched by bar durations; bar
+  167 has no point and continues at the score's tempo. Bar 1 at 0:11.38, at most 0.13 s from the
+  tempo map.
+  Music: offset 0 ms, no drift (onset match 2.0 / 1.8). Lyrics: synced from "Vocals (regenerated)",
+  185 syllables from bar 39; the text has no line breaks, so lines are cut by timing.
+  To check by ear: whether the Low riff (100–131) is really an octave below the intro, and the held
+  E at the end (155–160).

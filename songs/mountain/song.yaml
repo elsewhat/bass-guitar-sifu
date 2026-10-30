@@ -1,0 +1,165 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Mountain"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Mountain-12-05-2025.gp", date: 2025-12-05 }
+bassTrack: "Electric Bass (finger)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: EJu2JZLMvQ0
+    songsterr: { songId: 3133727, revisionId: 4114995 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 1920 }, { bar: 3, ms: 3850 }, { bar: 4, ms: 5780 }, { bar: 5, ms: 7710 },
+      { bar: 6, ms: 9640 }, { bar: 7, ms: 11570 }, { bar: 8, ms: 13510 }, { bar: 9, ms: 15470 }, { bar: 10, ms: 16440 },
+      { bar: 11, ms: 18420 }, { bar: 12, ms: 20380 }, { bar: 13, ms: 22320 }, { bar: 14, ms: 24270 }, { bar: 15, ms: 26220 },
+      { bar: 16, ms: 28140 }, { bar: 17, ms: 30080 }, { bar: 18, ms: 32020 }, { bar: 19, ms: 33960 }, { bar: 20, ms: 35900 },
+      { bar: 21, ms: 37860 }, { bar: 22, ms: 39800 }, { bar: 23, ms: 41760 }, { bar: 24, ms: 43690 }, { bar: 25, ms: 45630 },
+      { bar: 26, ms: 47560 }, { bar: 27, ms: 49500 }, { bar: 28, ms: 51460 }, { bar: 29, ms: 53420 }, { bar: 30, ms: 55370 },
+      { bar: 31, ms: 57320 }, { bar: 32, ms: 59270 }, { bar: 33, ms: 61180 }, { bar: 34, ms: 63110 }, { bar: 35, ms: 65050 },
+      { bar: 36, ms: 67010 }, { bar: 37, ms: 68950 }, { bar: 38, ms: 70910 }, { bar: 39, ms: 72860 }, { bar: 40, ms: 74840 },
+      { bar: 41, ms: 76780 }, { bar: 42, ms: 78690 }, { bar: 43, ms: 80640 }, { bar: 44, ms: 82590 }, { bar: 45, ms: 84500 },
+      { bar: 46, ms: 86390 }, { bar: 47, ms: 88290 }, { bar: 48, ms: 90260 }, { bar: 49, ms: 92200 }, { bar: 50, ms: 94100 },
+      { bar: 51, ms: 95530 }, { bar: 52, ms: 97480 }, { bar: 53, ms: 99400 }, { bar: 54, ms: 101300 }, { bar: 55, ms: 103200 },
+      { bar: 56, ms: 105140 }, { bar: 57, ms: 107060 }, { bar: 58, ms: 108960 }, { bar: 59, ms: 110840 }, { bar: 60, ms: 112780 },
+      { bar: 61, ms: 114720 }, { bar: 62, ms: 116640 }, { bar: 63, ms: 118560 }, { bar: 64, ms: 120500 }, { bar: 65, ms: 122410 },
+      { bar: 66, ms: 124330 }, { bar: 67, ms: 126230 }, { bar: 68, ms: 128140 }, { bar: 69, ms: 130040 }, { bar: 70, ms: 131930 },
+      { bar: 71, ms: 133830 }, { bar: 72, ms: 135740 }, { bar: 73, ms: 137630 }, { bar: 74, ms: 139540 }, { bar: 75, ms: 141430 },
+      { bar: 76, ms: 143370 }, { bar: 77, ms: 145270 }, { bar: 78, ms: 147180 }, { bar: 79, ms: 149080 }, { bar: 80, ms: 151000 },
+      { bar: 81, ms: 152900 }, { bar: 82, ms: 154800 }, { bar: 83, ms: 156710 }, { bar: 84, ms: 158650 }, { bar: 85, ms: 160560 },
+      { bar: 86, ms: 162460 }, { bar: 87, ms: 164390 }, { bar: 88, ms: 166300 }, { bar: 89, ms: 168200 }, { bar: 90, ms: 170100 },
+      { bar: 91, ms: 172000 }, { bar: 92, ms: 173900 }, { bar: 93, ms: 175820 }, { bar: 94, ms: 177720 }, { bar: 95, ms: 179600 },
+      { bar: 96, ms: 181520 }, { bar: 97, ms: 183420 }, { bar: 98, ms: 185320 }, { bar: 99, ms: 187190 }, { bar: 100, ms: 189080 },
+      { bar: 101, ms: 190980 }, { bar: 102, ms: 192880 }, { bar: 103, ms: 194780 }, { bar: 104, ms: 196680 }, { bar: 105, ms: 198550 },
+      { bar: 106, ms: 200420 }, { bar: 107, ms: 202310 }, { bar: 108, ms: 204120 }, { bar: 109, ms: 205980 }, { bar: 110, ms: 207850 },
+      { bar: 111, ms: 209720 }, { bar: 112, ms: 211600 }, { bar: 113, ms: 213490 }, { bar: 114, ms: 215340 }, { bar: 115, ms: 217160 },
+      { bar: 116, ms: 219000 }, { bar: 117, ms: 220840 }, { bar: 118, ms: 222700 }, { bar: 119, ms: 224540 }, { bar: 120, ms: 226440 },
+      { bar: 121, ms: 228300 }, { bar: 122, ms: 230140 }, { bar: 123, ms: 232000 }, { bar: 124, ms: 233840 }, { bar: 125, ms: 235670 },
+      { bar: 126, ms: 237500 }, { bar: 127, ms: 239400 }, { bar: 128, ms: 241220 }, { bar: 129, ms: 243080 }, { bar: 130, ms: 244920 },
+      { bar: 131, ms: 246780 }, { bar: 132, ms: 248650 }, { bar: 133, ms: 250510 }, { bar: 134, ms: 252380 }, { bar: 135, ms: 254220 },
+      { bar: 136, ms: 256090 }, { bar: 137, ms: 257970 }, { bar: 138, ms: 259820 }, { bar: 139, ms: 261650 }, { bar: 140, ms: 263550 },
+      { bar: 141, ms: 265420 }, { bar: 142, ms: 267270 }, { bar: 143, ms: 269120 }, { bar: 144, ms: 271000 }, { bar: 145, ms: 272860 },
+      { bar: 146, ms: 274700 }, { bar: 147, ms: 276590 }, { bar: 148, ms: 278440 }, { bar: 149, ms: 280300 }, { bar: 150, ms: 282140 },
+      { bar: 151, ms: 284040 }, { bar: 152, ms: 285890 }, { bar: 153, ms: 287790 }, { bar: 154, ms: 289650 }, { bar: 155, ms: 291530 },
+      { bar: 156, ms: 293400 }, { bar: 157, ms: 295290 }, { bar: 158, ms: 297170 }, { bar: 159, ms: 299070 }, { bar: 160, ms: 300950 },
+      { bar: 161, ms: 302850 }, { bar: 162, ms: 304750 }, { bar: 163, ms: 306640 }, { bar: 164, ms: 308540 }, { bar: 165, ms: 310410 },
+      { bar: 166, ms: 312280 }, { bar: 167, ms: 314150 }, { bar: 168, ms: 316020 }, { bar: 169, ms: 317890 }, { bar: 170, ms: 319750 },
+      { bar: 171, ms: 321620 }, { bar: 172, ms: 323490 }, { bar: 173, ms: 325390 }, { bar: 174, ms: 327290 }, { bar: 175, ms: 329120 },
+      { bar: 176, ms: 331000 }, { bar: 177, ms: 332900 }, { bar: 178, ms: 334800 }, { bar: 179, ms: 336640 }, { bar: 180, ms: 338470 },
+      { bar: 181, ms: 340330 }, { bar: 182, ms: 342200 }, { bar: 183, ms: 344030 }, { bar: 184, ms: 345870 }, { bar: 185, ms: 347700 },
+      { bar: 186, ms: 349540 }, { bar: 187, ms: 351400 }, { bar: 188, ms: 353230 }, { bar: 189, ms: 355070 }, { bar: 190, ms: 356900 },
+      { bar: 191, ms: 358770 }, { bar: 192, ms: 360610 }, { bar: 193, ms: 362420 }, { bar: 194, ms: 364250 }, { bar: 195, ms: 366050 },
+      { bar: 196, ms: 367910 }, { bar: 197, ms: 369750 }, { bar: 198, ms: 371620 }, { bar: 199, ms: 373480 }, { bar: 200, ms: 375290 },
+      { bar: 201, ms: 377120 }, { bar: 202, ms: 378950 }, { bar: 203, ms: 380790 }, { bar: 204, ms: 382650 }, { bar: 205, ms: 384480 },
+      { bar: 206, ms: 386320 }, { bar: 207, ms: 388150 }, { bar: 208, ms: 389980 }, { bar: 209, ms: 391830 }, { bar: 210, ms: 393670 },
+      { bar: 211, ms: 395530 }, { bar: 212, ms: 397370 }, { bar: 213, ms: 399230 }, { bar: 214, ms: 401080 }, { bar: 215, ms: 402930 },
+      { bar: 216, ms: 404770 }, { bar: 217, ms: 406570 }, { bar: 218, ms: 408430 }, { bar: 219, ms: 410260 }, { bar: 220, ms: 412070 },
+      { bar: 221, ms: 413930 }, { bar: 222, ms: 415790 }, { bar: 223, ms: 417670 }, { bar: 224, ms: 419540 }, { bar: 225, ms: 421390 },
+      { bar: 226, ms: 423190 }, { bar: 227, ms: 425050 }, { bar: 228, ms: 426890 }, { bar: 229, ms: 428750 }, { bar: 230, ms: 430550 },
+      { bar: 231, ms: 432390 }, { bar: 232, ms: 434290 }, { bar: 233, ms: 436180 }, { bar: 234, ms: 437990 }, { bar: 235, ms: 439860 },
+      { bar: 236, ms: 441750 }, { bar: 237, ms: 443590 }, { bar: 238, ms: 445420 }, { bar: 239, ms: 447280 }, { bar: 240, ms: 449090 },
+      { bar: 241, ms: 450920 }, { bar: 242, ms: 452760 }, { bar: 243, ms: 454620 }, { bar: 244, ms: 456490 }, { bar: 245, ms: 458320 },
+      { bar: 246, ms: 460150 }, { bar: 247, ms: 462000 }, { bar: 248, ms: 463820 }, { bar: 249, ms: 465650 }, { bar: 250, ms: 467450 },
+      { bar: 251, ms: 469280 }, { bar: 252, ms: 471090 }, { bar: 253, ms: 472900 }, { bar: 254, ms: 474750 }, { bar: 255, ms: 476590 },
+      { bar: 256, ms: 478400 }, { bar: 257, ms: 480210 }, { bar: 258, ms: 482010 }, { bar: 259, ms: 483840 }, { bar: 260, ms: 485660 },
+      { bar: 261, ms: 487470 }, { bar: 262, ms: 489300 }, { bar: 263, ms: 491110 }, { bar: 264, ms: 492930 }, { bar: 265, ms: 494730 },
+      { bar: 266, ms: 496530 }, { bar: 267, ms: 498370 }, { bar: 268, ms: 500170 }, { bar: 269, ms: 502000 }, { bar: 270, ms: 503810 },
+      { bar: 271, ms: 505660 }, { bar: 272, ms: 507400 }, { bar: 273, ms: 509210 }, { bar: 274, ms: 510940 }, { bar: 275, ms: 512730 },
+      { bar: 276, ms: 514430 }, { bar: 277, ms: 516180 }, { bar: 278, ms: 517910 }, { bar: 279, ms: 519680 }, { bar: 280, ms: 521430 },
+      { bar: 281, ms: 523370 }, { bar: 282, ms: 525230 }, { bar: 283, ms: 527080 }, { bar: 284, ms: 528940 }, { bar: 285, ms: 530830 },
+      { bar: 286, ms: 532700 }, { bar: 287, ms: 534580 }, { bar: 288, ms: 536450 }, { bar: 289, ms: 538350 }, { bar: 290, ms: 540230 },
+      { bar: 291, ms: 542100 }, { bar: 292, ms: 543960 }, { bar: 293, ms: 545830 }, { bar: 294, ms: 547690 }, { bar: 295, ms: 549550 },
+      { bar: 296, ms: 551400 }, { bar: 297, ms: 553290 }, { bar: 298, ms: 555130 }, { bar: 299, ms: 556950 }, { bar: 300, ms: 558790 },
+      { bar: 301, ms: 560650 }, { bar: 302, ms: 562520 }, { bar: 303, ms: 564350 }, { bar: 304, ms: 566170 }, { bar: 305, ms: 568070 },
+      { bar: 306, ms: 569890 }, { bar: 307, ms: 571680 }, { bar: 308, ms: 573490 }, { bar: 309, ms: 575330 }, { bar: 310, ms: 577140 },
+      { bar: 311, ms: 578930 }, { bar: 312, ms: 580760 }, { bar: 313, ms: 582720 }, { bar: 314, ms: 584600 }, { bar: 315, ms: 586470 },
+      { bar: 316, ms: 588320 }, { bar: 317, ms: 590170 }, { bar: 318, ms: 591970 }, { bar: 319, ms: 593820 }, { bar: 320, ms: 595640 },
+      { bar: 321, ms: 597540 }, { bar: 322, ms: 599400 }, { bar: 323, ms: 601290 }, { bar: 324, ms: 603130 }, { bar: 325, ms: 605000 },
+      { bar: 326, ms: 606800 }, { bar: 327, ms: 608640 }, { bar: 328, ms: 610490 }, { bar: 329, ms: 612330 }, { bar: 330, ms: 613290 },
+      { bar: 331, ms: 615300 }, { bar: 332, ms: 617200 }, { bar: 333, ms: 619090 }, { bar: 334, ms: 621000 }, { bar: 335, ms: 622900 },
+      { bar: 336, ms: 624820 }, { bar: 337, ms: 626730 }, { bar: 338, ms: 628650 }, { bar: 339, ms: 630570 }, { bar: 340, ms: 632470 },
+      { bar: 341, ms: 634410 }, { bar: 342, ms: 636350 }, { bar: 343, ms: 638250 }, { bar: 344, ms: 640140 }, { bar: 345, ms: 642040 },
+      { bar: 346, ms: 643950 }, { bar: 347, ms: 645840 }, { bar: 348, ms: 647750 }, { bar: 349, ms: 649650 }, { bar: 350, ms: 651550 },
+      { bar: 351, ms: 653470 }, { bar: 352, ms: 655350 }, { bar: 353, ms: 657290 }, { bar: 354, ms: 659190 }, { bar: 355, ms: 661120 },
+      { bar: 356, ms: 663050 }, { bar: 357, ms: 664950 }, { bar: 358, ms: 666840 }, { bar: 359, ms: 668750 }, { bar: 360, ms: 670650 },
+      ]
+  music: { source: "Motorpsycho-Mountain-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Mountain", itunesId: 1783754974 }
+chunks:
+  - { name: Intro, bars: [1, 5] }
+  - { name: Riff, bars: [10, 13] }
+  - { name: Riff turn, bars: [14, 17] }
+  - { name: Riff, bars: [18, 21] }
+  - { name: Riff turn, bars: [22, 25] }
+  - { name: Riff, bars: [26, 29] }
+  - { name: Riff turn, bars: [30, 33] }
+  - { name: Riff, bars: [34, 37] }
+  - { name: Riff turn, bars: [38, 41] }
+  - { name: B halves, bars: [42, 46] }
+  - { name: Riff to 3/4, bars: [47, 50] }
+  - { name: B–C♯ halves, bars: [51, 55] }
+  - { name: Low C♯ stabs, bars: [56, 58] }
+  - { name: Riff from E, bars: [59, 62] }
+  - { name: Riff from E turn, bars: [63, 66] }
+  - { name: C♯ descent, bars: [67, 70] }
+  - { name: F♯ descent, bars: [71, 74] }
+  - { name: C♯ descent, bars: [75, 78] }
+  - { name: F♯ descent, bars: [79, 82] }
+  - { name: Melody, bars: [83, 86] }
+  - { name: Melody ×3, bars: [87, 98] }
+  - { name: A–B, bars: [99, 102] }
+  - { name: C♯–E–D♯, bars: [103, 106] }
+  - { name: F♯ groove, bars: [107, 114] }
+  - { name: F♯ groove, bars: [115, 122] }
+  - { name: "F♯ groove, muted", bars: [123, 130] }
+  - { name: F♯ groove to fill, bars: [131, 138] }
+  - { name: "F♯ groove, muted", bars: [139, 146] }
+  - { name: F♯ groove, bars: [147, 154] }
+  - { name: "F♯ groove, muted", bars: [155, 162] }
+  - { name: F♯ pulse, bars: [163, 170] }
+  - { name: Climb, bars: [171, 177] }
+  - { name: F♯ groove, bars: [178, 185] }
+  - { name: F♯–A groove, bars: [186, 193] }
+  - { name: F♯ groove fills, bars: [194, 201] }
+  - { name: F♯ groove, bars: [202, 209] }
+  - { name: F♯ groove to fill, bars: [210, 217] }
+  - { name: High F♯ figure, bars: [218, 225] }
+  - { name: High F♯ figure repeat, bars: [226, 233] }
+  - { name: F♯–E held, bars: [234, 241] }
+  - { name: F♯–E held to eighths, bars: [242, 247] }
+  - { name: E–G♯ eighths, bars: [248, 255] }
+  - { name: G♯ to B, bars: [256, 259] }
+  - { name: B eighths, bars: [260, 265] }
+  - { name: F♯–A–G♯–B, bars: [266, 271] }
+  - { name: Low C♯, bars: [272, 279] }
+  - { name: Riff from E, bars: [280, 287] }
+  - { name: Riff from E repeat, bars: [288, 295] }
+  - { name: B eighths, bars: [296, 299] }
+  - { name: Riff from E, bars: [300, 303] }
+  - { name: B–C♯, bars: [304, 311] }
+  - { name: Riff from E, bars: [312, 319] }
+  - { name: Riff from E, bars: [320, 323] }
+  - { name: Riff from E tag, bars: [324, 330] }
+  - { name: Held C♯, bars: [341, 345] }
+  - { name: C♯ eighths, bars: [346, 352] }
+  - { name: C♯ eighths repeat, bars: [353, 359] }
+fingeringOverrides: []
+notes: >-
+  C♯ standard tuning (C♯ F♯ B E), 125 BPM. Bars 9 and 329 are 2/4 and bar 50 is 3/4. Bars 6–9,
+  331–340 and 360 are tacet. 40 dead notes in the groove.
+  Songsterr marks this tab AI-generated (song 3133727 "Mountain (C# Standard · With vocals)",
+  revision 4114995, "Initial revision"). Its points for AI tabs can sit a quarter or an eighth note
+  late (ADR-0029): check the tab ring against the bass by ear.
+  No section markers. Intro (1–5). Riff (10–41): A–A♯–B on the F♯ string, E–F–F♯ on the C♯ string
+  (frets 3–5), two bars per cell; "turn" ends on C♯–E–C♯–B. Riff from E (59–66, 280–330): the same
+  notes from E. C♯ and F♯ descents (67–82): C♯–B–G♯–F♯–E and F♯–E–C♯–B–A. Melody (83–98). F♯ groove
+  (107–233): F♯ and E at frets 5 and 3 of the low string with the open C♯, fills up the F♯ string
+  (B–C–C♯), and the High F♯ figure (218–233). F♯–E held, E–G♯ and B eighths (234–271). Low C♯
+  (272–279) and C♯ eighths to the end (341–359).
+  Fingering: 64 re-tabs, no overrides. Most move a note from fret 5 to the open string above (B, E
+  and F♯). The shift counts in the groove come from the solver moving the hand one or two frets in
+  rests around the held F♯, not from the tab.
+  YouTube (2026-10-30): Songsterr's default video, "Mountain" by Motorpsycho - Topic (EJu2JZLMvQ0),
+  the 11:12 version on the Mountain EP. Sync: 360 anchors for 360 bars, bar 1 at 0:00.00. The
+  recording is about 2.6 % faster than the tempo map (126–131 BPM), 16 s ahead of it by the end.
+  Music: offset 0 ms; the onset match is good in the first minute (1.8) and weak in the last (1.5),
+  drift unknown. The vocal track has no lyrics; paste lyrics.text if wanted.

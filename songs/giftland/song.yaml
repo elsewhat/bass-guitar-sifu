@@ -1,0 +1,174 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Giftland"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Giftland-07-13-2026.gp", date: 2026-07-13 }
+bassTrack: "Electric Bass (pick)"
+tempo: { note: "The tab keeps 155 BPM (100 from bar 397); by Songsterr's points the recording runs about 120–225 BPM by section (see notes)." }
+media:
+  youtube:
+    videoId: "-8u6xe60TZY"
+    songsterr: { songId: 6028149, revisionId: 7872780 }
+    sync: [
+      { bar: 1, ms: 110 }, { bar: 2, ms: 1670 }, { bar: 3, ms: 3210 }, { bar: 4, ms: 4770 }, { bar: 5, ms: 6610 },
+      { bar: 6, ms: 8170 }, { bar: 7, ms: 9740 }, { bar: 8, ms: 11310 }, { bar: 9, ms: 12910 }, { bar: 10, ms: 14470 },
+      { bar: 11, ms: 16010 }, { bar: 12, ms: 17570 }, { bar: 13, ms: 19140 }, { bar: 14, ms: 20710 }, { bar: 15, ms: 22270 },
+      { bar: 16, ms: 23810 }, { bar: 17, ms: 25440 }, { bar: 18, ms: 26970 }, { bar: 19, ms: 28540 }, { bar: 20, ms: 30110 },
+      { bar: 21, ms: 31710 }, { bar: 22, ms: 33250 }, { bar: 23, ms: 34810 }, { bar: 24, ms: 36350 }, { bar: 25, ms: 37950 },
+      { bar: 26, ms: 39550 }, { bar: 27, ms: 41080 }, { bar: 28, ms: 42650 }, { bar: 29, ms: 44220 }, { bar: 30, ms: 45750 },
+      { bar: 31, ms: 47310 }, { bar: 32, ms: 48850 }, { bar: 33, ms: 50380 }, { bar: 34, ms: 51950 }, { bar: 35, ms: 53480 },
+      { bar: 36, ms: 55020 }, { bar: 37, ms: 56550 }, { bar: 38, ms: 58060 }, { bar: 39, ms: 59660 }, { bar: 40, ms: 61160 },
+      { bar: 41, ms: 62690 }, { bar: 42, ms: 64230 }, { bar: 43, ms: 65760 }, { bar: 44, ms: 67290 }, { bar: 45, ms: 68860 },
+      { bar: 46, ms: 70390 }, { bar: 47, ms: 71930 }, { bar: 48, ms: 73460 }, { bar: 49, ms: 74990 }, { bar: 50, ms: 76530 },
+      { bar: 51, ms: 78060 }, { bar: 52, ms: 79590 }, { bar: 53, ms: 81090 }, { bar: 54, ms: 82660 }, { bar: 55, ms: 84160 },
+      { bar: 56, ms: 85730 }, { bar: 57, ms: 87270 }, { bar: 58, ms: 88830 }, { bar: 59, ms: 90370 }, { bar: 60, ms: 91930 },
+      { bar: 61, ms: 93470 }, { bar: 62, ms: 94970 }, { bar: 63, ms: 96500 }, { bar: 64, ms: 98040 }, { bar: 65, ms: 99570 },
+      { bar: 66, ms: 101140 }, { bar: 67, ms: 102670 }, { bar: 68, ms: 104270 }, { bar: 69, ms: 105770 }, { bar: 70, ms: 107330 },
+      { bar: 71, ms: 108870 }, { bar: 72, ms: 110430 }, { bar: 73, ms: 111970 }, { bar: 74, ms: 113480 }, { bar: 75, ms: 115080 },
+      { bar: 76, ms: 116680 }, { bar: 77, ms: 118180 }, { bar: 78, ms: 119550 }, { bar: 79, ms: 120940 }, { bar: 80, ms: 122310 },
+      { bar: 81, ms: 123710 }, { bar: 82, ms: 125080 }, { bar: 83, ms: 126450 }, { bar: 84, ms: 127810 }, { bar: 85, ms: 129240 },
+      { bar: 86, ms: 130610 }, { bar: 87, ms: 132010 }, { bar: 88, ms: 133380 }, { bar: 89, ms: 134740 }, { bar: 90, ms: 136140 },
+      { bar: 91, ms: 137510 }, { bar: 92, ms: 138880 }, { bar: 93, ms: 140340 }, { bar: 94, ms: 141710 }, { bar: 95, ms: 143110 },
+      { bar: 96, ms: 144480 }, { bar: 97, ms: 145850 }, { bar: 98, ms: 147220 }, { bar: 99, ms: 148650 }, { bar: 100, ms: 150020 },
+      { bar: 101, ms: 151450 }, { bar: 102, ms: 152820 }, { bar: 103, ms: 154220 }, { bar: 104, ms: 155580 }, { bar: 105, ms: 156980 },
+      { bar: 106, ms: 158350 }, { bar: 107, ms: 159780 }, { bar: 108, ms: 161180 }, { bar: 109, ms: 162550 }, { bar: 110, ms: 163920 },
+      { bar: 111, ms: 165310 }, { bar: 112, ms: 166680 }, { bar: 113, ms: 168080 }, { bar: 114, ms: 169450 }, { bar: 115, ms: 170860 },
+      { bar: 116, ms: 172220 }, { bar: 117, ms: 173630 }, { bar: 118, ms: 175030 }, { bar: 119, ms: 176490 }, { bar: 120, ms: 177890 },
+      { bar: 121, ms: 179330 }, { bar: 122, ms: 180730 }, { bar: 123, ms: 182120 }, { bar: 124, ms: 183460 }, { bar: 125, ms: 184920 },
+      { bar: 126, ms: 186320 }, { bar: 127, ms: 187760 }, { bar: 128, ms: 189120 }, { bar: 129, ms: 190560 }, { bar: 130, ms: 191960 },
+      { bar: 131, ms: 193360 }, { bar: 132, ms: 194760 }, { bar: 133, ms: 196190 }, { bar: 134, ms: 197560 }, { bar: 135, ms: 198970 },
+      { bar: 136, ms: 200370 }, { bar: 137, ms: 201730 }, { bar: 138, ms: 203140 }, { bar: 139, ms: 204570 }, { bar: 140, ms: 205930 },
+      { bar: 141, ms: 207330 }, { bar: 142, ms: 208700 }, { bar: 143, ms: 210140 }, { bar: 144, ms: 211530 }, { bar: 145, ms: 212970 },
+      { bar: 146, ms: 214370 }, { bar: 147, ms: 215800 }, { bar: 148, ms: 217200 }, { bar: 149, ms: 218670 }, { bar: 150, ms: 220040 },
+      { bar: 151, ms: 221470 }, { bar: 152, ms: 222870 }, { bar: 153, ms: 224300 }, { bar: 154, ms: 225670 }, { bar: 155, ms: 227080 },
+      { bar: 156, ms: 228480 }, { bar: 157, ms: 229880 }, { bar: 158, ms: 231240 }, { bar: 159, ms: 232680 }, { bar: 160, ms: 234040 },
+      { bar: 161, ms: 235450 }, { bar: 162, ms: 236810 }, { bar: 163, ms: 238240 }, { bar: 164, ms: 239610 }, { bar: 165, ms: 241040 },
+      { bar: 166, ms: 242440 }, { bar: 167, ms: 243880 }, { bar: 168, ms: 245250 }, { bar: 169, ms: 246680 }, { bar: 170, ms: 248040 },
+      { bar: 171, ms: 249440 }, { bar: 172, ms: 250810 }, { bar: 173, ms: 252240 }, { bar: 174, ms: 253640 }, { bar: 175, ms: 255050 },
+      { bar: 176, ms: 256450 }, { bar: 177, ms: 257850 }, { bar: 178, ms: 259250 }, { bar: 179, ms: 260620 }, { bar: 180, ms: 262010 },
+      { bar: 181, ms: 263410 }, { bar: 182, ms: 264780 }, { bar: 183, ms: 266180 }, { bar: 184, ms: 267580 }, { bar: 185, ms: 268980 },
+      { bar: 186, ms: 270380 }, { bar: 187, ms: 271810 }, { bar: 188, ms: 273180 }, { bar: 189, ms: 274650 }, { bar: 190, ms: 276020 },
+      { bar: 191, ms: 277420 }, { bar: 192, ms: 278810 }, { bar: 193, ms: 280250 }, { bar: 194, ms: 281610 }, { bar: 195, ms: 283060 },
+      { bar: 196, ms: 284480 }, { bar: 197, ms: 285890 }, { bar: 198, ms: 287250 }, { bar: 199, ms: 288650 }, { bar: 200, ms: 290020 },
+      { bar: 201, ms: 291380 }, { bar: 202, ms: 292750 }, { bar: 203, ms: 294150 }, { bar: 204, ms: 295550 }, { bar: 205, ms: 296950 },
+      { bar: 206, ms: 298320 }, { bar: 207, ms: 299720 }, { bar: 208, ms: 301090 }, { bar: 209, ms: 302480 }, { bar: 210, ms: 303850 },
+      { bar: 211, ms: 305280 }, { bar: 212, ms: 306720 }, { bar: 213, ms: 308150 }, { bar: 214, ms: 309580 }, { bar: 215, ms: 311060 },
+      { bar: 216, ms: 312420 }, { bar: 217, ms: 313890 }, { bar: 218, ms: 315290 }, { bar: 219, ms: 316760 }, { bar: 220, ms: 318220 },
+      { bar: 221, ms: 319690 }, { bar: 222, ms: 321060 }, { bar: 223, ms: 322520 }, { bar: 224, ms: 323950 }, { bar: 225, ms: 325450 },
+      { bar: 226, ms: 326990 }, { bar: 227, ms: 328520 }, { bar: 228, ms: 330060 }, { bar: 229, ms: 331590 }, { bar: 230, ms: 333120 },
+      { bar: 231, ms: 334690 }, { bar: 232, ms: 336560 }, { bar: 233, ms: 338540 }, { bar: 234, ms: 340540 }, { bar: 235, ms: 342530 },
+      { bar: 236, ms: 344500 }, { bar: 237, ms: 346490 }, { bar: 238, ms: 348500 }, { bar: 239, ms: 350500 }, { bar: 240, ms: 352500 },
+      { bar: 241, ms: 354530 }, { bar: 242, ms: 356540 }, { bar: 243, ms: 358540 }, { bar: 244, ms: 360510 }, { bar: 245, ms: 362500 },
+      { bar: 246, ms: 364470 }, { bar: 247, ms: 366460 }, { bar: 248, ms: 368480 }, { bar: 249, ms: 370480 }, { bar: 250, ms: 372510 },
+      { bar: 251, ms: 374510 }, { bar: 252, ms: 376580 }, { bar: 253, ms: 378610 }, { bar: 254, ms: 380650 }, { bar: 255, ms: 382750 },
+      { bar: 256, ms: 384850 }, { bar: 257, ms: 386940 }, { bar: 258, ms: 389010 }, { bar: 259, ms: 391210 }, { bar: 260, ms: 392820 },
+      { bar: 261, ms: 394520 }, { bar: 262, ms: 396140 }, { bar: 263, ms: 397820 }, { bar: 264, ms: 399520 }, { bar: 265, ms: 401120 },
+      { bar: 266, ms: 402820 }, { bar: 267, ms: 404480 }, { bar: 268, ms: 406090 }, { bar: 269, ms: 407650 }, { bar: 270, ms: 408920 },
+      { bar: 271, ms: 410980 }, { bar: 272, ms: 412520 }, { bar: 273, ms: 414080 }, { bar: 274, ms: 415520 }, { bar: 275, ms: 417080 },
+      { bar: 276, ms: 418620 }, { bar: 277, ms: 420190 }, { bar: 278, ms: 421700 }, { bar: 279, ms: 423300 }, { bar: 280, ms: 424800 },
+      { bar: 281, ms: 426360 }, { bar: 282, ms: 427900 }, { bar: 283, ms: 429430 }, { bar: 284, ms: 431000 }, { bar: 285, ms: 432560 },
+      { bar: 286, ms: 434100 }, { bar: 287, ms: 435630 }, { bar: 288, ms: 437200 }, { bar: 289, ms: 438730 }, { bar: 290, ms: 440300 },
+      { bar: 291, ms: 441870 }, { bar: 292, ms: 443400 }, { bar: 293, ms: 444960 }, { bar: 294, ms: 446500 }, { bar: 295, ms: 448070 },
+      { bar: 296, ms: 449640 }, { bar: 297, ms: 451180 }, { bar: 298, ms: 452710 }, { bar: 299, ms: 454250 }, { bar: 300, ms: 455780 },
+      { bar: 301, ms: 457280 }, { bar: 302, ms: 458840 }, { bar: 303, ms: 460380 }, { bar: 304, ms: 461880 }, { bar: 305, ms: 463440 },
+      { bar: 306, ms: 464980 }, { bar: 307, ms: 466520 }, { bar: 308, ms: 468080 }, { bar: 309, ms: 469640 }, { bar: 310, ms: 471180 },
+      { bar: 311, ms: 472710 }, { bar: 312, ms: 474240 }, { bar: 313, ms: 475780 }, { bar: 314, ms: 476830 }, { bar: 315, ms: 477920 },
+      { bar: 316, ms: 478990 }, { bar: 317, ms: 480060 }, { bar: 318, ms: 481120 }, { bar: 319, ms: 482220 }, { bar: 320, ms: 483290 },
+      { bar: 321, ms: 484330 }, { bar: 322, ms: 485390 }, { bar: 323, ms: 486450 }, { bar: 324, ms: 487520 }, { bar: 325, ms: 488590 },
+      { bar: 326, ms: 489660 }, { bar: 327, ms: 490720 }, { bar: 328, ms: 491820 }, { bar: 329, ms: 492890 }, { bar: 330, ms: 493950 },
+      { bar: 331, ms: 495020 }, { bar: 332, ms: 496090 }, { bar: 333, ms: 497190 }, { bar: 334, ms: 498220 }, { bar: 335, ms: 499290 },
+      { bar: 336, ms: 500350 }, { bar: 337, ms: 501420 }, { bar: 338, ms: 502490 }, { bar: 339, ms: 503550 }, { bar: 340, ms: 504620 },
+      { bar: 341, ms: 505730 }, { bar: 342, ms: 506760 }, { bar: 343, ms: 507830 }, { bar: 344, ms: 508890 }, { bar: 345, ms: 509960 },
+      { bar: 346, ms: 511030 }, { bar: 347, ms: 512090 }, { bar: 348, ms: 513130 }, { bar: 349, ms: 514190 }, { bar: 350, ms: 515260 },
+      { bar: 351, ms: 516330 }, { bar: 352, ms: 517360 }, { bar: 353, ms: 518430 }, { bar: 354, ms: 519490 }, { bar: 355, ms: 520560 },
+      { bar: 356, ms: 521630 }, { bar: 357, ms: 522660 }, { bar: 358, ms: 523730 }, { bar: 359, ms: 524760 }, { bar: 360, ms: 525830 },
+      { bar: 361, ms: 526860 }, { bar: 362, ms: 527930 }, { bar: 363, ms: 528960 }, { bar: 364, ms: 530000 }, { bar: 365, ms: 531030 },
+      { bar: 366, ms: 532060 }, { bar: 367, ms: 533090 }, { bar: 368, ms: 534130 }, { bar: 369, ms: 536200 }, { bar: 370, ms: 538270 },
+      { bar: 371, ms: 540340 }, { bar: 372, ms: 542410 }, { bar: 373, ms: 544500 }, { bar: 374, ms: 546540 }, { bar: 375, ms: 548570 },
+      { bar: 376, ms: 550570 }, { bar: 377, ms: 552570 }, { bar: 378, ms: 554570 }, { bar: 379, ms: 556600 }, { bar: 380, ms: 558610 },
+      { bar: 381, ms: 560610 }, { bar: 382, ms: 562610 }, { bar: 383, ms: 564600 }, { bar: 384, ms: 566650 }, { bar: 385, ms: 568720 },
+      { bar: 386, ms: 570290 }, { bar: 387, ms: 571860 }, { bar: 388, ms: 573430 }, { bar: 389, ms: 574960 }, { bar: 390, ms: 576500 },
+      { bar: 391, ms: 578030 }, { bar: 392, ms: 579560 }, { bar: 393, ms: 581130 }, { bar: 394, ms: 582630 }, { bar: 395, ms: 584190 },
+      { bar: 396, ms: 585730 }, { bar: 397, ms: 587230 }, { bar: 398, ms: 589730 }, { bar: 399, ms: 592130 }, { bar: 400, ms: 594560 },
+      { bar: 401, ms: 597030 }, { bar: 402, ms: 599570 }, { bar: 403, ms: 602270 }, { bar: 404, ms: 604670 },
+      ]
+  music: { source: "Motorpsycho-Giftland-10-30-2026.mp3", offsetMs: 6 }
+cover: { album: "Timothy's Monster", itunesId: 1701791348 }
+chunks:
+  - { name: C♯–A♯–B, bars: [86, 91] }
+  - { name: C♯–A♯–B long, bars: [92, 99] }
+  - { name: Octave dyads, bars: [100, 103] }
+  - { name: Octave dyads repeat, bars: [104, 107] }
+  - { name: C♯ octaves, bars: [108, 111] }
+  - { name: Turn, bars: [112, 115] }
+  - { name: Held C♯, bars: [116, 120] }
+  - { name: Low C♯, bars: [142, 149] }
+  - { name: Low C♯ pulse, bars: [150, 155] }
+  - { name: Held C♯, bars: [156, 163] }
+  - { name: Low C♯, bars: [164, 169] }
+  - { name: B–C♯–A♯, bars: [170, 176] }
+  - { name: B to C♯ octaves, bars: [178, 183] }
+  - { name: C♯ octaves, bars: [184, 191] }
+  - { name: Turn, bars: [192, 195] }
+  - { name: D♯ to C♯ octaves, bars: [196, 199] }
+  - { name: C♯ octaves, bars: [200, 207] }
+  - { name: Turn, bars: [208, 211] }
+  - { name: C♯–A♯–B, bars: [212, 219] }
+  - { name: C♯–A♯–B held, bars: [220, 227] }
+  - { name: Held B, bars: [228, 231] }
+  - { name: B–C♯ triplets, bars: [232, 237] }
+  - { name: Turn to B–C♯, bars: [238, 241] }
+  - { name: Low C♯ triplets, bars: [242, 247] }
+  - { name: F♯ triplets, bars: [248, 253] }
+  - { name: E, bars: [254, 257] }
+  - { name: Descent, bars: [258, 263] }
+  - { name: Descent repeat, bars: [264, 266] }
+  - { name: Held F♯, bars: [267, 272] }
+  - { name: F♯ halves, bars: [273, 278] }
+  - { name: F♯ offbeats, bars: [279, 284] }
+  - { name: Low F♯ halves, bars: [285, 290] }
+  - { name: E–G♯–B–F♯, bars: [291, 296] }
+  - { name: E–G♯–F♯ halves, bars: [297, 302] }
+  - { name: Melody, bars: [303, 308] }
+  - { name: G♯–F♯–E triplets, bars: [309, 315] }
+  - { name: Fifths C♯–B, bars: [316, 319] }
+  - { name: Fifths B–E–C♯, bars: [320, 324] }
+  - { name: F♯ pedal, bars: [325, 328] }
+  - { name: F♯–E–G♯, bars: [329, 333] }
+  - { name: F♯–E–G♯ cycle, bars: [334, 341] }
+  - { name: F♯–E–G♯ cycle, bars: [342, 349] }
+  - { name: F♯–E–G♯ cycle ×2, bars: [350, 365] }
+  - { name: F♯–E–G♯ end, bars: [366, 372] }
+  - { name: High B–C♯, bars: [373, 377] }
+  - { name: Low C♯ to B, bars: [378, 384] }
+  - { name: Held C♯, bars: [385, 390] }
+  - { name: Held C♯, bars: [391, 396] }
+  - { name: Slow C♯–A♯–B, bars: [397, 400] }
+  - { name: Slow end, bars: [401, 404] }
+fingeringOverrides: []
+notes: >-
+  Drop C♯ tuning (C♯ A♭ C♯ F♯: E♭ standard with the low string down to C♯), 155 BPM, 100 BPM from
+  bar 397. Bars 1–85, 121–141 and 177 are tacet. 830 triplet eighths (232–255 and 309–372) and 54
+  double stops (C♯ octaves in 100–106, fifths in 316–324).
+  Songsterr marks this tab AI-generated (song 6028149, revision 7872780, "Initial revision"). Its
+  points for AI tabs can sit a quarter or an eighth note late (ADR-0029): check the tab ring against
+  the bass by ear.
+  No section markers. C♯–A♯–B (86–99, 212–227): long notes, two bars each. Octave dyads (100–107).
+  C♯ octaves and Turn (108–115, 180–211): C♯ held, then the low C♯, and A–G♯–F♯–B–A♯–B. Low C♯
+  (142–169): the low string held under the second verse. Triplet part (232–257): B–C♯, C♯, F♯, E.
+  Descent (258–266): B–A♯–G♯–F♯–E–D♯. F♯ halves, offbeats, E–G♯–B–F♯ and Melody (273–308). Fifths
+  (316–324). F♯–E–G♯ cycle (325–372): F♯ four bars, E two, G♯ two, in triplets. High B–C♯ (373–377).
+  Held C♯ (385–396). Slow C♯–A♯–B (397–404) at 100 BPM.
+  Fingering: 168 re-tabs, no overrides. Most move a note from fret 5 of one string to the open
+  string above (C♯2 A♭5 → the open C♯ string, F♯2 C♯5 → open F♯, A♭1 C♯7 → open A♭). Shifts of 3+
+  frets only at chunk changes.
+  YouTube (2026-10-30): Songsterr's default video, "Motorpsycho - Giftland" by Overdrive Arcade
+  (-8u6xe60TZY), a third-party upload. Sync: 404 anchors for 404 bars, bar 1 at 0:00.11. The tab has
+  one tempo, but Songsterr's points put the recording at about 171 BPM in bars 86–230, 119 in
+  231–258, 153 in 259–312, 226 in 313–367, 118 in 368–384, 156 in 385–396 and 96 from 397: 34 s
+  ahead of the tempo map at bar 368. With YouTube the tab follows those points; the Metronome, Synth
+  and Music follow the tab's 155.
+  Music: offset 6 ms, the first-sound estimate; the onset match is weak (2.2 / 1.4), drift unknown.
+  Lyrics: synced from "Vocals", 199 syllables from bar 55; lines cut by timing.
+  To check by ear: bars 231–258 and 313–384 with YouTube. If the tab ring does not stay on the bass
+  there, Songsterr's points are misplaced rather than the band changing tempo. Also check the Music
+  offset.

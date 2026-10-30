@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-13. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-10-30. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -186,6 +186,21 @@ Updated 2026-10-13. This is the hand-off point between working sessions: what is
    - **Check.** String, fret, finger and position are now the same as in `vortex-surfer-from-the-start` in all 206 bars the two copies share. The fingering solver moved none of the new positions.
    - **Not changed.** The rhythm is the live take's: eighth notes in 163–164 and 220–221 (the studio tab has whole notes there), and D struck in each of 222–224 (tied in the studio tab). The catalogue's highest fret for the song went from 4 to 6.
 
+21. **Nine Motorpsycho songs** (2026-10-30), added with `/preprocess-song` from the inbox. Each has chunks, Songsterr's default video with one anchor per bar, a Music offset and an album cover. The reasoning and the doubts are in each `song.yaml` `notes`.
+   - **Songs:**
+     - Timothy's Monster: `kill-some-day` (D standard), `giftland` (drop C♯), `watersound` (drop D).
+     - Blissard: `sinful-wind-borne`, `drug-thing` (titled `"Drug Thing"`, with quotes, as on the album), `greener`.
+     - Trust Us: `hey-jane`.
+     - Let Them Eat Cake: `whip-that-ghost` (6/8). The tab credits "Motorpsycho, Bent Sæther"; the library uses Motorpsycho.
+     - Mountain EP: `mountain` (C♯ standard).
+   - **All nine are AI transcriptions.** Songsterr flags four tabs as AI-generated: Kill Some Day, Giftland, Watersound and Mountain. The other five revisions are described as "regenerated" and their track names end in "(regenerated)" or "(retranscribed)".
+   - **Videos.** Five are Topic or band uploads (Sinful, Drug Thing, Whip That Ghost, Mountain, Hey, Jane). Four are Overdrive Arcade uploads (Giftland, Greener, Kill Some Day, Watersound). All nine play from this machine through the youtube-nocookie embed.
+   - **Giftland's sync.** Songsterr's points put the recording between 118 and 226 BPM by section, against the tab's single 155 BPM. The song has a `tempo.note`.
+   - **Lyrics.** Six songs have synced lyrics from the score, with lines cut by timing. Watersound, Whip That Ghost and Mountain have none.
+   - **Overrides.** Sinful, Wind-Borne bars 86–88: the F♯ turn is played A9–A7–A6, as in the intro.
+   - **Inbox.** The inbox copy of Un Chien d'Espace (`.gp` and `.mp3`) is the song already in `songs/un-chien-d-espace`: the same report and a byte-identical MP3. It is left in `music/`.
+   - **Tests.** 237 unit tests. The preview checked Sinful, Wind-Borne with YouTube through the rest into chunk 3.
+
 ## Next
 
 - The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
@@ -205,6 +220,14 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- Listen to the nine new Motorpsycho songs with YouTube (item 21). They are all AI transcriptions, so check that the tab ring lands on the bass. Each `song.yaml` `notes` ends with what to check. In short:
+  - Giftland, bars 231–258 and 313–384: do the bars follow the recording, or are Songsterr's points misplaced?
+  - Sinful, Wind-Borne, bar 141: Songsterr makes it half as long as in the tab.
+  - Watersound: does the bass really rest for the first 3½ minutes?
+  - Drug Thing: the E–A♯ dyads in bars 89–92, and the long held E.
+  - Kill Some Day: the 26 bars of held D.
+  - Paste `lyrics.text` for Watersound, Whip That Ghost and Mountain if wanted.
+  - Remove `music/Motorpsycho-Un Chien d'Espace-*` if it was dropped there by mistake.
 - Review ADR-0031 and try it with YouTube in a normal browser:
   - Vortex Surfer from the library: does the video start at the beginning, with empty tabs up to bar 130, and run through bars 177–191 without a jump?
   - With the Metronome, the 129 bars are counted through; a click on `Riff A` goes past them. Is that acceptable, or should the Metronome start at the first chunk?

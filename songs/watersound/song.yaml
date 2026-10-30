@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Watersound"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Watersound-07-14-2026.gp", date: 2026-07-14 }
+bassTrack: "Electric Bass (pick)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: YvfcK8nZcv8
+    songsterr: { songId: 228080, revisionId: 7905761 }
+    sync: [
+      { bar: 1, ms: 10 }, { bar: 2, ms: 2910 }, { bar: 3, ms: 5810 }, { bar: 4, ms: 7270 }, { bar: 5, ms: 10190 },
+      { bar: 6, ms: 11680 }, { bar: 7, ms: 14610 }, { bar: 8, ms: 17570 }, { bar: 9, ms: 19040 }, { bar: 10, ms: 21980 },
+      { bar: 11, ms: 23440 }, { bar: 12, ms: 26310 }, { bar: 13, ms: 29320 }, { bar: 14, ms: 32290 }, { bar: 15, ms: 35190 },
+      { bar: 16, ms: 38150 }, { bar: 17, ms: 41090 }, { bar: 18, ms: 44050 }, { bar: 19, ms: 47020 }, { bar: 20, ms: 49940 },
+      { bar: 21, ms: 52880 }, { bar: 22, ms: 55850 }, { bar: 23, ms: 58770 }, { bar: 24, ms: 61720 }, { bar: 25, ms: 64660 },
+      { bar: 26, ms: 67590 }, { bar: 27, ms: 70530 }, { bar: 28, ms: 73450 }, { bar: 29, ms: 76390 }, { bar: 30, ms: 79360 },
+      { bar: 31, ms: 82300 }, { bar: 32, ms: 85200 }, { bar: 33, ms: 88140 }, { bar: 34, ms: 91100 }, { bar: 35, ms: 94040 },
+      { bar: 36, ms: 96970 }, { bar: 37, ms: 99910 }, { bar: 38, ms: 102870 }, { bar: 39, ms: 105830 }, { bar: 40, ms: 108770 },
+      { bar: 41, ms: 111700 }, { bar: 42, ms: 114640 }, { bar: 43, ms: 117600 }, { bar: 44, ms: 120540 }, { bar: 45, ms: 123470 },
+      { bar: 46, ms: 126410 }, { bar: 47, ms: 129370 }, { bar: 48, ms: 132270 }, { bar: 49, ms: 135210 }, { bar: 50, ms: 138180 },
+      { bar: 51, ms: 141110 }, { bar: 52, ms: 144080 }, { bar: 53, ms: 147020 }, { bar: 54, ms: 149980 }, { bar: 55, ms: 152910 },
+      { bar: 56, ms: 155840 }, { bar: 57, ms: 158780 }, { bar: 58, ms: 161730 }, { bar: 59, ms: 164660 }, { bar: 60, ms: 167590 },
+      { bar: 61, ms: 170520 }, { bar: 62, ms: 173490 }, { bar: 63, ms: 176430 }, { bar: 64, ms: 179350 }, { bar: 65, ms: 182290 },
+      { bar: 66, ms: 185250 }, { bar: 67, ms: 188190 }, { bar: 68, ms: 191130 }, { bar: 69, ms: 194060 }, { bar: 70, ms: 197020 },
+      { bar: 71, ms: 199960 }, { bar: 72, ms: 202890 }, { bar: 73, ms: 205820 }, { bar: 74, ms: 208790 }, { bar: 75, ms: 211720 },
+      { bar: 76, ms: 212430 }, { bar: 77, ms: 215300 }, { bar: 78, ms: 218260 }, { bar: 79, ms: 221160 }, { bar: 80, ms: 224090 },
+      { bar: 81, ms: 227060 }, { bar: 82, ms: 230030 }, { bar: 83, ms: 232930 }, { bar: 84, ms: 235890 }, { bar: 85, ms: 238830 },
+      { bar: 86, ms: 241840 }, { bar: 87, ms: 244740 }, { bar: 88, ms: 247670 }, { bar: 89, ms: 250640 }, { bar: 90, ms: 253570 },
+      { bar: 91, ms: 256540 }, { bar: 92, ms: 259470 }, { bar: 93, ms: 262440 }, { bar: 94, ms: 265370 }, { bar: 95, ms: 268280 },
+      { bar: 96, ms: 271240 }, { bar: 97, ms: 274180 }, { bar: 98, ms: 277110 }, { bar: 99, ms: 280050 }, { bar: 100, ms: 283010 },
+      { bar: 101, ms: 286110 }, { bar: 102, ms: 289080 }, { bar: 103, ms: 292020 }, { bar: 104, ms: 294960 }, { bar: 105, ms: 297890 },
+      { bar: 106, ms: 300830 }, { bar: 107, ms: 303790 },
+      ]
+  music: { source: "Motorpsycho-Watersound-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Timothy's Monster", itunesId: 1701791348 }
+chunks:
+  - { name: Low B–A–D, bars: [42, 44] }
+  - { name: D–G pedal, bars: [76, 79] }
+  - { name: D–G pedal ×4, bars: [80, 95] }
+  - { name: Octave D, bars: [96, 99] }
+fingeringOverrides: []
+notes: >-
+  Drop D tuning (D A D G), 82 BPM. Bars 3, 5, 8 and 10 are 2/4 and bar 75 is 1/4, as in the tab. The
+  bass plays only in bars 42–44 and 76–99; bars 1–41, 45–75 and 100–107 are tacet and play as rests
+  (ADR-0031).
+  Songsterr marks this tab AI-generated (song 228080, revision 7905761, "Initial revision"). Its
+  points for AI tabs can sit a quarter or an eighth note late (ADR-0029): check the tab ring against
+  the bass by ear.
+  Chunks: Low B–A–D (42–44: B and A at frets 9 and 7 of the low D string, then the open D held); D–G
+  pedal (76–79: sixteenth notes on the open D for two bars, then G at fret 5 for two); its four
+  repeats (80–95); Octave D (96–99: D at fret 5 of the A string, A, then the low G).
+  Fingering: no re-tabs and no shifts; no overrides.
+  YouTube (2026-10-30): Songsterr's default video for this tab, "Motorpsycho - Watersound" by
+  Overdrive Arcade (YvfcK8nZcv8), a third-party upload. Sync anchors are Songsterr's point per bar
+  (npm run fetch-video): 107 anchors for 107 bars, bar 1 at 0:00.01, at most 1.6 s from the score's
+  tempo map (bar 107).
+  Music: offset 0 ms, no drift (onset match 4.2 / 1.9). No vocal track with lyrics; paste
+  lyrics.text if wanted.
+  To check by ear: that the bass really rests for the first 3½ minutes (an AI tab can miss a quiet
+  bass), and the entry of the pedal at bar 76 (3:32 in the video).

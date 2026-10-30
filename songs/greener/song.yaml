@@ -1,0 +1,94 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Greener"
+artist: Motorpsycho
+source: { file: "Motorpsycho-Greener-09-03-2026.gp", date: 2026-09-03 }
+bassTrack: "Electric Bass (pick) (regenerated)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: tMcTuG7dWUM
+    songsterr: { songId: 1366221, revisionId: 8854443 }
+    sync: [
+      { bar: 1, ms: 220 }, { bar: 2, ms: 2400 }, { bar: 3, ms: 4600 }, { bar: 4, ms: 5710 }, { bar: 5, ms: 7940 },
+      { bar: 6, ms: 10170 }, { bar: 7, ms: 12370 }, { bar: 8, ms: 14590 }, { bar: 9, ms: 16810 }, { bar: 10, ms: 19010 },
+      { bar: 11, ms: 21220 }, { bar: 12, ms: 23440 }, { bar: 13, ms: 25640 }, { bar: 14, ms: 27860 }, { bar: 15, ms: 30070 },
+      { bar: 16, ms: 32280 }, { bar: 17, ms: 34500 }, { bar: 18, ms: 36720 }, { bar: 19, ms: 38940 }, { bar: 20, ms: 41150 },
+      { bar: 21, ms: 43360 }, { bar: 22, ms: 45580 }, { bar: 23, ms: 47780 }, { bar: 24, ms: 49980 }, { bar: 25, ms: 52200 },
+      { bar: 26, ms: 54410 }, { bar: 27, ms: 56620 }, { bar: 28, ms: 58840 }, { bar: 29, ms: 61060 }, { bar: 30, ms: 63280 },
+      { bar: 31, ms: 65490 }, { bar: 32, ms: 67710 }, { bar: 33, ms: 69930 }, { bar: 34, ms: 72150 }, { bar: 35, ms: 74350 },
+      { bar: 36, ms: 76550 }, { bar: 37, ms: 78760 }, { bar: 38, ms: 81000 }, { bar: 39, ms: 83220 }, { bar: 40, ms: 85410 },
+      { bar: 41, ms: 87610 }, { bar: 42, ms: 89820 }, { bar: 43, ms: 92040 }, { bar: 44, ms: 94260 }, { bar: 45, ms: 96460 },
+      { bar: 46, ms: 98670 }, { bar: 47, ms: 100880 }, { bar: 48, ms: 103120 }, { bar: 49, ms: 105330 }, { bar: 50, ms: 107530 },
+      { bar: 51, ms: 109740 }, { bar: 52, ms: 111950 }, { bar: 53, ms: 114170 }, { bar: 54, ms: 116380 }, { bar: 55, ms: 118550 },
+      { bar: 56, ms: 120750 }, { bar: 57, ms: 122970 }, { bar: 58, ms: 125190 }, { bar: 59, ms: 127400 }, { bar: 60, ms: 129590 },
+      { bar: 61, ms: 131810 }, { bar: 62, ms: 134010 }, { bar: 63, ms: 136220 }, { bar: 64, ms: 138440 }, { bar: 65, ms: 140650 },
+      { bar: 66, ms: 142870 }, { bar: 67, ms: 145090 }, { bar: 68, ms: 147310 }, { bar: 69, ms: 149560 }, { bar: 70, ms: 151760 },
+      { bar: 71, ms: 153970 }, { bar: 72, ms: 156190 }, { bar: 73, ms: 158400 }, { bar: 74, ms: 160610 }, { bar: 75, ms: 162830 },
+      { bar: 76, ms: 165050 }, { bar: 77, ms: 167260 }, { bar: 78, ms: 169470 }, { bar: 79, ms: 171680 }, { bar: 80, ms: 173900 },
+      { bar: 81, ms: 176120 }, { bar: 82, ms: 178340 }, { bar: 83, ms: 180570 }, { bar: 84, ms: 182780 }, { bar: 85, ms: 184990 },
+      { bar: 86, ms: 187210 }, { bar: 87, ms: 189430 }, { bar: 88, ms: 191640 }, { bar: 89, ms: 193870 }, { bar: 90, ms: 196080 },
+      { bar: 91, ms: 198310 }, { bar: 92, ms: 200510 }, { bar: 93, ms: 202720 }, { bar: 94, ms: 204920 }, { bar: 95, ms: 207130 },
+      { bar: 96, ms: 209350 }, { bar: 97, ms: 211570 }, { bar: 98, ms: 213770 }, { bar: 99, ms: 215990 }, { bar: 100, ms: 218210 },
+      { bar: 101, ms: 220400 }, { bar: 102, ms: 222610 }, { bar: 103, ms: 224830 }, { bar: 104, ms: 227060 }, { bar: 105, ms: 229270 },
+      { bar: 106, ms: 231490 }, { bar: 107, ms: 233710 }, { bar: 108, ms: 235920 }, { bar: 109, ms: 238120 }, { bar: 110, ms: 240350 },
+      { bar: 111, ms: 242550 }, { bar: 112, ms: 244760 }, { bar: 113, ms: 246980 }, { bar: 114, ms: 249190 }, { bar: 115, ms: 251380 },
+      { bar: 116, ms: 253600 }, { bar: 117, ms: 255830 }, { bar: 118, ms: 258030 }, { bar: 119, ms: 260250 }, { bar: 120, ms: 262490 },
+      { bar: 121, ms: 264720 }, { bar: 122, ms: 266940 }, { bar: 123, ms: 269160 }, { bar: 124, ms: 271370 }, { bar: 125, ms: 273570 },
+      { bar: 126, ms: 275780 }, { bar: 127, ms: 277990 }, { bar: 128, ms: 280190 }, { bar: 129, ms: 282420 }, { bar: 130, ms: 284640 },
+      { bar: 131, ms: 286860 }, { bar: 132, ms: 289060 }, { bar: 133, ms: 291260 }, { bar: 134, ms: 293490 }, { bar: 135, ms: 295720 },
+      { bar: 136, ms: 297950 }, { bar: 137, ms: 300160 }, { bar: 138, ms: 302380 }, { bar: 139, ms: 304590 }, { bar: 140, ms: 306810 },
+      { bar: 141, ms: 309030 }, { bar: 142, ms: 311250 }, { bar: 143, ms: 313470 }, { bar: 144, ms: 315670 }, { bar: 145, ms: 317870 },
+      { bar: 146, ms: 320090 }, { bar: 147, ms: 322310 }, { bar: 148, ms: 324530 }, { bar: 149, ms: 326740 }, { bar: 150, ms: 328960 },
+      { bar: 151, ms: 331180 }, { bar: 152, ms: 333400 }, { bar: 153, ms: 335610 }, { bar: 154, ms: 337830 }, { bar: 155, ms: 340040 },
+      { bar: 156, ms: 342260 }, { bar: 157, ms: 344480 }, { bar: 158, ms: 346690 }, { bar: 159, ms: 348930 }, { bar: 160, ms: 351160 },
+      { bar: 161, ms: 353370 }, { bar: 162, ms: 355580 }, { bar: 163, ms: 357800 }, { bar: 164, ms: 360050 }, { bar: 165, ms: 362240 },
+      ]
+  music: { source: "Motorpsycho-Greener-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Blissard", itunesId: 505504230 }
+chunks:
+  - { name: Riff, bars: [4, 7] }
+  - { name: Riff ×2, bars: [8, 15] }
+  - { name: Riff to stop, bars: [16, 20] }
+  - { name: Verse roots a, bars: [21, 28] }
+  - { name: Verse roots b, bars: [29, 36] }
+  - { name: B pedal, bars: [37, 42] }
+  - { name: A–E–G–A, bars: [43, 48] }
+  - { name: D–C♯, bars: [50, 53] }
+  - { name: D–C♯ repeat, bars: [54, 56] }
+  - { name: Verse roots a, bars: [57, 64] }
+  - { name: Verse roots b, bars: [65, 72] }
+  - { name: B pedal, bars: [73, 78] }
+  - { name: A–E–G–A, bars: [79, 84] }
+  - { name: Riff, bars: [85, 88] }
+  - { name: Riff ×3, bars: [89, 100] }
+  - { name: C–B, bars: [101, 104] }
+  - { name: C–B to D, bars: [105, 108] }
+  - { name: E–F♯–C, bars: [109, 112] }
+  - { name: E–F♯–C ×3, bars: [113, 124] }
+  - { name: B–D–C, bars: [125, 128] }
+  - { name: B–D–C to E, bars: [129, 132] }
+  - { name: Riff, bars: [133, 136] }
+  - { name: Riff ×3, bars: [137, 148] }
+  - { name: C–B, bars: [149, 152] }
+  - { name: C–B ×2, bars: [153, 160] }
+  - { name: End, bars: [161, 165] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 110 BPM; bar 3 is 2/4. Bars 1–3 and 49 are tacet.
+  Songsterr does not flag the tab as AI-generated, but the revision (song 1366221, revision 8854443)
+  is described as "regenerated" and every track name ends in "(regenerated)": treat it as an AI
+  transcription, and check the tab ring against the bass by ear (ADR-0029).
+  No section markers. Riff (4–20, 85–100, 133–148): D held, D–E–F♯ up the A string, C–B, E. Verse
+  roots (21–36, 57–72): eighths on D, F♯, C, E (a) and D, B, C, E (b), two bars each. B pedal and
+  A–E–G–A (37–48, 73–84): the line into "greener". D–C♯ (50–56). C–B, E–F♯–C and B–D–C (101–132):
+  the middle part. C–B (149–160) and End (161–165).
+  Fingering: 40 re-tabs, no overrides. Most move a held D to the open D string (65–66) or keep the
+  hand in place (22: D A5 → E10, next to F♯ on A9; 59–60: F♯ A9 → D4). The Riff slides D–E–F♯ up the
+  A string (frets 5–7–9) and drops to C at A3: a 4-fret shift each time (bars 6, 10, 14, 87, …),
+  kept as tabbed. Open D, then E and F♯ at frets 2 and 4 of the D string, stays in position 2.
+  YouTube (2026-10-30): Songsterr's default video, "Motorpsycho - Greener" by Overdrive Arcade
+  (tMcTuG7dWUM), a third-party upload. Sync: 170 points for 165 bars, matched by bar durations; 4
+  extra points at the end ignored. Bar 1 at 0:00.22; the recording is 1.7 % slower than the tempo
+  map, 5.3 s behind it by bar 165.
+  Music: offset 0 ms, no drift (onset match 2.5 / 2.2). Lyrics: synced from "Vocals (regenerated)",
+  243 syllables from bar 21; lines cut by timing.

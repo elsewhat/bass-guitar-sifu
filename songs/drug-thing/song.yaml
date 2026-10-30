@@ -1,0 +1,121 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: '"Drug Thing"'
+artist: Motorpsycho
+source: { file: "Motorpsycho-_Drug Thing_-09-12-2026.gp", date: 2026-09-12 }
+bassTrack: "Electric Bass (pick) (regenerated)"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: ibYMHPd31V8
+    songsterr: { songId: 5210039, revisionId: 9053170 }
+    sync: [
+      { bar: 1, ms: 550 }, { bar: 2, ms: 1810 }, { bar: 3, ms: 3070 }, { bar: 4, ms: 4310 }, { bar: 5, ms: 5540 },
+      { bar: 6, ms: 6770 }, { bar: 7, ms: 8020 }, { bar: 8, ms: 9280 }, { bar: 9, ms: 10530 }, { bar: 10, ms: 11760 },
+      { bar: 11, ms: 13010 }, { bar: 12, ms: 14240 }, { bar: 13, ms: 15490 }, { bar: 14, ms: 16730 }, { bar: 15, ms: 17980 },
+      { bar: 16, ms: 19220 }, { bar: 17, ms: 20480 }, { bar: 18, ms: 21720 }, { bar: 19, ms: 22960 }, { bar: 20, ms: 24210 },
+      { bar: 21, ms: 25450 }, { bar: 22, ms: 26710 }, { bar: 23, ms: 27940 }, { bar: 24, ms: 29210 }, { bar: 25, ms: 30460 },
+      { bar: 26, ms: 31690 }, { bar: 27, ms: 32930 }, { bar: 28, ms: 34170 }, { bar: 29, ms: 35430 }, { bar: 30, ms: 36660 },
+      { bar: 31, ms: 37920 }, { bar: 32, ms: 39170 }, { bar: 33, ms: 40420 }, { bar: 34, ms: 41650 }, { bar: 35, ms: 42900 },
+      { bar: 36, ms: 44130 }, { bar: 37, ms: 45390 }, { bar: 38, ms: 46630 }, { bar: 39, ms: 47890 }, { bar: 40, ms: 49140 },
+      { bar: 41, ms: 50390 }, { bar: 42, ms: 51630 }, { bar: 43, ms: 52890 }, { bar: 44, ms: 54120 }, { bar: 45, ms: 55380 },
+      { bar: 46, ms: 56600 }, { bar: 47, ms: 57860 }, { bar: 48, ms: 59110 }, { bar: 49, ms: 60510 }, { bar: 50, ms: 61730 },
+      { bar: 51, ms: 62990 }, { bar: 52, ms: 64220 }, { bar: 53, ms: 65470 }, { bar: 54, ms: 66710 }, { bar: 55, ms: 67970 },
+      { bar: 56, ms: 69200 }, { bar: 57, ms: 70450 }, { bar: 58, ms: 71700 }, { bar: 59, ms: 72970 }, { bar: 60, ms: 74180 },
+      { bar: 61, ms: 75430 }, { bar: 62, ms: 76670 }, { bar: 63, ms: 77930 }, { bar: 64, ms: 79180 }, { bar: 65, ms: 80410 },
+      { bar: 66, ms: 81650 }, { bar: 67, ms: 82910 }, { bar: 68, ms: 84170 }, { bar: 69, ms: 85400 }, { bar: 70, ms: 86630 },
+      { bar: 71, ms: 87870 }, { bar: 72, ms: 89120 }, { bar: 73, ms: 90360 }, { bar: 74, ms: 91600 }, { bar: 75, ms: 92840 },
+      { bar: 76, ms: 94080 }, { bar: 77, ms: 95320 }, { bar: 78, ms: 96570 }, { bar: 79, ms: 97810 }, { bar: 80, ms: 99050 },
+      { bar: 81, ms: 100310 }, { bar: 82, ms: 101560 }, { bar: 83, ms: 102790 }, { bar: 84, ms: 104040 }, { bar: 85, ms: 105280 },
+      { bar: 86, ms: 106540 }, { bar: 87, ms: 107770 }, { bar: 88, ms: 109040 }, { bar: 89, ms: 110290 }, { bar: 90, ms: 111560 },
+      { bar: 91, ms: 112800 }, { bar: 92, ms: 114040 }, { bar: 93, ms: 115290 }, { bar: 94, ms: 116560 }, { bar: 95, ms: 117800 },
+      { bar: 96, ms: 119040 }, { bar: 97, ms: 120300 }, { bar: 98, ms: 121560 }, { bar: 99, ms: 122800 }, { bar: 100, ms: 124040 },
+      { bar: 101, ms: 125300 }, { bar: 102, ms: 126530 }, { bar: 103, ms: 127780 }, { bar: 104, ms: 129010 }, { bar: 105, ms: 130260 },
+      { bar: 106, ms: 131510 }, { bar: 107, ms: 132760 }, { bar: 108, ms: 134010 }, { bar: 109, ms: 135260 }, { bar: 110, ms: 136520 },
+      { bar: 111, ms: 137760 }, { bar: 112, ms: 139000 }, { bar: 113, ms: 140220 }, { bar: 114, ms: 141460 }, { bar: 115, ms: 142740 },
+      { bar: 116, ms: 144000 }, { bar: 117, ms: 145190 }, { bar: 118, ms: 146470 }, { bar: 119, ms: 147710 }, { bar: 120, ms: 148950 },
+      { bar: 121, ms: 150210 }, { bar: 122, ms: 151460 }, { bar: 123, ms: 152680 }, { bar: 124, ms: 153930 }, { bar: 125, ms: 155190 },
+      { bar: 126, ms: 156430 }, { bar: 127, ms: 157660 }, { bar: 128, ms: 158910 }, { bar: 129, ms: 160150 }, { bar: 130, ms: 161390 },
+      { bar: 131, ms: 162630 }, { bar: 132, ms: 163870 }, { bar: 133, ms: 165110 }, { bar: 134, ms: 166370 }, { bar: 135, ms: 167610 },
+      { bar: 136, ms: 168840 }, { bar: 137, ms: 170110 }, { bar: 138, ms: 171340 }, { bar: 139, ms: 172570 }, { bar: 140, ms: 173820 },
+      { bar: 141, ms: 175060 }, { bar: 142, ms: 176320 }, { bar: 143, ms: 177580 }, { bar: 144, ms: 178830 }, { bar: 145, ms: 180090 },
+      { bar: 146, ms: 181320 }, { bar: 147, ms: 182580 }, { bar: 148, ms: 183810 }, { bar: 149, ms: 185050 }, { bar: 150, ms: 186300 },
+      { bar: 151, ms: 187550 }, { bar: 152, ms: 188800 }, { bar: 153, ms: 190040 }, { bar: 154, ms: 191290 }, { bar: 155, ms: 192520 },
+      { bar: 156, ms: 193780 }, { bar: 157, ms: 195020 }, { bar: 158, ms: 196280 }, { bar: 159, ms: 197510 }, { bar: 160, ms: 198760 },
+      { bar: 161, ms: 200010 }, { bar: 162, ms: 201280 }, { bar: 163, ms: 202490 }, { bar: 164, ms: 203730 }, { bar: 165, ms: 204970 },
+      { bar: 166, ms: 206210 }, { bar: 167, ms: 207460 }, { bar: 168, ms: 208720 }, { bar: 169, ms: 209960 }, { bar: 170, ms: 211190 },
+      { bar: 171, ms: 212430 }, { bar: 172, ms: 213690 }, { bar: 173, ms: 214930 }, { bar: 174, ms: 216190 }, { bar: 175, ms: 217420 },
+      { bar: 176, ms: 218690 }, { bar: 177, ms: 219920 }, { bar: 178, ms: 221170 }, { bar: 179, ms: 222410 }, { bar: 180, ms: 223650 },
+      { bar: 181, ms: 224910 }, { bar: 182, ms: 226150 }, { bar: 183, ms: 227410 }, { bar: 184, ms: 228640 }, { bar: 185, ms: 229890 },
+      { bar: 186, ms: 231200 }, { bar: 187, ms: 232430 }, { bar: 188, ms: 233680 }, { bar: 189, ms: 234930 }, { bar: 190, ms: 236180 },
+      { bar: 191, ms: 237420 }, { bar: 192, ms: 238660 }, { bar: 193, ms: 239910 }, { bar: 194, ms: 241140 }, { bar: 195, ms: 242400 },
+      { bar: 196, ms: 243650 }, { bar: 197, ms: 244900 }, { bar: 198, ms: 246150 }, { bar: 199, ms: 247400 }, { bar: 200, ms: 248660 },
+      { bar: 201, ms: 249900 }, { bar: 202, ms: 251140 }, { bar: 203, ms: 252360 }, { bar: 204, ms: 253610 }, { bar: 205, ms: 254840 },
+      { bar: 206, ms: 256100 }, { bar: 207, ms: 257350 }, { bar: 208, ms: 258600 }, { bar: 209, ms: 259820 }, { bar: 210, ms: 261050 },
+      { bar: 211, ms: 262310 }, { bar: 212, ms: 263570 }, { bar: 213, ms: 264810 }, { bar: 214, ms: 266050 }, { bar: 215, ms: 267320 },
+      { bar: 216, ms: 268610 }, { bar: 217, ms: 269870 },
+      ]
+  music: { source: "Motorpsycho-_Drug Thing_-10-30-2026.mp3", offsetMs: 0 }
+cover: { album: "Blissard", itunesId: 505504230 }
+chunks:
+  - { name: Riff, bars: [9, 12] }
+  - { name: Riff ×2, bars: [13, 20] }
+  - { name: Riff to F♯, bars: [21, 24] }
+  - { name: B–E–D a, bars: [25, 32] }
+  - { name: B–E–D b, bars: [33, 40] }
+  - { name: Fifths, bars: [41, 44] }
+  - { name: Fifths repeat, bars: [45, 48] }
+  - { name: B dyads, bars: [49, 52] }
+  - { name: B dyads repeat, bars: [53, 56] }
+  - { name: B–E, bars: [57, 64] }
+  - { name: B–E repeat, bars: [65, 72] }
+  - { name: Riff, bars: [73, 76] }
+  - { name: Riff ×2, bars: [77, 84] }
+  - { name: E to F♯, bars: [85, 88] }
+  - { name: Dyads E–F♯, bars: [89, 96] }
+  - { name: Dyads B and run, bars: [97, 104] }
+  - { name: G♯–D♯–E, bars: [105, 108] }
+  - { name: G♯–D♯–E repeat, bars: [109, 112] }
+  - { name: G♯–A♯ fill, bars: [113, 116] }
+  - { name: Climb to B, bars: [117, 120] }
+  - { name: Held E, bars: [121, 128] }
+  - { name: Held E to F♯, bars: [129, 136] }
+  - { name: Riff, bars: [137, 140] }
+  - { name: Riff ×2, bars: [141, 148] }
+  - { name: Climb, bars: [149, 152] }
+  - { name: Riff, bars: [153, 156] }
+  - { name: Riff ×2, bars: [157, 164] }
+  - { name: E to F♯–C♯, bars: [165, 168] }
+  - { name: Riff, bars: [169, 172] }
+  - { name: Riff ×2, bars: [173, 180] }
+  - { name: Climb, bars: [181, 184] }
+  - { name: E–F♯ eighths, bars: [185, 188] }
+  - { name: E–F♯ eighths repeat, bars: [189, 192] }
+  - { name: Octave riff, bars: [193, 196] }
+  - { name: Octave riff to F♯, bars: [197, 200] }
+  - { name: E–F♯ eighths, bars: [201, 204] }
+  - { name: E–F♯ eighths repeat, bars: [205, 208] }
+  - { name: B–C, bars: [209, 214] }
+fingeringOverrides: []
+notes: >-
+  The title keeps its quotation marks, as on Blissard and Songsterr. Standard tuning, 193 BPM, 4/4.
+  Bars 1–8 and 215–217 are tacet. 203 double stops and 18 dead notes.
+  Songsterr does not flag the tab as AI-generated, but the revision (song 5210039, revision 9053170)
+  is described as "regenerated" and every track name ends in "(regenerated)": treat it as an AI
+  transcription, and check the tab ring against the bass by ear (ADR-0029).
+  No section markers. Riff (9–24, 73–84, 137–184): E held, F♯, G♯ (F♯ in 73–80), B–A♯–G♯–F♯, four
+  bars. B–E–D (25–40) and B–E (57–72): the verses. Fifths and B dyads (41–56): B5, D♯ and E dyads
+  under the pre-chorus. Dyads E–F♯ and B (89–104): two-note chords, then a B–A♯–F♯ run. G♯–D♯–E,
+  G♯–A♯ fill and Climb to B (105–120). Held E (121–136): E held for 14 bars (an octave lower from
+  123), then F♯. Climb (149–152, 181–184): F♯–A♯–B, B–C♯–F♯. E–F♯ eighths, Octave riff (E with its
+  octave) and B–C (185–214).
+  Fingering: no re-tabs; no overrides. Bars 41–49 move between positions 2 and 6 every two bars, as
+  tabbed (B dyads low, D♯ and E dyads at frets 6–7). In 167–168 F♯ (A9) and C♯ (E9) alternate at the
+  same fret on neighbouring strings, so the solver uses two fingers with small shifts (no rolling,
+  ADR-0007).
+  YouTube (2026-10-30): Songsterr's default video, ""Drug Thing"" by Motorpsycho - Topic
+  (ibYMHPd31V8). Sync: 222 points for 217 bars, matched by bar durations; 4 extra points at the end
+  ignored. Bar 1 at 0:00.55, at most 0.7 s from the tempo map (bar 217).
+  Music: offset 0 ms, no drift (onset match 3.2 / 3.1). Lyrics: synced from "Vocals (regenerated)",
+  240 syllables from bar 25; lines cut by timing.
+  To check by ear: the E–A♯ dyads in 89–92 (a tritone; an AI reading may have taken a guitar note),
+  and the long held E in 121–136.
