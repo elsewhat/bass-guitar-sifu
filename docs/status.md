@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-10-30. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-11-05. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -201,6 +201,26 @@ Updated 2026-10-30. This is the hand-off point between working sessions: what is
    - **Inbox.** The inbox copy of Un Chien d'Espace (`.gp` and `.mp3`) is the song already in `songs/un-chien-d-espace`: the same report and a byte-identical MP3. It is left in `music/`.
    - **Tests.** 237 unit tests. The preview checked Sinful, Wind-Borne with YouTube through the rest into chunk 3.
 
+22. **Seven Tool songs** (2026-11-05), added with `/preprocess-song` from the inbox. The owner named the Songsterr bass tab of each. Each song has chunks from the section markers, a Music offset, an album cover and synced lyrics. The reasoning and the doubts are in each `song.yaml` `notes`.
+   - **Songs:**
+     - Lateralus: `schism`, `parabola`.
+     - Ænima: `forty-six-2`, `stinkfist`, `aenema`.
+     - Undertow: `sober` (Paul D'Amour's part).
+     - 10,000 Days: `intension`.
+   - **Tunings and meters.** All drop D except Parabola, which is B E D G as in the tab. Schism alternates 5/8 and 7/8 and has 9/8, 3/8 and 3/4 cycles. Intension is in 7/4. Ænema switches from 12/8 at 183 BPM to 6/8 at 90 BPM at bar 68, which is the same speed (`tempo.note`).
+   - **No YouTube yet.** Songsterr's API answered 403 to `npm run fetch-video` for all seven tabs. It was not retried. Each song's `notes` give the command with its `--song` id.
+   - **Fingering solver** (ADR-0007, revised 2026-11-05). Two bugs that no earlier song triggered:
+     - A pitch doubled on two strings, like the D on A5 and the open D in Sober's and Forty Six & 2's chords, was written to one string (360 chords). Each note now gets its own string.
+     - A held note and a note plucked over it could land on one string (Intension, 28 beats). Notes that ring together now keep the source tab, the hand stays while a fretted note rings (`heldShift`), and a note at the held note's fret counts as a barre, not a roll.
+     - The other 48 songs' data is byte-identical. Two new cases in `fingering.test.ts`.
+   - **Overrides.**
+     - Forty Six & 2 bars 79–82: the first C on A3 like the bar's other Cs.
+     - Forty Six & 2 bars 106 and 110: B♭–F in position 1 (A1, D3) instead of four position changes within the bar.
+     - Intension bar 13: the same fingering as bars 14–19.
+     - Intension bar 116: a natural harmonic on A5 stays there. The importer does not read harmonics (Intension has 338, Schism 1, no other song any), so the solver had moved it to the open D string, a different note.
+   - **Ænema**'s bass track has no "bass" in its name ("Justin Chancellor / Wal MKII"), so `bassTrack` names it. Schism's second bass track ("Bass Whammy Effect") is not imported.
+   - **Tests.** 239 unit tests; `build:songs -- --check` is clean.
+
 ## Next
 
 - The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
@@ -212,6 +232,7 @@ Updated 2026-10-30. This is the hand-off point between working sessions: what is
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
 - The Wheel and wearing yr smell come from AI-generated Songsterr tabs, like Vortex Surfer. Their bars may sit on the wrong beat of the video in the same way. Measuring them needs the recording (ADR-0029: the owner's permission each time); the tools are now in `scripts/transcribe/`.
 - `fetch-video --write` does not know which songs have measured anchors and would replace them. The warning is only in those songs' `notes`.
+- The importer does not read natural harmonics. The song data gives them the fretted note's pitch, and the solver may move them to another string (ADR-0007, deferred). Only Intension and Schism have them today.
 
 Open points from slice 1 (not blocking):
 
@@ -220,6 +241,12 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- The seven Tool songs (item 22):
+  - YouTube: when Songsterr's API answers again, run `npm run fetch-video -- <slug> --song <id>` (the ids are in each song's `notes`), check the report, add `--write`, run `npm run build:songs`, and check that the video plays.
+  - Rule 6 (no rolling) makes the solver move a fret back and forth between a root and its fifth or octave at the same fret on another string: Forty Six & 2 bars 79–82, Stinkfist bars 98 and 100, Schism's outro and Intension's arpeggios (64–81, 97–104). A one-finger barre is the usual way to play these. Should rule 6 allow it for notes that alternate quickly?
+  - Intension plays the riff in two fingerings: open A in bars 13–20, then the tab's low-D-string shapes from bar 21, where the roots ring under the fifths. Keep both, or use one throughout?
+  - Parabola's tuning (B E D G) is the tab's. Is it right?
+  - Weak Music onset matches (first-sound estimate used): Forty Six & 2, Ænema, Parabola and Intension.
 - Listen to the nine new Motorpsycho songs with YouTube (item 21). They are all AI transcriptions, so check that the tab ring lands on the bass. Each `song.yaml` `notes` ends with what to check. In short:
   - Giftland, bars 231–258 and 313–384: do the bars follow the recording, or are Songsterr's points misplaced?
   - Sinful, Wind-Borne, bar 141: Songsterr makes it half as long as in the tab.
@@ -227,7 +254,6 @@ Open points from slice 1 (not blocking):
   - Drug Thing: the E–A♯ dyads in bars 89–92, and the long held E.
   - Kill Some Day: the 26 bars of held D.
   - Paste `lyrics.text` for Watersound, Whip That Ghost and Mountain if wanted.
-  - Remove `music/Motorpsycho-Un Chien d'Espace-*` if it was dropped there by mistake.
 - Review ADR-0031 and try it with YouTube in a normal browser:
   - Vortex Surfer from the library: does the video start at the beginning, with empty tabs up to bar 130, and run through bars 177–191 without a jump?
   - With the Metronome, the 129 bars are counted through; a click on `Riff A` goes past them. Is that acceptable, or should the Metronome start at the first chunk?

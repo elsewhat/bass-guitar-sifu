@@ -3,6 +3,7 @@
 Status: Accepted
 Date: 2026-09-28
 Revised: 2026-09-29 (beginner rules: hand box, sparse and dense passages, breaks, rolling)
+Revised: 2026-11-05 (a pitch doubled on two strings; notes that ring together)
 
 ## Context
 
@@ -37,6 +38,7 @@ constants (COSTS)
   indexPreference    = 1      # sparse passage: cost per finger rank (rule 2)
   fingerTieBreak     = 0.01   # dense passage: finger rank only breaks ties (rule 1)
   roll               = 10     # rolling (rule 6); above a shift there and back and a retab
+  heldShift          = 100    # moving the hand while a fretted note rings; finite so an odd tab still solves
   denseMinDistinct   = 3      # distinct fretted pitches in bars b and b+1 that make a passage dense
   lowZoneMaxPosition = 5      # positions 1–5 use the 1-2-4 box (rule 5)
 
@@ -54,10 +56,13 @@ nodes:
     unless a rest separates them
   node.free  = a rest or a dead-only beat comes right before it
   node.dense = |fretted source pitches in bar(node) ∪ bar(node)+1| ≥ denseMinDistinct
+  node.pitches lists a pitch twice when the beat doubles it on two strings (a D chord on A5 and the open D)
+  node.holds = a fretted note from an earlier beat still rings (a tie continuation in the beat)
+  ringing notes = a held note's plucked origin, and every note plucked while a note is held
 
 candidates(node):                          # states
   for every combination of (string, fret) that sounds the node's pitches, one note per string,
-      frets 0..maxFret:
+      frets 0..maxFret, ringing notes only on their source (string, fret):
     for p in [max(1, highest fret − 3) .. lowest fretted fret]   (any p when all notes are open)
       skip unless every fretted note is in box(p); finger = box(p)[fret], open string = 0
       skip unless the sidecar overrides for this beat match
@@ -71,9 +76,10 @@ transition(a → b):                         # consecutive nodes
     s = shiftBase + shiftPerFret · |a.p − b.p|
     if b.free or a is all open or b is all open: s ·= freeShiftFactor        # break: micro-shift
     if a finger plays the same string in a and b:  s ·= guideFactor          # guide finger
+    if b.holds: s += heldShift                                               # the held note pins the hand
     c += s
   c += stringCross · |lowest string of a − lowest string of b|
-  if not b.free:
+  if not b.free and not b.holds:                                             # with a held note it is a barre
     for fretted x in a, y in b with x.finger = y.finger, x.fret = y.fret, x.string ≠ y.string:
       unless x.finger = 4 and {x.string, y.string} are the two top strings:
         c += roll
@@ -93,6 +99,9 @@ solve:
 - **Low positions (rule 5).** A phrase spanning four frets below position 6 cannot be held in one box. The solver shifts by a fret, preferably on an open string or a rest. Example: the Killing in the Name verse, D2–A5 in drop D.
 - **Rolling (rule 6).** A roll costs more than shifting a fret and back, and more than a retab. So a roll is only chosen when nothing else is possible.
   - Simultaneous notes at the same fret are exempt. One finger barring a double stop (drop-D power chords) is the standard technique.
+  - So is a note plucked at the fret of a note that still rings (Intension: the root held on the low D string, a harmonic plucked on the A string at the same fret). The two sound together, so it is a barre.
+- **Notes that ring together (2026-11-05).** The solver does not follow a held note, so before this rule it could move a held root to another string while the note plucked over it stayed, and put two notes on one string (Intension, 28 beats). Now the held note's origin and the notes plucked while it rings keep the source tab, and the hand does not move until it stops (`heldShift`). The source tab is a playable shape, and let-ring shapes are rare: of 55 songs only Intension changed. It also keeps Intension's natural harmonics on their frets; the importer does not read harmonics yet (deferred, below).
+- **A pitch doubled on two strings (2026-11-05).** Sober and Forty Six & 2 play D on the A string fret 5 and on the open D string in one chord. The node lists the pitch twice, so each note gets its own string, and the retab cost counts a source tab once per pitch. Before, both notes were written to the same string.
 
 ### Other beginner rules
 
@@ -113,6 +122,7 @@ Deferred:
 | Rule | Why |
 |---|---|
 | Slides keep one finger; hammer-ons and pull-offs need two fingers on one string | The importer does not read legato marks yet |
+| Natural harmonics stay on their string and fret (they exist nowhere else) | The importer does not read harmonics yet; only Intension and Schism have them, and Intension uses a sidecar override where the solver moved one |
 | Wider spans above fret 12, where the frets are narrow | No song needs it yet |
 | A long note as partial break time (tempo-aware shifts) | Breaks are structural (rests, open strings) for now |
 | Hand-size setting: 1-2-4 vs one finger per fret as a user choice | Needs per-user fingering at runtime (ADR-0004 computes it at build time) |

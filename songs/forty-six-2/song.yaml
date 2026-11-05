@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: "Forty Six & 2"
+artist: Tool
+source: { file: "Tool-Forty Six & 2-11-02-2026.gp", date: 2026-11-02 }
+bassTrack: "Justin Chancellor | Bass | Music Man Stingray"
+tempo: { note: "78–84 BPM (17 changes); the riffs are written in sixteenth notes." }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Forty Six & 2-11-05-2026.mp3", offsetMs: 0 }
+cover: { album: "Ænima", itunesId: 1474185335 }
+chunks:
+  - { name: Intro a, bars: [1, 4] }
+  - { name: Intro a repeat, bars: [5, 8] }
+  - { name: Intro b, bars: [9, 12] }
+  - { name: Intro c, bars: [13, 14] }
+  - { name: Intro II a, bars: [15, 18] }
+  - { name: Intro II b, bars: [19, 22] }
+  - { name: Verse 1 a, bars: [23, 26] }
+  - { name: Verse 1 a ×2, bars: [27, 34] }
+  - { name: Verse 1 b, bars: [35, 38] }
+  - { name: Chorus 1 a, bars: [39, 42] }
+  - { name: Chorus 1 b, bars: [43, 46] }
+  - { name: Post-Chorus 1 a, bars: [47, 50] }
+  - { name: Post-Chorus 1 b, bars: [51, 54] }
+  - { name: Verse 2 a, bars: [55, 58] }
+  - { name: Verse 2 b, bars: [59, 62] }
+  - { name: Chorus 2, bars: [63, 66] }
+  - { name: Post-Chorus 2, bars: [67, 70] }
+  - { name: Bridge a, bars: [71, 74] }
+  - { name: Bridge a repeat, bars: [75, 78] }
+  - { name: Bridge b, bars: [79, 82] }
+  - { name: Bridge II a, bars: [83, 86] }
+  - { name: Bridge II a repeat, bars: [87, 90] }
+  - { name: Bridge II b, bars: [91, 92] }
+  - { name: Drum Solo a, bars: [93, 96] }
+  - { name: Drum Solo b, bars: [97, 100] }
+  - { name: Drum Solo b repeat, bars: [101, 104] }
+  - { name: Outro Chorus a, bars: [105, 108] }
+  - { name: Outro Chorus b, bars: [109, 112] }
+  - { name: Outro Chorus c, bars: [113, 116] }
+  - { name: Outro a, bars: [117, 120] }
+  - { name: Outro b, bars: [121, 123] }
+fingeringOverrides:
+  - { bar: 79, tick: 960, string: 1, fret: 3, finger: 1 }
+  - { bar: 80, tick: 960, string: 1, fret: 3, finger: 1 }
+  - { bar: 81, tick: 960, string: 1, fret: 3, finger: 1 }
+  - { bar: 82, tick: 960, string: 1, fret: 3, finger: 1 }
+  - { bar: 106, tick: 0, string: 1, fret: 1, finger: 1 }
+  - { bar: 106, tick: 960, string: 2, fret: 3, finger: 4 }
+  - { bar: 106, tick: 1200, string: 1, fret: 1, finger: 1 }
+  - { bar: 106, tick: 1680, string: 2, fret: 3, finger: 4 }
+  - { bar: 106, tick: 2640, string: 1, fret: 1, finger: 1 }
+  - { bar: 110, tick: 0, string: 1, fret: 1, finger: 1 }
+  - { bar: 110, tick: 960, string: 2, fret: 3, finger: 4 }
+  - { bar: 110, tick: 1200, string: 1, fret: 1, finger: 1 }
+  - { bar: 110, tick: 1680, string: 2, fret: 3, finger: 4 }
+  - { bar: 110, tick: 2640, string: 1, fret: 1, finger: 1 }
+notes: >-
+  Drop D (D A D G). 78–84 BPM; the riffs are sixteenth notes. No tacet bars. Chunks follow the 13
+  section markers; repeated sections are numbered. Intro (1–14): the D–D–C–D♯ riff in the upper
+  octave (open D and the G string), a 4-bar phrase whose fourth bar ends G–F♯–D–D♯; Intro c is the
+  7/8 + 4/4 break. Intro II adds F roots (bars 17, 21). Verse 1: the riff, four 4-bar phrases.
+  Chorus 1 a is the riff an octave lower on the low D string, b the four-string D octave chords.
+  Post-Chorus 1: the D–F–C figure (a), then the low riff (b). Verse 2: D sixteenths and the F–C–G and
+  G–D cells. Chorus 2 is the low riff and Post-Chorus 2 the chords, as the markers name them. Bridge
+  (71–82): a one-bar G–A–D–F sixteenth figure on the low D string seven times, then the D–C–F figure
+  four times. Bridge II and Drum Solo: the riff in 7/8 (three 7/8 bars and a 4/4 bar), from bar 97
+  an octave lower; the Drum Solo marker (93) falls inside a run of five 7/8 bars, so Bridge II b is
+  the two extra bars. Outro Chorus: D, B♭, D, F bars in 7/8; Outro: the D chords. Fingering: 52
+  re-tabs, mostly D2 A5 → D0 and D2 D12 → D0 (open D string). The D chords double D on A5 and the
+  open D string; the solver keeps both (ADR-0007, 2026-11-05). Overrides: bars 79–82, the first C of
+  the bar on A3 like the other Cs in the bar instead of low D fret 10 (the tab's choice, kept by the
+  solver because open Ds surround it). Bars 106 and 110: B♭ on A1 and F on D3, a root–fifth box in
+  position 1, instead of low D 8 and A 8, which the solver played in positions 6, 7, 8, 7, 6 within
+  the bar so as not to roll a finger between the strings (rule 6). Not overridden: the intro riff
+  spans frets 3–8 on the G string, so it shifts between positions 3, 5 and 6 in the 1-2-4 box, and
+  bars 79–82 alternate positions 2 and 3 for F (low D 3) and C (A 3), again rule 6. YouTube: not
+  set. Songsterr's API answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab:
+  song 460731 (songsterr.com/a/wsa/tool-forty-six-2-bass-tab-s460731); run npm run fetch-video --
+  forty-six-2 --song 460731, then with --write. Music: offset 0 ms, the first-sound estimate; the
+  onset match is weak in the first minute (1.47; 2.91 in the last). Lyrics: synced from "Maynard J.
+  Keenan | Vocals", 386 syllables from bar 9; lines cut by timing. To check by ear: the Music offset;
+  the overrides in bars 106 and 110 against the low D 8 sound of the record.

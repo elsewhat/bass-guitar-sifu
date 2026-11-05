@@ -13,6 +13,7 @@ describe('practice view text', () => {
   it('builds the header meta line', () => {
     expect(headMeta(vortex)).toBe('110 BPM · 4/4 · Standard E A D G · 243 bars');
     expect(headMeta(kitn)).toBe('109 BPM · mixed meter · Drop D D A D G · 120 bars');
+    expect(headMeta(load('parabola'))).toBe('97 BPM · mixed meter · B E D G · 131 bars');
   });
 
   it('interleaves the rests with the chunks (design practice plan)', () => {

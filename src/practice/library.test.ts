@@ -56,6 +56,11 @@ describe('song library (system description §4)', () => {
       strings: 'C♯ F♯ B E',
       alt: true,
     });
+    expect(cardTuning(song('Parabola', 'Tool', { tuning: [23, 28, 38, 43], tuningName: 'B E D G' }))).toEqual({
+      name: 'B E D G',
+      strings: '',
+      alt: true,
+    });
   });
 
   it('shows progress: not started, the chunk reached, and the playing song', () => {

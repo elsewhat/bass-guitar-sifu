@@ -1,0 +1,61 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Parabola
+artist: Tool
+source: { file: "Tool-Parabola-10-03-2026.gp", date: 2026-10-03 }
+bassTrack: "Justin Chancellor | Wal Mk II | Bass"
+tempo: { note: "67 tempo changes between 85 and 120 BPM; the outro (bars 114–128) is written in 8/4 and 12/4 bars." }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Parabola-11-05-2026.mp3", offsetMs: 0 }
+cover: { album: "Lateralus", itunesId: 1474185412 }
+chunks:
+  - { name: Intro, bars: [1, 4] }
+  - { name: Pre-Verse, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Pre-Chorus 1 a, bars: [17, 20] }
+  - { name: Pre-Chorus 1 b, bars: [21, 24] }
+  - { name: Chorus 1 a, bars: [25, 28] }
+  - { name: Chorus 1 b, bars: [29, 32] }
+  - { name: Post-Chorus 1 a, bars: [33, 36] }
+  - { name: Post-Chorus 1 b, bars: [37, 40] }
+  - { name: Guitar Solo, bars: [41, 44] }
+  - { name: Pre-Chorus 2 a, bars: [45, 48] }
+  - { name: Pre-Chorus 2 b, bars: [49, 52] }
+  - { name: Chorus 2 a, bars: [53, 56] }
+  - { name: Chorus 2 b, bars: [57, 60] }
+  - { name: Post-Chorus 2, bars: [61, 64] }
+  - { name: Bridge 1, bars: [65, 68] }
+  - { name: Bridge Verse a, bars: [69, 72] }
+  - { name: Bridge Verse b, bars: [73, 76] }
+  - { name: Interlude 1 a, bars: [77, 80] }
+  - { name: Interlude 1 b, bars: [81, 84] }
+  - { name: Bridge 2 a, bars: [85, 88] }
+  - { name: Bridge 2 b, bars: [89, 92] }
+  - { name: Bridge 2 c, bars: [93, 96] }
+  - { name: Bridge 2 d, bars: [97, 100] }
+  - { name: Interlude 2, bars: [101, 104] }
+  - { name: Outro Verse a, bars: [105, 108] }
+  - { name: Outro Verse b, bars: [109, 113] }
+  - { name: Outro a, bars: [114, 117] }
+  - { name: Outro b, bars: [118, 121] }
+  - { name: Outro c, bars: [122, 125] }
+  - { name: Outro d, bars: [126, 128] }
+fingeringOverrides: []
+notes: >-
+  Tuning B E D G (MIDI 23, 28, 38, 43), as in the tab: the low string a fourth below E and the
+  second string down to E; the guitar track has the same two low strings. 85–120 BPM with 67 tempo
+  changes; 6/4, 7/8, 2/4, 8/4 and 12/4 bars. Bars 129–131 are tacet. Chunks follow the 18 section
+  markers; repeated sections are numbered. The main riff (1–16, 25–31, 53–59) is a one-bar E figure
+  with the E/D double stop, ending D–B; 4-bar chunks. Pre-Chorus: G5 and A5 dyads, then E under B and
+  C♯, in two-bar cells. Post-Chorus: the B–D–A–E figure; 1 b and the Guitar Solo the low E–F–G
+  figure. Bridge 1 (6/4): an E pedal under the G–F♯–A–D melody on the G string (frets 12–19). Bridge
+  Verse: the melody and the A–D–G line. Interlude 1: E/D and G–A figures. Bridge 2: the E–A–G–D
+  line; c the run in 7/8, 4/4, 7/8 and 2/4; d the E–D riff. Outro Verse: a dead-note groove. Outro:
+  long B and E notes in 8/4 bars, ending on an E held into Outro 2. Fingering: 17 re-tabs (G1 B8 →
+  E3 in 24, 37–44 and 52; E1 B5 → E0 in 87, 89, 91 and 104). No overrides. YouTube: not set.
+  Songsterr's API answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song
+  81330 (songsterr.com/a/wsa/tool-parabola-bass-tab-s81330); run npm run fetch-video -- parabola
+  --song 81330, then with --write. Music: offset 0 ms, the first-sound estimate; the onset match is
+  weak in the last minute (1.83 / 1.12). Lyrics: synced from "Maynard J. Keenan | Vocals", 247
+  syllables from bar 9; lines from the lyrics text. To check by ear: the tuning; the Music offset.

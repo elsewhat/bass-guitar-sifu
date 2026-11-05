@@ -95,6 +95,35 @@ describe('solveFingering', () => {
     ]);
   });
 
+  it('keeps a note doubled on two strings on both strings', () => {
+    // Drop D octaves with the D on both the A string and the open D string (Sober, Forty Six & 2).
+    const chord: Spec = [
+      [E, 0],
+      [A, 5],
+      [D, 0],
+      [G, 7],
+    ];
+    const [first] = solve([chord, chord, 'rest', chord], { tuning: DROP_D });
+    expect(show([first!])).toEqual(['E0 f0 p-', 'A5 f1 p5', 'D0 f0 p-', 'G7 f4 p5']);
+    expect(first!.notes.some((n) => n.retabFrom)).toBe(false);
+  });
+
+  it('keeps notes that ring together on the source tab', () => {
+    // Intension: each root on the low D string rings while its fifth is plucked on the A string.
+    const specs: Spec[] = [];
+    for (const fret of [7, 5, 10, 5, 8, 2, 7, 5, 10, 5, 8, 2]) specs.push([E, fret], [A, fret]);
+    const evts = events(specs, DROP_D);
+    for (let i = 1; i < evts.length; i += 2) evts[i]!.notes.unshift({ ...evts[i - 1]!.notes[0]!, tieFromPrev: true });
+    const out = solveFingering(evts, { tuning: DROP_D, maxFret: 14 });
+    expect(out.filter((e) => new Set(e.notes.map((n) => n.string)).size !== e.notes.length)).toEqual([]);
+    expect(out.flatMap((e) => e.notes).filter((n) => n.retabFrom)).toEqual([]);
+    // The hand stays while the root rings, and the fifth at the same fret is a barre.
+    for (const e of out.filter((x) => x.notes.length === 2)) {
+      const [root, fifth] = e.notes;
+      expect([fifth!.position, fifth!.finger]).toEqual([root!.position, root!.finger]);
+    }
+  });
+
   it('plans around an override and slides the pinned finger to the next note', () => {
     const out = solve([[E, 3], [E, 3], [E, 5], [E, 5]], { overrides: [{ bar: 1, tick: 0, finger: 2 }] });
     // Guide finger: the pinned middle finger slides up the E string.

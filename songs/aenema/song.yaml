@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Ænema
+artist: Tool
+source: { file: "Tool-Ænema-07-07-2026.gp", date: 2026-07-07 }
+bassTrack: "Justin Chancellor / Wal MKII"
+tempo: { note: "12/8 at 180–186 BPM to bar 67, then 6/8 at 87–95 BPM: the bars last as long (about 2 s), an eighth before bar 68 is a sixteenth after it." }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Ænema-11-05-2026.mp3", offsetMs: 10 }
+cover: { album: "Ænima", itunesId: 1474185335 }
+chunks:
+  - { name: Intro, bars: [5, 8] }
+  - { name: Verse 1 a, bars: [9, 12] }
+  - { name: Verse 1 b, bars: [13, 16] }
+  - { name: Pre-Chorus 1 a, bars: [17, 20] }
+  - { name: Pre-Chorus 1 b, bars: [21, 24] }
+  - { name: Chorus 1 a, bars: [25, 28] }
+  - { name: Chorus 1 b, bars: [29, 32] }
+  - { name: Post-Chorus 1, bars: [33, 36] }
+  - { name: Verse 2 a, bars: [37, 40] }
+  - { name: Verse 2 b, bars: [41, 44] }
+  - { name: Pre-Chorus 2 a, bars: [45, 48] }
+  - { name: Pre-Chorus 2 b, bars: [49, 52] }
+  - { name: Chorus 2 a, bars: [53, 56] }
+  - { name: Chorus 2 b, bars: [57, 60] }
+  - { name: Post-Chorus 2 a, bars: [61, 64] }
+  - { name: Post-Chorus 2 b, bars: [65, 67] }
+  - { name: Bridge, bars: [68, 75] }
+  - { name: Bridge repeat, bars: [76, 83] }
+  - { name: Bridge II a, bars: [84, 91] }
+  - { name: Bridge II a repeat, bars: [92, 99] }
+  - { name: Bridge II b, bars: [100, 107] }
+  - { name: Guitar Solo a, bars: [108, 111] }
+  - { name: Guitar Solo b, bars: [112, 115] }
+  - { name: Guitar Solo c, bars: [116, 119] }
+  - { name: Guitar Solo d, bars: [120, 123] }
+  - { name: Bridge III a, bars: [124, 131] }
+  - { name: Bridge III a ×2, bars: [132, 147] }
+  - { name: Bridge III b, bars: [148, 151] }
+  - { name: Pre-Climax a, bars: [152, 155] }
+  - { name: Pre-Climax b, bars: [156, 159] }
+  - { name: Pre-Climax c, bars: [160, 163] }
+  - { name: Pre-Climax d, bars: [164, 168] }
+  - { name: Climax a, bars: [169, 172] }
+  - { name: Climax a ×2, bars: [173, 180] }
+  - { name: Climax b, bars: [181, 186] }
+  - { name: Outro a, bars: [187, 190] }
+  - { name: Outro a repeat, bars: [191, 194] }
+  - { name: Outro b, bars: [195, 198] }
+fingeringOverrides: []
+notes: >-
+  Drop D (D A D G). 12/8 at 180–186 BPM to bar 67, then 6/8 at 87–95 BPM with notes half as long:
+  the same speed (see tempo.note). Bars 1–4 and 199 are tacet. The bass track's name has no "bass"
+  in it, so bassTrack names it. Chunks follow the 16 section markers; repeated sections are
+  numbered. Intro: E–D on the low string with the D octave. Verse 1: E5 and G5 dyads against the
+  open D. Pre-Chorus: E and G on the low string against the low D; 1 b ends with the C–D climb, 2 b
+  (49–52) is E, D and C in the upper octave (frets 10–16) and the D/A chord bar. Chorus: E with dead
+  notes and turns on G, F and C–D. Post-Chorus 1: A eighths; Post-Chorus 2: D/E and C–D cells.
+  Bridge (68–83): E–D sixteenths, 16 bars. Bridge II and III: E and G in sixteenth sextuplets, four
+  bars each. Guitar Solo: the E figure with a run up, G5 dyads and a run down, twice. Pre-Climax: the
+  G A C B / B A G A melody in the upper octave, ending on a held F♯. Climax: E–D and G–D sextuplets
+  and the B5 dyad. Outro: the D–D–G♯–D chord, held, then stabbed. Fingering: 32 re-tabs, mostly D2
+  D12 → D0 and C2 D10 → A3 in the chorus turns. No overrides. YouTube: not set. Songsterr's API
+  answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 23339
+  (songsterr.com/a/wsa/tool-nema-bass-tab-s23339); run npm run fetch-video -- aenema --song 23339,
+  then with --write. Music: offset 10 ms, the first-sound estimate; the onset match is weak (1.27 in
+  the first minute, 140 ms at 1.15 in the last). Lyrics: synced from "Maynard J. Keenan - Vocals",
+  556 syllables from bar 9; lines cut by timing. To check by ear: the Music offset. The metronome
+  counts every notated eighth: 12 counts a bar to bar 67, then 6 a bar of the same length.

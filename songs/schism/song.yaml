@@ -1,0 +1,84 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Schism
+artist: Tool
+source: { file: "Tool-Schism-11-05-2026.gp", date: 2026-11-05 }
+bassTrack: "Justin Chancellor | Wal Mark II 4-string | Bass"
+tempo: { note: "Bars 1–3 are a slow intro at 64 BPM; the riff runs at 106–113 BPM from bar 4, so this is not half time." }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Schism-11-05-2026.mp3", offsetMs: 10 }
+cover: { album: "Lateralus", itunesId: 1474185412 }
+chunks:
+  - { name: Intro I, bars: [1, 3] }
+  - { name: Intro II, bars: [4, 7] }
+  - { name: Intro II repeat, bars: [8, 11] }
+  - { name: Intro III, bars: [12, 15] }
+  - { name: Intro III repeat, bars: [16, 19] }
+  - { name: Verse 1 a, bars: [20, 23] }
+  - { name: Verse 1 a ×2, bars: [24, 31] }
+  - { name: Verse 1 b, bars: [32, 35] }
+  - { name: Verse 1 c, bars: [36, 39] }
+  - { name: Verse 1 d, bars: [40, 43] }
+  - { name: Chorus 1 a, bars: [44, 47] }
+  - { name: Chorus 1 b, bars: [48, 51] }
+  - { name: Verse 2 a, bars: [52, 55] }
+  - { name: Verse 2 a ×2, bars: [56, 63] }
+  - { name: Verse 2 b, bars: [64, 67] }
+  - { name: Chorus 2 a, bars: [68, 71] }
+  - { name: Chorus 2 b, bars: [72, 75] }
+  - { name: Interlude 1 a, bars: [76, 79] }
+  - { name: Interlude 1 b, bars: [80, 83] }
+  - { name: Interlude 1 c, bars: [84, 85] }
+  - { name: Verse 3 a, bars: [86, 89] }
+  - { name: Verse 3 a ×2, bars: [90, 97] }
+  - { name: Verse 3 b, bars: [98, 101] }
+  - { name: Chorus 3 a, bars: [102, 105] }
+  - { name: Chorus 3 b, bars: [106, 109] }
+  - { name: Post-Chorus a, bars: [110, 113] }
+  - { name: Post-Chorus b, bars: [114, 120] }
+  - { name: Bridge a, bars: [128, 137] }
+  - { name: Bridge b, bars: [138, 142] }
+  - { name: Bridge b repeat, bars: [143, 147] }
+  - { name: Bridge c, bars: [148, 152] }
+  - { name: Bridge d, bars: [153, 157] }
+  - { name: Bridge Verse a, bars: [158, 162] }
+  - { name: Bridge Verse b, bars: [163, 167] }
+  - { name: Bridge Verse a repeat, bars: [168, 172] }
+  - { name: Bridge Verse b repeat, bars: [173, 177] }
+  - { name: Bridge Verse c, bars: [178, 183] }
+  - { name: Build-Up a, bars: [184, 186] }
+  - { name: Build-Up b, bars: [187, 191] }
+  - { name: Climax, bars: [192, 196] }
+  - { name: Climax repeat, bars: [197, 201] }
+  - { name: Interlude 2 a, bars: [202, 206] }
+  - { name: Interlude 2 b, bars: [207, 210] }
+  - { name: Interlude 2 c, bars: [211, 213] }
+  - { name: Outro Verse a, bars: [214, 217] }
+  - { name: Outro Verse b, bars: [218, 221] }
+  - { name: Outro Verse c, bars: [222, 225] }
+  - { name: Outro Verse d, bars: [226, 229] }
+  - { name: Outro, bars: [230, 233] }
+  - { name: Outro repeat, bars: [234, 237] }
+fingeringOverrides: []
+notes: >-
+  Drop D (D A D G). Bars 1–3 are a slow intro at 64 BPM (5/4, 5/4, 4/4); from bar 4 the riff runs at
+  106–113 BPM in alternating 5/8 and 7/8 bars, with 6/8, 9/8, 3/8, 3/4 and 2/4 bars later. The
+  inspect warning about half time comes from the intro. Bars 121–127 and 238 are tacet. The tab has
+  a second bass track, "Bass Whammy Effect" (107 notes), which is not imported. Chunks follow the 18
+  section markers; repeated sections are numbered. The riff is a two-bar cell (5/8 + 7/8: F–E–G over
+  the open D, then a step down, E–D–F), so the riff chunks are four bars, two cells. Chorus: the same
+  cell on A (6/8 + 7/8). Interlude 1 (76–85): D–F–G in 4/4 + 2/4, and the riff's two bars into Verse
+  3 (c). Post-Chorus (110–120): a 9/8 + 5/8 figure on A, ending on an A held into the Bridge. Bridge
+  a (128–137) is 10 bars: A1, A2 and A3 a bar each, the A3 held through two 5-bar meter cycles (6/8
+  6/8 6/8 3/8 3/4); one chunk, because the held bars have no plucks. Bridge b–d and Bridge Verse a–b
+  follow that cycle; Bridge Verse c (178–183) is the held A chord and the dead-note bars into the
+  Build-Up. Climax: two 5-bar cycles. Outro Verse a–b (214–221) is the riff an octave lower on the
+  low D string, c–d (222–229) the riff as in the intro. Outro (230–237): one 4/4 bar of triplet runs
+  (D–F–G, D–F♯–G♯) eight times. Fingering: 4 re-tabs (C2 D10 → A3 in bar 205, D2 A5 → D0 in 221).
+  No overrides. The Outro bar moves between positions 3, 4 and 5, because the step from G (low D 5)
+  to D (A 5) at the same fret is not rolled (ADR-0007 rule 6). YouTube: not set. Songsterr's API
+  answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 6700
+  (songsterr.com/a/wsa/tool-schism-bass-tab-s6700); run npm run fetch-video -- schism --song 6700,
+  then with --write. Music: offset 10 ms, drift −10 ms (onset match 2.27 / 1.96). Lyrics: synced
+  from "Maynard James Keenan | Vocals", 331 syllables from bar 20; lines cut by timing. To check by
+  ear: Bridge a as one 10-bar chunk; the meter cycles once a video is synced.

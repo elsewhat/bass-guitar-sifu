@@ -36,9 +36,13 @@ export function cardMeta(c: CatalogEntry): string {
   return `${c.bpm} BPM · ${formatTime(c.durationSec)} · frets 0–${c.maxFret}`;
 }
 
-/** Tuning badge and string names; other tunings than standard are marked (orange in the card). */
+/**
+ * Tuning badge and string names; other tunings than standard are marked (orange in the card). A
+ * tuning without a name is named by its strings, which are then not repeated.
+ */
 export function cardTuning(c: CatalogEntry): { name: string; strings: string; alt: boolean } {
-  return { name: c.tuningName, strings: stringNames(c.tuning).join(' '), alt: c.tuningName !== 'Standard' };
+  const strings = stringNames(c.tuning).join(' ');
+  return { name: c.tuningName, strings: strings === c.tuningName ? '' : strings, alt: c.tuningName !== 'Standard' };
 }
 
 /** What the library knows of a song's practice (ADR-0010). */

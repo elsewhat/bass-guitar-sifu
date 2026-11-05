@@ -19,6 +19,7 @@ export const COSTS = {
   indexPreference: 1, // sparse passage: per finger rank above the index
   fingerTieBreak: 0.01, // dense passage: finger rank only breaks ties
   roll: 10, // same finger rolled to another string at the same fret; above a shift there and back and a retab (pinky D–G is free)
+  heldShift: 100, // moving the hand while a fretted note rings; not playable, but finite so an odd tab still gets a fingering
   denseMinDistinct: 3, // distinct fretted pitches in the current and next bar that make a passage dense
   lowZoneMaxPosition: 5, // highest position that uses the 1-2-4 box
 } as const;
@@ -60,11 +61,13 @@ interface State {
 }
 
 interface Node {
-  pitches: number[];
+  pitches: number[]; // plucked pitches, lowest first; a pitch doubled on two strings is listed twice
   events: BeatEvent[];
   free: boolean; // the hand was free just before this node
   dense: boolean; // many different fretted notes in this and the next bar
   overrides: FingeringOverride[];
+  keep: Map<number, Set<string>>; // pitch → source tabs ("string/fret") it must keep, for notes that ring with others
+  holds: boolean; // a fretted note from before still rings: the hand stays, and a note at its fret is a barre
 }
 
 /** Assigns finger, position and retabFrom to every note. Returns a new events array. */
@@ -85,7 +88,7 @@ export function solveFingering(events: BeatEvent[], opts: FingeringOptions): Bea
       let best = Infinity;
       let arg = -1;
       for (let j = 0; j < prev.length; j++) {
-        const c = cost[i - 1]![j]! + transition(prev[j]!, s, nodes[i]!.free, opts.tuning.length);
+        const c = cost[i - 1]![j]! + transition(prev[j]!, s, nodes[i]!, opts.tuning.length);
         if (c < best) {
           best = c;
           arg = j;
@@ -109,9 +112,20 @@ export function solveFingering(events: BeatEvent[], opts: FingeringOptions): Bea
   nodes.forEach((node, i) => {
     const state = chosen[i]!;
     for (const e of node.events) {
-      for (const n of e.notes) {
-        if (n.tieFromPrev || n.dead) continue;
-        const a = state.assign[node.pitches.indexOf(n.pitch)]!;
+      // One assignment per note. A pitch doubled on two strings has two: each note keeps its own tab where the state has it.
+      const plucked = e.notes.filter((n) => !n.tieFromPrev && !n.dead);
+      const slot = new Map<NoteEvent, number>();
+      for (const keep of [true, false]) {
+        for (const n of plucked) {
+          if (slot.has(n)) continue;
+          const k = state.assign.findIndex(
+            (a, j) => node.pitches[j] === n.pitch && ![...slot.values()].includes(j) && (!keep || (a.string === n.string && a.fret === n.fret)),
+          );
+          if (k >= 0) slot.set(n, k);
+        }
+      }
+      for (const n of plucked) {
+        const a = state.assign[slot.get(n)!]!;
         if (a.string !== n.string || a.fret !== n.fret) n.retabFrom = { string: n.string, fret: n.fret };
         n.string = a.string;
         n.fret = a.fret;
@@ -136,6 +150,23 @@ function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[]
   }
   const dense = (bar: number) => new Set([...(fretted.get(bar) ?? []), ...(fretted.get(bar + 1) ?? [])]).size >= COSTS.denseMinDistinct;
 
+  // Notes that ring together keep the source tab: a held note and the notes plucked while it
+  // sounds. The solver does not follow a held note, so a re-tab could put two notes on one string.
+  const ringing = new Set<NoteEvent>();
+  const sounding = new Map<number, NoteEvent>(); // source string → last plucked note on it
+  for (const e of events) {
+    const held = e.notes.filter((n) => n.tieFromPrev && !n.dead);
+    const plucked = e.notes.filter((n) => !n.tieFromPrev && !n.dead);
+    if (held.length > 0 && plucked.length > 0) {
+      for (const n of plucked) ringing.add(n);
+      for (const n of held) {
+        const origin = sounding.get(n.string);
+        if (origin) ringing.add(origin);
+      }
+    }
+    for (const n of plucked) sounding.set(n.string, n);
+  }
+
   const nodes: Node[] = [];
   let free = true;
   for (const e of events) {
@@ -145,16 +176,22 @@ function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[]
       continue;
     }
     if (plucked.length === 0) continue; // tie continuation: the hand keeps holding
-    const pitches = [...new Set(plucked.map((n) => n.pitch))].sort((a, b) => a - b);
+    const pitches = plucked.map((n) => n.pitch).sort((a, b) => a - b);
     const ov = overrides.filter((o) => o.bar === e.bar && o.tick === e.tick);
-    const prev = nodes[nodes.length - 1];
     // Repeated identical notes keep the same fingering: collapse them into one node. A rest in
     // between keeps them apart, so a sparse passage can settle on the index finger (micro-shift).
-    if (prev && !free && prev.pitches.join() === pitches.join()) {
-      prev.events.push(e);
-      prev.overrides.push(...ov);
-    } else {
-      nodes.push({ pitches, events: [e], free, dense: dense(e.bar), overrides: ov });
+    let node = nodes[nodes.length - 1];
+    if (!node || free || node.pitches.join() !== pitches.join()) {
+      const holds = e.notes.some((n) => n.tieFromPrev && !n.dead && n.fret > 0);
+      node = { pitches, events: [], free, dense: dense(e.bar), overrides: [], keep: new Map(), holds };
+      nodes.push(node);
+    }
+    node.events.push(e);
+    node.overrides.push(...ov);
+    for (const n of plucked) {
+      if (!ringing.has(n)) continue;
+      if (!node.keep.has(n.pitch)) node.keep.set(n.pitch, new Set());
+      node.keep.get(n.pitch)!.add(`${n.string}/${n.fret}`);
     }
     free = false;
   }
@@ -163,11 +200,12 @@ function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[]
 
 function candidates(node: Node, opts: FingeringOptions): State[] {
   const { tuning, maxFret } = opts;
-  // Alternatives per pitch: every (string, fret) that sounds it.
+  // Alternatives per pitch: every (string, fret) that sounds it, or only the source tab for a note that rings with others.
   const alts: { string: number; fret: number }[][] = node.pitches.map((pitch) =>
     tuning.flatMap((open, string) => {
       const fret = pitch - open;
-      return fret >= 0 && fret <= maxFret ? [{ string, fret }] : [];
+      const keep = node.keep.get(pitch);
+      return fret >= 0 && fret <= maxFret && (!keep || keep.has(`${string}/${fret}`)) ? [{ string, fret }] : [];
     }),
   );
   // Source tab positions per pitch in this node (for the retab cost).
@@ -181,6 +219,8 @@ function candidates(node: Node, opts: FingeringOptions): State[] {
   const states: State[] = [];
   for (const combo of cartesian(alts)) {
     if (new Set(combo.map((c) => c.string)).size !== combo.length) continue; // one note per string
+    // A doubled pitch: one order of its two strings (the swapped order is the same chord).
+    if (combo.some((c, i) => i > 0 && node.pitches[i] === node.pitches[i - 1] && c.string < combo[i - 1]!.string)) continue;
     const fretted = combo.filter((c) => c.fret > 0).map((c) => c.fret);
     const allOpen = fretted.length === 0;
     const pMin = allOpen ? 1 : Math.max(1, Math.max(...fretted) - 3);
@@ -193,8 +233,11 @@ function candidates(node: Node, opts: FingeringOptions): State[] {
       if (!node.overrides.every((o) => assign.some((a) => matches(a, o)))) continue;
       let local = 0;
       assign.forEach((a, i) => {
-        const src = sources[i]!;
-        local += COSTS.retab * [...src].filter((s) => s !== `${a.string}/${a.fret}`).length;
+        if (node.pitches[i - 1] !== node.pitches[i]) {
+          // Source tabs of this pitch that no note of it keeps (counted once for a doubled pitch).
+          const kept = assign.filter((_, j) => node.pitches[j] === node.pitches[i]).map((b) => `${b.string}/${b.fret}`);
+          local += COSTS.retab * [...sources[i]!].filter((s) => !kept.includes(s)).length;
+        }
         if (a.finger > 0) local += fingerWeight * RANK[a.finger]!;
         else if (p < 5) local -= COSTS.openBonus;
       });
@@ -208,17 +251,19 @@ function candidates(node: Node, opts: FingeringOptions): State[] {
   return states;
 }
 
-function transition(a: State, b: State, free: boolean, strings: number): number {
+function transition(a: State, b: State, node: Node, strings: number): number {
+  const { free, holds } = node;
   let c = 0;
   const pairs = a.assign.flatMap((x) => b.assign.filter((y) => x.finger > 0 && y.finger === x.finger).map((y) => [x, y] as const));
   if (a.p !== b.p) {
     let shift = COSTS.shiftBase + COSTS.shiftPerFret * Math.abs(a.p - b.p);
     if (free || a.allOpen || b.allOpen) shift *= COSTS.freeShiftFactor;
     if (pairs.some(([x, y]) => x.string === y.string)) shift *= COSTS.guideFactor; // guide finger
+    if (holds) shift += COSTS.heldShift;
     c += shift;
   }
   c += COSTS.stringCross * Math.abs(a.assign[0]!.string - b.assign[0]!.string);
-  if (!free) {
+  if (!free && !holds) {
     // Rolling one finger to another string at the same fret; only the little finger between the top two strings.
     for (const [x, y] of pairs) {
       if (x.fret !== y.fret || x.string === y.string) continue;

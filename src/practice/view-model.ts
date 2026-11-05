@@ -5,12 +5,14 @@ import type { SyncMap } from '../core/sync';
 import type { TempoLookup } from '../core/timing';
 import { stringNames } from '../core/tuning';
 
-/** "110 BPM · 4/4 · Standard E A D G · 243 bars" */
+/** "110 BPM · 4/4 · Standard E A D G · 243 bars"; a tuning without a name is its strings, once. */
 export function headMeta(song: SongData): string {
   const meters = new Set(song.bars.map((b) => b.time.join('/')));
   const meter = meters.size === 1 ? [...meters][0]! : 'mixed meter';
   const bpm = song.tempoMap[0]?.bpm ?? 120;
-  return `${bpm} BPM · ${meter} · ${song.tuningName} ${stringNames(song.tuning).join(' ')} · ${song.bars.length} bars`;
+  const strings = stringNames(song.tuning).join(' ');
+  const tuning = strings === song.tuningName ? strings : `${song.tuningName} ${strings}`;
+  return `${bpm} BPM · ${meter} · ${tuning} · ${song.bars.length} bars`;
 }
 
 export type PlanRow = { kind: 'rest'; label: string; bar: number; place: RestPlace } | { kind: 'chunk'; index: number; chunk: Chunk; bar: number };

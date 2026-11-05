@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Stinkfist
+artist: Tool
+source: { file: "Tool-Stinkfist-10-12-2026.gp", date: 2026-10-12 }
+bassTrack: "Justin Chancellor - Bass | Wal Mk II Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Stinkfist-11-05-2026.mp3", offsetMs: 0 }
+cover: { album: "Ænima", itunesId: 1474185335 }
+chunks:
+  - { name: Pre-Verse, bars: [10, 13] }
+  - { name: Verse 1 a, bars: [14, 17] }
+  - { name: Verse 1 b, bars: [18, 21] }
+  - { name: Pre-Chorus 1, bars: [22, 25] }
+  - { name: Chorus 1, bars: [26, 29] }
+  - { name: Post-Chorus, bars: [30, 33] }
+  - { name: Verse 2 a, bars: [34, 37] }
+  - { name: Verse 2 b, bars: [38, 41] }
+  - { name: Pre-Chorus 2, bars: [42, 45] }
+  - { name: Chorus 2, bars: [46, 49] }
+  - { name: Bridge a, bars: [51, 53] }
+  - { name: Bridge a ×3, bars: [54, 59] }
+  - { name: Bridge b, bars: [60, 63] }
+  - { name: Bridge b repeat, bars: [64, 67] }
+  - { name: Bridge c, bars: [68, 71] }
+  - { name: Climax a, bars: [72, 75] }
+  - { name: Climax b, bars: [76, 79] }
+  - { name: Interlude a, bars: [80, 81] }
+  - { name: Interlude a repeat, bars: [82, 83] }
+  - { name: Interlude b, bars: [84, 88] }
+  - { name: Pre-Chorus 3, bars: [89, 90] }
+  - { name: Pre-Chorus 3 repeat, bars: [91, 92] }
+  - { name: Chorus 3, bars: [93, 96] }
+  - { name: Outro a, bars: [97, 98] }
+  - { name: Outro a repeat, bars: [99, 100] }
+  - { name: Outro b, bars: [101, 102] }
+fingeringOverrides: []
+notes: >-
+  Drop D (D A D G). 85–90 BPM in 4/4, with 6/4 and 7/4 bars in the choruses and the interlude. Bars
+  1–9 (the intro), 50 and 103 are tacet. Chunks follow the 15 section markers; repeated sections are
+  numbered. Pre-Verse and Post-Chorus: the E–D octave figure (low D 2, open D). Verse a: E–D in
+  dotted eighths; b: the E–E–D syncopation, ending E–G–G. Chorus (6/4 6/4 6/4 7/4): E, the C5 dyads
+  and a D run. Bridge: a pickup bar (51) and the two-bar D–E–F figure, then three more times
+  (54–59); b is the D–E–G–A sixteenth run and the figure, twice; c the run four times. Climax a/b:
+  E–F♯ and B–A cells. Interlude a: the C–D / E figure; b (84–88): the 6/4 line down A–E–A–C–G–F♯–D–A,
+  twice. Pre-Chorus 3: a dead-note 6/4 bar and the G/A dyads, twice. Outro: F–E and E–E figures,
+  ending on a held E. Fingering: 20 re-tabs, mostly D2 A5 → D0 (open D). No overrides. The Bridge
+  run (60–61, 64–65, 68–71) lies on the low D string, frets 0–7, so it shifts through positions 2, 3
+  and 5 every half bar in the 1-2-4 box. The Outro's E octaves (low D 2 and D 2, bars 98 and 100)
+  alternate positions 1 and 2 (ADR-0007 rule 6, no rolling). YouTube: not set. Songsterr's API
+  answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 19811
+  (songsterr.com/a/wsa/tool-stinkfist-bass-tab-s19811); run npm run fetch-video -- stinkfist --song
+  19811, then with --write. Music: offset 0 ms, no drift (onset match 2.02 / 1.92). Lyrics: synced
+  from "Maynard J. Keenan - Vocals", 346 syllables from bar 14; lines cut by timing.

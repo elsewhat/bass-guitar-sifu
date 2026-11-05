@@ -1,0 +1,70 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Sober
+artist: Tool
+source: { file: "Tool-Sober-10-03-2026.gp", date: 2026-10-03 }
+bassTrack: "Paul D'Amour | Rickenbacker 4001CS | Bass"
+tempo: { note: null }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Sober-11-05-2026.mp3", offsetMs: 0 }
+cover: { album: "Undertow", itunesId: 1474185287 }
+chunks:
+  - { name: Intro a, bars: [2, 5] }
+  - { name: Intro b, bars: [6, 9] }
+  - { name: Intro II a, bars: [10, 13] }
+  - { name: Intro II b, bars: [14, 17] }
+  - { name: Intro II c, bars: [18, 21] }
+  - { name: Intro II d, bars: [22, 25] }
+  - { name: Intro II e, bars: [26, 29] }
+  - { name: Intro II f, bars: [30, 33] }
+  - { name: Verse 1 a, bars: [34, 41] }
+  - { name: Verse 1 b, bars: [42, 49] }
+  - { name: Pre-chorus 1 a, bars: [50, 53] }
+  - { name: Pre-chorus 1 b, bars: [54, 57] }
+  - { name: Chorus 1 a, bars: [58, 61] }
+  - { name: Chorus 1 b, bars: [62, 65] }
+  - { name: Chorus 1 c, bars: [66, 69] }
+  - { name: Chorus 1 d, bars: [70, 73] }
+  - { name: Post-chorus a, bars: [74, 77] }
+  - { name: Post-chorus b, bars: [78, 81] }
+  - { name: Verse 2 a, bars: [82, 89] }
+  - { name: Verse 2 b, bars: [90, 97] }
+  - { name: Pre-chorus 2 a, bars: [98, 101] }
+  - { name: Pre-chorus 2 b, bars: [102, 105] }
+  - { name: Chorus 2 a, bars: [106, 109] }
+  - { name: Chorus 2 b, bars: [110, 113] }
+  - { name: Chorus 2 c, bars: [114, 117] }
+  - { name: Chorus 2 d, bars: [118, 121] }
+  - { name: Bridge a, bars: [122, 125] }
+  - { name: Bridge b, bars: [126, 129] }
+  - { name: Bridge c, bars: [130, 133] }
+  - { name: Bridge d, bars: [134, 137] }
+  - { name: Bridge e, bars: [138, 141] }
+  - { name: Bridge f, bars: [142, 145] }
+  - { name: Bridge g, bars: [146, 148] }
+  - { name: Chorus 3 a, bars: [150, 153] }
+  - { name: Chorus 3 b, bars: [154, 157] }
+  - { name: Chorus 3 c, bars: [158, 161] }
+  - { name: Chorus 3 d, bars: [162, 165] }
+  - { name: Solo, bars: [166, 169] }
+  - { name: Solo ×3, bars: [170, 181] }
+  - { name: Outro a, bars: [182, 185] }
+  - { name: Outro b, bars: [186, 190] }
+fingeringOverrides: []
+notes: >-
+  Drop D (D A D G). 145–157 BPM, 4/4 throughout, mostly eighth notes. The bass is Paul D'Amour's
+  (Undertow). Rests: bar 1, every other bar in the verses (35, 37, 39, 43, 45, 47, 83, 85, 87, 91,
+  93, 95), 149, 189 and 191; the verse chunks keep the stab and rest bars together, so they are 8
+  bars. Chunks follow the 13 section markers; repeated sections are numbered. Intro and Intro II:
+  two-bar cells of four-string D octave chords (low D, A 5, open D, G 7) and dead notes; Intro II b
+  ends with the D♯–C–D chord turn. Verse: two chord stabs every other bar, a held chord in bars 41
+  and 89. Pre-chorus: D, F and D♯ (with an A pickup). Chorus: the held D chord, then D♯ and F lines,
+  four 4-bar phrases. Bridge (122–148): held D chords; the open D under A, B♭, G and C on the G
+  string (frets 12–15); D eighths (142–145) and D octaves. Solo (166–181): a 4-bar D–F–G♯ figure
+  four times. Outro: the intro's chords and dead notes, ending on D♯ and D. Fingering: 32 re-tabs,
+  among them D2 A5 → D0 in the D eighths (142–145). The chords double D on A5 and the open D string;
+  the solver keeps both (ADR-0007, 2026-11-05). No overrides. YouTube: not set. Songsterr's API
+  answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 19923
+  (songsterr.com/a/wsa/tool-sober-bass-tab-s19923); run npm run fetch-video -- sober --song 19923,
+  then with --write. Music: offset 0 ms, no drift (onset match 4.65 / 2.83). Lyrics: synced from
+  "Maynard James Keenan | Vocals", 365 syllables from bar 34; lines from the lyrics text.
