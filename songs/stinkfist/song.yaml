@@ -48,7 +48,7 @@ notes: >-
   ending on a held E. Fingering: 20 re-tabs, mostly D2 A5 → D0 (open D). No overrides. The Bridge
   run (60–61, 64–65, 68–71) lies on the low D string, frets 0–7, so it shifts through positions 2, 3
   and 5 every half bar in the 1-2-4 box. The Outro's E octaves (low D 2 and D 2, bars 98 and 100)
-  alternate positions 1 and 2 (ADR-0007 rule 6, no rolling). YouTube: not set. Songsterr's API
+  are an index barre in position 2 (ADR-0007, 2026-11-05). YouTube: not set. Songsterr's API
   answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 19811
   (songsterr.com/a/wsa/tool-stinkfist-bass-tab-s19811); run npm run fetch-video -- stinkfist --song
   19811, then with --write. Music: offset 0 ms, no drift (onset match 2.02 / 1.92). Lyrics: synced

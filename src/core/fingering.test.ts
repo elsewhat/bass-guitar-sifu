@@ -77,6 +77,12 @@ describe('solveFingering', () => {
     }
   });
 
+  it('lays one finger across two strings for notes that go back and forth at the same fret', () => {
+    // Forty Six & 2: F on the low D string and C on the A string, both fret 3, without a break.
+    const out = solve([[E, 3], [A, 3], [E, 3], [A, 3], [E, 3], [A, 3], [E, 3], [A, 3]], { tuning: DROP_D });
+    expect(new Set(show(out).map((s) => s.slice(s.indexOf(' '))))).toEqual(new Set([' f1 p3']));
+  });
+
   it('allows the little finger to roll between D and G', () => {
     expect(show(solve([[D, 6], [D, 7], [D, 9], [G, 9], [D, 6], [D, 7], [D, 9], [G, 9]]).slice(0, 4))).toEqual(['D6 f1 p6', 'D7 f2 p6', 'D9 f4 p6', 'G9 f4 p6']);
   });

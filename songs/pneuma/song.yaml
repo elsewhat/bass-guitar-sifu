@@ -1,0 +1,89 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Pneuma
+artist: Tool
+source: { file: "Tool-Pneuma-09-18-2026.gp", date: 2026-09-18 }
+bassTrack: "Justin Chancellor | Wal Mk III | Bass"
+tempo: { note: "110–117 BPM; the riff is a six-bar cycle of 6/8 and 5/8 bars (33 eighths), the bridge 4/4." }
+media:
+  youtube: { videoId: null, sync: [] }
+  music: { source: "Tool-Pneuma-11-05-2026.mp3", offsetMs: 10 }
+cover: { album: "Fear Inoculum", itunesId: 1475686696 }
+chunks:
+  - { name: Bass Enter, bars: [36, 42] }
+  - { name: Bass Enter repeat, bars: [43, 48] }
+  - { name: Band Enter a, bars: [49, 60] }
+  - { name: Band Enter b, bars: [61, 64] }
+  - { name: Band Enter c, bars: [65, 70] }
+  - { name: Verse 1, bars: [71, 82] }
+  - { name: Verse 1 repeat, bars: [83, 94] }
+  - { name: Chorus 1 a, bars: [95, 106] }
+  - { name: Chorus 1 b, bars: [107, 110] }
+  - { name: Chorus 1 c, bars: [111, 117] }
+  - { name: Interlude 1 a, bars: [118, 121] }
+  - { name: Interlude 1 a ×2, bars: [122, 129] }
+  - { name: Interlude 1 b, bars: [130, 133] }
+  - { name: Pre-Verse, bars: [134, 145] }
+  - { name: Verse 2, bars: [146, 157] }
+  - { name: Legato Interlude, bars: [158, 169] }
+  - { name: Legato Interlude repeat, bars: [170, 181] }
+  - { name: Chorus 2 a, bars: [182, 193] }
+  - { name: Chorus 2 b, bars: [194, 197] }
+  - { name: Chorus 2 c, bars: [198, 204] }
+  - { name: Interlude 2 a, bars: [205, 208] }
+  - { name: Interlude 2 a ×2, bars: [209, 216] }
+  - { name: Interlude 2 b, bars: [217, 220] }
+  - { name: Bridge a, bars: [221, 228] }
+  - { name: Bridge b, bars: [229, 232] }
+  - { name: Bridge b ×3, bars: [233, 244] }
+  - { name: Bridge c, bars: [245, 252] }
+  - { name: Bridge d, bars: [253, 260] }
+  - { name: Bridge e, bars: [261, 268] }
+  - { name: Bridge f, bars: [269, 276] }
+  - { name: Bridge g, bars: [277, 284] }
+  - { name: Bridge h, bars: [285, 292] }
+  - { name: Bridge i, bars: [293, 296] }
+  - { name: Bridge j, bars: [297, 300] }
+  - { name: Bridge k, bars: [301, 304] }
+  - { name: Bridge l, bars: [305, 308] }
+  - { name: Bridge m, bars: [309, 312] }
+  - { name: Bridge n, bars: [313, 316] }
+  - { name: Climax, bars: [329, 334] }
+  - { name: Climax repeat, bars: [335, 340] }
+  - { name: Climax b, bars: [341, 346] }
+  - { name: Chorus 3 a, bars: [347, 358] }
+  - { name: Chorus 3 b, bars: [359, 362] }
+  - { name: Chorus 3 c, bars: [363, 371] }
+  - { name: Solo a, bars: [372, 375] }
+  - { name: Solo a ×2, bars: [376, 383] }
+  - { name: Solo b, bars: [384, 387] }
+  - { name: Solo c, bars: [388, 391] }
+  - { name: Outro a, bars: [392, 395] }
+  - { name: Outro b, bars: [396, 400] }
+fingeringOverrides:
+  - { bar: 307, tick: 0, string: 1, fret: 0, finger: 0 }
+  - { bar: 309, tick: 0, string: 1, fret: 0, finger: 0 }
+  - { bar: 311, tick: 0, string: 1, fret: 0, finger: 0 }
+  - { bar: 313, tick: 0, string: 1, fret: 0, finger: 0 }
+  - { bar: 315, tick: 0, string: 1, fret: 0, finger: 0 }
+notes: >-
+  Drop D (D A D G). 110–117 BPM (the last bar at 50). Bars 1–35 (the intro) and 317–328 (the break)
+  are tacet; bar 36 holds only the pickup into Bass Enter. The tab's "Bass Delay FX" track (752
+  notes) is not imported. Chunks follow the 16 section markers; repeated sections are numbered. The
+  riff is a six-bar cycle (6/8 6/8 5/8 6/8 5/8 5/8, 33 eighths) of dyads high on the D and G strings:
+  D with A, B♭, G, F, E and the D octave. Bass Enter is one cycle and its repeat; later sections take
+  two cycles per chunk (12 bars, about 18 s). Band Enter b and Chorus b are the four-bar F variant
+  (6/8 6/8 5/8 8/8); Chorus c ends on a held D octave. Interlude and Solo: a two-bar F–E–C–E–D
+  figure on the low strings. Legato Interlude and Chorus 3: the riff with the dyads held. Bridge
+  (221–316): a held D (a), the A–F–D figure in the upper octave (b–e, with fills in 252, 266 and
+  268), in the low octave (f–h), then in eighths (i–j) and sixteenths (k–n). Climax: a 5/8 7/8 5/8
+  7/8 5/8 4/8 cycle on D, F and C. Outro: D, F and C held, ending on C. Fingering: 50 re-tabs, mostly
+  A1 D7 → A0 and F2 D15 → D3 in the bridge. The riff is tabbed high: D on D12 with the upper note on
+  G12–G15 (position 12), down to positions 9 and 7 at the end of the cycle. Overrides: bars 307–315,
+  the A on the open A string as in bars 269–306 (the solver kept low D 7 there because an F follows).
+  Bars 307–314 still move to position 6 for the F on A8, as tabbed. YouTube: not set. Songsterr's API
+  answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 455388
+  (songsterr.com/a/wsa/tool-pneuma-bass-tab-s455388); run npm run fetch-video -- pneuma --song
+  455388, then with --write. Music: offset 10 ms, the first-sound estimate; the onset match is weak
+  in the last minute (1.87 / 1.47). Lyrics: synced from "Maynard James Keenan | Vocals", 153
+  syllables from bar 70; lines from the lyrics text. To check by ear: the two-cycle chunks (12
+  bars); the Music offset.

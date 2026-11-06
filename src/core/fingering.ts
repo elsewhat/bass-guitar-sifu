@@ -67,7 +67,8 @@ interface Node {
   dense: boolean; // many different fretted notes in this and the next bar
   overrides: FingeringOverride[];
   keep: Map<number, Set<string>>; // pitch → source tabs ("string/fret") it must keep, for notes that ring with others
-  holds: boolean; // a fretted note from before still rings: the hand stays, and a note at its fret is a barre
+  holds: boolean; // a fretted note from before still rings: the hand stays, and the index at its fret is a barre
+  alternates: boolean; // this node and the one before go back and forth (P–Q–P) without a break: an index barre, not a roll
 }
 
 /** Assigns finger, position and retabFrom to every note. Returns a new events array. */
@@ -183,7 +184,7 @@ function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[]
     let node = nodes[nodes.length - 1];
     if (!node || free || node.pitches.join() !== pitches.join()) {
       const holds = e.notes.some((n) => n.tieFromPrev && !n.dead && n.fret > 0);
-      node = { pitches, events: [], free, dense: dense(e.bar), overrides: [], keep: new Map(), holds };
+      node = { pitches, events: [], free, dense: dense(e.bar), overrides: [], keep: new Map(), holds, alternates: false };
       nodes.push(node);
     }
     node.events.push(e);
@@ -195,6 +196,16 @@ function buildNodes(events: BeatEvent[], overrides: FingeringOverride[]): Node[]
     }
     free = false;
   }
+
+  // Notes that go back and forth without a break (P–Q–P): the index laid across both strings at the
+  // same fret is a barre, not a roll (rule 6, owner 2026-11-05). A single step is still a roll.
+  const same = (a?: Node, b?: Node) => !!a && !!b && a.pitches.join() === b.pitches.join();
+  nodes.forEach((node, i) => {
+    const prev = nodes[i - 1];
+    const next = nodes[i + 1];
+    node.alternates =
+      !node.free && !!prev && !same(prev, node) && ((!prev.free && same(nodes[i - 2], node)) || (!!next && !next.free && same(next, prev)));
+  });
   return nodes;
 }
 
@@ -252,7 +263,7 @@ function candidates(node: Node, opts: FingeringOptions): State[] {
 }
 
 function transition(a: State, b: State, node: Node, strings: number): number {
-  const { free, holds } = node;
+  const { free, holds, alternates } = node;
   let c = 0;
   const pairs = a.assign.flatMap((x) => b.assign.filter((y) => x.finger > 0 && y.finger === x.finger).map((y) => [x, y] as const));
   if (a.p !== b.p) {
@@ -263,12 +274,15 @@ function transition(a: State, b: State, node: Node, strings: number): number {
     c += shift;
   }
   c += COSTS.stringCross * Math.abs(a.assign[0]!.string - b.assign[0]!.string);
-  if (!free && !holds) {
-    // Rolling one finger to another string at the same fret; only the little finger between the top two strings.
+  if (!free) {
+    // Rolling one finger to another string at the same fret; only the little finger between the top two
+    // strings, and the index laid across both strings (a barre) under a held note or for notes that go
+    // back and forth.
     for (const [x, y] of pairs) {
       if (x.fret !== y.fret || x.string === y.string) continue;
       const topPair = x.finger === 4 && Math.abs(x.string - y.string) === 1 && Math.min(x.string, y.string) >= strings - 2;
-      if (!topPair) c += COSTS.roll;
+      const barre = (holds || alternates) && x.finger === 1;
+      if (!topPair && !barre) c += COSTS.roll;
     }
   }
   return c;

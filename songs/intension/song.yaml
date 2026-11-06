@@ -42,13 +42,13 @@ notes: >-
   the A string ("N.H." in the notation; the part has 338 harmonics). Verse and interlude chunks are
   4 bars, or 5 where a 4/4 bar (33, 38, 47, 96) closes the phrase. Bridge (64–81): an A–E–D arpeggio in 4/4 over A, C and D, then B♭. Bridge c–d (82–91):
   the riff again before Verse 4. Chorus: the arpeggios. Outro: a B♭ figure in 4/4, then 2/4 bars as
-  the tempo falls, the A–F–G arpeggios and a long D. Fingering: 82 re-tabs. Bars 13–20 move the riff
+  the tempo falls, the A–F–G arpeggios and a long D. Fingering: 27 re-tabs. Bars 13–20 move the riff
   off the low D string: A on the open A string, C on A3 and B♭ on A1; the override in bar 13 makes it
   match bars 14–19, where the solver did this by itself. From bar 21 the roots ring under the
   harmonics, so those notes keep the tab: the root on the low D string and the harmonic on the A
-  string, at the same fret a barre (ADR-0007, 2026-11-05). That riff moves through positions 5, 9, 5,
-  6 and 2 in every bar. The arpeggios (64–81, 97–104) take A as both open A and low D 7 and alternate
-  positions 6 and 7 (rule 6, no rolling). The importer does not read harmonics: the song data gives
+  string, at the same fret an index barre (ADR-0007, 2026-11-05). That riff moves through positions
+  7, 5, 9, 5, 6 and 2 in every bar. The arpeggios (64–81, 97–104) stay on the tab: A on low D 7 with
+  E, D and A at fret 7 above it, one index barre across the four strings. The importer does not read harmonics: the song data gives
   a harmonic the pitch of the fretted note, and the solver may move it. Override in bar 116: the
   harmonic on A5 stays there (the solver had moved it to the open D string, a different note). The
   other harmonics are on their tab. YouTube: not set. Songsterr's API answered 403 to npm run

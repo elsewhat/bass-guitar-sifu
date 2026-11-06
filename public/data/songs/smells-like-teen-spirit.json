@@ -168,7 +168,7 @@
     {"id":3,"bar":4,"tick":0,"start":11520,"dur":1920,"kind":"rest","notes":[]},
     {"id":4,"bar":4,"tick":1920,"start":13440,"dur":640,"kind":"rest","notes":[]},
     {"id":5,"bar":4,"tick":2560,"start":14080,"dur":320,"kind":"note","notes":[{"string":0,"fret":1,"pitch":29,"tieFromPrev":false,"dead":false,"finger":1,"position":1}]},
-    {"id":6,"bar":4,"tick":2880,"start":14400,"dur":480,"kind":"note","notes":[{"string":0,"fret":6,"pitch":34,"tieFromPrev":false,"dead":false,"finger":4,"position":4}]},
+    {"id":6,"bar":4,"tick":2880,"start":14400,"dur":480,"kind":"note","notes":[{"string":1,"fret":1,"pitch":34,"tieFromPrev":false,"dead":false,"finger":1,"position":1,"retabFrom":{"string":0,"fret":6}}]},
     {"id":7,"bar":4,"tick":3360,"start":14880,"dur":480,"kind":"note","notes":[{"string":0,"fret":1,"pitch":29,"tieFromPrev":false,"dead":false,"finger":1,"position":1}]},
     {"id":8,"bar":5,"tick":0,"start":15360,"dur":720,"kind":"note","notes":[{"string":0,"fret":1,"pitch":29,"tieFromPrev":false,"dead":false,"finger":1,"position":1}]},
     {"id":9,"bar":5,"tick":720,"start":16080,"dur":240,"kind":"note","notes":[{"string":0,"fret":1,"pitch":29,"tieFromPrev":false,"dead":false,"finger":1,"position":1}]},
@@ -1234,7 +1234,7 @@
     [145,145]
   ],
   "chunks": [
-    {"id":1,"name":"Intro a","bars":[4,8],"position":1,"shifts":9},
+    {"id":1,"name":"Intro a","bars":[4,8],"position":1,"shifts":7},
     {"id":2,"name":"Intro b","bars":[9,12],"position":1,"shifts":7},
     {"id":3,"name":"Verse Riff","bars":[13,16],"position":1,"shifts":6},
     {"id":4,"name":"Verse 1","bars":[17,20],"position":1,"shifts":6},

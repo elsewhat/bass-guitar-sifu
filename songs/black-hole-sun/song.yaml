@@ -59,9 +59,8 @@ notes: >-
   the low D string fret 8 to A1, which keeps the chromatic descent G–B♭–F–E–E♭–D in first
   position; bar 17's octave D uses two open strings instead of A5. Accepted shifts: bars 9
   and 23 take the G with the middle finger in position 4 after the held A♭, then drop to
-  position 1 for B♭ during the long notes; in the solo the F octave (fret 3 on the low D and D strings) alternates
-  index and middle finger (positions 3 and 2) so the index does not roll across strings at the
-  same fret, which inflates the shift count. No overrides. YouTube (2026-10-11): Songsterr's default
+  position 1 for B♭ during the long notes; in the solo the F octave (fret 3 on the low D and D strings) is an
+  index barre in position 3 (notes that go back and forth at one fret, ADR-0007, 2026-11-05). No overrides. YouTube (2026-10-11): Songsterr's default
   video for this tab, "Soundgarden - Black Hole Sun" by SoundgardenVEVO (3mbBbFH9fAg). Sync anchors
   are Songsterr's point per bar (song 227, revision 9085891; npm run fetch-video): 79 anchors for 79
   bars, bar 1 at 0:01.21, up to 3.4 s from the score's tempo map (bar 79). To check by ear: bars

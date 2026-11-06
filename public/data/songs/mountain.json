@@ -379,7 +379,7 @@
     {"id":0,"bar":1,"tick":0,"start":0,"dur":1920,"kind":"note","notes":[{"string":2,"fret":3,"pitch":38,"tieFromPrev":false,"dead":false,"finger":1,"position":3}]},
     {"id":1,"bar":1,"tick":1920,"start":1920,"dur":1920,"kind":"note","notes":[{"string":2,"fret":3,"pitch":38,"tieFromPrev":false,"dead":false,"finger":1,"position":3}]},
     {"id":2,"bar":2,"tick":0,"start":3840,"dur":1440,"kind":"note","notes":[{"string":2,"fret":3,"pitch":38,"tieFromPrev":false,"dead":false,"finger":1,"position":3}]},
-    {"id":3,"bar":2,"tick":1440,"start":5280,"dur":480,"kind":"note","notes":[{"string":1,"fret":3,"pitch":33,"tieFromPrev":false,"dead":false,"finger":2,"position":2}]},
+    {"id":3,"bar":2,"tick":1440,"start":5280,"dur":480,"kind":"note","notes":[{"string":1,"fret":3,"pitch":33,"tieFromPrev":false,"dead":false,"finger":1,"position":3}]},
     {"id":4,"bar":2,"tick":1920,"start":5760,"dur":960,"kind":"note","notes":[{"string":2,"fret":3,"pitch":38,"tieFromPrev":false,"dead":false,"finger":1,"position":3}]},
     {"id":5,"bar":2,"tick":2880,"start":6720,"dur":960,"kind":"note","notes":[{"string":2,"fret":3,"pitch":38,"tieFromPrev":false,"dead":false,"finger":1,"position":3}]},
     {"id":6,"bar":3,"tick":0,"start":7680,"dur":480,"kind":"note","notes":[{"string":2,"fret":3,"pitch":38,"tieFromPrev":true,"dead":false,"finger":1,"position":3}]},
@@ -2471,7 +2471,7 @@
     [360,360]
   ],
   "chunks": [
-    {"id":1,"name":"Intro","bars":[1,5],"position":3,"shifts":4},
+    {"id":1,"name":"Intro","bars":[1,5],"position":3,"shifts":2},
     {"id":2,"name":"Riff","bars":[10,13],"position":3,"shifts":2},
     {"id":3,"name":"Riff turn","bars":[14,17],"position":3,"shifts":5},
     {"id":4,"name":"Riff","bars":[18,21],"position":3,"shifts":2},

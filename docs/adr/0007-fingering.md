@@ -3,7 +3,7 @@
 Status: Accepted
 Date: 2026-09-28
 Revised: 2026-09-29 (beginner rules: hand box, sparse and dense passages, breaks, rolling)
-Revised: 2026-11-05 (a pitch doubled on two strings; notes that ring together)
+Revised: 2026-11-05 (a pitch doubled on two strings; notes that ring together; an index barre for notes that go back and forth, owner)
 
 ## Context
 
@@ -19,6 +19,7 @@ The app is for beginners. The owner's rules for a beginner's fretting hand:
 4. **Breaks allow micro-shifts.** When there is a break, the hand may move a fret or two so the index plays the next note.
 5. **The little finger reaches two frets from the index in low positions,** where the frets are wide. The ring finger supports it (Simandl 1-2-4). Higher up it is one finger per fret.
 6. **No finger rolling,** meaning the same finger at the same fret moved to another string for the next note. The one exception is the little finger between the two top strings (D and G).
+   - **Exception (owner, 2026-11-05): an index barre** when two notes at the same fret go back and forth without a break (root and fifth, or an octave in drop D). The index lies across both strings. A single step to the same fret on another string is still a roll.
 
 ## Decision
 
@@ -59,6 +60,8 @@ nodes:
   node.pitches lists a pitch twice when the beat doubles it on two strings (a D chord on A5 and the open D)
   node.holds = a fretted note from an earlier beat still rings (a tie continuation in the beat)
   ringing notes = a held note's plucked origin, and every note plucked while a note is held
+  node.alternates = no rest before it, and the node two back has its pitches, or the next node (no rest
+    before it) has the previous node's pitches: P–Q–P
 
 candidates(node):                          # states
   for every combination of (string, fret) that sounds the node's pitches, one note per string,
@@ -79,9 +82,10 @@ transition(a → b):                         # consecutive nodes
     if b.holds: s += heldShift                                               # the held note pins the hand
     c += s
   c += stringCross · |lowest string of a − lowest string of b|
-  if not b.free and not b.holds:                                             # with a held note it is a barre
+  if not b.free:
     for fretted x in a, y in b with x.finger = y.finger, x.fret = y.fret, x.string ≠ y.string:
-      unless x.finger = 4 and {x.string, y.string} are the two top strings:
+      unless x.finger = 4 and {x.string, y.string} are the two top strings
+          or x.finger = 1 and (b.holds or b.alternates):                    # index barre
         c += roll
   return c
 
@@ -99,7 +103,8 @@ solve:
 - **Low positions (rule 5).** A phrase spanning four frets below position 6 cannot be held in one box. The solver shifts by a fret, preferably on an open string or a rest. Example: the Killing in the Name verse, D2–A5 in drop D.
 - **Rolling (rule 6).** A roll costs more than shifting a fret and back, and more than a retab. So a roll is only chosen when nothing else is possible.
   - Simultaneous notes at the same fret are exempt. One finger barring a double stop (drop-D power chords) is the standard technique.
-  - So is a note plucked at the fret of a note that still rings (Intension: the root held on the low D string, a harmonic plucked on the A string at the same fret). The two sound together, so it is a barre.
+  - So is the index laid across the strings for a note plucked at the fret of a note that still rings (Intension: the root held on the low D string, a harmonic plucked on the A string at the same fret). The two sound together, so it is a barre.
+  - So is the index for two notes that go back and forth at one fret without a break (owner, 2026-11-05). Before, the solver moved the hand a fret back and forth so two fingers could take them (Creep's verse, Hey Jane's walk-up, Forty Six & 2's F–C and B♭–F), or moved one note to an open string (Paranoid, wearing yr smell). Only the index: with any finger allowed, the solver chose a little-finger barre to save a shift (Hey Jane bar 24). The rule changed the fingering of 23 songs already in the library and 5 of the new Tool songs, all on such passages; the Vortex Surfer fixture did not change.
 - **Notes that ring together (2026-11-05).** The solver does not follow a held note, so before this rule it could move a held root to another string while the note plucked over it stayed, and put two notes on one string (Intension, 28 beats). Now the held note's origin and the notes plucked while it rings keep the source tab, and the hand does not move until it stops (`heldShift`). The source tab is a playable shape, and let-ring shapes are rare: of 55 songs only Intension changed. It also keeps Intension's natural harmonics on their frets; the importer does not read harmonics yet (deferred, below).
 - **A pitch doubled on two strings (2026-11-05).** Sober and Forty Six & 2 play D on the A string fret 5 and on the open D string in one chord. The node lists the pitch twice, so each note gets its own string, and the retab cost counts a source tab once per pitch. Before, both notes were written to the same string.
 

@@ -45,16 +45,6 @@ fingeringOverrides:
   - { bar: 80, tick: 960, string: 1, fret: 3, finger: 1 }
   - { bar: 81, tick: 960, string: 1, fret: 3, finger: 1 }
   - { bar: 82, tick: 960, string: 1, fret: 3, finger: 1 }
-  - { bar: 106, tick: 0, string: 1, fret: 1, finger: 1 }
-  - { bar: 106, tick: 960, string: 2, fret: 3, finger: 4 }
-  - { bar: 106, tick: 1200, string: 1, fret: 1, finger: 1 }
-  - { bar: 106, tick: 1680, string: 2, fret: 3, finger: 4 }
-  - { bar: 106, tick: 2640, string: 1, fret: 1, finger: 1 }
-  - { bar: 110, tick: 0, string: 1, fret: 1, finger: 1 }
-  - { bar: 110, tick: 960, string: 2, fret: 3, finger: 4 }
-  - { bar: 110, tick: 1200, string: 1, fret: 1, finger: 1 }
-  - { bar: 110, tick: 1680, string: 2, fret: 3, finger: 4 }
-  - { bar: 110, tick: 2640, string: 1, fret: 1, finger: 1 }
 notes: >-
   Drop D (D A D G). 78–84 BPM; the riffs are sixteenth notes. No tacet bars. Chunks follow the 13
   section markers; repeated sections are numbered. Intro (1–14): the D–D–C–D♯ riff in the upper
@@ -66,15 +56,14 @@ notes: >-
   (71–82): a one-bar G–A–D–F sixteenth figure on the low D string seven times, then the D–C–F figure
   four times. Bridge II and Drum Solo: the riff in 7/8 (three 7/8 bars and a 4/4 bar), from bar 97
   an octave lower; the Drum Solo marker (93) falls inside a run of five 7/8 bars, so Bridge II b is
-  the two extra bars. Outro Chorus: D, B♭, D, F bars in 7/8; Outro: the D chords. Fingering: 52
+  the two extra bars. Outro Chorus: D, B♭, D, F bars in 7/8; Outro: the D chords. Fingering: 32
   re-tabs, mostly D2 A5 → D0 and D2 D12 → D0 (open D string). The D chords double D on A5 and the
-  open D string; the solver keeps both (ADR-0007, 2026-11-05). Overrides: bars 79–82, the first C of
+  open D string; the solver keeps both (ADR-0007, 2026-11-05). Override: bars 79–82, the first C of
   the bar on A3 like the other Cs in the bar instead of low D fret 10 (the tab's choice, kept by the
-  solver because open Ds surround it). Bars 106 and 110: B♭ on A1 and F on D3, a root–fifth box in
-  position 1, instead of low D 8 and A 8, which the solver played in positions 6, 7, 8, 7, 6 within
-  the bar so as not to roll a finger between the strings (rule 6). Not overridden: the intro riff
-  spans frets 3–8 on the G string, so it shifts between positions 3, 5 and 6 in the 1-2-4 box, and
-  bars 79–82 alternate positions 2 and 3 for F (low D 3) and C (A 3), again rule 6. YouTube: not
+  solver because open Ds surround it). Root and fifth that go back and forth at one fret take an
+  index barre (ADR-0007, 2026-11-05): F and C at fret 3 in bars 48, 50 and 79–82 (position 3), B♭
+  and F at fret 8 in bars 106 and 110 (position 8), as tabbed. The intro riff spans frets 3–8 on the
+  G string, so it shifts between positions 3, 5 and 6 in the 1-2-4 box. YouTube: not
   set. Songsterr's API answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab:
   song 460731 (songsterr.com/a/wsa/tool-forty-six-2-bass-tab-s460731); run npm run fetch-video --
   forty-six-2 --song 460731, then with --write. Music: offset 0 ms, the first-sound estimate; the

@@ -110,8 +110,7 @@ notes: >-
   octave) and B–C (185–214).
   Fingering: no re-tabs; no overrides. Bars 41–49 move between positions 2 and 6 every two bars, as
   tabbed (B dyads low, D♯ and E dyads at frets 6–7). In 167–168 F♯ (A9) and C♯ (E9) alternate at the
-  same fret on neighbouring strings, so the solver uses two fingers with small shifts (no rolling,
-  ADR-0007).
+  same fret on neighbouring strings: an index barre in position 9 (ADR-0007, 2026-11-05).
   YouTube (2026-10-30): Songsterr's default video, ""Drug Thing"" by Motorpsycho - Topic
   (ibYMHPd31V8). Sync: 222 points for 217 bars, matched by bar durations; 4 extra points at the end
   ignored. Bar 1 at 0:00.55, at most 0.7 s from the tempo map (bar 217).

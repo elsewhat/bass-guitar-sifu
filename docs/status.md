@@ -201,25 +201,30 @@ Updated 2026-11-05. This is the hand-off point between working sessions: what is
    - **Inbox.** The inbox copy of Un Chien d'Espace (`.gp` and `.mp3`) is the song already in `songs/un-chien-d-espace`: the same report and a byte-identical MP3. It is left in `music/`.
    - **Tests.** 237 unit tests. The preview checked Sinful, Wind-Borne with YouTube through the rest into chunk 3.
 
-22. **Seven Tool songs** (2026-11-05), added with `/preprocess-song` from the inbox. The owner named the Songsterr bass tab of each. Each song has chunks from the section markers, a Music offset, an album cover and synced lyrics. The reasoning and the doubts are in each `song.yaml` `notes`.
+22. **Eight Tool songs** (2026-11-05), added with `/preprocess-song` from the inbox. The owner named the Songsterr bass tab of each. Each song has chunks from the section markers, a Music offset, an album cover and synced lyrics. The reasoning and the doubts are in each `song.yaml` `notes`.
    - **Songs:**
      - Lateralus: `schism`, `parabola`.
      - Ænima: `forty-six-2`, `stinkfist`, `aenema`.
      - Undertow: `sober` (Paul D'Amour's part).
      - 10,000 Days: `intension`.
+     - Fear Inoculum: `pneuma` (400 bars, 11:55; its riff is a six-bar 6/8 and 5/8 cycle, chunked two cycles at a time after the first).
    - **Tunings and meters.** All drop D except Parabola, which is B E D G as in the tab. Schism alternates 5/8 and 7/8 and has 9/8, 3/8 and 3/4 cycles. Intension is in 7/4. Ænema switches from 12/8 at 183 BPM to 6/8 at 90 BPM at bar 68, which is the same speed (`tempo.note`).
-   - **No YouTube yet.** Songsterr's API answered 403 to `npm run fetch-video` for all seven tabs. It was not retried. Each song's `notes` give the command with its `--song` id.
+   - **No YouTube yet.** Songsterr's API answered 403 to `npm run fetch-video` for all eight tabs, also when tried again for Pneuma later the same day. Each song's `notes` give the command with its `--song` id.
    - **Fingering solver** (ADR-0007, revised 2026-11-05). Two bugs that no earlier song triggered:
      - A pitch doubled on two strings, like the D on A5 and the open D in Sober's and Forty Six & 2's chords, was written to one string (360 chords). Each note now gets its own string.
-     - A held note and a note plucked over it could land on one string (Intension, 28 beats). Notes that ring together now keep the source tab, the hand stays while a fretted note rings (`heldShift`), and a note at the held note's fret counts as a barre, not a roll.
-     - The other 48 songs' data is byte-identical. Two new cases in `fingering.test.ts`.
+     - A held note and a note plucked over it could land on one string (Intension, 28 beats). Notes that ring together now keep the source tab, the hand stays while a fretted note rings (`heldShift`), and the index at the held note's fret counts as a barre, not a roll.
+     - Neither fix changed the data of the 48 songs already in the library.
+   - **Rule 6, index barre** (owner, 2026-11-05). Two notes at the same fret that go back and forth without a break (P–Q–P) may take one index finger across both strings. A single step to the same fret is still a roll. Before, the solver moved the hand a fret back and forth for every such note, or moved one note to an open string.
+     - It changed the fingering of 23 songs already in the library, all on such passages: Creep's verse, Hey Jane's walk-up, Paranoid's G–D turn and D bars (its 48 re-tabs are gone), Drug Thing, Kill Some Day, Plush, Black Hole Sun's solo, The Wheel, wearing yr smell and others. The Vortex Surfer fixture did not change. The notes of the songs that described the old fingering are updated.
+     - The barre is the index only: with any finger, the solver chose a little-finger barre to save a shift (Hey Jane bar 24).
+     - Tests: three new cases in `fingering.test.ts`.
    - **Overrides.**
-     - Forty Six & 2 bars 79–82: the first C on A3 like the bar's other Cs.
-     - Forty Six & 2 bars 106 and 110: B♭–F in position 1 (A1, D3) instead of four position changes within the bar.
+     - Forty Six & 2 bars 79–82: the first C on A3 like the bar's other Cs. (Bars 106 and 110 had overrides for B♭–F before the barre rule; they are gone, and the tab's index barre at fret 8 is used.)
+     - Pneuma bars 307–315: the A on the open string, as in bars 269–306.
      - Intension bar 13: the same fingering as bars 14–19.
      - Intension bar 116: a natural harmonic on A5 stays there. The importer does not read harmonics (Intension has 338, Schism 1, no other song any), so the solver had moved it to the open D string, a different note.
-   - **Ænema**'s bass track has no "bass" in its name ("Justin Chancellor / Wal MKII"), so `bassTrack` names it. Schism's second bass track ("Bass Whammy Effect") is not imported.
-   - **Tests.** 239 unit tests; `build:songs -- --check` is clean.
+   - **Ænema**'s bass track has no "bass" in its name ("Justin Chancellor / Wal MKII"), so `bassTrack` names it. Schism's second bass track ("Bass Whammy Effect") and Pneuma's ("Bass Delay FX") are not imported.
+   - **Display.** A tuning without a name (Parabola's B E D G) was shown twice in the header and on its library card; both show it once now (`headMeta`, `cardTuning`).
 
 ## Next
 
@@ -241,12 +246,13 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
-- The seven Tool songs (item 22):
+- The eight Tool songs (item 22):
   - YouTube: when Songsterr's API answers again, run `npm run fetch-video -- <slug> --song <id>` (the ids are in each song's `notes`), check the report, add `--write`, run `npm run build:songs`, and check that the video plays.
-  - Rule 6 (no rolling) makes the solver move a fret back and forth between a root and its fifth or octave at the same fret on another string: Forty Six & 2 bars 79–82, Stinkfist bars 98 and 100, Schism's outro and Intension's arpeggios (64–81, 97–104). A one-finger barre is the usual way to play these. Should rule 6 allow it for notes that alternate quickly?
-  - Intension plays the riff in two fingerings: open A in bars 13–20, then the tab's low-D-string shapes from bar 21, where the roots ring under the fifths. Keep both, or use one throughout?
+  - The index barre (rule 6 exception) changed the fingering of 23 songs already in the library. Skim a few in the app: Creep's verse, Hey Jane's walk-up, Paranoid's D bars, Intension's arpeggios (one barre across four strings at fret 7).
+  - Intension plays the riff in two fingerings: open A in bars 13–20, then the tab's low-D-string shapes from bar 21, where the roots ring under the harmonics. Keep both, or use one throughout?
+  - Pneuma's chunks after Bass Enter hold two riff cycles (12 short bars, about 18 s). Shorter, one cycle each?
   - Parabola's tuning (B E D G) is the tab's. Is it right?
-  - Weak Music onset matches (first-sound estimate used): Forty Six & 2, Ænema, Parabola and Intension.
+  - Weak Music onset matches (first-sound estimate used): Forty Six & 2, Ænema, Parabola, Intension and Pneuma.
 - Listen to the nine new Motorpsycho songs with YouTube (item 21). They are all AI transcriptions, so check that the tab ring lands on the bass. Each `song.yaml` `notes` ends with what to check. In short:
   - Giftland, bars 231–258 and 313–384: do the bars follow the recording, or are Songsterr's points misplaced?
   - Sinful, Wind-Borne, bar 141: Songsterr makes it half as long as in the tab.
