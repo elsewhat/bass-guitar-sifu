@@ -209,7 +209,7 @@ Updated 2026-11-05. This is the hand-off point between working sessions: what is
      - 10,000 Days: `intension`.
      - Fear Inoculum: `pneuma` (400 bars, 11:55; its riff is a six-bar 6/8 and 5/8 cycle, chunked two cycles at a time after the first).
    - **Tunings and meters.** All drop D except Parabola, which is B E D G as in the tab. Schism alternates 5/8 and 7/8 and has 9/8, 3/8 and 3/4 cycles. Intension is in 7/4. Ænema switches from 12/8 at 183 BPM to 6/8 at 90 BPM at bar 68, which is the same speed (`tempo.note`).
-   - **No YouTube yet.** Songsterr's API answered 403 to `npm run fetch-video` for all eight tabs, also when tried again for Pneuma later the same day. Each song's `notes` give the command with its `--song` id.
+   - **YouTube** (2026-11-06). Songsterr's API answered 403 to `npm run fetch-video` on 2026-11-05. All eight now have Songsterr's default video, the official TOOLVEVO upload, with one anchor per bar; item 23 says how the points were fetched. All eight are playable and embeddable from this machine. Each song's `notes` give the video, the revision and the bars whose length is far from the score's.
    - **Fingering solver** (ADR-0007, revised 2026-11-05). Two bugs that no earlier song triggered:
      - A pitch doubled on two strings, like the D on A5 and the open D in Sober's and Forty Six & 2's chords, was written to one string (360 chords). Each note now gets its own string.
      - A held note and a note plucked over it could land on one string (Intension, 28 beats). Notes that ring together now keep the source tab, the hand stays while a fretted note rings (`heldShift`), and the index at the held note's fret counts as a barre, not a roll.
@@ -226,6 +226,22 @@ Updated 2026-11-05. This is the hand-off point between working sessions: what is
    - **Ænema**'s bass track has no "bass" in its name ("Justin Chancellor / Wal MKII"), so `bassTrack` names it. Schism's second bass track ("Bass Whammy Effect") and Pneuma's ("Bass Delay FX") are not imported.
    - **Display.** A tuning without a name (Parabola's B E D G) was shown twice in the header and on its library card; both show it once now (`headMeta`, `cardTuning`).
 
+23. **Longview and Carry The Zero** (2026-11-06), added with `/preprocess-song` from the inbox, with the Songsterr tabs the owner named (Green Day song 23529, Built to Spill song 398579). Each has chunks from the section markers, a Music offset, an album cover, synced lyrics and a YouTube video. The reasoning and the doubts are in each `song.yaml` `notes`.
+   - **Songs:**
+     - Dookie: `longview` (E♭ standard, 141–152 BPM, 143 bars).
+     - Keep It Like a Secret: `carry-the-zero` (standard, 95 BPM, 137 bars).
+   - **Songsterr refuses scripts.** Since 2026-11-05 the API answers 403 (a plain nginx refusal) to every request from Node or curl, not only for Tool's tabs. The tab page in a browser still loads the same data.
+     - For these two songs and the eight Tool songs (item 22), the tab's meta, the revision of the `.gp`'s date and its video list were read from the tab page in the in-app browser.
+     - A temporary preload answered `fetch-video`'s Songsterr requests with that data, so the alignment and `--write` are the script's own. No code in the repository changed.
+   - **Videos.**
+     - Longview: Songsterr's default, a third-party upload. It has 137 points for 143 bars; bars 138–143 continue at the score's tempo.
+     - Carry The Zero: the Built To Spill - Topic upload, 137 anchors for 137 bars.
+     - YouTube's watch page, fetched from this machine, reports all ten new videos as playable and embeddable (`playabilityStatus` OK, `playableInEmbed`). The same check reports Go With The Flow's blocked Topic upload as UNPLAYABLE.
+     - The in-app preview pane, while hidden, plays no YouTube video at all, Black Hole Sun's included, so it could not show them playing.
+   - **Override.** Longview bar 102: the C♯ triplet build-up on A♭ 5, as in bar 30. The solver had put all 21 notes on the open string.
+   - **Music.** Carry The Zero: 0 ms, no drift. Longview: 0 ms, drifting to −140 ms in the last minute.
+   - **Tests.** 240 unit tests and 20 Playwright tests pass; `build:songs -- --check` is clean.
+
 ## Next
 
 - The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
@@ -237,6 +253,7 @@ Updated 2026-11-05. This is the hand-off point between working sessions: what is
 - Export and import of all progress as a JSON file (ADR-0010). The design has no settings dialog for it yet.
 - The Wheel and wearing yr smell come from AI-generated Songsterr tabs, like Vortex Surfer. Their bars may sit on the wrong beat of the video in the same way. Measuring them needs the recording (ADR-0029: the owner's permission each time); the tools are now in `scripts/transcribe/`.
 - `fetch-video --write` does not know which songs have measured anchors and would replace them. The warning is only in those songs' `notes`.
+- `fetch-video` cannot reach Songsterr: its API answers 403 to scripts since 2026-11-05 (item 23). The data still comes from the tab page in a browser. A supported way in would be an option that reads the meta, revisions and video list saved from that page.
 - The importer does not read natural harmonics. The song data gives them the fretted note's pitch, and the solver may move them to another string (ADR-0007, deferred). Only Intension and Schism have them today.
 
 Open points from slice 1 (not blocking):
@@ -246,8 +263,9 @@ Open points from slice 1 (not blocking):
 
 ## Waiting on the owner
 
+- Longview and Carry The Zero (item 23): play both with YouTube in a normal browser. Longview: the sync in bars 138–143 (no Songsterr points) and the Music drift near the end. Carry The Zero: the Fade Out chunks start at bar 125, a bar before the score's marker at 126.
 - The eight Tool songs (item 22):
-  - YouTube: when Songsterr's API answers again, run `npm run fetch-video -- <slug> --song <id>` (the ids are in each song's `notes`), check the report, add `--write`, run `npm run build:songs`, and check that the video plays.
+  - YouTube (added 2026-11-06, item 23): play a few in a normal browser. Bars whose length on the video is far from the score's: Pneuma 33–34 and 371 (the recording ends 16 s before the tempo map), Schism 84–85, 180–181, 206 and 208, Intension 2, 6 and 12.
   - The index barre (rule 6 exception) changed the fingering of 23 songs already in the library. Skim a few in the app: Creep's verse, Hey Jane's walk-up, Paranoid's D bars, Intension's arpeggios (one barre across four strings at fret 7).
   - Intension plays the riff in two fingerings: open A in bars 13–20, then the tab's low-D-string shapes from bar 21, where the roots ring under the harmonics. Keep both, or use one throughout?
   - Pneuma's chunks after Bass Enter hold two riff cycles (12 short bars, about 18 s). Shorter, one cycle each?

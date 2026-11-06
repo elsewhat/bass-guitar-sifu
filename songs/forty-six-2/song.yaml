@@ -5,7 +5,36 @@ source: { file: "Tool-Forty Six & 2-11-02-2026.gp", date: 2026-11-02 }
 bassTrack: "Justin Chancellor | Bass | Music Man Stingray"
 tempo: { note: "78–84 BPM (17 changes); the riffs are written in sixteenth notes." }
 media:
-  youtube: { videoId: null, sync: [] }
+  youtube:
+    videoId: GIuZUCpm9hc
+    songsterr: { songId: 460731, revisionId: 10143274 }
+    sync: [
+      { bar: 1, ms: 1000 }, { bar: 2, ms: 3990 }, { bar: 3, ms: 7030 }, { bar: 4, ms: 10100 }, { bar: 5, ms: 13160 },
+      { bar: 6, ms: 16230 }, { bar: 7, ms: 19300 }, { bar: 8, ms: 22360 }, { bar: 9, ms: 25430 }, { bar: 10, ms: 28470 },
+      { bar: 11, ms: 31530 }, { bar: 12, ms: 34600 }, { bar: 13, ms: 37660 }, { bar: 14, ms: 40330 }, { bar: 15, ms: 43350 },
+      { bar: 16, ms: 46460 }, { bar: 17, ms: 49460 }, { bar: 18, ms: 52520 }, { bar: 19, ms: 55540 }, { bar: 20, ms: 58610 },
+      { bar: 21, ms: 61670 }, { bar: 22, ms: 64740 }, { bar: 23, ms: 67780 }, { bar: 24, ms: 70750 }, { bar: 25, ms: 73790 },
+      { bar: 26, ms: 76880 }, { bar: 27, ms: 79950 }, { bar: 28, ms: 82990 }, { bar: 29, ms: 86050 }, { bar: 30, ms: 89120 },
+      { bar: 31, ms: 92160 }, { bar: 32, ms: 95150 }, { bar: 33, ms: 98200 }, { bar: 34, ms: 101190 }, { bar: 35, ms: 104230 },
+      { bar: 36, ms: 107230 }, { bar: 37, ms: 110220 }, { bar: 38, ms: 113240 }, { bar: 39, ms: 116280 }, { bar: 40, ms: 119280 },
+      { bar: 41, ms: 122320 }, { bar: 42, ms: 125290 }, { bar: 43, ms: 128270 }, { bar: 44, ms: 131260 }, { bar: 45, ms: 134260 },
+      { bar: 46, ms: 137230 }, { bar: 47, ms: 140150 }, { bar: 48, ms: 143220 }, { bar: 49, ms: 146190 }, { bar: 50, ms: 149190 },
+      { bar: 51, ms: 152160 }, { bar: 52, ms: 155090 }, { bar: 53, ms: 158100 }, { bar: 54, ms: 161030 }, { bar: 55, ms: 163980 },
+      { bar: 56, ms: 167000 }, { bar: 57, ms: 169990 }, { bar: 58, ms: 172960 }, { bar: 59, ms: 175980 }, { bar: 60, ms: 178960 },
+      { bar: 61, ms: 181930 }, { bar: 62, ms: 184920 }, { bar: 63, ms: 187870 }, { bar: 64, ms: 190910 }, { bar: 65, ms: 193890 },
+      { bar: 66, ms: 196810 }, { bar: 67, ms: 199810 }, { bar: 68, ms: 202710 }, { bar: 69, ms: 205610 }, { bar: 70, ms: 208540 },
+      { bar: 71, ms: 211420 }, { bar: 72, ms: 214340 }, { bar: 73, ms: 217200 }, { bar: 74, ms: 220150 }, { bar: 75, ms: 223030 },
+      { bar: 76, ms: 225950 }, { bar: 77, ms: 228830 }, { bar: 78, ms: 231690 }, { bar: 79, ms: 234590 }, { bar: 80, ms: 237450 },
+      { bar: 81, ms: 240300 }, { bar: 82, ms: 243160 }, { bar: 83, ms: 246080 }, { bar: 84, ms: 248730 }, { bar: 85, ms: 251470 },
+      { bar: 86, ms: 254160 }, { bar: 87, ms: 257210 }, { bar: 88, ms: 259850 }, { bar: 89, ms: 262590 }, { bar: 90, ms: 265290 },
+      { bar: 91, ms: 268400 }, { bar: 92, ms: 271140 }, { bar: 93, ms: 273810 }, { bar: 94, ms: 276530 }, { bar: 95, ms: 279220 },
+      { bar: 96, ms: 281890 }, { bar: 97, ms: 284910 }, { bar: 98, ms: 287650 }, { bar: 99, ms: 290270 }, { bar: 100, ms: 292940 },
+      { bar: 101, ms: 295590 }, { bar: 102, ms: 298240 }, { bar: 103, ms: 300810 }, { bar: 104, ms: 303600 }, { bar: 105, ms: 306270 },
+      { bar: 106, ms: 308920 }, { bar: 107, ms: 311590 }, { bar: 108, ms: 314230 }, { bar: 109, ms: 316910 }, { bar: 110, ms: 319530 },
+      { bar: 111, ms: 322130 }, { bar: 112, ms: 324800 }, { bar: 113, ms: 327750 }, { bar: 114, ms: 330700 }, { bar: 115, ms: 333740 },
+      { bar: 116, ms: 336740 }, { bar: 117, ms: 339780 }, { bar: 118, ms: 342800 }, { bar: 119, ms: 345790 }, { bar: 120, ms: 348860 },
+      { bar: 121, ms: 351830 }, { bar: 122, ms: 354750 }, { bar: 123, ms: 357680 },
+      ]
   music: { source: "Tool-Forty Six & 2-11-05-2026.mp3", offsetMs: 0 }
 cover: { album: "Ænima", itunesId: 1474185335 }
 chunks:
@@ -51,22 +80,25 @@ notes: >-
   octave (open D and the G string), a 4-bar phrase whose fourth bar ends G–F♯–D–D♯; Intro c is the
   7/8 + 4/4 break. Intro II adds F roots (bars 17, 21). Verse 1: the riff, four 4-bar phrases.
   Chorus 1 a is the riff an octave lower on the low D string, b the four-string D octave chords.
-  Post-Chorus 1: the D–F–C figure (a), then the low riff (b). Verse 2: D sixteenths and the F–C–G and
-  G–D cells. Chorus 2 is the low riff and Post-Chorus 2 the chords, as the markers name them. Bridge
-  (71–82): a one-bar G–A–D–F sixteenth figure on the low D string seven times, then the D–C–F figure
-  four times. Bridge II and Drum Solo: the riff in 7/8 (three 7/8 bars and a 4/4 bar), from bar 97
-  an octave lower; the Drum Solo marker (93) falls inside a run of five 7/8 bars, so Bridge II b is
-  the two extra bars. Outro Chorus: D, B♭, D, F bars in 7/8; Outro: the D chords. Fingering: 32
-  re-tabs, mostly D2 A5 → D0 and D2 D12 → D0 (open D string). The D chords double D on A5 and the
+  Post-Chorus 1: the D–F–C figure (a), then the low riff (b). Verse 2: D sixteenths and the F–C–G
+  and G–D cells. Chorus 2 is the low riff and Post-Chorus 2 the chords, as the markers name them.
+  Bridge (71–82): a one-bar G–A–D–F sixteenth figure on the low D string seven times, then the D–C–F
+  figure four times. Bridge II and Drum Solo: the riff in 7/8 (three 7/8 bars and a 4/4 bar), from
+  bar 97 an octave lower; the Drum Solo marker (93) falls inside a run of five 7/8 bars, so Bridge
+  II b is the two extra bars. Outro Chorus: D, B♭, D, F bars in 7/8; Outro: the D chords. Fingering:
+  32 re-tabs, mostly D2 A5 → D0 and D2 D12 → D0 (open D string). The D chords double D on A5 and the
   open D string; the solver keeps both (ADR-0007, 2026-11-05). Override: bars 79–82, the first C of
   the bar on A3 like the other Cs in the bar instead of low D fret 10 (the tab's choice, kept by the
   solver because open Ds surround it). Root and fifth that go back and forth at one fret take an
   index barre (ADR-0007, 2026-11-05): F and C at fret 3 in bars 48, 50 and 79–82 (position 3), B♭
   and F at fret 8 in bars 106 and 110 (position 8), as tabbed. The intro riff spans frets 3–8 on the
-  G string, so it shifts between positions 3, 5 and 6 in the 1-2-4 box. YouTube: not
-  set. Songsterr's API answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab:
-  song 460731 (songsterr.com/a/wsa/tool-forty-six-2-bass-tab-s460731); run npm run fetch-video --
-  forty-six-2 --song 460731, then with --write. Music: offset 0 ms, the first-sound estimate; the
-  onset match is weak in the first minute (1.47; 2.91 in the last). Lyrics: synced from "Maynard J.
-  Keenan | Vocals", 386 syllables from bar 9; lines cut by timing. To check by ear: the Music offset;
-  the overrides in bars 106 and 110 against the low D 8 sound of the record.
+  G string, so it shifts between positions 3, 5 and 6 in the 1-2-4 box. YouTube: GIuZUCpm9hc, "TOOL
+  - Forty Six & 2 (Official Audio)" by TOOLVEVO, Songsterr's default video for song 460731
+  (songsterr.com/a/wsa/tool-forty-six-2-bass-tab-s460731), revision 10143274: 123 anchors for 123
+  bars, bar 1 at 0:01.00, at most 0.5 s from the tempo map. Songsterr's API answers 403 to scripts,
+  so the points were read from the tab's page in the browser on 2026-11-06 and replayed to
+  fetch-video. It plays and embeds from Norway (checked 2026-11-06). Music: offset 0 ms, the
+  first-sound estimate; the onset match is weak in the first minute (1.47; 2.91 in the last).
+  Lyrics: synced from "Maynard J. Keenan | Vocals", 386 syllables from bar 9; lines cut by timing.
+  To check by ear: the Music offset; the overrides in bars 106 and 110 against the low D 8 sound of
+  the record.

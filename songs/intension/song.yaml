@@ -5,7 +5,36 @@ source: { file: "Tool-Intension-08-16-2026.gp", date: 2026-08-16 }
 bassTrack: "Justin Chancellor | Bass"
 tempo: { note: "Free-time intro at 80 BPM (bass tacet); 95–97 BPM from bar 13, slowing to 45 BPM in bars 106–113." }
 media:
-  youtube: { videoId: null, sync: [] }
+  youtube:
+    videoId: LMCU-lYb0G4
+    songsterr: { songId: 56876, revisionId: 8507454 }
+    sync: [
+      { bar: 1, ms: 34190 }, { bar: 2, ms: 37418 }, { bar: 3, ms: 39716 }, { bar: 4, ms: 42503 }, { bar: 5, ms: 48006 },
+      { bar: 6, ms: 51466 }, { bar: 7, ms: 53973 }, { bar: 8, ms: 56969 }, { bar: 9, ms: 60638 }, { bar: 10, ms: 64051 },
+      { bar: 11, ms: 67998 }, { bar: 12, ms: 70994 }, { bar: 13, ms: 74407 }, { bar: 14, ms: 78819 }, { bar: 15, ms: 83231 },
+      { bar: 16, ms: 87619 }, { bar: 17, ms: 92077 }, { bar: 18, ms: 96443 }, { bar: 19, ms: 100878 }, { bar: 20, ms: 105290 },
+      { bar: 21, ms: 109678 }, { bar: 22, ms: 114136 }, { bar: 23, ms: 118525 }, { bar: 24, ms: 122960 }, { bar: 25, ms: 127372 },
+      { bar: 26, ms: 131783 }, { bar: 27, ms: 136195 }, { bar: 28, ms: 140630 }, { bar: 29, ms: 145019 }, { bar: 30, ms: 149407 },
+      { bar: 31, ms: 153796 }, { bar: 32, ms: 158231 }, { bar: 33, ms: 162620 }, { bar: 34, ms: 165220 }, { bar: 35, ms: 169586 },
+      { bar: 36, ms: 173997 }, { bar: 37, ms: 178409 }, { bar: 38, ms: 182844 }, { bar: 39, ms: 185329 }, { bar: 40, ms: 189740 },
+      { bar: 41, ms: 194152 }, { bar: 42, ms: 198564 }, { bar: 43, ms: 202953 }, { bar: 44, ms: 207388 }, { bar: 45, ms: 211799 },
+      { bar: 46, ms: 216211 }, { bar: 47, ms: 220600 }, { bar: 48, ms: 223131 }, { bar: 49, ms: 225662 }, { bar: 50, ms: 228193 },
+      { bar: 51, ms: 230677 }, { bar: 52, ms: 233185 }, { bar: 53, ms: 235693 }, { bar: 54, ms: 238224 }, { bar: 55, ms: 240755 },
+      { bar: 56, ms: 243262 }, { bar: 57, ms: 245817 }, { bar: 58, ms: 248394 }, { bar: 59, ms: 250855 }, { bar: 60, ms: 253340 },
+      { bar: 61, ms: 255917 }, { bar: 62, ms: 258425 }, { bar: 63, ms: 260910 }, { bar: 64, ms: 263441 }, { bar: 65, ms: 265995 },
+      { bar: 66, ms: 268503 }, { bar: 67, ms: 271010 }, { bar: 68, ms: 273565 }, { bar: 69, ms: 276072 }, { bar: 70, ms: 278580 },
+      { bar: 71, ms: 281111 }, { bar: 72, ms: 283665 }, { bar: 73, ms: 286173 }, { bar: 74, ms: 288657 }, { bar: 75, ms: 291165 },
+      { bar: 76, ms: 293719 }, { bar: 77, ms: 296250 }, { bar: 78, ms: 298758 }, { bar: 79, ms: 301266 }, { bar: 80, ms: 303797 },
+      { bar: 81, ms: 306305 }, { bar: 82, ms: 308836 }, { bar: 83, ms: 313294 }, { bar: 84, ms: 317706 }, { bar: 85, ms: 322094 },
+      { bar: 86, ms: 326483 }, { bar: 87, ms: 330895 }, { bar: 88, ms: 335237 }, { bar: 89, ms: 339741 }, { bar: 90, ms: 344153 },
+      { bar: 91, ms: 348565 }, { bar: 92, ms: 352977 }, { bar: 93, ms: 357389 }, { bar: 94, ms: 361777 }, { bar: 95, ms: 366166 },
+      { bar: 96, ms: 370647 }, { bar: 97, ms: 373201 }, { bar: 98, ms: 375663 }, { bar: 99, ms: 378194 }, { bar: 100, ms: 380725 },
+      { bar: 101, ms: 383209 }, { bar: 102, ms: 385740 }, { bar: 103, ms: 388271 }, { bar: 104, ms: 390779 }, { bar: 105, ms: 393310 },
+      { bar: 106, ms: 395818 }, { bar: 107, ms: 398441 }, { bar: 108, ms: 399626 }, { bar: 109, ms: 401112 }, { bar: 110, ms: 402807 },
+      { bar: 111, ms: 404595 }, { bar: 112, ms: 406893 }, { bar: 113, ms: 408217 }, { bar: 114, ms: 410794 }, { bar: 115, ms: 412675 },
+      { bar: 116, ms: 414579 }, { bar: 117, ms: 417180 }, { bar: 118, ms: 419293 }, { bar: 119, ms: 422521 }, { bar: 120, ms: 425725 },
+      { bar: 121, ms: 428883 }, { bar: 122, ms: 431762 }, { bar: 123, ms: 435268 }, { bar: 124, ms: 438612 },
+      ]
   music: { source: "Tool-Intension-11-05-2026.mp3", offsetMs: 10 }
 cover: { album: "10,000 Days", itunesId: 1474250650 }
 chunks:
@@ -37,24 +66,27 @@ fingeringOverrides:
 notes: >-
   Drop D (D A D G). A free-time intro with the bass tacet (bars 1–12), then 95–97 BPM with the riff
   in 7/4; the outro slows to 45 BPM (106–113). Also tacet: 48–63 (the interlude and the start of the
-  bridge) and 122–124. Chunks follow the 12 section markers; repeated sections are numbered. The riff
-  is one 7/4 bar, A–G–C–G–B♭–E; from bar 21 each root rings while a natural harmonic is plucked on
-  the A string ("N.H." in the notation; the part has 338 harmonics). Verse and interlude chunks are
-  4 bars, or 5 where a 4/4 bar (33, 38, 47, 96) closes the phrase. Bridge (64–81): an A–E–D arpeggio in 4/4 over A, C and D, then B♭. Bridge c–d (82–91):
-  the riff again before Verse 4. Chorus: the arpeggios. Outro: a B♭ figure in 4/4, then 2/4 bars as
-  the tempo falls, the A–F–G arpeggios and a long D. Fingering: 27 re-tabs. Bars 13–20 move the riff
-  off the low D string: A on the open A string, C on A3 and B♭ on A1; the override in bar 13 makes it
-  match bars 14–19, where the solver did this by itself. From bar 21 the roots ring under the
-  harmonics, so those notes keep the tab: the root on the low D string and the harmonic on the A
-  string, at the same fret an index barre (ADR-0007, 2026-11-05). That riff moves through positions
-  7, 5, 9, 5, 6 and 2 in every bar. The arpeggios (64–81, 97–104) stay on the tab: A on low D 7 with
-  E, D and A at fret 7 above it, one index barre across the four strings. The importer does not read harmonics: the song data gives
+  bridge) and 122–124. Chunks follow the 12 section markers; repeated sections are numbered. The
+  riff is one 7/4 bar, A–G–C–G–B♭–E; from bar 21 each root rings while a natural harmonic is plucked
+  on the A string ("N.H." in the notation; the part has 338 harmonics). Verse and interlude chunks
+  are 4 bars, or 5 where a 4/4 bar (33, 38, 47, 96) closes the phrase. Bridge (64–81): an A–E–D
+  arpeggio in 4/4 over A, C and D, then B♭. Bridge c–d (82–91): the riff again before Verse 4.
+  Chorus: the arpeggios. Outro: a B♭ figure in 4/4, then 2/4 bars as the tempo falls, the A–F–G
+  arpeggios and a long D. Fingering: 27 re-tabs. Bars 13–20 move the riff off the low D string: A on
+  the open A string, C on A3 and B♭ on A1; the override in bar 13 makes it match bars 14–19, where
+  the solver did this by itself. From bar 21 the roots ring under the harmonics, so those notes keep
+  the tab: the root on the low D string and the harmonic on the A string, at the same fret an index
+  barre (ADR-0007, 2026-11-05). That riff moves through positions 7, 5, 9, 5, 6 and 2 in every bar.
+  The arpeggios (64–81, 97–104) stay on the tab: A on low D 7 with E, D and A at fret 7 above it,
+  one index barre across the four strings. The importer does not read harmonics: the song data gives
   a harmonic the pitch of the fretted note, and the solver may move it. Override in bar 116: the
   harmonic on A5 stays there (the solver had moved it to the open D string, a different note). The
-  other harmonics are on their tab. YouTube: not set. Songsterr's API answered 403 to npm run
-  fetch-video on 2026-11-05. The owner named the tab: song 56876
-  (songsterr.com/a/wsa/tool-intension-bass-tab-s56876); run npm run fetch-video -- intension --song
-  56876, then with --write. Music: offset 10 ms, the first-sound estimate; the onset match is weak in
-  the last minute (2.32 / 1.22). Lyrics: synced from "Maynard J. Keenan | Vocals", 155 syllables
-  from bar 17; lines from the lyrics text. To check by ear: the two fingerings of the riff (13–20
-  against 21 on); the outro's slowing tempo.
+  other harmonics are on their tab. YouTube: LMCU-lYb0G4, "TOOL - Intension (Audio)" by TOOLVEVO,
+  Songsterr's default video for song 56876 (songsterr.com/a/wsa/tool-intension-bass-tab-s56876),
+  revision 8507454: 124 anchors for 124 bars, bar 1 at 0:34.19; bars 2, 6 and 12 are far from the
+  score's length (×0.76, ×0.83, ×1.35); at most 2.0 s from the tempo map (bar 123). Songsterr's API
+  answers 403 to scripts, so the points were read from the tab's page in the browser on 2026-11-06
+  and replayed to fetch-video. It plays and embeds from Norway (checked 2026-11-06). Music: offset
+  10 ms, the first-sound estimate; the onset match is weak in the last minute (2.32 / 1.22). Lyrics:
+  synced from "Maynard J. Keenan | Vocals", 155 syllables from bar 17; lines from the lyrics text.
+  To check by ear: the two fingerings of the riff (13–20 against 21 on); the outro's slowing tempo.

@@ -1,0 +1,93 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Carry The Zero
+artist: Built to Spill
+source: { file: "Built to Spill-Carry The Zero-08-28-2026.gp", date: 2026-08-28 }
+bassTrack: "Brett Nelson | Fender Jazz Bass | Picked Bass Guitar "
+tempo: { note: null }
+media:
+  youtube:
+    videoId: eZ7MFTBjJS8
+    songsterr: { songId: 398579, revisionId: 8742900 }
+    sync: [
+      { bar: 1, ms: 390 }, { bar: 2, ms: 2740 }, { bar: 3, ms: 5360 }, { bar: 4, ms: 8080 }, { bar: 5, ms: 10570 },
+      { bar: 6, ms: 13240 }, { bar: 7, ms: 15650 }, { bar: 8, ms: 18200 }, { bar: 9, ms: 20690 }, { bar: 10, ms: 23380 },
+      { bar: 11, ms: 25840 }, { bar: 12, ms: 28440 }, { bar: 13, ms: 31050 }, { bar: 14, ms: 33620 }, { bar: 15, ms: 36180 },
+      { bar: 16, ms: 38710 }, { bar: 17, ms: 41290 }, { bar: 18, ms: 43630 }, { bar: 19, ms: 46350 }, { bar: 20, ms: 48900 },
+      { bar: 21, ms: 51340 }, { bar: 22, ms: 53890 }, { bar: 23, ms: 56420 }, { bar: 24, ms: 58980 }, { bar: 25, ms: 61670 },
+      { bar: 26, ms: 64230 }, { bar: 27, ms: 66760 }, { bar: 28, ms: 69130 }, { bar: 29, ms: 71700 }, { bar: 30, ms: 74400 },
+      { bar: 31, ms: 76950 }, { bar: 32, ms: 79480 }, { bar: 33, ms: 81900 }, { bar: 34, ms: 84540 }, { bar: 35, ms: 86940 },
+      { bar: 36, ms: 89470 }, { bar: 37, ms: 92020 }, { bar: 38, ms: 94550 }, { bar: 39, ms: 97060 }, { bar: 40, ms: 99570 },
+      { bar: 41, ms: 102140 }, { bar: 42, ms: 104650 }, { bar: 43, ms: 107180 }, { bar: 44, ms: 109690 }, { bar: 45, ms: 112430 },
+      { bar: 46, ms: 114800 }, { bar: 47, ms: 117470 }, { bar: 48, ms: 119930 }, { bar: 49, ms: 122390 }, { bar: 50, ms: 124970 },
+      { bar: 51, ms: 127500 }, { bar: 52, ms: 130080 }, { bar: 53, ms: 132540 }, { bar: 54, ms: 135120 }, { bar: 55, ms: 137690 },
+      { bar: 56, ms: 140250 }, { bar: 57, ms: 142830 }, { bar: 58, ms: 145330 }, { bar: 59, ms: 147910 }, { bar: 60, ms: 150510 },
+      { bar: 61, ms: 153090 }, { bar: 62, ms: 155640 }, { bar: 63, ms: 158080 }, { bar: 64, ms: 160820 }, { bar: 65, ms: 163400 },
+      { bar: 66, ms: 165950 }, { bar: 67, ms: 168370 }, { bar: 68, ms: 170920 }, { bar: 69, ms: 173570 }, { bar: 70, ms: 175910 },
+      { bar: 71, ms: 178580 }, { bar: 72, ms: 180980 }, { bar: 73, ms: 183510 }, { bar: 74, ms: 186220 }, { bar: 75, ms: 188760 },
+      { bar: 76, ms: 191150 }, { bar: 77, ms: 193820 }, { bar: 78, ms: 196350 }, { bar: 79, ms: 198880 }, { bar: 80, ms: 201410 },
+      { bar: 81, ms: 203990 }, { bar: 82, ms: 206520 }, { bar: 83, ms: 209070 }, { bar: 84, ms: 211630 }, { bar: 85, ms: 214130 },
+      { bar: 86, ms: 216740 }, { bar: 87, ms: 219130 }, { bar: 88, ms: 221770 }, { bar: 89, ms: 224330 }, { bar: 90, ms: 226810 },
+      { bar: 91, ms: 229180 }, { bar: 92, ms: 231800 }, { bar: 93, ms: 234380 }, { bar: 94, ms: 236700 }, { bar: 95, ms: 239190 },
+      { bar: 96, ms: 241810 }, { bar: 97, ms: 244320 }, { bar: 98, ms: 246740 }, { bar: 99, ms: 249220 }, { bar: 100, ms: 251750 },
+      { bar: 101, ms: 254120 }, { bar: 102, ms: 256700 }, { bar: 103, ms: 258860 }, { bar: 104, ms: 261430 }, { bar: 105, ms: 263870 },
+      { bar: 106, ms: 266450 }, { bar: 107, ms: 268700 }, { bar: 108, ms: 271190 }, { bar: 109, ms: 273740 }, { bar: 110, ms: 275990 },
+      { bar: 111, ms: 278570 }, { bar: 112, ms: 280870 }, { bar: 113, ms: 283310 }, { bar: 114, ms: 285790 }, { bar: 115, ms: 288370 },
+      { bar: 116, ms: 290690 }, { bar: 117, ms: 293290 }, { bar: 118, ms: 295640 }, { bar: 119, ms: 298100 }, { bar: 120, ms: 300680 },
+      { bar: 121, ms: 302970 }, { bar: 122, ms: 305460 }, { bar: 123, ms: 307830 }, { bar: 124, ms: 310330 }, { bar: 125, ms: 312730 },
+      { bar: 126, ms: 315230 }, { bar: 127, ms: 317650 }, { bar: 128, ms: 320230 }, { bar: 129, ms: 322660 }, { bar: 130, ms: 325060 },
+      { bar: 131, ms: 327580 }, { bar: 132, ms: 330100 }, { bar: 133, ms: 332620 }, { bar: 134, ms: 335140 }, { bar: 135, ms: 337660 },
+      { bar: 136, ms: 340180 }, { bar: 137, ms: 342700 },
+      ]
+  music: { source: "Built to Spill-Carry The Zero-11-06-2026.mp3", offsetMs: 0 }
+cover: { album: "Keep It Like a Secret", itunesId: 311570820 }
+chunks:
+  - { name: Band Entrance, bars: [4, 8] }
+  - { name: Band Entrance repeat, bars: [9, 12] }
+  - { name: Verse 1 a, bars: [13, 16] }
+  - { name: Verse 1 b, bars: [17, 20] }
+  - { name: Verse 1 c, bars: [21, 24] }
+  - { name: Verse 1 d, bars: [25, 28] }
+  - { name: Guitar Solo, bars: [29, 36] }
+  - { name: Guitar Solo ×2, bars: [37, 52] }
+  - { name: Verse 2 a, bars: [53, 56] }
+  - { name: Verse 2 a repeat, bars: [57, 60] }
+  - { name: Verse 2 b, bars: [61, 64] }
+  - { name: Verse 2 b repeat, bars: [65, 68] }
+  - { name: Pre-Chorus a, bars: [69, 72] }
+  - { name: Pre-Chorus b, bars: [73, 76] }
+  - { name: Chorus, bars: [77, 80] }
+  - { name: Chorus repeat, bars: [81, 84] }
+  - { name: Post-Chorus a, bars: [85, 88] }
+  - { name: Post-Chorus b, bars: [89, 92] }
+  - { name: Post-Chorus c, bars: [93, 96] }
+  - { name: Guitar Madness a, bars: [97, 100] }
+  - { name: Guitar Madness a ×2, bars: [101, 108] }
+  - { name: Guitar Madness b, bars: [109, 112] }
+  - { name: Outro a, bars: [113, 116] }
+  - { name: Outro b, bars: [117, 120] }
+  - { name: Outro c, bars: [121, 124] }
+  - { name: Fade Out a, bars: [125, 128] }
+  - { name: Fade Out a repeat, bars: [129, 132] }
+  - { name: Fade Out b, bars: [133, 136] }
+fingeringOverrides: []
+notes: >-
+  Standard tuning, 95 BPM throughout, 137 bars (5:46, the album length). The bass part is picked.
+  Bars 1–3 are tacet (the guitars alone). Bar 4 holds the bass's pickup fill high on the D and G
+  strings, so it starts the first chunk: Band Entrance is 4–8, and its repeat (9–12) repeats bars
+  5–8. Intro, verses, solo, pre-chorus and chorus all play one four-bar riff in a few variants: A
+  with a C♯–D hammer-on, E and B, a held B, then F♯ down to C♯. One riff per chunk, except the Guitar
+  Solo (29–52, the riff six times), in eight-bar chunks. Post-Chorus (85–96): A and E on the open
+  strings in a syncopated rhythm. Guitar Madness (97–112) and Outro: A eighths on the open string, E
+  with sixteenths, and an E–B figure at position 7. Fade Out: the score's marker is at bar 126; the
+  chunks keep the four-bar phrase from bar 125. Bar 137 is tacet. Fingering: 16 re-tabs, all in the
+  E–B figure of bars 111–124: B on D 9 instead of A 14, and the low B on E 7 instead of A 2, which
+  keeps the figure at position 7. Every riff shifts from position 6 to 2 at its third bar (bars 7,
+  11, …), as tabbed. No overrides. YouTube: eZ7MFTBjJS8, "Carry the Zero" by Built To Spill - Topic,
+  Songsterr's default video for song 398579
+  (songsterr.com/a/wsa/built-to-spill-carry-the-zero-bass-tab-s398579), revision 8742900. It plays and
+  embeds from Norway (checked 2026-11-06). 137 anchors for 137 bars, bar 1 at 0:00.39, at most 1.6 s
+  from the tempo map (bar 89). Songsterr's API answers 403 to scripts, so the points were read from
+  the tab's page in the browser on 2026-11-06 and replayed to fetch-video. Music: offset 0 ms, no
+  drift (onset match 2.24 / 2.24). Lyrics: synced from "Doug Martsch | Vocals", 205 syllables from
+  bar 13; lines from the lyrics text. To check by ear: the chunk boundary at 125 against the Fade Out
+  marker at 126.

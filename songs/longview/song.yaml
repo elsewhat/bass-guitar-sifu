@@ -1,0 +1,99 @@
+# yaml-language-server: $schema=../../schemas/song.schema.json
+title: Longview
+artist: Green Day
+source: { file: "Green Day-Longview-10-26-2026.gp", date: 2026-10-26 }
+bassTrack: "Mike Dirnt | Gibson LPB-1 Les Paul Special | Bass"
+tempo: { note: null }
+media:
+  youtube:
+    videoId: "4poa1zXph5E"
+    songsterr: { songId: 23529, revisionId: 9992201 }
+    sync: [
+      { bar: 1, ms: 0 }, { bar: 2, ms: 90 }, { bar: 3, ms: 2060 }, { bar: 4, ms: 3670 }, { bar: 5, ms: 5290 },
+      { bar: 6, ms: 6970 }, { bar: 7, ms: 8640 }, { bar: 8, ms: 10310 }, { bar: 9, ms: 12000 }, { bar: 10, ms: 13720 },
+      { bar: 11, ms: 15390 }, { bar: 12, ms: 17090 }, { bar: 13, ms: 18810 }, { bar: 14, ms: 20530 }, { bar: 15, ms: 22200 },
+      { bar: 16, ms: 23920 }, { bar: 17, ms: 25630 }, { bar: 18, ms: 27350 }, { bar: 19, ms: 29020 }, { bar: 20, ms: 30700 },
+      { bar: 21, ms: 32420 }, { bar: 22, ms: 34160 }, { bar: 23, ms: 35870 }, { bar: 24, ms: 37520 }, { bar: 25, ms: 39200 },
+      { bar: 26, ms: 40910 }, { bar: 27, ms: 42630 }, { bar: 28, ms: 44350 }, { bar: 29, ms: 46020 }, { bar: 30, ms: 47670 },
+      { bar: 31, ms: 49300 }, { bar: 32, ms: 50900 }, { bar: 33, ms: 52520 }, { bar: 34, ms: 54150 }, { bar: 35, ms: 55800 },
+      { bar: 36, ms: 57400 }, { bar: 37, ms: 59000 }, { bar: 38, ms: 60600 }, { bar: 39, ms: 62180 }, { bar: 40, ms: 63810 },
+      { bar: 41, ms: 65500 }, { bar: 42, ms: 67180 }, { bar: 43, ms: 68850 }, { bar: 44, ms: 70520 }, { bar: 45, ms: 72210 },
+      { bar: 46, ms: 73930 }, { bar: 47, ms: 75650 }, { bar: 48, ms: 77320 }, { bar: 49, ms: 79020 }, { bar: 50, ms: 80710 },
+      { bar: 51, ms: 82410 }, { bar: 52, ms: 84080 }, { bar: 53, ms: 85750 }, { bar: 54, ms: 87470 }, { bar: 55, ms: 89140 },
+      { bar: 56, ms: 90840 }, { bar: 57, ms: 92510 }, { bar: 58, ms: 94160 }, { bar: 59, ms: 95760 }, { bar: 60, ms: 97360 },
+      { bar: 61, ms: 98990 }, { bar: 62, ms: 100610 }, { bar: 63, ms: 102210 }, { bar: 64, ms: 103860 }, { bar: 65, ms: 105470 },
+      { bar: 66, ms: 107090 }, { bar: 67, ms: 108690 }, { bar: 68, ms: 110270 }, { bar: 69, ms: 111900 }, { bar: 70, ms: 113450 },
+      { bar: 71, ms: 115050 }, { bar: 72, ms: 116590 }, { bar: 73, ms: 118210 }, { bar: 74, ms: 119720 }, { bar: 75, ms: 121320 },
+      { bar: 76, ms: 122880 }, { bar: 77, ms: 124480 }, { bar: 78, ms: 126040 }, { bar: 79, ms: 127620 }, { bar: 80, ms: 129220 },
+      { bar: 81, ms: 130800 }, { bar: 82, ms: 132400 }, { bar: 83, ms: 133960 }, { bar: 84, ms: 135580 }, { bar: 85, ms: 137230 },
+      { bar: 86, ms: 138900 }, { bar: 87, ms: 140600 }, { bar: 88, ms: 142410 }, { bar: 89, ms: 144130 }, { bar: 90, ms: 145680 },
+      { bar: 91, ms: 147420 }, { bar: 92, ms: 149070 }, { bar: 93, ms: 150740 }, { bar: 94, ms: 152390 }, { bar: 95, ms: 154060 },
+      { bar: 96, ms: 155780 }, { bar: 97, ms: 157450 }, { bar: 98, ms: 159150 }, { bar: 99, ms: 160820 }, { bar: 100, ms: 162540 },
+      { bar: 101, ms: 164210 }, { bar: 102, ms: 165880 }, { bar: 103, ms: 167490 }, { bar: 104, ms: 169060 }, { bar: 105, ms: 170690 },
+      { bar: 106, ms: 172290 }, { bar: 107, ms: 173890 }, { bar: 108, ms: 175500 }, { bar: 109, ms: 177100 }, { bar: 110, ms: 178700 },
+      { bar: 111, ms: 180300 }, { bar: 112, ms: 181950 }, { bar: 113, ms: 183510 }, { bar: 114, ms: 185110 }, { bar: 115, ms: 186710 },
+      { bar: 116, ms: 188310 }, { bar: 117, ms: 189940 }, { bar: 118, ms: 191520 }, { bar: 119, ms: 193100 }, { bar: 120, ms: 194630 },
+      { bar: 121, ms: 196230 }, { bar: 122, ms: 197900 }, { bar: 123, ms: 199580 }, { bar: 124, ms: 201250 }, { bar: 125, ms: 202900 },
+      { bar: 126, ms: 204610 }, { bar: 127, ms: 206260 }, { bar: 128, ms: 207980 }, { bar: 129, ms: 209630 }, { bar: 130, ms: 211320 },
+      { bar: 131, ms: 213000 }, { bar: 132, ms: 214710 }, { bar: 133, ms: 216340 }, { bar: 134, ms: 218060 }, { bar: 135, ms: 219730 },
+      { bar: 136, ms: 221400 }, { bar: 137, ms: 223070 },
+      ]
+  music: { source: "Green Day-Longview-11-06-2026.mp3", offsetMs: 0 }
+cover: { album: "Dookie", itunesId: 1160081985 }
+chunks:
+  - { name: Intro a, bars: [6, 10] }
+  - { name: Intro b, bars: [11, 14] }
+  - { name: Verse 1 a, bars: [15, 18] }
+  - { name: Verse 1 b, bars: [19, 22] }
+  - { name: Verse 1 c, bars: [23, 26] }
+  - { name: Verse 1 d, bars: [27, 30] }
+  - { name: Chorus 1 a, bars: [31, 34] }
+  - { name: Chorus 1 b, bars: [35, 38] }
+  - { name: Instrumental, bars: [39, 42] }
+  - { name: Verse 2 a, bars: [43, 46] }
+  - { name: Verse 2 a ×2, bars: [47, 54] }
+  - { name: Verse 2 b, bars: [55, 58] }
+  - { name: Chorus 2 a, bars: [59, 62] }
+  - { name: Chorus 2 b, bars: [63, 66] }
+  - { name: Bridge a, bars: [67, 70] }
+  - { name: Bridge b, bars: [71, 74] }
+  - { name: Interlude a, bars: [75, 78] }
+  - { name: Interlude b, bars: [79, 82] }
+  - { name: Break, bars: [83, 86] }
+  - { name: Verse 3 a, bars: [87, 90] }
+  - { name: Verse 3 a repeat, bars: [91, 94] }
+  - { name: Verse 3 b, bars: [95, 98] }
+  - { name: Verse 3 c, bars: [99, 103] }
+  - { name: Chorus 3 a, bars: [104, 107] }
+  - { name: Chorus 3 a ×2, bars: [108, 115] }
+  - { name: Chorus 3 b, bars: [116, 119] }
+  - { name: Outro, bars: [120, 127] }
+  - { name: Outro ×2, bars: [128, 143] }
+fingeringOverrides:
+  - { bar: 102, tick: 0, string: 1, fret: 5, finger: 1 }
+notes: >-
+  E♭ standard (E♭ A♭ C♯ F♯). 141–152 BPM, 143 at the start. Bars 1–5 are tacet: bar 1 is a
+  one-eighth pickup and the drums play the intro alone. The bass enters in bar 6 with the chromatic
+  triplet run down the A♭ string from E♭ (fret 19) to F (fret 9) and the open A♭. Chunks follow the
+  12 section markers; the score numbers them Verse I, Chorus 2, Chorus III, here Verse 1–3 and Chorus
+  1–3. The verse riff is a four-bar walking line at position 6–7 (E♭–B♭–A♭–G, C♯–A♭–G–C♯–F,
+  E♭–B♭–A♭–G, then a C♯ bar of double stops), and the chunks follow it: 7–10, 11–14 and so on, with
+  the entry run in Intro a (6–10). Bar 30 and bars 102–103: the C♯ triplet build-up into the chorus;
+  Verse 3 c is five bars (99–103) for that reason. Chorus and Interlude: B♭ and A♭ against the open
+  E♭ in eighths, then A♭, in four-bar chunks of the two-bar figure. Instrumental, Break, Verse 3 a and
+  Outro: the two-bar E♭–A♭–B♭ figure with C♯ double stops. Bridge: the verse line in eighths, then
+  C♯–C–B♭–A♭ down the A♭ string. Fingering: 11 re-tabs. Bridge (68–74): the C♯ that starts the
+  descent goes to the open C♯ string, which covers the shift down from position 6. Bar 103: the A♭s
+  before the chorus go to the open A♭ string. Override: bar 102, the C♯ triplets on A♭ 5 as tabbed
+  and as in bar 30; the solver had moved the whole run of 21 notes to the open string. Bar 6: the
+  entry run moves from position 16 to 9 along the A♭ string. YouTube: 4poa1zXph5E, "Green Day -
+  Longview - [HQ]" by BunczucznyKKS, Songsterr's default video for song 23529
+  (songsterr.com/a/wsa/green-day-longview-bass-tab-s23529), revision 9992201. It is a third-party
+  upload; it plays and embeds from Norway (checked 2026-11-06). Songsterr has 137 points for 143
+  bars: bars 138–143 have no point and continue at the score's tempo. Bar 1 (the pickup) is ×0.43 of
+  its length; at most 0.55 s from the tempo map (bar 121). Songsterr's API answers 403 to scripts, so
+  the points were read from the tab's page in the browser on 2026-11-06 and replayed to fetch-video.
+  Music: offset 0 ms (onset match 1.83 in the first minute), but −140 ms (1.56) in the last minute:
+  the MP3 drifts from the tempo map. Lyrics: synced from "Billie Joe Armstrong | Lead Vocals", 307
+  syllables from bar 15; lines cut by timing. To check by ear: the Music drift near the end; the
+  YouTube sync in bars 138–143.

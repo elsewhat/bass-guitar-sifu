@@ -5,7 +5,50 @@ source: { file: "Tool-Sober-10-03-2026.gp", date: 2026-10-03 }
 bassTrack: "Paul D'Amour | Rickenbacker 4001CS | Bass"
 tempo: { note: null }
 media:
-  youtube: { videoId: null, sync: [] }
+  youtube:
+    videoId: nspxAG12Cpc
+    songsterr: { songId: 19923, revisionId: 9500451 }
+    sync: [
+      { bar: 1, ms: 30 }, { bar: 2, ms: 860 }, { bar: 3, ms: 2500 }, { bar: 4, ms: 4120 }, { bar: 5, ms: 5640 },
+      { bar: 6, ms: 7290 }, { bar: 7, ms: 8800 }, { bar: 8, ms: 10490 }, { bar: 9, ms: 12030 }, { bar: 10, ms: 13540 },
+      { bar: 11, ms: 15130 }, { bar: 12, ms: 16700 }, { bar: 13, ms: 18280 }, { bar: 14, ms: 19870 }, { bar: 15, ms: 21460 },
+      { bar: 16, ms: 23070 }, { bar: 17, ms: 24660 }, { bar: 18, ms: 26230 }, { bar: 19, ms: 27820 }, { bar: 20, ms: 29450 },
+      { bar: 21, ms: 31050 }, { bar: 22, ms: 32690 }, { bar: 23, ms: 34270 }, { bar: 24, ms: 35890 }, { bar: 25, ms: 37500 },
+      { bar: 26, ms: 39100 }, { bar: 27, ms: 40690 }, { bar: 28, ms: 42300 }, { bar: 29, ms: 43880 }, { bar: 30, ms: 45510 },
+      { bar: 31, ms: 47090 }, { bar: 32, ms: 48730 }, { bar: 33, ms: 50310 }, { bar: 34, ms: 51930 }, { bar: 35, ms: 53550 },
+      { bar: 36, ms: 55170 }, { bar: 37, ms: 56750 }, { bar: 38, ms: 58410 }, { bar: 39, ms: 59980 }, { bar: 40, ms: 61650 },
+      { bar: 41, ms: 63230 }, { bar: 42, ms: 64850 }, { bar: 43, ms: 66470 }, { bar: 44, ms: 68110 }, { bar: 45, ms: 69710 },
+      { bar: 46, ms: 71370 }, { bar: 47, ms: 73020 }, { bar: 48, ms: 74680 }, { bar: 49, ms: 76310 }, { bar: 50, ms: 77890 },
+      { bar: 51, ms: 79560 }, { bar: 52, ms: 81110 }, { bar: 53, ms: 82700 }, { bar: 54, ms: 84320 }, { bar: 55, ms: 85860 },
+      { bar: 56, ms: 87510 }, { bar: 57, ms: 89050 }, { bar: 58, ms: 90660 }, { bar: 59, ms: 92290 }, { bar: 60, ms: 93880 },
+      { bar: 61, ms: 95490 }, { bar: 62, ms: 97080 }, { bar: 63, ms: 98700 }, { bar: 64, ms: 100210 }, { bar: 65, ms: 101810 },
+      { bar: 66, ms: 103370 }, { bar: 67, ms: 105000 }, { bar: 68, ms: 106570 }, { bar: 69, ms: 108160 }, { bar: 70, ms: 109710 },
+      { bar: 71, ms: 111360 }, { bar: 72, ms: 112880 }, { bar: 73, ms: 114490 }, { bar: 74, ms: 116060 }, { bar: 75, ms: 117630 },
+      { bar: 76, ms: 119320 }, { bar: 77, ms: 120860 }, { bar: 78, ms: 122410 }, { bar: 79, ms: 124020 }, { bar: 80, ms: 125620 },
+      { bar: 81, ms: 127160 }, { bar: 82, ms: 128750 }, { bar: 83, ms: 130350 }, { bar: 84, ms: 131980 }, { bar: 85, ms: 133580 },
+      { bar: 86, ms: 135200 }, { bar: 87, ms: 136840 }, { bar: 88, ms: 138480 }, { bar: 89, ms: 140150 }, { bar: 90, ms: 141710 },
+      { bar: 91, ms: 143370 }, { bar: 92, ms: 144980 }, { bar: 93, ms: 146580 }, { bar: 94, ms: 148220 }, { bar: 95, ms: 149810 },
+      { bar: 96, ms: 151400 }, { bar: 97, ms: 153000 }, { bar: 98, ms: 154610 }, { bar: 99, ms: 156230 }, { bar: 100, ms: 157800 },
+      { bar: 101, ms: 159370 }, { bar: 102, ms: 160960 }, { bar: 103, ms: 162490 }, { bar: 104, ms: 164080 }, { bar: 105, ms: 165640 },
+      { bar: 106, ms: 167190 }, { bar: 107, ms: 168790 }, { bar: 108, ms: 170370 }, { bar: 109, ms: 171950 }, { bar: 110, ms: 173520 },
+      { bar: 111, ms: 175100 }, { bar: 112, ms: 176650 }, { bar: 113, ms: 178240 }, { bar: 114, ms: 179810 }, { bar: 115, ms: 181390 },
+      { bar: 116, ms: 182950 }, { bar: 117, ms: 184530 }, { bar: 118, ms: 186090 }, { bar: 119, ms: 187720 }, { bar: 120, ms: 189220 },
+      { bar: 121, ms: 190840 }, { bar: 122, ms: 192360 }, { bar: 123, ms: 194000 }, { bar: 124, ms: 195620 }, { bar: 125, ms: 197210 },
+      { bar: 126, ms: 198880 }, { bar: 127, ms: 200530 }, { bar: 128, ms: 202140 }, { bar: 129, ms: 203810 }, { bar: 130, ms: 205380 },
+      { bar: 131, ms: 207070 }, { bar: 132, ms: 208660 }, { bar: 133, ms: 210290 }, { bar: 134, ms: 211890 }, { bar: 135, ms: 213480 },
+      { bar: 136, ms: 215110 }, { bar: 137, ms: 216770 }, { bar: 138, ms: 218450 }, { bar: 139, ms: 220080 }, { bar: 140, ms: 221700 },
+      { bar: 141, ms: 223280 }, { bar: 142, ms: 224910 }, { bar: 143, ms: 226530 }, { bar: 144, ms: 228140 }, { bar: 145, ms: 229710 },
+      { bar: 146, ms: 231300 }, { bar: 147, ms: 232920 }, { bar: 148, ms: 234490 }, { bar: 149, ms: 236190 }, { bar: 150, ms: 237730 },
+      { bar: 151, ms: 239230 }, { bar: 152, ms: 240800 }, { bar: 153, ms: 242390 }, { bar: 154, ms: 243920 }, { bar: 155, ms: 245520 },
+      { bar: 156, ms: 247010 }, { bar: 157, ms: 248610 }, { bar: 158, ms: 250170 }, { bar: 159, ms: 251770 }, { bar: 160, ms: 253300 },
+      { bar: 161, ms: 254850 }, { bar: 162, ms: 256380 }, { bar: 163, ms: 258010 }, { bar: 164, ms: 259560 }, { bar: 165, ms: 261130 },
+      { bar: 166, ms: 262690 }, { bar: 167, ms: 264260 }, { bar: 168, ms: 265780 }, { bar: 169, ms: 267330 }, { bar: 170, ms: 268850 },
+      { bar: 171, ms: 270460 }, { bar: 172, ms: 272010 }, { bar: 173, ms: 273580 }, { bar: 174, ms: 275120 }, { bar: 175, ms: 276720 },
+      { bar: 176, ms: 278240 }, { bar: 177, ms: 279850 }, { bar: 178, ms: 281380 }, { bar: 179, ms: 282940 }, { bar: 180, ms: 284460 },
+      { bar: 181, ms: 286060 }, { bar: 182, ms: 287580 }, { bar: 183, ms: 289180 }, { bar: 184, ms: 290690 }, { bar: 185, ms: 292270 },
+      { bar: 186, ms: 293860 }, { bar: 187, ms: 295410 }, { bar: 188, ms: 296960 }, { bar: 189, ms: 298550 }, { bar: 190, ms: 300110 },
+      { bar: 191, ms: 301620 },
+      ]
   music: { source: "Tool-Sober-11-05-2026.mp3", offsetMs: 0 }
 cover: { album: "Undertow", itunesId: 1474185287 }
 chunks:
@@ -63,8 +106,11 @@ notes: >-
   string (frets 12–15); D eighths (142–145) and D octaves. Solo (166–181): a 4-bar D–F–G♯ figure
   four times. Outro: the intro's chords and dead notes, ending on D♯ and D. Fingering: 32 re-tabs,
   among them D2 A5 → D0 in the D eighths (142–145). The chords double D on A5 and the open D string;
-  the solver keeps both (ADR-0007, 2026-11-05). No overrides. YouTube: not set. Songsterr's API
-  answered 403 to npm run fetch-video on 2026-11-05. The owner named the tab: song 19923
-  (songsterr.com/a/wsa/tool-sober-bass-tab-s19923); run npm run fetch-video -- sober --song 19923,
-  then with --write. Music: offset 0 ms, no drift (onset match 4.65 / 2.83). Lyrics: synced from
-  "Maynard James Keenan | Vocals", 365 syllables from bar 34; lines from the lyrics text.
+  the solver keeps both (ADR-0007, 2026-11-05). No overrides. YouTube: nspxAG12Cpc, "TOOL - Sober
+  (Official Video)" by TOOLVEVO, Songsterr's default video for song 19923
+  (songsterr.com/a/wsa/tool-sober-bass-tab-s19923), revision 9500451: 191 anchors for 191 bars, bar
+  1 at 0:00.03 (×0.52 of its length), at most 0.75 s from the tempo map. Songsterr's API answers 403
+  to scripts, so the points were read from the tab's page in the browser on 2026-11-06 and replayed
+  to fetch-video. It plays and embeds from Norway (checked 2026-11-06). Music: offset 0 ms, no drift
+  (onset match 4.65 / 2.83). Lyrics: synced from "Maynard James Keenan | Vocals", 365 syllables from
+  bar 34; lines from the lyrics text.

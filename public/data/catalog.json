@@ -3,6 +3,8 @@
   {"slug":"iron-man","title":"Iron Man","artist":"Black Sabbath","bpm":65,"durationSec":353.6,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":15,"bars":149,"chunks":35,"music":true},
   {"slug":"paranoid","title":"Paranoid","artist":"Black Sabbath","bpm":163,"durationSec":164.9,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":9,"bars":112,"chunks":27,"music":true},
   {"slug":"war-pigs","title":"War Pigs","artist":"Black Sabbath","bpm":56,"durationSec":476.6,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":10,"bars":169,"chunks":41,"music":true},
+  {"slug":"carry-the-zero","title":"Carry The Zero","artist":"Built to Spill","bpm":95,"durationSec":346.1,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":11,"bars":137,"chunks":28,"music":true},
+  {"slug":"longview","title":"Longview","artist":"Green Day","bpm":143,"durationSec":235.3,"tuning":[27,32,37,42],"tuningName":"E♭ standard","maxFret":19,"bars":143,"chunks":28,"music":true},
   {"slug":"i-can-change","title":"I Can Change","artist":"LCD Soundsystem","bpm":118,"durationSec":313.2,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":18,"bars":154,"chunks":31,"music":true},
   {"slug":"new-york-i-love-you-but-you-re-bringing-me-down","title":"New York, I Love You But You're Bringing Me Down","artist":"LCD Soundsystem","bpm":100,"durationSec":294.8,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":14,"bars":79,"chunks":18,"music":true},
   {"slug":"enter-sandman","title":"Enter Sandman","artist":"Metallica","bpm":123,"durationSec":337.8,"tuning":[28,33,38,43],"tuningName":"Standard","maxFret":8,"bars":174,"chunks":41,"music":true},
