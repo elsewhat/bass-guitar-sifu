@@ -12,7 +12,7 @@
 | [0008](0008-playback-sources.md) | Playback sources behind one clock | Accepted, amended by 0016, 0017, 0018, 0020, 0022 and 0028 |
 | [0009](0009-string-colours.md) | String colour palette | Accepted |
 | [0010](0010-progress-storage.md) | Practice progress in the browser | Accepted, amended by 0031 |
-| [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012, 0022, 0024, 0026, 0028, 0029 and 0030 |
+| [0011](0011-content-licensing.md) | Third-party content | Accepted, amended by 0012, 0022, 0024, 0026, 0028, 0029, 0030 and 0032 |
 | [0012](0012-public-github-pages.md) | Public repository and public GitHub Pages | Accepted, amended by 0022, 0024 and 0028 |
 | [0013](0013-yaml-sidecar.md) | YAML sidecar per song | Accepted, amended by 0022, 0023, 0024, 0026, 0028, 0029 and 0030 |
 | [0014](0014-committed-generated-data.md) | Generated song data is committed | Accepted |
@@ -33,5 +33,7 @@
 | [0029](0029-song-copies-and-measured-sync.md) | Copies of a song, and sync measured in the recording | Proposed, amended by 0030 |
 | [0030](0030-transcribed-from-the-recording.md) | Bass parts transcribed from the recording by analysis | Proposed |
 | [0031](0031-rests-are-played.md) | The bars where the bass rests are played, and the library starts a song at bar 1 | Proposed |
+| [0032](0032-practice-videos.md) | Practice videos recorded from the app | Proposed, amended by 0033 |
+| [0033](0033-practice-videos-with-obs.md) | Practice videos recorded with OBS | Proposed |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".

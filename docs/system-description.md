@@ -347,6 +347,7 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - Static site built with Vite and deployed by a GitHub Actions workflow to GitHub Pages at `https://elsewhat.github.io/bass-guitar-sifu/`.
 - Public repository and public site. There is no access control.
 - All songs, sidecars, generated data (ADR-0014) and count samples are committed to the repository.
+- Practice videos (ADR-0032): `npm run record-video` records the practice view playing a song with YouTube, from bar 1 in play through, as an MP4 at the screen's resolution. By default OBS Studio renders the app in a browser source and records it with the GPU's encoder (ADR-0033). The owner uses them as unlisted YouTube videos. They are kept outside the repository.
 
 ## 11. Catalogue at design time
 

@@ -1,6 +1,6 @@
 # Implementation status
 
-Updated 2026-11-05. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
+Updated 2026-11-08. This is the hand-off point between working sessions: what is done, what is next, and what is waiting on the owner. The build sequence comes from the approved plan; the decisions are in `docs/adr/`.
 
 ## Done
 
@@ -242,6 +242,37 @@ Updated 2026-11-05. This is the hand-off point between working sessions: what is
    - **Music.** Carry The Zero: 0 ms, no drift. Longview: 0 ms, drifting to −140 ms in the last minute.
    - **Tests.** 240 unit tests and 20 Playwright tests pass; `build:songs -- --check` is clean.
 
+24. **Practice videos** (2026-11-08; **ADR-0032, proposed**). The owner asked for a video of the app playing a song with YouTube from the start, with no repeats, at the screen's full resolution, as an MP4 for an unlisted YouTube upload.
+   - **Use:** `npm run record-video -- vortex-surfer-live`, or the app's address with `?song=`. It writes `Videos/bass-guitar-sifu/<Artist> - <Title>.mp4` in the home folder and takes as long as the song.
+   - **How** (`scripts/record-video.ts`):
+     - The installed Chrome runs headless at the primary screen's resolution (1920 × 1080 here) with a fresh profile, so the song starts at bar 1.
+     - The settings are set before the app loads: play through, YouTube and master at 100 %, the metronome muted.
+     - It chooses YouTube, presses Space, and records its own tab (`getDisplayMedia`, auto-accepted) with `MediaRecorder` as H.264 + AAC until playback stops at the end of the song.
+     - A visible window does not work: Chrome's "sharing this tab" bar takes 56 px from the page while it records, even in full screen.
+   - **The file.** Chrome writes a fragmented MP4 with no length in its header, so Windows showed no length. `scripts/lib/mp4.ts` rewrites it as an ordinary MP4 (one `moov` in front, one `mdat`) without touching the media. 5 unit tests in `scripts/mp4.test.ts`.
+   - **Checked** with `vortex-surfer-live` from the live site. It stopped by itself at the end of the song: 8:03 played, an 8:06 file.
+     - The file is 1920 × 1080, 59 fps on average, about 20 Mbit/s and 1.2 GB, with stereo AAC at about 190 kbit/s. Windows shows its length.
+     - Picture and sound are the same length (485.6 s).
+     - Frames at 0:12, 6:12 and 8:03: the chunks are ticked one by one at 100 %, the rest at bars 165–179 is played, and the last frame is the Outro at "End of song". There is no cursor or hover.
+     - A 20 s test had the sound from the first second after Play.
+   - **Every song in 4K** (owner, 2026-11-08): `--dir` and `--skip-existing` were added for batches. All 58 songs are in `E:\sifu-videos` at 3840 × 2160, with the log in `record-log.txt` there. Together they are 386 minutes and 149.5 GB, at 50–58 fps on average.
+     - The first run (17:53–23:46) finished 47 songs.
+     - **4 GiB.** Five songs of 10–29 minutes stopped with "Target crashed" at 4.09–4.10 GiB. Chrome's MP4 recorder crashes the tab there. Since then a new recorder takes over at 3 GiB, and `defragmentMp4` joins the segments.
+       - A new recorder may number its tracks the other way round (Pneuma), so tracks are matched by their sample description.
+       - Tables of 100 000 samples overflowed the stack (A K9 Suite) when passed as spread arguments; they are now built as arrays.
+       - A K9 Suite is 4 segments, 29:25, with sound and picture within 0.4 s of each other at the end. The Wheel is 3 segments; Mountain and SuperWheel are 2.
+     - **YouTube errors.** Six songs stopped at 0:44–0:48 on a YouTube player error (Vortex Surfer live and retranscribed, wearing yr smell, About A Girl, Bulls on Parade, Killing in the Name). All six recorded in full on the second run. The cause is unknown: the first run did not log the message, and it was not seen again.
+     - The recorder now logs that message and saves a cut-short recording as `<name> (incomplete).mp4`, exiting with 1, so a rerun records it again.
+     - On Windows, Node 24 crashed at `process.exit` after a `fetch`, so a skipped song exited with a crash code. The song data is now read with `node:https`.
+   - Tests: 248 unit tests (8 for the MP4 rewrite and join).
+25. **Practice videos with OBS** (2026-11-09; **ADR-0033, proposed**). The owner saw the 4K videos hold a few frames still every few seconds.
+   - **Cause:** headless Chrome has a hardware encoder only up to 1080p. At 4K it encodes on the CPU and drops 100–250 ms of frames after each key frame, every 1.8 s (87 times in Go with the Flow). The drive and the player are not involved: the gaps are in the file.
+   - **Fix:** `record-video` records with OBS Studio 33 by default. OBS renders the app in a browser source at 4K and encodes with NVENC. Playwright drives that page over OBS's remote debugging port, so the app is unchanged. `scripts/lib/obs.ts` talks to OBS's websocket. The script starts OBS when it is not running and uses its own profile and scene collection, `bass-guitar-sifu`. `--engine chrome` keeps the old way.
+   - **Checked** with Go with the Flow in 4K60: no frame missed or skipped, a constant 60 fps, no repeated frames while it plays, 304 MB (13 Mbit/s) against 1.7 GB. `C:\temp\Queens of the Stone Age - Go with the Flow (OBS).mp4`.
+   - OBS's websocket server was switched on, and OBS was started with `--remote-debugging-port=9223`; it is left running in the tray.
+   - **All 21 Motorpsycho songs recorded again with OBS** in 4K60 into `E:\sifu-videos` (2026-11-09, 3 h 20 min, owner's request). Each one first try: 0 frames missed or skipped (OBS stats), no stalls or runs of repeated frames in the files, sound throughout at 320 kbit/s. 161 MB–1.35 GB each (A K9 Suite, 29 min). The old Chrome versions are kept in `E:\sifu-videos\chrome\`.
+   - **The other 37 songs recorded again with OBS** the same way (2026-11-09/10, owner's request). 28 recorded first time. For 9 in a row (Iron Man to About A Girl, 6 minutes), OBS did not load the browser source's new page and the run stopped; OBS's log says nothing. `obsPage` now gives the source a fresh URL, then hides and shows it, before giving up, and lists the pages it saw. A second run recorded all 9 at once, without needing that. One attempt failed on a passing TLS error and the retry worked. All 58 videos are now OBS recordings: 21.3 GB, each with 0 frames missed or skipped, no stalls or runs of repeated frames, and sound throughout (near-silent only where a recording starts quietly).
+
 ## Next
 
 - The six transcribed songs (ADR-0030) are a first reading. What would improve them most:
@@ -262,6 +293,13 @@ Open points from slice 1 (not blocking):
 - The in-app preview pane throttles `requestAnimationFrame`, so frame rates must be checked in a normal browser.
 
 ## Waiting on the owner
+
+- Practice videos with OBS (item 25, ADR-0033): all 58 in `E:\sifu-videos` are now OBS recordings. Watch a few, then delete `E:\sifu-videos\chrome\` (the 58 Chrome recordings with the stalls).
+- Practice videos (item 24, ADR-0032): watch a few of the 4K videos in `E:\sifu-videos`, including a joined one (A K9 Suite or The Wheel) across its joins.
+  - Is 1 s before Play enough, or should there be a longer lead-in?
+  - Should the count-in be heard? It is muted now and only seen.
+  - An upload with the recording's sound will likely get a Content ID claim, even unlisted.
+  - Review ADR-0032, which amends ADR-0011.
 
 - Longview and Carry The Zero (item 23): play both with YouTube in a normal browser. Longview: the sync in bars 138–143 (no Songsterr points) and the Music drift near the end. Carry The Zero: the Fade Out chunks start at bar 125, a bar before the score's marker at 126.
 - The eight Tool songs (item 22):
