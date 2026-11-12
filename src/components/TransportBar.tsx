@@ -2,13 +2,14 @@ import { onLastChunk, passCounterText, type RepeatMode } from '../playback/loop'
 import { cycleRepeatMode, goNextChunk, restartChunk, stepTempo, togglePlay } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { effectiveBpm } from '../practice/view-model';
-import { effectiveTempo, TEMPO, tempoLocked, useSession } from '../state/session';
+import { effectiveTempo, recordMode, TEMPO, tempoLocked, useSession } from '../state/session';
 import { Icon, type IconName } from './icons';
 
 // Transport bar under the video (system description §3.4): play/pause, restart chunk, pass
 // counter with the repeat button (ADR-0021), tempo 40–100 % in steps of 5, and "Next chunk".
 // While a rest between chunks is played (ADR-0031) the counter reads "Bass rests".
 // Keyboard: Space, ← →, + − (useTransportKeys); the titles show the keys.
+// Record mode shows play/pause and the tempo only (ADR-0036).
 
 const round = 'flex shrink-0 cursor-pointer items-center justify-center rounded-full border-0 p-0 text-white';
 
@@ -40,10 +41,10 @@ export function TransportBar() {
       >
         <Icon name={playing ? 'pause' : 'play'} size={22} />
       </button>
-      <button type="button" aria-label="Restart chunk" title="Restart chunk" onClick={restartChunk} className={`${round} bg-elevated size-9`}>
+      {!recordMode && <button type="button" aria-label="Restart chunk" title="Restart chunk" onClick={restartChunk} className={`${round} bg-elevated size-9`}>
         <Icon name="restart" size={18} />
-      </button>
-      <div data-testid="pass-counter" className="bg-elevated flex h-9 shrink-0 items-center gap-1 rounded-full pr-1 pl-3">
+      </button>}
+      {!recordMode && <div data-testid="pass-counter" className="bg-elevated flex h-9 shrink-0 items-center gap-1 rounded-full pr-1 pl-3">
         {repeatMode === 'advance' &&
           !rest &&
           Array.from({ length: passes }, (_, i) => (
@@ -64,7 +65,7 @@ export function TransportBar() {
         >
           <Icon name={repeat.icon} size={18} />
         </button>
-      </div>
+      </div>}
       <div className="bg-elevated flex h-9 shrink-0 items-center gap-1 rounded-full px-1" title={locked ? 'Music plays at full speed only' : undefined}>
         <button type="button" aria-label="Slower" title="Slower (−)" aria-keyshortcuts="-" disabled={locked || tempoPct <= TEMPO.min} onClick={() => stepTempo(-1)} className={`${round} bg-card size-[30px] disabled:opacity-40`}>
           <Icon name="minus" size={16} />
@@ -80,7 +81,7 @@ export function TransportBar() {
         </button>
       </div>
       <div className="grow" />
-      <button
+      {!recordMode && <button
         type="button"
         disabled={isLast}
         onClick={goNextChunk}
@@ -90,7 +91,7 @@ export function TransportBar() {
       >
         Next chunk
         <Icon name="skipNext" size={16} />
-      </button>
+      </button>}
     </section>
   );
 }

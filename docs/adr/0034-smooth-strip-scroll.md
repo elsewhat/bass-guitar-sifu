@@ -66,6 +66,20 @@ The owner still saw the notes stutter in Chrome after the change. Measured in a 
 - alphaTab has no time-proportional spacing: it spaces by springs (`stretchForce`) and pads the barlines. So the room after the barline can only be traded against the distance from the playhead, not removed.
 - The first 1.5 s after bar 1 still speeds up: bar 1 also holds the clef and time signature.
 
+### Amendment 2026-11-12: the chunk change
+
+The owner still saw the loop label scroll unevenly. Measured on Whip That Ghost in play through (headless Chrome, 1440 × 900, 40 s, five chunk changes):
+
+- The label itself is placed right. On every frame on which it moves, it moves by the same amount as the strip (583 of 594 frames to 0.01 px; the other 11 are the frames on which it starts or stops being held), and it does not move at all while it is held. Screenshots at fractional scroll positions show the label and the strip drawn the same distance apart, at 100 % and at 150 % scaling.
+- The label moves in two places only: for about a second before a chunk change, pushed out by the loop end, and for about a second after it, from the playhead to the left edge. **The frames dropped at the chunk change fall in that second.** 2 frames of 33 ms in 40 s, both on the frame after a chunk change; after one of them the strip moved 5.8 px, then 3.3, 3.2 and 3.1 px, against 2.9 px before, while the frame tick caught up. With the CPU slowed down three times, every chunk change had a frame of 67 ms or more.
+- The time went to React: the practice plan rendered all its rows again at every chunk change (48 chunks and their rest rows in this song), in the same task as the pass that ended.
+
+Decision: the rows of the practice plan are memoised components (`src/components/PracticePlan.tsx`), and the plan subscribes to the fields it shows. A chunk change renders the row that stops being current and the one that becomes current.
+
+Measured the same way after the change: no frame over 17 ms in 40 s, and the strip's step is the same before and after each chunk change (2.90 px, 2.90 px). The plan's share of a chunk change went from about 14 ms to about 3 ms (development build). With the CPU slowed down three times a chunk change still costs a frame or two: the store update, the plan's scroll into view and the loop overlay remain.
+
+Not changed: the label still stops at once when it reaches the left edge, and jumps from the old loop to the new one at a chunk change.
+
 ## Alternatives
 
 - **A wider smoothing window or a larger limit, without the last average.** Measured on Go with the Flow: the speed jumps stay as long as the limit can hold (0.55 to 1.6 px between frames for limits of 16 to 32 px and windows of two beats to a bar), and the notes move further from the playhead (up to 18 px).

@@ -64,7 +64,7 @@ function LibraryDialog() {
         role="dialog"
         aria-modal="true"
         aria-label="Song library"
-        className="bg-elevated absolute top-[110px] left-[240px] box-border flex h-[640px] w-[960px] flex-col gap-3.5 rounded-[20px] p-5 shadow-heavy"
+        className="bg-elevated absolute top-[110px] left-1/2 box-border flex h-[640px] w-[960px] -translate-x-1/2 flex-col gap-3.5 rounded-[20px] p-5 shadow-heavy"
       >
         <div className="flex items-center gap-3">
           <input

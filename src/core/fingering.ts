@@ -33,6 +33,14 @@ export function boxFinger(fret: number, p: number): number | null {
   return offset >= 0 && offset <= 3 ? offset + 1 : null;
 }
 
+/**
+ * The frets under fingers 1–4 with the index at position p: the inverse of `boxFinger`. In the
+ * 1-2-4 box the ring finger has no fret of its own; it rests with the little finger.
+ */
+export function boxFrets(p: number): [number, number, number, number] {
+  return p <= COSTS.lowZoneMaxPosition ? [p, p + 1, p + 2, p + 2] : [p, p + 1, p + 2, p + 3];
+}
+
 export interface FingeringOverride {
   bar: number;
   tick: number;

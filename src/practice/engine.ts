@@ -15,7 +15,7 @@ import { SynthClock } from '../playback/synth-clock';
 import { whenVideoHost } from '../playback/video-host';
 import { YouTubeClock } from '../playback/youtube-clock';
 import type { YouTubePlayerHandle } from '../playback/youtube-player';
-import { effectiveTempo, sourceAvailable, TEMPO, tempoLocked, useSession, type SourceId, type SourceStatus } from '../state/session';
+import { effectiveTempo, recordMode, sourceAvailable, TEMPO, tempoLocked, useSession, type SourceId, type SourceStatus } from '../state/session';
 import { loadProgress, loadSynthTracks, saveProgress, saveSettings, saveSynthTracks } from '../state/storage';
 import { whenStrip } from '../strip/strip-host';
 import type { SynthLevels, SynthPlayerHandle } from '../strip/synth-player';
@@ -210,6 +210,8 @@ export async function loadSong(slug: string, fromStart = false) {
       tempoPct: clampTempo(progress?.tempoPct ?? TEMPO.start),
       synthTracks: loadSynthTracks(song),
       playing: false,
+      // Record mode plays with YouTube (ADR-0036); a song without a video falls back to the count.
+      ...(recordMode && sourceAvailable('youtube', song) ? { source: 'youtube' as const } : {}),
     });
     attachClock(song);
     const url = new URL(location.href);

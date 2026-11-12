@@ -40,6 +40,18 @@ export interface SourceStatus {
   error?: string;
 }
 
+/**
+ * Record mode (`?record=1` in the address, ADR-0036): the view for a practice video. The song
+ * plays with YouTube and plays through, and the controls a recording has no use for are hidden:
+ * the source switch, Restart chunk, the pass counter with the repeat button, and Next chunk.
+ * Neither choice is stored.
+ */
+export const recordMode: boolean = (() => {
+  if (typeof location === 'undefined') return false;
+  const value = new URLSearchParams(location.search).get('record');
+  return value !== null && value !== '0' && value !== 'false';
+})();
+
 export const TEMPO = { min: 40, max: 100, step: 5, start: 100 } as const;
 
 export interface SessionState extends LoopState {
@@ -67,7 +79,7 @@ export interface SessionState extends LoopState {
 const settings = loadSettings();
 
 export const useSession = create<SessionState>()((set) => ({
-  ...initialLoop(3, settings.repeatMode ?? DEFAULT_REPEAT_MODE),
+  ...initialLoop(3, recordMode ? 'once' : (settings.repeatMode ?? DEFAULT_REPEAT_MODE)),
   planOpen: true,
   source: 'count',
   sourceStatus: { state: 'ready' },

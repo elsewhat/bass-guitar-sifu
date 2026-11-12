@@ -27,7 +27,7 @@ Out of scope for version 1: user accounts, a backend, uploading songs from the U
 
 ## 3. Screen: practice view
 
-The application is a single page that always fits the screen without scrolling. Reference size is 1440 × 900 CSS px (16:10). The design source is in `design/artboards/Main.dc.html`.
+The application is a single page that always fits the screen without scrolling. Reference size is 1440 × 900 CSS px (16:10). The design source is in `design/artboards/Main.dc.html`. On a window wider than 16:10 the stage widens with it, up to 1600 × 900 (16:9), and a window wider than 16:9 keeps 16:9 with the page background on both sides (ADR-0037). The extra width goes to the video cell (up to 711 px, a 16:9 picture), then to the fingering column, whose fretboard grows with it, and to the strip. The sizes in this section are those at 1440 px.
 
 Layout grid, top to bottom:
 
@@ -59,6 +59,7 @@ Gaps are 12 px, page padding 16 px.
 - YouTube (ADR-0028): the recording as an embedded player that fills the cell, synced to the score bar by bar. Its own controls are off; the transport bar drives it, and a click on the video plays or pauses it with the transport following. It is disabled for a song without a video. "Loading video…" or an error text ("the video may not be played here …") shows over the player. Synth: notes rendered from the score; the cell shows "Synth playback" and loading progress, with no play button of its own (Play is in the transport bar). Music: the song's MP3 rendered from the transcription; the cell shows "Music playback" with "Loading audio… NN %" or "Rendered from the score · full speed only". Metronome: spoken "1 & 2 & 3 & 4 &" from recorded samples, with eight large cells showing the current count position. The Synth, Music and YouTube views show the same cells during a count-in only (§5.6); with YouTube they lie over the video, which is dimmed while the count-in plays.
 - Chips: bottom-left "Bass rests · bars 1–129" while a rest is played (ADR-0031); bottom-right the loop's time range, in score time, or in video time with YouTube (`Loop 0:20–0:30 · video time`; `Rest 0:00–4:41 · score time` for a rest).
 - Mixer button (equalizer icon) top-right; opens the mixer (§5.5, ADR-0020).
+- Record mode (`?record=1` in the address, ADR-0036) is the view for a practice video: YouTube is chosen when the song loads and the source switch is hidden.
 - Lyrics button (subtitles icon) left of the mixer button (ADR-0024, `design/artboards/LyricsView.dc.html`). On by default and kept in the settings; disabled for songs without lyrics. With lyrics on:
   - the source's view shrinks to one row under the source switch, with only the key info: `Audio count` and eight small count cells, or `Synth playback` / `Music playback` with the loading or status text;
   - the lyrics fill the cell between that row and the chips, under the label `Lyrics · synced to the vocal track` or `Lyrics · not synced · ↑ ↓ to scroll`;
@@ -78,6 +79,8 @@ Left to right:
 
 There is no automatic tempo ramp.
 
+In record mode (`?record=1`, ADR-0036) the bar holds play/pause and the tempo control only. The repeat mode is play through and is not stored.
+
 Keyboard (owner, 2026-09-30): `Space` play/pause, `←` / `→` previous / next chunk, `+` / `−` tempo (`=` and `_` also work), `↑` / `↓` scroll unsynced lyrics. The keys are ignored while the song library or the mixer is open and while a form field has focus. Space always means play/pause, even when a button has focus. The button tooltips show the keys.
 
 ### 3.5 Fingering and metronome column (right)
@@ -85,8 +88,9 @@ Keyboard (owner, 2026-09-30): `Space` play/pause, `←` / `→` previous / next 
 Top: fretboard diagram with a hand.
 
 - Horizontal neck, frets 0–9 (scaled to fit), strings drawn in their string colours with coloured letter badges (E A D G).
-- A shaded band marks the current hand position (four frets). Fret numbers inside the band are bold.
+- A shaded band marks the current hand position: three frets in positions 1–5, four frets higher up (§7.2). Fret numbers inside the band are bold.
 - Four finger capsules rise from a palm shape under the neck. The active finger is filled with the target string's colour, reaches the target string and shows its number. Inactive fingers are translucent.
+- A finger is drawn on the fret the fingering gives it, so it lights up where the "Next" ring was. In positions 1–5 (1-2-4) the little finger is two frets from the index, and the idle ring finger is a slim capsule beside it; higher up it is one finger per fret. (The design artboard draws one finger per fret in every position. Until 2026-11-12 the app did too, which lit the little finger one fret above its note in low positions.)
 - The next different note is marked with a dashed ring labelled "Next".
 - Open strings: a filled circle at the nut in the string colour, labelled 0.
 

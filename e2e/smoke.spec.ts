@@ -43,6 +43,25 @@ test('collapsing the practice plan widens the video cell', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Chunk 3, Climb, bars 142–147' })).toBeVisible();
 });
 
+test('fills a 16:9 window, and keeps 16:9 in a wider one (ADR-0037)', async ({ page }) => {
+  const box = async (name: string) => (await page.getByRole('region', { name }).boundingBox())!;
+  await page.setViewportSize({ width: 1600, height: 900 });
+  await openSong(page);
+  const stage = page.getByTestId('stage');
+  expect(await stage.boundingBox()).toEqual({ x: 0, y: 0, width: 1600, height: 900 });
+  expect((await box('Video')).width).toBe(711); // a 16:9 picture
+  expect((await box('Notation and tab')).width).toBe(1568);
+  const fingering = await box('Visual metronome and fingering');
+  expect(fingering.x + fingering.width).toBe(1584);
+  expect(await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.scrollHeight])).toEqual([1600, 900]);
+
+  // 21:9: the same stage, centred.
+  await page.setViewportSize({ width: 2100, height: 900 });
+  await expect.poll(async () => (await stage.boundingBox())?.x).toBe(250);
+  expect((await stage.boundingBox())?.width).toBe(1600);
+  expect(await page.evaluate(() => [document.documentElement.scrollWidth, document.documentElement.scrollHeight])).toEqual([2100, 900]);
+});
+
 test('fits a 1280 px wide window', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await openSong(page);
@@ -584,4 +603,30 @@ test('notes are within 15 px of the playhead when plucked, with four notes to it
   const settled = leftCounts.slice(6);
   expect(settled.every((n) => n === 3 || n === 4)).toBe(true);
   expect(settled.filter((n) => n === 4).length).toBeGreaterThan(settled.length / 2);
+});
+
+test('record mode (?record=1): YouTube and play through, without the source switch, Restart chunk, the pass counter and Next chunk (ADR-0036)', async ({ page }) => {
+  await page.route('https://www.youtube.com/iframe_api', (route) => route.fulfill({ contentType: 'text/javascript', body: YOUTUBE_STUB }));
+  await page.goto('./?song=creep&record=1');
+  await expect(page.getByText('Loading notation…')).toBeHidden({ timeout: 20_000 });
+  const video = page.getByRole('region', { name: 'Video' });
+  const transport = page.getByRole('region', { name: 'Loop and tempo' });
+
+  await expect(video).toHaveAttribute('data-source', 'youtube');
+  await expect(video).toHaveAttribute('data-source-status', 'ready');
+  await expect(video.getByRole('button', { name: 'YouTube' })).toHaveCount(0);
+  await expect(video.getByRole('button', { name: 'Metronome' })).toHaveCount(0);
+  await expect(video.getByRole('button', { name: 'Mixer' })).toBeVisible();
+
+  await expect(transport.getByRole('button', { name: 'Play', exact: true })).toBeEnabled();
+  await expect(page.getByTestId('tempo')).toHaveText('100%');
+  await expect(transport.getByRole('button', { name: 'Slower' })).toBeVisible();
+  await expect(transport.getByRole('button', { name: 'Restart chunk' })).toHaveCount(0);
+  await expect(page.getByTestId('pass-counter')).toHaveCount(0);
+  await expect(transport.getByRole('button', { name: 'Next chunk', exact: true })).toHaveCount(0);
+
+  // Play through for this visit only: the stored repeat mode is not touched.
+  await expect(page.getByRole('navigation', { name: 'Practice plan' }).locator('[aria-current="step"]')).toContainText(/play through|bass rests/);
+  expect(await page.evaluate(() => JSON.parse(localStorage.getItem('bass-trainer:v1:settings') ?? '{}').repeatMode)).toBeUndefined();
+  await expect(page).toHaveURL(/record=1/);
 });

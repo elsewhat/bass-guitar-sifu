@@ -7,12 +7,12 @@ import { setVideoHost } from '../playback/video-host';
 import { countInState, openMixer, setSource, toggleLyrics } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { loopTimeLabel, restChip } from '../practice/view-model';
-import { SOURCES, sourceAvailable, useSession, type SourceId, type SourceStatus } from '../state/session';
+import { recordMode, SOURCES, sourceAvailable, useSession, type SourceId, type SourceStatus } from '../state/session';
 import { Icon } from './icons';
 import { Lyrics, Subtitles } from './Lyrics';
 
 // Video cell (system description §3.3): source switch, the source's view, chips, the lyrics toggle and
-// the mixer button. With lyrics on (ADR-0024), the lyrics take the cell and the source's view
+// the mixer button. Record mode has no source switch (ADR-0036). With lyrics on (ADR-0024), the lyrics take the cell and the source's view
 // shrinks to one row under the source switch. The YouTube source fills the cell with the video.
 
 const overlayChip = 'bg-[rgba(18,18,18,0.85)] text-white';
@@ -29,7 +29,7 @@ export function VideoCell() {
   const lyrics = lyricsOn ? song?.lyrics : undefined;
 
   return (
-    <section aria-label="Video" data-source-status={status.state} className="rounded-comfortable relative overflow-hidden bg-black">
+    <section aria-label="Video" data-source={source} data-source-status={status.state} className="rounded-comfortable relative overflow-hidden bg-black">
       {source === 'youtube' ? (
         <YouTubeView status={status} lyrics={lyrics} slug={song?.slug} />
       ) : lyrics ? (
@@ -62,7 +62,7 @@ export function VideoCell() {
           )}
         </div>
       )}
-      <div className={`${overlayChip} absolute top-3 left-3 flex gap-1 rounded-full p-1`}>
+      {!recordMode && <div className={`${overlayChip} absolute top-3 left-3 flex gap-1 rounded-full p-1`}>
         {SOURCES.map((s) => {
           const available = sourceAvailable(s.id, song);
           return (
@@ -81,7 +81,7 @@ export function VideoCell() {
             </button>
           );
         })}
-      </div>
+      </div>}
       <LyricsButton />
       <button
         type="button"

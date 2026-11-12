@@ -174,7 +174,8 @@ if (!values.out && values['skip-existing'] && existsSync(join(dir, `${name}.mp4`
 const out = resolve(values.out ?? freeName(dir, name, '.mp4'));
 mkdirSync(dirname(out), { recursive: true });
 const appOrigin = new URL(base).origin;
-const appUrl = `${base}?song=${encodeURIComponent(slug)}`;
+// Record mode (ADR-0036): the app chooses YouTube and play through, and hides the controls a video has no use for.
+const appUrl = `${base}?song=${encodeURIComponent(slug)}&record=1`;
 
 console.log(`${song.artist} – ${song.title} (${slug}), video ${youtube.videoId}, about ${clock(expectedMs)}`);
 console.log(`${size.width}×${size.height} at ${fps} fps with ${engine === 'obs' ? 'OBS' : engine === 'screen' ? 'Chrome on the screen' : 'Chrome'} → ${out}`);
@@ -326,10 +327,12 @@ async function preparePage(page: Page) {
   page.on('pageerror', (e) => console.error(`Page error: ${e.message}`));
   await page.goto(appUrl);
 
-  const youtubeButton = page.locator('section[aria-label="Video"] button', { hasText: /^YouTube$/ });
-  await youtubeButton.waitFor();
+  await page.locator('section[aria-label="Notation and tab"]').waitFor();
   await page.getByText('Loading notation…').waitFor({ state: 'hidden', timeout: 60_000 });
-  await youtubeButton.click();
+  // Record mode has chosen YouTube. A deployed build from before record mode still has the source switch.
+  const youtubeButton = page.locator('section[aria-label="Video"] button', { hasText: /^YouTube$/ });
+  if (await youtubeButton.count()) await youtubeButton.click();
+  await page.locator('section[aria-label="Video"] [data-testid="video-host"]').waitFor({ timeout: 60_000 });
   await page.locator('section[aria-label="Video"][data-source-status="ready"]').waitFor({ timeout: 60_000 });
   await expectEnabled(page.locator('button[aria-label="Play"]'));
   await page.mouse.move(0, 0); // nothing hovered in the recording

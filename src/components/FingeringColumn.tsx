@@ -3,10 +3,12 @@ import { lastPluckIndex, nextDifferentNote, pluckAt, type Pluck, type PluckNote 
 import { stringNames } from '../core/tuning';
 import { loopRange } from '../playback/loop';
 import { useFrame } from '../playback/frame';
+import { fingeringWidth, STAGE_W } from '../layout';
 import { advanceRange } from '../practice/engine';
 import { songModel } from '../practice/song-model';
 import { useSession } from '../state/session';
 import { FRETBOARD_H, FRETBOARD_W, fretboardHtml } from './fretboard';
+import { useStageWidth } from './Stage';
 
 // Fretboard and the Now/Next squares (system description §3.5, §5.2). Everything here follows
 // the playhead and is updated from the frame loop, straight into the DOM.
@@ -30,7 +32,10 @@ const bandFrets = (notes: PluckNote[]) =>
 
 export function FingeringColumn() {
   const planOpen = useSession((s) => s.planOpen);
-  const scale = planOpen ? 0.75 : 0.9;
+  // The design's scales at 1440 px (0.75 with the plan open, 0.9 collapsed), growing with the
+  // column on a wider stage, up to full size (ADR-0037).
+  const column = fingeringWidth(useStageWidth(), planOpen);
+  const scale = Math.min(1, ((planOpen ? 0.75 : 0.9) * column) / fingeringWidth(STAGE_W, planOpen));
   const board = useRef<HTMLDivElement>(null);
   const nowBg = useRef<HTMLDivElement>(null);
   const nowLabel = useRef<HTMLDivElement>(null);

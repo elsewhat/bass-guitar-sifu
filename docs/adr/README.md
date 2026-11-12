@@ -37,5 +37,7 @@
 | [0033](0033-practice-videos-with-obs.md) | Practice videos recorded with OBS | Superseded as the default by 0035, kept as `--engine obs` |
 | [0034](0034-smooth-strip-scroll.md) | Smooth strip scroll: gradual speed changes, a steadied frame tick and a loop label of its own | Proposed |
 | [0035](0035-practice-videos-from-the-screen.md) | Practice videos recorded from the screen (Windows Graphics Capture, sound by OBS): the default on Windows | Accepted |
+| [0036](0036-record-mode.md) | Record mode (`?record=1`): YouTube and play through, without the source switch, Restart chunk, the repeat button and Next chunk | Proposed |
+| [0037](0037-stage-width-16-9.md) | The stage is as wide as the window, from 16:10 (1440 px) to 16:9 (1600 px); wider screens keep 16:9 | Proposed |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".

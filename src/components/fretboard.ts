@@ -1,6 +1,13 @@
 // Fretboard with the hand (system description §3.5), geometry from design/artboards/Fretboard.dc.html
 // at 673 × 208 and scaled as a whole. It follows the playhead, so it is rendered imperatively
 // by the fingering column's frame callback (ADR-0002), not through React state.
+//
+// The fingers are drawn where the fingering puts them (ADR-0007), so a finger lights up on the fret
+// its note is on, which is also where the "Next" ring was. In positions 1–5 the hand covers three
+// frets 1-2-4: the little finger is two frets from the index and the ring finger rests beside it.
+// Higher up it is one finger per fret. (The design artboard draws one finger per fret everywhere;
+// that put the little finger one fret above its note in low positions.)
+import { boxFrets } from '../core/fingering';
 
 export const FRETBOARD_W = 673;
 export const FRETBOARD_H = 208;
@@ -28,16 +35,18 @@ export function fretboardHtml(m: FretboardModel): string {
   const slot = (n: number) => (n === 0 ? X0 - 16 : X0 + (n - 0.5) * d);
   const sy = (s: number) => 116 - s * 28;
   const pos = Math.max(1, Math.min(m.frets - 3, m.position));
+  const rest = boxFrets(pos); // the fret under each finger while it holds nothing
+  const reach = rest[3]; // the highest fret of the hand
   const html: string[] = [];
   const box = (style: string, content = '') => html.push(`<div style="position:absolute;${style}">${content}</div>`);
 
   box(`left:${X0}px;top:18px;width:${FRETBOARD_W - 16 - X0}px;height:112px;background:#252525;border-radius:4px`);
-  box(`left:${X0 + (pos - 1) * d}px;top:18px;width:${4 * d}px;height:112px;background:rgba(255,255,255,0.06)`);
+  box(`left:${X0 + (pos - 1) * d}px;top:18px;width:${(reach - pos + 1) * d}px;height:112px;background:rgba(255,255,255,0.06)`);
   box('left:41px;top:16px;width:5px;height:116px;background:#cbcbcb;border-radius:2px');
   for (let n = 1; n <= m.frets; n++) {
     box(`left:${X0 + n * d - 1}px;top:18px;width:2px;height:112px;background:#4d4d4d`);
     if ([3, 5, 7, 9, 12, 15, 17].includes(n)) box(`left:${slot(n) - 6}px;top:68px;width:12px;height:12px;border-radius:50%;background:#3a3a3a`);
-    const inBand = n >= pos && n <= pos + 3;
+    const inBand = n >= pos && n <= reach;
     box(
       `left:${slot(n) - 10}px;top:0;width:20px;text-align:center;font-size:11px;line-height:14px;font-weight:${inBand ? 700 : 400};color:${inBand ? '#ffffff' : '#7c7c7c'}`,
       String(n),
@@ -65,18 +74,24 @@ export function fretboardHtml(m: FretboardModel): string {
       'Next',
     );
   }
-  box(`left:${slot(pos) - 26}px;top:178px;width:${slot(pos + 3) - slot(pos) + 52}px;height:30px;background:rgba(255,255,255,0.1);border-radius:16px 16px 0 0`);
+  box(`left:${slot(pos) - 26}px;top:178px;width:${slot(reach) - slot(pos) + 52}px;height:30px;background:rgba(255,255,255,0.1);border-radius:16px 16px 0 0`);
   for (let k = 1; k <= 4; k++) {
-    const fret = pos + k - 1;
-    if (fret > m.frets) continue;
     // The finger reaches its highest string; a barre also holds the strings below it.
     const held = cur.filter((c) => c.finger === k).sort((a, b) => b.string - a.string);
     const tip = held[0];
+    // On the fret of the note it holds, else on its own fret of the box.
+    const fret = tip?.fret ?? rest[k - 1]!;
+    if (fret > m.frets) continue;
+    // 1-2-4: the idle ring finger shares the little finger's fret. It is drawn slim, between the
+    // middle and the little finger.
+    const beside = !tip && k === 3 && rest[2] === rest[3];
+    const x = beside ? (slot(rest[1]) + slot(rest[3])) / 2 : slot(fret);
+    const w = beside ? Math.max(10, Math.min(24, d - 26)) : 24;
     const top = (tip ? sy(tip.string) : 142) - 12;
     box(
-      `left:${slot(fret) - 12}px;top:${top}px;width:24px;height:${198 - top}px;box-sizing:border-box;border-radius:12px 12px 8px 8px;` +
+      `left:${x - w / 2}px;top:${top}px;width:${w}px;height:${198 - top}px;box-sizing:border-box;border-radius:12px 12px 8px 8px;` +
         `background:${tip ? sv(tip.string) : 'rgba(255,255,255,0.14)'};border:${tip ? '2px solid #ffffff' : '1px solid rgba(255,255,255,0.3)'};` +
-        `text-align:center;font-size:12px;line-height:22px;font-weight:800;color:${tip ? sf(tip.string) : '#cbcbcb'}`,
+        `text-align:center;font-size:${w < 18 ? 10 : 12}px;line-height:22px;font-weight:800;color:${tip ? sf(tip.string) : '#cbcbcb'}`,
       String(k),
     );
     for (const b of held.slice(1)) {

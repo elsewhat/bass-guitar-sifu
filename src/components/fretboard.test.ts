@@ -44,6 +44,24 @@ describe('fretboardHtml', () => {
     expect(count(html, '">0</div>')).toBe(1); // open D
   });
 
+  // Left edge of the lit capsule of a finger, and of the dashed "Next" rings.
+  const capsuleLeft = (html: string, finger: number) => Number(new RegExp(`left:([\\d.]+)px;[^"]*border:2px solid #ffffff[^"]*">${finger}<`).exec(html)![1]);
+  const ringLefts = (html: string) => [...html.matchAll(/left:([\d.]+)px;[^"]*border:2px dashed #ffffff/g)].map((m) => Number(m[1]));
+
+  it('lights the little finger on the fret its note is on: two frets from the index in the 1-2-4 box', () => {
+    // Position 3, little finger on fret 5 (ADR-0007). The ring for the same fret is 3 px wider on each side.
+    const next = fretboardHtml({ ...base, position: 3, current: [], next: [{ string: 1, fret: 5 }] });
+    const now = fretboardHtml({ ...base, position: 3, current: [{ string: 1, fret: 5, finger: 4 }], next: [] });
+    expect(capsuleLeft(now, 4) - ringLefts(next)[0]!).toBeCloseTo(3);
+    expect(activeFingers(now)).toEqual(['4']);
+  });
+
+  it('lights the little finger three frets from the index above position 5', () => {
+    const next = fretboardHtml({ ...base, frets: 12, position: 7, current: [], next: [{ string: 1, fret: 10 }] });
+    const now = fretboardHtml({ ...base, frets: 12, position: 7, current: [{ string: 1, fret: 10, finger: 4 }], next: [] });
+    expect(capsuleLeft(now, 4) - ringLefts(next)[0]!).toBeCloseTo(3);
+  });
+
   it('rings every next note that is not already held, with one "Next" label', () => {
     const html = fretboardHtml({
       ...base,

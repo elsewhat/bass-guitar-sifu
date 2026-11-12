@@ -5,7 +5,8 @@ import { PLAYHEAD_X } from '../strip/scroll';
 import type { Strip } from '../strip/strip';
 import { setActiveStrip } from '../strip/strip-host';
 
-// Notation and tab strip panel (1408 × 276, design/artboards/TabStrip.dc.html). The Strip class
+// Notation and tab strip panel (1408 × 276, design/artboards/TabStrip.dc.html; as wide as the stage,
+// ADR-0037). The Strip class
 // and alphaTab are loaded lazily when the practice view opens (ADR-0017).
 
 export function TabStrip() {
@@ -50,9 +51,9 @@ export function TabStrip() {
 
   return (
     <section aria-label="Notation and tab" className="bg-surface rounded-comfortable relative col-span-2 overflow-hidden">
-      <div className="absolute top-0 left-[72px] h-[276px] w-[1336px] overflow-hidden">
+      <div className="absolute top-0 right-0 left-[72px] h-[276px] overflow-hidden">
         {/* alphaTab only renders into a sized container; the horizontal layout overflows it. */}
-        <div ref={host} data-testid="strip-host" className="absolute top-0 left-0 w-[1336px] origin-top-left will-change-transform" />
+        <div ref={host} data-testid="strip-host" className="absolute top-0 left-0 w-full origin-top-left will-change-transform" />
         <div
           data-testid="playhead"
           className="bg-accent pointer-events-none absolute top-6 h-[212px] w-0.5"
