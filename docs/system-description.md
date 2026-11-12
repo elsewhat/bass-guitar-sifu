@@ -107,7 +107,7 @@ Bottom: two equal squares, "Now" and "Next".
 - Where the fingering engine re-tabs a note (same pitch, different string), a small blue label above the bar says `Retab · source A1`.
 - No finger numbers in the tab.
 - The notation is not highlighted. The current note is marked only in the tab, by the ring.
-- Rendering (ADR-0017): alphaTab engraves the notation and tab. Our overlays draw the circles, ring, bracket, dimming and labels, and our code draws the gutter and playhead. The strip scrolls with the "smoothed over 2 beats" mapping, bounded so that notes are within 10 px of the playhead centre when plucked. The speed has no jumps.
+- Rendering (ADR-0017): alphaTab engraves the notation and tab. Our overlays draw the circles, ring, bracket, dimming and labels, and our code draws the gutter and playhead. The strip scrolls with the "smoothed over 2 beats" mapping, bounded and then averaged over one beat, so the speed changes gradually and notes are within about 12 px of the playhead when plucked (ADR-0034). The loop label is an element of its own beside the scrolling surface and stands still while it is held at the left edge.
 
 ### 3.7 String colours
 
@@ -322,6 +322,7 @@ The pseudo code and cost values are in ADR-0007. The fingering for Vortex Surfer
 One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `SynthClock`, `MusicClock`, `CountClock`. The Synth is an adapter over the alphaTab player (ADR-0017, ADR-0019); YouTube and Music have their own clocks over a small player port (ADR-0022, ADR-0028).
 
 - The clock reports the current score position as an absolute tick, read once per animation frame (ADR-0018).
+- The frame loop hands its listeners a steadied tick (ADR-0034): it advances by an even step per frame and is pulled toward the clock, so the clock's corrections and the timing of the frame callback do not show as uneven scrolling. Where the clock stands still or jumps, it is the clock's tick.
 - The YouTube clock maps video time to score position through the sync map (§6.2). It works in video time and converts at the edges.
 - Loop: at the chunk end the clock continues with the range the loop controller returns (the same chunk or the next one) and emits `passCompleted` when the wrap is heard (ADR-0018).
 - YouTube (ADR-0028): the player is the IFrame API with its own controls off. It cannot loop a range, so the clock seeks at the chunk end, as Music does; a chunk that continues right after the current one needs no seek.
@@ -347,7 +348,7 @@ One `PlaybackClock` interface drives the UI. Implementations: `YouTubeClock`, `S
 - Static site built with Vite and deployed by a GitHub Actions workflow to GitHub Pages at `https://elsewhat.github.io/bass-guitar-sifu/`.
 - Public repository and public site. There is no access control.
 - All songs, sidecars, generated data (ADR-0014) and count samples are committed to the repository.
-- Practice videos (ADR-0032): `npm run record-video` records the practice view playing a song with YouTube, from bar 1 in play through, as an MP4 at the screen's resolution. By default OBS Studio renders the app in a browser source and records it with the GPU's encoder (ADR-0033). The owner uses them as unlisted YouTube videos. They are kept outside the repository.
+- Practice videos (ADR-0032): `npm run record-video` records the practice view playing a song with YouTube, from bar 1 in play through, as an MP4 at the screen's resolution. On Windows the app plays in full-screen Chrome, ffmpeg records that window (Windows Graphics Capture, NVENC) and OBS records the sound; the two are joined on a marker after the song (ADR-0035). The steps for a song or a batch are in the `record-video` skill. The owner uses the videos as unlisted YouTube videos. They are kept outside the repository.
 
 ## 11. Catalogue at design time
 
@@ -392,3 +393,37 @@ Work proceeds in vertical slices. The first slice uses two songs: Vortex Surfer,
 7. Synth source.
 7b. Music source: MP3 rendered from the transcription, full speed only (ADR-0022).
 8. Spotify source: deferred (ADR-0016).
+
+## 13. Open work
+
+What is not built or not settled. Decisions and their measurements are in the ADRs; doubts about a single song are in its `song.yaml` `notes`, which end with what to check by ear.
+
+Not built:
+
+- The chosen source is not remembered per song (section 9): every load starts on the Metronome.
+- Export and import of all progress as a JSON file (section 9, ADR-0010). The design has no settings dialog for it.
+- The tap-sync editor (ADR-0016). Only needed if Songsterr's points turn out wrong for a song; anchors can also be corrected by hand in `song.yaml`.
+- The count samples (`one` … `four`, `and`, as WAV files in `public/audio/count/`) are not recorded. Until then the count is tones, and the mixer shows the Voice channel as "No samples".
+- `fetch-video` cannot reach Songsterr, whose API answers 403 to scripts since 2026-11-05. The `preprocess-song` skill (step 6b) has the way round it. A supported way would be an option that reads the tab's meta, revisions and video list saved from the tab page.
+- `fetch-video --write` does not know which songs have measured anchors (ADR-0029, ADR-0030) and would replace them. The warning is only in those songs' `notes`.
+- The importer does not read natural harmonics (ADR-0007). Only Intension and Schism have them.
+- The design artboards have no chord view (stacked tab rows) and still show the `Intro skipped` chip in place of the rest rows (ADR-0031).
+
+Known limits:
+
+- alphaTab draws "rendered by alphaTab" below the first bar. There is no setting for it.
+- With the Synth, a change of chunk stalls the strip for a moment while alphaTab seeks.
+- The strip slows down in bars of long notes, which alphaTab engraves narrower (ADR-0034).
+
+Songs:
+
+- Twelve of the Motorpsycho tabs from Songsterr are AI transcriptions (the nine songs added on 2026-10-30, Vortex Surfer, The Wheel and wearing yr smell), and nobody has checked the six transcribed Roadwork songs by ear (ADR-0030). Corrections to those six go into `scripts/transcribe/songs/<slug>.json`; the features computed from the audio were not kept, so a new reading needs the recordings again, with the owner's permission.
+- The Wheel and wearing yr smell come from AI-generated Songsterr tabs like Vortex Surfer, whose bars sat a quarter note late on the video (ADR-0029). They are not measured.
+- The three extra Vortex Surfer copies (ADR-0029, ADR-0030) are for comparing. To remove one, delete its folder in `songs/` and run `npm run build:songs`.
+
+For the owner to decide:
+
+- ADR-0018 to ADR-0031 and ADR-0034 are implemented and still Proposed.
+- The source switch, the chips and the subtitle band lie over the YouTube player, as in the design. YouTube's developer policies do not allow elements in front of the player (ADR-0028).
+- With the Metronome, the bars where the bass rests are counted through; and in "repeat" mode a rest between two chunks is played once on the way (ADR-0031).
+- Practice videos: only Go with the Flow and the 21 Motorpsycho songs are recorded from the screen (ADR-0035). The other 36 are OBS recordings with repeated frames.

@@ -33,7 +33,9 @@
 | [0029](0029-song-copies-and-measured-sync.md) | Copies of a song, and sync measured in the recording | Proposed, amended by 0030 |
 | [0030](0030-transcribed-from-the-recording.md) | Bass parts transcribed from the recording by analysis | Proposed |
 | [0031](0031-rests-are-played.md) | The bars where the bass rests are played, and the library starts a song at bar 1 | Proposed |
-| [0032](0032-practice-videos.md) | Practice videos recorded from the app | Proposed, amended by 0033 |
-| [0033](0033-practice-videos-with-obs.md) | Practice videos recorded with OBS | Proposed |
+| [0032](0032-practice-videos.md) | Practice videos recorded from the app | Accepted; the capture superseded by 0033 and 0035, kept as `--engine chrome` |
+| [0033](0033-practice-videos-with-obs.md) | Practice videos recorded with OBS | Superseded as the default by 0035, kept as `--engine obs` |
+| [0034](0034-smooth-strip-scroll.md) | Smooth strip scroll: gradual speed changes, a steadied frame tick and a loop label of its own | Proposed |
+| [0035](0035-practice-videos-from-the-screen.md) | Practice videos recorded from the screen (Windows Graphics Capture, sound by OBS): the default on Windows | Accepted |
 
 Format: Context, Decision (or Options for proposed ADRs), Consequences, Alternatives where relevant. New ADRs get the next number; superseded ADRs keep their file with status "Superseded by ADR-00NN".

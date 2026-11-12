@@ -1,10 +1,12 @@
 // Notation and tab strip (ADR-0017, system description §3.6), built from the accepted spike.
 // alphaTab engraves the notation and tab; everything that moves or highlights is ours:
-// - the scroll ("smoothed over 2 beats", bounded so notes are on the playhead when plucked;
-//   src/strip/scroll.ts) with the playhead line at 150 px,
+// - the scroll ("smoothed over 2 beats", bounded so notes are near the playhead when plucked, with
+//   gradual speed changes; src/strip/scroll.ts, ADR-0034) with the playhead line at 150 px,
 // - overlays placed from alphaTab's bounds lookup: string circles under the tab fret numbers, the
-//   current-note ring, the loop bracket and label, dimming outside the loop, the next-chunk label
-//   and the re-tab labels (the notation is not highlighted),
+//   current-note ring, the loop bracket, dimming outside the loop, the next-chunk label and the
+//   re-tab labels (the notation is not highlighted),
+// - the loop label, an element of its own beside the scrolling surface, so it stands still while
+//   it is held at the left edge (ADR-0034),
 // - the fixed gutter: "Bar", clef, current time signature, TAB and string badges.
 // This module imports alphaTab, so the practice view loads it lazily.
 import * as alphaTab from '@coderline/alphatab';
@@ -15,7 +17,7 @@ import { passLabel, placeBars, type RepeatMode, type RestSide } from '../playbac
 import { songModel } from '../practice/song-model';
 import { barRange } from '../practice/view-model';
 import { colourNotes, fetchScore, stringPalette } from './alphatab-score';
-import { MAX_ONSET_OFFSET, PLAYHEAD_X, playheadX, type Anchor } from './scroll';
+import { MAX_ONSET_OFFSET, PLAYHEAD_X, scrollMap, type Anchor } from './scroll';
 
 const STRIP_H = 276;
 const SVG = 'http://www.w3.org/2000/svg';
@@ -40,6 +42,7 @@ interface NoteBox {
 
 interface Layout {
   beatAnchors: Anchor[]; // every notation beat onset, plus the end of the last bar
+  scrollX: (tick: number) => number; // host x at the playhead (scrollMap of beatAnchors)
   barX: Map<number, { x: number; right: number }>; // bar number → real bounds
   tab: Map<string, NoteBox[]>; // "bar:tick" → fret number boxes
   notationTop: number;
@@ -103,8 +106,13 @@ export class Strip {
   private back: SVGSVGElement | null = null; // behind alphaTab's surface: string circles, current ring
   private front: SVGSVGElement | null = null; // above: dimming, labels, bracket
   private loopGroup: SVGGElement | null = null;
-  /** The loop label slides right to stay readable while the loop start is scrolled out of view. */
-  private loopLabel: { el: SVGGElement; min: number; max: number; offset: number } | null = null;
+  /**
+   * The loop label: over the loop start, and held at the left edge of the clip area while the
+   * loop start is scrolled out of view. It is a sibling of the scrolling host with its own
+   * transform, so it does not move at all while it is held. `min` and `max` are host x.
+   */
+  private readonly labelEl: HTMLDivElement;
+  private loopLabel: { min: number; max: number; x: number } | null = null;
   private currentGroup: SVGGElement | null = null;
   private currentEventId = -1;
   private loop: StripLoop = { chunkIndex: 0, rest: null, pass: 1, passes: 3, repeatMode: 'advance' };
@@ -117,6 +125,12 @@ export class Strip {
     private readonly onReady: (ready: boolean, error?: string) => void,
   ) {
     this.api = new alphaTab.AlphaTabApi(host, createSettings());
+    this.labelEl = document.createElement('div');
+    this.labelEl.dataset.loopLabel = '';
+    this.labelEl.style.cssText =
+      `position:absolute;left:0;top:0;display:none;height:16px;padding:0 8px;background:#181818;color:#ffffff;` +
+      `font:700 12px/16px ${FONT};white-space:nowrap;pointer-events:none;transform-origin:0 0;will-change:transform`;
+    host.parentElement!.appendChild(this.labelEl);
     this.api.postRenderFinished.on(() => this.afterRender());
     this.api.error.on((e) => this.onReady(false, String(e)));
   }
@@ -124,6 +138,8 @@ export class Strip {
   async load(song: SongData) {
     this.song = song;
     this.layout = null;
+    this.loopLabel = null;
+    this.labelEl.style.display = 'none';
     this.onReady(false);
     const score = await fetchScore(song, this.api.settings);
     if (this.song !== song) return;
@@ -178,16 +194,19 @@ export class Strip {
   update(tick: number) {
     const { layout, song } = this;
     if (!layout || !song) return;
-    const x = playheadX(layout.beatAnchors, tick, MAX_ONSET_OFFSET / this.scale); // host px
+    const x = layout.scrollX(tick); // host px
     this.host.style.transform = `translate3d(${PLAYHEAD_X - x * this.scale}px, ${this.offsetY}px, 0) scale(${this.scale})`;
     this.drawCurrent(this.eventAt(tick));
     const label = this.loopLabel;
     if (label) {
-      const visibleLeft = x - PLAYHEAD_X / this.scale; // host x at the clip's left edge
-      const offset = Math.round(Math.min(label.max, Math.max(label.min, visibleLeft + 8)) - label.min);
-      if (offset !== label.offset) {
-        label.offset = offset;
-        label.el.setAttribute('transform', `translate(${offset} 0)`);
+      // Clip-area x of the label: with the loop start, but not left of 8 px (in host scale) and
+      // not past the loop end. The held position is a constant, so the label stands still there.
+      const held = 8 * this.scale;
+      const at = (hostX: number) => PLAYHEAD_X + (hostX - x) * this.scale;
+      const screenX = Math.min(at(label.max), Math.max(at(label.min), held));
+      if (screenX !== label.x) {
+        label.x = screenX;
+        this.labelEl.style.transform = `translate3d(${screenX}px, ${this.offsetY + 4 * this.scale}px, 0) scale(${this.scale})`;
       }
     }
     const i = barIndexAt(song.bars, tick);
@@ -201,6 +220,7 @@ export class Strip {
 
   destroy() {
     this.song = null;
+    this.labelEl.remove();
     this.api.destroy();
   }
 
@@ -212,6 +232,7 @@ export class Strip {
     // Fit the engraving into the strip height and centre whatever room is left.
     this.scale = Math.min(1, (STRIP_H - 4) / this.layout.height);
     this.offsetY = Math.max(0, (STRIP_H - this.layout.height * this.scale) / 2);
+    this.layout.scrollX = scrollMap(this.layout.beatAnchors, MAX_ONSET_OFFSET / this.scale);
     this.buildOverlays();
     this.drawGutter();
     this.barIndex = -1;
@@ -222,7 +243,7 @@ export class Strip {
     const lookup = this.api.renderer.boundsLookup;
     const song = this.song;
     if (!lookup || !song) return null;
-    const l: Layout = { beatAnchors: [], barX: new Map(), tab: new Map(), notationTop: 0, tabTop: 0, height: 0 };
+    const l: Layout = { beatAnchors: [], scrollX: () => 0, barX: new Map(), tab: new Map(), notationTop: 0, tabTop: 0, height: 0 };
     // One copy of the horizontal system per partial render: dedupe by bar. With the ScoreTab
     // profile each master bar has two BarBounds, [0] notation and [1] tab. Bounds come back from
     // the render worker without their Bar references, so bars are identified by mb.index.
@@ -305,6 +326,7 @@ export class Strip {
     if (!g || !layout || !song || !front) return;
     g.replaceChildren();
     this.loopLabel = null;
+    this.labelEl.style.display = 'none';
     const chunk = song.chunks[loop.chunkIndex];
     // The chunk, or the rest next to it while that is played (ADR-0031).
     const bars = chunk && placeBars(loop, song.chunks, song.bars.length);
@@ -318,17 +340,14 @@ export class Strip {
     // Dim everything outside the loop.
     svgEl('rect', { x: 0, y: top, width: start, height: layout.height, fill: DIM }, g);
     svgEl('rect', { x: end, y: top, width: Math.max(0, width - end), height: layout.height, fill: DIM }, g);
-    // Bracket and label.
+    // Bracket; the label is this.labelEl, placed per frame in update().
     svgEl('path', { d: `M${start + 1} ${top} V${top - 8} H${end - 1} V${top}`, fill: 'none', stroke: '#1ed760', 'stroke-width': 2 }, g);
-    const label = svgEl('g', {}, g);
-    const bg = svgEl('rect', { x: start + 12, y: 4, height: 16, fill: '#181818' }, label);
-    const t = svgEl('text', { x: start + 20, y: 16, fill: '#ffffff', 'font-size': 12, 'font-weight': 700, 'font-family': FONT }, label);
-    t.textContent = loop.rest
+    this.labelEl.textContent = loop.rest
       ? `Bass rests · bars ${barRange(bars)}`
       : `Loop · chunk ${loop.chunkIndex + 1} · ${chunk.name} · bars ${chunk.bars[0]}–${chunk.bars[1]} · ${passLabel(loop)}`;
-    const labelW = t.getComputedTextLength() + 16;
-    bg.setAttribute('width', String(labelW));
-    this.loopLabel = { el: label, min: start + 12, max: Math.max(start + 12, end - labelW - 4), offset: -1 };
+    this.labelEl.style.display = 'block';
+    const labelW = this.labelEl.offsetWidth; // host px: the label is scaled like the host
+    this.loopLabel = { min: start + 12, max: Math.max(start + 12, end - labelW - 4), x: NaN };
     // Next chunk preview label.
     const nextIndex = loop.rest === 'before' ? loop.chunkIndex : loop.rest === 'after' ? song.chunks.length : loop.chunkIndex + 1;
     const next = song.chunks[nextIndex];

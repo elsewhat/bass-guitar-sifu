@@ -119,6 +119,7 @@ The spike became the strip in slice 1: `src/strip/strip.ts` (the `Strip` class, 
 - `beatAnchors` holds `(bar.startTick + beat.playbackStart, beat.onNotesX)` for every notation-staff beat, plus the end of the last bar.
 - `x(t)` is the mean of 17 samples of the piecewise-linear interpolation of `beatAnchors` over `[t − 960, t + 960]`.
 - **Bound (2026-09-29, owner):** the strip uses `playheadX`, which is `exact + 10·tanh((smoothed − exact) / 10)` in screen px, where `exact` is the plain interpolation of `beatAnchors`. The lead or lag of the smoothed mapping is limited softly to 10 px, and the speed stays continuous. Measured at 120 % on Vortex Surfer: every note is within 12 px of the band centre when its ring appears (one frame of movement included). Four notes fit to the left of the band, or three right after a barline, whose extra gap takes the room.
+- **Amended by ADR-0034 (2026-11-10):** where the limit holds, `playheadX` follows the exact mapping and its speed jumps at onsets, so the speed was not continuous. The strip now uses `scrollMap`: `playheadX` averaged over one beat. Notes are within about 12 px of the playhead when plucked. The loop label is an element of its own beside the scrolling host, and the frame loop hands out a steadied tick.
 
 **Current note** is the last note event with `start ≤ tick < start + dur`, found by binary search over the note events.
 

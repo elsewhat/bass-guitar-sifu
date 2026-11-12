@@ -11,9 +11,8 @@ Deployed to GitHub Pages at `https://elsewhat.github.io/bass-guitar-sifu/`.
 
 Read these before starting any task:
 
-- `docs/system-description.md`: screens, behaviour, data model, algorithms and milestones.
-- `docs/status.md`: what is done, what is next, and what waits on the owner. Start here when resuming work.
-- `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones, and ADR-0028 overrides the YouTube parts of ADR-0016 and ADR-0017. ADR-0029 adds copies of a song and sync measured in the recording. ADR-0030 adds songs whose bass part is transcribed from the recording. ADR-0031 plays the bars where the bass rests instead of skipping them, and starts a song chosen in the library at bar 1. ADR-0032 records practice videos of the app playing a song with YouTube, kept outside the repository; ADR-0033 records them with OBS.
+- `docs/system-description.md`: screens, behaviour, data model, algorithms and milestones. Section 13 lists the open work: what is not built, known limits, and what the owner has to decide.
+- `docs/adr/`: architecture decisions, listed in `docs/adr/README.md`. Follow them. If a change conflicts with an ADR, propose a new ADR instead of silently deviating. ADR-0012 to ADR-0017 override parts of the earlier ones, and ADR-0028 overrides the YouTube parts of ADR-0016 and ADR-0017. ADR-0029 adds copies of a song and sync measured in the recording. ADR-0030 adds songs whose bass part is transcribed from the recording. ADR-0031 plays the bars where the bass rests instead of skipping them, and starts a song chosen in the library at bar 1. ADR-0032 records practice videos of the app playing a song with YouTube, kept outside the repository; ADR-0035 records them from the screen, the default on Windows; ADR-0033 (OBS's browser source) stays as `--engine obs`. ADR-0034 smooths the strip scroll: the scroll mapping changes speed gradually, the frame loop hands out a steadied tick, and the loop label is an element of its own.
 - `design/README.md` and `design/artboards/*.dc.html`: the visual and behavioural reference. Match sizes, colours and timing from these files.
 
 ## Stack
@@ -47,7 +46,7 @@ src/                         Application
 design/                      Design reference (read only)
 reference/                   Parser prototype and test fixtures
 docs/                        System description and ADRs
-.claude/skills/              Project skills (preprocess-song)
+.claude/skills/              Project skills (preprocess-song, record-video)
 ```
 
 ## Commands
@@ -57,7 +56,7 @@ docs/                        System description and ADRs
 - `npm run inspect-song -- <file.gp>`: analysis report used by the skill
 - `npm run fetch-cover -- <slug> [--id <itunesId>]`: list the albums with the song, or download one as `cover.jpg`
 - `npm run fetch-video -- <slug> [--write] [--video <id>]`: the YouTube video Songsterr plays with the tab and its sync anchors, reported or written into `song.yaml` (ADR-0028)
-- `npm run record-video -- <slug | app URL> [--out <file.mp4> | --dir <folder>] [--skip-existing] [--engine obs|chrome] [--base <url>] [--size <W>x<H>] [--fps <n>] [--seconds <n>] [--listen]`: an MP4 of the app playing the song with YouTube from bar 1, every bar once, at the screen's resolution. By default OBS Studio renders and records it with the GPU's encoder, driven over its websocket and remote debugging port; `--engine chrome` uses headless Chrome. It runs in real time and writes to `Videos/bass-guitar-sifu/` in the home folder (ADR-0032, ADR-0033)
+- `npm run record-video -- <slug | app URL> [--out <file.mp4> | --dir <folder>] [--skip-existing] [--engine obs|chrome|screen] [--base <url>] [--size <W>x<H>] [--fps <n>] [--seconds <n>] [--listen] [--display-off]`: an MP4 of the app playing the song with YouTube from bar 1, every bar once, at the screen's resolution. By default on Windows (`--engine screen`) the app plays in full-screen Chrome, ffmpeg records that window (Windows Graphics Capture, NVENC) and OBS the sound: no repeated frames, but the PC must be unlocked and the screen is taken; `--display-off` turns the display off meanwhile (ADR-0035). `--engine obs` renders and records in OBS Studio's browser source, which repeats some frames (ADR-0033); `--engine chrome` uses headless Chrome, for 1080p (ADR-0032). It runs in real time and writes to `Videos/bass-guitar-sifu/` in the home folder. For a song or a batch, use the `record-video` skill
 - `npm test` (Vitest), `npm run test:e2e` (Playwright)
 
 ## Adding a song
@@ -66,14 +65,29 @@ Drop `Artist-Title-MM-DD-YYYY.gp` into `music/` and run `/preprocess-song`. See 
 
 For a song that has no bass tab anywhere, section 10 of the skill transcribes the bass from the recording with `scripts/transcribe/` (ADR-0030). It needs the owner's permission to fetch the recording.
 
+## Recording practice videos
+
+Run `/record-video <slug ...>`. See `.claude/skills/record-video/SKILL.md`. The PC must be unlocked and the screen at 3840 × 2160; the videos go outside the repository.
+
+## The owner's machine (Windows 11)
+
+- The owner makes the git commits. Do not commit.
+- Git Bash may need `export PATH="/c/Program Files/nodejs:$PATH"`. It also rewrites `BASE_PATH=/bass-guitar-sifu/` into a Windows path, so run Pages-base builds and e2e from PowerShell.
+- `.claude/launch.json` starts Vite through `node.exe` directly (the `dev` configuration), because Node is not on the app's PATH.
+- Playwright's own browsers are not installed. Run the e2e suite with the installed Chrome through a temporary config (`projects: [{ use: { channel: 'chrome' } }]`), or run `npx playwright install chromium`.
+- The in-app preview pane does not run `requestAnimationFrame` while hidden, throttles it otherwise, plays no YouTube video while hidden, and cannot click into the scaled video frame. Check frame rates and the YouTube source in a normal or headless Chrome.
+- Python 3.14 with numpy and scipy is at `C:\Users\dagfi\AppData\Local\Python\pythoncore-3.14-64\python.exe`. The `python` alias fails from some folders; use the full path.
+- ffmpeg 9 is installed with winget (`Gyan.FFmpeg`); OBS Studio 33 is installed. `record-video` finds both.
+- `scripts/transcribe/` needs PyTorch and Demucs as well. They are not installed: they were in a temporary virtual environment (about 4.5 GB, CUDA for the RTX 2080 Ti).
+
 ## Rules
 
 - No backend and no runtime secrets. Everything is static files.
 - Data URLs are relative to `import.meta.env.BASE_URL`. The Pages base path is `/bass-guitar-sifu/`.
 - Never store downloaded audio or video in the repository (ADR-0011). YouTube is an embed; its sync anchors (bar start times from Songsterr) are stored (ADR-0028). Where a song's `notes` say the anchors were measured in the recording, do not run `fetch-video --write` for it; fetching a recording to measure or transcribe needs the owner's permission each time (ADR-0029, ADR-0030). Audio rendered from the transcription is the exception (ADR-0022). Practice videos from `record-video` hold the YouTube recording: they stay outside the repository (ADR-0032). Lyrics may be stored: from the `.gp` vocal track or `lyrics.text` in `song.yaml` (ADR-0024). So may album covers (ADR-0026).
 - After changing `song.yaml` or any algorithm in `src/core/`, run `npm run build:songs` and commit `public/data/`.
-- Playback position is not React state. Per-frame updates go through the clock subscription and `requestAnimationFrame` (ADR-0002, ADR-0008).
+- Playback position is not React state. Per-frame updates go through the clock subscription and `requestAnimationFrame` (ADR-0002, ADR-0008). Frame listeners get the steadied tick of `src/playback/frame.ts` (ADR-0034); code that needs the exact position reads the clock.
 - String colours come only from the `--string-1..4` variables (ADR-0009). The green accent is for play, loop and current-chunk markers only.
 - The UI targets 1440 × 900 in full-screen mode and must work from 1280 px wide. No page scrolling.
 - Algorithms (tacet, draft chunks, fingering, sync interpolation in `sync.ts`, lyric lines) are pure functions in `src/core/` with unit tests. `reference/vortex-surfer-chunks.json` is the acceptance fixture.
-- Keep ADRs current. Add a new numbered ADR for each significant decision.
+- Keep ADRs current. Add a new numbered ADR for each significant decision. There is no status log: what was measured goes into the ADR, doubts about a song into its `song.yaml` `notes`, and open work into section 13 of the system description.

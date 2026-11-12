@@ -116,6 +116,8 @@ The script finds the Songsterr tab (same artist, most track names in common with
 - **The video.** The title and channel should be the recording the tab follows. It is Songsterr's choice and may be a third-party upload; keep it unless it cannot be played.
 - **The sync.** `N anchors for B bars` should cover nearly every bar. The lines below it say which bars got no point, which points were merged, and which bars are far from the score's length. A recording a few seconds off the tempo map is normal. If the counts differ by more than a few bars, the revision is probably not the `.gp`'s: try `--revision <id>`.
 
+**If the script gets 403.** Since 2026-11-05 Songsterr's API has refused requests from scripts (a plain nginx 403 to Node and curl), while the tab page in a browser still loads the same data. For the ten songs added since, the tab's meta, the revision of the `.gp`'s date and its video list were read from the tab page in a browser, and a temporary preload answered `fetch-video`'s Songsterr requests with that data, so the alignment and `--write` were still the script's own. Do the same, and say so in `notes`. The owner names the Songsterr tab when asked.
+
 Then write it:
 
 ```bash

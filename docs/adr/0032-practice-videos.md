@@ -1,6 +1,6 @@
 # ADR-0032: Practice videos recorded from the app
 
-Status: Proposed (implemented, awaiting owner review); amended by ADR-0033 (recorded with OBS by default)
+Status: Accepted for what is recorded and how the app is driven; the capture is superseded by ADR-0035 (from the screen, the default on Windows) and ADR-0033 (OBS). The capture below is kept as `--engine chrome`.
 Date: 2026-11-08
 
 ## Context
@@ -92,11 +92,12 @@ Date: 2026-11-08
   - the "More videos" shelf at the end.
 - An upload with the recording's sound is likely to get a Content ID claim, also when unlisted. That is between the owner and YouTube.
 - At a join the old recorder stops as the new one starts. A test with 4 segments (Creep, 25 s, 15 MB segments) had no gap in the picture and at most 16 ms in the sound.
-- Tests: `scripts/mp4.test.ts` covers the rewrite and the join with hand-built fragmented files. The browser part needs YouTube and a real Chrome, so it has no automated test. It was checked by recording `vortex-surfer-live` (see `docs/status.md`).
+- Tests: `scripts/mp4.test.ts` covers the rewrite and the join with hand-built fragmented files. The browser part needs YouTube and a real Chrome, so it has no automated test. It was checked by recording `vortex-surfer-live` at 1080p: 8:03 played, an 8:06 file, picture and sound the same length.
+- At 4K this capture stalls every 1.8 s: headless Chrome has a hardware encoder only up to 1080p (ADR-0033). Use it at 1080p, or on a machine without OBS and ffmpeg.
 
 ## Alternatives
 
-- **A screen recorder** (ffmpeg's `gdigrab`, or OBS). It records the screen, cursor and notifications included, and holds the screen for the whole song. Recording the system's sound needs a loopback device. ffmpeg is not installed, and OBS is manual.
+- **A screen recorder.** Set aside at first because it holds the screen for the whole song; adopted later, when 4K needed it (ADR-0035).
 - **Chrome's screencast** (`Page.startScreencast`): JPEG frames, no sound.
 - **The visible Chrome window in full screen.** The sharing bar takes 56 px from the page, and the computer cannot be used meanwhile.
 - **ffmpeg for the rewrite** (`-c copy -movflags +faststart`). That would mean a binary download for one step on every machine and in CI. The rewrite is short and tested.

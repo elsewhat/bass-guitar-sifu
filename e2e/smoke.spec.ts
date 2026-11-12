@@ -63,7 +63,7 @@ test('loads Vortex Surfer with its practice plan, strip and fingering', async ({
   await expect(video.getByText('Bass rests · bars 1–129')).toBeVisible();
   await expect(video.getByText('Rest 0:00–4:41 · score time')).toBeVisible();
   await expect(page.getByTestId('pass-counter')).toHaveText('Bass rests');
-  await expect(page.getByTestId('strip-host').getByText('Bass rests · bars 1–129')).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Notation and tab' }).getByText('Bass rests · bars 1–129')).toBeVisible();
   await expect(page.getByText('Next · chunk 1 · Riff A · bar 130')).toBeAttached();
   await expect(page.getByTestId('now-fret')).toHaveText('');
   await expect(page.getByLabel('Next', { exact: true })).toContainText('next chunk');

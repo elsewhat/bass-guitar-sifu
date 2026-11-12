@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { interpolate, playheadX, smoothedX } from '../strip/scroll';
+import { interpolate, playheadX, scrollMap, smoothedX } from '../strip/scroll';
 import type { BeatEvent, SongData } from './model';
 import { buildPlucks, firstPluckIn, nextDifferentNote, pluckAt } from './plucks';
 
@@ -163,8 +163,45 @@ describe('strip scroll mapping', () => {
     expect(Math.max(...steps) / Math.min(...steps)).toBeLessThan(4);
   });
 
+  it('changes the scroll speed gradually and keeps onsets near the playhead (ADR-0034)', () => {
+    // Eight bars of eighths, 31 px apart, with a 40 px barline gap. A frame is about 40 ticks.
+    const a: { tick: number; x: number }[] = [];
+    for (let bar = 0; bar < 8; bar++) for (let i = 0; i < 8; i++) a.push({ tick: bar * 3840 + i * 480, x: bar * (7 * 31 + 71) + i * 31 });
+    a.push({ tick: 8 * 3840, x: 8 * (7 * 31 + 71) });
+    const jump = (x: (tick: number) => number) => {
+      let worst = 0;
+      for (let t = 3840; t < 7 * 3840; t += 40) worst = Math.max(worst, Math.abs(x(t + 80) - 2 * x(t + 40) + x(t)));
+      return worst;
+    };
+    const map = scrollMap(a, 10);
+    const bounded = (t: number) => playheadX(a, t, 10);
+    expect(jump(bounded)).toBeGreaterThan(1); // the bounded mapping alone changes speed within a frame
+    expect(jump(map)).toBeLessThan(0.25);
+    for (let t = 0; t < 8 * 3840; t += 40) expect(map(t + 40)).toBeGreaterThan(map(t));
+    const inner = a.filter((p) => p.tick >= 3840 && p.tick <= 7 * 3840);
+    expect(Math.max(...inner.map((p) => Math.abs(map(p.tick) - p.x)))).toBeLessThanOrEqual(15); // the e2e limit
+  });
+
+  it('scrolls a bar of even eighths at an even speed despite the room after the barline (ADR-0034)', () => {
+    // Eight bars of eighths, 31 px apart, with 12 px more after each barline, at about 40 ticks a frame.
+    const a: { tick: number; x: number }[] = [];
+    for (let bar = 0; bar < 8; bar++) for (let i = 0; i < 8; i++) a.push({ tick: bar * 3840 + i * 480, x: bar * (7 * 31 + 43) + i * 31 });
+    a.push({ tick: 8 * 3840, x: 8 * (7 * 31 + 43) });
+    const map = scrollMap(a, 10);
+    const speeds: number[] = [];
+    for (let t = 2 * 3840; t < 6 * 3840; t += 40) speeds.push(map(t + 40) - map(t));
+    expect(Math.max(...speeds) / Math.min(...speeds)).toBeLessThan(1.05);
+  });
+
+  it('follows an evenly spaced score exactly and extends past its ends', () => {
+    const even = Array.from({ length: 33 }, (_, i) => ({ tick: i * 480, x: 50 + i * 30 }));
+    const map = scrollMap(even, 10);
+    for (const t of [-5000, 0, 15, 1234, 15360, 30000]) expect(map(t)).toBeCloseTo(50 + (t / 480) * 30, 6);
+    expect(scrollMap([{ tick: 0, x: 7 }], 10)(500)).toBe(7);
+  });
+
   it('smooths the speed change around an onset', () => {
-    const x = smoothedX(anchors, 960);
+    const x = smoothedX(anchors, 960, 1920);
     expect(x).toBeGreaterThan(75);
     expect(x).toBeLessThan(100);
     expect(smoothedX([{ tick: 0, x: 0 }, { tick: 960, x: 100 }], 480)).toBeCloseTo(50);
